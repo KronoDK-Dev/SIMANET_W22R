@@ -1,0 +1,3248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Listar_conci_banc_r_cartola_conc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_MES" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CARTOLA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_MONEDA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_conci_banc_r_cartola_concResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_conci_banc_r_cartola_concResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_conci_bancaria_res_cartol">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_MES" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CARTOLA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_MONEDA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_conci_bancaria_res_cartolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_conci_bancaria_res_cartolResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_conciliacion_banc_cartola">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_MES" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CARTOLA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_MONEDA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_conciliacion_banc_cartolaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_conciliacion_banc_cartolaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_detalle_ffj_gf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_LIQUIDACION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_detalle_ffj_gfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_detalle_ffj_gfResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_libro_banco">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_MES" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_BANCO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CUENTA_CORRIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_libro_bancoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_libro_bancoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_res_ffj_x_centro_costos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_LIQUIDACION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_res_ffj_x_centro_costosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_res_ffj_x_centro_costosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_cheques_egresos_directos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_MES_DESDE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_MES_HASTA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_MONEDA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_TIPO_DE_OPERACION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_cheques_egresos_directosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_cheques_egresos_directosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Estado_Cuenta_Doc_Elect">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Documento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Nro_de_Serie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Nro_Correlativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Estado_Cuenta_Doc_ElectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Estado_Cuenta_Doc_ElectResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Estado_de_Cuenta_por_Doc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Documento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Nro_de_Serie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Nro_Correlativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Estado_de_Cuenta_por_DocResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Estado_de_Cuenta_por_DocResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_folios_pendientes_o7">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_MES" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_folios_pendientes_o7Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_folios_pendientes_o7Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_ingresos_contabilizados">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_FECHA_DESDE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_FECHA_HASTA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CONCEPTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_DESDE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_EMPRESA_DESDE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_EMPRESA_HASTA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_HASTA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_MONEDA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_ingresos_contabilizadosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_ingresos_contabilizadosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_ventas_x_orden_trabajo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_DIVISION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_NUMERO_OT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_ventas_x_orden_trabajoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_ventas_x_orden_trabajoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_fact_cobrar_sector_privado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_fact_cobrar_sector_privadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_fact_cobrar_sector_privadoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_fact_cobrar_sector_marina">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_fact_cobrar_sector_marinaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_fact_cobrar_sector_marinaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Parte_de_Cobranzas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Año" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Mes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Parte_de_CobranzasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Parte_de_CobranzasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Documentos_por_Cliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Año_Desde" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Año_Hasta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Documentos_por_ClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Documentos_por_ClienteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Fact_Men_X_Linea_Neg">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Año" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Fact_Men_X_Linea_NegResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Fact_Men_X_Linea_NegResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Orden_Trabajo_Datos_Gener">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Division" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Numero_OT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Orden_Trabajo_Datos_GenerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Orden_Trabajo_Datos_GenerResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Anexo_Diques">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Division" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Numero_OT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Anexo_DiquesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Anexo_DiquesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_cheque_giradoxnum">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CHEQUE_NUMERO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_cheque_giradoxnumResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_cheque_giradoxnumResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_cheques_emitidos_resumen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_cheques_emitidos_resumenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_cheques_emitidos_resumenResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_cheques_giradosxprove_det">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_FECHA_DESDE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_FECHA_HASTA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_RELACION_DESDE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_RELACION_HASTA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_cheques_giradosxprove_detResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_cheques_giradosxprove_detResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_cheques_giradosxprove_res">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_MES" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_RELACION_DESDE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_RELACION_HASTA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_cheques_giradosxprove_resResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_cheques_giradosxprove_resResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_cheques_por_observacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_FECHA_DESDE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_FECHA_HASTA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_OBSERVACION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_cheques_por_observacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_cheques_por_observacionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_lote_de_detrac_por_doc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_NUMERO_DE_LOTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_lote_de_detrac_por_docResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_lote_de_detrac_por_docResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_fact_pagar_pendientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_RECURSO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_RUC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_PROYECTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_fact_pagar_pendientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_fact_pagar_pendientesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_fact_por_pagar_doc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_MES" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_RELACION_DESDE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_RELACION_HASTA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_fact_por_pagar_docResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_fact_por_pagar_docResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_facturas_por_pagar_total">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_facturas_por_pagar_totalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_facturas_por_pagar_totalResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_pago_proveedores">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_SUCURSAL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_RUC_INI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_RUC_FIN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_fecha_ini" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_fecha_fin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_operacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_pago_proveedoresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_pago_proveedoresResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_pago_Facturas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_SUCURSAL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_RUC_INI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_RUC_FIN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_fecha_ini" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_fecha_fin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_operacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_pago_FacturasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_pago_FacturasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaLineas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaLineasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaLineasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaProyectosSinDep">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_NOMBRE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaProyectosSinDepResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaProyectosSinDepResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Listar_conci_banc_r_cartola_concSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_conci_banc_r_cartola_conc" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conci_banc_r_cartola_concSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_conci_banc_r_cartola_concResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conci_bancaria_res_cartolSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_conci_bancaria_res_cartol" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conci_bancaria_res_cartolSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_conci_bancaria_res_cartolResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conciliacion_banc_cartolaSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_conciliacion_banc_cartola" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conciliacion_banc_cartolaSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_conciliacion_banc_cartolaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_detalle_ffj_gfSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_detalle_ffj_gf" />
+  </wsdl:message>
+  <wsdl:message name="Listar_detalle_ffj_gfSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_detalle_ffj_gfResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_libro_bancoSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_libro_banco" />
+  </wsdl:message>
+  <wsdl:message name="Listar_libro_bancoSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_libro_bancoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_res_ffj_x_centro_costosSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_res_ffj_x_centro_costos" />
+  </wsdl:message>
+  <wsdl:message name="Listar_res_ffj_x_centro_costosSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_res_ffj_x_centro_costosResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_egresos_directosSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_cheques_egresos_directos" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_egresos_directosSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_cheques_egresos_directosResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Estado_Cuenta_Doc_ElectSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Estado_Cuenta_Doc_Elect" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Estado_Cuenta_Doc_ElectSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Estado_Cuenta_Doc_ElectResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Estado_de_Cuenta_por_DocSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Estado_de_Cuenta_por_Doc" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Estado_de_Cuenta_por_DocSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Estado_de_Cuenta_por_DocResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_folios_pendientes_o7SoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_folios_pendientes_o7" />
+  </wsdl:message>
+  <wsdl:message name="Listar_folios_pendientes_o7SoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_folios_pendientes_o7Response" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ingresos_contabilizadosSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_ingresos_contabilizados" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ingresos_contabilizadosSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_ingresos_contabilizadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ventas_x_orden_trabajoSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_ventas_x_orden_trabajo" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ventas_x_orden_trabajoSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_ventas_x_orden_trabajoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_cobrar_sector_privadoSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_fact_cobrar_sector_privado" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_cobrar_sector_privadoSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_fact_cobrar_sector_privadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_cobrar_sector_marinaSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_fact_cobrar_sector_marina" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_cobrar_sector_marinaSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_fact_cobrar_sector_marinaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Parte_de_CobranzasSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Parte_de_Cobranzas" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Parte_de_CobranzasSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Parte_de_CobranzasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Documentos_por_ClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Documentos_por_Cliente" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Documentos_por_ClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Documentos_por_ClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Fact_Men_X_Linea_NegSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Fact_Men_X_Linea_Neg" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Fact_Men_X_Linea_NegSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Fact_Men_X_Linea_NegResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Orden_Trabajo_Datos_GenerSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Orden_Trabajo_Datos_Gener" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Orden_Trabajo_Datos_GenerSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Orden_Trabajo_Datos_GenerResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Anexo_DiquesSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Anexo_Diques" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Anexo_DiquesSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Anexo_DiquesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheque_giradoxnumSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_cheque_giradoxnum" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheque_giradoxnumSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_cheque_giradoxnumResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_emitidos_resumenSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_cheques_emitidos_resumen" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_emitidos_resumenSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_cheques_emitidos_resumenResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_giradosxprove_detSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_cheques_giradosxprove_det" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_giradosxprove_detSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_cheques_giradosxprove_detResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_giradosxprove_resSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_cheques_giradosxprove_res" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_giradosxprove_resSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_cheques_giradosxprove_resResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_por_observacionSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_cheques_por_observacion" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_por_observacionSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_cheques_por_observacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_lote_de_detrac_por_docSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_lote_de_detrac_por_doc" />
+  </wsdl:message>
+  <wsdl:message name="Listar_lote_de_detrac_por_docSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_lote_de_detrac_por_docResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_pagar_pendientesSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_fact_pagar_pendientes" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_pagar_pendientesSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_fact_pagar_pendientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_por_pagar_docSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_fact_por_pagar_doc" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_por_pagar_docSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_fact_por_pagar_docResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_facturas_por_pagar_totalSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_facturas_por_pagar_total" />
+  </wsdl:message>
+  <wsdl:message name="Listar_facturas_por_pagar_totalSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_facturas_por_pagar_totalResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_pago_proveedoresSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_pago_proveedores" />
+  </wsdl:message>
+  <wsdl:message name="Listar_pago_proveedoresSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_pago_proveedoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_pago_FacturasSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_pago_Facturas" />
+  </wsdl:message>
+  <wsdl:message name="Listar_pago_FacturasSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_pago_FacturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaLineasSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaLineas" />
+  </wsdl:message>
+  <wsdl:message name="ListaLineasSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaLineasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaProyectosSinDepSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaProyectosSinDep" />
+  </wsdl:message>
+  <wsdl:message name="ListaProyectosSinDepSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaProyectosSinDepResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conci_banc_r_cartola_concHttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_CARTOLA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_MONEDA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conci_banc_r_cartola_concHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conci_bancaria_res_cartolHttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_CARTOLA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_MONEDA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conci_bancaria_res_cartolHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conciliacion_banc_cartolaHttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_CARTOLA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_MONEDA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conciliacion_banc_cartolaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_detalle_ffj_gfHttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="V_LIQUIDACION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_detalle_ffj_gfHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_libro_bancoHttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_BANCO" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_CUENTA_CORRIENTE" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_libro_bancoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_res_ffj_x_centro_costosHttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="V_LIQUIDACION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_res_ffj_x_centro_costosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_egresos_directosHttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES_DESDE" type="s:string" />
+    <wsdl:part name="D_MES_HASTA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_MONEDA" type="s:string" />
+    <wsdl:part name="V_TIPO_DE_OPERACION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_egresos_directosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Estado_Cuenta_Doc_ElectHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="V_Documento" type="s:string" />
+    <wsdl:part name="V_Nro_de_Serie" type="s:string" />
+    <wsdl:part name="V_Nro_Correlativo" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Estado_Cuenta_Doc_ElectHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Estado_de_Cuenta_por_DocHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="V_Documento" type="s:string" />
+    <wsdl:part name="V_Nro_de_Serie" type="s:string" />
+    <wsdl:part name="V_Nro_Correlativo" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Estado_de_Cuenta_por_DocHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_folios_pendientes_o7HttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_folios_pendientes_o7HttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ingresos_contabilizadosHttpGetIn">
+    <wsdl:part name="D_FECHA_DESDE" type="s:string" />
+    <wsdl:part name="D_FECHA_HASTA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_CONCEPTO" type="s:string" />
+    <wsdl:part name="V_DESDE" type="s:string" />
+    <wsdl:part name="V_EMPRESA_DESDE" type="s:string" />
+    <wsdl:part name="V_EMPRESA_HASTA" type="s:string" />
+    <wsdl:part name="V_HASTA" type="s:string" />
+    <wsdl:part name="V_MONEDA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ingresos_contabilizadosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ventas_x_orden_trabajoHttpGetIn">
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_DIVISION" type="s:string" />
+    <wsdl:part name="V_NUMERO_OT" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ventas_x_orden_trabajoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_cobrar_sector_privadoHttpGetIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_cobrar_sector_privadoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_cobrar_sector_marinaHttpGetIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_cobrar_sector_marinaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Parte_de_CobranzasHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Parte_de_CobranzasHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Documentos_por_ClienteHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="V_Cliente" type="s:string" />
+    <wsdl:part name="D_Año_Desde" type="s:string" />
+    <wsdl:part name="D_Año_Hasta" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Documentos_por_ClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Fact_Men_X_Linea_NegHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Fact_Men_X_Linea_NegHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Orden_Trabajo_Datos_GenerHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="V_Division" type="s:string" />
+    <wsdl:part name="V_Numero_OT" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Orden_Trabajo_Datos_GenerHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Anexo_DiquesHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="V_Division" type="s:string" />
+    <wsdl:part name="V_Numero_OT" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Anexo_DiquesHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheque_giradoxnumHttpGetIn">
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_CHEQUE_NUMERO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheque_giradoxnumHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_emitidos_resumenHttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_emitidos_resumenHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_giradosxprove_detHttpGetIn">
+    <wsdl:part name="D_FECHA_DESDE" type="s:string" />
+    <wsdl:part name="D_FECHA_HASTA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_RELACION_DESDE" type="s:string" />
+    <wsdl:part name="V_RELACION_HASTA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_giradosxprove_detHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_giradosxprove_resHttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_RELACION_DESDE" type="s:string" />
+    <wsdl:part name="V_RELACION_HASTA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_giradosxprove_resHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_por_observacionHttpGetIn">
+    <wsdl:part name="D_FECHA_DESDE" type="s:string" />
+    <wsdl:part name="D_FECHA_HASTA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_OBSERVACION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_por_observacionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_lote_de_detrac_por_docHttpGetIn">
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_NUMERO_DE_LOTE" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_lote_de_detrac_por_docHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_pagar_pendientesHttpGetIn">
+    <wsdl:part name="V_RECURSO" type="s:string" />
+    <wsdl:part name="V_RUC" type="s:string" />
+    <wsdl:part name="V_PROYECTO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_pagar_pendientesHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_por_pagar_docHttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_RELACION_DESDE" type="s:string" />
+    <wsdl:part name="V_RELACION_HASTA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_por_pagar_docHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_facturas_por_pagar_totalHttpGetIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_facturas_por_pagar_totalHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_pago_proveedoresHttpGetIn">
+    <wsdl:part name="V_SUCURSAL" type="s:string" />
+    <wsdl:part name="V_RUC_INI" type="s:string" />
+    <wsdl:part name="V_RUC_FIN" type="s:string" />
+    <wsdl:part name="v_fecha_ini" type="s:string" />
+    <wsdl:part name="v_fecha_fin" type="s:string" />
+    <wsdl:part name="v_operacion" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_pago_proveedoresHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_pago_FacturasHttpGetIn">
+    <wsdl:part name="V_SUCURSAL" type="s:string" />
+    <wsdl:part name="V_RUC_INI" type="s:string" />
+    <wsdl:part name="V_RUC_FIN" type="s:string" />
+    <wsdl:part name="v_fecha_ini" type="s:string" />
+    <wsdl:part name="v_fecha_fin" type="s:string" />
+    <wsdl:part name="v_operacion" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_pago_FacturasHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListaLineasHttpGetIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaLineasHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListaProyectosSinDepHttpGetIn">
+    <wsdl:part name="V_NOMBRE" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaProyectosSinDepHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conci_banc_r_cartola_concHttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_CARTOLA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_MONEDA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conci_banc_r_cartola_concHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conci_bancaria_res_cartolHttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_CARTOLA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_MONEDA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conci_bancaria_res_cartolHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conciliacion_banc_cartolaHttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_CARTOLA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_MONEDA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_conciliacion_banc_cartolaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_detalle_ffj_gfHttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="V_LIQUIDACION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_detalle_ffj_gfHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_libro_bancoHttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_BANCO" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_CUENTA_CORRIENTE" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_libro_bancoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_res_ffj_x_centro_costosHttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="V_LIQUIDACION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_res_ffj_x_centro_costosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_egresos_directosHttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES_DESDE" type="s:string" />
+    <wsdl:part name="D_MES_HASTA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_MONEDA" type="s:string" />
+    <wsdl:part name="V_TIPO_DE_OPERACION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_egresos_directosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Estado_Cuenta_Doc_ElectHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="V_Documento" type="s:string" />
+    <wsdl:part name="V_Nro_de_Serie" type="s:string" />
+    <wsdl:part name="V_Nro_Correlativo" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Estado_Cuenta_Doc_ElectHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Estado_de_Cuenta_por_DocHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="V_Documento" type="s:string" />
+    <wsdl:part name="V_Nro_de_Serie" type="s:string" />
+    <wsdl:part name="V_Nro_Correlativo" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Estado_de_Cuenta_por_DocHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_folios_pendientes_o7HttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_folios_pendientes_o7HttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ingresos_contabilizadosHttpPostIn">
+    <wsdl:part name="D_FECHA_DESDE" type="s:string" />
+    <wsdl:part name="D_FECHA_HASTA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_CONCEPTO" type="s:string" />
+    <wsdl:part name="V_DESDE" type="s:string" />
+    <wsdl:part name="V_EMPRESA_DESDE" type="s:string" />
+    <wsdl:part name="V_EMPRESA_HASTA" type="s:string" />
+    <wsdl:part name="V_HASTA" type="s:string" />
+    <wsdl:part name="V_MONEDA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ingresos_contabilizadosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ventas_x_orden_trabajoHttpPostIn">
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_DIVISION" type="s:string" />
+    <wsdl:part name="V_NUMERO_OT" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ventas_x_orden_trabajoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_cobrar_sector_privadoHttpPostIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_cobrar_sector_privadoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_cobrar_sector_marinaHttpPostIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_cobrar_sector_marinaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Parte_de_CobranzasHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Parte_de_CobranzasHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Documentos_por_ClienteHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="V_Cliente" type="s:string" />
+    <wsdl:part name="D_Año_Desde" type="s:string" />
+    <wsdl:part name="D_Año_Hasta" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Documentos_por_ClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Fact_Men_X_Linea_NegHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Fact_Men_X_Linea_NegHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Orden_Trabajo_Datos_GenerHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="V_Division" type="s:string" />
+    <wsdl:part name="V_Numero_OT" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Orden_Trabajo_Datos_GenerHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Anexo_DiquesHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="V_Division" type="s:string" />
+    <wsdl:part name="V_Numero_OT" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Anexo_DiquesHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheque_giradoxnumHttpPostIn">
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_CHEQUE_NUMERO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheque_giradoxnumHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_emitidos_resumenHttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_emitidos_resumenHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_giradosxprove_detHttpPostIn">
+    <wsdl:part name="D_FECHA_DESDE" type="s:string" />
+    <wsdl:part name="D_FECHA_HASTA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_RELACION_DESDE" type="s:string" />
+    <wsdl:part name="V_RELACION_HASTA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_giradosxprove_detHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_giradosxprove_resHttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_RELACION_DESDE" type="s:string" />
+    <wsdl:part name="V_RELACION_HASTA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_giradosxprove_resHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_por_observacionHttpPostIn">
+    <wsdl:part name="D_FECHA_DESDE" type="s:string" />
+    <wsdl:part name="D_FECHA_HASTA" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_OBSERVACION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_cheques_por_observacionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_lote_de_detrac_por_docHttpPostIn">
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_NUMERO_DE_LOTE" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_lote_de_detrac_por_docHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_pagar_pendientesHttpPostIn">
+    <wsdl:part name="V_RECURSO" type="s:string" />
+    <wsdl:part name="V_RUC" type="s:string" />
+    <wsdl:part name="V_PROYECTO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_pagar_pendientesHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_por_pagar_docHttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_RELACION_DESDE" type="s:string" />
+    <wsdl:part name="V_RELACION_HASTA" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_fact_por_pagar_docHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_facturas_por_pagar_totalHttpPostIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_facturas_por_pagar_totalHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_pago_proveedoresHttpPostIn">
+    <wsdl:part name="V_SUCURSAL" type="s:string" />
+    <wsdl:part name="V_RUC_INI" type="s:string" />
+    <wsdl:part name="V_RUC_FIN" type="s:string" />
+    <wsdl:part name="v_fecha_ini" type="s:string" />
+    <wsdl:part name="v_fecha_fin" type="s:string" />
+    <wsdl:part name="v_operacion" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_pago_proveedoresHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_pago_FacturasHttpPostIn">
+    <wsdl:part name="V_SUCURSAL" type="s:string" />
+    <wsdl:part name="V_RUC_INI" type="s:string" />
+    <wsdl:part name="V_RUC_FIN" type="s:string" />
+    <wsdl:part name="v_fecha_ini" type="s:string" />
+    <wsdl:part name="v_fecha_fin" type="s:string" />
+    <wsdl:part name="v_operacion" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_pago_FacturasHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListaLineasHttpPostIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaLineasHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListaProyectosSinDepHttpPostIn">
+    <wsdl:part name="V_NOMBRE" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaProyectosSinDepHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:portType name="TesoreriaSoap">
+    <wsdl:operation name="Listar_conci_banc_r_cartola_conc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Conciliacion Bancaria Conciliados</wsdl:documentation>
+      <wsdl:input message="tns:Listar_conci_banc_r_cartola_concSoapIn" />
+      <wsdl:output message="tns:Listar_conci_banc_r_cartola_concSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conci_bancaria_res_cartol">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Conciliacion Bancaria Cartola Resumen</wsdl:documentation>
+      <wsdl:input message="tns:Listar_conci_bancaria_res_cartolSoapIn" />
+      <wsdl:output message="tns:Listar_conci_bancaria_res_cartolSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conciliacion_banc_cartola">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Conciliacion Bancaria Cartola</wsdl:documentation>
+      <wsdl:input message="tns:Listar_conciliacion_banc_cartolaSoapIn" />
+      <wsdl:output message="tns:Listar_conciliacion_banc_cartolaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_detalle_ffj_gf">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - F.F. GERENCIA FINANCIERA ( Por Trabajador )</wsdl:documentation>
+      <wsdl:input message="tns:Listar_detalle_ffj_gfSoapIn" />
+      <wsdl:output message="tns:Listar_detalle_ffj_gfSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_libro_banco">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Libro Banco</wsdl:documentation>
+      <wsdl:input message="tns:Listar_libro_bancoSoapIn" />
+      <wsdl:output message="tns:Listar_libro_bancoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_res_ffj_x_centro_costos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - F.F. GERENCIA FINANCIERA ( Por C.Costo ) - movilidad</wsdl:documentation>
+      <wsdl:input message="tns:Listar_res_ffj_x_centro_costosSoapIn" />
+      <wsdl:output message="tns:Listar_res_ffj_x_centro_costosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_egresos_directos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cheques y Egresos Directos por Mes</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_egresos_directosSoapIn" />
+      <wsdl:output message="tns:Listar_cheques_egresos_directosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_Cuenta_Doc_Elect">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. Estado de Cuenta por Documento Electronico</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Estado_Cuenta_Doc_ElectSoapIn" />
+      <wsdl:output message="tns:Listar_Estado_Cuenta_Doc_ElectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_de_Cuenta_por_Doc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">6. Estado de Cuenta por Documento No Electronico</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Estado_de_Cuenta_por_DocSoapIn" />
+      <wsdl:output message="tns:Listar_Estado_de_Cuenta_por_DocSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_folios_pendientes_o7">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Folios Pendientes de O7</wsdl:documentation>
+      <wsdl:input message="tns:Listar_folios_pendientes_o7SoapIn" />
+      <wsdl:output message="tns:Listar_folios_pendientes_o7SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ingresos_contabilizados">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ingresos</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ingresos_contabilizadosSoapIn" />
+      <wsdl:output message="tns:Listar_ingresos_contabilizadosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ventas_x_orden_trabajo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ventas por Orden de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ventas_x_orden_trabajoSoapIn" />
+      <wsdl:output message="tns:Listar_ventas_x_orden_trabajoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_privado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas por Cobrar - Sector Privado</wsdl:documentation>
+      <wsdl:input message="tns:Listar_fact_cobrar_sector_privadoSoapIn" />
+      <wsdl:output message="tns:Listar_fact_cobrar_sector_privadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_marina">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas por Cobrar - Sector Marina</wsdl:documentation>
+      <wsdl:input message="tns:Listar_fact_cobrar_sector_marinaSoapIn" />
+      <wsdl:output message="tns:Listar_fact_cobrar_sector_marinaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Parte_de_Cobranzas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1. Detalle - Parte de Cobranzas</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Parte_de_CobranzasSoapIn" />
+      <wsdl:output message="tns:Listar_Parte_de_CobranzasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Documentos_por_Cliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">2. Detalle - Documentos por Cliente</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Documentos_por_ClienteSoapIn" />
+      <wsdl:output message="tns:Listar_Documentos_por_ClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Fact_Men_X_Linea_Neg">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">4. Facturación Mensual por Linea Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Fact_Men_X_Linea_NegSoapIn" />
+      <wsdl:output message="tns:Listar_Fact_Men_X_Linea_NegSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Orden_Trabajo_Datos_Gener">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">7. Datos Generales de la Orden de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Orden_Trabajo_Datos_GenerSoapIn" />
+      <wsdl:output message="tns:Listar_Orden_Trabajo_Datos_GenerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Anexo_Diques">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">8. Anexo OT Diques</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Anexo_DiquesSoapIn" />
+      <wsdl:output message="tns:Listar_Anexo_DiquesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheque_giradoxnum">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle  - Cheque  Girado por Numero</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheque_giradoxnumSoapIn" />
+      <wsdl:output message="tns:Listar_cheque_giradoxnumSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_emitidos_resumen">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Cheques Emitidos</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_emitidos_resumenSoapIn" />
+      <wsdl:output message="tns:Listar_cheques_emitidos_resumenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Cheques Girados por Relacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_giradosxprove_detSoapIn" />
+      <wsdl:output message="tns:Listar_cheques_giradosxprove_detSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_res">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Cheques Girados por Relacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_giradosxprove_resSoapIn" />
+      <wsdl:output message="tns:Listar_cheques_giradosxprove_resSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_por_observacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Cheques Girados por Observacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_por_observacionSoapIn" />
+      <wsdl:output message="tns:Listar_cheques_por_observacionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_lote_de_detrac_por_doc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Lote de Detracion por Documento</wsdl:documentation>
+      <wsdl:input message="tns:Listar_lote_de_detrac_por_docSoapIn" />
+      <wsdl:output message="tns:Listar_lote_de_detrac_por_docSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_pagar_pendientes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas x Pagar - Pendientes</wsdl:documentation>
+      <wsdl:input message="tns:Listar_fact_pagar_pendientesSoapIn" />
+      <wsdl:output message="tns:Listar_fact_pagar_pendientesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_por_pagar_doc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas x Pagar - Pendientes del Periodo Anterior</wsdl:documentation>
+      <wsdl:input message="tns:Listar_fact_por_pagar_docSoapIn" />
+      <wsdl:output message="tns:Listar_fact_por_pagar_docSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_facturas_por_pagar_total">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas x Pagar - Total</wsdl:documentation>
+      <wsdl:input message="tns:Listar_facturas_por_pagar_totalSoapIn" />
+      <wsdl:output message="tns:Listar_facturas_por_pagar_totalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_proveedores">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Pagos a proveedores</wsdl:documentation>
+      <wsdl:input message="tns:Listar_pago_proveedoresSoapIn" />
+      <wsdl:output message="tns:Listar_pago_proveedoresSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_Facturas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Pagos de Facturas</wsdl:documentation>
+      <wsdl:input message="tns:Listar_pago_FacturasSoapIn" />
+      <wsdl:output message="tns:Listar_pago_FacturasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaLineas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Líneas de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:ListaLineasSoapIn" />
+      <wsdl:output message="tns:ListaLineasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaProyectosSinDep">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Proyectos - Sin Dependencia</wsdl:documentation>
+      <wsdl:input message="tns:ListaProyectosSinDepSoapIn" />
+      <wsdl:output message="tns:ListaProyectosSinDepSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TesoreriaHttpGet">
+    <wsdl:operation name="Listar_conci_banc_r_cartola_conc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Conciliacion Bancaria Conciliados</wsdl:documentation>
+      <wsdl:input message="tns:Listar_conci_banc_r_cartola_concHttpGetIn" />
+      <wsdl:output message="tns:Listar_conci_banc_r_cartola_concHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conci_bancaria_res_cartol">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Conciliacion Bancaria Cartola Resumen</wsdl:documentation>
+      <wsdl:input message="tns:Listar_conci_bancaria_res_cartolHttpGetIn" />
+      <wsdl:output message="tns:Listar_conci_bancaria_res_cartolHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conciliacion_banc_cartola">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Conciliacion Bancaria Cartola</wsdl:documentation>
+      <wsdl:input message="tns:Listar_conciliacion_banc_cartolaHttpGetIn" />
+      <wsdl:output message="tns:Listar_conciliacion_banc_cartolaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_detalle_ffj_gf">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - F.F. GERENCIA FINANCIERA ( Por Trabajador )</wsdl:documentation>
+      <wsdl:input message="tns:Listar_detalle_ffj_gfHttpGetIn" />
+      <wsdl:output message="tns:Listar_detalle_ffj_gfHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_libro_banco">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Libro Banco</wsdl:documentation>
+      <wsdl:input message="tns:Listar_libro_bancoHttpGetIn" />
+      <wsdl:output message="tns:Listar_libro_bancoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_res_ffj_x_centro_costos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - F.F. GERENCIA FINANCIERA ( Por C.Costo ) - movilidad</wsdl:documentation>
+      <wsdl:input message="tns:Listar_res_ffj_x_centro_costosHttpGetIn" />
+      <wsdl:output message="tns:Listar_res_ffj_x_centro_costosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_egresos_directos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cheques y Egresos Directos por Mes</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_egresos_directosHttpGetIn" />
+      <wsdl:output message="tns:Listar_cheques_egresos_directosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_Cuenta_Doc_Elect">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. Estado de Cuenta por Documento Electronico</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Estado_Cuenta_Doc_ElectHttpGetIn" />
+      <wsdl:output message="tns:Listar_Estado_Cuenta_Doc_ElectHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_de_Cuenta_por_Doc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">6. Estado de Cuenta por Documento No Electronico</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Estado_de_Cuenta_por_DocHttpGetIn" />
+      <wsdl:output message="tns:Listar_Estado_de_Cuenta_por_DocHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_folios_pendientes_o7">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Folios Pendientes de O7</wsdl:documentation>
+      <wsdl:input message="tns:Listar_folios_pendientes_o7HttpGetIn" />
+      <wsdl:output message="tns:Listar_folios_pendientes_o7HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ingresos_contabilizados">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ingresos</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ingresos_contabilizadosHttpGetIn" />
+      <wsdl:output message="tns:Listar_ingresos_contabilizadosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ventas_x_orden_trabajo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ventas por Orden de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ventas_x_orden_trabajoHttpGetIn" />
+      <wsdl:output message="tns:Listar_ventas_x_orden_trabajoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_privado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas por Cobrar - Sector Privado</wsdl:documentation>
+      <wsdl:input message="tns:Listar_fact_cobrar_sector_privadoHttpGetIn" />
+      <wsdl:output message="tns:Listar_fact_cobrar_sector_privadoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_marina">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas por Cobrar - Sector Marina</wsdl:documentation>
+      <wsdl:input message="tns:Listar_fact_cobrar_sector_marinaHttpGetIn" />
+      <wsdl:output message="tns:Listar_fact_cobrar_sector_marinaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Parte_de_Cobranzas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1. Detalle - Parte de Cobranzas</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Parte_de_CobranzasHttpGetIn" />
+      <wsdl:output message="tns:Listar_Parte_de_CobranzasHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Documentos_por_Cliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">2. Detalle - Documentos por Cliente</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Documentos_por_ClienteHttpGetIn" />
+      <wsdl:output message="tns:Listar_Documentos_por_ClienteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Fact_Men_X_Linea_Neg">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">4. Facturación Mensual por Linea Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Fact_Men_X_Linea_NegHttpGetIn" />
+      <wsdl:output message="tns:Listar_Fact_Men_X_Linea_NegHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Orden_Trabajo_Datos_Gener">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">7. Datos Generales de la Orden de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Orden_Trabajo_Datos_GenerHttpGetIn" />
+      <wsdl:output message="tns:Listar_Orden_Trabajo_Datos_GenerHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Anexo_Diques">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">8. Anexo OT Diques</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Anexo_DiquesHttpGetIn" />
+      <wsdl:output message="tns:Listar_Anexo_DiquesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheque_giradoxnum">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle  - Cheque  Girado por Numero</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheque_giradoxnumHttpGetIn" />
+      <wsdl:output message="tns:Listar_cheque_giradoxnumHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_emitidos_resumen">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Cheques Emitidos</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_emitidos_resumenHttpGetIn" />
+      <wsdl:output message="tns:Listar_cheques_emitidos_resumenHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Cheques Girados por Relacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_giradosxprove_detHttpGetIn" />
+      <wsdl:output message="tns:Listar_cheques_giradosxprove_detHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_res">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Cheques Girados por Relacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_giradosxprove_resHttpGetIn" />
+      <wsdl:output message="tns:Listar_cheques_giradosxprove_resHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_por_observacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Cheques Girados por Observacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_por_observacionHttpGetIn" />
+      <wsdl:output message="tns:Listar_cheques_por_observacionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_lote_de_detrac_por_doc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Lote de Detracion por Documento</wsdl:documentation>
+      <wsdl:input message="tns:Listar_lote_de_detrac_por_docHttpGetIn" />
+      <wsdl:output message="tns:Listar_lote_de_detrac_por_docHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_pagar_pendientes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas x Pagar - Pendientes</wsdl:documentation>
+      <wsdl:input message="tns:Listar_fact_pagar_pendientesHttpGetIn" />
+      <wsdl:output message="tns:Listar_fact_pagar_pendientesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_por_pagar_doc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas x Pagar - Pendientes del Periodo Anterior</wsdl:documentation>
+      <wsdl:input message="tns:Listar_fact_por_pagar_docHttpGetIn" />
+      <wsdl:output message="tns:Listar_fact_por_pagar_docHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_facturas_por_pagar_total">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas x Pagar - Total</wsdl:documentation>
+      <wsdl:input message="tns:Listar_facturas_por_pagar_totalHttpGetIn" />
+      <wsdl:output message="tns:Listar_facturas_por_pagar_totalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_proveedores">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Pagos a proveedores</wsdl:documentation>
+      <wsdl:input message="tns:Listar_pago_proveedoresHttpGetIn" />
+      <wsdl:output message="tns:Listar_pago_proveedoresHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_Facturas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Pagos de Facturas</wsdl:documentation>
+      <wsdl:input message="tns:Listar_pago_FacturasHttpGetIn" />
+      <wsdl:output message="tns:Listar_pago_FacturasHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaLineas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Líneas de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:ListaLineasHttpGetIn" />
+      <wsdl:output message="tns:ListaLineasHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaProyectosSinDep">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Proyectos - Sin Dependencia</wsdl:documentation>
+      <wsdl:input message="tns:ListaProyectosSinDepHttpGetIn" />
+      <wsdl:output message="tns:ListaProyectosSinDepHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TesoreriaHttpPost">
+    <wsdl:operation name="Listar_conci_banc_r_cartola_conc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Conciliacion Bancaria Conciliados</wsdl:documentation>
+      <wsdl:input message="tns:Listar_conci_banc_r_cartola_concHttpPostIn" />
+      <wsdl:output message="tns:Listar_conci_banc_r_cartola_concHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conci_bancaria_res_cartol">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Conciliacion Bancaria Cartola Resumen</wsdl:documentation>
+      <wsdl:input message="tns:Listar_conci_bancaria_res_cartolHttpPostIn" />
+      <wsdl:output message="tns:Listar_conci_bancaria_res_cartolHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conciliacion_banc_cartola">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Conciliacion Bancaria Cartola</wsdl:documentation>
+      <wsdl:input message="tns:Listar_conciliacion_banc_cartolaHttpPostIn" />
+      <wsdl:output message="tns:Listar_conciliacion_banc_cartolaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_detalle_ffj_gf">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - F.F. GERENCIA FINANCIERA ( Por Trabajador )</wsdl:documentation>
+      <wsdl:input message="tns:Listar_detalle_ffj_gfHttpPostIn" />
+      <wsdl:output message="tns:Listar_detalle_ffj_gfHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_libro_banco">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Libro Banco</wsdl:documentation>
+      <wsdl:input message="tns:Listar_libro_bancoHttpPostIn" />
+      <wsdl:output message="tns:Listar_libro_bancoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_res_ffj_x_centro_costos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - F.F. GERENCIA FINANCIERA ( Por C.Costo ) - movilidad</wsdl:documentation>
+      <wsdl:input message="tns:Listar_res_ffj_x_centro_costosHttpPostIn" />
+      <wsdl:output message="tns:Listar_res_ffj_x_centro_costosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_egresos_directos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cheques y Egresos Directos por Mes</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_egresos_directosHttpPostIn" />
+      <wsdl:output message="tns:Listar_cheques_egresos_directosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_Cuenta_Doc_Elect">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. Estado de Cuenta por Documento Electronico</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Estado_Cuenta_Doc_ElectHttpPostIn" />
+      <wsdl:output message="tns:Listar_Estado_Cuenta_Doc_ElectHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_de_Cuenta_por_Doc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">6. Estado de Cuenta por Documento No Electronico</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Estado_de_Cuenta_por_DocHttpPostIn" />
+      <wsdl:output message="tns:Listar_Estado_de_Cuenta_por_DocHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_folios_pendientes_o7">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Folios Pendientes de O7</wsdl:documentation>
+      <wsdl:input message="tns:Listar_folios_pendientes_o7HttpPostIn" />
+      <wsdl:output message="tns:Listar_folios_pendientes_o7HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ingresos_contabilizados">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ingresos</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ingresos_contabilizadosHttpPostIn" />
+      <wsdl:output message="tns:Listar_ingresos_contabilizadosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ventas_x_orden_trabajo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ventas por Orden de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ventas_x_orden_trabajoHttpPostIn" />
+      <wsdl:output message="tns:Listar_ventas_x_orden_trabajoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_privado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas por Cobrar - Sector Privado</wsdl:documentation>
+      <wsdl:input message="tns:Listar_fact_cobrar_sector_privadoHttpPostIn" />
+      <wsdl:output message="tns:Listar_fact_cobrar_sector_privadoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_marina">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas por Cobrar - Sector Marina</wsdl:documentation>
+      <wsdl:input message="tns:Listar_fact_cobrar_sector_marinaHttpPostIn" />
+      <wsdl:output message="tns:Listar_fact_cobrar_sector_marinaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Parte_de_Cobranzas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1. Detalle - Parte de Cobranzas</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Parte_de_CobranzasHttpPostIn" />
+      <wsdl:output message="tns:Listar_Parte_de_CobranzasHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Documentos_por_Cliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">2. Detalle - Documentos por Cliente</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Documentos_por_ClienteHttpPostIn" />
+      <wsdl:output message="tns:Listar_Documentos_por_ClienteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Fact_Men_X_Linea_Neg">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">4. Facturación Mensual por Linea Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Fact_Men_X_Linea_NegHttpPostIn" />
+      <wsdl:output message="tns:Listar_Fact_Men_X_Linea_NegHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Orden_Trabajo_Datos_Gener">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">7. Datos Generales de la Orden de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Orden_Trabajo_Datos_GenerHttpPostIn" />
+      <wsdl:output message="tns:Listar_Orden_Trabajo_Datos_GenerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Anexo_Diques">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">8. Anexo OT Diques</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Anexo_DiquesHttpPostIn" />
+      <wsdl:output message="tns:Listar_Anexo_DiquesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheque_giradoxnum">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle  - Cheque  Girado por Numero</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheque_giradoxnumHttpPostIn" />
+      <wsdl:output message="tns:Listar_cheque_giradoxnumHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_emitidos_resumen">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Cheques Emitidos</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_emitidos_resumenHttpPostIn" />
+      <wsdl:output message="tns:Listar_cheques_emitidos_resumenHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Cheques Girados por Relacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_giradosxprove_detHttpPostIn" />
+      <wsdl:output message="tns:Listar_cheques_giradosxprove_detHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_res">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Cheques Girados por Relacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_giradosxprove_resHttpPostIn" />
+      <wsdl:output message="tns:Listar_cheques_giradosxprove_resHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_por_observacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Cheques Girados por Observacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_cheques_por_observacionHttpPostIn" />
+      <wsdl:output message="tns:Listar_cheques_por_observacionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_lote_de_detrac_por_doc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Lote de Detracion por Documento</wsdl:documentation>
+      <wsdl:input message="tns:Listar_lote_de_detrac_por_docHttpPostIn" />
+      <wsdl:output message="tns:Listar_lote_de_detrac_por_docHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_pagar_pendientes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas x Pagar - Pendientes</wsdl:documentation>
+      <wsdl:input message="tns:Listar_fact_pagar_pendientesHttpPostIn" />
+      <wsdl:output message="tns:Listar_fact_pagar_pendientesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_por_pagar_doc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas x Pagar - Pendientes del Periodo Anterior</wsdl:documentation>
+      <wsdl:input message="tns:Listar_fact_por_pagar_docHttpPostIn" />
+      <wsdl:output message="tns:Listar_fact_por_pagar_docHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_facturas_por_pagar_total">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Facturas x Pagar - Total</wsdl:documentation>
+      <wsdl:input message="tns:Listar_facturas_por_pagar_totalHttpPostIn" />
+      <wsdl:output message="tns:Listar_facturas_por_pagar_totalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_proveedores">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Pagos a proveedores</wsdl:documentation>
+      <wsdl:input message="tns:Listar_pago_proveedoresHttpPostIn" />
+      <wsdl:output message="tns:Listar_pago_proveedoresHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_Facturas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Pagos de Facturas</wsdl:documentation>
+      <wsdl:input message="tns:Listar_pago_FacturasHttpPostIn" />
+      <wsdl:output message="tns:Listar_pago_FacturasHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaLineas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Líneas de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:ListaLineasHttpPostIn" />
+      <wsdl:output message="tns:ListaLineasHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaProyectosSinDep">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Proyectos - Sin Dependencia</wsdl:documentation>
+      <wsdl:input message="tns:ListaProyectosSinDepHttpPostIn" />
+      <wsdl:output message="tns:ListaProyectosSinDepHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TesoreriaSoap" type="tns:TesoreriaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Listar_conci_banc_r_cartola_conc">
+      <soap:operation soapAction="http://tempuri.org/Listar_conci_banc_r_cartola_conc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conci_bancaria_res_cartol">
+      <soap:operation soapAction="http://tempuri.org/Listar_conci_bancaria_res_cartol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conciliacion_banc_cartola">
+      <soap:operation soapAction="http://tempuri.org/Listar_conciliacion_banc_cartola" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_detalle_ffj_gf">
+      <soap:operation soapAction="http://tempuri.org/Listar_detalle_ffj_gf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_libro_banco">
+      <soap:operation soapAction="http://tempuri.org/Listar_libro_banco" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_res_ffj_x_centro_costos">
+      <soap:operation soapAction="http://tempuri.org/Listar_res_ffj_x_centro_costos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_egresos_directos">
+      <soap:operation soapAction="http://tempuri.org/Listar_cheques_egresos_directos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_Cuenta_Doc_Elect">
+      <soap:operation soapAction="http://tempuri.org/Listar_Estado_Cuenta_Doc_Elect" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_de_Cuenta_por_Doc">
+      <soap:operation soapAction="http://tempuri.org/Listar_Estado_de_Cuenta_por_Doc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_folios_pendientes_o7">
+      <soap:operation soapAction="http://tempuri.org/Listar_folios_pendientes_o7" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ingresos_contabilizados">
+      <soap:operation soapAction="http://tempuri.org/Listar_ingresos_contabilizados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ventas_x_orden_trabajo">
+      <soap:operation soapAction="http://tempuri.org/Listar_ventas_x_orden_trabajo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_privado">
+      <soap:operation soapAction="http://tempuri.org/Listar_fact_cobrar_sector_privado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_marina">
+      <soap:operation soapAction="http://tempuri.org/Listar_fact_cobrar_sector_marina" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Parte_de_Cobranzas">
+      <soap:operation soapAction="http://tempuri.org/Listar_Parte_de_Cobranzas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Documentos_por_Cliente">
+      <soap:operation soapAction="http://tempuri.org/Listar_Documentos_por_Cliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Fact_Men_X_Linea_Neg">
+      <soap:operation soapAction="http://tempuri.org/Listar_Fact_Men_X_Linea_Neg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Orden_Trabajo_Datos_Gener">
+      <soap:operation soapAction="http://tempuri.org/Listar_Orden_Trabajo_Datos_Gener" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Anexo_Diques">
+      <soap:operation soapAction="http://tempuri.org/Listar_Anexo_Diques" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheque_giradoxnum">
+      <soap:operation soapAction="http://tempuri.org/Listar_cheque_giradoxnum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_emitidos_resumen">
+      <soap:operation soapAction="http://tempuri.org/Listar_cheques_emitidos_resumen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_det">
+      <soap:operation soapAction="http://tempuri.org/Listar_cheques_giradosxprove_det" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_res">
+      <soap:operation soapAction="http://tempuri.org/Listar_cheques_giradosxprove_res" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_por_observacion">
+      <soap:operation soapAction="http://tempuri.org/Listar_cheques_por_observacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_lote_de_detrac_por_doc">
+      <soap:operation soapAction="http://tempuri.org/Listar_lote_de_detrac_por_doc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_pagar_pendientes">
+      <soap:operation soapAction="http://tempuri.org/Listar_fact_pagar_pendientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_por_pagar_doc">
+      <soap:operation soapAction="http://tempuri.org/Listar_fact_por_pagar_doc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_facturas_por_pagar_total">
+      <soap:operation soapAction="http://tempuri.org/Listar_facturas_por_pagar_total" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_proveedores">
+      <soap:operation soapAction="http://tempuri.org/Listar_pago_proveedores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_Facturas">
+      <soap:operation soapAction="http://tempuri.org/Listar_pago_Facturas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaLineas">
+      <soap:operation soapAction="http://tempuri.org/ListaLineas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaProyectosSinDep">
+      <soap:operation soapAction="http://tempuri.org/ListaProyectosSinDep" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TesoreriaSoap12" type="tns:TesoreriaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Listar_conci_banc_r_cartola_conc">
+      <soap12:operation soapAction="http://tempuri.org/Listar_conci_banc_r_cartola_conc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conci_bancaria_res_cartol">
+      <soap12:operation soapAction="http://tempuri.org/Listar_conci_bancaria_res_cartol" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conciliacion_banc_cartola">
+      <soap12:operation soapAction="http://tempuri.org/Listar_conciliacion_banc_cartola" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_detalle_ffj_gf">
+      <soap12:operation soapAction="http://tempuri.org/Listar_detalle_ffj_gf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_libro_banco">
+      <soap12:operation soapAction="http://tempuri.org/Listar_libro_banco" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_res_ffj_x_centro_costos">
+      <soap12:operation soapAction="http://tempuri.org/Listar_res_ffj_x_centro_costos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_egresos_directos">
+      <soap12:operation soapAction="http://tempuri.org/Listar_cheques_egresos_directos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_Cuenta_Doc_Elect">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Estado_Cuenta_Doc_Elect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_de_Cuenta_por_Doc">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Estado_de_Cuenta_por_Doc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_folios_pendientes_o7">
+      <soap12:operation soapAction="http://tempuri.org/Listar_folios_pendientes_o7" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ingresos_contabilizados">
+      <soap12:operation soapAction="http://tempuri.org/Listar_ingresos_contabilizados" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ventas_x_orden_trabajo">
+      <soap12:operation soapAction="http://tempuri.org/Listar_ventas_x_orden_trabajo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_privado">
+      <soap12:operation soapAction="http://tempuri.org/Listar_fact_cobrar_sector_privado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_marina">
+      <soap12:operation soapAction="http://tempuri.org/Listar_fact_cobrar_sector_marina" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Parte_de_Cobranzas">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Parte_de_Cobranzas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Documentos_por_Cliente">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Documentos_por_Cliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Fact_Men_X_Linea_Neg">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Fact_Men_X_Linea_Neg" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Orden_Trabajo_Datos_Gener">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Orden_Trabajo_Datos_Gener" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Anexo_Diques">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Anexo_Diques" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheque_giradoxnum">
+      <soap12:operation soapAction="http://tempuri.org/Listar_cheque_giradoxnum" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_emitidos_resumen">
+      <soap12:operation soapAction="http://tempuri.org/Listar_cheques_emitidos_resumen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_det">
+      <soap12:operation soapAction="http://tempuri.org/Listar_cheques_giradosxprove_det" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_res">
+      <soap12:operation soapAction="http://tempuri.org/Listar_cheques_giradosxprove_res" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_por_observacion">
+      <soap12:operation soapAction="http://tempuri.org/Listar_cheques_por_observacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_lote_de_detrac_por_doc">
+      <soap12:operation soapAction="http://tempuri.org/Listar_lote_de_detrac_por_doc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_pagar_pendientes">
+      <soap12:operation soapAction="http://tempuri.org/Listar_fact_pagar_pendientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_por_pagar_doc">
+      <soap12:operation soapAction="http://tempuri.org/Listar_fact_por_pagar_doc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_facturas_por_pagar_total">
+      <soap12:operation soapAction="http://tempuri.org/Listar_facturas_por_pagar_total" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_proveedores">
+      <soap12:operation soapAction="http://tempuri.org/Listar_pago_proveedores" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_Facturas">
+      <soap12:operation soapAction="http://tempuri.org/Listar_pago_Facturas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaLineas">
+      <soap12:operation soapAction="http://tempuri.org/ListaLineas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaProyectosSinDep">
+      <soap12:operation soapAction="http://tempuri.org/ListaProyectosSinDep" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TesoreriaHttpGet" type="tns:TesoreriaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Listar_conci_banc_r_cartola_conc">
+      <http:operation location="/Listar_conci_banc_r_cartola_conc" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conci_bancaria_res_cartol">
+      <http:operation location="/Listar_conci_bancaria_res_cartol" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conciliacion_banc_cartola">
+      <http:operation location="/Listar_conciliacion_banc_cartola" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_detalle_ffj_gf">
+      <http:operation location="/Listar_detalle_ffj_gf" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_libro_banco">
+      <http:operation location="/Listar_libro_banco" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_res_ffj_x_centro_costos">
+      <http:operation location="/Listar_res_ffj_x_centro_costos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_egresos_directos">
+      <http:operation location="/Listar_cheques_egresos_directos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_Cuenta_Doc_Elect">
+      <http:operation location="/Listar_Estado_Cuenta_Doc_Elect" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_de_Cuenta_por_Doc">
+      <http:operation location="/Listar_Estado_de_Cuenta_por_Doc" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_folios_pendientes_o7">
+      <http:operation location="/Listar_folios_pendientes_o7" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ingresos_contabilizados">
+      <http:operation location="/Listar_ingresos_contabilizados" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ventas_x_orden_trabajo">
+      <http:operation location="/Listar_ventas_x_orden_trabajo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_privado">
+      <http:operation location="/Listar_fact_cobrar_sector_privado" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_marina">
+      <http:operation location="/Listar_fact_cobrar_sector_marina" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Parte_de_Cobranzas">
+      <http:operation location="/Listar_Parte_de_Cobranzas" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Documentos_por_Cliente">
+      <http:operation location="/Listar_Documentos_por_Cliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Fact_Men_X_Linea_Neg">
+      <http:operation location="/Listar_Fact_Men_X_Linea_Neg" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Orden_Trabajo_Datos_Gener">
+      <http:operation location="/Listar_Orden_Trabajo_Datos_Gener" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Anexo_Diques">
+      <http:operation location="/Listar_Anexo_Diques" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheque_giradoxnum">
+      <http:operation location="/Listar_cheque_giradoxnum" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_emitidos_resumen">
+      <http:operation location="/Listar_cheques_emitidos_resumen" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_det">
+      <http:operation location="/Listar_cheques_giradosxprove_det" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_res">
+      <http:operation location="/Listar_cheques_giradosxprove_res" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_por_observacion">
+      <http:operation location="/Listar_cheques_por_observacion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_lote_de_detrac_por_doc">
+      <http:operation location="/Listar_lote_de_detrac_por_doc" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_pagar_pendientes">
+      <http:operation location="/Listar_fact_pagar_pendientes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_por_pagar_doc">
+      <http:operation location="/Listar_fact_por_pagar_doc" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_facturas_por_pagar_total">
+      <http:operation location="/Listar_facturas_por_pagar_total" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_proveedores">
+      <http:operation location="/Listar_pago_proveedores" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_Facturas">
+      <http:operation location="/Listar_pago_Facturas" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaLineas">
+      <http:operation location="/ListaLineas" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaProyectosSinDep">
+      <http:operation location="/ListaProyectosSinDep" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TesoreriaHttpPost" type="tns:TesoreriaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Listar_conci_banc_r_cartola_conc">
+      <http:operation location="/Listar_conci_banc_r_cartola_conc" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conci_bancaria_res_cartol">
+      <http:operation location="/Listar_conci_bancaria_res_cartol" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_conciliacion_banc_cartola">
+      <http:operation location="/Listar_conciliacion_banc_cartola" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_detalle_ffj_gf">
+      <http:operation location="/Listar_detalle_ffj_gf" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_libro_banco">
+      <http:operation location="/Listar_libro_banco" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_res_ffj_x_centro_costos">
+      <http:operation location="/Listar_res_ffj_x_centro_costos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_egresos_directos">
+      <http:operation location="/Listar_cheques_egresos_directos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_Cuenta_Doc_Elect">
+      <http:operation location="/Listar_Estado_Cuenta_Doc_Elect" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Estado_de_Cuenta_por_Doc">
+      <http:operation location="/Listar_Estado_de_Cuenta_por_Doc" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_folios_pendientes_o7">
+      <http:operation location="/Listar_folios_pendientes_o7" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ingresos_contabilizados">
+      <http:operation location="/Listar_ingresos_contabilizados" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ventas_x_orden_trabajo">
+      <http:operation location="/Listar_ventas_x_orden_trabajo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_privado">
+      <http:operation location="/Listar_fact_cobrar_sector_privado" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_cobrar_sector_marina">
+      <http:operation location="/Listar_fact_cobrar_sector_marina" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Parte_de_Cobranzas">
+      <http:operation location="/Listar_Parte_de_Cobranzas" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Documentos_por_Cliente">
+      <http:operation location="/Listar_Documentos_por_Cliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Fact_Men_X_Linea_Neg">
+      <http:operation location="/Listar_Fact_Men_X_Linea_Neg" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Orden_Trabajo_Datos_Gener">
+      <http:operation location="/Listar_Orden_Trabajo_Datos_Gener" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Anexo_Diques">
+      <http:operation location="/Listar_Anexo_Diques" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheque_giradoxnum">
+      <http:operation location="/Listar_cheque_giradoxnum" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_emitidos_resumen">
+      <http:operation location="/Listar_cheques_emitidos_resumen" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_det">
+      <http:operation location="/Listar_cheques_giradosxprove_det" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_giradosxprove_res">
+      <http:operation location="/Listar_cheques_giradosxprove_res" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_cheques_por_observacion">
+      <http:operation location="/Listar_cheques_por_observacion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_lote_de_detrac_por_doc">
+      <http:operation location="/Listar_lote_de_detrac_por_doc" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_pagar_pendientes">
+      <http:operation location="/Listar_fact_pagar_pendientes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_fact_por_pagar_doc">
+      <http:operation location="/Listar_fact_por_pagar_doc" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_facturas_por_pagar_total">
+      <http:operation location="/Listar_facturas_por_pagar_total" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_proveedores">
+      <http:operation location="/Listar_pago_proveedores" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_pago_Facturas">
+      <http:operation location="/Listar_pago_Facturas" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaLineas">
+      <http:operation location="/ListaLineas" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaProyectosSinDep">
+      <http:operation location="/ListaProyectosSinDep" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Tesoreria">
+    <wsdl:port name="TesoreriaSoap" binding="tns:TesoreriaSoap">
+      <soap:address location="http://10.10.18.10:90/Core/GestionTesoreria/Tesoreria.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TesoreriaSoap12" binding="tns:TesoreriaSoap12">
+      <soap12:address location="http://10.10.18.10:90/Core/GestionTesoreria/Tesoreria.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TesoreriaHttpGet" binding="tns:TesoreriaHttpGet">
+      <http:address location="http://10.10.18.10:90/Core/GestionTesoreria/Tesoreria.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TesoreriaHttpPost" binding="tns:TesoreriaHttpPost">
+      <http:address location="http://10.10.18.10:90/Core/GestionTesoreria/Tesoreria.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

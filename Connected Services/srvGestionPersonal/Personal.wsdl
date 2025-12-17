@@ -1,0 +1,1041 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="BuscarPersona">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TextFind" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarPersonaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarPersonaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarPersonal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApellidosYnombres" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarPersonalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarPersonalResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarTrabajadorContratista">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TextFind" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarTrabajadorContratistaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarTrabajadorContratistaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetallePersonaUbicacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdPersonal" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetallePersonaUbicacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetallePersonaUbicacionResult" type="tns:PersonalUbicacionBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PersonalUbicacionBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IdPersonal" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="NroPersonal" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocIdentidad" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApellidosyNombres" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NombreArea" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodigoArea" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseBE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdEstado" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImgEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdCodigo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ambiente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DetallePersonaO7xCodigo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdPersonal" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetallePersonaO7xCodigoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetallePersonaO7xCodigoResult" type="tns:PersonalUbicacionBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LeeHuallaRelogInsertaInBD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodTrabajador" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdHuella" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="HuellaM1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="HuellaM2" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdOrg" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdEstado" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LeeHuallaRelogInsertaInBDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LeeHuallaRelogInsertaInBDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DatosFijosActualizar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Ano_prc" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Cod_emp" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cod_itm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dv_rol" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mes_prc" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mnt_itm" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nivel_fun" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Rol" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tip_itm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mon_itm" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Ano_ini_vig" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mes_ini_vig" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Ano_trm_vig" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mes_trm_vig" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mon_alt_itm" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Nro_cuo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DatosFijosActualizarResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Atributos_Actualizar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Cod_emp" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Rol" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Valor" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Atributos_ActualizarResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Vacaciones_Agregar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Rol" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Per_vac" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mes_ter" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mes_ini" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dv_rol" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Dia_ter" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Dia_tdo" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="Dia_ini" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Cod_emp" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Ano_ter" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Ano_ini" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Vacaciones_AgregarResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Vacaciones_Eliminar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Rol" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Per_vac" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mes_ter" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mes_ini" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dv_rol" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Dia_ter" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Dia_tdo" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="Dia_ini" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Cod_emp" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Ano_ter" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Ano_ini" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Vacaciones_EliminarResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalUbicacionBE" nillable="true" type="tns:PersonalUbicacionBE" />
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="BuscarPersonaSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarPersona" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPersonaSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarPersonaResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPersonalSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarPersonal" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPersonalSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarPersonalResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarTrabajadorContratistaSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarTrabajadorContratista" />
+  </wsdl:message>
+  <wsdl:message name="BuscarTrabajadorContratistaSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarTrabajadorContratistaResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetallePersonaUbicacionSoapIn">
+    <wsdl:part name="parameters" element="tns:DetallePersonaUbicacion" />
+  </wsdl:message>
+  <wsdl:message name="DetallePersonaUbicacionSoapOut">
+    <wsdl:part name="parameters" element="tns:DetallePersonaUbicacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetallePersonaO7xCodigoSoapIn">
+    <wsdl:part name="parameters" element="tns:DetallePersonaO7xCodigo" />
+  </wsdl:message>
+  <wsdl:message name="DetallePersonaO7xCodigoSoapOut">
+    <wsdl:part name="parameters" element="tns:DetallePersonaO7xCodigoResponse" />
+  </wsdl:message>
+  <wsdl:message name="LeeHuallaRelogInsertaInBDSoapIn">
+    <wsdl:part name="parameters" element="tns:LeeHuallaRelogInsertaInBD" />
+  </wsdl:message>
+  <wsdl:message name="LeeHuallaRelogInsertaInBDSoapOut">
+    <wsdl:part name="parameters" element="tns:LeeHuallaRelogInsertaInBDResponse" />
+  </wsdl:message>
+  <wsdl:message name="DatosFijosActualizarSoapIn">
+    <wsdl:part name="parameters" element="tns:DatosFijosActualizar" />
+  </wsdl:message>
+  <wsdl:message name="DatosFijosActualizarSoapOut">
+    <wsdl:part name="parameters" element="tns:DatosFijosActualizarResponse" />
+  </wsdl:message>
+  <wsdl:message name="Atributos_ActualizarSoapIn">
+    <wsdl:part name="parameters" element="tns:Atributos_Actualizar" />
+  </wsdl:message>
+  <wsdl:message name="Atributos_ActualizarSoapOut">
+    <wsdl:part name="parameters" element="tns:Atributos_ActualizarResponse" />
+  </wsdl:message>
+  <wsdl:message name="Vacaciones_AgregarSoapIn">
+    <wsdl:part name="parameters" element="tns:Vacaciones_Agregar" />
+  </wsdl:message>
+  <wsdl:message name="Vacaciones_AgregarSoapOut">
+    <wsdl:part name="parameters" element="tns:Vacaciones_AgregarResponse" />
+  </wsdl:message>
+  <wsdl:message name="Vacaciones_EliminarSoapIn">
+    <wsdl:part name="parameters" element="tns:Vacaciones_Eliminar" />
+  </wsdl:message>
+  <wsdl:message name="Vacaciones_EliminarSoapOut">
+    <wsdl:part name="parameters" element="tns:Vacaciones_EliminarResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPersonaHttpGetIn">
+    <wsdl:part name="TextFind" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPersonaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPersonalHttpGetIn">
+    <wsdl:part name="ApellidosYnombres" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPersonalHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarTrabajadorContratistaHttpGetIn">
+    <wsdl:part name="TextFind" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarTrabajadorContratistaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetallePersonaUbicacionHttpGetIn">
+    <wsdl:part name="IdPersonal" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetallePersonaUbicacionHttpGetOut">
+    <wsdl:part name="Body" element="tns:PersonalUbicacionBE" />
+  </wsdl:message>
+  <wsdl:message name="DetallePersonaO7xCodigoHttpGetIn">
+    <wsdl:part name="IdPersonal" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetallePersonaO7xCodigoHttpGetOut">
+    <wsdl:part name="Body" element="tns:PersonalUbicacionBE" />
+  </wsdl:message>
+  <wsdl:message name="LeeHuallaRelogInsertaInBDHttpGetIn">
+    <wsdl:part name="CodTrabajador" type="s:string" />
+    <wsdl:part name="IdHuella" type="s:string" />
+    <wsdl:part name="HuellaM1" type="s:string" />
+    <wsdl:part name="HuellaM2" type="s:string" />
+    <wsdl:part name="Version" type="s:string" />
+    <wsdl:part name="IdOrg" type="s:string" />
+    <wsdl:part name="IdEstado" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LeeHuallaRelogInsertaInBDHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DatosFijosActualizarHttpGetIn">
+    <wsdl:part name="Ano_prc" type="s:string" />
+    <wsdl:part name="Cod_emp" type="s:string" />
+    <wsdl:part name="Cod_itm" type="s:string" />
+    <wsdl:part name="Dv_rol" type="s:string" />
+    <wsdl:part name="Mes_prc" type="s:string" />
+    <wsdl:part name="Mnt_itm" type="s:string" />
+    <wsdl:part name="Nivel_fun" type="s:string" />
+    <wsdl:part name="Rol" type="s:string" />
+    <wsdl:part name="Tip_itm" type="s:string" />
+    <wsdl:part name="Mon_itm" type="s:string" />
+    <wsdl:part name="Ano_ini_vig" type="s:string" />
+    <wsdl:part name="Mes_ini_vig" type="s:string" />
+    <wsdl:part name="Ano_trm_vig" type="s:string" />
+    <wsdl:part name="Mes_trm_vig" type="s:string" />
+    <wsdl:part name="Cc" type="s:string" />
+    <wsdl:part name="Mon_alt_itm" type="s:string" />
+    <wsdl:part name="Nro_cuo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DatosFijosActualizarHttpGetOut" />
+  <wsdl:message name="Atributos_ActualizarHttpGetIn">
+    <wsdl:part name="Cod_emp" type="s:string" />
+    <wsdl:part name="Rol" type="s:string" />
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Valor" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Atributos_ActualizarHttpGetOut" />
+  <wsdl:message name="Vacaciones_AgregarHttpGetIn">
+    <wsdl:part name="Rol" type="s:string" />
+    <wsdl:part name="Per_vac" type="s:string" />
+    <wsdl:part name="Mes_ter" type="s:string" />
+    <wsdl:part name="Mes_ini" type="s:string" />
+    <wsdl:part name="Dv_rol" type="s:string" />
+    <wsdl:part name="Dia_ter" type="s:string" />
+    <wsdl:part name="Dia_tdo" type="s:string" />
+    <wsdl:part name="Dia_ini" type="s:string" />
+    <wsdl:part name="Cod_emp" type="s:string" />
+    <wsdl:part name="Ano_ter" type="s:string" />
+    <wsdl:part name="Ano_ini" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Vacaciones_AgregarHttpGetOut" />
+  <wsdl:message name="Vacaciones_EliminarHttpGetIn">
+    <wsdl:part name="Rol" type="s:string" />
+    <wsdl:part name="Per_vac" type="s:string" />
+    <wsdl:part name="Mes_ter" type="s:string" />
+    <wsdl:part name="Mes_ini" type="s:string" />
+    <wsdl:part name="Dv_rol" type="s:string" />
+    <wsdl:part name="Dia_ter" type="s:string" />
+    <wsdl:part name="Dia_tdo" type="s:string" />
+    <wsdl:part name="Dia_ini" type="s:string" />
+    <wsdl:part name="Cod_emp" type="s:string" />
+    <wsdl:part name="Ano_ter" type="s:string" />
+    <wsdl:part name="Ano_ini" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Vacaciones_EliminarHttpGetOut" />
+  <wsdl:message name="BuscarPersonaHttpPostIn">
+    <wsdl:part name="TextFind" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPersonaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPersonalHttpPostIn">
+    <wsdl:part name="ApellidosYnombres" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPersonalHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarTrabajadorContratistaHttpPostIn">
+    <wsdl:part name="TextFind" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarTrabajadorContratistaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetallePersonaUbicacionHttpPostIn">
+    <wsdl:part name="IdPersonal" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetallePersonaUbicacionHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonalUbicacionBE" />
+  </wsdl:message>
+  <wsdl:message name="DetallePersonaO7xCodigoHttpPostIn">
+    <wsdl:part name="IdPersonal" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetallePersonaO7xCodigoHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonalUbicacionBE" />
+  </wsdl:message>
+  <wsdl:message name="LeeHuallaRelogInsertaInBDHttpPostIn">
+    <wsdl:part name="CodTrabajador" type="s:string" />
+    <wsdl:part name="IdHuella" type="s:string" />
+    <wsdl:part name="HuellaM1" type="s:string" />
+    <wsdl:part name="HuellaM2" type="s:string" />
+    <wsdl:part name="Version" type="s:string" />
+    <wsdl:part name="IdOrg" type="s:string" />
+    <wsdl:part name="IdEstado" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LeeHuallaRelogInsertaInBDHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DatosFijosActualizarHttpPostIn">
+    <wsdl:part name="Ano_prc" type="s:string" />
+    <wsdl:part name="Cod_emp" type="s:string" />
+    <wsdl:part name="Cod_itm" type="s:string" />
+    <wsdl:part name="Dv_rol" type="s:string" />
+    <wsdl:part name="Mes_prc" type="s:string" />
+    <wsdl:part name="Mnt_itm" type="s:string" />
+    <wsdl:part name="Nivel_fun" type="s:string" />
+    <wsdl:part name="Rol" type="s:string" />
+    <wsdl:part name="Tip_itm" type="s:string" />
+    <wsdl:part name="Mon_itm" type="s:string" />
+    <wsdl:part name="Ano_ini_vig" type="s:string" />
+    <wsdl:part name="Mes_ini_vig" type="s:string" />
+    <wsdl:part name="Ano_trm_vig" type="s:string" />
+    <wsdl:part name="Mes_trm_vig" type="s:string" />
+    <wsdl:part name="Cc" type="s:string" />
+    <wsdl:part name="Mon_alt_itm" type="s:string" />
+    <wsdl:part name="Nro_cuo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DatosFijosActualizarHttpPostOut" />
+  <wsdl:message name="Atributos_ActualizarHttpPostIn">
+    <wsdl:part name="Cod_emp" type="s:string" />
+    <wsdl:part name="Rol" type="s:string" />
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Valor" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Atributos_ActualizarHttpPostOut" />
+  <wsdl:message name="Vacaciones_AgregarHttpPostIn">
+    <wsdl:part name="Rol" type="s:string" />
+    <wsdl:part name="Per_vac" type="s:string" />
+    <wsdl:part name="Mes_ter" type="s:string" />
+    <wsdl:part name="Mes_ini" type="s:string" />
+    <wsdl:part name="Dv_rol" type="s:string" />
+    <wsdl:part name="Dia_ter" type="s:string" />
+    <wsdl:part name="Dia_tdo" type="s:string" />
+    <wsdl:part name="Dia_ini" type="s:string" />
+    <wsdl:part name="Cod_emp" type="s:string" />
+    <wsdl:part name="Ano_ter" type="s:string" />
+    <wsdl:part name="Ano_ini" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Vacaciones_AgregarHttpPostOut" />
+  <wsdl:message name="Vacaciones_EliminarHttpPostIn">
+    <wsdl:part name="Rol" type="s:string" />
+    <wsdl:part name="Per_vac" type="s:string" />
+    <wsdl:part name="Mes_ter" type="s:string" />
+    <wsdl:part name="Mes_ini" type="s:string" />
+    <wsdl:part name="Dv_rol" type="s:string" />
+    <wsdl:part name="Dia_ter" type="s:string" />
+    <wsdl:part name="Dia_tdo" type="s:string" />
+    <wsdl:part name="Dia_ini" type="s:string" />
+    <wsdl:part name="Cod_emp" type="s:string" />
+    <wsdl:part name="Ano_ter" type="s:string" />
+    <wsdl:part name="Ano_ini" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Vacaciones_EliminarHttpPostOut" />
+  <wsdl:portType name="PersonalSoap">
+    <wsdl:operation name="BuscarPersona">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite buscar a una persona</wsdl:documentation>
+      <wsdl:input message="tns:BuscarPersonaSoapIn" />
+      <wsdl:output message="tns:BuscarPersonaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPersonal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite buscar a una persona</wsdl:documentation>
+      <wsdl:input message="tns:BuscarPersonalSoapIn" />
+      <wsdl:output message="tns:BuscarPersonalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTrabajadorContratista">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite buscar a una personal contratista</wsdl:documentation>
+      <wsdl:input message="tns:BuscarTrabajadorContratistaSoapIn" />
+      <wsdl:output message="tns:BuscarTrabajadorContratistaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaUbicacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Se vizualiza el detalle de personal</wsdl:documentation>
+      <wsdl:input message="tns:DetallePersonaUbicacionSoapIn" />
+      <wsdl:output message="tns:DetallePersonaUbicacionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaO7xCodigo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Se vizualiza el detalle de personal REGISTRADO EN O7</wsdl:documentation>
+      <wsdl:input message="tns:DetallePersonaO7xCodigoSoapIn" />
+      <wsdl:output message="tns:DetallePersonaO7xCodigoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeHuallaRelogInsertaInBD">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insertar Huella </wsdl:documentation>
+      <wsdl:input message="tns:LeeHuallaRelogInsertaInBDSoapIn" />
+      <wsdl:output message="tns:LeeHuallaRelogInsertaInBDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DatosFijosActualizar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Trasnferencia de datos fijos desde le O7 SOlution al aplicativo UNISYS </wsdl:documentation>
+      <wsdl:input message="tns:DatosFijosActualizarSoapIn" />
+      <wsdl:output message="tns:DatosFijosActualizarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Atributos_Actualizar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Acttualizacion de atributos en el UNISYS</wsdl:documentation>
+      <wsdl:input message="tns:Atributos_ActualizarSoapIn" />
+      <wsdl:output message="tns:Atributos_ActualizarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Agregar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Actualizacion de vacaciones en el UNISYS</wsdl:documentation>
+      <wsdl:input message="tns:Vacaciones_AgregarSoapIn" />
+      <wsdl:output message="tns:Vacaciones_AgregarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Eliminar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Eliminar de vacaciones en el UNISYS</wsdl:documentation>
+      <wsdl:input message="tns:Vacaciones_EliminarSoapIn" />
+      <wsdl:output message="tns:Vacaciones_EliminarSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PersonalHttpGet">
+    <wsdl:operation name="BuscarPersona">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite buscar a una persona</wsdl:documentation>
+      <wsdl:input message="tns:BuscarPersonaHttpGetIn" />
+      <wsdl:output message="tns:BuscarPersonaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPersonal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite buscar a una persona</wsdl:documentation>
+      <wsdl:input message="tns:BuscarPersonalHttpGetIn" />
+      <wsdl:output message="tns:BuscarPersonalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTrabajadorContratista">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite buscar a una personal contratista</wsdl:documentation>
+      <wsdl:input message="tns:BuscarTrabajadorContratistaHttpGetIn" />
+      <wsdl:output message="tns:BuscarTrabajadorContratistaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaUbicacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Se vizualiza el detalle de personal</wsdl:documentation>
+      <wsdl:input message="tns:DetallePersonaUbicacionHttpGetIn" />
+      <wsdl:output message="tns:DetallePersonaUbicacionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaO7xCodigo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Se vizualiza el detalle de personal REGISTRADO EN O7</wsdl:documentation>
+      <wsdl:input message="tns:DetallePersonaO7xCodigoHttpGetIn" />
+      <wsdl:output message="tns:DetallePersonaO7xCodigoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeHuallaRelogInsertaInBD">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insertar Huella </wsdl:documentation>
+      <wsdl:input message="tns:LeeHuallaRelogInsertaInBDHttpGetIn" />
+      <wsdl:output message="tns:LeeHuallaRelogInsertaInBDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DatosFijosActualizar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Trasnferencia de datos fijos desde le O7 SOlution al aplicativo UNISYS </wsdl:documentation>
+      <wsdl:input message="tns:DatosFijosActualizarHttpGetIn" />
+      <wsdl:output message="tns:DatosFijosActualizarHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Atributos_Actualizar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Acttualizacion de atributos en el UNISYS</wsdl:documentation>
+      <wsdl:input message="tns:Atributos_ActualizarHttpGetIn" />
+      <wsdl:output message="tns:Atributos_ActualizarHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Agregar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Actualizacion de vacaciones en el UNISYS</wsdl:documentation>
+      <wsdl:input message="tns:Vacaciones_AgregarHttpGetIn" />
+      <wsdl:output message="tns:Vacaciones_AgregarHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Eliminar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Eliminar de vacaciones en el UNISYS</wsdl:documentation>
+      <wsdl:input message="tns:Vacaciones_EliminarHttpGetIn" />
+      <wsdl:output message="tns:Vacaciones_EliminarHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PersonalHttpPost">
+    <wsdl:operation name="BuscarPersona">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite buscar a una persona</wsdl:documentation>
+      <wsdl:input message="tns:BuscarPersonaHttpPostIn" />
+      <wsdl:output message="tns:BuscarPersonaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPersonal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite buscar a una persona</wsdl:documentation>
+      <wsdl:input message="tns:BuscarPersonalHttpPostIn" />
+      <wsdl:output message="tns:BuscarPersonalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTrabajadorContratista">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite buscar a una personal contratista</wsdl:documentation>
+      <wsdl:input message="tns:BuscarTrabajadorContratistaHttpPostIn" />
+      <wsdl:output message="tns:BuscarTrabajadorContratistaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaUbicacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Se vizualiza el detalle de personal</wsdl:documentation>
+      <wsdl:input message="tns:DetallePersonaUbicacionHttpPostIn" />
+      <wsdl:output message="tns:DetallePersonaUbicacionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaO7xCodigo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Se vizualiza el detalle de personal REGISTRADO EN O7</wsdl:documentation>
+      <wsdl:input message="tns:DetallePersonaO7xCodigoHttpPostIn" />
+      <wsdl:output message="tns:DetallePersonaO7xCodigoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeHuallaRelogInsertaInBD">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insertar Huella </wsdl:documentation>
+      <wsdl:input message="tns:LeeHuallaRelogInsertaInBDHttpPostIn" />
+      <wsdl:output message="tns:LeeHuallaRelogInsertaInBDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DatosFijosActualizar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Trasnferencia de datos fijos desde le O7 SOlution al aplicativo UNISYS </wsdl:documentation>
+      <wsdl:input message="tns:DatosFijosActualizarHttpPostIn" />
+      <wsdl:output message="tns:DatosFijosActualizarHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Atributos_Actualizar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Acttualizacion de atributos en el UNISYS</wsdl:documentation>
+      <wsdl:input message="tns:Atributos_ActualizarHttpPostIn" />
+      <wsdl:output message="tns:Atributos_ActualizarHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Agregar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Actualizacion de vacaciones en el UNISYS</wsdl:documentation>
+      <wsdl:input message="tns:Vacaciones_AgregarHttpPostIn" />
+      <wsdl:output message="tns:Vacaciones_AgregarHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Eliminar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Eliminar de vacaciones en el UNISYS</wsdl:documentation>
+      <wsdl:input message="tns:Vacaciones_EliminarHttpPostIn" />
+      <wsdl:output message="tns:Vacaciones_EliminarHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PersonalSoap" type="tns:PersonalSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BuscarPersona">
+      <soap:operation soapAction="http://tempuri.org/BuscarPersona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPersonal">
+      <soap:operation soapAction="http://tempuri.org/BuscarPersonal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTrabajadorContratista">
+      <soap:operation soapAction="http://tempuri.org/BuscarTrabajadorContratista" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaUbicacion">
+      <soap:operation soapAction="http://tempuri.org/DetallePersonaUbicacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaO7xCodigo">
+      <soap:operation soapAction="http://tempuri.org/DetallePersonaO7xCodigo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeHuallaRelogInsertaInBD">
+      <soap:operation soapAction="http://tempuri.org/LeeHuallaRelogInsertaInBD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DatosFijosActualizar">
+      <soap:operation soapAction="http://tempuri.org/DatosFijosActualizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Atributos_Actualizar">
+      <soap:operation soapAction="http://tempuri.org/Atributos_Actualizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Agregar">
+      <soap:operation soapAction="http://tempuri.org/Vacaciones_Agregar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Eliminar">
+      <soap:operation soapAction="http://tempuri.org/Vacaciones_Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PersonalSoap12" type="tns:PersonalSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BuscarPersona">
+      <soap12:operation soapAction="http://tempuri.org/BuscarPersona" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPersonal">
+      <soap12:operation soapAction="http://tempuri.org/BuscarPersonal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTrabajadorContratista">
+      <soap12:operation soapAction="http://tempuri.org/BuscarTrabajadorContratista" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaUbicacion">
+      <soap12:operation soapAction="http://tempuri.org/DetallePersonaUbicacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaO7xCodigo">
+      <soap12:operation soapAction="http://tempuri.org/DetallePersonaO7xCodigo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeHuallaRelogInsertaInBD">
+      <soap12:operation soapAction="http://tempuri.org/LeeHuallaRelogInsertaInBD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DatosFijosActualizar">
+      <soap12:operation soapAction="http://tempuri.org/DatosFijosActualizar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Atributos_Actualizar">
+      <soap12:operation soapAction="http://tempuri.org/Atributos_Actualizar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Agregar">
+      <soap12:operation soapAction="http://tempuri.org/Vacaciones_Agregar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Eliminar">
+      <soap12:operation soapAction="http://tempuri.org/Vacaciones_Eliminar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PersonalHttpGet" type="tns:PersonalHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="BuscarPersona">
+      <http:operation location="/BuscarPersona" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPersonal">
+      <http:operation location="/BuscarPersonal" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTrabajadorContratista">
+      <http:operation location="/BuscarTrabajadorContratista" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaUbicacion">
+      <http:operation location="/DetallePersonaUbicacion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaO7xCodigo">
+      <http:operation location="/DetallePersonaO7xCodigo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeHuallaRelogInsertaInBD">
+      <http:operation location="/LeeHuallaRelogInsertaInBD" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DatosFijosActualizar">
+      <http:operation location="/DatosFijosActualizar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Atributos_Actualizar">
+      <http:operation location="/Atributos_Actualizar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Agregar">
+      <http:operation location="/Vacaciones_Agregar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Eliminar">
+      <http:operation location="/Vacaciones_Eliminar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PersonalHttpPost" type="tns:PersonalHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="BuscarPersona">
+      <http:operation location="/BuscarPersona" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPersonal">
+      <http:operation location="/BuscarPersonal" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTrabajadorContratista">
+      <http:operation location="/BuscarTrabajadorContratista" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaUbicacion">
+      <http:operation location="/DetallePersonaUbicacion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePersonaO7xCodigo">
+      <http:operation location="/DetallePersonaO7xCodigo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeHuallaRelogInsertaInBD">
+      <http:operation location="/LeeHuallaRelogInsertaInBD" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DatosFijosActualizar">
+      <http:operation location="/DatosFijosActualizar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Atributos_Actualizar">
+      <http:operation location="/Atributos_Actualizar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Agregar">
+      <http:operation location="/Vacaciones_Agregar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Vacaciones_Eliminar">
+      <http:operation location="/Vacaciones_Eliminar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Personal">
+    <wsdl:port name="PersonalSoap" binding="tns:PersonalSoap">
+      <soap:address location="http://10.10.18.10:90/Core/GestionPersonal/Personal.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PersonalSoap12" binding="tns:PersonalSoap12">
+      <soap12:address location="http://10.10.18.10:90/Core/GestionPersonal/Personal.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PersonalHttpGet" binding="tns:PersonalHttpGet">
+      <http:address location="http://10.10.18.10:90/Core/GestionPersonal/Personal.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PersonalHttpPost" binding="tns:PersonalHttpPost">
+      <http:address location="http://10.10.18.10:90/Core/GestionPersonal/Personal.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

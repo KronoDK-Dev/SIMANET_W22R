@@ -1,0 +1,943 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Listar_gasto_otx_fecha">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CODDIV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_OT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FINICIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FTERMINO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_gasto_otx_fechaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_gasto_otx_fechaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_gasto_otx_fecha2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CODDIV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_OT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FINICIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FTERMINO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_gasto_otx_fecha2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_gasto_otx_fecha2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_ots_se">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CODDIV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_OT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FINICIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FTERMINO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_BIEN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_ots_seResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_ots_seResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_ots_se2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CODDIV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_OT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FINICIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FTERMINO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_BIEN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_ots_se2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_ots_se2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_ots_se_v2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="v_CO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_DIVISION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="N_OT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Fecha_Inicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Fecha_Termino" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_BIEN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_ots_se_v2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_ots_se_v2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_consumo_mat_ots">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CODDIV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_OT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FINICIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FTERMINO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_consumo_mat_otsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_consumo_mat_otsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_consumo_mat_ots2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CODDIV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_OT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FINICIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FTERMINO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_consumo_mat_ots2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_consumo_mat_ots2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_recursos_ots">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Anio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_recursos_otsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_recursos_otsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_recursos_ots2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Anio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_recursos_ots2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_recursos_ots2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Listar_gasto_otx_fechaSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_gasto_otx_fecha" />
+  </wsdl:message>
+  <wsdl:message name="Listar_gasto_otx_fechaSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_gasto_otx_fechaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_gasto_otx_fecha2SoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_gasto_otx_fecha2" />
+  </wsdl:message>
+  <wsdl:message name="Listar_gasto_otx_fecha2SoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_gasto_otx_fecha2Response" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_seSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_ots_se" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_seSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_ots_seResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_se2SoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_ots_se2" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_se2SoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_ots_se2Response" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_se_v2SoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_ots_se_v2" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_se_v2SoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_ots_se_v2Response" />
+  </wsdl:message>
+  <wsdl:message name="Listar_consumo_mat_otsSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_consumo_mat_ots" />
+  </wsdl:message>
+  <wsdl:message name="Listar_consumo_mat_otsSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_consumo_mat_otsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_consumo_mat_ots2SoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_consumo_mat_ots2" />
+  </wsdl:message>
+  <wsdl:message name="Listar_consumo_mat_ots2SoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_consumo_mat_ots2Response" />
+  </wsdl:message>
+  <wsdl:message name="Listar_recursos_otsSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_recursos_ots" />
+  </wsdl:message>
+  <wsdl:message name="Listar_recursos_otsSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_recursos_otsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_recursos_ots2SoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_recursos_ots2" />
+  </wsdl:message>
+  <wsdl:message name="Listar_recursos_ots2SoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_recursos_ots2Response" />
+  </wsdl:message>
+  <wsdl:message name="Listar_gasto_otx_fechaHttpGetIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="V_FINICIO" type="s:string" />
+    <wsdl:part name="V_FTERMINO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_gasto_otx_fechaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_gasto_otx_fecha2HttpGetIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="V_FINICIO" type="s:string" />
+    <wsdl:part name="V_FTERMINO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_gasto_otx_fecha2HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_seHttpGetIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="V_FINICIO" type="s:string" />
+    <wsdl:part name="V_FTERMINO" type="s:string" />
+    <wsdl:part name="V_BIEN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_seHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_se2HttpGetIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="V_FINICIO" type="s:string" />
+    <wsdl:part name="V_FTERMINO" type="s:string" />
+    <wsdl:part name="V_BIEN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_se2HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_se_v2HttpGetIn">
+    <wsdl:part name="v_CO" type="s:string" />
+    <wsdl:part name="v_DIVISION" type="s:string" />
+    <wsdl:part name="N_OT" type="s:string" />
+    <wsdl:part name="D_Fecha_Inicio" type="s:string" />
+    <wsdl:part name="D_Fecha_Termino" type="s:string" />
+    <wsdl:part name="v_BIEN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_se_v2HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_consumo_mat_otsHttpGetIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="V_FINICIO" type="s:string" />
+    <wsdl:part name="V_FTERMINO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_consumo_mat_otsHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_consumo_mat_ots2HttpGetIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="V_FINICIO" type="s:string" />
+    <wsdl:part name="V_FTERMINO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_consumo_mat_ots2HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_recursos_otsHttpGetIn">
+    <wsdl:part name="V_Anio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_recursos_otsHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_recursos_ots2HttpGetIn">
+    <wsdl:part name="V_Anio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_recursos_ots2HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_gasto_otx_fechaHttpPostIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="V_FINICIO" type="s:string" />
+    <wsdl:part name="V_FTERMINO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_gasto_otx_fechaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_gasto_otx_fecha2HttpPostIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="V_FINICIO" type="s:string" />
+    <wsdl:part name="V_FTERMINO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_gasto_otx_fecha2HttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_seHttpPostIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="V_FINICIO" type="s:string" />
+    <wsdl:part name="V_FTERMINO" type="s:string" />
+    <wsdl:part name="V_BIEN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_seHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_se2HttpPostIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="V_FINICIO" type="s:string" />
+    <wsdl:part name="V_FTERMINO" type="s:string" />
+    <wsdl:part name="V_BIEN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_se2HttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_se_v2HttpPostIn">
+    <wsdl:part name="v_CO" type="s:string" />
+    <wsdl:part name="v_DIVISION" type="s:string" />
+    <wsdl:part name="N_OT" type="s:string" />
+    <wsdl:part name="D_Fecha_Inicio" type="s:string" />
+    <wsdl:part name="D_Fecha_Termino" type="s:string" />
+    <wsdl:part name="v_BIEN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ots_se_v2HttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_consumo_mat_otsHttpPostIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="V_FINICIO" type="s:string" />
+    <wsdl:part name="V_FTERMINO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_consumo_mat_otsHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_consumo_mat_ots2HttpPostIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="V_FINICIO" type="s:string" />
+    <wsdl:part name="V_FTERMINO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_consumo_mat_ots2HttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_recursos_otsHttpPostIn">
+    <wsdl:part name="V_Anio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_recursos_otsHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_recursos_ots2HttpPostIn">
+    <wsdl:part name="V_Anio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_recursos_ots2HttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="MantenimientoSoap">
+    <wsdl:operation name="Listar_gasto_otx_fecha">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1. gasto_otx_fecha | Gastos Directos de Ots por fecha de utilizacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_gasto_otx_fechaSoapIn" />
+      <wsdl:output message="tns:Listar_gasto_otx_fechaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_gasto_otx_fecha2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1. gasto_otx_fecha (STRING XML) | Gastos Directos de Ots por fecha de utilizacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_gasto_otx_fecha2SoapIn" />
+      <wsdl:output message="tns:Listar_gasto_otx_fecha2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">4. lista_ots_se | Gastos por Ordenes de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ots_seSoapIn" />
+      <wsdl:output message="tns:Listar_ots_seSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">4. lista_ots_se (STRING XML) | Gastos por Ordenes de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ots_se2SoapIn" />
+      <wsdl:output message="tns:Listar_ots_se2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se_v2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">4. lista_ots_se (STRING XML) | Gastos por Ordenes de Trabajo TEST</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ots_se_v2SoapIn" />
+      <wsdl:output message="tns:Listar_ots_se_v2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. consumo_mat_ots | Consumo de materiales de las OT´s</wsdl:documentation>
+      <wsdl:input message="tns:Listar_consumo_mat_otsSoapIn" />
+      <wsdl:output message="tns:Listar_consumo_mat_otsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. consumo_mat_ots (STRING XML) | Consumo de materiales de las OT´s</wsdl:documentation>
+      <wsdl:input message="tns:Listar_consumo_mat_ots2SoapIn" />
+      <wsdl:output message="tns:Listar_consumo_mat_ots2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">12. RecOtSE | Lista Recursos empleados en el año por Ot de SE</wsdl:documentation>
+      <wsdl:input message="tns:Listar_recursos_otsSoapIn" />
+      <wsdl:output message="tns:Listar_recursos_otsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">12. RecOtSE  (STRING XML)| Lista Recursos empleados en el año por Ot de SE</wsdl:documentation>
+      <wsdl:input message="tns:Listar_recursos_ots2SoapIn" />
+      <wsdl:output message="tns:Listar_recursos_ots2SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MantenimientoHttpGet">
+    <wsdl:operation name="Listar_gasto_otx_fecha">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1. gasto_otx_fecha | Gastos Directos de Ots por fecha de utilizacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_gasto_otx_fechaHttpGetIn" />
+      <wsdl:output message="tns:Listar_gasto_otx_fechaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_gasto_otx_fecha2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1. gasto_otx_fecha (STRING XML) | Gastos Directos de Ots por fecha de utilizacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_gasto_otx_fecha2HttpGetIn" />
+      <wsdl:output message="tns:Listar_gasto_otx_fecha2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">4. lista_ots_se | Gastos por Ordenes de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ots_seHttpGetIn" />
+      <wsdl:output message="tns:Listar_ots_seHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">4. lista_ots_se (STRING XML) | Gastos por Ordenes de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ots_se2HttpGetIn" />
+      <wsdl:output message="tns:Listar_ots_se2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se_v2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">4. lista_ots_se (STRING XML) | Gastos por Ordenes de Trabajo TEST</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ots_se_v2HttpGetIn" />
+      <wsdl:output message="tns:Listar_ots_se_v2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. consumo_mat_ots | Consumo de materiales de las OT´s</wsdl:documentation>
+      <wsdl:input message="tns:Listar_consumo_mat_otsHttpGetIn" />
+      <wsdl:output message="tns:Listar_consumo_mat_otsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. consumo_mat_ots (STRING XML) | Consumo de materiales de las OT´s</wsdl:documentation>
+      <wsdl:input message="tns:Listar_consumo_mat_ots2HttpGetIn" />
+      <wsdl:output message="tns:Listar_consumo_mat_ots2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">12. RecOtSE | Lista Recursos empleados en el año por Ot de SE</wsdl:documentation>
+      <wsdl:input message="tns:Listar_recursos_otsHttpGetIn" />
+      <wsdl:output message="tns:Listar_recursos_otsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">12. RecOtSE  (STRING XML)| Lista Recursos empleados en el año por Ot de SE</wsdl:documentation>
+      <wsdl:input message="tns:Listar_recursos_ots2HttpGetIn" />
+      <wsdl:output message="tns:Listar_recursos_ots2HttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MantenimientoHttpPost">
+    <wsdl:operation name="Listar_gasto_otx_fecha">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1. gasto_otx_fecha | Gastos Directos de Ots por fecha de utilizacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_gasto_otx_fechaHttpPostIn" />
+      <wsdl:output message="tns:Listar_gasto_otx_fechaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_gasto_otx_fecha2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1. gasto_otx_fecha (STRING XML) | Gastos Directos de Ots por fecha de utilizacion</wsdl:documentation>
+      <wsdl:input message="tns:Listar_gasto_otx_fecha2HttpPostIn" />
+      <wsdl:output message="tns:Listar_gasto_otx_fecha2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">4. lista_ots_se | Gastos por Ordenes de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ots_seHttpPostIn" />
+      <wsdl:output message="tns:Listar_ots_seHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">4. lista_ots_se (STRING XML) | Gastos por Ordenes de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ots_se2HttpPostIn" />
+      <wsdl:output message="tns:Listar_ots_se2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se_v2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">4. lista_ots_se (STRING XML) | Gastos por Ordenes de Trabajo TEST</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ots_se_v2HttpPostIn" />
+      <wsdl:output message="tns:Listar_ots_se_v2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. consumo_mat_ots | Consumo de materiales de las OT´s</wsdl:documentation>
+      <wsdl:input message="tns:Listar_consumo_mat_otsHttpPostIn" />
+      <wsdl:output message="tns:Listar_consumo_mat_otsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. consumo_mat_ots (STRING XML) | Consumo de materiales de las OT´s</wsdl:documentation>
+      <wsdl:input message="tns:Listar_consumo_mat_ots2HttpPostIn" />
+      <wsdl:output message="tns:Listar_consumo_mat_ots2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">12. RecOtSE | Lista Recursos empleados en el año por Ot de SE</wsdl:documentation>
+      <wsdl:input message="tns:Listar_recursos_otsHttpPostIn" />
+      <wsdl:output message="tns:Listar_recursos_otsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">12. RecOtSE  (STRING XML)| Lista Recursos empleados en el año por Ot de SE</wsdl:documentation>
+      <wsdl:input message="tns:Listar_recursos_ots2HttpPostIn" />
+      <wsdl:output message="tns:Listar_recursos_ots2HttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MantenimientoSoap" type="tns:MantenimientoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Listar_gasto_otx_fecha">
+      <soap:operation soapAction="http://tempuri.org/Listar_gasto_otx_fecha" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_gasto_otx_fecha2">
+      <soap:operation soapAction="http://tempuri.org/Listar_gasto_otx_fecha2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se">
+      <soap:operation soapAction="http://tempuri.org/Listar_ots_se" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se2">
+      <soap:operation soapAction="http://tempuri.org/Listar_ots_se2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se_v2">
+      <soap:operation soapAction="http://tempuri.org/Listar_ots_se_v2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots">
+      <soap:operation soapAction="http://tempuri.org/Listar_consumo_mat_ots" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots2">
+      <soap:operation soapAction="http://tempuri.org/Listar_consumo_mat_ots2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots">
+      <soap:operation soapAction="http://tempuri.org/Listar_recursos_ots" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots2">
+      <soap:operation soapAction="http://tempuri.org/Listar_recursos_ots2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MantenimientoSoap12" type="tns:MantenimientoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Listar_gasto_otx_fecha">
+      <soap12:operation soapAction="http://tempuri.org/Listar_gasto_otx_fecha" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_gasto_otx_fecha2">
+      <soap12:operation soapAction="http://tempuri.org/Listar_gasto_otx_fecha2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se">
+      <soap12:operation soapAction="http://tempuri.org/Listar_ots_se" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se2">
+      <soap12:operation soapAction="http://tempuri.org/Listar_ots_se2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se_v2">
+      <soap12:operation soapAction="http://tempuri.org/Listar_ots_se_v2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots">
+      <soap12:operation soapAction="http://tempuri.org/Listar_consumo_mat_ots" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots2">
+      <soap12:operation soapAction="http://tempuri.org/Listar_consumo_mat_ots2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots">
+      <soap12:operation soapAction="http://tempuri.org/Listar_recursos_ots" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots2">
+      <soap12:operation soapAction="http://tempuri.org/Listar_recursos_ots2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MantenimientoHttpGet" type="tns:MantenimientoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Listar_gasto_otx_fecha">
+      <http:operation location="/Listar_gasto_otx_fecha" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_gasto_otx_fecha2">
+      <http:operation location="/Listar_gasto_otx_fecha2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se">
+      <http:operation location="/Listar_ots_se" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se2">
+      <http:operation location="/Listar_ots_se2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se_v2">
+      <http:operation location="/Listar_ots_se_v2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots">
+      <http:operation location="/Listar_consumo_mat_ots" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots2">
+      <http:operation location="/Listar_consumo_mat_ots2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots">
+      <http:operation location="/Listar_recursos_ots" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots2">
+      <http:operation location="/Listar_recursos_ots2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MantenimientoHttpPost" type="tns:MantenimientoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Listar_gasto_otx_fecha">
+      <http:operation location="/Listar_gasto_otx_fecha" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_gasto_otx_fecha2">
+      <http:operation location="/Listar_gasto_otx_fecha2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se">
+      <http:operation location="/Listar_ots_se" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se2">
+      <http:operation location="/Listar_ots_se2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ots_se_v2">
+      <http:operation location="/Listar_ots_se_v2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots">
+      <http:operation location="/Listar_consumo_mat_ots" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_consumo_mat_ots2">
+      <http:operation location="/Listar_consumo_mat_ots2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots">
+      <http:operation location="/Listar_recursos_ots" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_recursos_ots2">
+      <http:operation location="/Listar_recursos_ots2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Mantenimiento">
+    <wsdl:port name="MantenimientoSoap" binding="tns:MantenimientoSoap">
+      <soap:address location="http://10.10.18.10:90/Core/GestionProduccion/Mantenimiento.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MantenimientoSoap12" binding="tns:MantenimientoSoap12">
+      <soap12:address location="http://10.10.18.10:90/Core/GestionProduccion/Mantenimiento.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MantenimientoHttpGet" binding="tns:MantenimientoHttpGet">
+      <http:address location="http://10.10.18.10:90/Core/GestionProduccion/Mantenimiento.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MantenimientoHttpPost" binding="tns:MantenimientoHttpPost">
+      <http:address location="http://10.10.18.10:90/Core/GestionProduccion/Mantenimiento.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

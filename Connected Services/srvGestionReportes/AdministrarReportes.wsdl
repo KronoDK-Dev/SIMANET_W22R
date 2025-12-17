@@ -1,0 +1,2049 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ListarObjetos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdPadre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarObjetosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarObjetosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarReportePorUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdUsuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarReportePorUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarReportePorUsuarioResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarObjetosDependentes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdObjeto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarObjetosDependentesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarObjetosDependentesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarCtrlAttrParametro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdObjeto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdAtributoPadre" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdTipoControl" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarCtrlAttrParametroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarCtrlAttrParametroResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarInformacionReporte">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdObjeto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarInformacionReporteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarInformacionReporteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarUsuariosxNombre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApellidosyNombres" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarUsuariosxNombreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarUsuariosxNombreResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarUsuariosCompartidoFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreArchivo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarUsuariosCompartidoFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarUsuariosCompartidoFileResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaInsertaArchivo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oArchivoCompartidoBE" type="tns:ArchivoCompartidoBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArchivoCompartidoBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="IdCompartido" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdObjeto" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdUsuarioComp" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseBE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdEstado" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImgEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdCodigo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ambiente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ModificaInsertaArchivoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificaInsertaArchivoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaInsertaObjetoPrivilegio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oObjetoPrivilegioBE" type="tns:ObjetoPrivilegioBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ObjetoPrivilegioBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IdPrivilegio" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdObjeto" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdUsuarioCompartido" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="owner" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ModificaInsertaObjetoPrivilegioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificaInsertaObjetoPrivilegioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarUsuariosxReporteCompartido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdObjeto" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarUsuariosxReporteCompartidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarUsuariosxReporteCompartidoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleReporteCompartido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdObjeto" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleReporteCompartidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleReporteCompartidoResult" type="tns:ObjetoReporteCompartidoBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ObjetoReporteCompartidoBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IdPrivilegio" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdObjeto" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdUsuarioCompartido" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Owner" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ListarCabeceradeReporte">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdObjeto" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarCabeceradeReporteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarCabeceradeReporteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarReportesCompartidosPorUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdObjetoPadre" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarReportesCompartidosPorUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarReportesCompartidosPorUsuarioResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarObjetoAttributoValor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdObjeto" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdTipoControl" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdAtributoPadre" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarObjetoAttributoValorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarObjetoAttributoValorResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarObjeto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oObjetoBE" type="tns:ObjetoBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ObjetoBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IdObjeto" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdPadre" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdTipo" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdTipoControl" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Ref1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Ref2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Ref3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Ref4" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdUsuarioAnalista" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="OrdenXNivel" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdUsuarioSolicitante" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="InsertarObjetoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertarObjetoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsModObjetoConfigAtrributosValor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oObjetoConfigAttrBE" type="tns:ObjetoConfigAttrBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ObjetoConfigAttrBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IdAtributoValor" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdObjeto" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdAtributo" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Valor" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdGrp" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Orden" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="InsModObjetoConfigAtrributosValorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsModObjetoConfigAtrributosValorResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BackupParam">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdObjeto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BackupParamResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BackupParamResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BackupConfigParam">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdObjeto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BackupConfigParamResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BackupConfigParamResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MapearDatosInsertaModifica">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oObjetoMapeoExportBE" type="tns:ObjetoMapeoExportBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ObjetoMapeoExportBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IdDataField" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdDataFieldPadre" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Alias" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Tipo" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="FieldCompute" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Exportar" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Orden" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Prioridad" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdObjeto" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="MapearDatosInsertaModificaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MapearDatosInsertaModificaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MapearDatosListarTodos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdObjeto" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MapearDatosListarTodosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MapearDatosListarTodosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReporteAdoptarHijo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdObjeto" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdPadreNuevo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orden" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReporteAdoptarHijoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReporteAdoptarHijoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaAccesos_RptxUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="v_usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_ambiente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaAccesos_RptxUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaAccesos_RptxUsuarioResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaAccesos_RptxUsuario_v2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="s_usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaAccesos_RptxUsuario_v2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaAccesos_RptxUsuario_v2Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObjetoReporteCompartidoBE" nillable="true" type="tns:ObjetoReporteCompartidoBE" />
+      <s:element name="int" type="s:int" />
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ListarObjetosSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarObjetos" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetosSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarObjetosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarReportePorUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarReportePorUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ListarReportePorUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarReportePorUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetosDependentesSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarObjetosDependentes" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetosDependentesSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarObjetosDependentesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarCtrlAttrParametroSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarCtrlAttrParametro" />
+  </wsdl:message>
+  <wsdl:message name="ListarCtrlAttrParametroSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarCtrlAttrParametroResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarInformacionReporteSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarInformacionReporte" />
+  </wsdl:message>
+  <wsdl:message name="ListarInformacionReporteSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarInformacionReporteResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarUsuariosxNombreSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarUsuariosxNombre" />
+  </wsdl:message>
+  <wsdl:message name="BuscarUsuariosxNombreSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarUsuariosxNombreResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosCompartidoFileSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarUsuariosCompartidoFile" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosCompartidoFileSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarUsuariosCompartidoFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificaInsertaArchivoSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificaInsertaArchivo" />
+  </wsdl:message>
+  <wsdl:message name="ModificaInsertaArchivoSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificaInsertaArchivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificaInsertaObjetoPrivilegioSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificaInsertaObjetoPrivilegio" />
+  </wsdl:message>
+  <wsdl:message name="ModificaInsertaObjetoPrivilegioSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificaInsertaObjetoPrivilegioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosxReporteCompartidoSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarUsuariosxReporteCompartido" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosxReporteCompartidoSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarUsuariosxReporteCompartidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleReporteCompartidoSoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleReporteCompartido" />
+  </wsdl:message>
+  <wsdl:message name="DetalleReporteCompartidoSoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleReporteCompartidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarCabeceradeReporteSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarCabeceradeReporte" />
+  </wsdl:message>
+  <wsdl:message name="ListarCabeceradeReporteSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarCabeceradeReporteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarReportesCompartidosPorUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarReportesCompartidosPorUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ListarReportesCompartidosPorUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarReportesCompartidosPorUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetoAttributoValorSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarObjetoAttributoValor" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetoAttributoValorSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarObjetoAttributoValorResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertarObjetoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertarObjeto" />
+  </wsdl:message>
+  <wsdl:message name="InsertarObjetoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertarObjetoResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsModObjetoConfigAtrributosValorSoapIn">
+    <wsdl:part name="parameters" element="tns:InsModObjetoConfigAtrributosValor" />
+  </wsdl:message>
+  <wsdl:message name="InsModObjetoConfigAtrributosValorSoapOut">
+    <wsdl:part name="parameters" element="tns:InsModObjetoConfigAtrributosValorResponse" />
+  </wsdl:message>
+  <wsdl:message name="BackupParamSoapIn">
+    <wsdl:part name="parameters" element="tns:BackupParam" />
+  </wsdl:message>
+  <wsdl:message name="BackupParamSoapOut">
+    <wsdl:part name="parameters" element="tns:BackupParamResponse" />
+  </wsdl:message>
+  <wsdl:message name="BackupConfigParamSoapIn">
+    <wsdl:part name="parameters" element="tns:BackupConfigParam" />
+  </wsdl:message>
+  <wsdl:message name="BackupConfigParamSoapOut">
+    <wsdl:part name="parameters" element="tns:BackupConfigParamResponse" />
+  </wsdl:message>
+  <wsdl:message name="MapearDatosInsertaModificaSoapIn">
+    <wsdl:part name="parameters" element="tns:MapearDatosInsertaModifica" />
+  </wsdl:message>
+  <wsdl:message name="MapearDatosInsertaModificaSoapOut">
+    <wsdl:part name="parameters" element="tns:MapearDatosInsertaModificaResponse" />
+  </wsdl:message>
+  <wsdl:message name="MapearDatosListarTodosSoapIn">
+    <wsdl:part name="parameters" element="tns:MapearDatosListarTodos" />
+  </wsdl:message>
+  <wsdl:message name="MapearDatosListarTodosSoapOut">
+    <wsdl:part name="parameters" element="tns:MapearDatosListarTodosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReporteAdoptarHijoSoapIn">
+    <wsdl:part name="parameters" element="tns:ReporteAdoptarHijo" />
+  </wsdl:message>
+  <wsdl:message name="ReporteAdoptarHijoSoapOut">
+    <wsdl:part name="parameters" element="tns:ReporteAdoptarHijoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaAccesos_RptxUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaAccesos_RptxUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ListaAccesos_RptxUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaAccesos_RptxUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaAccesos_RptxUsuario_v2SoapIn">
+    <wsdl:part name="parameters" element="tns:ListaAccesos_RptxUsuario_v2" />
+  </wsdl:message>
+  <wsdl:message name="ListaAccesos_RptxUsuario_v2SoapOut">
+    <wsdl:part name="parameters" element="tns:ListaAccesos_RptxUsuario_v2Response" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetosHttpGetIn">
+    <wsdl:part name="IdPadre" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarReportePorUsuarioHttpGetIn">
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarReportePorUsuarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetosDependentesHttpGetIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetosDependentesHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarCtrlAttrParametroHttpGetIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="IdAtributoPadre" type="s:string" />
+    <wsdl:part name="IdTipoControl" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarCtrlAttrParametroHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarInformacionReporteHttpGetIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarInformacionReporteHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarUsuariosxNombreHttpGetIn">
+    <wsdl:part name="ApellidosyNombres" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarUsuariosxNombreHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosCompartidoFileHttpGetIn">
+    <wsdl:part name="NombreArchivo" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosCompartidoFileHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosxReporteCompartidoHttpGetIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosxReporteCompartidoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetalleReporteCompartidoHttpGetIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetalleReporteCompartidoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ObjetoReporteCompartidoBE" />
+  </wsdl:message>
+  <wsdl:message name="ListarCabeceradeReporteHttpGetIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarCabeceradeReporteHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarReportesCompartidosPorUsuarioHttpGetIn">
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="IdObjetoPadre" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarReportesCompartidosPorUsuarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetoAttributoValorHttpGetIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="IdTipoControl" type="s:string" />
+    <wsdl:part name="IdAtributoPadre" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetoAttributoValorHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BackupParamHttpGetIn">
+    <wsdl:part name="Guid" type="s:string" />
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BackupParamHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="BackupConfigParamHttpGetIn">
+    <wsdl:part name="Guid" type="s:string" />
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BackupConfigParamHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="MapearDatosListarTodosHttpGetIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MapearDatosListarTodosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ReporteAdoptarHijoHttpGetIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="IdPadreNuevo" type="s:string" />
+    <wsdl:part name="Orden" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ReporteAdoptarHijoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaAccesos_RptxUsuarioHttpGetIn">
+    <wsdl:part name="v_usuario" type="s:string" />
+    <wsdl:part name="v_ambiente" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaAccesos_RptxUsuarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListaAccesos_RptxUsuario_v2HttpGetIn">
+    <wsdl:part name="s_usuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaAccesos_RptxUsuario_v2HttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetosHttpPostIn">
+    <wsdl:part name="IdPadre" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarReportePorUsuarioHttpPostIn">
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarReportePorUsuarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetosDependentesHttpPostIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetosDependentesHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarCtrlAttrParametroHttpPostIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="IdAtributoPadre" type="s:string" />
+    <wsdl:part name="IdTipoControl" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarCtrlAttrParametroHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarInformacionReporteHttpPostIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarInformacionReporteHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarUsuariosxNombreHttpPostIn">
+    <wsdl:part name="ApellidosyNombres" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarUsuariosxNombreHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosCompartidoFileHttpPostIn">
+    <wsdl:part name="NombreArchivo" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosCompartidoFileHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosxReporteCompartidoHttpPostIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosxReporteCompartidoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetalleReporteCompartidoHttpPostIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetalleReporteCompartidoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ObjetoReporteCompartidoBE" />
+  </wsdl:message>
+  <wsdl:message name="ListarCabeceradeReporteHttpPostIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarCabeceradeReporteHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarReportesCompartidosPorUsuarioHttpPostIn">
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="IdObjetoPadre" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarReportesCompartidosPorUsuarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetoAttributoValorHttpPostIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="IdTipoControl" type="s:string" />
+    <wsdl:part name="IdAtributoPadre" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarObjetoAttributoValorHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BackupParamHttpPostIn">
+    <wsdl:part name="Guid" type="s:string" />
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BackupParamHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="BackupConfigParamHttpPostIn">
+    <wsdl:part name="Guid" type="s:string" />
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BackupConfigParamHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="MapearDatosListarTodosHttpPostIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MapearDatosListarTodosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ReporteAdoptarHijoHttpPostIn">
+    <wsdl:part name="IdObjeto" type="s:string" />
+    <wsdl:part name="IdPadreNuevo" type="s:string" />
+    <wsdl:part name="Orden" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ReporteAdoptarHijoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaAccesos_RptxUsuarioHttpPostIn">
+    <wsdl:part name="v_usuario" type="s:string" />
+    <wsdl:part name="v_ambiente" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaAccesos_RptxUsuarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListaAccesos_RptxUsuario_v2HttpPostIn">
+    <wsdl:part name="s_usuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaAccesos_RptxUsuario_v2HttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:portType name="AdministrarReportesSoap">
+    <wsdl:operation name="ListarObjetos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Reportes implementados relacionados por IdPadre</wsdl:documentation>
+      <wsdl:input message="tns:ListarObjetosSoapIn" />
+      <wsdl:output message="tns:ListarObjetosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportePorUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Reportes por usuario y sus accesos</wsdl:documentation>
+      <wsdl:input message="tns:ListarReportePorUsuarioSoapIn" />
+      <wsdl:output message="tns:ListarReportePorUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetosDependentes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Objeto parametro dependientes</wsdl:documentation>
+      <wsdl:input message="tns:ListarObjetosDependentesSoapIn" />
+      <wsdl:output message="tns:ListarObjetosDependentesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarCtrlAttrParametro">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Los Atributos de un control inculado a un párametro</wsdl:documentation>
+      <wsdl:input message="tns:ListarCtrlAttrParametroSoapIn" />
+      <wsdl:output message="tns:ListarCtrlAttrParametroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarInformacionReporte">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Informacion del Reporte</wsdl:documentation>
+      <wsdl:input message="tns:ListarInformacionReporteSoapIn" />
+      <wsdl:output message="tns:ListarInformacionReporteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuariosxNombre">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Usuario por nombre</wsdl:documentation>
+      <wsdl:input message="tns:BuscarUsuariosxNombreSoapIn" />
+      <wsdl:output message="tns:BuscarUsuariosxNombreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosCompartidoFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Archivo compratido</wsdl:documentation>
+      <wsdl:input message="tns:ListarUsuariosCompartidoFileSoapIn" />
+      <wsdl:output message="tns:ListarUsuariosCompartidoFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaInsertaArchivo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta o modifica el archivo generado del reporte</wsdl:documentation>
+      <wsdl:input message="tns:ModificaInsertaArchivoSoapIn" />
+      <wsdl:output message="tns:ModificaInsertaArchivoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaInsertaObjetoPrivilegio">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta o modifica Privilegios de objetos</wsdl:documentation>
+      <wsdl:input message="tns:ModificaInsertaObjetoPrivilegioSoapIn" />
+      <wsdl:output message="tns:ModificaInsertaObjetoPrivilegioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosxReporteCompartido">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Usuario por reporte Compartido</wsdl:documentation>
+      <wsdl:input message="tns:ListarUsuariosxReporteCompartidoSoapIn" />
+      <wsdl:output message="tns:ListarUsuariosxReporteCompartidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleReporteCompartido">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de Usuario por reporte Compartido</wsdl:documentation>
+      <wsdl:input message="tns:DetalleReporteCompartidoSoapIn" />
+      <wsdl:output message="tns:DetalleReporteCompartidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarCabeceradeReporte">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de cabecera del reporte</wsdl:documentation>
+      <wsdl:input message="tns:ListarCabeceradeReporteSoapIn" />
+      <wsdl:output message="tns:ListarCabeceradeReporteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportesCompartidosPorUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Reportes Compartidos por Usuario</wsdl:documentation>
+      <wsdl:input message="tns:ListarReportesCompartidosPorUsuarioSoapIn" />
+      <wsdl:output message="tns:ListarReportesCompartidosPorUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetoAttributoValor">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Los atributos con sus repectivos valores de los objetos vinculados a sus parámetros</wsdl:documentation>
+      <wsdl:input message="tns:ListarObjetoAttributoValorSoapIn" />
+      <wsdl:output message="tns:ListarObjetoAttributoValorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarObjeto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insertar objetos de gestion de reporte</wsdl:documentation>
+      <wsdl:input message="tns:InsertarObjetoSoapIn" />
+      <wsdl:output message="tns:InsertarObjetoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsModObjetoConfigAtrributosValor">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insertar Valores de los atributos de configuracion del obejeto vinculado al parametros del metodo que solventara la data al reporte</wsdl:documentation>
+      <wsdl:input message="tns:InsModObjetoConfigAtrributosValorSoapIn" />
+      <wsdl:output message="tns:InsModObjetoConfigAtrributosValorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BackupParam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Realiza un  BK de los parametros dek metodo que vicula al reporte .rpt para la carga de sus datos</wsdl:documentation>
+      <wsdl:input message="tns:BackupParamSoapIn" />
+      <wsdl:output message="tns:BackupParamSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BackupConfigParam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Realiza un  BK de los parametros dek metodo que vicula al reporte .rpt para la carga de sus datos</wsdl:documentation>
+      <wsdl:input message="tns:BackupConfigParamSoapIn" />
+      <wsdl:output message="tns:BackupConfigParamSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MapearDatosInsertaModifica">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mapeoo de Datos para exportar</wsdl:documentation>
+      <wsdl:input message="tns:MapearDatosInsertaModificaSoapIn" />
+      <wsdl:output message="tns:MapearDatosInsertaModificaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MapearDatosListarTodos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Mapeo</wsdl:documentation>
+      <wsdl:input message="tns:MapearDatosListarTodosSoapIn" />
+      <wsdl:output message="tns:MapearDatosListarTodosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReporteAdoptarHijo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Admin Report Mover item Reporte</wsdl:documentation>
+      <wsdl:input message="tns:ReporteAdoptarHijoSoapIn" />
+      <wsdl:output message="tns:ReporteAdoptarHijoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Accesos a reportes por Usuario</wsdl:documentation>
+      <wsdl:input message="tns:ListaAccesos_RptxUsuarioSoapIn" />
+      <wsdl:output message="tns:ListaAccesos_RptxUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario_v2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Accesos a reportes por Usuario v2</wsdl:documentation>
+      <wsdl:input message="tns:ListaAccesos_RptxUsuario_v2SoapIn" />
+      <wsdl:output message="tns:ListaAccesos_RptxUsuario_v2SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AdministrarReportesHttpGet">
+    <wsdl:operation name="ListarObjetos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Reportes implementados relacionados por IdPadre</wsdl:documentation>
+      <wsdl:input message="tns:ListarObjetosHttpGetIn" />
+      <wsdl:output message="tns:ListarObjetosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportePorUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Reportes por usuario y sus accesos</wsdl:documentation>
+      <wsdl:input message="tns:ListarReportePorUsuarioHttpGetIn" />
+      <wsdl:output message="tns:ListarReportePorUsuarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetosDependentes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Objeto parametro dependientes</wsdl:documentation>
+      <wsdl:input message="tns:ListarObjetosDependentesHttpGetIn" />
+      <wsdl:output message="tns:ListarObjetosDependentesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarCtrlAttrParametro">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Los Atributos de un control inculado a un párametro</wsdl:documentation>
+      <wsdl:input message="tns:ListarCtrlAttrParametroHttpGetIn" />
+      <wsdl:output message="tns:ListarCtrlAttrParametroHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarInformacionReporte">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Informacion del Reporte</wsdl:documentation>
+      <wsdl:input message="tns:ListarInformacionReporteHttpGetIn" />
+      <wsdl:output message="tns:ListarInformacionReporteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuariosxNombre">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Usuario por nombre</wsdl:documentation>
+      <wsdl:input message="tns:BuscarUsuariosxNombreHttpGetIn" />
+      <wsdl:output message="tns:BuscarUsuariosxNombreHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosCompartidoFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Archivo compratido</wsdl:documentation>
+      <wsdl:input message="tns:ListarUsuariosCompartidoFileHttpGetIn" />
+      <wsdl:output message="tns:ListarUsuariosCompartidoFileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosxReporteCompartido">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Usuario por reporte Compartido</wsdl:documentation>
+      <wsdl:input message="tns:ListarUsuariosxReporteCompartidoHttpGetIn" />
+      <wsdl:output message="tns:ListarUsuariosxReporteCompartidoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleReporteCompartido">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de Usuario por reporte Compartido</wsdl:documentation>
+      <wsdl:input message="tns:DetalleReporteCompartidoHttpGetIn" />
+      <wsdl:output message="tns:DetalleReporteCompartidoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarCabeceradeReporte">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de cabecera del reporte</wsdl:documentation>
+      <wsdl:input message="tns:ListarCabeceradeReporteHttpGetIn" />
+      <wsdl:output message="tns:ListarCabeceradeReporteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportesCompartidosPorUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Reportes Compartidos por Usuario</wsdl:documentation>
+      <wsdl:input message="tns:ListarReportesCompartidosPorUsuarioHttpGetIn" />
+      <wsdl:output message="tns:ListarReportesCompartidosPorUsuarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetoAttributoValor">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Los atributos con sus repectivos valores de los objetos vinculados a sus parámetros</wsdl:documentation>
+      <wsdl:input message="tns:ListarObjetoAttributoValorHttpGetIn" />
+      <wsdl:output message="tns:ListarObjetoAttributoValorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BackupParam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Realiza un  BK de los parametros dek metodo que vicula al reporte .rpt para la carga de sus datos</wsdl:documentation>
+      <wsdl:input message="tns:BackupParamHttpGetIn" />
+      <wsdl:output message="tns:BackupParamHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BackupConfigParam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Realiza un  BK de los parametros dek metodo que vicula al reporte .rpt para la carga de sus datos</wsdl:documentation>
+      <wsdl:input message="tns:BackupConfigParamHttpGetIn" />
+      <wsdl:output message="tns:BackupConfigParamHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MapearDatosListarTodos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Mapeo</wsdl:documentation>
+      <wsdl:input message="tns:MapearDatosListarTodosHttpGetIn" />
+      <wsdl:output message="tns:MapearDatosListarTodosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReporteAdoptarHijo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Admin Report Mover item Reporte</wsdl:documentation>
+      <wsdl:input message="tns:ReporteAdoptarHijoHttpGetIn" />
+      <wsdl:output message="tns:ReporteAdoptarHijoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Accesos a reportes por Usuario</wsdl:documentation>
+      <wsdl:input message="tns:ListaAccesos_RptxUsuarioHttpGetIn" />
+      <wsdl:output message="tns:ListaAccesos_RptxUsuarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario_v2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Accesos a reportes por Usuario v2</wsdl:documentation>
+      <wsdl:input message="tns:ListaAccesos_RptxUsuario_v2HttpGetIn" />
+      <wsdl:output message="tns:ListaAccesos_RptxUsuario_v2HttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AdministrarReportesHttpPost">
+    <wsdl:operation name="ListarObjetos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Reportes implementados relacionados por IdPadre</wsdl:documentation>
+      <wsdl:input message="tns:ListarObjetosHttpPostIn" />
+      <wsdl:output message="tns:ListarObjetosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportePorUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Reportes por usuario y sus accesos</wsdl:documentation>
+      <wsdl:input message="tns:ListarReportePorUsuarioHttpPostIn" />
+      <wsdl:output message="tns:ListarReportePorUsuarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetosDependentes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Objeto parametro dependientes</wsdl:documentation>
+      <wsdl:input message="tns:ListarObjetosDependentesHttpPostIn" />
+      <wsdl:output message="tns:ListarObjetosDependentesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarCtrlAttrParametro">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Los Atributos de un control inculado a un párametro</wsdl:documentation>
+      <wsdl:input message="tns:ListarCtrlAttrParametroHttpPostIn" />
+      <wsdl:output message="tns:ListarCtrlAttrParametroHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarInformacionReporte">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Informacion del Reporte</wsdl:documentation>
+      <wsdl:input message="tns:ListarInformacionReporteHttpPostIn" />
+      <wsdl:output message="tns:ListarInformacionReporteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuariosxNombre">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Usuario por nombre</wsdl:documentation>
+      <wsdl:input message="tns:BuscarUsuariosxNombreHttpPostIn" />
+      <wsdl:output message="tns:BuscarUsuariosxNombreHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosCompartidoFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Archivo compratido</wsdl:documentation>
+      <wsdl:input message="tns:ListarUsuariosCompartidoFileHttpPostIn" />
+      <wsdl:output message="tns:ListarUsuariosCompartidoFileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosxReporteCompartido">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Usuario por reporte Compartido</wsdl:documentation>
+      <wsdl:input message="tns:ListarUsuariosxReporteCompartidoHttpPostIn" />
+      <wsdl:output message="tns:ListarUsuariosxReporteCompartidoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleReporteCompartido">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de Usuario por reporte Compartido</wsdl:documentation>
+      <wsdl:input message="tns:DetalleReporteCompartidoHttpPostIn" />
+      <wsdl:output message="tns:DetalleReporteCompartidoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarCabeceradeReporte">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de cabecera del reporte</wsdl:documentation>
+      <wsdl:input message="tns:ListarCabeceradeReporteHttpPostIn" />
+      <wsdl:output message="tns:ListarCabeceradeReporteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportesCompartidosPorUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Reportes Compartidos por Usuario</wsdl:documentation>
+      <wsdl:input message="tns:ListarReportesCompartidosPorUsuarioHttpPostIn" />
+      <wsdl:output message="tns:ListarReportesCompartidosPorUsuarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetoAttributoValor">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Los atributos con sus repectivos valores de los objetos vinculados a sus parámetros</wsdl:documentation>
+      <wsdl:input message="tns:ListarObjetoAttributoValorHttpPostIn" />
+      <wsdl:output message="tns:ListarObjetoAttributoValorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BackupParam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Realiza un  BK de los parametros dek metodo que vicula al reporte .rpt para la carga de sus datos</wsdl:documentation>
+      <wsdl:input message="tns:BackupParamHttpPostIn" />
+      <wsdl:output message="tns:BackupParamHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BackupConfigParam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Realiza un  BK de los parametros dek metodo que vicula al reporte .rpt para la carga de sus datos</wsdl:documentation>
+      <wsdl:input message="tns:BackupConfigParamHttpPostIn" />
+      <wsdl:output message="tns:BackupConfigParamHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MapearDatosListarTodos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Mapeo</wsdl:documentation>
+      <wsdl:input message="tns:MapearDatosListarTodosHttpPostIn" />
+      <wsdl:output message="tns:MapearDatosListarTodosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReporteAdoptarHijo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Admin Report Mover item Reporte</wsdl:documentation>
+      <wsdl:input message="tns:ReporteAdoptarHijoHttpPostIn" />
+      <wsdl:output message="tns:ReporteAdoptarHijoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Accesos a reportes por Usuario</wsdl:documentation>
+      <wsdl:input message="tns:ListaAccesos_RptxUsuarioHttpPostIn" />
+      <wsdl:output message="tns:ListaAccesos_RptxUsuarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario_v2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Accesos a reportes por Usuario v2</wsdl:documentation>
+      <wsdl:input message="tns:ListaAccesos_RptxUsuario_v2HttpPostIn" />
+      <wsdl:output message="tns:ListaAccesos_RptxUsuario_v2HttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdministrarReportesSoap" type="tns:AdministrarReportesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListarObjetos">
+      <soap:operation soapAction="http://tempuri.org/ListarObjetos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportePorUsuario">
+      <soap:operation soapAction="http://tempuri.org/ListarReportePorUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetosDependentes">
+      <soap:operation soapAction="http://tempuri.org/ListarObjetosDependentes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCtrlAttrParametro">
+      <soap:operation soapAction="http://tempuri.org/ListarCtrlAttrParametro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarInformacionReporte">
+      <soap:operation soapAction="http://tempuri.org/ListarInformacionReporte" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuariosxNombre">
+      <soap:operation soapAction="http://tempuri.org/BuscarUsuariosxNombre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosCompartidoFile">
+      <soap:operation soapAction="http://tempuri.org/ListarUsuariosCompartidoFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaInsertaArchivo">
+      <soap:operation soapAction="http://tempuri.org/ModificaInsertaArchivo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaInsertaObjetoPrivilegio">
+      <soap:operation soapAction="http://tempuri.org/ModificaInsertaObjetoPrivilegio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosxReporteCompartido">
+      <soap:operation soapAction="http://tempuri.org/ListarUsuariosxReporteCompartido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleReporteCompartido">
+      <soap:operation soapAction="http://tempuri.org/DetalleReporteCompartido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCabeceradeReporte">
+      <soap:operation soapAction="http://tempuri.org/ListarCabeceradeReporte" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportesCompartidosPorUsuario">
+      <soap:operation soapAction="http://tempuri.org/ListarReportesCompartidosPorUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetoAttributoValor">
+      <soap:operation soapAction="http://tempuri.org/ListarObjetoAttributoValor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarObjeto">
+      <soap:operation soapAction="http://tempuri.org/InsertarObjeto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsModObjetoConfigAtrributosValor">
+      <soap:operation soapAction="http://tempuri.org/InsModObjetoConfigAtrributosValor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackupParam">
+      <soap:operation soapAction="http://tempuri.org/BackupParam" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackupConfigParam">
+      <soap:operation soapAction="http://tempuri.org/BackupConfigParam" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MapearDatosInsertaModifica">
+      <soap:operation soapAction="http://tempuri.org/MapearDatosInsertaModifica" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MapearDatosListarTodos">
+      <soap:operation soapAction="http://tempuri.org/MapearDatosListarTodos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReporteAdoptarHijo">
+      <soap:operation soapAction="http://tempuri.org/ReporteAdoptarHijo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario">
+      <soap:operation soapAction="http://tempuri.org/ListaAccesos_RptxUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario_v2">
+      <soap:operation soapAction="http://tempuri.org/ListaAccesos_RptxUsuario_v2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AdministrarReportesSoap12" type="tns:AdministrarReportesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListarObjetos">
+      <soap12:operation soapAction="http://tempuri.org/ListarObjetos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportePorUsuario">
+      <soap12:operation soapAction="http://tempuri.org/ListarReportePorUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetosDependentes">
+      <soap12:operation soapAction="http://tempuri.org/ListarObjetosDependentes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCtrlAttrParametro">
+      <soap12:operation soapAction="http://tempuri.org/ListarCtrlAttrParametro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarInformacionReporte">
+      <soap12:operation soapAction="http://tempuri.org/ListarInformacionReporte" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuariosxNombre">
+      <soap12:operation soapAction="http://tempuri.org/BuscarUsuariosxNombre" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosCompartidoFile">
+      <soap12:operation soapAction="http://tempuri.org/ListarUsuariosCompartidoFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaInsertaArchivo">
+      <soap12:operation soapAction="http://tempuri.org/ModificaInsertaArchivo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaInsertaObjetoPrivilegio">
+      <soap12:operation soapAction="http://tempuri.org/ModificaInsertaObjetoPrivilegio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosxReporteCompartido">
+      <soap12:operation soapAction="http://tempuri.org/ListarUsuariosxReporteCompartido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleReporteCompartido">
+      <soap12:operation soapAction="http://tempuri.org/DetalleReporteCompartido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCabeceradeReporte">
+      <soap12:operation soapAction="http://tempuri.org/ListarCabeceradeReporte" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportesCompartidosPorUsuario">
+      <soap12:operation soapAction="http://tempuri.org/ListarReportesCompartidosPorUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetoAttributoValor">
+      <soap12:operation soapAction="http://tempuri.org/ListarObjetoAttributoValor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarObjeto">
+      <soap12:operation soapAction="http://tempuri.org/InsertarObjeto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsModObjetoConfigAtrributosValor">
+      <soap12:operation soapAction="http://tempuri.org/InsModObjetoConfigAtrributosValor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackupParam">
+      <soap12:operation soapAction="http://tempuri.org/BackupParam" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackupConfigParam">
+      <soap12:operation soapAction="http://tempuri.org/BackupConfigParam" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MapearDatosInsertaModifica">
+      <soap12:operation soapAction="http://tempuri.org/MapearDatosInsertaModifica" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MapearDatosListarTodos">
+      <soap12:operation soapAction="http://tempuri.org/MapearDatosListarTodos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReporteAdoptarHijo">
+      <soap12:operation soapAction="http://tempuri.org/ReporteAdoptarHijo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario">
+      <soap12:operation soapAction="http://tempuri.org/ListaAccesos_RptxUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario_v2">
+      <soap12:operation soapAction="http://tempuri.org/ListaAccesos_RptxUsuario_v2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AdministrarReportesHttpGet" type="tns:AdministrarReportesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ListarObjetos">
+      <http:operation location="/ListarObjetos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportePorUsuario">
+      <http:operation location="/ListarReportePorUsuario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetosDependentes">
+      <http:operation location="/ListarObjetosDependentes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCtrlAttrParametro">
+      <http:operation location="/ListarCtrlAttrParametro" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarInformacionReporte">
+      <http:operation location="/ListarInformacionReporte" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuariosxNombre">
+      <http:operation location="/BuscarUsuariosxNombre" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosCompartidoFile">
+      <http:operation location="/ListarUsuariosCompartidoFile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosxReporteCompartido">
+      <http:operation location="/ListarUsuariosxReporteCompartido" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleReporteCompartido">
+      <http:operation location="/DetalleReporteCompartido" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCabeceradeReporte">
+      <http:operation location="/ListarCabeceradeReporte" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportesCompartidosPorUsuario">
+      <http:operation location="/ListarReportesCompartidosPorUsuario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetoAttributoValor">
+      <http:operation location="/ListarObjetoAttributoValor" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackupParam">
+      <http:operation location="/BackupParam" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackupConfigParam">
+      <http:operation location="/BackupConfigParam" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MapearDatosListarTodos">
+      <http:operation location="/MapearDatosListarTodos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReporteAdoptarHijo">
+      <http:operation location="/ReporteAdoptarHijo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario">
+      <http:operation location="/ListaAccesos_RptxUsuario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario_v2">
+      <http:operation location="/ListaAccesos_RptxUsuario_v2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AdministrarReportesHttpPost" type="tns:AdministrarReportesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ListarObjetos">
+      <http:operation location="/ListarObjetos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportePorUsuario">
+      <http:operation location="/ListarReportePorUsuario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetosDependentes">
+      <http:operation location="/ListarObjetosDependentes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCtrlAttrParametro">
+      <http:operation location="/ListarCtrlAttrParametro" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarInformacionReporte">
+      <http:operation location="/ListarInformacionReporte" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuariosxNombre">
+      <http:operation location="/BuscarUsuariosxNombre" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosCompartidoFile">
+      <http:operation location="/ListarUsuariosCompartidoFile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosxReporteCompartido">
+      <http:operation location="/ListarUsuariosxReporteCompartido" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleReporteCompartido">
+      <http:operation location="/DetalleReporteCompartido" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCabeceradeReporte">
+      <http:operation location="/ListarCabeceradeReporte" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarReportesCompartidosPorUsuario">
+      <http:operation location="/ListarReportesCompartidosPorUsuario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarObjetoAttributoValor">
+      <http:operation location="/ListarObjetoAttributoValor" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackupParam">
+      <http:operation location="/BackupParam" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackupConfigParam">
+      <http:operation location="/BackupConfigParam" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MapearDatosListarTodos">
+      <http:operation location="/MapearDatosListarTodos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReporteAdoptarHijo">
+      <http:operation location="/ReporteAdoptarHijo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario">
+      <http:operation location="/ListaAccesos_RptxUsuario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaAccesos_RptxUsuario_v2">
+      <http:operation location="/ListaAccesos_RptxUsuario_v2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdministrarReportes">
+    <wsdl:port name="AdministrarReportesSoap" binding="tns:AdministrarReportesSoap">
+      <soap:address location="http://10.10.18.10:90/Core/GestionReportes/AdministrarReportes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AdministrarReportesSoap12" binding="tns:AdministrarReportesSoap12">
+      <soap12:address location="http://10.10.18.10:90/Core/GestionReportes/AdministrarReportes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AdministrarReportesHttpGet" binding="tns:AdministrarReportesHttpGet">
+      <http:address location="http://10.10.18.10:90/Core/GestionReportes/AdministrarReportes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AdministrarReportesHttpPost" binding="tns:AdministrarReportesHttpPost">
+      <http:address location="http://10.10.18.10:90/Core/GestionReportes/AdministrarReportes.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

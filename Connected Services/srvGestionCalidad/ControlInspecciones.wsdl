@@ -1,0 +1,3767 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Inspeccion_ListarInspectores">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Id1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_ListarInspectoresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Inspeccion_ListarInspectoresResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarResponsablesPorArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Id1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarResponsablesPorAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarResponsablesPorAreaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_ModificarInsertarInspector">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oBaseBE" type="tns:BaseBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BaseBE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdEstado" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImgEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdCodigo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ambiente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Inspeccion_ModificarInsertarInspectorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Inspeccion_ModificarInsertarInspectorResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleInspector">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdInspector" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleInspectorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleInspectorResult" type="tns:InspectorBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InspectorBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="IdInspector" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdPersonal" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Principal" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Inspeccion_ModficarInsertarResponsable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oBaseBE" type="tns:BaseBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_ModficarInsertarResponsableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Inspeccion_ModficarInsertarResponsableResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_DetalleResponsableArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdPersonal" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_DetalleResponsableAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Inspeccion_DetalleResponsableAreaResult" type="tns:ResponsableAreaBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponsableAreaBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IdPersonal" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdTipoPersonal" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ListarInspeccionesxInspector">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdInspector" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarInspeccionesxInspectorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarInspeccionesxInspectorResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaModificaDetalledeInspeccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oInspectorDetalleBE" type="tns:InspectorDetalleBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InspectorDetalleBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="IdDetalleInspeccion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IdInspector" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Recomendaciones" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdClausula" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="InsertaModificaDetalledeInspeccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertaModificaDetalledeInspeccionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarProyectosActividadSIMA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdProyecto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarProyectosActividadSIMAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarProyectosActividadSIMAResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarActividad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreActividad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarActividadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarActividadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarAreaEntidad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreAreaEntidad" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarAreaEntidadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarAreaEntidadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarAreaEntidad_Inspeccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreAreaEntidad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarAreaEntidad_InspeccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarAreaEntidad_InspeccionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModficarInsertarProyectoActividadSIMA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oProyectoActividadBE" type="tns:ProyectoActividadBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProyectoActividadBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="IdActProy" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdPryecto" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdActividad" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="NombreActividad" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ModficarInsertarProyectoActividadSIMAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModficarInsertarProyectoActividadSIMAResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleActivadProyecto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdProyecto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdActividad" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleActivadProyectoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleActivadProyectoResult" type="tns:ProyectoActividadBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdministrarInspeccionAnexos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oInspeccionAnexoBE" type="tns:InspeccionAnexoBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InspeccionAnexoBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="IdAnexo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Archivo" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Orden" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="AdministrarInspeccionAnexosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdministrarInspeccionAnexosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarInspeccionAnexos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarInspeccionAnexosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarInspeccionAnexosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarUsuariosFirmantes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdUsuarioFirmante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarUsuariosFirmantesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarUsuariosFirmantesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarUsuariosFirmantesRefCruz">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarUsuariosFirmantesRefCruzResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarUsuariosFirmantesRefCruzResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaInsertaUsuariosFirmantes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oUsuarioFirmanteBE" type="tns:UsuarioFirmanteBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UsuarioFirmanteBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdPersonaFirmante" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdTipoFirmante" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Recomendaciones" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Firma" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="UpDateEmail" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdTipoPlazo" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TiempoPlazo" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ModificaInsertaUsuariosFirmantesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificaInsertaUsuariosFirmantesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsModPersonalFirmantePorTipo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oUsuarioFirmanteBE" type="tns:UsuarioFirmanteBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsModPersonalFirmantePorTipoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsModPersonalFirmantePorTipoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaInsertaFirmas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oUsuarioFirmanteBE" type="tns:UsuarioFirmanteBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaInsertaFirmasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificaInsertaFirmasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminaUsuariosFirmantes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdUsuarioFirmante" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdEsatdo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminaUsuariosFirmantesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminaUsuariosFirmantesResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizaNroMsgRecibidos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oUsuarioFirmanteBE" type="tns:UsuarioFirmanteBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizaNroMsgRecibidosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ActualizaNroMsgRecibidosResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FirmaAprobarFromEMail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oUsuarioFirmanteBE" type="tns:UsuarioFirmanteBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FirmaAprobarFromEMailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FirmaAprobarFromEMailResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InspeccionCambiarEstado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdEstado" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InspeccionCambiarEstadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InspeccionCambiarEstadoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarProyectodeInspeccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreProyecto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarProyectodeInspeccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarProyectodeInspeccionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarDetallePorReponsabledeArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdPersonal" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarDetallePorReponsabledeAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarDetallePorReponsabledeAreaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetallePorReponsabledeAreaRpt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdDetalleResponsableArea" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetallePorReponsabledeAreaRptResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetallePorReponsabledeAreaRptResult" type="tns:ResponsableAreaDetalleBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponsableAreaDetalleBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="IdDetalleResponsableArea" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdPersonal" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="FechaRpta" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="FechaEnvio" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="FechaLectura" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DetallePorReponsabledeAreaCambiarEstado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oResponsableAreaDetalleBE" type="tns:ResponsableAreaDetalleBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetallePorReponsabledeAreaCambiarEstadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DetallePorReponsabledeAreaCambiarEstadoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResponsabledeAreaDetalle_InsertaModifica">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oResponsableAreaDetalleBE" type="tns:ResponsableAreaDetalleBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResponsabledeAreaDetalle_InsertaModificaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ResponsabledeAreaDetalle_InsertaModificaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenInspeccionesPorEstado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Año" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenInspeccionesPorEstadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResumenInspeccionesPorEstadoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformeTipoEntidad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Año" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformeTipoEntidadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResumenNoConformeTipoEntidadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarAprobador">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApellidosyNombres" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarAprobadorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarAprobadorResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BloqueaRegistroInspeccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Block" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BloqueaRegistroInspeccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BloqueaRegistroInspeccionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_Listar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Id1" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_ListarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Inspeccion_ListarResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_Detalle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Id1" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_DetalleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Inspeccion_DetalleResult" type="tns:InspeccionBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InspeccionBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IdInspeccionPadre" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NroProyecto" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NroReporte" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdProyecto" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="NombreProyecto" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdCLiente" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ClienteRazonSocial" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="FechaInspeccion" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdTipoInspeccion" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdTipoProceso" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="NombreTipoProceso" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdTipoSistema" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdTipoClasificacion" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Recomendacion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LineadeNegocio" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdNormaClausula" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdOrigen" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdEntidad" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="NombreAreaEntidad" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Inspeccion_ListarPorResponsableArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdPersonal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_ListarPorResponsableAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Inspeccion_ListarPorResponsableAreaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_Insertar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oInspeccionBE" type="tns:InspeccionBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_InsertarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Inspeccion_InsertarResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_Modificar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oInspeccionBE" type="tns:InspeccionBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspeccion_ModificarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Inspeccion_ModificarResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformeIP_SIMA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Año" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="MesHasta" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdOrigen" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformeIP_SIMAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResumenNoConformeIP_SIMAResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformeIP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Año" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="MesHasta" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformeIPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResumenNoConformeIPResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformeSIMA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Año" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="MesHasta" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformeSIMAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResumenNoConformeSIMAResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformePorProyecto_Mensual">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Año" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="MesHasta" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformePorProyecto_MensualResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResumenNoConformePorProyecto_MensualResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformePorIP_SIMA_Mensual">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Año" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="MesHasta" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdOrigen" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformePorIP_SIMA_MensualResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResumenNoConformePorIP_SIMA_MensualResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformePorTipodeInspeccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Año" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="MesHasta" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenNoConformePorTipodeInspeccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResumenNoConformePorTipodeInspeccionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarSolicitudAprobacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarSolicitudAprobacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarSolicitudAprobacionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InspectorBE" nillable="true" type="tns:InspectorBE" />
+      <s:element name="ResponsableAreaBE" nillable="true" type="tns:ResponsableAreaBE" />
+      <s:element name="ProyectoActividadBE" nillable="true" type="tns:ProyectoActividadBE" />
+      <s:element name="int" type="s:int" />
+      <s:element name="ResponsableAreaDetalleBE" nillable="true" type="tns:ResponsableAreaDetalleBE" />
+      <s:element name="InspeccionBE" nillable="true" type="tns:InspeccionBE" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Inspeccion_ListarInspectoresSoapIn">
+    <wsdl:part name="parameters" element="tns:Inspeccion_ListarInspectores" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarInspectoresSoapOut">
+    <wsdl:part name="parameters" element="tns:Inspeccion_ListarInspectoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarResponsablesPorAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarResponsablesPorArea" />
+  </wsdl:message>
+  <wsdl:message name="ListarResponsablesPorAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarResponsablesPorAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ModificarInsertarInspectorSoapIn">
+    <wsdl:part name="parameters" element="tns:Inspeccion_ModificarInsertarInspector" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ModificarInsertarInspectorSoapOut">
+    <wsdl:part name="parameters" element="tns:Inspeccion_ModificarInsertarInspectorResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleInspectorSoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleInspector" />
+  </wsdl:message>
+  <wsdl:message name="DetalleInspectorSoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleInspectorResponse" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ModficarInsertarResponsableSoapIn">
+    <wsdl:part name="parameters" element="tns:Inspeccion_ModficarInsertarResponsable" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ModficarInsertarResponsableSoapOut">
+    <wsdl:part name="parameters" element="tns:Inspeccion_ModficarInsertarResponsableResponse" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_DetalleResponsableAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:Inspeccion_DetalleResponsableArea" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_DetalleResponsableAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:Inspeccion_DetalleResponsableAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarInspeccionesxInspectorSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarInspeccionesxInspector" />
+  </wsdl:message>
+  <wsdl:message name="ListarInspeccionesxInspectorSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarInspeccionesxInspectorResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertaModificaDetalledeInspeccionSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertaModificaDetalledeInspeccion" />
+  </wsdl:message>
+  <wsdl:message name="InsertaModificaDetalledeInspeccionSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertaModificaDetalledeInspeccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarProyectosActividadSIMASoapIn">
+    <wsdl:part name="parameters" element="tns:ListarProyectosActividadSIMA" />
+  </wsdl:message>
+  <wsdl:message name="ListarProyectosActividadSIMASoapOut">
+    <wsdl:part name="parameters" element="tns:ListarProyectosActividadSIMAResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarActividadSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarActividad" />
+  </wsdl:message>
+  <wsdl:message name="BuscarActividadSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarActividadResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAreaEntidadSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarAreaEntidad" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAreaEntidadSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarAreaEntidadResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAreaEntidad_InspeccionSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarAreaEntidad_Inspeccion" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAreaEntidad_InspeccionSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarAreaEntidad_InspeccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModficarInsertarProyectoActividadSIMASoapIn">
+    <wsdl:part name="parameters" element="tns:ModficarInsertarProyectoActividadSIMA" />
+  </wsdl:message>
+  <wsdl:message name="ModficarInsertarProyectoActividadSIMASoapOut">
+    <wsdl:part name="parameters" element="tns:ModficarInsertarProyectoActividadSIMAResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleActivadProyectoSoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleActivadProyecto" />
+  </wsdl:message>
+  <wsdl:message name="DetalleActivadProyectoSoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleActivadProyectoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarInspeccionAnexosSoapIn">
+    <wsdl:part name="parameters" element="tns:AdministrarInspeccionAnexos" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarInspeccionAnexosSoapOut">
+    <wsdl:part name="parameters" element="tns:AdministrarInspeccionAnexosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarInspeccionAnexosSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarInspeccionAnexos" />
+  </wsdl:message>
+  <wsdl:message name="ListarInspeccionAnexosSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarInspeccionAnexosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosFirmantesSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarUsuariosFirmantes" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosFirmantesSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarUsuariosFirmantesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosFirmantesRefCruzSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarUsuariosFirmantesRefCruz" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosFirmantesRefCruzSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarUsuariosFirmantesRefCruzResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificaInsertaUsuariosFirmantesSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificaInsertaUsuariosFirmantes" />
+  </wsdl:message>
+  <wsdl:message name="ModificaInsertaUsuariosFirmantesSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificaInsertaUsuariosFirmantesResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsModPersonalFirmantePorTipoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsModPersonalFirmantePorTipo" />
+  </wsdl:message>
+  <wsdl:message name="InsModPersonalFirmantePorTipoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsModPersonalFirmantePorTipoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificaInsertaFirmasSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificaInsertaFirmas" />
+  </wsdl:message>
+  <wsdl:message name="ModificaInsertaFirmasSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificaInsertaFirmasResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminaUsuariosFirmantesSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminaUsuariosFirmantes" />
+  </wsdl:message>
+  <wsdl:message name="EliminaUsuariosFirmantesSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminaUsuariosFirmantesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActualizaNroMsgRecibidosSoapIn">
+    <wsdl:part name="parameters" element="tns:ActualizaNroMsgRecibidos" />
+  </wsdl:message>
+  <wsdl:message name="ActualizaNroMsgRecibidosSoapOut">
+    <wsdl:part name="parameters" element="tns:ActualizaNroMsgRecibidosResponse" />
+  </wsdl:message>
+  <wsdl:message name="FirmaAprobarFromEMailSoapIn">
+    <wsdl:part name="parameters" element="tns:FirmaAprobarFromEMail" />
+  </wsdl:message>
+  <wsdl:message name="FirmaAprobarFromEMailSoapOut">
+    <wsdl:part name="parameters" element="tns:FirmaAprobarFromEMailResponse" />
+  </wsdl:message>
+  <wsdl:message name="InspeccionCambiarEstadoSoapIn">
+    <wsdl:part name="parameters" element="tns:InspeccionCambiarEstado" />
+  </wsdl:message>
+  <wsdl:message name="InspeccionCambiarEstadoSoapOut">
+    <wsdl:part name="parameters" element="tns:InspeccionCambiarEstadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarProyectodeInspeccionSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarProyectodeInspeccion" />
+  </wsdl:message>
+  <wsdl:message name="BuscarProyectodeInspeccionSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarProyectodeInspeccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarDetallePorReponsabledeAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarDetallePorReponsabledeArea" />
+  </wsdl:message>
+  <wsdl:message name="ListarDetallePorReponsabledeAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarDetallePorReponsabledeAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetallePorReponsabledeAreaRptSoapIn">
+    <wsdl:part name="parameters" element="tns:DetallePorReponsabledeAreaRpt" />
+  </wsdl:message>
+  <wsdl:message name="DetallePorReponsabledeAreaRptSoapOut">
+    <wsdl:part name="parameters" element="tns:DetallePorReponsabledeAreaRptResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetallePorReponsabledeAreaCambiarEstadoSoapIn">
+    <wsdl:part name="parameters" element="tns:DetallePorReponsabledeAreaCambiarEstado" />
+  </wsdl:message>
+  <wsdl:message name="DetallePorReponsabledeAreaCambiarEstadoSoapOut">
+    <wsdl:part name="parameters" element="tns:DetallePorReponsabledeAreaCambiarEstadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResponsabledeAreaDetalle_InsertaModificaSoapIn">
+    <wsdl:part name="parameters" element="tns:ResponsabledeAreaDetalle_InsertaModifica" />
+  </wsdl:message>
+  <wsdl:message name="ResponsabledeAreaDetalle_InsertaModificaSoapOut">
+    <wsdl:part name="parameters" element="tns:ResponsabledeAreaDetalle_InsertaModificaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResumenInspeccionesPorEstadoSoapIn">
+    <wsdl:part name="parameters" element="tns:ResumenInspeccionesPorEstado" />
+  </wsdl:message>
+  <wsdl:message name="ResumenInspeccionesPorEstadoSoapOut">
+    <wsdl:part name="parameters" element="tns:ResumenInspeccionesPorEstadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeTipoEntidadSoapIn">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformeTipoEntidad" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeTipoEntidadSoapOut">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformeTipoEntidadResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAprobadorSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarAprobador" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAprobadorSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarAprobadorResponse" />
+  </wsdl:message>
+  <wsdl:message name="BloqueaRegistroInspeccionSoapIn">
+    <wsdl:part name="parameters" element="tns:BloqueaRegistroInspeccion" />
+  </wsdl:message>
+  <wsdl:message name="BloqueaRegistroInspeccionSoapOut">
+    <wsdl:part name="parameters" element="tns:BloqueaRegistroInspeccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarSoapIn">
+    <wsdl:part name="parameters" element="tns:Inspeccion_Listar" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarSoapOut">
+    <wsdl:part name="parameters" element="tns:Inspeccion_ListarResponse" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_DetalleSoapIn">
+    <wsdl:part name="parameters" element="tns:Inspeccion_Detalle" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_DetalleSoapOut">
+    <wsdl:part name="parameters" element="tns:Inspeccion_DetalleResponse" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarPorResponsableAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:Inspeccion_ListarPorResponsableArea" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarPorResponsableAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:Inspeccion_ListarPorResponsableAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_InsertarSoapIn">
+    <wsdl:part name="parameters" element="tns:Inspeccion_Insertar" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_InsertarSoapOut">
+    <wsdl:part name="parameters" element="tns:Inspeccion_InsertarResponse" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ModificarSoapIn">
+    <wsdl:part name="parameters" element="tns:Inspeccion_Modificar" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ModificarSoapOut">
+    <wsdl:part name="parameters" element="tns:Inspeccion_ModificarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeIP_SIMASoapIn">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformeIP_SIMA" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeIP_SIMASoapOut">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformeIP_SIMAResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeIPSoapIn">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformeIP" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeIPSoapOut">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformeIPResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeSIMASoapIn">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformeSIMA" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeSIMASoapOut">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformeSIMAResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorProyecto_MensualSoapIn">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformePorProyecto_Mensual" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorProyecto_MensualSoapOut">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformePorProyecto_MensualResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorIP_SIMA_MensualSoapIn">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformePorIP_SIMA_Mensual" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorIP_SIMA_MensualSoapOut">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformePorIP_SIMA_MensualResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorTipodeInspeccionSoapIn">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformePorTipodeInspeccion" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorTipodeInspeccionSoapOut">
+    <wsdl:part name="parameters" element="tns:ResumenNoConformePorTipodeInspeccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudAprobacionSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarSolicitudAprobacion" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudAprobacionSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarSolicitudAprobacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarInspectoresHttpGetIn">
+    <wsdl:part name="Id1" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarInspectoresHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarResponsablesPorAreaHttpGetIn">
+    <wsdl:part name="Id1" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarResponsablesPorAreaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetalleInspectorHttpGetIn">
+    <wsdl:part name="IdInspector" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetalleInspectorHttpGetOut">
+    <wsdl:part name="Body" element="tns:InspectorBE" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_DetalleResponsableAreaHttpGetIn">
+    <wsdl:part name="IdPersonal" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_DetalleResponsableAreaHttpGetOut">
+    <wsdl:part name="Body" element="tns:ResponsableAreaBE" />
+  </wsdl:message>
+  <wsdl:message name="ListarInspeccionesxInspectorHttpGetIn">
+    <wsdl:part name="IdInspector" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarInspeccionesxInspectorHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarProyectosActividadSIMAHttpGetIn">
+    <wsdl:part name="IdProyecto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarProyectosActividadSIMAHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarActividadHttpGetIn">
+    <wsdl:part name="NombreActividad" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarActividadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAreaEntidadHttpGetIn">
+    <wsdl:part name="NombreAreaEntidad" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAreaEntidadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAreaEntidad_InspeccionHttpGetIn">
+    <wsdl:part name="NombreAreaEntidad" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAreaEntidad_InspeccionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetalleActivadProyectoHttpGetIn">
+    <wsdl:part name="IdProyecto" type="s:string" />
+    <wsdl:part name="IdActividad" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetalleActivadProyectoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ProyectoActividadBE" />
+  </wsdl:message>
+  <wsdl:message name="ListarInspeccionAnexosHttpGetIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarInspeccionAnexosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosFirmantesHttpGetIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="IdUsuarioFirmante" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosFirmantesHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosFirmantesRefCruzHttpGetIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosFirmantesRefCruzHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="EliminaUsuariosFirmantesHttpGetIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="IdUsuarioFirmante" type="s:string" />
+    <wsdl:part name="IdEsatdo" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EliminaUsuariosFirmantesHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="InspeccionCambiarEstadoHttpGetIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="IdEstado" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InspeccionCambiarEstadoHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="BuscarProyectodeInspeccionHttpGetIn">
+    <wsdl:part name="NombreProyecto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarProyectodeInspeccionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarDetallePorReponsabledeAreaHttpGetIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="IdPersonal" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarDetallePorReponsabledeAreaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetallePorReponsabledeAreaRptHttpGetIn">
+    <wsdl:part name="IdDetalleResponsableArea" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetallePorReponsabledeAreaRptHttpGetOut">
+    <wsdl:part name="Body" element="tns:ResponsableAreaDetalleBE" />
+  </wsdl:message>
+  <wsdl:message name="ResumenInspeccionesPorEstadoHttpGetIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenInspeccionesPorEstadoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeTipoEntidadHttpGetIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeTipoEntidadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAprobadorHttpGetIn">
+    <wsdl:part name="ApellidosyNombres" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAprobadorHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BloqueaRegistroInspeccionHttpGetIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="Block" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BloqueaRegistroInspeccionHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarHttpGetIn">
+    <wsdl:part name="Id1" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_DetalleHttpGetIn">
+    <wsdl:part name="Id1" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_DetalleHttpGetOut">
+    <wsdl:part name="Body" element="tns:InspeccionBE" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarPorResponsableAreaHttpGetIn">
+    <wsdl:part name="IdPersonal" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarPorResponsableAreaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeIP_SIMAHttpGetIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="MesHasta" type="s:string" />
+    <wsdl:part name="IdOrigen" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeIP_SIMAHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeIPHttpGetIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="MesHasta" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeIPHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeSIMAHttpGetIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="MesHasta" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeSIMAHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorProyecto_MensualHttpGetIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="MesHasta" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorProyecto_MensualHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorIP_SIMA_MensualHttpGetIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="MesHasta" type="s:string" />
+    <wsdl:part name="IdOrigen" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorIP_SIMA_MensualHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorTipodeInspeccionHttpGetIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="MesHasta" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorTipodeInspeccionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudAprobacionHttpGetIn">
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudAprobacionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarInspectoresHttpPostIn">
+    <wsdl:part name="Id1" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarInspectoresHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarResponsablesPorAreaHttpPostIn">
+    <wsdl:part name="Id1" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarResponsablesPorAreaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetalleInspectorHttpPostIn">
+    <wsdl:part name="IdInspector" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetalleInspectorHttpPostOut">
+    <wsdl:part name="Body" element="tns:InspectorBE" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_DetalleResponsableAreaHttpPostIn">
+    <wsdl:part name="IdPersonal" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_DetalleResponsableAreaHttpPostOut">
+    <wsdl:part name="Body" element="tns:ResponsableAreaBE" />
+  </wsdl:message>
+  <wsdl:message name="ListarInspeccionesxInspectorHttpPostIn">
+    <wsdl:part name="IdInspector" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarInspeccionesxInspectorHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarProyectosActividadSIMAHttpPostIn">
+    <wsdl:part name="IdProyecto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarProyectosActividadSIMAHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarActividadHttpPostIn">
+    <wsdl:part name="NombreActividad" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarActividadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAreaEntidadHttpPostIn">
+    <wsdl:part name="NombreAreaEntidad" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAreaEntidadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAreaEntidad_InspeccionHttpPostIn">
+    <wsdl:part name="NombreAreaEntidad" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAreaEntidad_InspeccionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetalleActivadProyectoHttpPostIn">
+    <wsdl:part name="IdProyecto" type="s:string" />
+    <wsdl:part name="IdActividad" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetalleActivadProyectoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ProyectoActividadBE" />
+  </wsdl:message>
+  <wsdl:message name="ListarInspeccionAnexosHttpPostIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarInspeccionAnexosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosFirmantesHttpPostIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="IdUsuarioFirmante" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosFirmantesHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosFirmantesRefCruzHttpPostIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarUsuariosFirmantesRefCruzHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="EliminaUsuariosFirmantesHttpPostIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="IdUsuarioFirmante" type="s:string" />
+    <wsdl:part name="IdEsatdo" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EliminaUsuariosFirmantesHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="InspeccionCambiarEstadoHttpPostIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="IdEstado" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InspeccionCambiarEstadoHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="BuscarProyectodeInspeccionHttpPostIn">
+    <wsdl:part name="NombreProyecto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarProyectodeInspeccionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarDetallePorReponsabledeAreaHttpPostIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="IdPersonal" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarDetallePorReponsabledeAreaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetallePorReponsabledeAreaRptHttpPostIn">
+    <wsdl:part name="IdDetalleResponsableArea" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetallePorReponsabledeAreaRptHttpPostOut">
+    <wsdl:part name="Body" element="tns:ResponsableAreaDetalleBE" />
+  </wsdl:message>
+  <wsdl:message name="ResumenInspeccionesPorEstadoHttpPostIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenInspeccionesPorEstadoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeTipoEntidadHttpPostIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeTipoEntidadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAprobadorHttpPostIn">
+    <wsdl:part name="ApellidosyNombres" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarAprobadorHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BloqueaRegistroInspeccionHttpPostIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="Block" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BloqueaRegistroInspeccionHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarHttpPostIn">
+    <wsdl:part name="Id1" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_DetalleHttpPostIn">
+    <wsdl:part name="Id1" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_DetalleHttpPostOut">
+    <wsdl:part name="Body" element="tns:InspeccionBE" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarPorResponsableAreaHttpPostIn">
+    <wsdl:part name="IdPersonal" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Inspeccion_ListarPorResponsableAreaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeIP_SIMAHttpPostIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="MesHasta" type="s:string" />
+    <wsdl:part name="IdOrigen" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeIP_SIMAHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeIPHttpPostIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="MesHasta" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeIPHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeSIMAHttpPostIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="MesHasta" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformeSIMAHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorProyecto_MensualHttpPostIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="MesHasta" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorProyecto_MensualHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorIP_SIMA_MensualHttpPostIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="MesHasta" type="s:string" />
+    <wsdl:part name="IdOrigen" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorIP_SIMA_MensualHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorTipodeInspeccionHttpPostIn">
+    <wsdl:part name="Año" type="s:string" />
+    <wsdl:part name="MesHasta" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResumenNoConformePorTipodeInspeccionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudAprobacionHttpPostIn">
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudAprobacionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:portType name="ControlInspeccionesSoap">
+    <wsdl:operation name="Inspeccion_ListarInspectores">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar inpectores por inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_ListarInspectoresSoapIn" />
+      <wsdl:output message="tns:Inspeccion_ListarInspectoresSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarResponsablesPorArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Lista responsable de atencion y dar cumplimiento en el area</wsdl:documentation>
+      <wsdl:input message="tns:ListarResponsablesPorAreaSoapIn" />
+      <wsdl:output message="tns:ListarResponsablesPorAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ModificarInsertarInspector">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insertar/Modificar  Inspector</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_ModificarInsertarInspectorSoapIn" />
+      <wsdl:output message="tns:Inspeccion_ModificarInsertarInspectorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleInspector">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle Inspector</wsdl:documentation>
+      <wsdl:input message="tns:DetalleInspectorSoapIn" />
+      <wsdl:output message="tns:DetalleInspectorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ModficarInsertarResponsable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta/Modifica Responsable de área</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_ModficarInsertarResponsableSoapIn" />
+      <wsdl:output message="tns:Inspeccion_ModficarInsertarResponsableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_DetalleResponsableArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle Responsable de area</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_DetalleResponsableAreaSoapIn" />
+      <wsdl:output message="tns:Inspeccion_DetalleResponsableAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionesxInspector">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de Inspecciones por inspector</wsdl:documentation>
+      <wsdl:input message="tns:ListarInspeccionesxInspectorSoapIn" />
+      <wsdl:output message="tns:ListarInspeccionesxInspectorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaModificaDetalledeInspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta o Modifica Inspecciones por inspector</wsdl:documentation>
+      <wsdl:input message="tns:InsertaModificaDetalledeInspeccionSoapIn" />
+      <wsdl:output message="tns:InsertaModificaDetalledeInspeccionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarProyectosActividadSIMA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de Actividades por Proyectos SIMA</wsdl:documentation>
+      <wsdl:input message="tns:ListarProyectosActividadSIMASoapIn" />
+      <wsdl:output message="tns:ListarProyectosActividadSIMASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Actividad para relacionar al pryecto</wsdl:documentation>
+      <wsdl:input message="tns:BuscarActividadSoapIn" />
+      <wsdl:output message="tns:BuscarActividadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Actividad para relacionar al pryecto</wsdl:documentation>
+      <wsdl:input message="tns:BuscarAreaEntidadSoapIn" />
+      <wsdl:output message="tns:BuscarAreaEntidadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad_Inspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Actividad relacionada al pryecto de inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:BuscarAreaEntidad_InspeccionSoapIn" />
+      <wsdl:output message="tns:BuscarAreaEntidad_InspeccionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModficarInsertarProyectoActividadSIMA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta/Modifica Actividad al proyecto</wsdl:documentation>
+      <wsdl:input message="tns:ModficarInsertarProyectoActividadSIMASoapIn" />
+      <wsdl:output message="tns:ModficarInsertarProyectoActividadSIMASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleActivadProyecto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle Responsable de area</wsdl:documentation>
+      <wsdl:input message="tns:DetalleActivadProyectoSoapIn" />
+      <wsdl:output message="tns:DetalleActivadProyectoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdministrarInspeccionAnexos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Registra los anexos de la inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:AdministrarInspeccionAnexosSoapIn" />
+      <wsdl:output message="tns:AdministrarInspeccionAnexosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionAnexos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta o Listado  de anexos de la inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:ListarInspeccionAnexosSoapIn" />
+      <wsdl:output message="tns:ListarInspeccionAnexosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta o Listado  de usuarios firmante</wsdl:documentation>
+      <wsdl:input message="tns:ListarUsuariosFirmantesSoapIn" />
+      <wsdl:output message="tns:ListarUsuariosFirmantesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantesRefCruz">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta o Listado  de usuarios firmante Ref Cruzada</wsdl:documentation>
+      <wsdl:input message="tns:ListarUsuariosFirmantesRefCruzSoapIn" />
+      <wsdl:output message="tns:ListarUsuariosFirmantesRefCruzSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaInsertaUsuariosFirmantes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ins Mod Personal Firmante</wsdl:documentation>
+      <wsdl:input message="tns:ModificaInsertaUsuariosFirmantesSoapIn" />
+      <wsdl:output message="tns:ModificaInsertaUsuariosFirmantesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsModPersonalFirmantePorTipo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta o Modifica Personal firmante por tipo</wsdl:documentation>
+      <wsdl:input message="tns:InsModPersonalFirmantePorTipoSoapIn" />
+      <wsdl:output message="tns:InsModPersonalFirmantePorTipoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaInsertaFirmas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creacion o modificacion de Firmas a Usuarios firmantes o aprobadores</wsdl:documentation>
+      <wsdl:input message="tns:ModificaInsertaFirmasSoapIn" />
+      <wsdl:output message="tns:ModificaInsertaFirmasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaUsuariosFirmantes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elimina  usuarios firmante</wsdl:documentation>
+      <wsdl:input message="tns:EliminaUsuariosFirmantesSoapIn" />
+      <wsdl:output message="tns:EliminaUsuariosFirmantesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaNroMsgRecibidos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Actualiza Nro de msg Recibidos</wsdl:documentation>
+      <wsdl:input message="tns:ActualizaNroMsgRecibidosSoapIn" />
+      <wsdl:output message="tns:ActualizaNroMsgRecibidosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FirmaAprobarFromEMail">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Aprobacion Inspeccion con firma </wsdl:documentation>
+      <wsdl:input message="tns:FirmaAprobarFromEMailSoapIn" />
+      <wsdl:output message="tns:FirmaAprobarFromEMailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cambiar estado de Inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:InspeccionCambiarEstadoSoapIn" />
+      <wsdl:output message="tns:InspeccionCambiarEstadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProyectodeInspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busqueda de proyectos de inspeccin</wsdl:documentation>
+      <wsdl:input message="tns:BuscarProyectodeInspeccionSoapIn" />
+      <wsdl:output message="tns:BuscarProyectodeInspeccionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetallePorReponsabledeArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista el detalle de respuesta de atencion por parte del responsable de area sobre la inpeccion</wsdl:documentation>
+      <wsdl:input message="tns:ListarDetallePorReponsabledeAreaSoapIn" />
+      <wsdl:output message="tns:ListarDetallePorReponsabledeAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetallePorReponsabledeAreaRpt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">detalle de respuesta de atencion por parte del responsable de area sobre la inpeccion</wsdl:documentation>
+      <wsdl:input message="tns:DetallePorReponsabledeAreaRptSoapIn" />
+      <wsdl:output message="tns:DetallePorReponsabledeAreaRptSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetallePorReponsabledeAreaCambiarEstado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista el detalle de respuesta de atencion por parte del responsable de area sobre la inpeccion</wsdl:documentation>
+      <wsdl:input message="tns:DetallePorReponsabledeAreaCambiarEstadoSoapIn" />
+      <wsdl:output message="tns:DetallePorReponsabledeAreaCambiarEstadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResponsabledeAreaDetalle_InsertaModifica">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de Respuesta por responsable de area</wsdl:documentation>
+      <wsdl:input message="tns:ResponsabledeAreaDetalle_InsertaModificaSoapIn" />
+      <wsdl:output message="tns:ResponsabledeAreaDetalle_InsertaModificaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenInspeccionesPorEstado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen por Periodo de Inspoecciones y estados</wsdl:documentation>
+      <wsdl:input message="tns:ResumenInspeccionesPorEstadoSoapIn" />
+      <wsdl:output message="tns:ResumenInspeccionesPorEstadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeTipoEntidad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen por Periodo de Inspoecciones y estados</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformeTipoEntidadSoapIn" />
+      <wsdl:output message="tns:ResumenNoConformeTipoEntidadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAprobador">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Aprobadores</wsdl:documentation>
+      <wsdl:input message="tns:BuscarAprobadorSoapIn" />
+      <wsdl:output message="tns:BuscarAprobadorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BloqueaRegistroInspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite Bloquea o desbloquear el registro de inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:BloqueaRegistroInspeccionSoapIn" />
+      <wsdl:output message="tns:BloqueaRegistroInspeccionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Listar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar inpecciones</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_ListarSoapIn" />
+      <wsdl:output message="tns:Inspeccion_ListarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Detalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle del Registro de Inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_DetalleSoapIn" />
+      <wsdl:output message="tns:Inspeccion_DetalleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ListarPorResponsableArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar inpecciones</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_ListarPorResponsableAreaSoapIn" />
+      <wsdl:output message="tns:Inspeccion_ListarPorResponsableAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Insertar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mantenimiento de Inspecciones-Insertar</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_InsertarSoapIn" />
+      <wsdl:output message="tns:Inspeccion_InsertarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Modificar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mantenimiento de Inspecciones-Modificar</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_ModificarSoapIn" />
+      <wsdl:output message="tns:Inspeccion_ModificarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP_SIMA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por Tipo de Empresas</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformeIP_SIMASoapIn" />
+      <wsdl:output message="tns:ResumenNoConformeIP_SIMASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por IP</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformeIPSoapIn" />
+      <wsdl:output message="tns:ResumenNoConformeIPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeSIMA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por SIMA</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformeSIMASoapIn" />
+      <wsdl:output message="tns:ResumenNoConformeSIMASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorProyecto_Mensual">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por proyecto mensual</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformePorProyecto_MensualSoapIn" />
+      <wsdl:output message="tns:ResumenNoConformePorProyecto_MensualSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorIP_SIMA_Mensual">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por IP-SIMA mensual</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformePorIP_SIMA_MensualSoapIn" />
+      <wsdl:output message="tns:ResumenNoConformePorIP_SIMA_MensualSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorTipodeInspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por Tipo de Inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformePorTipodeInspeccionSoapIn" />
+      <wsdl:output message="tns:ResumenNoConformePorTipodeInspeccionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudAprobacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de FI solicitando aproacion</wsdl:documentation>
+      <wsdl:input message="tns:ListarSolicitudAprobacionSoapIn" />
+      <wsdl:output message="tns:ListarSolicitudAprobacionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ControlInspeccionesHttpGet">
+    <wsdl:operation name="Inspeccion_ListarInspectores">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar inpectores por inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_ListarInspectoresHttpGetIn" />
+      <wsdl:output message="tns:Inspeccion_ListarInspectoresHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarResponsablesPorArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Lista responsable de atencion y dar cumplimiento en el area</wsdl:documentation>
+      <wsdl:input message="tns:ListarResponsablesPorAreaHttpGetIn" />
+      <wsdl:output message="tns:ListarResponsablesPorAreaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleInspector">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle Inspector</wsdl:documentation>
+      <wsdl:input message="tns:DetalleInspectorHttpGetIn" />
+      <wsdl:output message="tns:DetalleInspectorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_DetalleResponsableArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle Responsable de area</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_DetalleResponsableAreaHttpGetIn" />
+      <wsdl:output message="tns:Inspeccion_DetalleResponsableAreaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionesxInspector">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de Inspecciones por inspector</wsdl:documentation>
+      <wsdl:input message="tns:ListarInspeccionesxInspectorHttpGetIn" />
+      <wsdl:output message="tns:ListarInspeccionesxInspectorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarProyectosActividadSIMA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de Actividades por Proyectos SIMA</wsdl:documentation>
+      <wsdl:input message="tns:ListarProyectosActividadSIMAHttpGetIn" />
+      <wsdl:output message="tns:ListarProyectosActividadSIMAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Actividad para relacionar al pryecto</wsdl:documentation>
+      <wsdl:input message="tns:BuscarActividadHttpGetIn" />
+      <wsdl:output message="tns:BuscarActividadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Actividad para relacionar al pryecto</wsdl:documentation>
+      <wsdl:input message="tns:BuscarAreaEntidadHttpGetIn" />
+      <wsdl:output message="tns:BuscarAreaEntidadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad_Inspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Actividad relacionada al pryecto de inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:BuscarAreaEntidad_InspeccionHttpGetIn" />
+      <wsdl:output message="tns:BuscarAreaEntidad_InspeccionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleActivadProyecto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle Responsable de area</wsdl:documentation>
+      <wsdl:input message="tns:DetalleActivadProyectoHttpGetIn" />
+      <wsdl:output message="tns:DetalleActivadProyectoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionAnexos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta o Listado  de anexos de la inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:ListarInspeccionAnexosHttpGetIn" />
+      <wsdl:output message="tns:ListarInspeccionAnexosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta o Listado  de usuarios firmante</wsdl:documentation>
+      <wsdl:input message="tns:ListarUsuariosFirmantesHttpGetIn" />
+      <wsdl:output message="tns:ListarUsuariosFirmantesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantesRefCruz">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta o Listado  de usuarios firmante Ref Cruzada</wsdl:documentation>
+      <wsdl:input message="tns:ListarUsuariosFirmantesRefCruzHttpGetIn" />
+      <wsdl:output message="tns:ListarUsuariosFirmantesRefCruzHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaUsuariosFirmantes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elimina  usuarios firmante</wsdl:documentation>
+      <wsdl:input message="tns:EliminaUsuariosFirmantesHttpGetIn" />
+      <wsdl:output message="tns:EliminaUsuariosFirmantesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cambiar estado de Inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:InspeccionCambiarEstadoHttpGetIn" />
+      <wsdl:output message="tns:InspeccionCambiarEstadoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProyectodeInspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busqueda de proyectos de inspeccin</wsdl:documentation>
+      <wsdl:input message="tns:BuscarProyectodeInspeccionHttpGetIn" />
+      <wsdl:output message="tns:BuscarProyectodeInspeccionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetallePorReponsabledeArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista el detalle de respuesta de atencion por parte del responsable de area sobre la inpeccion</wsdl:documentation>
+      <wsdl:input message="tns:ListarDetallePorReponsabledeAreaHttpGetIn" />
+      <wsdl:output message="tns:ListarDetallePorReponsabledeAreaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetallePorReponsabledeAreaRpt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">detalle de respuesta de atencion por parte del responsable de area sobre la inpeccion</wsdl:documentation>
+      <wsdl:input message="tns:DetallePorReponsabledeAreaRptHttpGetIn" />
+      <wsdl:output message="tns:DetallePorReponsabledeAreaRptHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenInspeccionesPorEstado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen por Periodo de Inspoecciones y estados</wsdl:documentation>
+      <wsdl:input message="tns:ResumenInspeccionesPorEstadoHttpGetIn" />
+      <wsdl:output message="tns:ResumenInspeccionesPorEstadoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeTipoEntidad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen por Periodo de Inspoecciones y estados</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformeTipoEntidadHttpGetIn" />
+      <wsdl:output message="tns:ResumenNoConformeTipoEntidadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAprobador">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Aprobadores</wsdl:documentation>
+      <wsdl:input message="tns:BuscarAprobadorHttpGetIn" />
+      <wsdl:output message="tns:BuscarAprobadorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BloqueaRegistroInspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite Bloquea o desbloquear el registro de inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:BloqueaRegistroInspeccionHttpGetIn" />
+      <wsdl:output message="tns:BloqueaRegistroInspeccionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Listar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar inpecciones</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_ListarHttpGetIn" />
+      <wsdl:output message="tns:Inspeccion_ListarHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Detalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle del Registro de Inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_DetalleHttpGetIn" />
+      <wsdl:output message="tns:Inspeccion_DetalleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ListarPorResponsableArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar inpecciones</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_ListarPorResponsableAreaHttpGetIn" />
+      <wsdl:output message="tns:Inspeccion_ListarPorResponsableAreaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP_SIMA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por Tipo de Empresas</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformeIP_SIMAHttpGetIn" />
+      <wsdl:output message="tns:ResumenNoConformeIP_SIMAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por IP</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformeIPHttpGetIn" />
+      <wsdl:output message="tns:ResumenNoConformeIPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeSIMA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por SIMA</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformeSIMAHttpGetIn" />
+      <wsdl:output message="tns:ResumenNoConformeSIMAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorProyecto_Mensual">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por proyecto mensual</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformePorProyecto_MensualHttpGetIn" />
+      <wsdl:output message="tns:ResumenNoConformePorProyecto_MensualHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorIP_SIMA_Mensual">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por IP-SIMA mensual</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformePorIP_SIMA_MensualHttpGetIn" />
+      <wsdl:output message="tns:ResumenNoConformePorIP_SIMA_MensualHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorTipodeInspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por Tipo de Inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformePorTipodeInspeccionHttpGetIn" />
+      <wsdl:output message="tns:ResumenNoConformePorTipodeInspeccionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudAprobacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de FI solicitando aproacion</wsdl:documentation>
+      <wsdl:input message="tns:ListarSolicitudAprobacionHttpGetIn" />
+      <wsdl:output message="tns:ListarSolicitudAprobacionHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ControlInspeccionesHttpPost">
+    <wsdl:operation name="Inspeccion_ListarInspectores">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar inpectores por inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_ListarInspectoresHttpPostIn" />
+      <wsdl:output message="tns:Inspeccion_ListarInspectoresHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarResponsablesPorArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Lista responsable de atencion y dar cumplimiento en el area</wsdl:documentation>
+      <wsdl:input message="tns:ListarResponsablesPorAreaHttpPostIn" />
+      <wsdl:output message="tns:ListarResponsablesPorAreaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleInspector">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle Inspector</wsdl:documentation>
+      <wsdl:input message="tns:DetalleInspectorHttpPostIn" />
+      <wsdl:output message="tns:DetalleInspectorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_DetalleResponsableArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle Responsable de area</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_DetalleResponsableAreaHttpPostIn" />
+      <wsdl:output message="tns:Inspeccion_DetalleResponsableAreaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionesxInspector">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de Inspecciones por inspector</wsdl:documentation>
+      <wsdl:input message="tns:ListarInspeccionesxInspectorHttpPostIn" />
+      <wsdl:output message="tns:ListarInspeccionesxInspectorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarProyectosActividadSIMA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de Actividades por Proyectos SIMA</wsdl:documentation>
+      <wsdl:input message="tns:ListarProyectosActividadSIMAHttpPostIn" />
+      <wsdl:output message="tns:ListarProyectosActividadSIMAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Actividad para relacionar al pryecto</wsdl:documentation>
+      <wsdl:input message="tns:BuscarActividadHttpPostIn" />
+      <wsdl:output message="tns:BuscarActividadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Actividad para relacionar al pryecto</wsdl:documentation>
+      <wsdl:input message="tns:BuscarAreaEntidadHttpPostIn" />
+      <wsdl:output message="tns:BuscarAreaEntidadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad_Inspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Actividad relacionada al pryecto de inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:BuscarAreaEntidad_InspeccionHttpPostIn" />
+      <wsdl:output message="tns:BuscarAreaEntidad_InspeccionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleActivadProyecto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle Responsable de area</wsdl:documentation>
+      <wsdl:input message="tns:DetalleActivadProyectoHttpPostIn" />
+      <wsdl:output message="tns:DetalleActivadProyectoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionAnexos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta o Listado  de anexos de la inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:ListarInspeccionAnexosHttpPostIn" />
+      <wsdl:output message="tns:ListarInspeccionAnexosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta o Listado  de usuarios firmante</wsdl:documentation>
+      <wsdl:input message="tns:ListarUsuariosFirmantesHttpPostIn" />
+      <wsdl:output message="tns:ListarUsuariosFirmantesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantesRefCruz">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta o Listado  de usuarios firmante Ref Cruzada</wsdl:documentation>
+      <wsdl:input message="tns:ListarUsuariosFirmantesRefCruzHttpPostIn" />
+      <wsdl:output message="tns:ListarUsuariosFirmantesRefCruzHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaUsuariosFirmantes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elimina  usuarios firmante</wsdl:documentation>
+      <wsdl:input message="tns:EliminaUsuariosFirmantesHttpPostIn" />
+      <wsdl:output message="tns:EliminaUsuariosFirmantesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cambiar estado de Inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:InspeccionCambiarEstadoHttpPostIn" />
+      <wsdl:output message="tns:InspeccionCambiarEstadoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProyectodeInspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busqueda de proyectos de inspeccin</wsdl:documentation>
+      <wsdl:input message="tns:BuscarProyectodeInspeccionHttpPostIn" />
+      <wsdl:output message="tns:BuscarProyectodeInspeccionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetallePorReponsabledeArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista el detalle de respuesta de atencion por parte del responsable de area sobre la inpeccion</wsdl:documentation>
+      <wsdl:input message="tns:ListarDetallePorReponsabledeAreaHttpPostIn" />
+      <wsdl:output message="tns:ListarDetallePorReponsabledeAreaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetallePorReponsabledeAreaRpt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">detalle de respuesta de atencion por parte del responsable de area sobre la inpeccion</wsdl:documentation>
+      <wsdl:input message="tns:DetallePorReponsabledeAreaRptHttpPostIn" />
+      <wsdl:output message="tns:DetallePorReponsabledeAreaRptHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenInspeccionesPorEstado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen por Periodo de Inspoecciones y estados</wsdl:documentation>
+      <wsdl:input message="tns:ResumenInspeccionesPorEstadoHttpPostIn" />
+      <wsdl:output message="tns:ResumenInspeccionesPorEstadoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeTipoEntidad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen por Periodo de Inspoecciones y estados</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformeTipoEntidadHttpPostIn" />
+      <wsdl:output message="tns:ResumenNoConformeTipoEntidadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAprobador">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Aprobadores</wsdl:documentation>
+      <wsdl:input message="tns:BuscarAprobadorHttpPostIn" />
+      <wsdl:output message="tns:BuscarAprobadorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BloqueaRegistroInspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite Bloquea o desbloquear el registro de inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:BloqueaRegistroInspeccionHttpPostIn" />
+      <wsdl:output message="tns:BloqueaRegistroInspeccionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Listar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar inpecciones</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_ListarHttpPostIn" />
+      <wsdl:output message="tns:Inspeccion_ListarHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Detalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle del Registro de Inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_DetalleHttpPostIn" />
+      <wsdl:output message="tns:Inspeccion_DetalleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ListarPorResponsableArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar inpecciones</wsdl:documentation>
+      <wsdl:input message="tns:Inspeccion_ListarPorResponsableAreaHttpPostIn" />
+      <wsdl:output message="tns:Inspeccion_ListarPorResponsableAreaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP_SIMA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por Tipo de Empresas</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformeIP_SIMAHttpPostIn" />
+      <wsdl:output message="tns:ResumenNoConformeIP_SIMAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por IP</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformeIPHttpPostIn" />
+      <wsdl:output message="tns:ResumenNoConformeIPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeSIMA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por SIMA</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformeSIMAHttpPostIn" />
+      <wsdl:output message="tns:ResumenNoConformeSIMAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorProyecto_Mensual">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por proyecto mensual</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformePorProyecto_MensualHttpPostIn" />
+      <wsdl:output message="tns:ResumenNoConformePorProyecto_MensualHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorIP_SIMA_Mensual">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por IP-SIMA mensual</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformePorIP_SIMA_MensualHttpPostIn" />
+      <wsdl:output message="tns:ResumenNoConformePorIP_SIMA_MensualHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorTipodeInspeccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen de No Conforme por Tipo de Inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:ResumenNoConformePorTipodeInspeccionHttpPostIn" />
+      <wsdl:output message="tns:ResumenNoConformePorTipodeInspeccionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudAprobacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de FI solicitando aproacion</wsdl:documentation>
+      <wsdl:input message="tns:ListarSolicitudAprobacionHttpPostIn" />
+      <wsdl:output message="tns:ListarSolicitudAprobacionHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ControlInspeccionesSoap" type="tns:ControlInspeccionesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Inspeccion_ListarInspectores">
+      <soap:operation soapAction="http://tempuri.org/Inspeccion_ListarInspectores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarResponsablesPorArea">
+      <soap:operation soapAction="http://tempuri.org/ListarResponsablesPorArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ModificarInsertarInspector">
+      <soap:operation soapAction="http://tempuri.org/Inspeccion_ModificarInsertarInspector" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleInspector">
+      <soap:operation soapAction="http://tempuri.org/DetalleInspector" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ModficarInsertarResponsable">
+      <soap:operation soapAction="http://tempuri.org/Inspeccion_ModficarInsertarResponsable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_DetalleResponsableArea">
+      <soap:operation soapAction="http://tempuri.org/Inspeccion_DetalleResponsableArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionesxInspector">
+      <soap:operation soapAction="http://tempuri.org/ListarInspeccionesxInspector" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaModificaDetalledeInspeccion">
+      <soap:operation soapAction="http://tempuri.org/InsertaModificaDetalledeInspeccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarProyectosActividadSIMA">
+      <soap:operation soapAction="http://tempuri.org/ListarProyectosActividadSIMA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarActividad">
+      <soap:operation soapAction="http://tempuri.org/BuscarActividad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad">
+      <soap:operation soapAction="http://tempuri.org/BuscarAreaEntidad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad_Inspeccion">
+      <soap:operation soapAction="http://tempuri.org/BuscarAreaEntidad_Inspeccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModficarInsertarProyectoActividadSIMA">
+      <soap:operation soapAction="http://tempuri.org/ModficarInsertarProyectoActividadSIMA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleActivadProyecto">
+      <soap:operation soapAction="http://tempuri.org/DetalleActivadProyecto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdministrarInspeccionAnexos">
+      <soap:operation soapAction="http://tempuri.org/AdministrarInspeccionAnexos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionAnexos">
+      <soap:operation soapAction="http://tempuri.org/ListarInspeccionAnexos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantes">
+      <soap:operation soapAction="http://tempuri.org/ListarUsuariosFirmantes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantesRefCruz">
+      <soap:operation soapAction="http://tempuri.org/ListarUsuariosFirmantesRefCruz" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaInsertaUsuariosFirmantes">
+      <soap:operation soapAction="http://tempuri.org/ModificaInsertaUsuariosFirmantes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsModPersonalFirmantePorTipo">
+      <soap:operation soapAction="http://tempuri.org/InsModPersonalFirmantePorTipo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaInsertaFirmas">
+      <soap:operation soapAction="http://tempuri.org/ModificaInsertaFirmas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaUsuariosFirmantes">
+      <soap:operation soapAction="http://tempuri.org/EliminaUsuariosFirmantes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaNroMsgRecibidos">
+      <soap:operation soapAction="http://tempuri.org/ActualizaNroMsgRecibidos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FirmaAprobarFromEMail">
+      <soap:operation soapAction="http://tempuri.org/FirmaAprobarFromEMail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <soap:operation soapAction="http://tempuri.org/InspeccionCambiarEstado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProyectodeInspeccion">
+      <soap:operation soapAction="http://tempuri.org/BuscarProyectodeInspeccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetallePorReponsabledeArea">
+      <soap:operation soapAction="http://tempuri.org/ListarDetallePorReponsabledeArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePorReponsabledeAreaRpt">
+      <soap:operation soapAction="http://tempuri.org/DetallePorReponsabledeAreaRpt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePorReponsabledeAreaCambiarEstado">
+      <soap:operation soapAction="http://tempuri.org/DetallePorReponsabledeAreaCambiarEstado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResponsabledeAreaDetalle_InsertaModifica">
+      <soap:operation soapAction="http://tempuri.org/ResponsabledeAreaDetalle_InsertaModifica" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenInspeccionesPorEstado">
+      <soap:operation soapAction="http://tempuri.org/ResumenInspeccionesPorEstado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeTipoEntidad">
+      <soap:operation soapAction="http://tempuri.org/ResumenNoConformeTipoEntidad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAprobador">
+      <soap:operation soapAction="http://tempuri.org/BuscarAprobador" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BloqueaRegistroInspeccion">
+      <soap:operation soapAction="http://tempuri.org/BloqueaRegistroInspeccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Listar">
+      <soap:operation soapAction="http://tempuri.org/Inspeccion_Listar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Detalle">
+      <soap:operation soapAction="http://tempuri.org/Inspeccion_Detalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ListarPorResponsableArea">
+      <soap:operation soapAction="http://tempuri.org/Inspeccion_ListarPorResponsableArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Insertar">
+      <soap:operation soapAction="http://tempuri.org/Inspeccion_Insertar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Modificar">
+      <soap:operation soapAction="http://tempuri.org/Inspeccion_Modificar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP_SIMA">
+      <soap:operation soapAction="http://tempuri.org/ResumenNoConformeIP_SIMA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP">
+      <soap:operation soapAction="http://tempuri.org/ResumenNoConformeIP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeSIMA">
+      <soap:operation soapAction="http://tempuri.org/ResumenNoConformeSIMA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorProyecto_Mensual">
+      <soap:operation soapAction="http://tempuri.org/ResumenNoConformePorProyecto_Mensual" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorIP_SIMA_Mensual">
+      <soap:operation soapAction="http://tempuri.org/ResumenNoConformePorIP_SIMA_Mensual" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorTipodeInspeccion">
+      <soap:operation soapAction="http://tempuri.org/ResumenNoConformePorTipodeInspeccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudAprobacion">
+      <soap:operation soapAction="http://tempuri.org/ListarSolicitudAprobacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlInspeccionesSoap12" type="tns:ControlInspeccionesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Inspeccion_ListarInspectores">
+      <soap12:operation soapAction="http://tempuri.org/Inspeccion_ListarInspectores" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarResponsablesPorArea">
+      <soap12:operation soapAction="http://tempuri.org/ListarResponsablesPorArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ModificarInsertarInspector">
+      <soap12:operation soapAction="http://tempuri.org/Inspeccion_ModificarInsertarInspector" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleInspector">
+      <soap12:operation soapAction="http://tempuri.org/DetalleInspector" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ModficarInsertarResponsable">
+      <soap12:operation soapAction="http://tempuri.org/Inspeccion_ModficarInsertarResponsable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_DetalleResponsableArea">
+      <soap12:operation soapAction="http://tempuri.org/Inspeccion_DetalleResponsableArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionesxInspector">
+      <soap12:operation soapAction="http://tempuri.org/ListarInspeccionesxInspector" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaModificaDetalledeInspeccion">
+      <soap12:operation soapAction="http://tempuri.org/InsertaModificaDetalledeInspeccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarProyectosActividadSIMA">
+      <soap12:operation soapAction="http://tempuri.org/ListarProyectosActividadSIMA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarActividad">
+      <soap12:operation soapAction="http://tempuri.org/BuscarActividad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad">
+      <soap12:operation soapAction="http://tempuri.org/BuscarAreaEntidad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad_Inspeccion">
+      <soap12:operation soapAction="http://tempuri.org/BuscarAreaEntidad_Inspeccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModficarInsertarProyectoActividadSIMA">
+      <soap12:operation soapAction="http://tempuri.org/ModficarInsertarProyectoActividadSIMA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleActivadProyecto">
+      <soap12:operation soapAction="http://tempuri.org/DetalleActivadProyecto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdministrarInspeccionAnexos">
+      <soap12:operation soapAction="http://tempuri.org/AdministrarInspeccionAnexos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionAnexos">
+      <soap12:operation soapAction="http://tempuri.org/ListarInspeccionAnexos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantes">
+      <soap12:operation soapAction="http://tempuri.org/ListarUsuariosFirmantes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantesRefCruz">
+      <soap12:operation soapAction="http://tempuri.org/ListarUsuariosFirmantesRefCruz" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaInsertaUsuariosFirmantes">
+      <soap12:operation soapAction="http://tempuri.org/ModificaInsertaUsuariosFirmantes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsModPersonalFirmantePorTipo">
+      <soap12:operation soapAction="http://tempuri.org/InsModPersonalFirmantePorTipo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaInsertaFirmas">
+      <soap12:operation soapAction="http://tempuri.org/ModificaInsertaFirmas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaUsuariosFirmantes">
+      <soap12:operation soapAction="http://tempuri.org/EliminaUsuariosFirmantes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaNroMsgRecibidos">
+      <soap12:operation soapAction="http://tempuri.org/ActualizaNroMsgRecibidos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FirmaAprobarFromEMail">
+      <soap12:operation soapAction="http://tempuri.org/FirmaAprobarFromEMail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <soap12:operation soapAction="http://tempuri.org/InspeccionCambiarEstado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProyectodeInspeccion">
+      <soap12:operation soapAction="http://tempuri.org/BuscarProyectodeInspeccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetallePorReponsabledeArea">
+      <soap12:operation soapAction="http://tempuri.org/ListarDetallePorReponsabledeArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePorReponsabledeAreaRpt">
+      <soap12:operation soapAction="http://tempuri.org/DetallePorReponsabledeAreaRpt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePorReponsabledeAreaCambiarEstado">
+      <soap12:operation soapAction="http://tempuri.org/DetallePorReponsabledeAreaCambiarEstado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResponsabledeAreaDetalle_InsertaModifica">
+      <soap12:operation soapAction="http://tempuri.org/ResponsabledeAreaDetalle_InsertaModifica" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenInspeccionesPorEstado">
+      <soap12:operation soapAction="http://tempuri.org/ResumenInspeccionesPorEstado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeTipoEntidad">
+      <soap12:operation soapAction="http://tempuri.org/ResumenNoConformeTipoEntidad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAprobador">
+      <soap12:operation soapAction="http://tempuri.org/BuscarAprobador" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BloqueaRegistroInspeccion">
+      <soap12:operation soapAction="http://tempuri.org/BloqueaRegistroInspeccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Listar">
+      <soap12:operation soapAction="http://tempuri.org/Inspeccion_Listar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Detalle">
+      <soap12:operation soapAction="http://tempuri.org/Inspeccion_Detalle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ListarPorResponsableArea">
+      <soap12:operation soapAction="http://tempuri.org/Inspeccion_ListarPorResponsableArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Insertar">
+      <soap12:operation soapAction="http://tempuri.org/Inspeccion_Insertar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Modificar">
+      <soap12:operation soapAction="http://tempuri.org/Inspeccion_Modificar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP_SIMA">
+      <soap12:operation soapAction="http://tempuri.org/ResumenNoConformeIP_SIMA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP">
+      <soap12:operation soapAction="http://tempuri.org/ResumenNoConformeIP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeSIMA">
+      <soap12:operation soapAction="http://tempuri.org/ResumenNoConformeSIMA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorProyecto_Mensual">
+      <soap12:operation soapAction="http://tempuri.org/ResumenNoConformePorProyecto_Mensual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorIP_SIMA_Mensual">
+      <soap12:operation soapAction="http://tempuri.org/ResumenNoConformePorIP_SIMA_Mensual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorTipodeInspeccion">
+      <soap12:operation soapAction="http://tempuri.org/ResumenNoConformePorTipodeInspeccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudAprobacion">
+      <soap12:operation soapAction="http://tempuri.org/ListarSolicitudAprobacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlInspeccionesHttpGet" type="tns:ControlInspeccionesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Inspeccion_ListarInspectores">
+      <http:operation location="/Inspeccion_ListarInspectores" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarResponsablesPorArea">
+      <http:operation location="/ListarResponsablesPorArea" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleInspector">
+      <http:operation location="/DetalleInspector" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_DetalleResponsableArea">
+      <http:operation location="/Inspeccion_DetalleResponsableArea" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionesxInspector">
+      <http:operation location="/ListarInspeccionesxInspector" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarProyectosActividadSIMA">
+      <http:operation location="/ListarProyectosActividadSIMA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarActividad">
+      <http:operation location="/BuscarActividad" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad">
+      <http:operation location="/BuscarAreaEntidad" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad_Inspeccion">
+      <http:operation location="/BuscarAreaEntidad_Inspeccion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleActivadProyecto">
+      <http:operation location="/DetalleActivadProyecto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionAnexos">
+      <http:operation location="/ListarInspeccionAnexos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantes">
+      <http:operation location="/ListarUsuariosFirmantes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantesRefCruz">
+      <http:operation location="/ListarUsuariosFirmantesRefCruz" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaUsuariosFirmantes">
+      <http:operation location="/EliminaUsuariosFirmantes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <http:operation location="/InspeccionCambiarEstado" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProyectodeInspeccion">
+      <http:operation location="/BuscarProyectodeInspeccion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetallePorReponsabledeArea">
+      <http:operation location="/ListarDetallePorReponsabledeArea" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePorReponsabledeAreaRpt">
+      <http:operation location="/DetallePorReponsabledeAreaRpt" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenInspeccionesPorEstado">
+      <http:operation location="/ResumenInspeccionesPorEstado" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeTipoEntidad">
+      <http:operation location="/ResumenNoConformeTipoEntidad" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAprobador">
+      <http:operation location="/BuscarAprobador" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BloqueaRegistroInspeccion">
+      <http:operation location="/BloqueaRegistroInspeccion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Listar">
+      <http:operation location="/Inspeccion_Listar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Detalle">
+      <http:operation location="/Inspeccion_Detalle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ListarPorResponsableArea">
+      <http:operation location="/Inspeccion_ListarPorResponsableArea" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP_SIMA">
+      <http:operation location="/ResumenNoConformeIP_SIMA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP">
+      <http:operation location="/ResumenNoConformeIP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeSIMA">
+      <http:operation location="/ResumenNoConformeSIMA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorProyecto_Mensual">
+      <http:operation location="/ResumenNoConformePorProyecto_Mensual" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorIP_SIMA_Mensual">
+      <http:operation location="/ResumenNoConformePorIP_SIMA_Mensual" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorTipodeInspeccion">
+      <http:operation location="/ResumenNoConformePorTipodeInspeccion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudAprobacion">
+      <http:operation location="/ListarSolicitudAprobacion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlInspeccionesHttpPost" type="tns:ControlInspeccionesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Inspeccion_ListarInspectores">
+      <http:operation location="/Inspeccion_ListarInspectores" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarResponsablesPorArea">
+      <http:operation location="/ListarResponsablesPorArea" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleInspector">
+      <http:operation location="/DetalleInspector" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_DetalleResponsableArea">
+      <http:operation location="/Inspeccion_DetalleResponsableArea" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionesxInspector">
+      <http:operation location="/ListarInspeccionesxInspector" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarProyectosActividadSIMA">
+      <http:operation location="/ListarProyectosActividadSIMA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarActividad">
+      <http:operation location="/BuscarActividad" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad">
+      <http:operation location="/BuscarAreaEntidad" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAreaEntidad_Inspeccion">
+      <http:operation location="/BuscarAreaEntidad_Inspeccion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleActivadProyecto">
+      <http:operation location="/DetalleActivadProyecto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarInspeccionAnexos">
+      <http:operation location="/ListarInspeccionAnexos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantes">
+      <http:operation location="/ListarUsuariosFirmantes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuariosFirmantesRefCruz">
+      <http:operation location="/ListarUsuariosFirmantesRefCruz" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaUsuariosFirmantes">
+      <http:operation location="/EliminaUsuariosFirmantes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <http:operation location="/InspeccionCambiarEstado" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProyectodeInspeccion">
+      <http:operation location="/BuscarProyectodeInspeccion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetallePorReponsabledeArea">
+      <http:operation location="/ListarDetallePorReponsabledeArea" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetallePorReponsabledeAreaRpt">
+      <http:operation location="/DetallePorReponsabledeAreaRpt" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenInspeccionesPorEstado">
+      <http:operation location="/ResumenInspeccionesPorEstado" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeTipoEntidad">
+      <http:operation location="/ResumenNoConformeTipoEntidad" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarAprobador">
+      <http:operation location="/BuscarAprobador" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BloqueaRegistroInspeccion">
+      <http:operation location="/BloqueaRegistroInspeccion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Listar">
+      <http:operation location="/Inspeccion_Listar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_Detalle">
+      <http:operation location="/Inspeccion_Detalle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspeccion_ListarPorResponsableArea">
+      <http:operation location="/Inspeccion_ListarPorResponsableArea" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP_SIMA">
+      <http:operation location="/ResumenNoConformeIP_SIMA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeIP">
+      <http:operation location="/ResumenNoConformeIP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformeSIMA">
+      <http:operation location="/ResumenNoConformeSIMA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorProyecto_Mensual">
+      <http:operation location="/ResumenNoConformePorProyecto_Mensual" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorIP_SIMA_Mensual">
+      <http:operation location="/ResumenNoConformePorIP_SIMA_Mensual" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenNoConformePorTipodeInspeccion">
+      <http:operation location="/ResumenNoConformePorTipodeInspeccion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudAprobacion">
+      <http:operation location="/ListarSolicitudAprobacion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ControlInspecciones">
+    <wsdl:port name="ControlInspeccionesSoap" binding="tns:ControlInspeccionesSoap">
+      <soap:address location="http://10.10.18.10:90/Core/GestionCalidad/ControlInspecciones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlInspeccionesSoap12" binding="tns:ControlInspeccionesSoap12">
+      <soap12:address location="http://10.10.18.10:90/Core/GestionCalidad/ControlInspecciones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlInspeccionesHttpGet" binding="tns:ControlInspeccionesHttpGet">
+      <http:address location="http://10.10.18.10:90/Core/GestionCalidad/ControlInspecciones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlInspeccionesHttpPost" binding="tns:ControlInspeccionesHttpPost">
+      <http:address location="http://10.10.18.10:90/Core/GestionCalidad/ControlInspecciones.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

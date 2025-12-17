@@ -1,0 +1,1744 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Listar_costo_prod_linea_neg_resu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_MES" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_LINEA_NEGOCIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_costo_prod_linea_neg_resuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_costo_prod_linea_neg_resuResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_costo_prod_linea_neg_det">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_MES" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_LINEA_NEGOCIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_costo_prod_linea_neg_detResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_costo_prod_linea_neg_detResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_ManoObra_ImprodNatuG_Det">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Año_de_Proceso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Mes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_ManoObra_ImprodNatuG_DetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_ManoObra_ImprodNatuG_DetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Costo_Prod_Linea_Neg_Det">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_Año" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Mes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Linea_Negocio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Costo_Prod_Linea_Neg_DetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Costo_Prod_Linea_Neg_DetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Costo_VentasLineaNegocioRes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Año" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Mes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Linea_Negocio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Costo_VentasLineaNegocioResResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Costo_VentasLineaNegocioResResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_CostPro_por_Linea_Neg_R">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Periodo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Linea_Negocio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_CostPro_por_Linea_Neg_RResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_CostPro_por_Linea_Neg_RResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_CostPro_por_Linea_Neg_D">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Periodo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Linea_Negocio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_CostPro_por_Linea_Neg_DResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_CostPro_por_Linea_Neg_DResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Hors_HombreNormalUtili_Divi">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Año" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Mes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Hors_HombreNormalUtili_DiviResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Hors_HombreNormalUtili_DiviResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Distri_Costo_Grup_Resu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Año" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Mes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Distri_Costo_Grup_ResuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Distri_Costo_Grup_ResuResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Distri_Costo_Grup_CC_Det">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Año" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Mes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Grupo_CC_Desde" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Grupo_CC_Hasta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Distri_Costo_Grup_CC_DetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Distri_Costo_Grup_CC_DetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Mano_Obra_Directa_Div_Det">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Año" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_Mes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Division_Inicial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Division_Final" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Mano_Obra_Directa_Div_DetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Mano_Obra_Directa_Div_DetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_CostosDirectos_OT_CC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_Anio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_Mes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Linea_Neg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_CostosDirectos_OT_CCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_CostosDirectos_OT_CCResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Materiales_en_Proyectos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_materiales" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Materiales_en_ProyectosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Materiales_en_ProyectosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_analisis_gastos_ccnatudet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="D_AÑO_DE_PROCESO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_MES_DE_PROCESO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CUENTA_MAYOR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_analisis_gastos_ccnatudetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_analisis_gastos_ccnatudetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_analisis_gast_itemsasient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_DIVISION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_NUMERO_OT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_analisis_gast_itemsasientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_analisis_gast_itemsasientResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Ventas_diferidas_x_OT_detalle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_PERIODO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_DIVISION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Ventas_diferidas_x_OT_detalleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Ventas_diferidas_x_OT_detalleResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Ventas_diferidas_x_Doc_detalle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_PERIODO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_DIVISION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Ventas_diferidas_x_Doc_detalleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Ventas_diferidas_x_Doc_detalleResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Listar_costo_prod_linea_neg_resuSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_costo_prod_linea_neg_resu" />
+  </wsdl:message>
+  <wsdl:message name="Listar_costo_prod_linea_neg_resuSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_costo_prod_linea_neg_resuResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_costo_prod_linea_neg_detSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_costo_prod_linea_neg_det" />
+  </wsdl:message>
+  <wsdl:message name="Listar_costo_prod_linea_neg_detSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_costo_prod_linea_neg_detResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ManoObra_ImprodNatuG_DetSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_ManoObra_ImprodNatuG_Det" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ManoObra_ImprodNatuG_DetSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_ManoObra_ImprodNatuG_DetResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Costo_Prod_Linea_Neg_DetSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Costo_Prod_Linea_Neg_Det" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Costo_Prod_Linea_Neg_DetSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Costo_Prod_Linea_Neg_DetResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Costo_VentasLineaNegocioResSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Costo_VentasLineaNegocioRes" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Costo_VentasLineaNegocioResSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Costo_VentasLineaNegocioResResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostPro_por_Linea_Neg_RSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_CostPro_por_Linea_Neg_R" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostPro_por_Linea_Neg_RSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_CostPro_por_Linea_Neg_RResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostPro_por_Linea_Neg_DSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_CostPro_por_Linea_Neg_D" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostPro_por_Linea_Neg_DSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_CostPro_por_Linea_Neg_DResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Hors_HombreNormalUtili_DiviSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Hors_HombreNormalUtili_Divi" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Hors_HombreNormalUtili_DiviSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Hors_HombreNormalUtili_DiviResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Distri_Costo_Grup_ResuSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Distri_Costo_Grup_Resu" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Distri_Costo_Grup_ResuSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Distri_Costo_Grup_ResuResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Distri_Costo_Grup_CC_DetSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Distri_Costo_Grup_CC_Det" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Distri_Costo_Grup_CC_DetSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Distri_Costo_Grup_CC_DetResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Mano_Obra_Directa_Div_DetSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Mano_Obra_Directa_Div_Det" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Mano_Obra_Directa_Div_DetSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Mano_Obra_Directa_Div_DetResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostosDirectos_OT_CCSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_CostosDirectos_OT_CC" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostosDirectos_OT_CCSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_CostosDirectos_OT_CCResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Materiales_en_ProyectosSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Materiales_en_Proyectos" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Materiales_en_ProyectosSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Materiales_en_ProyectosResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_analisis_gastos_ccnatudetSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_analisis_gastos_ccnatudet" />
+  </wsdl:message>
+  <wsdl:message name="Listar_analisis_gastos_ccnatudetSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_analisis_gastos_ccnatudetResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_analisis_gast_itemsasientSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_analisis_gast_itemsasient" />
+  </wsdl:message>
+  <wsdl:message name="Listar_analisis_gast_itemsasientSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_analisis_gast_itemsasientResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ventas_diferidas_x_OT_detalleSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Ventas_diferidas_x_OT_detalle" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ventas_diferidas_x_OT_detalleSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Ventas_diferidas_x_OT_detalleResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ventas_diferidas_x_Doc_detalleSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Ventas_diferidas_x_Doc_detalle" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ventas_diferidas_x_Doc_detalleSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Ventas_diferidas_x_Doc_detalleResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_costo_prod_linea_neg_resuHttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_LINEA_NEGOCIO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_costo_prod_linea_neg_resuHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_costo_prod_linea_neg_detHttpGetIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_LINEA_NEGOCIO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_costo_prod_linea_neg_detHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ManoObra_ImprodNatuG_DetHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año_de_Proceso" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ManoObra_ImprodNatuG_DetHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Costo_Prod_Linea_Neg_DetHttpGetIn">
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="V_Linea_Negocio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Costo_Prod_Linea_Neg_DetHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Costo_VentasLineaNegocioResHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="V_Linea_Negocio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Costo_VentasLineaNegocioResHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostPro_por_Linea_Neg_RHttpGetIn">
+    <wsdl:part name="Centro_Operativo" type="s:string" />
+    <wsdl:part name="Periodo" type="s:string" />
+    <wsdl:part name="Linea_Negocio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostPro_por_Linea_Neg_RHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostPro_por_Linea_Neg_DHttpGetIn">
+    <wsdl:part name="Centro_Operativo" type="s:string" />
+    <wsdl:part name="Periodo" type="s:string" />
+    <wsdl:part name="Linea_Negocio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostPro_por_Linea_Neg_DHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Hors_HombreNormalUtili_DiviHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Hors_HombreNormalUtili_DiviHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Distri_Costo_Grup_ResuHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Distri_Costo_Grup_ResuHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Distri_Costo_Grup_CC_DetHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="V_Grupo_CC_Desde" type="s:string" />
+    <wsdl:part name="V_Grupo_CC_Hasta" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Distri_Costo_Grup_CC_DetHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Mano_Obra_Directa_Div_DetHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="V_Division_Inicial" type="s:string" />
+    <wsdl:part name="V_Division_Final" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Mano_Obra_Directa_Div_DetHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostosDirectos_OT_CCHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="v_Anio" type="s:string" />
+    <wsdl:part name="v_Mes" type="s:string" />
+    <wsdl:part name="V_Linea_Neg" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostosDirectos_OT_CCHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Materiales_en_ProyectosHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="v_materiales" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Materiales_en_ProyectosHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_analisis_gastos_ccnatudetHttpGetIn">
+    <wsdl:part name="D_AÑO_DE_PROCESO" type="s:string" />
+    <wsdl:part name="D_MES_DE_PROCESO" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_CUENTA_MAYOR" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_analisis_gastos_ccnatudetHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_analisis_gast_itemsasientHttpGetIn">
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_DIVISION" type="s:string" />
+    <wsdl:part name="V_NUMERO_OT" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_analisis_gast_itemsasientHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ventas_diferidas_x_OT_detalleHttpGetIn">
+    <wsdl:part name="V_PERIODO" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_DIVISION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ventas_diferidas_x_OT_detalleHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ventas_diferidas_x_Doc_detalleHttpGetIn">
+    <wsdl:part name="V_PERIODO" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_DIVISION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ventas_diferidas_x_Doc_detalleHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_costo_prod_linea_neg_resuHttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_LINEA_NEGOCIO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_costo_prod_linea_neg_resuHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_costo_prod_linea_neg_detHttpPostIn">
+    <wsdl:part name="D_AÑO" type="s:string" />
+    <wsdl:part name="D_MES" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_LINEA_NEGOCIO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_costo_prod_linea_neg_detHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ManoObra_ImprodNatuG_DetHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año_de_Proceso" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_ManoObra_ImprodNatuG_DetHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Costo_Prod_Linea_Neg_DetHttpPostIn">
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="V_Linea_Negocio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Costo_Prod_Linea_Neg_DetHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Costo_VentasLineaNegocioResHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="V_Linea_Negocio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Costo_VentasLineaNegocioResHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostPro_por_Linea_Neg_RHttpPostIn">
+    <wsdl:part name="Centro_Operativo" type="s:string" />
+    <wsdl:part name="Periodo" type="s:string" />
+    <wsdl:part name="Linea_Negocio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostPro_por_Linea_Neg_RHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostPro_por_Linea_Neg_DHttpPostIn">
+    <wsdl:part name="Centro_Operativo" type="s:string" />
+    <wsdl:part name="Periodo" type="s:string" />
+    <wsdl:part name="Linea_Negocio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostPro_por_Linea_Neg_DHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Hors_HombreNormalUtili_DiviHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Hors_HombreNormalUtili_DiviHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Distri_Costo_Grup_ResuHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Distri_Costo_Grup_ResuHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Distri_Costo_Grup_CC_DetHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="V_Grupo_CC_Desde" type="s:string" />
+    <wsdl:part name="V_Grupo_CC_Hasta" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Distri_Costo_Grup_CC_DetHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Mano_Obra_Directa_Div_DetHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="D_Año" type="s:string" />
+    <wsdl:part name="D_Mes" type="s:string" />
+    <wsdl:part name="V_Division_Inicial" type="s:string" />
+    <wsdl:part name="V_Division_Final" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Mano_Obra_Directa_Div_DetHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostosDirectos_OT_CCHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="v_Anio" type="s:string" />
+    <wsdl:part name="v_Mes" type="s:string" />
+    <wsdl:part name="V_Linea_Neg" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_CostosDirectos_OT_CCHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Materiales_en_ProyectosHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="v_materiales" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Materiales_en_ProyectosHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_analisis_gastos_ccnatudetHttpPostIn">
+    <wsdl:part name="D_AÑO_DE_PROCESO" type="s:string" />
+    <wsdl:part name="D_MES_DE_PROCESO" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_CUENTA_MAYOR" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_analisis_gastos_ccnatudetHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_analisis_gast_itemsasientHttpPostIn">
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_DIVISION" type="s:string" />
+    <wsdl:part name="V_NUMERO_OT" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_analisis_gast_itemsasientHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ventas_diferidas_x_OT_detalleHttpPostIn">
+    <wsdl:part name="V_PERIODO" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_DIVISION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ventas_diferidas_x_OT_detalleHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ventas_diferidas_x_Doc_detalleHttpPostIn">
+    <wsdl:part name="V_PERIODO" type="s:string" />
+    <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
+    <wsdl:part name="V_DIVISION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ventas_diferidas_x_Doc_detalleHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:portType name="CostosSoap">
+    <wsdl:operation name="Listar_costo_prod_linea_neg_resu">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Costos de Producción (Por Línea de Negocio)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_costo_prod_linea_neg_resuSoapIn" />
+      <wsdl:output message="tns:Listar_costo_prod_linea_neg_resuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_costo_prod_linea_neg_det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Costos de Producción(Por Línea de Negocio)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_costo_prod_linea_neg_detSoapIn" />
+      <wsdl:output message="tns:Listar_costo_prod_linea_neg_detSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ManoObra_ImprodNatuG_Det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Mano de Obra Improductiva por Naturaleza de Gasto</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ManoObra_ImprodNatuG_DetSoapIn" />
+      <wsdl:output message="tns:Listar_ManoObra_ImprodNatuG_DetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_Prod_Linea_Neg_Det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Costo de Venta por Linea de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Costo_Prod_Linea_Neg_DetSoapIn" />
+      <wsdl:output message="tns:Listar_Costo_Prod_Linea_Neg_DetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_VentasLineaNegocioRes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Costo de Venta por Linea de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Costo_VentasLineaNegocioResSoapIn" />
+      <wsdl:output message="tns:Listar_Costo_VentasLineaNegocioResSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_R">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Costo de Productos en Proceso por Linea de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_CostPro_por_Linea_Neg_RSoapIn" />
+      <wsdl:output message="tns:Listar_CostPro_por_Linea_Neg_RSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_D">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle  - Costo de Productos en Proceso por Linea de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_CostPro_por_Linea_Neg_DSoapIn" />
+      <wsdl:output message="tns:Listar_CostPro_por_Linea_Neg_DSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Hors_HombreNormalUtili_Divi">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1. Resumen - Horas Hombre Normal Utilizadas por Division</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Hors_HombreNormalUtili_DiviSoapIn" />
+      <wsdl:output message="tns:Listar_Hors_HombreNormalUtili_DiviSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_Resu">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1.1. Resumen - Distribucion de Costos Indirectos por Division</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Distri_Costo_Grup_ResuSoapIn" />
+      <wsdl:output message="tns:Listar_Distri_Costo_Grup_ResuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_CC_Det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1.2. Detalle     - Distribucion de Costos Indirectos por Division</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Distri_Costo_Grup_CC_DetSoapIn" />
+      <wsdl:output message="tns:Listar_Distri_Costo_Grup_CC_DetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Mano_Obra_Directa_Div_Det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1.2. Detalle     - Distribucion de Costos Indirectos por Division</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Mano_Obra_Directa_Div_DetSoapIn" />
+      <wsdl:output message="tns:Listar_Mano_Obra_Directa_Div_DetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostosDirectos_OT_CC">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">13. Costos directo de ot por centro de costo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_CostosDirectos_OT_CCSoapIn" />
+      <wsdl:output message="tns:Listar_CostosDirectos_OT_CCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Materiales_en_Proyectos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. Materiales en Proyectos por centro operativo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Materiales_en_ProyectosSoapIn" />
+      <wsdl:output message="tns:Listar_Materiales_en_ProyectosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gastos_ccnatudet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Analisis de Gastos (Por C.Costo y Naturaleza)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_analisis_gastos_ccnatudetSoapIn" />
+      <wsdl:output message="tns:Listar_analisis_gastos_ccnatudetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gast_itemsasient">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Analisis de Gastos Directos de OT por Items de Asiento</wsdl:documentation>
+      <wsdl:input message="tns:Listar_analisis_gast_itemsasientSoapIn" />
+      <wsdl:output message="tns:Listar_analisis_gast_itemsasientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_OT_detalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">2. Ventas diferidas x OT (detalle)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Ventas_diferidas_x_OT_detalleSoapIn" />
+      <wsdl:output message="tns:Listar_Ventas_diferidas_x_OT_detalleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_Doc_detalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">3. Ventas diferidas  x documento (detalle)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Ventas_diferidas_x_Doc_detalleSoapIn" />
+      <wsdl:output message="tns:Listar_Ventas_diferidas_x_Doc_detalleSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CostosHttpGet">
+    <wsdl:operation name="Listar_costo_prod_linea_neg_resu">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Costos de Producción (Por Línea de Negocio)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_costo_prod_linea_neg_resuHttpGetIn" />
+      <wsdl:output message="tns:Listar_costo_prod_linea_neg_resuHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_costo_prod_linea_neg_det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Costos de Producción(Por Línea de Negocio)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_costo_prod_linea_neg_detHttpGetIn" />
+      <wsdl:output message="tns:Listar_costo_prod_linea_neg_detHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ManoObra_ImprodNatuG_Det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Mano de Obra Improductiva por Naturaleza de Gasto</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ManoObra_ImprodNatuG_DetHttpGetIn" />
+      <wsdl:output message="tns:Listar_ManoObra_ImprodNatuG_DetHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_Prod_Linea_Neg_Det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Costo de Venta por Linea de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Costo_Prod_Linea_Neg_DetHttpGetIn" />
+      <wsdl:output message="tns:Listar_Costo_Prod_Linea_Neg_DetHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_VentasLineaNegocioRes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Costo de Venta por Linea de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Costo_VentasLineaNegocioResHttpGetIn" />
+      <wsdl:output message="tns:Listar_Costo_VentasLineaNegocioResHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_R">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Costo de Productos en Proceso por Linea de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_CostPro_por_Linea_Neg_RHttpGetIn" />
+      <wsdl:output message="tns:Listar_CostPro_por_Linea_Neg_RHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_D">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle  - Costo de Productos en Proceso por Linea de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_CostPro_por_Linea_Neg_DHttpGetIn" />
+      <wsdl:output message="tns:Listar_CostPro_por_Linea_Neg_DHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Hors_HombreNormalUtili_Divi">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1. Resumen - Horas Hombre Normal Utilizadas por Division</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Hors_HombreNormalUtili_DiviHttpGetIn" />
+      <wsdl:output message="tns:Listar_Hors_HombreNormalUtili_DiviHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_Resu">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1.1. Resumen - Distribucion de Costos Indirectos por Division</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Distri_Costo_Grup_ResuHttpGetIn" />
+      <wsdl:output message="tns:Listar_Distri_Costo_Grup_ResuHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_CC_Det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1.2. Detalle     - Distribucion de Costos Indirectos por Division</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Distri_Costo_Grup_CC_DetHttpGetIn" />
+      <wsdl:output message="tns:Listar_Distri_Costo_Grup_CC_DetHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Mano_Obra_Directa_Div_Det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1.2. Detalle     - Distribucion de Costos Indirectos por Division</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Mano_Obra_Directa_Div_DetHttpGetIn" />
+      <wsdl:output message="tns:Listar_Mano_Obra_Directa_Div_DetHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostosDirectos_OT_CC">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">13. Costos directo de ot por centro de costo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_CostosDirectos_OT_CCHttpGetIn" />
+      <wsdl:output message="tns:Listar_CostosDirectos_OT_CCHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Materiales_en_Proyectos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. Materiales en Proyectos por centro operativo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Materiales_en_ProyectosHttpGetIn" />
+      <wsdl:output message="tns:Listar_Materiales_en_ProyectosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gastos_ccnatudet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Analisis de Gastos (Por C.Costo y Naturaleza)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_analisis_gastos_ccnatudetHttpGetIn" />
+      <wsdl:output message="tns:Listar_analisis_gastos_ccnatudetHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gast_itemsasient">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Analisis de Gastos Directos de OT por Items de Asiento</wsdl:documentation>
+      <wsdl:input message="tns:Listar_analisis_gast_itemsasientHttpGetIn" />
+      <wsdl:output message="tns:Listar_analisis_gast_itemsasientHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_OT_detalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">2. Ventas diferidas x OT (detalle)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Ventas_diferidas_x_OT_detalleHttpGetIn" />
+      <wsdl:output message="tns:Listar_Ventas_diferidas_x_OT_detalleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_Doc_detalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">3. Ventas diferidas  x documento (detalle)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Ventas_diferidas_x_Doc_detalleHttpGetIn" />
+      <wsdl:output message="tns:Listar_Ventas_diferidas_x_Doc_detalleHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CostosHttpPost">
+    <wsdl:operation name="Listar_costo_prod_linea_neg_resu">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Costos de Producción (Por Línea de Negocio)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_costo_prod_linea_neg_resuHttpPostIn" />
+      <wsdl:output message="tns:Listar_costo_prod_linea_neg_resuHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_costo_prod_linea_neg_det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Costos de Producción(Por Línea de Negocio)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_costo_prod_linea_neg_detHttpPostIn" />
+      <wsdl:output message="tns:Listar_costo_prod_linea_neg_detHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ManoObra_ImprodNatuG_Det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Mano de Obra Improductiva por Naturaleza de Gasto</wsdl:documentation>
+      <wsdl:input message="tns:Listar_ManoObra_ImprodNatuG_DetHttpPostIn" />
+      <wsdl:output message="tns:Listar_ManoObra_ImprodNatuG_DetHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_Prod_Linea_Neg_Det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Costo de Venta por Linea de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Costo_Prod_Linea_Neg_DetHttpPostIn" />
+      <wsdl:output message="tns:Listar_Costo_Prod_Linea_Neg_DetHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_VentasLineaNegocioRes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Costo de Venta por Linea de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Costo_VentasLineaNegocioResHttpPostIn" />
+      <wsdl:output message="tns:Listar_Costo_VentasLineaNegocioResHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_R">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resumen - Costo de Productos en Proceso por Linea de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_CostPro_por_Linea_Neg_RHttpPostIn" />
+      <wsdl:output message="tns:Listar_CostPro_por_Linea_Neg_RHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_D">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle  - Costo de Productos en Proceso por Linea de Negocio</wsdl:documentation>
+      <wsdl:input message="tns:Listar_CostPro_por_Linea_Neg_DHttpPostIn" />
+      <wsdl:output message="tns:Listar_CostPro_por_Linea_Neg_DHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Hors_HombreNormalUtili_Divi">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1. Resumen - Horas Hombre Normal Utilizadas por Division</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Hors_HombreNormalUtili_DiviHttpPostIn" />
+      <wsdl:output message="tns:Listar_Hors_HombreNormalUtili_DiviHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_Resu">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1.1. Resumen - Distribucion de Costos Indirectos por Division</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Distri_Costo_Grup_ResuHttpPostIn" />
+      <wsdl:output message="tns:Listar_Distri_Costo_Grup_ResuHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_CC_Det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1.2. Detalle     - Distribucion de Costos Indirectos por Division</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Distri_Costo_Grup_CC_DetHttpPostIn" />
+      <wsdl:output message="tns:Listar_Distri_Costo_Grup_CC_DetHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Mano_Obra_Directa_Div_Det">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">1.2. Detalle     - Distribucion de Costos Indirectos por Division</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Mano_Obra_Directa_Div_DetHttpPostIn" />
+      <wsdl:output message="tns:Listar_Mano_Obra_Directa_Div_DetHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostosDirectos_OT_CC">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">13. Costos directo de ot por centro de costo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_CostosDirectos_OT_CCHttpPostIn" />
+      <wsdl:output message="tns:Listar_CostosDirectos_OT_CCHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Materiales_en_Proyectos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. Materiales en Proyectos por centro operativo</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Materiales_en_ProyectosHttpPostIn" />
+      <wsdl:output message="tns:Listar_Materiales_en_ProyectosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gastos_ccnatudet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Analisis de Gastos (Por C.Costo y Naturaleza)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_analisis_gastos_ccnatudetHttpPostIn" />
+      <wsdl:output message="tns:Listar_analisis_gastos_ccnatudetHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gast_itemsasient">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Analisis de Gastos Directos de OT por Items de Asiento</wsdl:documentation>
+      <wsdl:input message="tns:Listar_analisis_gast_itemsasientHttpPostIn" />
+      <wsdl:output message="tns:Listar_analisis_gast_itemsasientHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_OT_detalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">2. Ventas diferidas x OT (detalle)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Ventas_diferidas_x_OT_detalleHttpPostIn" />
+      <wsdl:output message="tns:Listar_Ventas_diferidas_x_OT_detalleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_Doc_detalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">3. Ventas diferidas  x documento (detalle)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Ventas_diferidas_x_Doc_detalleHttpPostIn" />
+      <wsdl:output message="tns:Listar_Ventas_diferidas_x_Doc_detalleHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CostosSoap" type="tns:CostosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Listar_costo_prod_linea_neg_resu">
+      <soap:operation soapAction="http://tempuri.org/Listar_costo_prod_linea_neg_resu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_costo_prod_linea_neg_det">
+      <soap:operation soapAction="http://tempuri.org/Listar_costo_prod_linea_neg_det" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ManoObra_ImprodNatuG_Det">
+      <soap:operation soapAction="http://tempuri.org/Listar_ManoObra_ImprodNatuG_Det" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_Prod_Linea_Neg_Det">
+      <soap:operation soapAction="http://tempuri.org/Listar_Costo_Prod_Linea_Neg_Det" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_VentasLineaNegocioRes">
+      <soap:operation soapAction="http://tempuri.org/Listar_Costo_VentasLineaNegocioRes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_R">
+      <soap:operation soapAction="http://tempuri.org/Listar_CostPro_por_Linea_Neg_R" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_D">
+      <soap:operation soapAction="http://tempuri.org/Listar_CostPro_por_Linea_Neg_D" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Hors_HombreNormalUtili_Divi">
+      <soap:operation soapAction="http://tempuri.org/Listar_Hors_HombreNormalUtili_Divi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_Resu">
+      <soap:operation soapAction="http://tempuri.org/Listar_Distri_Costo_Grup_Resu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_CC_Det">
+      <soap:operation soapAction="http://tempuri.org/Listar_Distri_Costo_Grup_CC_Det" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Mano_Obra_Directa_Div_Det">
+      <soap:operation soapAction="http://tempuri.org/Listar_Mano_Obra_Directa_Div_Det" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostosDirectos_OT_CC">
+      <soap:operation soapAction="http://tempuri.org/Listar_CostosDirectos_OT_CC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Materiales_en_Proyectos">
+      <soap:operation soapAction="http://tempuri.org/Listar_Materiales_en_Proyectos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gastos_ccnatudet">
+      <soap:operation soapAction="http://tempuri.org/Listar_analisis_gastos_ccnatudet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gast_itemsasient">
+      <soap:operation soapAction="http://tempuri.org/Listar_analisis_gast_itemsasient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_OT_detalle">
+      <soap:operation soapAction="http://tempuri.org/Listar_Ventas_diferidas_x_OT_detalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_Doc_detalle">
+      <soap:operation soapAction="http://tempuri.org/Listar_Ventas_diferidas_x_Doc_detalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CostosSoap12" type="tns:CostosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Listar_costo_prod_linea_neg_resu">
+      <soap12:operation soapAction="http://tempuri.org/Listar_costo_prod_linea_neg_resu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_costo_prod_linea_neg_det">
+      <soap12:operation soapAction="http://tempuri.org/Listar_costo_prod_linea_neg_det" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ManoObra_ImprodNatuG_Det">
+      <soap12:operation soapAction="http://tempuri.org/Listar_ManoObra_ImprodNatuG_Det" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_Prod_Linea_Neg_Det">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Costo_Prod_Linea_Neg_Det" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_VentasLineaNegocioRes">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Costo_VentasLineaNegocioRes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_R">
+      <soap12:operation soapAction="http://tempuri.org/Listar_CostPro_por_Linea_Neg_R" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_D">
+      <soap12:operation soapAction="http://tempuri.org/Listar_CostPro_por_Linea_Neg_D" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Hors_HombreNormalUtili_Divi">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Hors_HombreNormalUtili_Divi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_Resu">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Distri_Costo_Grup_Resu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_CC_Det">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Distri_Costo_Grup_CC_Det" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Mano_Obra_Directa_Div_Det">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Mano_Obra_Directa_Div_Det" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostosDirectos_OT_CC">
+      <soap12:operation soapAction="http://tempuri.org/Listar_CostosDirectos_OT_CC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Materiales_en_Proyectos">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Materiales_en_Proyectos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gastos_ccnatudet">
+      <soap12:operation soapAction="http://tempuri.org/Listar_analisis_gastos_ccnatudet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gast_itemsasient">
+      <soap12:operation soapAction="http://tempuri.org/Listar_analisis_gast_itemsasient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_OT_detalle">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Ventas_diferidas_x_OT_detalle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_Doc_detalle">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Ventas_diferidas_x_Doc_detalle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CostosHttpGet" type="tns:CostosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Listar_costo_prod_linea_neg_resu">
+      <http:operation location="/Listar_costo_prod_linea_neg_resu" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_costo_prod_linea_neg_det">
+      <http:operation location="/Listar_costo_prod_linea_neg_det" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ManoObra_ImprodNatuG_Det">
+      <http:operation location="/Listar_ManoObra_ImprodNatuG_Det" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_Prod_Linea_Neg_Det">
+      <http:operation location="/Listar_Costo_Prod_Linea_Neg_Det" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_VentasLineaNegocioRes">
+      <http:operation location="/Listar_Costo_VentasLineaNegocioRes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_R">
+      <http:operation location="/Listar_CostPro_por_Linea_Neg_R" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_D">
+      <http:operation location="/Listar_CostPro_por_Linea_Neg_D" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Hors_HombreNormalUtili_Divi">
+      <http:operation location="/Listar_Hors_HombreNormalUtili_Divi" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_Resu">
+      <http:operation location="/Listar_Distri_Costo_Grup_Resu" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_CC_Det">
+      <http:operation location="/Listar_Distri_Costo_Grup_CC_Det" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Mano_Obra_Directa_Div_Det">
+      <http:operation location="/Listar_Mano_Obra_Directa_Div_Det" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostosDirectos_OT_CC">
+      <http:operation location="/Listar_CostosDirectos_OT_CC" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Materiales_en_Proyectos">
+      <http:operation location="/Listar_Materiales_en_Proyectos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gastos_ccnatudet">
+      <http:operation location="/Listar_analisis_gastos_ccnatudet" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gast_itemsasient">
+      <http:operation location="/Listar_analisis_gast_itemsasient" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_OT_detalle">
+      <http:operation location="/Listar_Ventas_diferidas_x_OT_detalle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_Doc_detalle">
+      <http:operation location="/Listar_Ventas_diferidas_x_Doc_detalle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CostosHttpPost" type="tns:CostosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Listar_costo_prod_linea_neg_resu">
+      <http:operation location="/Listar_costo_prod_linea_neg_resu" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_costo_prod_linea_neg_det">
+      <http:operation location="/Listar_costo_prod_linea_neg_det" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_ManoObra_ImprodNatuG_Det">
+      <http:operation location="/Listar_ManoObra_ImprodNatuG_Det" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_Prod_Linea_Neg_Det">
+      <http:operation location="/Listar_Costo_Prod_Linea_Neg_Det" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Costo_VentasLineaNegocioRes">
+      <http:operation location="/Listar_Costo_VentasLineaNegocioRes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_R">
+      <http:operation location="/Listar_CostPro_por_Linea_Neg_R" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostPro_por_Linea_Neg_D">
+      <http:operation location="/Listar_CostPro_por_Linea_Neg_D" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Hors_HombreNormalUtili_Divi">
+      <http:operation location="/Listar_Hors_HombreNormalUtili_Divi" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_Resu">
+      <http:operation location="/Listar_Distri_Costo_Grup_Resu" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Distri_Costo_Grup_CC_Det">
+      <http:operation location="/Listar_Distri_Costo_Grup_CC_Det" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Mano_Obra_Directa_Div_Det">
+      <http:operation location="/Listar_Mano_Obra_Directa_Div_Det" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_CostosDirectos_OT_CC">
+      <http:operation location="/Listar_CostosDirectos_OT_CC" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Materiales_en_Proyectos">
+      <http:operation location="/Listar_Materiales_en_Proyectos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gastos_ccnatudet">
+      <http:operation location="/Listar_analisis_gastos_ccnatudet" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_analisis_gast_itemsasient">
+      <http:operation location="/Listar_analisis_gast_itemsasient" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_OT_detalle">
+      <http:operation location="/Listar_Ventas_diferidas_x_OT_detalle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ventas_diferidas_x_Doc_detalle">
+      <http:operation location="/Listar_Ventas_diferidas_x_Doc_detalle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Costos">
+    <wsdl:port name="CostosSoap" binding="tns:CostosSoap">
+      <soap:address location="http://10.10.18.10:90/Core/GestionCostos/Costos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CostosSoap12" binding="tns:CostosSoap12">
+      <soap12:address location="http://10.10.18.10:90/Core/GestionCostos/Costos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CostosHttpGet" binding="tns:CostosHttpGet">
+      <http:address location="http://10.10.18.10:90/Core/GestionCostos/Costos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CostosHttpPost" binding="tns:CostosHttpPost">
+      <http:address location="http://10.10.18.10:90/Core/GestionCostos/Costos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

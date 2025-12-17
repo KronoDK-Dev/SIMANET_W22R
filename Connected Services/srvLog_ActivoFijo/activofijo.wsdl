@@ -1,0 +1,1481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Listar_actfijo_cons_inv">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_actfijo_cons_invResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_actfijo_cons_invResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_formato_7_1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COD_EMP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="N_ANIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_formato_7_1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_formato_7_1Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_invent_actxgrupoysubgrsmn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COD_EMPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GRUPOBN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SUBGRUPOBN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOACTV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_invent_actxgrupoysubgrsmnResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_invent_actxgrupoysubgrsmnResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_inventario_activosxcc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CCOSTO1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CCOSTO2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_EMPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_PANOL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOACTV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_inventario_activosxccResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_inventario_activosxccResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_inventario_activosxccrsm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CCOSTO1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CCOSTO2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_EMPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOACTV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_inventario_activosxccrsmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_inventario_activosxccrsmResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_inventario_activosxcustod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COD_EMPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_ROL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOACTV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_inventario_activosxcustodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_inventario_activosxcustodResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_inventario_actsgrup_sub">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COD_EMP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EST_BIEN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GRUPO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SUBGRUPO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPO_BIEN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_inventario_actsgrup_subResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_inventario_actsgrup_subResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_Bienes_toma_inventario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CODEMP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NRO_PR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CCO_INI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CCO_FIN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_Bienes_toma_inventarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista_Bienes_toma_inventarioResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_actfijo_Pen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_actfijo_PenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista_actfijo_PenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_AltasMes_ActF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Anio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_AltasMes_ActFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista_AltasMes_ActFResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_AltasCuentOrd_M">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Anio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_AltasCuentOrd_MResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista_AltasCuentOrd_MResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_Inventario_ActsGrup_Sub">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COD_EMP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EST_BIEN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPO_BIEN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sGRUPO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSUBGRUPO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_Inventario_ActsGrup_SubResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista_Inventario_ActsGrup_SubResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_Inventario_ActsGrup_Sub2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COD_EMP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EST_BIEN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPO_BIEN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sGRUPO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSUBGRUPO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_Inventario_ActsGrup_Sub2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista_Inventario_ActsGrup_Sub2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_Invent_ActxGrupoySubGRSMN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COD_EMP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOACTV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GRUPOBN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SUBGRUPOBN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_Invent_ActxGrupoySubGRSMNResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista_Invent_ActxGrupoySubGRSMNResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_Inventario_ActivosxCC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CCOSTO1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CCOSTO2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_EMPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_PANOL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOACTV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_Inventario_ActivosxCCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista_Inventario_ActivosxCCResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Listar_actfijo_cons_invSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_actfijo_cons_inv" />
+  </wsdl:message>
+  <wsdl:message name="Listar_actfijo_cons_invSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_actfijo_cons_invResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_formato_7_1SoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_formato_7_1" />
+  </wsdl:message>
+  <wsdl:message name="Listar_formato_7_1SoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_formato_7_1Response" />
+  </wsdl:message>
+  <wsdl:message name="Listar_invent_actxgrupoysubgrsmnSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_invent_actxgrupoysubgrsmn" />
+  </wsdl:message>
+  <wsdl:message name="Listar_invent_actxgrupoysubgrsmnSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_invent_actxgrupoysubgrsmnResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxccSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_inventario_activosxcc" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxccSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_inventario_activosxccResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxccrsmSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_inventario_activosxccrsm" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxccrsmSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_inventario_activosxccrsmResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxcustodSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_inventario_activosxcustod" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxcustodSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_inventario_activosxcustodResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_actsgrup_subSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_inventario_actsgrup_sub" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_actsgrup_subSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_inventario_actsgrup_subResponse" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Bienes_toma_inventarioSoapIn">
+    <wsdl:part name="parameters" element="tns:Lista_Bienes_toma_inventario" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Bienes_toma_inventarioSoapOut">
+    <wsdl:part name="parameters" element="tns:Lista_Bienes_toma_inventarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="Lista_actfijo_PenSoapIn">
+    <wsdl:part name="parameters" element="tns:Lista_actfijo_Pen" />
+  </wsdl:message>
+  <wsdl:message name="Lista_actfijo_PenSoapOut">
+    <wsdl:part name="parameters" element="tns:Lista_actfijo_PenResponse" />
+  </wsdl:message>
+  <wsdl:message name="Lista_AltasMes_ActFSoapIn">
+    <wsdl:part name="parameters" element="tns:Lista_AltasMes_ActF" />
+  </wsdl:message>
+  <wsdl:message name="Lista_AltasMes_ActFSoapOut">
+    <wsdl:part name="parameters" element="tns:Lista_AltasMes_ActFResponse" />
+  </wsdl:message>
+  <wsdl:message name="Lista_AltasCuentOrd_MSoapIn">
+    <wsdl:part name="parameters" element="tns:Lista_AltasCuentOrd_M" />
+  </wsdl:message>
+  <wsdl:message name="Lista_AltasCuentOrd_MSoapOut">
+    <wsdl:part name="parameters" element="tns:Lista_AltasCuentOrd_MResponse" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActsGrup_SubSoapIn">
+    <wsdl:part name="parameters" element="tns:Lista_Inventario_ActsGrup_Sub" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActsGrup_SubSoapOut">
+    <wsdl:part name="parameters" element="tns:Lista_Inventario_ActsGrup_SubResponse" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActsGrup_Sub2SoapIn">
+    <wsdl:part name="parameters" element="tns:Lista_Inventario_ActsGrup_Sub2" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActsGrup_Sub2SoapOut">
+    <wsdl:part name="parameters" element="tns:Lista_Inventario_ActsGrup_Sub2Response" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Invent_ActxGrupoySubGRSMNSoapIn">
+    <wsdl:part name="parameters" element="tns:Lista_Invent_ActxGrupoySubGRSMN" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Invent_ActxGrupoySubGRSMNSoapOut">
+    <wsdl:part name="parameters" element="tns:Lista_Invent_ActxGrupoySubGRSMNResponse" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActivosxCCSoapIn">
+    <wsdl:part name="parameters" element="tns:Lista_Inventario_ActivosxCC" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActivosxCCSoapOut">
+    <wsdl:part name="parameters" element="tns:Lista_Inventario_ActivosxCCResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_actfijo_cons_invHttpGetIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_actfijo_cons_invHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_formato_7_1HttpGetIn">
+    <wsdl:part name="COD_EMP" type="s:string" />
+    <wsdl:part name="N_ANIO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_formato_7_1HttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_invent_actxgrupoysubgrsmnHttpGetIn">
+    <wsdl:part name="COD_EMPE" type="s:string" />
+    <wsdl:part name="GRUPOBN" type="s:string" />
+    <wsdl:part name="SUBGRUPOBN" type="s:string" />
+    <wsdl:part name="TIPOACTV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_invent_actxgrupoysubgrsmnHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxccHttpGetIn">
+    <wsdl:part name="CCOSTO1" type="s:string" />
+    <wsdl:part name="CCOSTO2" type="s:string" />
+    <wsdl:part name="COD_EMPE" type="s:string" />
+    <wsdl:part name="COD_PANOL" type="s:string" />
+    <wsdl:part name="TIPOACTV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxccHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxccrsmHttpGetIn">
+    <wsdl:part name="CCOSTO1" type="s:string" />
+    <wsdl:part name="CCOSTO2" type="s:string" />
+    <wsdl:part name="COD_EMPE" type="s:string" />
+    <wsdl:part name="TIPOACTV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxccrsmHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxcustodHttpGetIn">
+    <wsdl:part name="COD_EMPE" type="s:string" />
+    <wsdl:part name="COD_ROL" type="s:string" />
+    <wsdl:part name="TIPOACTV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxcustodHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_actsgrup_subHttpGetIn">
+    <wsdl:part name="COD_EMP" type="s:string" />
+    <wsdl:part name="EST_BIEN" type="s:string" />
+    <wsdl:part name="GRUPO" type="s:string" />
+    <wsdl:part name="SUBGRUPO" type="s:string" />
+    <wsdl:part name="TIPO_BIEN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_actsgrup_subHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Bienes_toma_inventarioHttpGetIn">
+    <wsdl:part name="CODEMP" type="s:string" />
+    <wsdl:part name="NRO_PR" type="s:string" />
+    <wsdl:part name="CCO_INI" type="s:string" />
+    <wsdl:part name="CCO_FIN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Bienes_toma_inventarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Lista_actfijo_PenHttpGetIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_actfijo_PenHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_AltasMes_ActFHttpGetIn">
+    <wsdl:part name="Anio" type="s:string" />
+    <wsdl:part name="Mes" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_AltasMes_ActFHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Lista_AltasCuentOrd_MHttpGetIn">
+    <wsdl:part name="Anio" type="s:string" />
+    <wsdl:part name="Mes" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_AltasCuentOrd_MHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActsGrup_SubHttpGetIn">
+    <wsdl:part name="COD_EMP" type="s:string" />
+    <wsdl:part name="EST_BIEN" type="s:string" />
+    <wsdl:part name="TIPO_BIEN" type="s:string" />
+    <wsdl:part name="sGRUPO" type="s:string" />
+    <wsdl:part name="sSUBGRUPO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActsGrup_SubHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActsGrup_Sub2HttpGetIn">
+    <wsdl:part name="COD_EMP" type="s:string" />
+    <wsdl:part name="EST_BIEN" type="s:string" />
+    <wsdl:part name="TIPO_BIEN" type="s:string" />
+    <wsdl:part name="sGRUPO" type="s:string" />
+    <wsdl:part name="sSUBGRUPO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActsGrup_Sub2HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Invent_ActxGrupoySubGRSMNHttpGetIn">
+    <wsdl:part name="COD_EMP" type="s:string" />
+    <wsdl:part name="TIPOACTV" type="s:string" />
+    <wsdl:part name="GRUPOBN" type="s:string" />
+    <wsdl:part name="SUBGRUPOBN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Invent_ActxGrupoySubGRSMNHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActivosxCCHttpGetIn">
+    <wsdl:part name="CCOSTO1" type="s:string" />
+    <wsdl:part name="CCOSTO2" type="s:string" />
+    <wsdl:part name="COD_EMPE" type="s:string" />
+    <wsdl:part name="COD_PANOL" type="s:string" />
+    <wsdl:part name="TIPOACTV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActivosxCCHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_actfijo_cons_invHttpPostIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_actfijo_cons_invHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_formato_7_1HttpPostIn">
+    <wsdl:part name="COD_EMP" type="s:string" />
+    <wsdl:part name="N_ANIO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_formato_7_1HttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_invent_actxgrupoysubgrsmnHttpPostIn">
+    <wsdl:part name="COD_EMPE" type="s:string" />
+    <wsdl:part name="GRUPOBN" type="s:string" />
+    <wsdl:part name="SUBGRUPOBN" type="s:string" />
+    <wsdl:part name="TIPOACTV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_invent_actxgrupoysubgrsmnHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxccHttpPostIn">
+    <wsdl:part name="CCOSTO1" type="s:string" />
+    <wsdl:part name="CCOSTO2" type="s:string" />
+    <wsdl:part name="COD_EMPE" type="s:string" />
+    <wsdl:part name="COD_PANOL" type="s:string" />
+    <wsdl:part name="TIPOACTV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxccHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxccrsmHttpPostIn">
+    <wsdl:part name="CCOSTO1" type="s:string" />
+    <wsdl:part name="CCOSTO2" type="s:string" />
+    <wsdl:part name="COD_EMPE" type="s:string" />
+    <wsdl:part name="TIPOACTV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxccrsmHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxcustodHttpPostIn">
+    <wsdl:part name="COD_EMPE" type="s:string" />
+    <wsdl:part name="COD_ROL" type="s:string" />
+    <wsdl:part name="TIPOACTV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_activosxcustodHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_actsgrup_subHttpPostIn">
+    <wsdl:part name="COD_EMP" type="s:string" />
+    <wsdl:part name="EST_BIEN" type="s:string" />
+    <wsdl:part name="GRUPO" type="s:string" />
+    <wsdl:part name="SUBGRUPO" type="s:string" />
+    <wsdl:part name="TIPO_BIEN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_inventario_actsgrup_subHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Bienes_toma_inventarioHttpPostIn">
+    <wsdl:part name="CODEMP" type="s:string" />
+    <wsdl:part name="NRO_PR" type="s:string" />
+    <wsdl:part name="CCO_INI" type="s:string" />
+    <wsdl:part name="CCO_FIN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Bienes_toma_inventarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Lista_actfijo_PenHttpPostIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_actfijo_PenHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_AltasMes_ActFHttpPostIn">
+    <wsdl:part name="Anio" type="s:string" />
+    <wsdl:part name="Mes" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_AltasMes_ActFHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Lista_AltasCuentOrd_MHttpPostIn">
+    <wsdl:part name="Anio" type="s:string" />
+    <wsdl:part name="Mes" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_AltasCuentOrd_MHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActsGrup_SubHttpPostIn">
+    <wsdl:part name="COD_EMP" type="s:string" />
+    <wsdl:part name="EST_BIEN" type="s:string" />
+    <wsdl:part name="TIPO_BIEN" type="s:string" />
+    <wsdl:part name="sGRUPO" type="s:string" />
+    <wsdl:part name="sSUBGRUPO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActsGrup_SubHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActsGrup_Sub2HttpPostIn">
+    <wsdl:part name="COD_EMP" type="s:string" />
+    <wsdl:part name="EST_BIEN" type="s:string" />
+    <wsdl:part name="TIPO_BIEN" type="s:string" />
+    <wsdl:part name="sGRUPO" type="s:string" />
+    <wsdl:part name="sSUBGRUPO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActsGrup_Sub2HttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Invent_ActxGrupoySubGRSMNHttpPostIn">
+    <wsdl:part name="COD_EMP" type="s:string" />
+    <wsdl:part name="TIPOACTV" type="s:string" />
+    <wsdl:part name="GRUPOBN" type="s:string" />
+    <wsdl:part name="SUBGRUPOBN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Invent_ActxGrupoySubGRSMNHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActivosxCCHttpPostIn">
+    <wsdl:part name="CCOSTO1" type="s:string" />
+    <wsdl:part name="CCOSTO2" type="s:string" />
+    <wsdl:part name="COD_EMPE" type="s:string" />
+    <wsdl:part name="COD_PANOL" type="s:string" />
+    <wsdl:part name="TIPOACTV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_Inventario_ActivosxCCHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:portType name="ActivoFijoSoap">
+    <wsdl:operation name="Listar_actfijo_cons_inv">
+      <wsdl:input message="tns:Listar_actfijo_cons_invSoapIn" />
+      <wsdl:output message="tns:Listar_actfijo_cons_invSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_formato_7_1">
+      <wsdl:input message="tns:Listar_formato_7_1SoapIn" />
+      <wsdl:output message="tns:Listar_formato_7_1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_invent_actxgrupoysubgrsmn">
+      <wsdl:input message="tns:Listar_invent_actxgrupoysubgrsmnSoapIn" />
+      <wsdl:output message="tns:Listar_invent_actxgrupoysubgrsmnSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcc">
+      <wsdl:input message="tns:Listar_inventario_activosxccSoapIn" />
+      <wsdl:output message="tns:Listar_inventario_activosxccSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxccrsm">
+      <wsdl:input message="tns:Listar_inventario_activosxccrsmSoapIn" />
+      <wsdl:output message="tns:Listar_inventario_activosxccrsmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcustod">
+      <wsdl:input message="tns:Listar_inventario_activosxcustodSoapIn" />
+      <wsdl:output message="tns:Listar_inventario_activosxcustodSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_actsgrup_sub">
+      <wsdl:input message="tns:Listar_inventario_actsgrup_subSoapIn" />
+      <wsdl:output message="tns:Listar_inventario_actsgrup_subSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Bienes_toma_inventario">
+      <wsdl:input message="tns:Lista_Bienes_toma_inventarioSoapIn" />
+      <wsdl:output message="tns:Lista_Bienes_toma_inventarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_actfijo_Pen">
+      <wsdl:input message="tns:Lista_actfijo_PenSoapIn" />
+      <wsdl:output message="tns:Lista_actfijo_PenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasMes_ActF">
+      <wsdl:input message="tns:Lista_AltasMes_ActFSoapIn" />
+      <wsdl:output message="tns:Lista_AltasMes_ActFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasCuentOrd_M">
+      <wsdl:input message="tns:Lista_AltasCuentOrd_MSoapIn" />
+      <wsdl:output message="tns:Lista_AltasCuentOrd_MSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inventario de Bienes por Grupo y Subgrupo</wsdl:documentation>
+      <wsdl:input message="tns:Lista_Inventario_ActsGrup_SubSoapIn" />
+      <wsdl:output message="tns:Lista_Inventario_ActsGrup_SubSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inventario de Bienes por Grupo y Subgrupo</wsdl:documentation>
+      <wsdl:input message="tns:Lista_Inventario_ActsGrup_Sub2SoapIn" />
+      <wsdl:output message="tns:Lista_Inventario_ActsGrup_Sub2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Invent_ActxGrupoySubGRSMN">
+      <wsdl:input message="tns:Lista_Invent_ActxGrupoySubGRSMNSoapIn" />
+      <wsdl:output message="tns:Lista_Invent_ActxGrupoySubGRSMNSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActivosxCC">
+      <wsdl:input message="tns:Lista_Inventario_ActivosxCCSoapIn" />
+      <wsdl:output message="tns:Lista_Inventario_ActivosxCCSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ActivoFijoHttpGet">
+    <wsdl:operation name="Listar_actfijo_cons_inv">
+      <wsdl:input message="tns:Listar_actfijo_cons_invHttpGetIn" />
+      <wsdl:output message="tns:Listar_actfijo_cons_invHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_formato_7_1">
+      <wsdl:input message="tns:Listar_formato_7_1HttpGetIn" />
+      <wsdl:output message="tns:Listar_formato_7_1HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_invent_actxgrupoysubgrsmn">
+      <wsdl:input message="tns:Listar_invent_actxgrupoysubgrsmnHttpGetIn" />
+      <wsdl:output message="tns:Listar_invent_actxgrupoysubgrsmnHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcc">
+      <wsdl:input message="tns:Listar_inventario_activosxccHttpGetIn" />
+      <wsdl:output message="tns:Listar_inventario_activosxccHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxccrsm">
+      <wsdl:input message="tns:Listar_inventario_activosxccrsmHttpGetIn" />
+      <wsdl:output message="tns:Listar_inventario_activosxccrsmHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcustod">
+      <wsdl:input message="tns:Listar_inventario_activosxcustodHttpGetIn" />
+      <wsdl:output message="tns:Listar_inventario_activosxcustodHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_actsgrup_sub">
+      <wsdl:input message="tns:Listar_inventario_actsgrup_subHttpGetIn" />
+      <wsdl:output message="tns:Listar_inventario_actsgrup_subHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Bienes_toma_inventario">
+      <wsdl:input message="tns:Lista_Bienes_toma_inventarioHttpGetIn" />
+      <wsdl:output message="tns:Lista_Bienes_toma_inventarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_actfijo_Pen">
+      <wsdl:input message="tns:Lista_actfijo_PenHttpGetIn" />
+      <wsdl:output message="tns:Lista_actfijo_PenHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasMes_ActF">
+      <wsdl:input message="tns:Lista_AltasMes_ActFHttpGetIn" />
+      <wsdl:output message="tns:Lista_AltasMes_ActFHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasCuentOrd_M">
+      <wsdl:input message="tns:Lista_AltasCuentOrd_MHttpGetIn" />
+      <wsdl:output message="tns:Lista_AltasCuentOrd_MHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inventario de Bienes por Grupo y Subgrupo</wsdl:documentation>
+      <wsdl:input message="tns:Lista_Inventario_ActsGrup_SubHttpGetIn" />
+      <wsdl:output message="tns:Lista_Inventario_ActsGrup_SubHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inventario de Bienes por Grupo y Subgrupo</wsdl:documentation>
+      <wsdl:input message="tns:Lista_Inventario_ActsGrup_Sub2HttpGetIn" />
+      <wsdl:output message="tns:Lista_Inventario_ActsGrup_Sub2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Invent_ActxGrupoySubGRSMN">
+      <wsdl:input message="tns:Lista_Invent_ActxGrupoySubGRSMNHttpGetIn" />
+      <wsdl:output message="tns:Lista_Invent_ActxGrupoySubGRSMNHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActivosxCC">
+      <wsdl:input message="tns:Lista_Inventario_ActivosxCCHttpGetIn" />
+      <wsdl:output message="tns:Lista_Inventario_ActivosxCCHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ActivoFijoHttpPost">
+    <wsdl:operation name="Listar_actfijo_cons_inv">
+      <wsdl:input message="tns:Listar_actfijo_cons_invHttpPostIn" />
+      <wsdl:output message="tns:Listar_actfijo_cons_invHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_formato_7_1">
+      <wsdl:input message="tns:Listar_formato_7_1HttpPostIn" />
+      <wsdl:output message="tns:Listar_formato_7_1HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_invent_actxgrupoysubgrsmn">
+      <wsdl:input message="tns:Listar_invent_actxgrupoysubgrsmnHttpPostIn" />
+      <wsdl:output message="tns:Listar_invent_actxgrupoysubgrsmnHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcc">
+      <wsdl:input message="tns:Listar_inventario_activosxccHttpPostIn" />
+      <wsdl:output message="tns:Listar_inventario_activosxccHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxccrsm">
+      <wsdl:input message="tns:Listar_inventario_activosxccrsmHttpPostIn" />
+      <wsdl:output message="tns:Listar_inventario_activosxccrsmHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcustod">
+      <wsdl:input message="tns:Listar_inventario_activosxcustodHttpPostIn" />
+      <wsdl:output message="tns:Listar_inventario_activosxcustodHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_actsgrup_sub">
+      <wsdl:input message="tns:Listar_inventario_actsgrup_subHttpPostIn" />
+      <wsdl:output message="tns:Listar_inventario_actsgrup_subHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Bienes_toma_inventario">
+      <wsdl:input message="tns:Lista_Bienes_toma_inventarioHttpPostIn" />
+      <wsdl:output message="tns:Lista_Bienes_toma_inventarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_actfijo_Pen">
+      <wsdl:input message="tns:Lista_actfijo_PenHttpPostIn" />
+      <wsdl:output message="tns:Lista_actfijo_PenHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasMes_ActF">
+      <wsdl:input message="tns:Lista_AltasMes_ActFHttpPostIn" />
+      <wsdl:output message="tns:Lista_AltasMes_ActFHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasCuentOrd_M">
+      <wsdl:input message="tns:Lista_AltasCuentOrd_MHttpPostIn" />
+      <wsdl:output message="tns:Lista_AltasCuentOrd_MHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inventario de Bienes por Grupo y Subgrupo</wsdl:documentation>
+      <wsdl:input message="tns:Lista_Inventario_ActsGrup_SubHttpPostIn" />
+      <wsdl:output message="tns:Lista_Inventario_ActsGrup_SubHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inventario de Bienes por Grupo y Subgrupo</wsdl:documentation>
+      <wsdl:input message="tns:Lista_Inventario_ActsGrup_Sub2HttpPostIn" />
+      <wsdl:output message="tns:Lista_Inventario_ActsGrup_Sub2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Invent_ActxGrupoySubGRSMN">
+      <wsdl:input message="tns:Lista_Invent_ActxGrupoySubGRSMNHttpPostIn" />
+      <wsdl:output message="tns:Lista_Invent_ActxGrupoySubGRSMNHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActivosxCC">
+      <wsdl:input message="tns:Lista_Inventario_ActivosxCCHttpPostIn" />
+      <wsdl:output message="tns:Lista_Inventario_ActivosxCCHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ActivoFijoSoap" type="tns:ActivoFijoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Listar_actfijo_cons_inv">
+      <soap:operation soapAction="http://tempuri.org/Listar_actfijo_cons_inv" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_formato_7_1">
+      <soap:operation soapAction="http://tempuri.org/Listar_formato_7_1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_invent_actxgrupoysubgrsmn">
+      <soap:operation soapAction="http://tempuri.org/Listar_invent_actxgrupoysubgrsmn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcc">
+      <soap:operation soapAction="http://tempuri.org/Listar_inventario_activosxcc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxccrsm">
+      <soap:operation soapAction="http://tempuri.org/Listar_inventario_activosxccrsm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcustod">
+      <soap:operation soapAction="http://tempuri.org/Listar_inventario_activosxcustod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_actsgrup_sub">
+      <soap:operation soapAction="http://tempuri.org/Listar_inventario_actsgrup_sub" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Bienes_toma_inventario">
+      <soap:operation soapAction="http://tempuri.org/Lista_Bienes_toma_inventario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_actfijo_Pen">
+      <soap:operation soapAction="http://tempuri.org/Lista_actfijo_Pen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasMes_ActF">
+      <soap:operation soapAction="http://tempuri.org/Lista_AltasMes_ActF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasCuentOrd_M">
+      <soap:operation soapAction="http://tempuri.org/Lista_AltasCuentOrd_M" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub">
+      <soap:operation soapAction="http://tempuri.org/Lista_Inventario_ActsGrup_Sub" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub2">
+      <soap:operation soapAction="http://tempuri.org/Lista_Inventario_ActsGrup_Sub2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Invent_ActxGrupoySubGRSMN">
+      <soap:operation soapAction="http://tempuri.org/Lista_Invent_ActxGrupoySubGRSMN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActivosxCC">
+      <soap:operation soapAction="http://tempuri.org/Lista_Inventario_ActivosxCC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ActivoFijoSoap12" type="tns:ActivoFijoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Listar_actfijo_cons_inv">
+      <soap12:operation soapAction="http://tempuri.org/Listar_actfijo_cons_inv" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_formato_7_1">
+      <soap12:operation soapAction="http://tempuri.org/Listar_formato_7_1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_invent_actxgrupoysubgrsmn">
+      <soap12:operation soapAction="http://tempuri.org/Listar_invent_actxgrupoysubgrsmn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcc">
+      <soap12:operation soapAction="http://tempuri.org/Listar_inventario_activosxcc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxccrsm">
+      <soap12:operation soapAction="http://tempuri.org/Listar_inventario_activosxccrsm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcustod">
+      <soap12:operation soapAction="http://tempuri.org/Listar_inventario_activosxcustod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_actsgrup_sub">
+      <soap12:operation soapAction="http://tempuri.org/Listar_inventario_actsgrup_sub" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Bienes_toma_inventario">
+      <soap12:operation soapAction="http://tempuri.org/Lista_Bienes_toma_inventario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_actfijo_Pen">
+      <soap12:operation soapAction="http://tempuri.org/Lista_actfijo_Pen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasMes_ActF">
+      <soap12:operation soapAction="http://tempuri.org/Lista_AltasMes_ActF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasCuentOrd_M">
+      <soap12:operation soapAction="http://tempuri.org/Lista_AltasCuentOrd_M" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub">
+      <soap12:operation soapAction="http://tempuri.org/Lista_Inventario_ActsGrup_Sub" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub2">
+      <soap12:operation soapAction="http://tempuri.org/Lista_Inventario_ActsGrup_Sub2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Invent_ActxGrupoySubGRSMN">
+      <soap12:operation soapAction="http://tempuri.org/Lista_Invent_ActxGrupoySubGRSMN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActivosxCC">
+      <soap12:operation soapAction="http://tempuri.org/Lista_Inventario_ActivosxCC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ActivoFijoHttpGet" type="tns:ActivoFijoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Listar_actfijo_cons_inv">
+      <http:operation location="/Listar_actfijo_cons_inv" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_formato_7_1">
+      <http:operation location="/Listar_formato_7_1" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_invent_actxgrupoysubgrsmn">
+      <http:operation location="/Listar_invent_actxgrupoysubgrsmn" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcc">
+      <http:operation location="/Listar_inventario_activosxcc" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxccrsm">
+      <http:operation location="/Listar_inventario_activosxccrsm" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcustod">
+      <http:operation location="/Listar_inventario_activosxcustod" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_actsgrup_sub">
+      <http:operation location="/Listar_inventario_actsgrup_sub" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Bienes_toma_inventario">
+      <http:operation location="/Lista_Bienes_toma_inventario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_actfijo_Pen">
+      <http:operation location="/Lista_actfijo_Pen" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasMes_ActF">
+      <http:operation location="/Lista_AltasMes_ActF" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasCuentOrd_M">
+      <http:operation location="/Lista_AltasCuentOrd_M" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub">
+      <http:operation location="/Lista_Inventario_ActsGrup_Sub" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub2">
+      <http:operation location="/Lista_Inventario_ActsGrup_Sub2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Invent_ActxGrupoySubGRSMN">
+      <http:operation location="/Lista_Invent_ActxGrupoySubGRSMN" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActivosxCC">
+      <http:operation location="/Lista_Inventario_ActivosxCC" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ActivoFijoHttpPost" type="tns:ActivoFijoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Listar_actfijo_cons_inv">
+      <http:operation location="/Listar_actfijo_cons_inv" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_formato_7_1">
+      <http:operation location="/Listar_formato_7_1" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_invent_actxgrupoysubgrsmn">
+      <http:operation location="/Listar_invent_actxgrupoysubgrsmn" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcc">
+      <http:operation location="/Listar_inventario_activosxcc" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxccrsm">
+      <http:operation location="/Listar_inventario_activosxccrsm" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_activosxcustod">
+      <http:operation location="/Listar_inventario_activosxcustod" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_inventario_actsgrup_sub">
+      <http:operation location="/Listar_inventario_actsgrup_sub" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Bienes_toma_inventario">
+      <http:operation location="/Lista_Bienes_toma_inventario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_actfijo_Pen">
+      <http:operation location="/Lista_actfijo_Pen" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasMes_ActF">
+      <http:operation location="/Lista_AltasMes_ActF" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_AltasCuentOrd_M">
+      <http:operation location="/Lista_AltasCuentOrd_M" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub">
+      <http:operation location="/Lista_Inventario_ActsGrup_Sub" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActsGrup_Sub2">
+      <http:operation location="/Lista_Inventario_ActsGrup_Sub2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Invent_ActxGrupoySubGRSMN">
+      <http:operation location="/Lista_Invent_ActxGrupoySubGRSMN" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_Inventario_ActivosxCC">
+      <http:operation location="/Lista_Inventario_ActivosxCC" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ActivoFijo">
+    <wsdl:port name="ActivoFijoSoap" binding="tns:ActivoFijoSoap">
+      <soap:address location="http://10.10.18.10:90/Core/GestionActivoFijo/activofijo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ActivoFijoSoap12" binding="tns:ActivoFijoSoap12">
+      <soap12:address location="http://10.10.18.10:90/Core/GestionActivoFijo/activofijo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ActivoFijoHttpGet" binding="tns:ActivoFijoHttpGet">
+      <http:address location="http://10.10.18.10:90/Core/GestionActivoFijo/activofijo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ActivoFijoHttpPost" binding="tns:ActivoFijoHttpPost">
+      <http:address location="http://10.10.18.10:90/Core/GestionActivoFijo/activofijo.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

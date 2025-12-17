@@ -1,0 +1,211 @@
+﻿/* Estilo base para el botón celeste */
+.button-celeste {
+    background-color: #007bff; /* Color celeste */
+    color: white; /* Letras blancas */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    text-align: center; /* Centrar el texto */
+    font-size: 16px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cursor de mano */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición suave del color */
+    /* Configuración para el fondo con imagen */
+    background-size: cover; /* La imagen se expande para cubrir todo el botón */
+    background-position: center; /* La imagen se centra dentro del botón */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+    /* Efecto hover: cuando se pasa el mouse sobre el botón */
+    .button-celeste:hover {
+        background-color: #009acd; /* Celeste más oscuro */
+    }
+
+
+/* Estilo para autodimendionzar el ancho de una etiqueta según su contenido */
+.auto-resize-label {
+    display: inline-block; /* Para asegurarse de que la etiqueta pueda expandirse en bloque */
+    /*  width: 100%;             /* Ajusta el ancho al contenedor padre, puede cambiarse */
+    height: auto; /* Autoajusta la altura según el contenido */
+    word-wrap: break-word; /* Rompe palabras largas si es necesario */
+    white-space: normal; /* Permite que el texto envuelva líneas */
+    overflow-wrap: break-word; /* Rompe el texto en palabras largas si es necesario */
+    padding: 5px; /* Espacio interno para mejor apariencia */
+    /*   background-color: #e5ecef; /* Color de fondo personalizado */
+    /*   border: 1px solid #ccc;  /* Borde opcional para resaltar el control */
+}
+
+/* Estilo base para TextBox y DropDownList */
+.input-control {
+    background-color: white; /* Fondo blanco */
+    border: 1px solid #ccc; /* Borde gris claro */
+    padding: 10px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de la fuente */
+    border-radius: 5px; /* Bordes redondeados */
+    outline: none; /* Elimina el borde de enfoque predeterminado */
+    transition: border-color 0.3s ease; /* Transición suave del color del borde */
+    width: 100%; /* Ajusta el ancho del control */
+    box-sizing: border-box; /* Evita que el padding afecte el ancho total */
+    color: black; /* Color del texto negro */
+}
+
+    /* Estilo al recibir foco (focus) */
+    .input-control:focus {
+        border-color: #00bfff; /* Borde celeste cuando está en foco */
+    }
+
+/* Para DropDownList: eliminar el estilo por defecto del navegador */
+select.input-control {
+    appearance: none; /* Elimina el estilo predeterminado */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 width%3D%224%22 height%3D%225%22 viewBox%3D%220 0 4 5%22%3E%3Cpath fill%3D%22%23000000%22 d%3D%22M2 0L0 2h4zM0 3l2 2 2-2z%22/%3E%3C/svg%3E'); /* Flecha personalizada */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+
+/* Estilo para el ImageButton */
+.image-button {
+    border: 2px solid #007bff; /* Borde celeste */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: transparent; /* Fondo transparente */
+    padding: 0; /* Sin espaciado interno para no afectar la imagen */
+    cursor: pointer; /* Cursor de mano */
+    transition: border-color 0.3s ease; /* Transición suave del color del borde */
+    display: inline-block; /* Permitir que el tamaño del botón dependa del contenido (imagen) */
+}
+
+    /* Efecto hover: cambia el color del borde al pasar el mouse */
+    .image-button:hover {
+        border-color: #00bfff; /* Cambia el borde a un celeste más claro */
+    }
+
+/* Añade una tabulación a la izquierda */
+.tabulacion-control {
+    background-color: #e5ecef; /* Establece el color de fondo gris del control */
+    padding-left: 20px; /* Añade un espaciado interno a la izquierda */
+    padding-top: 10px; /* Espaciado interno en la parte superior */
+    padding-bottom: 10px; /* Espaciado interno en la parte inferior */
+    padding-right: 10px; /* Espaciado interno a la derecha */
+    display: inline-block; /* Permite que el label ajuste su tamaño al contenido */
+}
+
+/******** Estilo general para el GridView *************/
+/* Contenedor de la grilla para margen y ajuste responsive */
+.STgridview-container {
+    margin: 0 auto;
+    padding: 0 15px; /* Márgenes laterales */
+    overflow-x: auto; /* Hacer la grilla scrollable en pantallas pequeñas */
+}
+
+/* Estilo general para el GridView */
+.STgridview {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #007bff;
+}
+
+.STtitulo-header {
+    background-color: #b2dfdb; /* Color de fondo */
+    color: #007bff !important; /* Color del texto celeste= #007bff  , antes white */
+    font-weight: bold; /* Negrita */
+    text-align: center; /* Alinear el texto al centro */
+    font-size: 14px; /* Tamaño de letra */
+    padding: 10px; /* Espaciado interno */
+}
+
+/* Cabecera del GridView */
+.STgridview th {
+    background-color: #b2dfdb; /* Verde agua clara */
+    color: #007bff; /* Color de letra */
+    font-size: 16px; /* Tamaño de fuente más grande */
+    font-weight: bold; /* Negrita */
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid #00796b;
+    cursor: pointer; /* Mostrar icono de mano al pasar sobre cabecera */
+    transition: color 0.3s; /* Animación suave para cambio de color */
+}
+
+    /* Cambiar color de texto al pasar el mouse sobre la cabecera */
+    .STgridview th:hover {
+        color: #ff5722; /* Color del texto al pasar el mouse */
+    }
+
+    /* Cambiar color de texto cuando se hace clic */
+    .STgridview th:active {
+        color: #ff9800; /* Color del texto al hacer clic */
+    }
+
+/* Filas del GridView */
+.STgridview td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 14px;
+}
+
+/* Alternar color de fondo para filas */
+.STgridview tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover sobre las filas */
+.STgridview tr:hover {
+    background-color: #e0f2f1;
+}
+
+/* Estilo para la fila de selección, si se usa */
+.STgridview tr.selected-row {
+    background-color: #a7ffeb; /* Verde menta claro */
+    font-weight: bold;
+}
+
+/* Estilo para el pie de página */
+.STgridview tfoot {
+    background-color: #80cbc4;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+/*  colocar dos div horizontalmente */
+
+.DIVcontainer {
+    display: flex;
+    justify-content: space-between; /* Espaciado entre los div */
+    align-items: center; /* Alineación vertical opcional */
+}
+
+.DIVbox {
+    width: 150px;
+    height: 100px;
+    background-color: lightblue;
+    border: 1px solid #000;
+    text-align: center;
+    line-height: 100px; /* Centrar texto verticalmente */
+}
+.boxInline {
+    display: inline-block;
+    width: 200px;
+    height: 100px;
+    margin-right: 20px; /* Espaciado entre los div */
+    background-color: lightyellow;
+    border: 1px solid #000;
+    text-align: center;
+    line-height: 100px;
+}
+
+.mensaje {
+    color: #1E90FF !important; /* Fuerza el color azulino */
+    font-weight: bold;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+    .mensaje i {
+        margin-right: 6px; /* separa el icono del texto */
+    }

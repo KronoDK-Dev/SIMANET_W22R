@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="DetalleSolicitud">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_ID_SOLICITUD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_COD_DIV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleSolicitudResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleSolicitudResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleSolicitud2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_ID_SOLICITUD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_COD_DIV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleSolicitud2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleSolicitud2Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarSolicitudTrabajo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_AMBIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FILTRO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_UND_OPER" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FEC_STR_INI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FEC_STR_FIN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarSolicitudTrabajoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarSolicitudTrabajoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarSolicitudTrabajo2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_AMBIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FILTRO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_UND_OPER" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FEC_STR_INI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FEC_STR_FIN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarSolicitudTrabajo2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarSolicitudTrabajo2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarSolicitud">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="v_ambiente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_ceo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_div" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_nro_str" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_aus" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_tip_str" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_cli" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_und" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_sis" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_sub" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_eqp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_fec_str" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_nro_val" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_tip_tbj" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_pro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_est_atl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_des_abr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_des_det" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_nro_pro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_ref_str" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_ubc_eqp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_tip_tar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cls_tbj" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_nav" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_fec_ref" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_fec_acc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_alias_str" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_ind_cnv" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_fec_cnv" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_ibp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_tip_ots" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_usr_reg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_fec_reg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_ots_tar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_fec_rcp_str" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_hra_rcp_str" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_fec_ent_val" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_hra_ent_val" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_dique" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_sec" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_tipo_val" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_nro_ctto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_nro_sol_jde" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_est_prc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_ref_str_mgp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_fec_ref_mgp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_proyecto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_sublinea" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_otgenerica" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_numacti" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_actividad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_estructura" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_estacionregistro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_v_solicitud_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_v_embarcacion_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_v_cliente_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_und_ope" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_nro_revision" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_cod_presupuesto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="v_remitido" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarSolicitudResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertarSolicitudResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarSolicitud2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oSolicitudBE" type="tns:SolicitudBE" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SolicitudBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="V_AMBIENTE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_COD_CEO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_COD_DIV" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="X_NRO_STR" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_COD_AUS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_TIP_STR" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="X_COD_CLI" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="X_COD_UND" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="X_COD_SIS" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="X_COD_SUB" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="X_COD_EQP" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_FEC_STR" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="X_NRO_VAL" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_TIP_TBJ" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="X_COD_PRO" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_EST_ATL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_DES_ABR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_DES_DET" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="X_NRO_PRO" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_REF_STR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_UBC_EQP" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_TIP_TAR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_CLS_TBJ" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="X_COD_NAV" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_FEC_REF" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_FEC_ACC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_ALIAS_STR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_IND_CNV" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_FEC_CNV" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_IBP" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_TIP_OTS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_USR_REG" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_FEC_REG" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_OTS_TAR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_FEC_RCP_STR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_HRA_RCP_STR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_FEC_ENT_VAL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_HRA_ENT_VAL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_DIQUE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_COD_SEC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_TIPO_VAL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_NRO_CTTO" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="X_NRO_SOL_JDE" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="X_EST_PRC" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_REF_STR_MGP" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_FEC_REF_MGP" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_COD_CLIENTE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_PROYECTO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_SUBLINEA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_OTGENERICA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_NUMACTI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_ACTIVIDAD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_ESTRUCTURA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_ESTACIONREGISTRO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_V_SOLICITUD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_V_EMBARCACION_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_V_CLIENTE_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_UND_OPE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_NRO_REVISION" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_COD_PRESUPUESTO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X_REMITIDO" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseBE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdEstado" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImgEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdCodigo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ambiente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertarSolicitud2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertarSolicitud2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_lineas_Usuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sUsuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_lineas_UsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista_lineas_UsuarioResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DetalleSolicitudSoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleSolicitud" />
+  </wsdl:message>
+  <wsdl:message name="DetalleSolicitudSoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleSolicitudResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleSolicitud2SoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleSolicitud2" />
+  </wsdl:message>
+  <wsdl:message name="DetalleSolicitud2SoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleSolicitud2Response" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudTrabajoSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarSolicitudTrabajo" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudTrabajoSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarSolicitudTrabajoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudTrabajo2SoapIn">
+    <wsdl:part name="parameters" element="tns:ListarSolicitudTrabajo2" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudTrabajo2SoapOut">
+    <wsdl:part name="parameters" element="tns:ListarSolicitudTrabajo2Response" />
+  </wsdl:message>
+  <wsdl:message name="InsertarSolicitudSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertarSolicitud" />
+  </wsdl:message>
+  <wsdl:message name="InsertarSolicitudSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertarSolicitudResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertarSolicitud2SoapIn">
+    <wsdl:part name="parameters" element="tns:InsertarSolicitud2" />
+  </wsdl:message>
+  <wsdl:message name="InsertarSolicitud2SoapOut">
+    <wsdl:part name="parameters" element="tns:InsertarSolicitud2Response" />
+  </wsdl:message>
+  <wsdl:message name="Lista_lineas_UsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:Lista_lineas_Usuario" />
+  </wsdl:message>
+  <wsdl:message name="Lista_lineas_UsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:Lista_lineas_UsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleSolicitudHttpGetIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_ID_SOLICITUD" type="s:string" />
+    <wsdl:part name="V_COD_DIV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetalleSolicitudHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetalleSolicitud2HttpGetIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_ID_SOLICITUD" type="s:string" />
+    <wsdl:part name="V_COD_DIV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetalleSolicitud2HttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudTrabajoHttpGetIn">
+    <wsdl:part name="V_AMBIENTE" type="s:string" />
+    <wsdl:part name="V_FILTRO" type="s:string" />
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_UND_OPER" type="s:string" />
+    <wsdl:part name="V_FEC_STR_INI" type="s:string" />
+    <wsdl:part name="V_FEC_STR_FIN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudTrabajoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudTrabajo2HttpGetIn">
+    <wsdl:part name="V_AMBIENTE" type="s:string" />
+    <wsdl:part name="V_FILTRO" type="s:string" />
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_UND_OPER" type="s:string" />
+    <wsdl:part name="V_FEC_STR_INI" type="s:string" />
+    <wsdl:part name="V_FEC_STR_FIN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudTrabajo2HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarSolicitudHttpGetIn">
+    <wsdl:part name="v_ambiente" type="s:string" />
+    <wsdl:part name="v_cod_ceo" type="s:string" />
+    <wsdl:part name="v_cod_div" type="s:string" />
+    <wsdl:part name="v_nro_str" type="s:string" />
+    <wsdl:part name="v_cod_aus" type="s:string" />
+    <wsdl:part name="v_tip_str" type="s:string" />
+    <wsdl:part name="v_cod_cli" type="s:string" />
+    <wsdl:part name="v_cod_und" type="s:string" />
+    <wsdl:part name="v_cod_sis" type="s:string" />
+    <wsdl:part name="v_cod_sub" type="s:string" />
+    <wsdl:part name="v_cod_eqp" type="s:string" />
+    <wsdl:part name="v_fec_str" type="s:string" />
+    <wsdl:part name="v_nro_val" type="s:string" />
+    <wsdl:part name="v_tip_tbj" type="s:string" />
+    <wsdl:part name="v_cod_pro" type="s:string" />
+    <wsdl:part name="v_est_atl" type="s:string" />
+    <wsdl:part name="v_des_abr" type="s:string" />
+    <wsdl:part name="v_des_det" type="s:string" />
+    <wsdl:part name="v_nro_pro" type="s:string" />
+    <wsdl:part name="v_ref_str" type="s:string" />
+    <wsdl:part name="v_ubc_eqp" type="s:string" />
+    <wsdl:part name="v_tip_tar" type="s:string" />
+    <wsdl:part name="v_cls_tbj" type="s:string" />
+    <wsdl:part name="v_cod_nav" type="s:string" />
+    <wsdl:part name="v_fec_ref" type="s:string" />
+    <wsdl:part name="v_fec_acc" type="s:string" />
+    <wsdl:part name="v_alias_str" type="s:string" />
+    <wsdl:part name="v_ind_cnv" type="s:string" />
+    <wsdl:part name="v_fec_cnv" type="s:string" />
+    <wsdl:part name="v_ibp" type="s:string" />
+    <wsdl:part name="v_tip_ots" type="s:string" />
+    <wsdl:part name="v_usr_reg" type="s:string" />
+    <wsdl:part name="v_fec_reg" type="s:string" />
+    <wsdl:part name="v_ots_tar" type="s:string" />
+    <wsdl:part name="v_fec_rcp_str" type="s:string" />
+    <wsdl:part name="v_hra_rcp_str" type="s:string" />
+    <wsdl:part name="v_fec_ent_val" type="s:string" />
+    <wsdl:part name="v_hra_ent_val" type="s:string" />
+    <wsdl:part name="v_dique" type="s:string" />
+    <wsdl:part name="v_cod_sec" type="s:string" />
+    <wsdl:part name="v_tipo_val" type="s:string" />
+    <wsdl:part name="v_nro_ctto" type="s:string" />
+    <wsdl:part name="v_nro_sol_jde" type="s:string" />
+    <wsdl:part name="v_est_prc" type="s:string" />
+    <wsdl:part name="v_ref_str_mgp" type="s:string" />
+    <wsdl:part name="v_fec_ref_mgp" type="s:string" />
+    <wsdl:part name="v_cod_cliente" type="s:string" />
+    <wsdl:part name="v_proyecto" type="s:string" />
+    <wsdl:part name="v_sublinea" type="s:string" />
+    <wsdl:part name="v_otgenerica" type="s:string" />
+    <wsdl:part name="v_numacti" type="s:string" />
+    <wsdl:part name="v_actividad" type="s:string" />
+    <wsdl:part name="v_estructura" type="s:string" />
+    <wsdl:part name="v_estacionregistro" type="s:string" />
+    <wsdl:part name="v_v_solicitud_id" type="s:string" />
+    <wsdl:part name="v_v_embarcacion_id" type="s:string" />
+    <wsdl:part name="v_v_cliente_id" type="s:string" />
+    <wsdl:part name="v_und_ope" type="s:string" />
+    <wsdl:part name="v_nro_revision" type="s:string" />
+    <wsdl:part name="v_cod_presupuesto" type="s:string" />
+    <wsdl:part name="v_remitido" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarSolicitudHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_lineas_UsuarioHttpGetIn">
+    <wsdl:part name="sUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_lineas_UsuarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetalleSolicitudHttpPostIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_ID_SOLICITUD" type="s:string" />
+    <wsdl:part name="V_COD_DIV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetalleSolicitudHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetalleSolicitud2HttpPostIn">
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_ID_SOLICITUD" type="s:string" />
+    <wsdl:part name="V_COD_DIV" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetalleSolicitud2HttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudTrabajoHttpPostIn">
+    <wsdl:part name="V_AMBIENTE" type="s:string" />
+    <wsdl:part name="V_FILTRO" type="s:string" />
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_UND_OPER" type="s:string" />
+    <wsdl:part name="V_FEC_STR_INI" type="s:string" />
+    <wsdl:part name="V_FEC_STR_FIN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudTrabajoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudTrabajo2HttpPostIn">
+    <wsdl:part name="V_AMBIENTE" type="s:string" />
+    <wsdl:part name="V_FILTRO" type="s:string" />
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_UND_OPER" type="s:string" />
+    <wsdl:part name="V_FEC_STR_INI" type="s:string" />
+    <wsdl:part name="V_FEC_STR_FIN" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarSolicitudTrabajo2HttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarSolicitudHttpPostIn">
+    <wsdl:part name="v_ambiente" type="s:string" />
+    <wsdl:part name="v_cod_ceo" type="s:string" />
+    <wsdl:part name="v_cod_div" type="s:string" />
+    <wsdl:part name="v_nro_str" type="s:string" />
+    <wsdl:part name="v_cod_aus" type="s:string" />
+    <wsdl:part name="v_tip_str" type="s:string" />
+    <wsdl:part name="v_cod_cli" type="s:string" />
+    <wsdl:part name="v_cod_und" type="s:string" />
+    <wsdl:part name="v_cod_sis" type="s:string" />
+    <wsdl:part name="v_cod_sub" type="s:string" />
+    <wsdl:part name="v_cod_eqp" type="s:string" />
+    <wsdl:part name="v_fec_str" type="s:string" />
+    <wsdl:part name="v_nro_val" type="s:string" />
+    <wsdl:part name="v_tip_tbj" type="s:string" />
+    <wsdl:part name="v_cod_pro" type="s:string" />
+    <wsdl:part name="v_est_atl" type="s:string" />
+    <wsdl:part name="v_des_abr" type="s:string" />
+    <wsdl:part name="v_des_det" type="s:string" />
+    <wsdl:part name="v_nro_pro" type="s:string" />
+    <wsdl:part name="v_ref_str" type="s:string" />
+    <wsdl:part name="v_ubc_eqp" type="s:string" />
+    <wsdl:part name="v_tip_tar" type="s:string" />
+    <wsdl:part name="v_cls_tbj" type="s:string" />
+    <wsdl:part name="v_cod_nav" type="s:string" />
+    <wsdl:part name="v_fec_ref" type="s:string" />
+    <wsdl:part name="v_fec_acc" type="s:string" />
+    <wsdl:part name="v_alias_str" type="s:string" />
+    <wsdl:part name="v_ind_cnv" type="s:string" />
+    <wsdl:part name="v_fec_cnv" type="s:string" />
+    <wsdl:part name="v_ibp" type="s:string" />
+    <wsdl:part name="v_tip_ots" type="s:string" />
+    <wsdl:part name="v_usr_reg" type="s:string" />
+    <wsdl:part name="v_fec_reg" type="s:string" />
+    <wsdl:part name="v_ots_tar" type="s:string" />
+    <wsdl:part name="v_fec_rcp_str" type="s:string" />
+    <wsdl:part name="v_hra_rcp_str" type="s:string" />
+    <wsdl:part name="v_fec_ent_val" type="s:string" />
+    <wsdl:part name="v_hra_ent_val" type="s:string" />
+    <wsdl:part name="v_dique" type="s:string" />
+    <wsdl:part name="v_cod_sec" type="s:string" />
+    <wsdl:part name="v_tipo_val" type="s:string" />
+    <wsdl:part name="v_nro_ctto" type="s:string" />
+    <wsdl:part name="v_nro_sol_jde" type="s:string" />
+    <wsdl:part name="v_est_prc" type="s:string" />
+    <wsdl:part name="v_ref_str_mgp" type="s:string" />
+    <wsdl:part name="v_fec_ref_mgp" type="s:string" />
+    <wsdl:part name="v_cod_cliente" type="s:string" />
+    <wsdl:part name="v_proyecto" type="s:string" />
+    <wsdl:part name="v_sublinea" type="s:string" />
+    <wsdl:part name="v_otgenerica" type="s:string" />
+    <wsdl:part name="v_numacti" type="s:string" />
+    <wsdl:part name="v_actividad" type="s:string" />
+    <wsdl:part name="v_estructura" type="s:string" />
+    <wsdl:part name="v_estacionregistro" type="s:string" />
+    <wsdl:part name="v_v_solicitud_id" type="s:string" />
+    <wsdl:part name="v_v_embarcacion_id" type="s:string" />
+    <wsdl:part name="v_v_cliente_id" type="s:string" />
+    <wsdl:part name="v_und_ope" type="s:string" />
+    <wsdl:part name="v_nro_revision" type="s:string" />
+    <wsdl:part name="v_cod_presupuesto" type="s:string" />
+    <wsdl:part name="v_remitido" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarSolicitudHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_lineas_UsuarioHttpPostIn">
+    <wsdl:part name="sUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Lista_lineas_UsuarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:portType name="SolicitudSoap">
+    <wsdl:operation name="DetalleSolicitud">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de la Solicitud</wsdl:documentation>
+      <wsdl:input message="tns:DetalleSolicitudSoapIn" />
+      <wsdl:output message="tns:DetalleSolicitudSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleSolicitud2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de la Solicitud 2</wsdl:documentation>
+      <wsdl:input message="tns:DetalleSolicitud2SoapIn" />
+      <wsdl:output message="tns:DetalleSolicitud2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Solicitudes de Trabajo por CEO</wsdl:documentation>
+      <wsdl:input message="tns:ListarSolicitudTrabajoSoapIn" />
+      <wsdl:output message="tns:ListarSolicitudTrabajoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Solicitudes de Trabajo , por Metodo xml string</wsdl:documentation>
+      <wsdl:input message="tns:ListarSolicitudTrabajo2SoapIn" />
+      <wsdl:output message="tns:ListarSolicitudTrabajo2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSolicitud">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserción de Solicitudes de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:InsertarSolicitudSoapIn" />
+      <wsdl:output message="tns:InsertarSolicitudSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSolicitud2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserción de Solicitudes de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:InsertarSolicitud2SoapIn" />
+      <wsdl:output message="tns:InsertarSolicitud2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_lineas_Usuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Lineas de Negocio de Usuarios</wsdl:documentation>
+      <wsdl:input message="tns:Lista_lineas_UsuarioSoapIn" />
+      <wsdl:output message="tns:Lista_lineas_UsuarioSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SolicitudHttpGet">
+    <wsdl:operation name="DetalleSolicitud">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de la Solicitud</wsdl:documentation>
+      <wsdl:input message="tns:DetalleSolicitudHttpGetIn" />
+      <wsdl:output message="tns:DetalleSolicitudHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleSolicitud2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de la Solicitud 2</wsdl:documentation>
+      <wsdl:input message="tns:DetalleSolicitud2HttpGetIn" />
+      <wsdl:output message="tns:DetalleSolicitud2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Solicitudes de Trabajo por CEO</wsdl:documentation>
+      <wsdl:input message="tns:ListarSolicitudTrabajoHttpGetIn" />
+      <wsdl:output message="tns:ListarSolicitudTrabajoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Solicitudes de Trabajo , por Metodo xml string</wsdl:documentation>
+      <wsdl:input message="tns:ListarSolicitudTrabajo2HttpGetIn" />
+      <wsdl:output message="tns:ListarSolicitudTrabajo2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSolicitud">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserción de Solicitudes de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:InsertarSolicitudHttpGetIn" />
+      <wsdl:output message="tns:InsertarSolicitudHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_lineas_Usuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Lineas de Negocio de Usuarios</wsdl:documentation>
+      <wsdl:input message="tns:Lista_lineas_UsuarioHttpGetIn" />
+      <wsdl:output message="tns:Lista_lineas_UsuarioHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SolicitudHttpPost">
+    <wsdl:operation name="DetalleSolicitud">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de la Solicitud</wsdl:documentation>
+      <wsdl:input message="tns:DetalleSolicitudHttpPostIn" />
+      <wsdl:output message="tns:DetalleSolicitudHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleSolicitud2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de la Solicitud 2</wsdl:documentation>
+      <wsdl:input message="tns:DetalleSolicitud2HttpPostIn" />
+      <wsdl:output message="tns:DetalleSolicitud2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Solicitudes de Trabajo por CEO</wsdl:documentation>
+      <wsdl:input message="tns:ListarSolicitudTrabajoHttpPostIn" />
+      <wsdl:output message="tns:ListarSolicitudTrabajoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Solicitudes de Trabajo , por Metodo xml string</wsdl:documentation>
+      <wsdl:input message="tns:ListarSolicitudTrabajo2HttpPostIn" />
+      <wsdl:output message="tns:ListarSolicitudTrabajo2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSolicitud">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserción de Solicitudes de Trabajo</wsdl:documentation>
+      <wsdl:input message="tns:InsertarSolicitudHttpPostIn" />
+      <wsdl:output message="tns:InsertarSolicitudHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_lineas_Usuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Lineas de Negocio de Usuarios</wsdl:documentation>
+      <wsdl:input message="tns:Lista_lineas_UsuarioHttpPostIn" />
+      <wsdl:output message="tns:Lista_lineas_UsuarioHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SolicitudSoap" type="tns:SolicitudSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DetalleSolicitud">
+      <soap:operation soapAction="http://tempuri.org/DetalleSolicitud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleSolicitud2">
+      <soap:operation soapAction="http://tempuri.org/DetalleSolicitud2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo">
+      <soap:operation soapAction="http://tempuri.org/ListarSolicitudTrabajo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo2">
+      <soap:operation soapAction="http://tempuri.org/ListarSolicitudTrabajo2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSolicitud">
+      <soap:operation soapAction="http://tempuri.org/InsertarSolicitud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSolicitud2">
+      <soap:operation soapAction="http://tempuri.org/InsertarSolicitud2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_lineas_Usuario">
+      <soap:operation soapAction="http://tempuri.org/Lista_lineas_Usuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SolicitudSoap12" type="tns:SolicitudSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DetalleSolicitud">
+      <soap12:operation soapAction="http://tempuri.org/DetalleSolicitud" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleSolicitud2">
+      <soap12:operation soapAction="http://tempuri.org/DetalleSolicitud2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo">
+      <soap12:operation soapAction="http://tempuri.org/ListarSolicitudTrabajo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo2">
+      <soap12:operation soapAction="http://tempuri.org/ListarSolicitudTrabajo2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSolicitud">
+      <soap12:operation soapAction="http://tempuri.org/InsertarSolicitud" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSolicitud2">
+      <soap12:operation soapAction="http://tempuri.org/InsertarSolicitud2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_lineas_Usuario">
+      <soap12:operation soapAction="http://tempuri.org/Lista_lineas_Usuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SolicitudHttpGet" type="tns:SolicitudHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="DetalleSolicitud">
+      <http:operation location="/DetalleSolicitud" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleSolicitud2">
+      <http:operation location="/DetalleSolicitud2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo">
+      <http:operation location="/ListarSolicitudTrabajo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo2">
+      <http:operation location="/ListarSolicitudTrabajo2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSolicitud">
+      <http:operation location="/InsertarSolicitud" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_lineas_Usuario">
+      <http:operation location="/Lista_lineas_Usuario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SolicitudHttpPost" type="tns:SolicitudHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="DetalleSolicitud">
+      <http:operation location="/DetalleSolicitud" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleSolicitud2">
+      <http:operation location="/DetalleSolicitud2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo">
+      <http:operation location="/ListarSolicitudTrabajo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSolicitudTrabajo2">
+      <http:operation location="/ListarSolicitudTrabajo2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSolicitud">
+      <http:operation location="/InsertarSolicitud" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_lineas_Usuario">
+      <http:operation location="/Lista_lineas_Usuario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Solicitud">
+    <wsdl:port name="SolicitudSoap" binding="tns:SolicitudSoap">
+      <soap:address location="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SolicitudSoap12" binding="tns:SolicitudSoap12">
+      <soap12:address location="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SolicitudHttpGet" binding="tns:SolicitudHttpGet">
+      <http:address location="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SolicitudHttpPost" binding="tns:SolicitudHttpPost">
+      <http:address location="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,2089 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="BuscarServicioPorNombre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarServicioPorNombreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarServicioPorNombreResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServicioDetalle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdServicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServicioDetalleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServicioDetalleResult" type="tns:ServicioBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ServicioBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="IdServicioProducto" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IdPadre" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Interno" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Producto" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseBE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdEstado" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImgEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdCodigo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ambiente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ServicioListarAll">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServicioListarAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServicioListarAllResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarServiosyProductos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdServicioPadre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarServiosyProductosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarServiosyProductosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarServiosPorArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdServicioPadre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoArea" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdTipoServicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarServiosPorAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarServiosPorAreaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServiciosModificaInserta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdServicioProducto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdPadre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Interno" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Producto" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServiciosModificaInsertaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiciosModificaInsertaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoModificaInserta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdAccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdAccionRel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdAccionTo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdTipoOj" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccionesBasicas" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Atributo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orden" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdActividad" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoModificaInsertaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProcedimientoModificaInsertaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoListarPorActividad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdActividad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoListarPorActividadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProcedimientoListarPorActividadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoListarTareaPorActividad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdActividad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoListarTareaPorActividadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProcedimientoListarTareaPorActividadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoDelAccionXActividad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdAccion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoDelAccionXActividadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProcedimientoDelAccionXActividadResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoNotaListarPorAccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdAccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdNota" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoNotaListarPorAccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProcedimientoNotaListarPorAccionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoNotaDetallePorAccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdAccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdNota" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoNotaDetallePorAccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProcedimientoNotaDetallePorAccionResult" type="tns:ProcedimientoNotaBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProcedimientoNotaBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="IdNota" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IdAccion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Titulo" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdTipoNota" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="TipoNota" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ProcedimientoNotaIns">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdAccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdNota" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Titulo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdTipoNota" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoNotaInsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProcedimientoNotaInsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoNotaDel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdNota" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcedimientoNotaDelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProcedimientoNotaDelResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarAreasXServicio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdServProd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarAreasXServicioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarAreasXServicioResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarActvXServicio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdServProd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarActvXServicioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarActvXServicioResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarRespxServicio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdServProd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarRespxServicioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarRespxServicioResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarActvChck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdSistemaPadre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdServProd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarActvChckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarActvChckResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServicioAsignarActividad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdServicioProducto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdActividad" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Estado" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServicioAsignarActividadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServicioAsignarActividadResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServicioArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdServicioArea" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdServicioProducto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodEmp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodSuc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodArea" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServicioAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServicioAreaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServicioResponsable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdResponsable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdServArea" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdPersonal" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Principal" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServicioResponsableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServicioResponsableResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServicioBE" nillable="true" type="tns:ServicioBE" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ProcedimientoNotaBE" nillable="true" type="tns:ProcedimientoNotaBE" />
+      <s:element name="int" type="s:int" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="BuscarServicioPorNombreSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarServicioPorNombre" />
+  </wsdl:message>
+  <wsdl:message name="BuscarServicioPorNombreSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarServicioPorNombreResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServicioDetalleSoapIn">
+    <wsdl:part name="parameters" element="tns:ServicioDetalle" />
+  </wsdl:message>
+  <wsdl:message name="ServicioDetalleSoapOut">
+    <wsdl:part name="parameters" element="tns:ServicioDetalleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServicioListarAllSoapIn">
+    <wsdl:part name="parameters" element="tns:ServicioListarAll" />
+  </wsdl:message>
+  <wsdl:message name="ServicioListarAllSoapOut">
+    <wsdl:part name="parameters" element="tns:ServicioListarAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarServiosyProductosSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarServiosyProductos" />
+  </wsdl:message>
+  <wsdl:message name="ListarServiosyProductosSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarServiosyProductosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarServiosPorAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarServiosPorArea" />
+  </wsdl:message>
+  <wsdl:message name="ListarServiosPorAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarServiosPorAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiciosModificaInsertaSoapIn">
+    <wsdl:part name="parameters" element="tns:ServiciosModificaInserta" />
+  </wsdl:message>
+  <wsdl:message name="ServiciosModificaInsertaSoapOut">
+    <wsdl:part name="parameters" element="tns:ServiciosModificaInsertaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoModificaInsertaSoapIn">
+    <wsdl:part name="parameters" element="tns:ProcedimientoModificaInserta" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoModificaInsertaSoapOut">
+    <wsdl:part name="parameters" element="tns:ProcedimientoModificaInsertaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoListarPorActividadSoapIn">
+    <wsdl:part name="parameters" element="tns:ProcedimientoListarPorActividad" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoListarPorActividadSoapOut">
+    <wsdl:part name="parameters" element="tns:ProcedimientoListarPorActividadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoListarTareaPorActividadSoapIn">
+    <wsdl:part name="parameters" element="tns:ProcedimientoListarTareaPorActividad" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoListarTareaPorActividadSoapOut">
+    <wsdl:part name="parameters" element="tns:ProcedimientoListarTareaPorActividadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoDelAccionXActividadSoapIn">
+    <wsdl:part name="parameters" element="tns:ProcedimientoDelAccionXActividad" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoDelAccionXActividadSoapOut">
+    <wsdl:part name="parameters" element="tns:ProcedimientoDelAccionXActividadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaListarPorAccionSoapIn">
+    <wsdl:part name="parameters" element="tns:ProcedimientoNotaListarPorAccion" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaListarPorAccionSoapOut">
+    <wsdl:part name="parameters" element="tns:ProcedimientoNotaListarPorAccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaDetallePorAccionSoapIn">
+    <wsdl:part name="parameters" element="tns:ProcedimientoNotaDetallePorAccion" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaDetallePorAccionSoapOut">
+    <wsdl:part name="parameters" element="tns:ProcedimientoNotaDetallePorAccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaInsSoapIn">
+    <wsdl:part name="parameters" element="tns:ProcedimientoNotaIns" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaInsSoapOut">
+    <wsdl:part name="parameters" element="tns:ProcedimientoNotaInsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaDelSoapIn">
+    <wsdl:part name="parameters" element="tns:ProcedimientoNotaDel" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaDelSoapOut">
+    <wsdl:part name="parameters" element="tns:ProcedimientoNotaDelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarAreasXServicioSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarAreasXServicio" />
+  </wsdl:message>
+  <wsdl:message name="ListarAreasXServicioSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarAreasXServicioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarActvXServicioSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarActvXServicio" />
+  </wsdl:message>
+  <wsdl:message name="ListarActvXServicioSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarActvXServicioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarRespxServicioSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarRespxServicio" />
+  </wsdl:message>
+  <wsdl:message name="ListarRespxServicioSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarRespxServicioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarActvChckSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarActvChck" />
+  </wsdl:message>
+  <wsdl:message name="ListarActvChckSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarActvChckResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServicioAsignarActividadSoapIn">
+    <wsdl:part name="parameters" element="tns:ServicioAsignarActividad" />
+  </wsdl:message>
+  <wsdl:message name="ServicioAsignarActividadSoapOut">
+    <wsdl:part name="parameters" element="tns:ServicioAsignarActividadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServicioAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:ServicioArea" />
+  </wsdl:message>
+  <wsdl:message name="ServicioAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:ServicioAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServicioResponsableSoapIn">
+    <wsdl:part name="parameters" element="tns:ServicioResponsable" />
+  </wsdl:message>
+  <wsdl:message name="ServicioResponsableSoapOut">
+    <wsdl:part name="parameters" element="tns:ServicioResponsableResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarServicioPorNombreHttpGetIn">
+    <wsdl:part name="Nombre" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarServicioPorNombreHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ServicioDetalleHttpGetIn">
+    <wsdl:part name="IdServicio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioDetalleHttpGetOut">
+    <wsdl:part name="Body" element="tns:ServicioBE" />
+  </wsdl:message>
+  <wsdl:message name="ServicioListarAllHttpGetIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioListarAllHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarServiosyProductosHttpGetIn">
+    <wsdl:part name="IdServicioPadre" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarServiosyProductosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarServiosPorAreaHttpGetIn">
+    <wsdl:part name="IdServicioPadre" type="s:string" />
+    <wsdl:part name="CodigoArea" type="s:string" />
+    <wsdl:part name="IdTipoServicio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarServiosPorAreaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ServiciosModificaInsertaHttpGetIn">
+    <wsdl:part name="IdServicioProducto" type="s:string" />
+    <wsdl:part name="IdPadre" type="s:string" />
+    <wsdl:part name="Nombre" type="s:string" />
+    <wsdl:part name="Descripcion" type="s:string" />
+    <wsdl:part name="Interno" type="s:string" />
+    <wsdl:part name="Producto" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ServiciosModificaInsertaHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoModificaInsertaHttpGetIn">
+    <wsdl:part name="IdAccion" type="s:string" />
+    <wsdl:part name="IdAccionRel" type="s:string" />
+    <wsdl:part name="IdAccionTo" type="s:string" />
+    <wsdl:part name="IdTipoOj" type="s:string" />
+    <wsdl:part name="AccionesBasicas" type="s:string" />
+    <wsdl:part name="Atributo" type="s:string" />
+    <wsdl:part name="Orden" type="s:string" />
+    <wsdl:part name="IdActividad" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoModificaInsertaHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoListarPorActividadHttpGetIn">
+    <wsdl:part name="IdActividad" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoListarPorActividadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoListarTareaPorActividadHttpGetIn">
+    <wsdl:part name="IdActividad" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoListarTareaPorActividadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoDelAccionXActividadHttpGetIn">
+    <wsdl:part name="IdAccion" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoDelAccionXActividadHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaListarPorAccionHttpGetIn">
+    <wsdl:part name="IdAccion" type="s:string" />
+    <wsdl:part name="IdNota" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaListarPorAccionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaDetallePorAccionHttpGetIn">
+    <wsdl:part name="IdAccion" type="s:string" />
+    <wsdl:part name="IdNota" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaDetallePorAccionHttpGetOut">
+    <wsdl:part name="Body" element="tns:ProcedimientoNotaBE" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaInsHttpGetIn">
+    <wsdl:part name="IdAccion" type="s:string" />
+    <wsdl:part name="IdNota" type="s:string" />
+    <wsdl:part name="Titulo" type="s:string" />
+    <wsdl:part name="Descripcion" type="s:string" />
+    <wsdl:part name="IdTipoNota" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaInsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaDelHttpGetIn">
+    <wsdl:part name="IdNota" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaDelHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ListarAreasXServicioHttpGetIn">
+    <wsdl:part name="IdServProd" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarAreasXServicioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarActvXServicioHttpGetIn">
+    <wsdl:part name="IdServProd" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarActvXServicioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarRespxServicioHttpGetIn">
+    <wsdl:part name="IdServProd" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarRespxServicioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarActvChckHttpGetIn">
+    <wsdl:part name="IdSistemaPadre" type="s:string" />
+    <wsdl:part name="IdServProd" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarActvChckHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ServicioAsignarActividadHttpGetIn">
+    <wsdl:part name="IdServicioProducto" type="s:string" />
+    <wsdl:part name="IdActividad" type="s:string" />
+    <wsdl:part name="Estado" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioAsignarActividadHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioAreaHttpGetIn">
+    <wsdl:part name="IdServicioArea" type="s:string" />
+    <wsdl:part name="IdServicioProducto" type="s:string" />
+    <wsdl:part name="CodEmp" type="s:string" />
+    <wsdl:part name="CodSuc" type="s:string" />
+    <wsdl:part name="CodArea" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioAreaHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioResponsableHttpGetIn">
+    <wsdl:part name="IdResponsable" type="s:string" />
+    <wsdl:part name="IdServArea" type="s:string" />
+    <wsdl:part name="IdPersonal" type="s:string" />
+    <wsdl:part name="Principal" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioResponsableHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarServicioPorNombreHttpPostIn">
+    <wsdl:part name="Nombre" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarServicioPorNombreHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ServicioDetalleHttpPostIn">
+    <wsdl:part name="IdServicio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioDetalleHttpPostOut">
+    <wsdl:part name="Body" element="tns:ServicioBE" />
+  </wsdl:message>
+  <wsdl:message name="ServicioListarAllHttpPostIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioListarAllHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarServiosyProductosHttpPostIn">
+    <wsdl:part name="IdServicioPadre" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarServiosyProductosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarServiosPorAreaHttpPostIn">
+    <wsdl:part name="IdServicioPadre" type="s:string" />
+    <wsdl:part name="CodigoArea" type="s:string" />
+    <wsdl:part name="IdTipoServicio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarServiosPorAreaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ServiciosModificaInsertaHttpPostIn">
+    <wsdl:part name="IdServicioProducto" type="s:string" />
+    <wsdl:part name="IdPadre" type="s:string" />
+    <wsdl:part name="Nombre" type="s:string" />
+    <wsdl:part name="Descripcion" type="s:string" />
+    <wsdl:part name="Interno" type="s:string" />
+    <wsdl:part name="Producto" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ServiciosModificaInsertaHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoModificaInsertaHttpPostIn">
+    <wsdl:part name="IdAccion" type="s:string" />
+    <wsdl:part name="IdAccionRel" type="s:string" />
+    <wsdl:part name="IdAccionTo" type="s:string" />
+    <wsdl:part name="IdTipoOj" type="s:string" />
+    <wsdl:part name="AccionesBasicas" type="s:string" />
+    <wsdl:part name="Atributo" type="s:string" />
+    <wsdl:part name="Orden" type="s:string" />
+    <wsdl:part name="IdActividad" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoModificaInsertaHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoListarPorActividadHttpPostIn">
+    <wsdl:part name="IdActividad" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoListarPorActividadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoListarTareaPorActividadHttpPostIn">
+    <wsdl:part name="IdActividad" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoListarTareaPorActividadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoDelAccionXActividadHttpPostIn">
+    <wsdl:part name="IdAccion" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoDelAccionXActividadHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaListarPorAccionHttpPostIn">
+    <wsdl:part name="IdAccion" type="s:string" />
+    <wsdl:part name="IdNota" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaListarPorAccionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaDetallePorAccionHttpPostIn">
+    <wsdl:part name="IdAccion" type="s:string" />
+    <wsdl:part name="IdNota" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaDetallePorAccionHttpPostOut">
+    <wsdl:part name="Body" element="tns:ProcedimientoNotaBE" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaInsHttpPostIn">
+    <wsdl:part name="IdAccion" type="s:string" />
+    <wsdl:part name="IdNota" type="s:string" />
+    <wsdl:part name="Titulo" type="s:string" />
+    <wsdl:part name="Descripcion" type="s:string" />
+    <wsdl:part name="IdTipoNota" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaInsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaDelHttpPostIn">
+    <wsdl:part name="IdNota" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProcedimientoNotaDelHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ListarAreasXServicioHttpPostIn">
+    <wsdl:part name="IdServProd" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarAreasXServicioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarActvXServicioHttpPostIn">
+    <wsdl:part name="IdServProd" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarActvXServicioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarRespxServicioHttpPostIn">
+    <wsdl:part name="IdServProd" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarRespxServicioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarActvChckHttpPostIn">
+    <wsdl:part name="IdSistemaPadre" type="s:string" />
+    <wsdl:part name="IdServProd" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarActvChckHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ServicioAsignarActividadHttpPostIn">
+    <wsdl:part name="IdServicioProducto" type="s:string" />
+    <wsdl:part name="IdActividad" type="s:string" />
+    <wsdl:part name="Estado" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioAsignarActividadHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioAreaHttpPostIn">
+    <wsdl:part name="IdServicioArea" type="s:string" />
+    <wsdl:part name="IdServicioProducto" type="s:string" />
+    <wsdl:part name="CodEmp" type="s:string" />
+    <wsdl:part name="CodSuc" type="s:string" />
+    <wsdl:part name="CodArea" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioAreaHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioResponsableHttpPostIn">
+    <wsdl:part name="IdResponsable" type="s:string" />
+    <wsdl:part name="IdServArea" type="s:string" />
+    <wsdl:part name="IdPersonal" type="s:string" />
+    <wsdl:part name="Principal" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ServicioResponsableHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="GestiondeConfiguracionSoap">
+    <wsdl:operation name="BuscarServicioPorNombre">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Servicio</wsdl:documentation>
+      <wsdl:input message="tns:BuscarServicioPorNombreSoapIn" />
+      <wsdl:output message="tns:BuscarServicioPorNombreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioDetalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de Servicios y/o proudctos</wsdl:documentation>
+      <wsdl:input message="tns:ServicioDetalleSoapIn" />
+      <wsdl:output message="tns:ServicioDetalleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioListarAll">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Servicios y proudctos</wsdl:documentation>
+      <wsdl:input message="tns:ServicioListarAllSoapIn" />
+      <wsdl:output message="tns:ServicioListarAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosyProductos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Servicios y proudctos por IdPadre</wsdl:documentation>
+      <wsdl:input message="tns:ListarServiosyProductosSoapIn" />
+      <wsdl:output message="tns:ListarServiosyProductosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosPorArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Servicios y proudctos por area</wsdl:documentation>
+      <wsdl:input message="tns:ListarServiosPorAreaSoapIn" />
+      <wsdl:output message="tns:ListarServiosPorAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiciosModificaInserta">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mantenimientos de servicios</wsdl:documentation>
+      <wsdl:input message="tns:ServiciosModificaInsertaSoapIn" />
+      <wsdl:output message="tns:ServiciosModificaInsertaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoModificaInserta">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mantenimientos de Procedimiento por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoModificaInsertaSoapIn" />
+      <wsdl:output message="tns:ProcedimientoModificaInsertaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarPorActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de acciones del procedimiento  por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoListarPorActividadSoapIn" />
+      <wsdl:output message="tns:ProcedimientoListarPorActividadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarTareaPorActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de tareas por actividad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoListarTareaPorActividadSoapIn" />
+      <wsdl:output message="tns:ProcedimientoListarTareaPorActividadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoDelAccionXActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Eliminar Acción de procedimiento  por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoDelAccionXActividadSoapIn" />
+      <wsdl:output message="tns:ProcedimientoDelAccionXActividadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaListarPorAccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado las Notas de una accion del procedimiento  por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoNotaListarPorAccionSoapIn" />
+      <wsdl:output message="tns:ProcedimientoNotaListarPorAccionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDetallePorAccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle las Notas de una accion del procedimiento  por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoNotaDetallePorAccionSoapIn" />
+      <wsdl:output message="tns:ProcedimientoNotaDetallePorAccionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaIns">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta Detalle las Notas</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoNotaInsSoapIn" />
+      <wsdl:output message="tns:ProcedimientoNotaInsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDel">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Eliminar Nota</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoNotaDelSoapIn" />
+      <wsdl:output message="tns:ProcedimientoNotaDelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreasXServicio">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Areas por Servicio</wsdl:documentation>
+      <wsdl:input message="tns:ListarAreasXServicioSoapIn" />
+      <wsdl:output message="tns:ListarAreasXServicioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvXServicio">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Actividades por Servicio</wsdl:documentation>
+      <wsdl:input message="tns:ListarActvXServicioSoapIn" />
+      <wsdl:output message="tns:ListarActvXServicioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarRespxServicio">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Responsables por Servicio</wsdl:documentation>
+      <wsdl:input message="tns:ListarRespxServicioSoapIn" />
+      <wsdl:output message="tns:ListarRespxServicioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvChck">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Actividades por Servicio Chck</wsdl:documentation>
+      <wsdl:input message="tns:ListarActvChckSoapIn" />
+      <wsdl:output message="tns:ListarActvChckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioAsignarActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Asignar o remover Actividad a Servicio</wsdl:documentation>
+      <wsdl:input message="tns:ServicioAsignarActividadSoapIn" />
+      <wsdl:output message="tns:ServicioAsignarActividadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">MANTENIMIENTO DE AREAS X SERVICIO</wsdl:documentation>
+      <wsdl:input message="tns:ServicioAreaSoapIn" />
+      <wsdl:output message="tns:ServicioAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioResponsable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">MANTENIMIENTO DE RESPONSABLE</wsdl:documentation>
+      <wsdl:input message="tns:ServicioResponsableSoapIn" />
+      <wsdl:output message="tns:ServicioResponsableSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="GestiondeConfiguracionHttpGet">
+    <wsdl:operation name="BuscarServicioPorNombre">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Servicio</wsdl:documentation>
+      <wsdl:input message="tns:BuscarServicioPorNombreHttpGetIn" />
+      <wsdl:output message="tns:BuscarServicioPorNombreHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioDetalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de Servicios y/o proudctos</wsdl:documentation>
+      <wsdl:input message="tns:ServicioDetalleHttpGetIn" />
+      <wsdl:output message="tns:ServicioDetalleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioListarAll">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Servicios y proudctos</wsdl:documentation>
+      <wsdl:input message="tns:ServicioListarAllHttpGetIn" />
+      <wsdl:output message="tns:ServicioListarAllHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosyProductos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Servicios y proudctos por IdPadre</wsdl:documentation>
+      <wsdl:input message="tns:ListarServiosyProductosHttpGetIn" />
+      <wsdl:output message="tns:ListarServiosyProductosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosPorArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Servicios y proudctos por area</wsdl:documentation>
+      <wsdl:input message="tns:ListarServiosPorAreaHttpGetIn" />
+      <wsdl:output message="tns:ListarServiosPorAreaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiciosModificaInserta">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mantenimientos de servicios</wsdl:documentation>
+      <wsdl:input message="tns:ServiciosModificaInsertaHttpGetIn" />
+      <wsdl:output message="tns:ServiciosModificaInsertaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoModificaInserta">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mantenimientos de Procedimiento por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoModificaInsertaHttpGetIn" />
+      <wsdl:output message="tns:ProcedimientoModificaInsertaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarPorActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de acciones del procedimiento  por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoListarPorActividadHttpGetIn" />
+      <wsdl:output message="tns:ProcedimientoListarPorActividadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarTareaPorActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de tareas por actividad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoListarTareaPorActividadHttpGetIn" />
+      <wsdl:output message="tns:ProcedimientoListarTareaPorActividadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoDelAccionXActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Eliminar Acción de procedimiento  por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoDelAccionXActividadHttpGetIn" />
+      <wsdl:output message="tns:ProcedimientoDelAccionXActividadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaListarPorAccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado las Notas de una accion del procedimiento  por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoNotaListarPorAccionHttpGetIn" />
+      <wsdl:output message="tns:ProcedimientoNotaListarPorAccionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDetallePorAccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle las Notas de una accion del procedimiento  por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoNotaDetallePorAccionHttpGetIn" />
+      <wsdl:output message="tns:ProcedimientoNotaDetallePorAccionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaIns">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta Detalle las Notas</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoNotaInsHttpGetIn" />
+      <wsdl:output message="tns:ProcedimientoNotaInsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDel">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Eliminar Nota</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoNotaDelHttpGetIn" />
+      <wsdl:output message="tns:ProcedimientoNotaDelHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreasXServicio">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Areas por Servicio</wsdl:documentation>
+      <wsdl:input message="tns:ListarAreasXServicioHttpGetIn" />
+      <wsdl:output message="tns:ListarAreasXServicioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvXServicio">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Actividades por Servicio</wsdl:documentation>
+      <wsdl:input message="tns:ListarActvXServicioHttpGetIn" />
+      <wsdl:output message="tns:ListarActvXServicioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarRespxServicio">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Responsables por Servicio</wsdl:documentation>
+      <wsdl:input message="tns:ListarRespxServicioHttpGetIn" />
+      <wsdl:output message="tns:ListarRespxServicioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvChck">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Actividades por Servicio Chck</wsdl:documentation>
+      <wsdl:input message="tns:ListarActvChckHttpGetIn" />
+      <wsdl:output message="tns:ListarActvChckHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioAsignarActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Asignar o remover Actividad a Servicio</wsdl:documentation>
+      <wsdl:input message="tns:ServicioAsignarActividadHttpGetIn" />
+      <wsdl:output message="tns:ServicioAsignarActividadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">MANTENIMIENTO DE AREAS X SERVICIO</wsdl:documentation>
+      <wsdl:input message="tns:ServicioAreaHttpGetIn" />
+      <wsdl:output message="tns:ServicioAreaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioResponsable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">MANTENIMIENTO DE RESPONSABLE</wsdl:documentation>
+      <wsdl:input message="tns:ServicioResponsableHttpGetIn" />
+      <wsdl:output message="tns:ServicioResponsableHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="GestiondeConfiguracionHttpPost">
+    <wsdl:operation name="BuscarServicioPorNombre">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Servicio</wsdl:documentation>
+      <wsdl:input message="tns:BuscarServicioPorNombreHttpPostIn" />
+      <wsdl:output message="tns:BuscarServicioPorNombreHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioDetalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle de Servicios y/o proudctos</wsdl:documentation>
+      <wsdl:input message="tns:ServicioDetalleHttpPostIn" />
+      <wsdl:output message="tns:ServicioDetalleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioListarAll">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Servicios y proudctos</wsdl:documentation>
+      <wsdl:input message="tns:ServicioListarAllHttpPostIn" />
+      <wsdl:output message="tns:ServicioListarAllHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosyProductos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Servicios y proudctos por IdPadre</wsdl:documentation>
+      <wsdl:input message="tns:ListarServiosyProductosHttpPostIn" />
+      <wsdl:output message="tns:ListarServiosyProductosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosPorArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Servicios y proudctos por area</wsdl:documentation>
+      <wsdl:input message="tns:ListarServiosPorAreaHttpPostIn" />
+      <wsdl:output message="tns:ListarServiosPorAreaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiciosModificaInserta">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mantenimientos de servicios</wsdl:documentation>
+      <wsdl:input message="tns:ServiciosModificaInsertaHttpPostIn" />
+      <wsdl:output message="tns:ServiciosModificaInsertaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoModificaInserta">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mantenimientos de Procedimiento por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoModificaInsertaHttpPostIn" />
+      <wsdl:output message="tns:ProcedimientoModificaInsertaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarPorActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de acciones del procedimiento  por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoListarPorActividadHttpPostIn" />
+      <wsdl:output message="tns:ProcedimientoListarPorActividadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarTareaPorActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de tareas por actividad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoListarTareaPorActividadHttpPostIn" />
+      <wsdl:output message="tns:ProcedimientoListarTareaPorActividadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoDelAccionXActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Eliminar Acción de procedimiento  por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoDelAccionXActividadHttpPostIn" />
+      <wsdl:output message="tns:ProcedimientoDelAccionXActividadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaListarPorAccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado las Notas de una accion del procedimiento  por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoNotaListarPorAccionHttpPostIn" />
+      <wsdl:output message="tns:ProcedimientoNotaListarPorAccionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDetallePorAccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle las Notas de una accion del procedimiento  por activiudad</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoNotaDetallePorAccionHttpPostIn" />
+      <wsdl:output message="tns:ProcedimientoNotaDetallePorAccionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaIns">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta Detalle las Notas</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoNotaInsHttpPostIn" />
+      <wsdl:output message="tns:ProcedimientoNotaInsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDel">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Eliminar Nota</wsdl:documentation>
+      <wsdl:input message="tns:ProcedimientoNotaDelHttpPostIn" />
+      <wsdl:output message="tns:ProcedimientoNotaDelHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreasXServicio">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Areas por Servicio</wsdl:documentation>
+      <wsdl:input message="tns:ListarAreasXServicioHttpPostIn" />
+      <wsdl:output message="tns:ListarAreasXServicioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvXServicio">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Actividades por Servicio</wsdl:documentation>
+      <wsdl:input message="tns:ListarActvXServicioHttpPostIn" />
+      <wsdl:output message="tns:ListarActvXServicioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarRespxServicio">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Responsables por Servicio</wsdl:documentation>
+      <wsdl:input message="tns:ListarRespxServicioHttpPostIn" />
+      <wsdl:output message="tns:ListarRespxServicioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvChck">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Actividades por Servicio Chck</wsdl:documentation>
+      <wsdl:input message="tns:ListarActvChckHttpPostIn" />
+      <wsdl:output message="tns:ListarActvChckHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioAsignarActividad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Asignar o remover Actividad a Servicio</wsdl:documentation>
+      <wsdl:input message="tns:ServicioAsignarActividadHttpPostIn" />
+      <wsdl:output message="tns:ServicioAsignarActividadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioArea">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">MANTENIMIENTO DE AREAS X SERVICIO</wsdl:documentation>
+      <wsdl:input message="tns:ServicioAreaHttpPostIn" />
+      <wsdl:output message="tns:ServicioAreaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicioResponsable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">MANTENIMIENTO DE RESPONSABLE</wsdl:documentation>
+      <wsdl:input message="tns:ServicioResponsableHttpPostIn" />
+      <wsdl:output message="tns:ServicioResponsableHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GestiondeConfiguracionSoap" type="tns:GestiondeConfiguracionSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BuscarServicioPorNombre">
+      <soap:operation soapAction="http://tempuri.org/BuscarServicioPorNombre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioDetalle">
+      <soap:operation soapAction="http://tempuri.org/ServicioDetalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioListarAll">
+      <soap:operation soapAction="http://tempuri.org/ServicioListarAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosyProductos">
+      <soap:operation soapAction="http://tempuri.org/ListarServiosyProductos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosPorArea">
+      <soap:operation soapAction="http://tempuri.org/ListarServiosPorArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiciosModificaInserta">
+      <soap:operation soapAction="http://tempuri.org/ServiciosModificaInserta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoModificaInserta">
+      <soap:operation soapAction="http://tempuri.org/ProcedimientoModificaInserta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarPorActividad">
+      <soap:operation soapAction="http://tempuri.org/ProcedimientoListarPorActividad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarTareaPorActividad">
+      <soap:operation soapAction="http://tempuri.org/ProcedimientoListarTareaPorActividad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoDelAccionXActividad">
+      <soap:operation soapAction="http://tempuri.org/ProcedimientoDelAccionXActividad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaListarPorAccion">
+      <soap:operation soapAction="http://tempuri.org/ProcedimientoNotaListarPorAccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDetallePorAccion">
+      <soap:operation soapAction="http://tempuri.org/ProcedimientoNotaDetallePorAccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaIns">
+      <soap:operation soapAction="http://tempuri.org/ProcedimientoNotaIns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDel">
+      <soap:operation soapAction="http://tempuri.org/ProcedimientoNotaDel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreasXServicio">
+      <soap:operation soapAction="http://tempuri.org/ListarAreasXServicio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvXServicio">
+      <soap:operation soapAction="http://tempuri.org/ListarActvXServicio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarRespxServicio">
+      <soap:operation soapAction="http://tempuri.org/ListarRespxServicio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvChck">
+      <soap:operation soapAction="http://tempuri.org/ListarActvChck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioAsignarActividad">
+      <soap:operation soapAction="http://tempuri.org/ServicioAsignarActividad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioArea">
+      <soap:operation soapAction="http://tempuri.org/ServicioArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioResponsable">
+      <soap:operation soapAction="http://tempuri.org/ServicioResponsable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GestiondeConfiguracionSoap12" type="tns:GestiondeConfiguracionSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BuscarServicioPorNombre">
+      <soap12:operation soapAction="http://tempuri.org/BuscarServicioPorNombre" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioDetalle">
+      <soap12:operation soapAction="http://tempuri.org/ServicioDetalle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioListarAll">
+      <soap12:operation soapAction="http://tempuri.org/ServicioListarAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosyProductos">
+      <soap12:operation soapAction="http://tempuri.org/ListarServiosyProductos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosPorArea">
+      <soap12:operation soapAction="http://tempuri.org/ListarServiosPorArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiciosModificaInserta">
+      <soap12:operation soapAction="http://tempuri.org/ServiciosModificaInserta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoModificaInserta">
+      <soap12:operation soapAction="http://tempuri.org/ProcedimientoModificaInserta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarPorActividad">
+      <soap12:operation soapAction="http://tempuri.org/ProcedimientoListarPorActividad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarTareaPorActividad">
+      <soap12:operation soapAction="http://tempuri.org/ProcedimientoListarTareaPorActividad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoDelAccionXActividad">
+      <soap12:operation soapAction="http://tempuri.org/ProcedimientoDelAccionXActividad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaListarPorAccion">
+      <soap12:operation soapAction="http://tempuri.org/ProcedimientoNotaListarPorAccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDetallePorAccion">
+      <soap12:operation soapAction="http://tempuri.org/ProcedimientoNotaDetallePorAccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaIns">
+      <soap12:operation soapAction="http://tempuri.org/ProcedimientoNotaIns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDel">
+      <soap12:operation soapAction="http://tempuri.org/ProcedimientoNotaDel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreasXServicio">
+      <soap12:operation soapAction="http://tempuri.org/ListarAreasXServicio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvXServicio">
+      <soap12:operation soapAction="http://tempuri.org/ListarActvXServicio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarRespxServicio">
+      <soap12:operation soapAction="http://tempuri.org/ListarRespxServicio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvChck">
+      <soap12:operation soapAction="http://tempuri.org/ListarActvChck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioAsignarActividad">
+      <soap12:operation soapAction="http://tempuri.org/ServicioAsignarActividad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioArea">
+      <soap12:operation soapAction="http://tempuri.org/ServicioArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioResponsable">
+      <soap12:operation soapAction="http://tempuri.org/ServicioResponsable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GestiondeConfiguracionHttpGet" type="tns:GestiondeConfiguracionHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="BuscarServicioPorNombre">
+      <http:operation location="/BuscarServicioPorNombre" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioDetalle">
+      <http:operation location="/ServicioDetalle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioListarAll">
+      <http:operation location="/ServicioListarAll" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosyProductos">
+      <http:operation location="/ListarServiosyProductos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosPorArea">
+      <http:operation location="/ListarServiosPorArea" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiciosModificaInserta">
+      <http:operation location="/ServiciosModificaInserta" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoModificaInserta">
+      <http:operation location="/ProcedimientoModificaInserta" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarPorActividad">
+      <http:operation location="/ProcedimientoListarPorActividad" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarTareaPorActividad">
+      <http:operation location="/ProcedimientoListarTareaPorActividad" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoDelAccionXActividad">
+      <http:operation location="/ProcedimientoDelAccionXActividad" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaListarPorAccion">
+      <http:operation location="/ProcedimientoNotaListarPorAccion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDetallePorAccion">
+      <http:operation location="/ProcedimientoNotaDetallePorAccion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaIns">
+      <http:operation location="/ProcedimientoNotaIns" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDel">
+      <http:operation location="/ProcedimientoNotaDel" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreasXServicio">
+      <http:operation location="/ListarAreasXServicio" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvXServicio">
+      <http:operation location="/ListarActvXServicio" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarRespxServicio">
+      <http:operation location="/ListarRespxServicio" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvChck">
+      <http:operation location="/ListarActvChck" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioAsignarActividad">
+      <http:operation location="/ServicioAsignarActividad" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioArea">
+      <http:operation location="/ServicioArea" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioResponsable">
+      <http:operation location="/ServicioResponsable" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GestiondeConfiguracionHttpPost" type="tns:GestiondeConfiguracionHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="BuscarServicioPorNombre">
+      <http:operation location="/BuscarServicioPorNombre" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioDetalle">
+      <http:operation location="/ServicioDetalle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioListarAll">
+      <http:operation location="/ServicioListarAll" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosyProductos">
+      <http:operation location="/ListarServiosyProductos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarServiosPorArea">
+      <http:operation location="/ListarServiosPorArea" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiciosModificaInserta">
+      <http:operation location="/ServiciosModificaInserta" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoModificaInserta">
+      <http:operation location="/ProcedimientoModificaInserta" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarPorActividad">
+      <http:operation location="/ProcedimientoListarPorActividad" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoListarTareaPorActividad">
+      <http:operation location="/ProcedimientoListarTareaPorActividad" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoDelAccionXActividad">
+      <http:operation location="/ProcedimientoDelAccionXActividad" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaListarPorAccion">
+      <http:operation location="/ProcedimientoNotaListarPorAccion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDetallePorAccion">
+      <http:operation location="/ProcedimientoNotaDetallePorAccion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaIns">
+      <http:operation location="/ProcedimientoNotaIns" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcedimientoNotaDel">
+      <http:operation location="/ProcedimientoNotaDel" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreasXServicio">
+      <http:operation location="/ListarAreasXServicio" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvXServicio">
+      <http:operation location="/ListarActvXServicio" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarRespxServicio">
+      <http:operation location="/ListarRespxServicio" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarActvChck">
+      <http:operation location="/ListarActvChck" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioAsignarActividad">
+      <http:operation location="/ServicioAsignarActividad" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioArea">
+      <http:operation location="/ServicioArea" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicioResponsable">
+      <http:operation location="/ServicioResponsable" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GestiondeConfiguracion">
+    <wsdl:port name="GestiondeConfiguracionSoap" binding="tns:GestiondeConfiguracionSoap">
+      <soap:address location="http://10.10.18.10:90/Core/HelpDesk/ITIL/GestiondeConfiguracion.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GestiondeConfiguracionSoap12" binding="tns:GestiondeConfiguracionSoap12">
+      <soap12:address location="http://10.10.18.10:90/Core/HelpDesk/ITIL/GestiondeConfiguracion.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GestiondeConfiguracionHttpGet" binding="tns:GestiondeConfiguracionHttpGet">
+      <http:address location="http://10.10.18.10:90/Core/HelpDesk/ITIL/GestiondeConfiguracion.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GestiondeConfiguracionHttpPost" binding="tns:GestiondeConfiguracionHttpPost">
+      <http:address location="http://10.10.18.10:90/Core/HelpDesk/ITIL/GestiondeConfiguracion.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

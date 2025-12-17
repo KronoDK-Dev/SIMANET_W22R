@@ -1,0 +1,1875 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="BuscarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RazonSocialCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarClienteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarClientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="N_OPCION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FILTRO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_UND_OPER" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarClientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarClientesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarClientePorId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CLIENTE_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarClientePorIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarClientePorIdResult" type="tns:ClienteBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ClienteBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="COD_CLI" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="COD_CLIENTE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TIP_CLI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CIIU" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PAIS" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="NRO_RUC" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="DOCUM_EXT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NOM_APS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="COD_PRC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ENT_CLI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UBC_GEO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DIR_LGL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TLX1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TLX2" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="FEC_RGT" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="EST_ATL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="COD_USR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CSF_DB" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="COD_USR_INA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="V_CLI_AUDITORIA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="V_CLIENTE_ID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseBE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdEstado" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImgEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdCodigo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ambiente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="X_TIP_CLI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_NOM_APS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_CIIU" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_PAIS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_DOCUM_EXT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_NRO_RUC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_COD_PRC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_ENT_CLI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_UBC_GEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_DIR_LGL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_EST_ATL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_TLX1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_TLX2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_COD_USR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_COD_USR_INA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_V_CLI_AUDITORIA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ACCION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_V_CLIENTE_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertarClienteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarContactoCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="X_C_CLIE_CODCARGO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_C_CLIE_NOMBRE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_C_CLIE_TELEF1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_C_CLIE_TELEF2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_C_CLIE_FECHANAC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_C_CLIE_EMAIL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_C_CLIE_TIPOENVIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_V_CLIENTE_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_N_CLIE_IDCONTACTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="opcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarContactoClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertarContactoClienteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarContactosDeCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="X_V_CLIENTE_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarContactosDeClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarContactosDeClienteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarContactoCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="v_cliente_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contacto_id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarContactoClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EliminarContactoClienteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarEmbarcacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="X_NOM_UND" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_TIP_UND" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_EST_ATL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_COD_USR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_CODCOPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_NOMBREANTERIOR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_TIPO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_ASTILLERO_CONSTRUCTOR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_MATRICULA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_ID_MATERIAL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_FEC_INGRESO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_OBSERVACION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_ESLORA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_MANGA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_PUNTAL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_BODEGA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_SISTEMAPESCA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_MOTOR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_V_EMBARCACION_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_V_CLIENTE_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ACCION" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarEmbarcacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertarEmbarcacionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarDetalleEmbarcacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="X_EMBARCACION_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_IDAREA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_VALOR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_FECHAREGISTRO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_UM" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarDetalleEmbarcacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertarDetalleEmbarcacionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarDetalleDeEmbarcacionPorID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="X_V_EMBARCACION_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarDetalleDeEmbarcacionPorIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarDetalleDeEmbarcacionPorIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarEmbarcacionPorId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_EMBARCACION_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarEmbarcacionPorIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarEmbarcacionPorIdResult" type="tns:EmbarcacionBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EmbarcacionBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="COD_UND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NOM_UND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TIP_UND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EST_ATL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="COD_USR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FEC_USR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CODCOPE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ID_EMBARCACION" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NOMBREANTERIOR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TIPO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ASTILLERO_CONSTRUCTOR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MATRICULA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ID_MATERIAL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FEC_INGRESO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OBSERVACION" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ESLORA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MANGA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PUNTAL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BODEGA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SISTEMAPESCA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MOTOR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="V_EMBARCACION_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="V_CLIENTE_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLIENTE" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ListarEmbarcaciones">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_FILTRO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarEmbarcacionesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarEmbarcacionesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GEN_EMBARCACION_ID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_V_CLIENTE_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GEN_EMBARCACION_IDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GEN_EMBARCACION_IDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BusquedaEmbarcacionyCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_NOMBRE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BusquedaEmbarcacionyClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BusquedaEmbarcacionyClienteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaBuscarCliente3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_NOMBRE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaBuscarCliente3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaBuscarCliente3Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaclientesxcodxdescr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CODIGO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_DESCRIPCION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaclientesxcodxdescrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaclientesxcodxdescrResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaunidxcliexcodxdescr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_CLIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CODIGO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_DESCRIPCION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaunidxcliexcodxdescrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaunidxcliexcodxdescrResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaBuscarCliente2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_NOMBRE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaBuscarCliente2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaBuscarCliente2Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClienteBE" nillable="true" type="tns:ClienteBE" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="EmbarcacionBE" nillable="true" type="tns:EmbarcacionBE" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="BuscarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarCliente" />
+  </wsdl:message>
+  <wsdl:message name="BuscarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientesSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarClientes" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientesSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarClientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientePorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarClientePorId" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientePorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarClientePorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertarCliente" />
+  </wsdl:message>
+  <wsdl:message name="InsertarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertarContactoClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertarContactoCliente" />
+  </wsdl:message>
+  <wsdl:message name="InsertarContactoClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertarContactoClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarContactosDeClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarContactosDeCliente" />
+  </wsdl:message>
+  <wsdl:message name="ListarContactosDeClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarContactosDeClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarContactoClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarContactoCliente" />
+  </wsdl:message>
+  <wsdl:message name="EliminarContactoClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarContactoClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertarEmbarcacionSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertarEmbarcacion" />
+  </wsdl:message>
+  <wsdl:message name="InsertarEmbarcacionSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertarEmbarcacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertarDetalleEmbarcacionSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertarDetalleEmbarcacion" />
+  </wsdl:message>
+  <wsdl:message name="InsertarDetalleEmbarcacionSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertarDetalleEmbarcacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarDetalleDeEmbarcacionPorIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarDetalleDeEmbarcacionPorID" />
+  </wsdl:message>
+  <wsdl:message name="ListarDetalleDeEmbarcacionPorIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarDetalleDeEmbarcacionPorIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmbarcacionPorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarEmbarcacionPorId" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmbarcacionPorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarEmbarcacionPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmbarcacionesSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarEmbarcaciones" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmbarcacionesSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarEmbarcacionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GEN_EMBARCACION_IDSoapIn">
+    <wsdl:part name="parameters" element="tns:GEN_EMBARCACION_ID" />
+  </wsdl:message>
+  <wsdl:message name="GEN_EMBARCACION_IDSoapOut">
+    <wsdl:part name="parameters" element="tns:GEN_EMBARCACION_IDResponse" />
+  </wsdl:message>
+  <wsdl:message name="BusquedaEmbarcacionyClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:BusquedaEmbarcacionyCliente" />
+  </wsdl:message>
+  <wsdl:message name="BusquedaEmbarcacionyClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:BusquedaEmbarcacionyClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaBuscarCliente3SoapIn">
+    <wsdl:part name="parameters" element="tns:ListaBuscarCliente3" />
+  </wsdl:message>
+  <wsdl:message name="ListaBuscarCliente3SoapOut">
+    <wsdl:part name="parameters" element="tns:ListaBuscarCliente3Response" />
+  </wsdl:message>
+  <wsdl:message name="listaclientesxcodxdescrSoapIn">
+    <wsdl:part name="parameters" element="tns:listaclientesxcodxdescr" />
+  </wsdl:message>
+  <wsdl:message name="listaclientesxcodxdescrSoapOut">
+    <wsdl:part name="parameters" element="tns:listaclientesxcodxdescrResponse" />
+  </wsdl:message>
+  <wsdl:message name="listaunidxcliexcodxdescrSoapIn">
+    <wsdl:part name="parameters" element="tns:listaunidxcliexcodxdescr" />
+  </wsdl:message>
+  <wsdl:message name="listaunidxcliexcodxdescrSoapOut">
+    <wsdl:part name="parameters" element="tns:listaunidxcliexcodxdescrResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaBuscarCliente2SoapIn">
+    <wsdl:part name="parameters" element="tns:ListaBuscarCliente2" />
+  </wsdl:message>
+  <wsdl:message name="ListaBuscarCliente2SoapOut">
+    <wsdl:part name="parameters" element="tns:ListaBuscarCliente2Response" />
+  </wsdl:message>
+  <wsdl:message name="BuscarClienteHttpGetIn">
+    <wsdl:part name="RazonSocialCliente" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientesHttpGetIn">
+    <wsdl:part name="N_OPCION" type="s:string" />
+    <wsdl:part name="V_FILTRO" type="s:string" />
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_UND_OPER" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientesHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientePorIdHttpGetIn">
+    <wsdl:part name="V_CLIENTE_ID" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientePorIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:ClienteBE" />
+  </wsdl:message>
+  <wsdl:message name="InsertarClienteHttpGetIn">
+    <wsdl:part name="X_TIP_CLI" type="s:string" />
+    <wsdl:part name="X_NOM_APS" type="s:string" />
+    <wsdl:part name="X_CIIU" type="s:string" />
+    <wsdl:part name="X_PAIS" type="s:string" />
+    <wsdl:part name="X_DOCUM_EXT" type="s:string" />
+    <wsdl:part name="X_NRO_RUC" type="s:string" />
+    <wsdl:part name="X_COD_PRC" type="s:string" />
+    <wsdl:part name="X_ENT_CLI" type="s:string" />
+    <wsdl:part name="X_UBC_GEO" type="s:string" />
+    <wsdl:part name="X_DIR_LGL" type="s:string" />
+    <wsdl:part name="X_EST_ATL" type="s:string" />
+    <wsdl:part name="X_TLX1" type="s:string" />
+    <wsdl:part name="X_TLX2" type="s:string" />
+    <wsdl:part name="X_COD_USR" type="s:string" />
+    <wsdl:part name="X_COD_USR_INA" type="s:string" />
+    <wsdl:part name="X_V_CLI_AUDITORIA" type="s:string" />
+    <wsdl:part name="ACCION" type="s:string" />
+    <wsdl:part name="X_V_CLIENTE_ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarContactoClienteHttpGetIn">
+    <wsdl:part name="X_C_CLIE_CODCARGO" type="s:string" />
+    <wsdl:part name="X_C_CLIE_NOMBRE" type="s:string" />
+    <wsdl:part name="X_C_CLIE_TELEF1" type="s:string" />
+    <wsdl:part name="X_C_CLIE_TELEF2" type="s:string" />
+    <wsdl:part name="X_C_CLIE_FECHANAC" type="s:string" />
+    <wsdl:part name="X_C_CLIE_EMAIL" type="s:string" />
+    <wsdl:part name="X_C_CLIE_TIPOENVIO" type="s:string" />
+    <wsdl:part name="X_V_CLIENTE_ID" type="s:string" />
+    <wsdl:part name="X_N_CLIE_IDCONTACTO" type="s:string" />
+    <wsdl:part name="opcion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarContactoClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarContactosDeClienteHttpGetIn">
+    <wsdl:part name="X_V_CLIENTE_ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarContactosDeClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="EliminarContactoClienteHttpGetIn">
+    <wsdl:part name="v_cliente_id" type="s:string" />
+    <wsdl:part name="contacto_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EliminarContactoClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarEmbarcacionHttpGetIn">
+    <wsdl:part name="X_NOM_UND" type="s:string" />
+    <wsdl:part name="X_TIP_UND" type="s:string" />
+    <wsdl:part name="X_EST_ATL" type="s:string" />
+    <wsdl:part name="X_COD_USR" type="s:string" />
+    <wsdl:part name="X_CODCOPE" type="s:string" />
+    <wsdl:part name="X_NOMBREANTERIOR" type="s:string" />
+    <wsdl:part name="X_TIPO" type="s:string" />
+    <wsdl:part name="X_ASTILLERO_CONSTRUCTOR" type="s:string" />
+    <wsdl:part name="X_MATRICULA" type="s:string" />
+    <wsdl:part name="X_ID_MATERIAL" type="s:string" />
+    <wsdl:part name="X_FEC_INGRESO" type="s:string" />
+    <wsdl:part name="X_OBSERVACION" type="s:string" />
+    <wsdl:part name="X_ESLORA" type="s:string" />
+    <wsdl:part name="X_MANGA" type="s:string" />
+    <wsdl:part name="X_PUNTAL" type="s:string" />
+    <wsdl:part name="X_BODEGA" type="s:string" />
+    <wsdl:part name="X_SISTEMAPESCA" type="s:string" />
+    <wsdl:part name="X_MOTOR" type="s:string" />
+    <wsdl:part name="X_V_EMBARCACION_ID" type="s:string" />
+    <wsdl:part name="X_V_CLIENTE_ID" type="s:string" />
+    <wsdl:part name="ACCION" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarEmbarcacionHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarDetalleEmbarcacionHttpGetIn">
+    <wsdl:part name="X_EMBARCACION_ID" type="s:string" />
+    <wsdl:part name="X_IDAREA" type="s:string" />
+    <wsdl:part name="X_VALOR" type="s:string" />
+    <wsdl:part name="X_FECHAREGISTRO" type="s:string" />
+    <wsdl:part name="X_UM" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarDetalleEmbarcacionHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarDetalleDeEmbarcacionPorIDHttpGetIn">
+    <wsdl:part name="X_V_EMBARCACION_ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarDetalleDeEmbarcacionPorIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmbarcacionPorIdHttpGetIn">
+    <wsdl:part name="V_EMBARCACION_ID" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmbarcacionPorIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:EmbarcacionBE" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmbarcacionesHttpGetIn">
+    <wsdl:part name="V_FILTRO" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmbarcacionesHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GEN_EMBARCACION_IDHttpGetIn">
+    <wsdl:part name="P_V_CLIENTE_ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GEN_EMBARCACION_IDHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="BusquedaEmbarcacionyClienteHttpGetIn">
+    <wsdl:part name="V_NOMBRE" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BusquedaEmbarcacionyClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListaBuscarCliente3HttpGetIn">
+    <wsdl:part name="V_NOMBRE" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaBuscarCliente3HttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="listaclientesxcodxdescrHttpGetIn">
+    <wsdl:part name="V_CODIGO" type="s:string" />
+    <wsdl:part name="V_DESCRIPCION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="listaclientesxcodxdescrHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="listaunidxcliexcodxdescrHttpGetIn">
+    <wsdl:part name="V_CLIENTE" type="s:string" />
+    <wsdl:part name="V_CODIGO" type="s:string" />
+    <wsdl:part name="V_DESCRIPCION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="listaunidxcliexcodxdescrHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListaBuscarCliente2HttpGetIn">
+    <wsdl:part name="V_NOMBRE" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaBuscarCliente2HttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="BuscarClienteHttpPostIn">
+    <wsdl:part name="RazonSocialCliente" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientesHttpPostIn">
+    <wsdl:part name="N_OPCION" type="s:string" />
+    <wsdl:part name="V_FILTRO" type="s:string" />
+    <wsdl:part name="V_CEO" type="s:string" />
+    <wsdl:part name="V_UND_OPER" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientesHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientePorIdHttpPostIn">
+    <wsdl:part name="V_CLIENTE_ID" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientePorIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:ClienteBE" />
+  </wsdl:message>
+  <wsdl:message name="InsertarClienteHttpPostIn">
+    <wsdl:part name="X_TIP_CLI" type="s:string" />
+    <wsdl:part name="X_NOM_APS" type="s:string" />
+    <wsdl:part name="X_CIIU" type="s:string" />
+    <wsdl:part name="X_PAIS" type="s:string" />
+    <wsdl:part name="X_DOCUM_EXT" type="s:string" />
+    <wsdl:part name="X_NRO_RUC" type="s:string" />
+    <wsdl:part name="X_COD_PRC" type="s:string" />
+    <wsdl:part name="X_ENT_CLI" type="s:string" />
+    <wsdl:part name="X_UBC_GEO" type="s:string" />
+    <wsdl:part name="X_DIR_LGL" type="s:string" />
+    <wsdl:part name="X_EST_ATL" type="s:string" />
+    <wsdl:part name="X_TLX1" type="s:string" />
+    <wsdl:part name="X_TLX2" type="s:string" />
+    <wsdl:part name="X_COD_USR" type="s:string" />
+    <wsdl:part name="X_COD_USR_INA" type="s:string" />
+    <wsdl:part name="X_V_CLI_AUDITORIA" type="s:string" />
+    <wsdl:part name="ACCION" type="s:string" />
+    <wsdl:part name="X_V_CLIENTE_ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarContactoClienteHttpPostIn">
+    <wsdl:part name="X_C_CLIE_CODCARGO" type="s:string" />
+    <wsdl:part name="X_C_CLIE_NOMBRE" type="s:string" />
+    <wsdl:part name="X_C_CLIE_TELEF1" type="s:string" />
+    <wsdl:part name="X_C_CLIE_TELEF2" type="s:string" />
+    <wsdl:part name="X_C_CLIE_FECHANAC" type="s:string" />
+    <wsdl:part name="X_C_CLIE_EMAIL" type="s:string" />
+    <wsdl:part name="X_C_CLIE_TIPOENVIO" type="s:string" />
+    <wsdl:part name="X_V_CLIENTE_ID" type="s:string" />
+    <wsdl:part name="X_N_CLIE_IDCONTACTO" type="s:string" />
+    <wsdl:part name="opcion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarContactoClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarContactosDeClienteHttpPostIn">
+    <wsdl:part name="X_V_CLIENTE_ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarContactosDeClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="EliminarContactoClienteHttpPostIn">
+    <wsdl:part name="v_cliente_id" type="s:string" />
+    <wsdl:part name="contacto_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EliminarContactoClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarEmbarcacionHttpPostIn">
+    <wsdl:part name="X_NOM_UND" type="s:string" />
+    <wsdl:part name="X_TIP_UND" type="s:string" />
+    <wsdl:part name="X_EST_ATL" type="s:string" />
+    <wsdl:part name="X_COD_USR" type="s:string" />
+    <wsdl:part name="X_CODCOPE" type="s:string" />
+    <wsdl:part name="X_NOMBREANTERIOR" type="s:string" />
+    <wsdl:part name="X_TIPO" type="s:string" />
+    <wsdl:part name="X_ASTILLERO_CONSTRUCTOR" type="s:string" />
+    <wsdl:part name="X_MATRICULA" type="s:string" />
+    <wsdl:part name="X_ID_MATERIAL" type="s:string" />
+    <wsdl:part name="X_FEC_INGRESO" type="s:string" />
+    <wsdl:part name="X_OBSERVACION" type="s:string" />
+    <wsdl:part name="X_ESLORA" type="s:string" />
+    <wsdl:part name="X_MANGA" type="s:string" />
+    <wsdl:part name="X_PUNTAL" type="s:string" />
+    <wsdl:part name="X_BODEGA" type="s:string" />
+    <wsdl:part name="X_SISTEMAPESCA" type="s:string" />
+    <wsdl:part name="X_MOTOR" type="s:string" />
+    <wsdl:part name="X_V_EMBARCACION_ID" type="s:string" />
+    <wsdl:part name="X_V_CLIENTE_ID" type="s:string" />
+    <wsdl:part name="ACCION" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarEmbarcacionHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarDetalleEmbarcacionHttpPostIn">
+    <wsdl:part name="X_EMBARCACION_ID" type="s:string" />
+    <wsdl:part name="X_IDAREA" type="s:string" />
+    <wsdl:part name="X_VALOR" type="s:string" />
+    <wsdl:part name="X_FECHAREGISTRO" type="s:string" />
+    <wsdl:part name="X_UM" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertarDetalleEmbarcacionHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarDetalleDeEmbarcacionPorIDHttpPostIn">
+    <wsdl:part name="X_V_EMBARCACION_ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarDetalleDeEmbarcacionPorIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmbarcacionPorIdHttpPostIn">
+    <wsdl:part name="V_EMBARCACION_ID" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmbarcacionPorIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:EmbarcacionBE" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmbarcacionesHttpPostIn">
+    <wsdl:part name="V_FILTRO" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmbarcacionesHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GEN_EMBARCACION_IDHttpPostIn">
+    <wsdl:part name="P_V_CLIENTE_ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GEN_EMBARCACION_IDHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="BusquedaEmbarcacionyClienteHttpPostIn">
+    <wsdl:part name="V_NOMBRE" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BusquedaEmbarcacionyClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListaBuscarCliente3HttpPostIn">
+    <wsdl:part name="V_NOMBRE" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaBuscarCliente3HttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="listaclientesxcodxdescrHttpPostIn">
+    <wsdl:part name="V_CODIGO" type="s:string" />
+    <wsdl:part name="V_DESCRIPCION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="listaclientesxcodxdescrHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="listaunidxcliexcodxdescrHttpPostIn">
+    <wsdl:part name="V_CLIENTE" type="s:string" />
+    <wsdl:part name="V_CODIGO" type="s:string" />
+    <wsdl:part name="V_DESCRIPCION" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="listaunidxcliexcodxdescrHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListaBuscarCliente2HttpPostIn">
+    <wsdl:part name="V_NOMBRE" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListaBuscarCliente2HttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:portType name="ClienteSoap">
+    <wsdl:operation name="BuscarCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busca los Clientes en la BD del SIMANET</wsdl:documentation>
+      <wsdl:input message="tns:BuscarClienteSoapIn" />
+      <wsdl:output message="tns:BuscarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busqueda de cliente multi CEO</wsdl:documentation>
+      <wsdl:input message="tns:ListarClientesSoapIn" />
+      <wsdl:output message="tns:ListarClientesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientePorId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busca un registro de la tabla cliente por ID</wsdl:documentation>
+      <wsdl:input message="tns:ListarClientePorIdSoapIn" />
+      <wsdl:output message="tns:ListarClientePorIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generar o actualizar cliente</wsdl:documentation>
+      <wsdl:input message="tns:InsertarClienteSoapIn" />
+      <wsdl:output message="tns:InsertarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarContactoCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generar o actualizar contacto de un cliente</wsdl:documentation>
+      <wsdl:input message="tns:InsertarContactoClienteSoapIn" />
+      <wsdl:output message="tns:InsertarContactoClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarContactosDeCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generar o actualizar contacto de un cliente</wsdl:documentation>
+      <wsdl:input message="tns:ListarContactosDeClienteSoapIn" />
+      <wsdl:output message="tns:ListarContactosDeClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarContactoCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elimina un contacto de cliente</wsdl:documentation>
+      <wsdl:input message="tns:EliminarContactoClienteSoapIn" />
+      <wsdl:output message="tns:EliminarContactoClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarEmbarcacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta o actualiza una embarcacion</wsdl:documentation>
+      <wsdl:input message="tns:InsertarEmbarcacionSoapIn" />
+      <wsdl:output message="tns:InsertarEmbarcacionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarDetalleEmbarcacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta o actualiza registros del detalle de una embarcacion</wsdl:documentation>
+      <wsdl:input message="tns:InsertarDetalleEmbarcacionSoapIn" />
+      <wsdl:output message="tns:InsertarDetalleEmbarcacionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetalleDeEmbarcacionPorID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Filtra la tabla  TB_EMBARCACIONESDATOS en funcion de V_EMBARCACION_ID</wsdl:documentation>
+      <wsdl:input message="tns:ListarDetalleDeEmbarcacionPorIDSoapIn" />
+      <wsdl:output message="tns:ListarDetalleDeEmbarcacionPorIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcacionPorId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busca un registro de la tabla PD_UND_CLI por ID</wsdl:documentation>
+      <wsdl:input message="tns:ListarEmbarcacionPorIdSoapIn" />
+      <wsdl:output message="tns:ListarEmbarcacionPorIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcaciones">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de embarcaciones</wsdl:documentation>
+      <wsdl:input message="tns:ListarEmbarcacionesSoapIn" />
+      <wsdl:output message="tns:ListarEmbarcacionesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GEN_EMBARCACION_ID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Genera el codigo de la embarcacion en funcion del v_cliente_id</wsdl:documentation>
+      <wsdl:input message="tns:GEN_EMBARCACION_IDSoapIn" />
+      <wsdl:output message="tns:GEN_EMBARCACION_IDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaEmbarcacionyCliente">
+      <wsdl:input message="tns:BusquedaEmbarcacionyClienteSoapIn" />
+      <wsdl:output message="tns:BusquedaEmbarcacionyClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente3">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busqueda de Cliente 3</wsdl:documentation>
+      <wsdl:input message="tns:ListaBuscarCliente3SoapIn" />
+      <wsdl:output message="tns:ListaBuscarCliente3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaclientesxcodxdescr">
+      <wsdl:input message="tns:listaclientesxcodxdescrSoapIn" />
+      <wsdl:output message="tns:listaclientesxcodxdescrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaunidxcliexcodxdescr">
+      <wsdl:input message="tns:listaunidxcliexcodxdescrSoapIn" />
+      <wsdl:output message="tns:listaunidxcliexcodxdescrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busqueda de Cliente</wsdl:documentation>
+      <wsdl:input message="tns:ListaBuscarCliente2SoapIn" />
+      <wsdl:output message="tns:ListaBuscarCliente2SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ClienteHttpGet">
+    <wsdl:operation name="BuscarCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busca los Clientes en la BD del SIMANET</wsdl:documentation>
+      <wsdl:input message="tns:BuscarClienteHttpGetIn" />
+      <wsdl:output message="tns:BuscarClienteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busqueda de cliente multi CEO</wsdl:documentation>
+      <wsdl:input message="tns:ListarClientesHttpGetIn" />
+      <wsdl:output message="tns:ListarClientesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientePorId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busca un registro de la tabla cliente por ID</wsdl:documentation>
+      <wsdl:input message="tns:ListarClientePorIdHttpGetIn" />
+      <wsdl:output message="tns:ListarClientePorIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generar o actualizar cliente</wsdl:documentation>
+      <wsdl:input message="tns:InsertarClienteHttpGetIn" />
+      <wsdl:output message="tns:InsertarClienteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarContactoCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generar o actualizar contacto de un cliente</wsdl:documentation>
+      <wsdl:input message="tns:InsertarContactoClienteHttpGetIn" />
+      <wsdl:output message="tns:InsertarContactoClienteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarContactosDeCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generar o actualizar contacto de un cliente</wsdl:documentation>
+      <wsdl:input message="tns:ListarContactosDeClienteHttpGetIn" />
+      <wsdl:output message="tns:ListarContactosDeClienteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarContactoCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elimina un contacto de cliente</wsdl:documentation>
+      <wsdl:input message="tns:EliminarContactoClienteHttpGetIn" />
+      <wsdl:output message="tns:EliminarContactoClienteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarEmbarcacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta o actualiza una embarcacion</wsdl:documentation>
+      <wsdl:input message="tns:InsertarEmbarcacionHttpGetIn" />
+      <wsdl:output message="tns:InsertarEmbarcacionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarDetalleEmbarcacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta o actualiza registros del detalle de una embarcacion</wsdl:documentation>
+      <wsdl:input message="tns:InsertarDetalleEmbarcacionHttpGetIn" />
+      <wsdl:output message="tns:InsertarDetalleEmbarcacionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetalleDeEmbarcacionPorID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Filtra la tabla  TB_EMBARCACIONESDATOS en funcion de V_EMBARCACION_ID</wsdl:documentation>
+      <wsdl:input message="tns:ListarDetalleDeEmbarcacionPorIDHttpGetIn" />
+      <wsdl:output message="tns:ListarDetalleDeEmbarcacionPorIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcacionPorId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busca un registro de la tabla PD_UND_CLI por ID</wsdl:documentation>
+      <wsdl:input message="tns:ListarEmbarcacionPorIdHttpGetIn" />
+      <wsdl:output message="tns:ListarEmbarcacionPorIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcaciones">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de embarcaciones</wsdl:documentation>
+      <wsdl:input message="tns:ListarEmbarcacionesHttpGetIn" />
+      <wsdl:output message="tns:ListarEmbarcacionesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GEN_EMBARCACION_ID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Genera el codigo de la embarcacion en funcion del v_cliente_id</wsdl:documentation>
+      <wsdl:input message="tns:GEN_EMBARCACION_IDHttpGetIn" />
+      <wsdl:output message="tns:GEN_EMBARCACION_IDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaEmbarcacionyCliente">
+      <wsdl:input message="tns:BusquedaEmbarcacionyClienteHttpGetIn" />
+      <wsdl:output message="tns:BusquedaEmbarcacionyClienteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente3">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busqueda de Cliente 3</wsdl:documentation>
+      <wsdl:input message="tns:ListaBuscarCliente3HttpGetIn" />
+      <wsdl:output message="tns:ListaBuscarCliente3HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaclientesxcodxdescr">
+      <wsdl:input message="tns:listaclientesxcodxdescrHttpGetIn" />
+      <wsdl:output message="tns:listaclientesxcodxdescrHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaunidxcliexcodxdescr">
+      <wsdl:input message="tns:listaunidxcliexcodxdescrHttpGetIn" />
+      <wsdl:output message="tns:listaunidxcliexcodxdescrHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busqueda de Cliente</wsdl:documentation>
+      <wsdl:input message="tns:ListaBuscarCliente2HttpGetIn" />
+      <wsdl:output message="tns:ListaBuscarCliente2HttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ClienteHttpPost">
+    <wsdl:operation name="BuscarCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busca los Clientes en la BD del SIMANET</wsdl:documentation>
+      <wsdl:input message="tns:BuscarClienteHttpPostIn" />
+      <wsdl:output message="tns:BuscarClienteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busqueda de cliente multi CEO</wsdl:documentation>
+      <wsdl:input message="tns:ListarClientesHttpPostIn" />
+      <wsdl:output message="tns:ListarClientesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientePorId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busca un registro de la tabla cliente por ID</wsdl:documentation>
+      <wsdl:input message="tns:ListarClientePorIdHttpPostIn" />
+      <wsdl:output message="tns:ListarClientePorIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generar o actualizar cliente</wsdl:documentation>
+      <wsdl:input message="tns:InsertarClienteHttpPostIn" />
+      <wsdl:output message="tns:InsertarClienteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarContactoCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generar o actualizar contacto de un cliente</wsdl:documentation>
+      <wsdl:input message="tns:InsertarContactoClienteHttpPostIn" />
+      <wsdl:output message="tns:InsertarContactoClienteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarContactosDeCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generar o actualizar contacto de un cliente</wsdl:documentation>
+      <wsdl:input message="tns:ListarContactosDeClienteHttpPostIn" />
+      <wsdl:output message="tns:ListarContactosDeClienteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarContactoCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elimina un contacto de cliente</wsdl:documentation>
+      <wsdl:input message="tns:EliminarContactoClienteHttpPostIn" />
+      <wsdl:output message="tns:EliminarContactoClienteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarEmbarcacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta o actualiza una embarcacion</wsdl:documentation>
+      <wsdl:input message="tns:InsertarEmbarcacionHttpPostIn" />
+      <wsdl:output message="tns:InsertarEmbarcacionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarDetalleEmbarcacion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta o actualiza registros del detalle de una embarcacion</wsdl:documentation>
+      <wsdl:input message="tns:InsertarDetalleEmbarcacionHttpPostIn" />
+      <wsdl:output message="tns:InsertarDetalleEmbarcacionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetalleDeEmbarcacionPorID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Filtra la tabla  TB_EMBARCACIONESDATOS en funcion de V_EMBARCACION_ID</wsdl:documentation>
+      <wsdl:input message="tns:ListarDetalleDeEmbarcacionPorIDHttpPostIn" />
+      <wsdl:output message="tns:ListarDetalleDeEmbarcacionPorIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcacionPorId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busca un registro de la tabla PD_UND_CLI por ID</wsdl:documentation>
+      <wsdl:input message="tns:ListarEmbarcacionPorIdHttpPostIn" />
+      <wsdl:output message="tns:ListarEmbarcacionPorIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcaciones">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de embarcaciones</wsdl:documentation>
+      <wsdl:input message="tns:ListarEmbarcacionesHttpPostIn" />
+      <wsdl:output message="tns:ListarEmbarcacionesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GEN_EMBARCACION_ID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Genera el codigo de la embarcacion en funcion del v_cliente_id</wsdl:documentation>
+      <wsdl:input message="tns:GEN_EMBARCACION_IDHttpPostIn" />
+      <wsdl:output message="tns:GEN_EMBARCACION_IDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaEmbarcacionyCliente">
+      <wsdl:input message="tns:BusquedaEmbarcacionyClienteHttpPostIn" />
+      <wsdl:output message="tns:BusquedaEmbarcacionyClienteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente3">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busqueda de Cliente 3</wsdl:documentation>
+      <wsdl:input message="tns:ListaBuscarCliente3HttpPostIn" />
+      <wsdl:output message="tns:ListaBuscarCliente3HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaclientesxcodxdescr">
+      <wsdl:input message="tns:listaclientesxcodxdescrHttpPostIn" />
+      <wsdl:output message="tns:listaclientesxcodxdescrHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaunidxcliexcodxdescr">
+      <wsdl:input message="tns:listaunidxcliexcodxdescrHttpPostIn" />
+      <wsdl:output message="tns:listaunidxcliexcodxdescrHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Busqueda de Cliente</wsdl:documentation>
+      <wsdl:input message="tns:ListaBuscarCliente2HttpPostIn" />
+      <wsdl:output message="tns:ListaBuscarCliente2HttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ClienteSoap" type="tns:ClienteSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BuscarCliente">
+      <soap:operation soapAction="http://tempuri.org/BuscarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientes">
+      <soap:operation soapAction="http://tempuri.org/ListarClientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientePorId">
+      <soap:operation soapAction="http://tempuri.org/ListarClientePorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarCliente">
+      <soap:operation soapAction="http://tempuri.org/InsertarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarContactoCliente">
+      <soap:operation soapAction="http://tempuri.org/InsertarContactoCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarContactosDeCliente">
+      <soap:operation soapAction="http://tempuri.org/ListarContactosDeCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarContactoCliente">
+      <soap:operation soapAction="http://tempuri.org/EliminarContactoCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarEmbarcacion">
+      <soap:operation soapAction="http://tempuri.org/InsertarEmbarcacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarDetalleEmbarcacion">
+      <soap:operation soapAction="http://tempuri.org/InsertarDetalleEmbarcacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetalleDeEmbarcacionPorID">
+      <soap:operation soapAction="http://tempuri.org/ListarDetalleDeEmbarcacionPorID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcacionPorId">
+      <soap:operation soapAction="http://tempuri.org/ListarEmbarcacionPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcaciones">
+      <soap:operation soapAction="http://tempuri.org/ListarEmbarcaciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GEN_EMBARCACION_ID">
+      <soap:operation soapAction="http://tempuri.org/GEN_EMBARCACION_ID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaEmbarcacionyCliente">
+      <soap:operation soapAction="http://tempuri.org/BusquedaEmbarcacionyCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente3">
+      <soap:operation soapAction="http://tempuri.org/ListaBuscarCliente3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaclientesxcodxdescr">
+      <soap:operation soapAction="http://tempuri.org/listaclientesxcodxdescr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaunidxcliexcodxdescr">
+      <soap:operation soapAction="http://tempuri.org/listaunidxcliexcodxdescr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente2">
+      <soap:operation soapAction="http://tempuri.org/ListaBuscarCliente2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ClienteSoap12" type="tns:ClienteSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BuscarCliente">
+      <soap12:operation soapAction="http://tempuri.org/BuscarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientes">
+      <soap12:operation soapAction="http://tempuri.org/ListarClientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientePorId">
+      <soap12:operation soapAction="http://tempuri.org/ListarClientePorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarCliente">
+      <soap12:operation soapAction="http://tempuri.org/InsertarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarContactoCliente">
+      <soap12:operation soapAction="http://tempuri.org/InsertarContactoCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarContactosDeCliente">
+      <soap12:operation soapAction="http://tempuri.org/ListarContactosDeCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarContactoCliente">
+      <soap12:operation soapAction="http://tempuri.org/EliminarContactoCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarEmbarcacion">
+      <soap12:operation soapAction="http://tempuri.org/InsertarEmbarcacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarDetalleEmbarcacion">
+      <soap12:operation soapAction="http://tempuri.org/InsertarDetalleEmbarcacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetalleDeEmbarcacionPorID">
+      <soap12:operation soapAction="http://tempuri.org/ListarDetalleDeEmbarcacionPorID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcacionPorId">
+      <soap12:operation soapAction="http://tempuri.org/ListarEmbarcacionPorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcaciones">
+      <soap12:operation soapAction="http://tempuri.org/ListarEmbarcaciones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GEN_EMBARCACION_ID">
+      <soap12:operation soapAction="http://tempuri.org/GEN_EMBARCACION_ID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaEmbarcacionyCliente">
+      <soap12:operation soapAction="http://tempuri.org/BusquedaEmbarcacionyCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente3">
+      <soap12:operation soapAction="http://tempuri.org/ListaBuscarCliente3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaclientesxcodxdescr">
+      <soap12:operation soapAction="http://tempuri.org/listaclientesxcodxdescr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaunidxcliexcodxdescr">
+      <soap12:operation soapAction="http://tempuri.org/listaunidxcliexcodxdescr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente2">
+      <soap12:operation soapAction="http://tempuri.org/ListaBuscarCliente2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ClienteHttpGet" type="tns:ClienteHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="BuscarCliente">
+      <http:operation location="/BuscarCliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientes">
+      <http:operation location="/ListarClientes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientePorId">
+      <http:operation location="/ListarClientePorId" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarCliente">
+      <http:operation location="/InsertarCliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarContactoCliente">
+      <http:operation location="/InsertarContactoCliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarContactosDeCliente">
+      <http:operation location="/ListarContactosDeCliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarContactoCliente">
+      <http:operation location="/EliminarContactoCliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarEmbarcacion">
+      <http:operation location="/InsertarEmbarcacion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarDetalleEmbarcacion">
+      <http:operation location="/InsertarDetalleEmbarcacion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetalleDeEmbarcacionPorID">
+      <http:operation location="/ListarDetalleDeEmbarcacionPorID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcacionPorId">
+      <http:operation location="/ListarEmbarcacionPorId" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcaciones">
+      <http:operation location="/ListarEmbarcaciones" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GEN_EMBARCACION_ID">
+      <http:operation location="/GEN_EMBARCACION_ID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaEmbarcacionyCliente">
+      <http:operation location="/BusquedaEmbarcacionyCliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente3">
+      <http:operation location="/ListaBuscarCliente3" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaclientesxcodxdescr">
+      <http:operation location="/listaclientesxcodxdescr" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaunidxcliexcodxdescr">
+      <http:operation location="/listaunidxcliexcodxdescr" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente2">
+      <http:operation location="/ListaBuscarCliente2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ClienteHttpPost" type="tns:ClienteHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="BuscarCliente">
+      <http:operation location="/BuscarCliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientes">
+      <http:operation location="/ListarClientes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientePorId">
+      <http:operation location="/ListarClientePorId" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarCliente">
+      <http:operation location="/InsertarCliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarContactoCliente">
+      <http:operation location="/InsertarContactoCliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarContactosDeCliente">
+      <http:operation location="/ListarContactosDeCliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarContactoCliente">
+      <http:operation location="/EliminarContactoCliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarEmbarcacion">
+      <http:operation location="/InsertarEmbarcacion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarDetalleEmbarcacion">
+      <http:operation location="/InsertarDetalleEmbarcacion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarDetalleDeEmbarcacionPorID">
+      <http:operation location="/ListarDetalleDeEmbarcacionPorID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcacionPorId">
+      <http:operation location="/ListarEmbarcacionPorId" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmbarcaciones">
+      <http:operation location="/ListarEmbarcaciones" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GEN_EMBARCACION_ID">
+      <http:operation location="/GEN_EMBARCACION_ID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaEmbarcacionyCliente">
+      <http:operation location="/BusquedaEmbarcacionyCliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente3">
+      <http:operation location="/ListaBuscarCliente3" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaclientesxcodxdescr">
+      <http:operation location="/listaclientesxcodxdescr" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaunidxcliexcodxdescr">
+      <http:operation location="/listaunidxcliexcodxdescr" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaBuscarCliente2">
+      <http:operation location="/ListaBuscarCliente2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Cliente">
+    <wsdl:port name="ClienteSoap" binding="tns:ClienteSoap">
+      <soap:address location="http://10.10.18.10:90/Core/GestionComercial/Cliente.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ClienteSoap12" binding="tns:ClienteSoap12">
+      <soap12:address location="http://10.10.18.10:90/Core/GestionComercial/Cliente.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ClienteHttpGet" binding="tns:ClienteHttpGet">
+      <http:address location="http://10.10.18.10:90/Core/GestionComercial/Cliente.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ClienteHttpPost" binding="tns:ClienteHttpPost">
+      <http:address location="http://10.10.18.10:90/Core/GestionComercial/Cliente.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

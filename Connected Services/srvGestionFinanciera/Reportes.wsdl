@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GenRptAnexosFinanciero">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdFormato" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Periodo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="RangoMes" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenRptAnexosFinancieroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenRptAnexosFinancieroResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenRptAnexosFiltro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdProceso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenRptAnexosFiltroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenRptAnexosFiltroResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GenRptAnexosFinancieroSoapIn">
+    <wsdl:part name="parameters" element="tns:GenRptAnexosFinanciero" />
+  </wsdl:message>
+  <wsdl:message name="GenRptAnexosFinancieroSoapOut">
+    <wsdl:part name="parameters" element="tns:GenRptAnexosFinancieroResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenRptAnexosFiltroSoapIn">
+    <wsdl:part name="parameters" element="tns:GenRptAnexosFiltro" />
+  </wsdl:message>
+  <wsdl:message name="GenRptAnexosFiltroSoapOut">
+    <wsdl:part name="parameters" element="tns:GenRptAnexosFiltroResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenRptAnexosFinancieroHttpGetIn">
+    <wsdl:part name="IdFormato" type="s:string" />
+    <wsdl:part name="Periodo" type="s:string" />
+    <wsdl:part name="RangoMes" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenRptAnexosFinancieroHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GenRptAnexosFiltroHttpGetIn">
+    <wsdl:part name="IdProceso" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenRptAnexosFiltroHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GenRptAnexosFinancieroHttpPostIn">
+    <wsdl:part name="IdFormato" type="s:string" />
+    <wsdl:part name="Periodo" type="s:string" />
+    <wsdl:part name="RangoMes" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenRptAnexosFinancieroHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GenRptAnexosFiltroHttpPostIn">
+    <wsdl:part name="IdProceso" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenRptAnexosFiltroHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:portType name="ReportesSoap">
+    <wsdl:operation name="GenRptAnexosFinanciero">
+      <wsdl:input message="tns:GenRptAnexosFinancieroSoapIn" />
+      <wsdl:output message="tns:GenRptAnexosFinancieroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenRptAnexosFiltro">
+      <wsdl:input message="tns:GenRptAnexosFiltroSoapIn" />
+      <wsdl:output message="tns:GenRptAnexosFiltroSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ReportesHttpGet">
+    <wsdl:operation name="GenRptAnexosFinanciero">
+      <wsdl:input message="tns:GenRptAnexosFinancieroHttpGetIn" />
+      <wsdl:output message="tns:GenRptAnexosFinancieroHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenRptAnexosFiltro">
+      <wsdl:input message="tns:GenRptAnexosFiltroHttpGetIn" />
+      <wsdl:output message="tns:GenRptAnexosFiltroHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ReportesHttpPost">
+    <wsdl:operation name="GenRptAnexosFinanciero">
+      <wsdl:input message="tns:GenRptAnexosFinancieroHttpPostIn" />
+      <wsdl:output message="tns:GenRptAnexosFinancieroHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenRptAnexosFiltro">
+      <wsdl:input message="tns:GenRptAnexosFiltroHttpPostIn" />
+      <wsdl:output message="tns:GenRptAnexosFiltroHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ReportesSoap" type="tns:ReportesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GenRptAnexosFinanciero">
+      <soap:operation soapAction="http://tempuri.org/GenRptAnexosFinanciero" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenRptAnexosFiltro">
+      <soap:operation soapAction="http://tempuri.org/GenRptAnexosFiltro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ReportesSoap12" type="tns:ReportesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GenRptAnexosFinanciero">
+      <soap12:operation soapAction="http://tempuri.org/GenRptAnexosFinanciero" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenRptAnexosFiltro">
+      <soap12:operation soapAction="http://tempuri.org/GenRptAnexosFiltro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ReportesHttpGet" type="tns:ReportesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GenRptAnexosFinanciero">
+      <http:operation location="/GenRptAnexosFinanciero" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenRptAnexosFiltro">
+      <http:operation location="/GenRptAnexosFiltro" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ReportesHttpPost" type="tns:ReportesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GenRptAnexosFinanciero">
+      <http:operation location="/GenRptAnexosFinanciero" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenRptAnexosFiltro">
+      <http:operation location="/GenRptAnexosFiltro" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Reportes">
+    <wsdl:port name="ReportesSoap" binding="tns:ReportesSoap">
+      <soap:address location="http://10.10.18.10:90/Core/GestionFinanciera/Reportes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ReportesSoap12" binding="tns:ReportesSoap12">
+      <soap12:address location="http://10.10.18.10:90/Core/GestionFinanciera/Reportes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ReportesHttpGet" binding="tns:ReportesHttpGet">
+      <http:address location="http://10.10.18.10:90/Core/GestionFinanciera/Reportes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ReportesHttpPost" binding="tns:ReportesHttpPost">
+      <http:address location="http://10.10.18.10:90/Core/GestionFinanciera/Reportes.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

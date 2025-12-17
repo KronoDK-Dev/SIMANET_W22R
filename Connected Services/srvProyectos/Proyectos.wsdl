@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ListarProyectosSIMA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdProyecto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarProyectosSIMAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarProyectosSIMAResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleProyectosSIMA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdProyecto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleProyectosSIMAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleProyectosSIMAResult" type="tns:ProyectoBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProyectoBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IdProyecto" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodigoProy" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdCliente" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ClienteRazonSocial" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdLN" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseBE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdEstado" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImgEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdCodigo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ambiente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BuscarPryectoPor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoBusqueda" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Citerio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarPryectoPorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarPryectoPorResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaModificaProyecto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oProyectoBE" type="tns:ProyectoBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaModificaProyectoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertaModificaProyectoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProyectoInsAct">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdProyecto" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Codigo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdCliente" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdLN" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdEstado" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProyectoInsActResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProyectoInsActResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProyectoBE" nillable="true" type="tns:ProyectoBE" />
+      <s:element name="int" type="s:int" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ListarProyectosSIMASoapIn">
+    <wsdl:part name="parameters" element="tns:ListarProyectosSIMA" />
+  </wsdl:message>
+  <wsdl:message name="ListarProyectosSIMASoapOut">
+    <wsdl:part name="parameters" element="tns:ListarProyectosSIMAResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleProyectosSIMASoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleProyectosSIMA" />
+  </wsdl:message>
+  <wsdl:message name="DetalleProyectosSIMASoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleProyectosSIMAResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPryectoPorSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarPryectoPor" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPryectoPorSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarPryectoPorResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertaModificaProyectoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertaModificaProyecto" />
+  </wsdl:message>
+  <wsdl:message name="InsertaModificaProyectoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertaModificaProyectoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProyectoInsActSoapIn">
+    <wsdl:part name="parameters" element="tns:ProyectoInsAct" />
+  </wsdl:message>
+  <wsdl:message name="ProyectoInsActSoapOut">
+    <wsdl:part name="parameters" element="tns:ProyectoInsActResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarProyectosSIMAHttpGetIn">
+    <wsdl:part name="IdProyecto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarProyectosSIMAHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetalleProyectosSIMAHttpGetIn">
+    <wsdl:part name="IdProyecto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetalleProyectosSIMAHttpGetOut">
+    <wsdl:part name="Body" element="tns:ProyectoBE" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPryectoPorHttpGetIn">
+    <wsdl:part name="TipoBusqueda" type="s:string" />
+    <wsdl:part name="Citerio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPryectoPorHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ProyectoInsActHttpGetIn">
+    <wsdl:part name="IdProyecto" type="s:string" />
+    <wsdl:part name="Codigo" type="s:string" />
+    <wsdl:part name="Nombre" type="s:string" />
+    <wsdl:part name="Descripcion" type="s:string" />
+    <wsdl:part name="IdCliente" type="s:string" />
+    <wsdl:part name="IdLN" type="s:string" />
+    <wsdl:part name="IdEstado" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProyectoInsActHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ListarProyectosSIMAHttpPostIn">
+    <wsdl:part name="IdProyecto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarProyectosSIMAHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="DetalleProyectosSIMAHttpPostIn">
+    <wsdl:part name="IdProyecto" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetalleProyectosSIMAHttpPostOut">
+    <wsdl:part name="Body" element="tns:ProyectoBE" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPryectoPorHttpPostIn">
+    <wsdl:part name="TipoBusqueda" type="s:string" />
+    <wsdl:part name="Citerio" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPryectoPorHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ProyectoInsActHttpPostIn">
+    <wsdl:part name="IdProyecto" type="s:string" />
+    <wsdl:part name="Codigo" type="s:string" />
+    <wsdl:part name="Nombre" type="s:string" />
+    <wsdl:part name="Descripcion" type="s:string" />
+    <wsdl:part name="IdCliente" type="s:string" />
+    <wsdl:part name="IdLN" type="s:string" />
+    <wsdl:part name="IdEstado" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProyectoInsActHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:portType name="ProyectosSoap">
+    <wsdl:operation name="ListarProyectosSIMA">
+      <wsdl:input message="tns:ListarProyectosSIMASoapIn" />
+      <wsdl:output message="tns:ListarProyectosSIMASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleProyectosSIMA">
+      <wsdl:input message="tns:DetalleProyectosSIMASoapIn" />
+      <wsdl:output message="tns:DetalleProyectosSIMASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPryectoPor">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Proyectos para calidad</wsdl:documentation>
+      <wsdl:input message="tns:BuscarPryectoPorSoapIn" />
+      <wsdl:output message="tns:BuscarPryectoPorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaModificaProyecto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta y Modifica Proyecto en el MOdulo de calidad</wsdl:documentation>
+      <wsdl:input message="tns:InsertaModificaProyectoSoapIn" />
+      <wsdl:output message="tns:InsertaModificaProyectoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProyectoInsAct">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta proyecto por CLIENTE</wsdl:documentation>
+      <wsdl:input message="tns:ProyectoInsActSoapIn" />
+      <wsdl:output message="tns:ProyectoInsActSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ProyectosHttpGet">
+    <wsdl:operation name="ListarProyectosSIMA">
+      <wsdl:input message="tns:ListarProyectosSIMAHttpGetIn" />
+      <wsdl:output message="tns:ListarProyectosSIMAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleProyectosSIMA">
+      <wsdl:input message="tns:DetalleProyectosSIMAHttpGetIn" />
+      <wsdl:output message="tns:DetalleProyectosSIMAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPryectoPor">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Proyectos para calidad</wsdl:documentation>
+      <wsdl:input message="tns:BuscarPryectoPorHttpGetIn" />
+      <wsdl:output message="tns:BuscarPryectoPorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProyectoInsAct">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta proyecto por CLIENTE</wsdl:documentation>
+      <wsdl:input message="tns:ProyectoInsActHttpGetIn" />
+      <wsdl:output message="tns:ProyectoInsActHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ProyectosHttpPost">
+    <wsdl:operation name="ListarProyectosSIMA">
+      <wsdl:input message="tns:ListarProyectosSIMAHttpPostIn" />
+      <wsdl:output message="tns:ListarProyectosSIMAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleProyectosSIMA">
+      <wsdl:input message="tns:DetalleProyectosSIMAHttpPostIn" />
+      <wsdl:output message="tns:DetalleProyectosSIMAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPryectoPor">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar Proyectos para calidad</wsdl:documentation>
+      <wsdl:input message="tns:BuscarPryectoPorHttpPostIn" />
+      <wsdl:output message="tns:BuscarPryectoPorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProyectoInsAct">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta proyecto por CLIENTE</wsdl:documentation>
+      <wsdl:input message="tns:ProyectoInsActHttpPostIn" />
+      <wsdl:output message="tns:ProyectoInsActHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProyectosSoap" type="tns:ProyectosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListarProyectosSIMA">
+      <soap:operation soapAction="http://tempuri.org/ListarProyectosSIMA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleProyectosSIMA">
+      <soap:operation soapAction="http://tempuri.org/DetalleProyectosSIMA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPryectoPor">
+      <soap:operation soapAction="http://tempuri.org/BuscarPryectoPor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaModificaProyecto">
+      <soap:operation soapAction="http://tempuri.org/InsertaModificaProyecto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProyectoInsAct">
+      <soap:operation soapAction="http://tempuri.org/ProyectoInsAct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProyectosSoap12" type="tns:ProyectosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListarProyectosSIMA">
+      <soap12:operation soapAction="http://tempuri.org/ListarProyectosSIMA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleProyectosSIMA">
+      <soap12:operation soapAction="http://tempuri.org/DetalleProyectosSIMA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPryectoPor">
+      <soap12:operation soapAction="http://tempuri.org/BuscarPryectoPor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaModificaProyecto">
+      <soap12:operation soapAction="http://tempuri.org/InsertaModificaProyecto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProyectoInsAct">
+      <soap12:operation soapAction="http://tempuri.org/ProyectoInsAct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProyectosHttpGet" type="tns:ProyectosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ListarProyectosSIMA">
+      <http:operation location="/ListarProyectosSIMA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleProyectosSIMA">
+      <http:operation location="/DetalleProyectosSIMA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPryectoPor">
+      <http:operation location="/BuscarPryectoPor" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProyectoInsAct">
+      <http:operation location="/ProyectoInsAct" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProyectosHttpPost" type="tns:ProyectosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ListarProyectosSIMA">
+      <http:operation location="/ListarProyectosSIMA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleProyectosSIMA">
+      <http:operation location="/DetalleProyectosSIMA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPryectoPor">
+      <http:operation location="/BuscarPryectoPor" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProyectoInsAct">
+      <http:operation location="/ProyectoInsAct" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Proyectos">
+    <wsdl:port name="ProyectosSoap" binding="tns:ProyectosSoap">
+      <soap:address location="http://10.10.18.10:90/Core/GestionProduccion/Proyectos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ProyectosSoap12" binding="tns:ProyectosSoap12">
+      <soap12:address location="http://10.10.18.10:90/Core/GestionProduccion/Proyectos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ProyectosHttpGet" binding="tns:ProyectosHttpGet">
+      <http:address location="http://10.10.18.10:90/Core/GestionProduccion/Proyectos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ProyectosHttpPost" binding="tns:ProyectosHttpPost">
+      <http:address location="http://10.10.18.10:90/Core/GestionProduccion/Proyectos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
