@@ -84,16 +84,6 @@ namespace SIMANET_W22R.HelpDesk.BandejaEntrada
             }
         }
 
-        public void CargarModoNuevo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CargarModoModificar()
-        {
-            throw new NotImplementedException();
-        }
-
         Control CardSprints(DataRow drPer) {
             string check = ((drPer["ASIGNADO"].ToString() == "1") ? " checked=true" : "");
             string htmlCard = @" <div class='col-sm-6'>
