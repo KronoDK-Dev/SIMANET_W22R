@@ -11,7 +11,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 {
 
 
-    public partial class FindAprobadorRI
+    public partial class Interoperabilidad
     {
 
         /// <summary>
@@ -22,14 +22,5 @@ namespace SIMANET_W22R.GestiondeCalidad
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// Control EasyAcFindAprobador.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar EasyAcFindAprobador;
     }
 }

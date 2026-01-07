@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace SIMANET_W22R.GestiondeCalidad
 {
-    public partial class DetalleProyecto : PaginaCalidadBase, IPaginaMantenimento, IPaginaBase
+    public partial class DetalleProyecto : PaginaCalidadBase, IPaginaMantenimento,IPaginaBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -1,6 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EnviarPorCorreo.aspx.cs" Inherits="SIMANET_W22R.GestiondeCalidad.EnviarPorCorreo" %>
-<%@ Register TagPrefix="cc3" Namespace="EasyControlWeb.Form.Controls" Assembly="EasyControlWeb" %>
-<%@ Register TagPrefix="cc2" Namespace="EasyControlWeb.Filtro" Assembly="EasyControlWeb" %>
+<%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Form.Controls" TagPrefix="cc3" %>
+
+<%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Filtro" TagPrefix="cc2" %>
+
+<%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb" TagPrefix="cc1" %>
+
 
 <!DOCTYPE html>
 
@@ -275,8 +279,12 @@
                     
                 </td>
             </tr>
+
         </table>
+       
+
     </form>
+    
+   
 </body>
 </html>
-

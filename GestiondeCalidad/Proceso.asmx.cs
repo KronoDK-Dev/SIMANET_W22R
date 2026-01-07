@@ -1,37 +1,55 @@
-﻿using EasyControlWeb;
-using SIMANET_W22R.srvGeneral;
-using SIMANET_W22R.srvGestionReportes;
-using SIMANET_W22R.srvProyectos;
+﻿using SIMANET_W22R.srvGestionCalidad;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Web;
+using System.Text;
 using System.Web.Services;
-using SIMANET_W22R.Controles;
+using System.Web.Script.Serialization;
+using EasyControlWeb;
+using SIMANET_W22R.srvGeneral;
+using SIMANET_W22R.srvGestionReportes;
 using SIMANET_W22R.GestionReportes;
-using SIMANET_W22R.srvGestionCalidad;
+using System.ServiceModel.Activation;
+using System.ServiceModel;
+using SIMANET_W22R.srvProyectos;
+using static EasyControlWeb.EasyUtilitario.Enumerados.Configuracion.SeccionKey;
+
+using SIMANET_W22R.Controles;
+using SIMANET_W22R.RecursosHumanos;
+using static iTextSharp.text.pdf.AcroFields;
+using System.Drawing;
+using System.Net;
+using System.Security.Cryptography;
+using SIMANET_W22R.srvSeguridad;
+using System.Security.Cryptography.Xml;
+using System.Web;
+using EasyControlWeb.Form.Controls;
 
 namespace SIMANET_W22R.GestiondeCalidad
 {
     /// <summary>
     /// Descripción breve de Proceso
     /// </summary>
-    [WebService(Namespace = "http://tempuri.org/")]
-    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [WebService(Namespace = "http://sima.com.pe/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.None)]
     [System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
-    // [System.Web.Script.Services.ScriptService]
+    [System.Web.Script.Services.ScriptService]
+    [ServiceContract(Namespace = "")]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+  
     public class Proceso : System.Web.Services.WebService
     {
+
         DataTable dt;
         DataTable dtClon;
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public DataTable TreeListarInspeciones(string IdInspeccion, int IdUsuario, string UserName)
+        public DataTable TreeListarInspeciones(string IdInspeccion,int IdUsuario, string UserName)
         {
+
             ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
-            dt = oCalidad.Inspeccion_Listar(IdInspeccion, IdUsuario, UserName);
+            dt = oCalidad.Inspeccion_Listar(IdInspeccion, IdUsuario,UserName);
 
             return EasyUtilitario.Helper.Data.TreeData(dt, "IdInspeccionPadre", "IdInspeccion");
         }
@@ -57,7 +75,7 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
         [System.Web.Services.WebMethod]
-        public DataTable BAreaoEmpresa(string NombreAreaoEmpresa, int IdUsuario, string UserName)
+        public DataTable BAreaoEmpresa (string NombreAreaoEmpresa,int IdUsuario,string UserName)
         {
             DataTable dt = new DataTable();
             try
@@ -80,7 +98,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             try
             {
                 ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
-                dt = oCalidad.BuscarAprobador(ApellidosyNombres, UserName);
+                dt = oCalidad.BuscarAprobador(ApellidosyNombres,  UserName);
                 dt.TableName = "Table";
             }
             catch (Exception ex)
@@ -109,10 +127,9 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
         [System.Web.Services.WebMethod]
-        public DataTable DetalleResponsableXAreaModyInsert(string IdDetalleResponsableArea, string IdInspeccion, string IdPersonal, string Observacion, string IdEstado, string IdUsuario, string UserName)
+        public DataTable  DetalleResponsableXAreaModyInsert(string IdDetalleResponsableArea,string IdInspeccion,string IdPersonal,string Observacion,  string IdEstado,string IdUsuario,string UserName)
         {
-            try
-            {
+            try{ 
                 ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
                 ResponsableAreaDetalleBE oResponsableAreaDetalleBE = new ResponsableAreaDetalleBE();
                 oResponsableAreaDetalleBE.IdDetalleResponsableArea = IdDetalleResponsableArea;
@@ -133,18 +150,18 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
         [System.Web.Services.WebMethod]
-        public int ActualizaEstadoDetalleResponsable(string IdDetalleResponsableArea, string IdEstado, string UserName)
+        public int ActualizaEstadoDetalleResponsable(string IdDetalleResponsableArea,string IdEstado, string UserName)
         {
             ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
             ResponsableAreaDetalleBE oResponsableAreaDetalleBE = new ResponsableAreaDetalleBE();
             oResponsableAreaDetalleBE.IdDetalleResponsableArea = IdDetalleResponsableArea;
-            oResponsableAreaDetalleBE.IdEstado = Convert.ToInt32(IdEstado);
+            oResponsableAreaDetalleBE.IdEstado= Convert.ToInt32(IdEstado);
             oResponsableAreaDetalleBE.UserName = UserName;
             return oCalidad.DetallePorReponsabledeAreaCambiarEstado(oResponsableAreaDetalleBE);
         }
 
-
-
+       
+        
         [System.Web.Services.WebMethod]
         public DataTable BuscarProyInspec(string NombreProyecto, string UserName)
         {
@@ -161,10 +178,10 @@ namespace SIMANET_W22R.GestiondeCalidad
             }
             return dt;
         }
-
+        
 
         [System.Web.Services.WebMethod]
-        public DataTable Listar(string NombreProyecto, int IdUsuario, string UserName)
+        public DataTable Listar(string NombreProyecto,int IdUsuario,string UserName)
         {
             DataTable dt = new DataTable();
             try
@@ -172,15 +189,14 @@ namespace SIMANET_W22R.GestiondeCalidad
                 ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
                 dt = oCalidad.Inspeccion_Listar("0", IdUsuario, UserName);
                 dt.TableName = "Table";
-                // EasyControlWeb.EasyUtilitario.Helper.Pagina.WriteDataTableToXML(dt);
+               // EasyControlWeb.EasyUtilitario.Helper.Pagina.WriteDataTableToXML(dt);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 string e = ex.Message;
             }
             return dt;
         }
-
+        
         [System.Web.Services.WebMethod]
         public DataTable ModificarInsertarInspector(string IdInspector, string IdInspeccion, string Idpersonal, string Principal, string IdUsuario, string UserName, string IdEstado)
         {
@@ -199,17 +215,16 @@ namespace SIMANET_W22R.GestiondeCalidad
 
                 oCalidad.Inspeccion_ModificarInsertarInspector(oInspectorBE);
             }
-            catch (Exception ex)
-            {
+            catch(Exception ex){
                 return EasyControlWeb.EasyUtilitario.Helper.Data.Error("Proceso.asmx", ex.Message);
 
             }
-            return EasyControlWeb.EasyUtilitario.Helper.Data.TransaccionalAD("1");
+            return EasyControlWeb.EasyUtilitario.Helper.Data.TransaccionalAD("1")  ;
         }
 
 
-        [System.Web.Services.WebMethod]
-        public DataTable ModificarInsertarRespnsableArea(string IdInspeccion, string Idpersonal, int IdTipoPesonal, string IdUsuario, string UserName, string IdEstado)
+       [System.Web.Services.WebMethod]
+        public DataTable ModificarInsertarRespnsableArea(string IdInspeccion, string Idpersonal,int IdTipoPesonal, string IdUsuario, string UserName, string IdEstado)
         {
             try
             {
@@ -282,7 +297,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 
 
         [System.Web.Services.WebMethod]
-        public DataTable ModificarInsertarActividadProyecto(string IdProyecto, string NombreActividad, string IdEstado, string IdUsuario, string UserName)
+        public DataTable ModificarInsertarActividadProyecto(string IdProyecto, string NombreActividad,string IdEstado, string IdUsuario,string UserName)
         {
             try
             {
@@ -316,18 +331,18 @@ namespace SIMANET_W22R.GestiondeCalidad
 
 
         /*PAra Buscar por proyecto*/
-        [System.Web.Services.WebMethod]
-        public DataTable BuscarProyectoXNombre(string NombreProyecto, string UserName)
-        {
-            string Criterio = "NombreProyecto like '%" + NombreProyecto + "%'";
-            return BuscarDatosProyecto(Criterio, UserName);
-        }
-
+         [System.Web.Services.WebMethod]
+         public DataTable BuscarProyectoXNombre(string NombreProyecto, string UserName)
+         {
+             string Criterio = "NombreProyecto like '%" + NombreProyecto + "%'";
+             return BuscarDatosProyecto(Criterio,  UserName);
+         }
+       
 
         [System.Web.Services.WebMethod]
         public DataTable BuscarAreaEntidad_Inspeccion(string TalleoContratista, string UserName)
         {
-            DataTable dt = (new ControlInspeccionesSoapClient()).BuscarAreaEntidad_Inspeccion(TalleoContratista, UserName);
+            DataTable dt=(new ControlInspeccionesSoapClient()).BuscarAreaEntidad_Inspeccion(TalleoContratista, UserName);
             dt.TableName = "Table";
             return dt;
         }
@@ -348,14 +363,13 @@ namespace SIMANET_W22R.GestiondeCalidad
             }
             return dtResult;
         }
+      
 
-
-        private DataTable BuscarDatosProyecto(string Criterio, string UserName)
-        {
+        private DataTable BuscarDatosProyecto(string Criterio,string UserName) {
             DataTable dtResult = new DataTable();
             try
             {
-                DataTable dt = (new ProyectosSoapClient()).ListarProyectosSIMA("0", UserName);
+                DataTable dt = (new ProyectosSoapClient()).ListarProyectosSIMA("0", UserName);          
                 DataView dv = dt.DefaultView;
 
                 dv.RowFilter = Criterio;
@@ -368,7 +382,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             }
             catch (Exception ex)
             {
-                dtResult = EasyControlWeb.EasyUtilitario.Helper.Data.Error("Proceso.asmx", ex.Message);
+                dtResult =  EasyControlWeb.EasyUtilitario.Helper.Data.Error("Proceso.asmx", ex.Message);
 
             }
             return dtResult;
@@ -378,7 +392,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 
         #region para los reportes
         [System.Web.Services.WebMethod]
-        public DataSet ReporteFichaTecnica(string IdInspeccion, int IdObjeto, int IdUsuario, string UserName)
+        public DataSet ReporteFichaTecnica(string IdInspeccion, int IdObjeto,int IdUsuario, string UserName)
         {
             //https://learn.microsoft.com/es-es/troubleshoot/developer/visualstudio/csharp/language-compilers/copy-image-database-picturebox
             DataSet ds = new DataSet();
@@ -387,7 +401,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             try
             {
                 AdministrarReportesSoapClient ogReports = new AdministrarReportesSoapClient();
-
+               
                 DataTable dtimg = new DataTable();
                 DataTable dtAnexo = new DataTable();
                 int NroImagenes = 1;
@@ -401,7 +415,7 @@ namespace SIMANET_W22R.GestiondeCalidad
                     if (dtimg.Rows.Count > 2)
                     {
                         int PointReg = 0;
-
+                      
                         DataRow drnew = dtAnexo.NewRow();
                         int nroReg = 1;
                         foreach (DataRow dr in dtimg.Rows)
@@ -414,7 +428,7 @@ namespace SIMANET_W22R.GestiondeCalidad
                                 {
                                     case 1:
                                     case 2:
-                                        // case 3:
+                                   // case 3:
                                         drnew["imagen" + NroImagenes.ToString()] = EasyUtilitario.Helper.Archivo.ImgTobytBLOBData(NombreF);
                                         break;
                                 }
@@ -437,8 +451,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 
                         }
                     }
-                    else
-                    {
+                    else {
                         foreach (DataRow dr in dtimg.Rows)
                         {
                             DataRow drnew = dtAnexo.NewRow();
@@ -456,18 +469,18 @@ namespace SIMANET_W22R.GestiondeCalidad
 
 
                 dt = new DataTable();
-                dt = ogReports.ListarCabeceradeReporte(IdObjeto, UserName);
+                dt = ogReports.ListarCabeceradeReporte(IdObjeto, UserName);               
                 dt.TableName = "RPT_uspNTADDetalleReporte;1";
-                dt.AcceptChanges();
+                dt.AcceptChanges(); 
                 ds.Tables.Add(dt);
-
+                
 
                 dt = new DataTable();
                 dt = oCalidad.Inspeccion_Listar(IdInspeccion, IdUsuario, UserName);
                 dt.Rows[0]["NroImagenes"] = dtimg.Rows.Count.ToString();
                 dt.TableName = "CALuspNTADAdministrarInspeccion;1";
                 ds.Tables.Add(dt);
-
+              
                 //Lista de INspectores participantes
                 dt = new DataTable();
                 dt = oCalidad.Inspeccion_ListarInspectores(IdInspeccion, UserName);
@@ -479,12 +492,12 @@ namespace SIMANET_W22R.GestiondeCalidad
                 dt.TableName = "CALuspNTADListarResponsablesxArea;1";
                 ds.Tables.Add(dt);
 
-                /*dt = new DataTable();
-                 dt = oCalidad.ListarResponsablesPorArea(IdInspeccion, UserName);
-                 dt.TableName = "CALuspNTADListarResponsablesxArea;2";
-                 ds.Tables.Add(dt);*/
+               /*dt = new DataTable();
+                dt = oCalidad.ListarResponsablesPorArea(IdInspeccion, UserName);
+                dt.TableName = "CALuspNTADListarResponsablesxArea;2";
+                ds.Tables.Add(dt);*/
 
-                ds.Tables.Add(dtAnexo);
+                ds.Tables.Add(dtAnexo); 
 
                 //Firmas
                 dt = new DataTable();
@@ -554,7 +567,7 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
         [System.Web.Services.WebMethod]
-        public int ModificarInsertarPeronaFirmante(string IdInspeccion, int IdPersonalFirmante, int IdTipoFirmante, string Descripcion, string ImagenFirma, int IdUsuario, string UserName, int IdEstado)
+        public int ModificarInsertarPeronaFirmante(string IdInspeccion ,int IdPersonalFirmante ,int IdTipoFirmante,string Descripcion,string ImagenFirma,int IdUsuario,string UserName,int IdEstado)
         {
             try
             {
@@ -582,7 +595,7 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
         [System.Web.Services.WebMethod]
-        public int ModificarInsertarFirmante(int IdPersonalFirmante, string ImagenFirma, int IdEstado, int IdUsuario, string UserName)
+        public int ModificarInsertarFirmante(int IdPersonalFirmante,  string ImagenFirma,int IdEstado, int IdUsuario, string UserName)
         {
             try
             {
@@ -635,40 +648,36 @@ namespace SIMANET_W22R.GestiondeCalidad
         //Implementados
 
         [System.Web.Services.WebMethod]
-        public DataTable ListarReponsableArea(string IdInspeccion, string UserName)
+        public DataTable ListarReponsableArea(string IdInspeccion,string UserName)
         {
             ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
             return oCalidad.ListarResponsablesPorArea(IdInspeccion, UserName);
         }
-
+        
 
         /*https://www.c-sharpcorner.com/blogs/web-services-using-c-sharp-chpater-3-creating-web-services2*/
         //Implementado en aspx
-
+        
         [System.Web.Services.WebMethod]
-        public DataTable ListarInspectores(string IdInspeccion, string UserName)
-        {
-            try
-            {
+        public DataTable ListarInspectores(string IdInspeccion,string UserName) {
+            try{
                 ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
                 return oCalidad.Inspeccion_ListarInspectores(IdInspeccion, UserName);
             }
-            catch (Exception ex)
-            {
+            catch(Exception ex){
                 return EasyUtilitario.Helper.Data.Error("Proceso.asmx", ex.Message);
             }
         }
-
+        
 
         #region Reporte de indicadores 
         [System.Web.Services.WebMethod]
-        public DataSet DataReporteNoConforme(int Año, int MesHasta, string UserName)
+        public DataSet DataReporteNoConforme(int Año,int MesHasta,  string UserName)
         {
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
-            try
-            {
+            try {
 
                 AdministrarReportesSoapClient ogReports = new AdministrarReportesSoapClient();
                 dt = new DataTable();
@@ -677,18 +686,18 @@ namespace SIMANET_W22R.GestiondeCalidad
                 ds.Tables.Add(dt);
 
                 dt = new DataTable();
-                dt = oCalidad.ResumenNoConformeIP_SIMA(Año, MesHasta, 0, UserName);
+                dt = oCalidad.ResumenNoConformeIP_SIMA(Año,MesHasta,0, UserName);
                 dt.TableName = "CALuspNTADReporteResumenProyInspeccion;1";
 
                 ds.Tables.Add(dt);
 
                 dt = new DataTable();
-                dt = oCalidad.ResumenNoConformeIP(Año, MesHasta, UserName);
+                dt = oCalidad.ResumenNoConformeIP(Año, MesHasta,  UserName);
                 dt.TableName = "CALuspNTADReporteResumenProyInspeccionIP;1";
                 ds.Tables.Add(dt);
 
                 dt = new DataTable();
-                dt = oCalidad.ResumenNoConformeSIMA(Año, MesHasta, UserName);
+                dt = oCalidad.ResumenNoConformeSIMA(Año, MesHasta,UserName);
                 dt.TableName = "CALuspNTADReporteResumenProyInspeccionSIMA;1";
                 ds.Tables.Add(dt);
             }
@@ -697,17 +706,16 @@ namespace SIMANET_W22R.GestiondeCalidad
                 string e = ex.Message;
                 return null;
             }
-
+          
 
             return ds;
         }
 
         //Invocado desde javascript
         [System.Web.Services.WebMethod]
-        public string GenerarReporteNoConformidad(string Anio, string MesHasta, string UserName)
-        {
-            DataSet ds = DataReporteNoConforme(Convert.ToInt32(Anio), Convert.ToInt32(MesHasta), UserName);
-            Dictionary<string, string> InfoRptBE = (new GenerarPdf()).CrearArchivo(13, UserName, ds);
+        public string GenerarReporteNoConformidad(string Anio, string MesHasta, string UserName) {
+            DataSet ds = DataReporteNoConforme(Convert.ToInt32(Anio), Convert.ToInt32(MesHasta),  UserName);
+            Dictionary<string, string> InfoRptBE= (new GenerarPdf()).CrearArchivo(13, UserName, ds);
             return EasyUtilitario.Helper.Data.SeriaizedDiccionario(InfoRptBE);
         }
         #endregion
@@ -745,7 +753,7 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
         //Invocado desde javascript
-        [System.Web.Services.WebMethod]
+       [System.Web.Services.WebMethod]
         public string GenerarReporteNoConformidadResumenProyecto(string Anio, string MesHasta, string UserName)
         {
             DataSet ds = DataReportResumenNoConformePorProyecto_Mensual(Convert.ToInt32(Anio), Convert.ToInt32(MesHasta), UserName);
@@ -774,7 +782,7 @@ namespace SIMANET_W22R.GestiondeCalidad
                 dt.TableName = "RPT_uspNTADDetalleReporte;1";
                 ds.Tables.Add(dt);
 
-
+                
                 dt = new DataTable();
                 dt = oCalidad.ResumenNoConformePorIP_SIMA_Mensual(Año, MesHasta, 0, UserName);
                 dt.TableName = "CALuspNTADReporteResumenPorTALLERES_CONTRATISTA;1";
@@ -802,7 +810,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             Dictionary<string, string> InfoRptBE = (new GenerarPdf()).CrearArchivo(24, UserName, ds);
             return EasyUtilitario.Helper.Data.SeriaizedDiccionario(InfoRptBE);
         }
-
+        
 
 
         #endregion
@@ -827,7 +835,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 
 
                 dt = new DataTable();
-                dt = oCalidad.ResumenNoConformePorTipodeInspeccion(Año, MesHasta, UserName);
+                dt = oCalidad.ResumenNoConformePorTipodeInspeccion(Año, MesHasta,  UserName);
                 dt.TableName = "CALuspNTADReporteResumenPorTipoInspeccion;1";
                 ds.Tables.Add(dt);
 
@@ -846,16 +854,16 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
         //Invocado desde javascript
-        [System.Web.Services.WebMethod]
+         [System.Web.Services.WebMethod]
 
-        public string GenerarReporteNoConformePorTipodeInspeccion(string Anio, string MesHasta, string UserName)
-        {
-            DataSet ds = DataReportNoConformePorTipodeInspeccion(Convert.ToInt32(Anio), Convert.ToInt32(MesHasta), UserName);
-            Dictionary<string, string> InfoRptBE = (new GenerarPdf()).CrearArchivo(29, UserName, ds);
-            return EasyUtilitario.Helper.Data.SeriaizedDiccionario(InfoRptBE);
-        }
+         public string GenerarReporteNoConformePorTipodeInspeccion(string Anio, string MesHasta, string UserName)
+         {
+             DataSet ds = DataReportNoConformePorTipodeInspeccion(Convert.ToInt32(Anio), Convert.ToInt32(MesHasta), UserName);
+             Dictionary<string, string> InfoRptBE = (new GenerarPdf()).CrearArchivo(29, UserName, ds);
+             return EasyUtilitario.Helper.Data.SeriaizedDiccionario(InfoRptBE);
+         }
 
-
+         
 
         #endregion
 
@@ -864,8 +872,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 
 
         [System.Web.Services.WebMethod]
-        public int AprobarSolicitudFI(string IdInspeccion, int IdPersonalFirmante, string _TokenID, int IdEstado, string UserName)
-        {
+        public int AprobarSolicitudFI(string IdInspeccion, int IdPersonalFirmante,string _TokenID, int IdEstado, string UserName){
             //Actualizar 
             UsuarioFirmanteBE UsuarioFirmanteBE = new UsuarioFirmanteBE();
             UsuarioFirmanteBE.IdInspeccion = IdInspeccion;
@@ -881,7 +888,7 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
         [System.Web.Services.WebMethod]
-        public int EMailToInspector(string IdInspeccion, int IdPersonalFirmante, string EMailDestino, string Mensaje, string UserName)
+        public int EMailToInspector(string IdInspeccion,int IdPersonalFirmante, string EMailDestino,string Mensaje,  string UserName)
         {
             //Actualiza nro de correos enviados recibidos
             UsuarioFirmanteBE oUsuarioFirmanteBE = new UsuarioFirmanteBE();
@@ -896,15 +903,15 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
         [System.Web.Services.WebMethod]
-        public int EnviaEmailSolAprobar(string IdInspeccion, int IdPersonalFirmante, int IdTipoPlazo, int TiempoPlazo, int IdUsuario, string UserName, string PathApp, string PagPrc)
+        public int EnviaEmailSolAprobar(string IdInspeccion, int IdPersonalFirmante,int IdTipoPlazo,int TiempoPlazo,int IdUsuario,string UserName,string PathApp, string PagPrc)
         {
             string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
             ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
             InspeccionBE oInspeccionBE = oCalidad.Inspeccion_Detalle(IdInspeccion, IdUsuario, UserName);
 
-            DataRow[] drs = oCalidad.ListarUsuariosFirmantes(IdInspeccion, IdUsuario.ToString(), UserName).Select("IdPersonaFirmante='" + IdPersonalFirmante.ToString() + "'");
+            DataRow []drs = oCalidad.ListarUsuariosFirmantes(IdInspeccion, IdUsuario.ToString(), UserName).Select("IdPersonaFirmante='" + IdPersonalFirmante.ToString() + "'");
             DataRow dr = drs[0];
-            string PathFileMod = EasyUtilitario.Helper.Configuracion.Leer("ConfigModCalidad", "CalidadLocalFiles") + "Plantillas\\FrmSolocitaAprobacion.aspx";
+            string PathFileMod = EasyUtilitario.Helper.Configuracion.Leer("ConfigModCalidad", "CalidadLocalFiles") + "Plantillas\\FrmSolocitaAprobacion.aspx";            
             string BodyEmail = EasyUtilitario.Helper.Archivo.Leer(PathFileMod);
 
             string UrlFoto = EasyUtilitario.Helper.Configuracion.Leer("ConfigBase", "PathFotos");
@@ -934,23 +941,21 @@ namespace SIMANET_W22R.GestiondeCalidad
                 string HTML_DESAAPROBADO = "<a href=" + cmll + PageParams + "&IdEst=4" + cmll + "> <img src=" + cmll + btnDesaprobado + cmll + " width=" + cmll + "74px" + cmll + "height =" + cmll + "91px" + cmll + "></a>";
 
                 string Modalidad = "";
-                if (IdTipoPlazo != 4)
-                {
-                    switch (IdTipoPlazo)
-                    {
-                        case 1:
+                if (IdTipoPlazo != 4) {
+                    switch(IdTipoPlazo){
+                    case 1:
                             Modalidad = "Minuto(s)";
                             break;
-                        case 2:
+                    case 2:
                             Modalidad = "Hora(s)";
                             break;
-                        case 3:
+                    case 3:
                             Modalidad = "Dias(s)";
                             break;
                     }
 
                 }
-
+               
                 BodyEmail = BodyEmail.Replace("[IMG]", ImgFoto)
                                     .Replace("[QUIENENVIA]", dr["ApellidosyNombres"].ToString())
                                     .Replace("[PROYECTO]", oInspeccionBE.NombreProyecto)
@@ -970,7 +975,7 @@ namespace SIMANET_W22R.GestiondeCalidad
                 Dictionary<string, string> InfoRptBE = (new EnviarPorCorreo()).GenerarRI(IdInspeccion, 8, oInspeccionBE.NroReporte, oInspeccionBE.NombreProyecto, IdUsuario, UserName);
 
                 List<string> lstArchivos = new List<string>();
-                string NombreArchivo = InfoRptBE["PathLocal"].ToString() + "\\" + InfoRptBE["NombreNuevo"].ToString();
+                string NombreArchivo = InfoRptBE["PathLocal"].ToString() +"\\" + InfoRptBE["NombreNuevo"].ToString();
                 lstArchivos.Add(NombreArchivo);
 
                 Mail oMail = new Mail(UserName.ToLower() + "@sima.com.pe", dr["EMail"].ToString(), BodyEmail, InfoRptBE["NombreNuevo"].ToString(), lstArchivos);
@@ -982,10 +987,15 @@ namespace SIMANET_W22R.GestiondeCalidad
 
                 return 1;
             }
-            else
-            {
+            else {
                 return -1;
             }
         }
+
+
+
     }
+
+
+
 }

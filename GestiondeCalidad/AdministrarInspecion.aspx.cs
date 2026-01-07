@@ -1,12 +1,4 @@
-﻿using EasyControlWeb;
-using EasyControlWeb.Filtro;
-using EasyControlWeb.Form.Controls;
-using SIMANET_W22R.Controles;
-using SIMANET_W22R.Exceptiones;
-using SIMANET_W22R.InterfaceUI;
-using SIMANET_W22R.srvGestionCalidad;
-using SIMANET_W22R.srvSeguridad;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -16,7 +8,22 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using EasyControlWeb;
+using EasyControlWeb.Filtro;
+using EasyControlWeb.Form.Controls;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+using SIMANET_W22R.Controles;
+using SIMANET_W22R.Exceptiones;
 using SIMANET_W22R.GestionReportes;
+using SIMANET_W22R.InterfaceUI;
+using SIMANET_W22R.srvGestionCalidad;
+using SIMANET_W22R.srvSeguridad;
+using System.Net;
+using System.Drawing;
+using EasyControlWeb.InterConeccion;
+using EasyControlWeb.Form.Templates;
+
 
 namespace SIMANET_W22R.GestiondeCalidad
 {
@@ -48,8 +55,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 
         }
 
-        void ConfigurarFiltroPorDefault()
-        {
+        void ConfigurarFiltroPorDefault() {
             List<EasyFiltroItem> lFItem = new List<EasyFiltroItem>();
             lFItem = EasyGestorFiltro1.getCollectionCriterios();
 
@@ -89,7 +95,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 
         /*https://www.codeproject.com/tips/312545/a-method-to-move-rows-within-a-datatable*/
         public void LlenarGrilla(string strFilter)
-        {
+        { 
             try
             {
                 /*  EasyDataInterConect odi = new EasyDataInterConect();
@@ -123,12 +129,11 @@ namespace SIMANET_W22R.GestiondeCalidad
                 EasyGridView1.LoadData();
 
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {                
                 StackTrace stack = new StackTrace();
-                string NombreMetodo = stack.GetFrame(1).GetMethod().Name + "/" + stack.GetFrame(0).GetMethod().Name;
-
-                this.LanzarException(NombreMetodo, ex);
+                string NombreMetodo = stack.GetFrame(1).GetMethod().Name+"/"+ stack.GetFrame(0).GetMethod().Name;
+               
+                this.LanzarException(NombreMetodo,ex);
             }
         }
 
@@ -220,11 +225,11 @@ namespace SIMANET_W22R.GestiondeCalidad
                 int Nivel = Convert.ToInt32(dr["Nivel"]);
                 tblNodo = EasyUtilitario.Helper.HtmlControlsDesign.CrearTabla(1, (Nivel + 1));
                 tblNodo.Attributes["width"] = "100%";
-                //  tblNodo.Attributes["border"]="2";
+              //  tblNodo.Attributes["border"]="2";
                 tblNodo.Rows[0].Cells[Nivel].InnerText = dr["NroReporte"].ToString();
                 tblNodo.Rows[0].Cells[Nivel].Align = "left";
 
-                tblNodo.Rows[0].Cells[Nivel].Style.Add("white-space", "nowrap");
+                tblNodo.Rows[0].Cells[Nivel].Style.Add("white-space","nowrap"); 
                 tblNodo.Rows[0].Cells[Nivel].Attributes["width"] = "100%";
 
                 HtmlImage oImg = new HtmlImage();
@@ -274,7 +279,7 @@ namespace SIMANET_W22R.GestiondeCalidad
                     Badge1.Attributes["width"] = "20px";
                     dvBadge1.Controls.Add(Badge1);
                     e.Row.Cells[1].Controls.Add(dvBadge1);
-
+                   
                 }
                 /*-----------------------------------------------------------------------------------------------------------------*/
                 //Indicador de bloqueo
@@ -305,7 +310,7 @@ namespace SIMANET_W22R.GestiondeCalidad
                 tbl.Rows[1].Cells[0].InnerText = dr["NombreProyecto"].ToString();
                 tbl.Rows[2].Cells[0].InnerHtml = "CLIENTE:";
                 tbl.Rows[2].Cells[0].Attributes["style"] = "font-size: 10px;font-family:Arial;Color:blue";
-                tbl.Rows[3].Cells[0].InnerText = dr["ClienteRazonSocial"].ToString();
+                tbl.Rows[3].Cells[0].InnerText =  dr["ClienteRazonSocial"].ToString();
 
                 e.Row.Cells[4].Controls.Add(tbl);
                 e.Row.Cells[6].Controls.Add(ListarInspector(dr["IdInspeccion"].ToString()));
@@ -318,15 +323,14 @@ namespace SIMANET_W22R.GestiondeCalidad
                 oImage.Attributes["src"] = dr["ImgEstado"].ToString();
                 oImage.Attributes["Width"] = "45px";
                 oImage.Attributes["title"] = dr["Estado"].ToString();
-                oImage.Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()] = "AdministraEstado('" + dr["IdInspeccion"].ToString() + "','" + dr["IdUsuarioInspector"].ToString() + "',this)";
+                oImage.Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()] = "AdministraEstado('" + dr["IdInspeccion"].ToString()  + "','" + dr["IdUsuarioInspector"].ToString() + "',this)";
 
                 e.Row.Cells[10].Controls.Add(oImage);
 
             }
         }
 
-        EasyListView ListarInspector(string IdInspeccion)
-        {
+        EasyListView ListarInspector(string IdInspeccion) {
             ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
             DataTable dtInspect = oCalidad.Inspeccion_ListarInspectores(IdInspeccion, this.UsuarioLogin);
 
@@ -363,7 +367,7 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
 
-
+      
         EasyListView ListarResponsablePorArea(string IdInspeccion)
         {
             ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
@@ -384,7 +388,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             oListViewResponsable.ID = "LsvResponsable";
             oListViewResponsable.ClassName = "BaseItemSecond";
             oListViewResponsable.Ancho = "100%";
-            // oListViewResponsable.FncItemOnCLick = "ListViewResponsables_ItemClick";
+           // oListViewResponsable.FncItemOnCLick = "ListViewResponsables_ItemClick";
             oListViewResponsable.FncItemOnMouseMove = "ListViewInspector_ItemMouseMove";
 
             oListViewResponsable.TextAlign = EasyUtilitario.Enumerados.Ubicacion.Izquierda;
@@ -405,8 +409,8 @@ namespace SIMANET_W22R.GestiondeCalidad
                 DataTable dtMsgResArea = oCalidad.ListarDetallePorReponsabledeArea(IdInspeccion, Convert.ToInt32(drResponsable["IdPersonal"].ToString()), this.UsuarioLogin);
                 if (dtMsgResArea != null)
                 {
-                    DataRow[] NroReg = dtMsgResArea.Select("IdEstado=2");//Enviado a revision
-                    if ((NroReg != null) && (NroReg.Length > 0))
+                    DataRow []NroReg = dtMsgResArea.Select("IdEstado=2");//Enviado a revision
+                    if ((NroReg != null)&& (NroReg.Length>0))
                     {
                         oEasyListItemResponsable.NroMsg = NroReg.Length;
                     }
@@ -419,62 +423,61 @@ namespace SIMANET_W22R.GestiondeCalidad
 
         protected void EasyPopupBase1_onClick()
         {
-            Dictionary<string, string> RowSelectd = EasyGridView1.getDataItemSelected();
+            Dictionary<string, string> RowSelectd =  EasyGridView1.getDataItemSelected();
             ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
-            InspectorBE oInspectorBE = new InspectorBE();
+                InspectorBE oInspectorBE = new InspectorBE();
 
-            oInspectorBE.IdInspeccion = RowSelectd["IdInspeccion"];
-            oInspectorBE.IdInspector = "0";
-            oInspectorBE.IdPersonal = Convert.ToInt32(EasyAcBuscarPersonal.GetValue());
+                oInspectorBE.IdInspeccion = RowSelectd["IdInspeccion"];
+                oInspectorBE.IdInspector = "0";
+                oInspectorBE.IdPersonal = Convert.ToInt32(EasyAcBuscarPersonal.GetValue());
 
-            oInspectorBE.Principal = Convert.ToInt32(txtTipoOp.Text);
-            oInspectorBE.IdUsuario = this.UsuarioId;
-            oInspectorBE.UserName = this.UsuarioLogin;
-            oInspectorBE.IdEstado = 1;
-            oCalidad.Inspeccion_ModificarInsertarInspector(oInspectorBE);
+                oInspectorBE.Principal = Convert.ToInt32(txtTipoOp.Text);
+                oInspectorBE.IdUsuario = this.UsuarioId;
+                oInspectorBE.UserName = this.UsuarioLogin;
+                oInspectorBE.IdEstado = 1;
+                oCalidad.Inspeccion_ModificarInsertarInspector(oInspectorBE);
 
 
             //this.LlenarGrilla(EasyGestorFiltro1.getFilterString());
             this.LlenarGrilla("");
         }
 
-        protected void EasyGridView1_EasyGridDetalle_Click(Dictionary<string, string> Recodset)
+        protected void EasyGridView1_EasyGridDetalle_Click(Dictionary<string , string> Recodset)
         {
-
+            
             EasyControlWeb.Form.Controls.EasyNavigatorBE oEasyNavigatorBE = new EasyControlWeb.Form.Controls.EasyNavigatorBE();
             oEasyNavigatorBE.Texto = "Detalle de Inspección";
             oEasyNavigatorBE.Descripcion = "Registro y mantenimiento de inspección";
             oEasyNavigatorBE.Pagina = "/GestiondeCalidad/DetalleInspeccion.aspx";
 
             oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(PaginaCalidadBase.KEYIDINSPECCION, Recodset["IdInspeccion"]));
-            oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(EasyUtilitario.Constantes.Pagina.KeyParams.Modo.ToString(), "M"));
+            oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(EasyUtilitario.Constantes.Pagina.KeyParams.Modo.ToString(),  "M"));
             oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(PaginaCalidadBase.KEYQEDITABLE, Recodset["Editable"]));
 
 
-            /* List<EasyNavigatorBE> oEasyNavigatorBElst = new List<EasyNavigatorBE>();
-             try
-             {
-                 string s = "";
-                 oEasyNavigatorBElst = (List<EasyNavigatorBE>)Session[EasyUtilitario.Constantes.Sessiones.Historial];
-                 foreach (EasyNavigatorBE onbe in oEasyNavigatorBElst)
-                 {
-                     s += onbe.LstCtrlValue;
-                 }
-                 SIMAExceptionSeguridadAccesoForms ex = new SIMAExceptionSeguridadAccesoForms(s);
-                 ErrorDisplay(ex);
-             }
-             catch (Exception ex)
-             {
-                 this.LanzarException("Page_Load.LlenarDatos.CargarModoModificar", ex);
-             }
-             */
+           /* List<EasyNavigatorBE> oEasyNavigatorBElst = new List<EasyNavigatorBE>();
+            try
+            {
+                string s = "";
+                oEasyNavigatorBElst = (List<EasyNavigatorBE>)Session[EasyUtilitario.Constantes.Sessiones.Historial];
+                foreach (EasyNavigatorBE onbe in oEasyNavigatorBElst)
+                {
+                    s += onbe.LstCtrlValue;
+                }
+                SIMAExceptionSeguridadAccesoForms ex = new SIMAExceptionSeguridadAccesoForms(s);
+                ErrorDisplay(ex);
+            }
+            catch (Exception ex)
+            {
+                this.LanzarException("Page_Load.LlenarDatos.CargarModoModificar", ex);
+            }
+            */
 
 
             this.IrA(oEasyNavigatorBE, EasyGridView1, EasyGestorFiltro1);
         }
 
-        void verDetalledeInspeccion(EasyUtilitario.Enumerados.ModoPagina Modo, string IdInspeccionRelacionada, string EDITABLE)
-        {
+        void verDetalledeInspeccion(EasyUtilitario.Enumerados.ModoPagina Modo,string IdInspeccionRelacionada,string EDITABLE) {
             EasyControlWeb.Form.Controls.EasyNavigatorBE oEasyNavigatorBE = new EasyControlWeb.Form.Controls.EasyNavigatorBE();
             oEasyNavigatorBE.Texto = "Detalle de Inspección";
             oEasyNavigatorBE.Descripcion = "Registro y mantenimiento de inspección";
@@ -482,7 +485,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(EasyUtilitario.Constantes.Pagina.KeyParams.Modo.ToString(), Modo.ToString()));
             oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(PaginaCalidadBase.KEYIDINSPECCION, IdInspeccionRelacionada));
             oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(PaginaCalidadBase.KEYQEDITABLE, EDITABLE));
-
+            
 
             this.IrA(oEasyNavigatorBE, EasyGridView1, EasyGestorFiltro1);
         }
@@ -521,7 +524,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             oResponsableAreaBE.UserName = this.UsuarioLogin;
             oResponsableAreaBE.IdEstado = 1;
 
-            string id = oCalidad.Inspeccion_ModficarInsertarResponsable(oResponsableAreaBE);
+            string id= oCalidad.Inspeccion_ModficarInsertarResponsable(oResponsableAreaBE);
 
 
 
@@ -538,7 +541,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             {
                 case "btnAgregar":
                     //EasyUtilitario.Helper.Archivo.PDF.CrearTemplateWatermark("RI. NO AUTORIZADO", "C:\\AppWebs\\AppTest\\Archivos\\Calidad\\AllFiles\\Recursos\\DEMO.pdf");
-                    verDetalledeInspeccion(EasyUtilitario.Enumerados.ModoPagina.N, "", "");
+                    verDetalledeInspeccion(EasyUtilitario.Enumerados.ModoPagina.N,"", "");
                     break;
 
                 case "btnInfoRel":
@@ -551,8 +554,7 @@ namespace SIMANET_W22R.GestiondeCalidad
                         //(new Proceso()).InspeccionCambiarEstado(Recordset["IdInspeccion"].ToString(), 0, this.UsuarioId, this.UsuarioLogin);
                         (new ControlInspeccionesSoapClient()).InspeccionCambiarEstado(Recordset["IdInspeccion"].ToString(), 0, this.UsuarioId, this.UsuarioLogin);
                     }
-                    else
-                    {
+                    else {
                         oeasyMessageBox = new EasyMessageBox();
                         oeasyMessageBox.ID = "msgb";
                         oeasyMessageBox.Titulo = "Eliminar registro";
@@ -567,16 +569,15 @@ namespace SIMANET_W22R.GestiondeCalidad
                 case "btnImprimir":
 
                     DataSet ds = new DataSet();
+                   
 
-
-                    string NombreRptRI = "RI-" + Recordset["NombreProyecto"].ToString() + "-" + Recordset["NroReporte"].ToString() + ".pdf";
+                    string NombreRptRI = "RI-" + Recordset["NombreProyecto"].ToString() +"-"+ Recordset["NroReporte"].ToString()+".pdf";
 
                     /* int NroAprob = (int) ViewState[Recordset["IdInspeccion"].ToString()];
                      if (NroAprob == 3)//Verifica si esta autorizado para imprimir RI
                      {*/
-                    if (Recordset["Bloqueado"].ToString().ToString().Equals("1"))
-                    {
-                        (new GenerarPdf()).PrintPrevio("Reporte de Inspección", NombreRptRI, "ConfigModCalidad", "HttpRIFinal", EasyGridView1, EasyGestorFiltro1);
+                    if (Recordset["Bloqueado"].ToString().ToString().Equals("1")) {
+                        (new GenerarPdf()).PrintPrevio("Reporte de Inspección",NombreRptRI, "ConfigModCalidad", "HttpRIFinal",   EasyGridView1, EasyGestorFiltro1);
                     }
                     else
                     {
@@ -600,8 +601,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 
 
 
-        public DataSet DataReporteFichaTecnica(string IdInspeccion)
-        {
+        public DataSet DataReporteFichaTecnica(string IdInspeccion) {
             /*EasyDataInterConect oEasyDataInterConect = new EasyDataInterConect();
             oEasyDataInterConect.UrlWebService = "/GestiondeCalidad/Proceso.asmx";
             oEasyDataInterConect.Metodo = "ReporteFichaTecnica";
@@ -625,7 +625,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             DataSet ds = new DataSet();
             //Obtiene el DataTable como fuente de informacion del reporte
             ds = (DataSet)EasyUtilitario.Helper.Data.getResultInterConect(oEasyDataInterConect);*/
-            DataSet ds = (new Proceso()).ReporteFichaTecnica(IdInspeccion, this.IdReporteInspeccion, this.UsuarioId, this.UsuarioLogin);
+            DataSet ds=(new Proceso()).ReporteFichaTecnica(IdInspeccion, this.IdReporteInspeccion,this.UsuarioId ,this.UsuarioLogin);
             return ds;
         }
 
@@ -644,8 +644,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             try
             {
                 string lstCC = lstParaEmail.Text.Substring(0, lstParaEmail.Text.Length - 1);
-                if (lstCC.Length == 0)
-                {
+                if(lstCC.Length== 0){
                     oeasyMessageBox = new EasyMessageBox();
                     oeasyMessageBox.ID = "msgbA";
                     oeasyMessageBox.Titulo = "Enviar Correo";
@@ -667,24 +666,21 @@ namespace SIMANET_W22R.GestiondeCalidad
                 string NombreArchivo = "";
                 if (DataFila["Bloqueado"].ToString().Equals("1"))//sii esta bloqueado abre el archivo caso contrario copia de la carpeta de archivo generado por el usuario a la caprte sde fina de bloeados
                 {
-                    RutaFinalRI = EasyUtilitario.Helper.Configuracion.Leer("ConfigModCalidad", "LocalRIFinal") + oUsuarioBE.Login + "\\" + NombreRI;
+                    RutaFinalRI = EasyUtilitario.Helper.Configuracion.Leer("ConfigModCalidad", "LocalRIFinal") + oUsuarioBE.Login +"\\" + NombreRI;
                 }
-                else
-                {
+                else {
 
                     NombreArchivo = txtNomFileAdjunto.Text.Replace(EasyUtilitario.Constantes.Caracteres.SignoArroba.ToString(), "\\");
                     //Inicia la copia al area defnitiva de archivos bloqueados
-                    string CarpetaFinal = EasyUtilitario.Helper.Configuracion.Leer("ConfigModCalidad", "LocalRIFinal") + oUsuarioBE.Login;
+                    string CarpetaFinal = EasyUtilitario.Helper.Configuracion.Leer("ConfigModCalidad", "LocalRIFinal") + oUsuarioBE.Login ;
                     RutaFinalRI = CarpetaFinal + "\\" + NombreRI;
                     //verifica si existe la parte del usuario en el ri final
-                    if (!Directory.Exists(CarpetaFinal))
-                    {
+                    if(!Directory.Exists(CarpetaFinal)){
                         DirectoryInfo di = Directory.CreateDirectory(CarpetaFinal);
                     }
 
-                    if (File.Exists(RutaFinalRI))
-                    {
-                        File.Delete(RutaFinalRI);
+                    if (File.Exists(RutaFinalRI)) {
+                        File.Delete(RutaFinalRI);   
                     }
                     File.Move(NombreArchivo, RutaFinalRI);//Archivo copiado
                     //Elimina el arcvivo generado
@@ -694,19 +690,19 @@ namespace SIMANET_W22R.GestiondeCalidad
                 }
                 List<string> lstArchivos = new List<string>();
                 lstArchivos.Add(RutaFinalRI);
-
-
+                
+                
 
                 //Mail oMail = new Mail(oUsuarioBE.Email, lstPara, txtAsunto.Text,"Adjunto Ficha técnica[" + DataFila["NroReporte"].ToString() +"]"  , lstArchivos);
                 Mail oMail = new Mail(oUsuarioBE.Email, sPara, ArrCc, txtAsunto.Text, "Adjunto Ficha técnica[" + DataFila["NroReporte"].ToString() + "]", lstArchivos);
                 MailResult oMailResult = oMail.enviaMail();
-                oeasyMessageBox = new EasyMessageBox();
-                oeasyMessageBox.ID = "msgb3";
-                oeasyMessageBox.Titulo = "Enviar Correo";
-                oeasyMessageBox.Contenido = oMailResult.Message;
-                oeasyMessageBox.Tipo = EasyUtilitario.Enumerados.MessageBox.Tipo.AlertType;
-                oeasyMessageBox.AlertStyle = EasyUtilitario.Enumerados.MessageBox.AlertStyle.modern;
-                Page.Controls.Add(oeasyMessageBox);
+                    oeasyMessageBox = new EasyMessageBox();
+                    oeasyMessageBox.ID = "msgb3";
+                    oeasyMessageBox.Titulo = "Enviar Correo";
+                    oeasyMessageBox.Contenido = oMailResult.Message;
+                    oeasyMessageBox.Tipo = EasyUtilitario.Enumerados.MessageBox.Tipo.AlertType;
+                    oeasyMessageBox.AlertStyle = EasyUtilitario.Enumerados.MessageBox.AlertStyle.modern;
+                    Page.Controls.Add(oeasyMessageBox);
             }
             catch (Exception ex)
             {
@@ -727,13 +723,13 @@ namespace SIMANET_W22R.GestiondeCalidad
         {
             HttpRequest ContextRequest = ((System.Web.UI.Page)HttpContext.Current.Handler).Request;
             string EntityCliente = ContextRequest["__EVENTARGUMENT"];
-            Dictionary<string, string> DataCliente = EasyUtilitario.Helper.Data.SeriaizedDiccionario(EntityCliente);
+            Dictionary<string,string>DataCliente= EasyUtilitario.Helper.Data.SeriaizedDiccionario(EntityCliente);
             string pathEncryt = DataCliente["UrlBase"].Replace("/", "[.]");
             (new GenerarPdf()).PrintPrevio(DataCliente["Titulo"], this.UsuarioLogin, pathEncryt);
         }
 
         protected void EasyGestorFiltro1_ItemCriterio(EasyGestorFiltro.ModoEditFiltro Modo, EasyFiltroItem oEasyFiltroItem)
-        {
+        {  
             if (Modo == EasyGestorFiltro.ModoEditFiltro.Add)
             {
                 //this.LlenarGrilla(EasyGestorFiltro1.getFilterString());
@@ -763,6 +759,9 @@ namespace SIMANET_W22R.GestiondeCalidad
                 stream.Close();
             }
         }*/
+
+
+
 
     }
 }

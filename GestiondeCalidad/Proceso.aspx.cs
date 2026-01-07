@@ -1,21 +1,28 @@
 ﻿using EasyControlWeb;
+using Org.BouncyCastle.Bcpg;
+using SIMANET_W22R.GestionReportes;
+using SIMANET_W22R.RecursosHumanos;
 using SIMANET_W22R.srvGeneral;
 using SIMANET_W22R.srvGestionCalidad;
+using SIMANET_W22R.srvGestionReportes;
 using SIMANET_W22R.srvProyectos;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using SIMANET_W22R.GestionReportes;
+using System.Xml;
+using System.Xml.Serialization;
+using System.Xml.XPath;
 
 namespace SIMANET_W22R.GestiondeCalidad
 {
     public partial class Proceso1 : PaginaCalidadBase
     {
-        const int KEYPRC_LST_INSPECTOR = 1;
+        const int KEYPRC_LST_INSPECTOR= 1;
         const int KEYPRC_LST_AREAREPONSABLE = 2;
         const int KEYPRC_ADM_PERSONALFIRMANTE = 3;
         const int KEYPRC_FND_PROYECTO = 4;
@@ -23,7 +30,7 @@ namespace SIMANET_W22R.GestiondeCalidad
         const int KEYPRC_INSMOD_INSPECCTOR = 6;
         const int KEYPRC_FIND_PROY_NOM = 7;
         /*cONSTANTES PARA REPORTE DE INDICADORES*/
-        const int KEYPRC_RPT_NO_CONFORMIDAD = 8;
+        const int KEYPRC_RPT_NO_CONFORMIDAD= 8;
         const int KEYPRC_RPT_NO_CONFORMIDAD_PROY = 9;
         const int KEYPRC_RPT_NO_CONFORMIDAD_IP_SIMA = 10;
         const int KEYPRC_RPT_NO_CONFORMIDAD_TIPO_INSPEC = 11;
@@ -33,7 +40,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 
         const int KEYPRC_FIND_TALLER_CONTRAT = 14;
 
-        DataTable dt = new DataTable();
+        DataTable dt= new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             Dictionary<string, string> InfoRptBE;
@@ -41,28 +48,27 @@ namespace SIMANET_W22R.GestiondeCalidad
             ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
             try
             {
-                switch (this.IdProceso)
-                {
+                switch (this.IdProceso) { 
                     case KEYPRC_LST_INSPECTOR:
                         this.DataTableToXML((new ControlInspeccionesSoapClient()).Inspeccion_ListarInspectores(this.IdInspeccion, this.UsuarioLogin));
                         break;
                     case KEYPRC_LST_AREAREPONSABLE:
                         this.DataTableToXML((new ControlInspeccionesSoapClient()).ListarResponsablesPorArea(this.IdInspeccion, this.UsuarioLogin));
                         break;
-                    /* case KEYPRC_ADM_PERSONALFIRMANTE:
+                   /* case KEYPRC_ADM_PERSONALFIRMANTE:
+                       
+                        UsuarioFirmanteBE oUsuarioFirmanteBE = new UsuarioFirmanteBE();
+                        oUsuarioFirmanteBE.IdInspeccion = this.IdInspeccion;
+                        oUsuarioFirmanteBE.IdPersonaFirmante = this.IdPersonaFirmante;
+                        oUsuarioFirmanteBE.IdTipoFirmante = this.IdTipoFirmante;
+                        oUsuarioFirmanteBE.Descripcion = this.Descripcion;
+                        oUsuarioFirmanteBE.Firma = this.ImagenFirma;
+                        oUsuarioFirmanteBE.IdUsuario = this.UsuarioId;
+                        oUsuarioFirmanteBE.UserName = this.UsuarioLogin;
+                        oUsuarioFirmanteBE.IdEstado = this.IdEstado;
 
-                         UsuarioFirmanteBE oUsuarioFirmanteBE = new UsuarioFirmanteBE();
-                         oUsuarioFirmanteBE.IdInspeccion = this.IdInspeccion;
-                         oUsuarioFirmanteBE.IdPersonaFirmante = this.IdPersonaFirmante;
-                         oUsuarioFirmanteBE.IdTipoFirmante = this.IdTipoFirmante;
-                         oUsuarioFirmanteBE.Descripcion = this.Descripcion;
-                         oUsuarioFirmanteBE.Firma = this.ImagenFirma;
-                         oUsuarioFirmanteBE.IdUsuario = this.UsuarioId;
-                         oUsuarioFirmanteBE.UserName = this.UsuarioLogin;
-                         oUsuarioFirmanteBE.IdEstado = this.IdEstado;
-
-                         oCalidad.ModificaInsertaUsuariosFirmantes(oUsuarioFirmanteBE);
-                         break;*/
+                        oCalidad.ModificaInsertaUsuariosFirmantes(oUsuarioFirmanteBE);
+                        break;*/
                     case KEYPRC_FND_PROYECTO:
                         oCalidad = new ControlInspeccionesSoapClient();
                         this.DataTableToXML((new ControlInspeccionesSoapClient()).BuscarProyectodeInspeccion(this.NombreProyecto, this.UsuarioLogin));
@@ -73,7 +79,7 @@ namespace SIMANET_W22R.GestiondeCalidad
                     case KEYPRC_INSMOD_INSPECCTOR:
 
                         InspectorBE oInspectorBE = new InspectorBE();
-                        oInspectorBE.IdInspector = this.IdInspector;
+                        oInspectorBE.IdInspector =  this.IdInspector;
                         oInspectorBE.IdInspeccion = this.IdInspeccion;
                         oInspectorBE.IdPersonal = this.IdPersonal;
                         oInspectorBE.Principal = this.InspectorPrincipal;
@@ -123,7 +129,7 @@ namespace SIMANET_W22R.GestiondeCalidad
                         break;
                     case KEYPRC_ADM_ACTIVIDAD:
                         ProyectoActividadBE oProyectoActividadBE = new ProyectoActividadBE();
-                        oProyectoActividadBE.IdPryecto = Convert.ToInt32(this.IdProyecto);
+                        oProyectoActividadBE.IdPryecto = Convert.ToInt32( this.IdProyecto);
                         oProyectoActividadBE.NombreActividad = this.NombreActividad;
                         oProyectoActividadBE.IdEstado = this.IdEstado;
                         oProyectoActividadBE.IdUsuario = this.UsuarioId;
@@ -162,12 +168,18 @@ namespace SIMANET_W22R.GestiondeCalidad
                         break;
                 }
 
-            }
+           }
             catch (Exception ex)
             {
                 this.ErrorToXML("0002", "Proceso.aspx", ex);
             }
 
         }
+
+
+
+
+
+
     }
 }

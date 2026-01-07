@@ -1,21 +1,26 @@
 ﻿using EasyControlWeb;
+using EasyControlWeb.Filtro;
 using SIMANET_W22R.Exceptiones;
+using SIMANET_W22R.GestionReportes;
 using SIMANET_W22R.InterfaceUI;
+using SIMANET_W22R.srvGestionCalidad;
 using SIMANET_W22R.srvSeguridad;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.IO.Packaging;
 using System.Linq;
+using System.Net.PeerToPeer;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using SIMANET_W22R.GestionReportes;
+using static SIMANET_W22R.GestionReportes.GenerarPdf;
 
 namespace SIMANET_W22R.GestiondeCalidad
 {
-    public partial class EnviarPorCorreo : PaginaCalidadBase, IPaginaBase
+    public partial class EnviarPorCorreo : PaginaCalidadBase,IPaginaBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -75,7 +80,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             //Card Perfil
             this.EasyCardPerfil1.PathFoto = EasyUtilitario.Helper.Configuracion.Leer(EasyUtilitario.Enumerados.Configuracion.SeccionKey.Nombre.ConfigBase, "PathFotos") + oUsuarioBE.NroDocumento + ".jpg";
             this.EasyCardPerfil1.ApellidosyNombres = oUsuarioBE.ApellidosyNombres;
-            this.EasyCardPerfil1.Area = oUsuarioBE.Area;
+            this.EasyCardPerfil1.Area= oUsuarioBE.Area;
             this.EasyCardPerfil1.Email = oUsuarioBE.Email;
             //
 
@@ -86,7 +91,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             otblMsg.Attributes["class"] = "ItemContact";
             otblMsg.Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()] = "EasyDisplay('RowMsg');";
 
-            HtmlImage oimgMsg = new HtmlImage();
+            HtmlImage oimgMsg = new HtmlImage(); 
             oimgMsg.Attributes["Width"] = "30px";
             oimgMsg.Attributes["src"] = EasyUtilitario.Constantes.ImgDataURL.IconMSG;
 
@@ -99,7 +104,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 
             //Generar l Archivo de Reporte
 
-            Dictionary<string, string> InfoRptBE = GenerarRI(this.IdInspeccion, this.IdReporteInspeccion, this.NroFichaTecnica, this.NombreProyecto, this.UsuarioId, this.UsuarioLogin);
+            Dictionary<string, string> InfoRptBE = GenerarRI(this.IdInspeccion, this.IdReporteInspeccion,this.NroFichaTecnica,this.NombreProyecto, this.UsuarioId, this.UsuarioLogin);
             string HttpPathNameReporte = InfoRptBE["HttpPathNameReporte"].ToString();
             string NombreNuevo = InfoRptBE["NombreNuevo"].ToString();
 
@@ -108,8 +113,8 @@ namespace SIMANET_W22R.GestiondeCalidad
             otblFileAdjunto.Attributes["class"] = "ItemContact";
             otblFileAdjunto.Attributes["title"] = HttpPathNameReporte;
             otblFileAdjunto.Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()] = "EasyDisplay('RowPrevio');";
-
-            HtmlImage oimgFile = new HtmlImage();
+            
+            HtmlImage oimgFile = new HtmlImage(); 
             oimgFile.Attributes["Width"] = "30px";
             oimgFile.Attributes["src"] = EasyUtilitario.Constantes.ImgDataURL.IconPdf;
 
@@ -125,8 +130,8 @@ namespace SIMANET_W22R.GestiondeCalidad
 
             string RutaDefault = EasyUtilitario.Helper.Configuracion.Leer("ConfigBase", "PathFileRpt").Replace(EasyUtilitario.Constantes.Caracteres.BackSlash.ToString(), EasyUtilitario.Constantes.Caracteres.SignoArroba);
             RutaDefault = InfoRptBE["PathLocal"].ToString().Replace(EasyUtilitario.Constantes.Caracteres.BackSlash.ToString(), EasyUtilitario.Constantes.Caracteres.SignoArroba);
-            string script = "var RutaFileAjunto= '" + RutaDefault + EasyUtilitario.Constantes.Caracteres.SignoArroba + NombreNuevo + "';";
-
+            string script = "var RutaFileAjunto= '" + RutaDefault +  EasyUtilitario.Constantes.Caracteres.SignoArroba + NombreNuevo + "';";
+            
             Page.Controls.Add(new LiteralControl("<script>" + script + "</script>"));
 
             //Muestra el Reporte
@@ -134,11 +139,10 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
 
-        public Dictionary<string, string> GenerarRI(string IdInspeccion, int IdReporteInspeccion, string NroReporte, string NombreProyecto, int IdUsuario, string UsuarioLogin)
-        {
+        public Dictionary<string,string> GenerarRI(string IdInspeccion,int IdReporteInspeccion,string NroReporte,string NombreProyecto,int IdUsuario,string UsuarioLogin) {
             string HttpPathNameReporte = "";
             string NombreNuevo = "RI-" + NombreProyecto + "-" + NroReporte + ".pdf";
-            Dictionary<string, string> InfoRptBE = new Dictionary<string, string>();
+            Dictionary<string, string> InfoRptBE= new Dictionary<string, string>();
             if (this.RI_Bloqueado == 0)
             {
                 DataSet ds = (new Proceso()).ReporteFichaTecnica(IdInspeccion, IdReporteInspeccion, IdUsuario, UsuarioLogin);
@@ -152,8 +156,7 @@ namespace SIMANET_W22R.GestiondeCalidad
                 }
                 System.IO.File.Move(RutaArchivoActual, PathLocalNameReporte);
             }
-            else
-            {//EnableTheming caso el archivo se encuentre bloqueado
+            else {//EnableTheming caso el archivo se encuentre bloqueado
                 HttpPathNameReporte = EasyUtilitario.Helper.Configuracion.Leer("ConfigModCalidad", "HttpRIFinal") + UsuarioLogin + "/" + NombreNuevo;
                 InfoRptBE["PathLocal"] = EasyUtilitario.Helper.Configuracion.Leer("ConfigModCalidad", "LocalRIFinal") + UsuarioLogin;
             }
@@ -166,14 +169,13 @@ namespace SIMANET_W22R.GestiondeCalidad
             return FileFIBE;
         }
 
-        string CrearHomeFinal(string UserName)
-        {
+        string CrearHomeFinal(string UserName) {
             string PathBase = EasyUtilitario.Helper.Configuracion.Leer("ConfigModCalidad", "LocalRIFinal");
             string path = PathBase + UserName;
             string PathHome = "";
             try
             {
-                if (Directory.Exists(path) == false)
+                if (Directory.Exists(path)==false)
                 {
                     DirectoryInfo di = Directory.CreateDirectory(path);
                 }
@@ -201,7 +203,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 
         public void LlenarJScript()
         {
-
+            
         }
 
         public int Modificar()
@@ -223,5 +225,7 @@ namespace SIMANET_W22R.GestiondeCalidad
         {
             throw new NotImplementedException();
         }
+
+      
     }
 }

@@ -1,7 +1,9 @@
-﻿using EasyControlWeb.Form.Controls;
+﻿using EasyControlWeb;
+using EasyControlWeb.Errors;
+using EasyControlWeb.Form.Controls;
 using SIMANET_W22R.Exceptiones;
 using SIMANET_W22R.InterfaceUI;
-using SIMANET_W22R.srvProyectos;
+using SIMANET_W22R.srvGestionCalidad;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,6 +11,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SIMANET_W22R.Exceptiones;
+using SIMANET_W22R.srvProyectos;
 
 namespace SIMANET_W22R.GestiondeCalidad
 {
@@ -26,8 +30,7 @@ namespace SIMANET_W22R.GestiondeCalidad
                     this.LlenarGrilla(EasyGestorFiltro1.getFilterString());
                 }
             }
-            catch (SIMAExceptionSeguridadAccesoForms ex)
-            {
+            catch (SIMAExceptionSeguridadAccesoForms ex) {
                 this.LanzarException(ex);
             }
         }
@@ -80,8 +83,8 @@ namespace SIMANET_W22R.GestiondeCalidad
         {
             try
             {
-                DataTable dt = (new ProyectosSoapClient()).ListarProyectosSIMA("0", this.UsuarioLogin);
-
+                DataTable dt = (new ProyectosSoapClient()).ListarProyectosSIMA("0", this.UsuarioLogin );
+                
                 DataView dv = dt.DefaultView;
                 if (strFilter.Length > 0)
                 {

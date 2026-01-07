@@ -1,13 +1,21 @@
 ﻿using EasyControlWeb;
+using EasyControlWeb.Form.Controls;
+using SIMANET_W22R.Exceptiones;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Web;
+using System.Web.UI;
 
 namespace SIMANET_W22R.GestiondeCalidad
 {
     public class PaginaCalidadBase : PaginaBase
     {
+
+
         string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
 
         public int IdReporteInspeccion { get { return 8; } }
@@ -28,7 +36,7 @@ namespace SIMANET_W22R.GestiondeCalidad
 
         //Para la busqueda por proyecto
         public const string KEYQNOMBREPROY = "NombreProyecto";
-        public const string KEYQIDINSPECTOR = "IdInspector";
+        public const string KEYQIDINSPECTOR= "IdInspector";
         public const string KEYQIDINSPECTOR_PRINCIPAL = "Principal";
 
         public static string KEYQTALLE_CONTRATISTA = "TalleoContratista";
@@ -58,8 +66,7 @@ namespace SIMANET_W22R.GestiondeCalidad
         {
             get { return Page.Request.Params[KEYQIDETALLERPTARESPAREA]; }
         }
-        public int IdPersonaFirmante
-        {
+        public int IdPersonaFirmante {
             get { return Convert.ToInt32(Page.Request.Params[KEYQIDPERFIRMANTE]); }
         }
         public int IdTipoFirmante
@@ -78,8 +85,7 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
         //
-        public string NombreActividad
-        {
+        public string NombreActividad {
             get { return Page.Request.Params[KEYQNOMACTIVIDAD]; }
         }
         public string TalleroContratista
@@ -87,8 +93,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             get { return Page.Request.Params[KEYQTALLE_CONTRATISTA]; }
         }
 
-        public int RI_Bloqueado
-        {
+        public int RI_Bloqueado {
             get { return Convert.ToInt32(Page.Request.Params[KEYQRI_BLOQUEDO]); }
         }
 
@@ -116,8 +121,10 @@ namespace SIMANET_W22R.GestiondeCalidad
                                                 }, 500);
                                     </script>";
 
-            Page.RegisterClientScriptBlock(Pagina, FormCreateVar);
+            Page.RegisterClientScriptBlock(Pagina,  FormCreateVar );
         }
-
+               
     }
 }
+
+   
