@@ -17,7 +17,7 @@ using System.Collections.Specialized;
 
 namespace SIMANET_W22R.HelpDesk.Atencion
 {
-    public partial class AdministrarPlandeTrabajo : HelpDeskBase, IPaginaBase
+    public partial class AdministrarPlandeTrabajo : HelpDeskBase,IPaginaBase
     {
 
         protected void Page_Load(object sender, EventArgs e)
@@ -153,16 +153,6 @@ namespace SIMANET_W22R.HelpDesk.Atencion
         }
 
         public void LlenarDatos()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CargarModoNuevo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CargarModoModificar()
         {
             throw new NotImplementedException();
         }
