@@ -52,16 +52,6 @@ namespace SIMANET_W22R.HelpDesk.Sistemas
           
         }
 
-        public void CargarModoNuevo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CargarModoModificar()
-        {
-            throw new NotImplementedException();
-        }
-
         public void LlenarGrilla()
         {
 
