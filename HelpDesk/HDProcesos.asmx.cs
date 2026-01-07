@@ -1,15 +1,19 @@
 ﻿using EasyControlWeb;
 using EasyControlWeb.Filtro;
+using EasyControlWeb.Form.Controls;
 using EasyControlWeb.InterConeccion;
 using EasyControlWeb.InterConecion;
 using SIMANET_W22R.Controles;
+using SIMANET_W22R.GestiondeCalidad;
+using SIMANET_W22R.HelpDesk.Requerimiento;
+using SIMANET_W22R.srvGestionCalidad;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO.Packaging;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using SIMANET_W22R.HelpDesk.Requerimiento;
 
 namespace SIMANET_W22R.HelpDesk
 {
@@ -28,20 +32,20 @@ namespace SIMANET_W22R.HelpDesk
         #region Solicita Aprobacion del servicio brindado
 
         [System.Web.Services.WebMethod]
-        public string EnviaEmailAprobarServicio(string NroDocDNISolicitante, string ApellidosyNombresSolicitante, int IdUsuarioRQR, string IdRequerimiento, string PathApp, int IdUsuario, string UserName)
+        public string EnviaEmailAprobarServicio(string NroDocDNISolicitante,string ApellidosyNombresSolicitante,int IdUsuarioRQR, string IdRequerimiento,string PathApp,int IdUsuario,string UserName)
         {
             Guid gToken = Guid.NewGuid();//Identificador unico que servira para relacionar la fila de la grilla con sus data en script
             string sToken = gToken.ToString();
             //string PathApp
             //EasyUtilitario.Helper.Pagina.PathSite() 
-            string PageParamsAprob = PathApp + "/General/Iteroperabilidad.aspx?" + HelpDeskBase.KEYQIDPROCESO + "=1&" + HelpDeskBase.KEYIDREQUERIMIENTO + "=" + IdRequerimiento + "&" + PaginaBase.KEYTOKEN + "=" + sToken + "&" + HelpDeskBase.KEYQIDESTADO + "=9&IdUsu=" + IdUsuarioRQR.ToString() + "&UsuNa=" + UserName;
+            string PageParamsAprob = PathApp+ "/General/Iteroperabilidad.aspx?" + HelpDeskBase.KEYQIDPROCESO  +"=1&"+ HelpDeskBase.KEYIDREQUERIMIENTO + "=" + IdRequerimiento + "&" + PaginaBase.KEYTOKEN + "=" + sToken + "&" + HelpDeskBase.KEYQIDESTADO + "=9&IdUsu=" + IdUsuarioRQR.ToString() + "&UsuNa=" + UserName;
             string PageParamsDesAprob = PathApp + "/General/Iteroperabilidad.aspx?" + HelpDeskBase.KEYQIDPROCESO + "=1&" + HelpDeskBase.KEYIDREQUERIMIENTO + "=" + IdRequerimiento + "&" + PaginaBase.KEYTOKEN + "=" + sToken + "&" + HelpDeskBase.KEYQIDESTADO + "=10&IdUsu=" + IdUsuarioRQR.ToString() + "&UsuNa=" + UserName;
             string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
-            string HTML_APROBADO = "<a href=" + cmll + PageParamsAprob + cmll + "> <img src=" + cmll + btnAprobado + cmll + " width=" + cmll + "62px" + cmll + "height =" + cmll + "91px" + cmll + "></a>";
+            string HTML_APROBADO = "<a href=" + cmll + PageParamsAprob  + cmll + "> <img src=" + cmll + btnAprobado + cmll + " width=" + cmll + "62px" + cmll + "height =" + cmll + "91px" + cmll + "></a>";
             string HTML_DESAAPROBADO = "<a href=" + cmll + PageParamsDesAprob + cmll + "> <img src=" + cmll + btnDesaprobado + cmll + " width=" + cmll + "74px" + cmll + "height =" + cmll + "91px" + cmll + "></a>";
 
 
-
+            
             string UrlFoto = EasyUtilitario.Helper.Configuracion.Leer("ConfigBase", "PathFotos");
             string ImgFoto = EasyUtilitario.Helper.Archivo.UrlImagen.DownloadToUrlData(new Uri(UrlFoto + NroDocDNISolicitante + ".jpg"));
 
@@ -60,13 +64,12 @@ namespace SIMANET_W22R.HelpDesk
             int i = 0;
             foreach (string str in list)
             {
-                if (i == PathItem.Length - 1)
+                if (i == PathItem.Length-1)
                 {
                     htmlCell += " <td nowrap='true' style='border-bottom:solid; border-top:solid;border-color:#dadada;border-width:1px;font-size:12px;color:navy;font-size:9px;color:navy'>" + str + "</td>";
-                    htmlCell += @" <td width='15px'><img width='45px' src='" + EasyUtilitario.Constantes.ImgDataURL.Path3.ToString() + "'/> </td>";
+                    htmlCell += @" <td width='15px'><img width='45px' src='" + EasyUtilitario.Constantes.ImgDataURL.Path3.ToString()  + "'/> </td>";
                 }
-                else
-                {
+                else {
                     htmlCell += " <td nowrap='true' style='border-bottom:solid; border-top:solid;border-color:#dadada;border-width:1px; font-size:12px;color:navy;font-size:9px;color:navy'>" + str + "</td>";
                     htmlCell += " <td width='15px' style='border-bottom:solid; border-top:solid;border-color:#dadada;border-width:1px;' ><img width='15px' src='" + EasyUtilitario.Constantes.ImgDataURL.Path2.ToString() + "'/> </td>";
 
@@ -80,34 +83,32 @@ namespace SIMANET_W22R.HelpDesk
 
             string LstEmailAprobadores = "";
             int p = 0;
-            foreach (DataRow drApr in (new DetalleRequerimiento()).ListarAprobadores(IdRequerimiento, UserName).Rows)
-            {
-                LstEmailAprobadores += ((p == 0) ? "" : ",") + drApr["PTRMAILCOR"].ToString();
+            foreach (DataRow drApr in (new DetalleRequerimiento()).ListarAprobadores(IdRequerimiento, UserName).Rows) {
+                LstEmailAprobadores += ((p==0)?"":",") + drApr["PTRMAILCOR"].ToString();
                 p++;
             }
             BodyEmail = BodyEmail.Replace("[IMG]", ImgFoto)
                                   .Replace("[QUIENENVIA]", ApellidosyNombresSolicitante)
                                   .Replace("[TICKET]", oEasyBaseEntityBE.GetValue("NroTicket"))
                                   .Replace("[PATHSERVICIO]", htmlPath)
-                                  .Replace("[FECHA]", oEasyBaseEntityBE.GetValue("Fecha").Substring(0, 10))
+                                  .Replace("[FECHA]", oEasyBaseEntityBE.GetValue("Fecha").Substring(0,10))
                                   .Replace("[DESCRIPCION]", oEasyBaseEntityBE.GetValue("Descripcion"))
                                   .Replace("[APROB]", HTML_APROBADO)
                                   .Replace("[DESAPROB]", HTML_DESAAPROBADO)
                                   .Replace("[PATHAPP]", "");
             string email = oEasyBaseEntityBE.GetValue("Email");
             // Mail oMail = new Mail(UserName.ToLower() + "@sima.com.pe", "erosales@sima.com.pe", BodyEmail, "Solicito aprobación de Servicio brindado", null);
-            Mail oMail = new Mail(oEasyBaseEntityBE.GetValue("Email"), LstEmailAprobadores, BodyEmail, "Solicito aprobación de Servicio brindado", null);
+             Mail oMail = new Mail(oEasyBaseEntityBE.GetValue("Email"), LstEmailAprobadores, BodyEmail, "Solicito aprobación de Servicio brindado", null);
             //Mail oMail = new Mail("erosales@sima.com.pe", "erosales@sima.com.pe", BodyEmail, "Solicito aprobación de Servicio brindado", null);
             MailResult oMailResult = oMail.enviaMail();
 
             //Actualizar Nro de Envios de solicitud de aprobaciones
+          
 
-
-            return ActualizarNroSolicitud(IdRequerimiento, sToken, 0, IdUsuario, UserName);
+            return ActualizarNroSolicitud(IdRequerimiento, sToken,0, IdUsuario, UserName); 
         }
 
-        public string ActualizarNroSolicitud(string _IdRequerimiento, string _Token, int _IdEstado, int _IdUsuario, string _UserName)
-        {
+       public  string ActualizarNroSolicitud(string _IdRequerimiento,string _Token,int _IdEstado,int _IdUsuario,string _UserName) {
             EasyDataInterConect odic = new EasyDataInterConect();
             odic.ConfigPathSrvRemoto = "PathBaseWSCore";
             odic.MetodoConexion = EasyDataInterConect.MetododeConexion.WebServiceExterno;
@@ -150,7 +151,7 @@ namespace SIMANET_W22R.HelpDesk
 
 
         #endregion
-        string HtmlPathService(EasyBaseEntityBE oEasyBaseEntityBE)
+        string  HtmlPathService(EasyBaseEntityBE oEasyBaseEntityBE)
         {
             string htmlCell = @"<td  width='45px' height='35px' style='border-bottom:solid; border-top:solid;border-color:#dadada;border-width:1px;'>
                                     <img width='45px' height='35px' src='" + EasyUtilitario.Constantes.ImgDataURL.Path0.ToString() + @"'/>
@@ -182,7 +183,7 @@ namespace SIMANET_W22R.HelpDesk
 
 
         [System.Web.Services.WebMethod]
-        public string EnviaEmailAprobarRequerimiento(string NroDocDNISolicitante, string ApellidosyNombresSolicitante, int IdUsuarioRQR, string IdRequerimiento, string PathApp, string IdUsuAprobadorRqr, string EmailAprobador, string UserName)
+        public string EnviaEmailAprobarRequerimiento(string NroDocDNISolicitante, string ApellidosyNombresSolicitante, int IdUsuarioRQR, string IdRequerimiento, string PathApp,string IdUsuAprobadorRqr,  string EmailAprobador,string UserName)
         {
             Guid gToken = Guid.NewGuid();//Identificador unico que servira para relacionar la fila de la grilla con sus data en script
             string sToken = gToken.ToString();
@@ -302,5 +303,6 @@ namespace SIMANET_W22R.HelpDesk
             odic.UrlWebServicieParams.Add(oParam);
             return odic.SendData();
         }
+
     }
 }

@@ -1,16 +1,22 @@
 ﻿using EasyControlWeb.Filtro;
 using EasyControlWeb.Form.Controls;
 using EasyControlWeb.InterConeccion;
-using SIMANET_W22R.GestionLogistica.Requerimientos;
+using MailKit.Search;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using NPOI.POIFS.FileSystem;
+using NPOI.SS.Formula.Functions;
+using SIMANET_W22R.srvHelpDesk;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.DirectoryServices;
+using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Services;
-using SIMANET_W22R.srvHelpDesk;
 using static EasyControlWeb.EasyUtilitario.Enumerados;
 using static EasyControlWeb.InterConeccion.EasyDataInterConect;
 
@@ -26,6 +32,12 @@ namespace SIMANET_W22R.HelpDesk
     // [System.Web.Script.Services.ScriptService]
     public class Procesar : System.Web.Services.WebService
     {
+
+        //https://morgantechspace.com/2013/05/ldap-search-filter-examples.html
+        //https://philipm.at/2018/searching_users_in_active_directory.html
+
+
+        
         [WebMethod]
         public int VerificaListernerChatBot(string PathChat)
         {
@@ -41,8 +53,8 @@ namespace SIMANET_W22R.HelpDesk
                                                       System.Net.Sockets.ProtocolType.Tcp);
                 sock.Connect(ipa, portno);
                 if (sock.Connected == true) // Port is in use and connection is successful
-                                            //MessageBox.Show("Port is Closed");
-                    sock.Close();
+                    //MessageBox.Show("Port is Closed");
+                sock.Close();
                 return 1;
             }
             catch (System.Net.Sockets.SocketException ex)
@@ -51,8 +63,8 @@ namespace SIMANET_W22R.HelpDesk
                                            // MessageBox.Show("Port is Open!");
                     return 0;
                 else
-                    //MessageBox.Show(ex.Message);
-                    return 0;
+                            //MessageBox.Show(ex.Message);
+                            return 0;
             }
 
 
@@ -61,8 +73,7 @@ namespace SIMANET_W22R.HelpDesk
 
 
         [WebMethod]
-        public string GuardarRequerimiento(string Descripcion, string IdServicioArea, string CodigoPersonal, int IdUsuario, string UserName)
-        {
+        public string GuardarRequerimiento(string Descripcion, string IdServicioArea, string CodigoPersonal,int IdUsuario,string UserName) {
 
             RequerimientoBE oRequerimientoBE = new RequerimientoBE();
             oRequerimientoBE.IdRequerimiento = "0";
@@ -77,21 +88,20 @@ namespace SIMANET_W22R.HelpDesk
 
 
             AdministrarHDSoapClient oHelpDesk = new AdministrarHDSoapClient();
-
+           
             return oHelpDesk.Requerimientos_ins(oRequerimientoBE);
         }
 
         [WebMethod]
-        public int GuardarArchivo(string IdRequerimiento, string IdFile, string Nombre, int Temporal, int IdEstado, int Existe, int Enviado, int IdUsuario, string UserName)
-        {
+        public int GuardarArchivo(string IdRequerimiento,string IdFile,string Nombre,int Temporal,int IdEstado,int Existe,int Enviado, int IdUsuario, string UserName) {
 
             EasyFileInfo oEasyFileInfo = new EasyFileInfo();
             oEasyFileInfo.IdFile = IdFile;
             oEasyFileInfo.Nombre = Nombre;
-            oEasyFileInfo.Temporal = ((Temporal == 1) ? true : false);
+            oEasyFileInfo.Temporal=((Temporal==1)?true:false);
             oEasyFileInfo.IdEstado = IdEstado;
-            oEasyFileInfo.Existe = ((Existe == 1) ? true : false);
-            oEasyFileInfo.Enviado = ((Enviado == 1) ? true : false);
+            oEasyFileInfo.Existe=((Existe==1)?true:false);
+            oEasyFileInfo.Enviado= ((Enviado == 1) ? true : false);
 
             {
                 ArchivoAdjuntoBE oArchivoAdjuntoBE = new ArchivoAdjuntoBE();
@@ -120,7 +130,7 @@ namespace SIMANET_W22R.HelpDesk
                     oHelpDesk.RequerimientosArhivo_ins(oArchivoAdjuntoBE);
                 }
                 //Pasa los archivos de la Carpeta temporal la Carpeta final
-                // this.EasyUpLoadMultiple1.TemporalToFinal(oEasyFileInfo);
+               // this.EasyUpLoadMultiple1.TemporalToFinal(oEasyFileInfo);
 
             }
             return 1;
@@ -163,7 +173,7 @@ namespace SIMANET_W22R.HelpDesk
         [WebMethod]
         public DataTable ActiveDItectoryGetAllUsuarios()
         {
-            string[] LstFields = { "samaccountname", "title", "mail", "usergroup", "company", "department", "telephoneNumber", "mobile", "displayname", "memberOf", "cn", "distinguishedName", "objectguid" };
+            string[] LstFields = { "samaccountname", "title", "mail", "usergroup", "company", "department", "telephoneNumber", "mobile", "displayname" , "memberOf", "cn", "distinguishedName", "objectguid" };
             DataTable dt = new DataTable();
             dt.TableName = "Table";
             string DomainPath = "LDAP://simaperu.com.pe";
@@ -208,8 +218,7 @@ namespace SIMANET_W22R.HelpDesk
         }
 
         [WebMethod]
-        public DataTable ListarGrupos()
-        {
+        public DataTable ListarGrupos() {
             DataTable dt = new DataTable();
             dt.TableName = "Table";
             dt.Columns.Add(new DataColumn("member", typeof(string)));
@@ -239,9 +248,9 @@ namespace SIMANET_W22R.HelpDesk
             return dt;
 
         }
-
+       
         [WebMethod]
-        public List<Computer> GetADComputers()
+        public  List<Computer> GetADComputers()
         {
 
             /* var domain = "simaperu";
@@ -308,5 +317,11 @@ namespace SIMANET_W22R.HelpDesk
             public string Description { get; set; }
         }
         #endregion
+
+
+
+
+
+
     }
 }
