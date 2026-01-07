@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Header.ascx.cs" Inherits="SIMANET_W22R.Controles.Header" %>
+<%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Filtro" TagPrefix="cc2" %>
 <%@ Register TagPrefix="cc1" Namespace="EasyControlWeb.Form.Controls" Assembly="EasyControlWeb" %>
 
 <link id="cssBootstrapIcons" rel="stylesheet" />
