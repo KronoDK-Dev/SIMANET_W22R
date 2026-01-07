@@ -1,7 +1,5 @@
 ﻿using EasyControlWeb;
 using EasyControlWeb.Filtro;
-using EasyControlWeb.Form.Base;
-using EasyControlWeb.Form.Controls;
 using EasyControlWeb.InterConeccion;
 using SIMANET_W22R.InterfaceUI;
 using System;
@@ -18,9 +16,8 @@ using static EasyControlWeb.InterConeccion.EasyDataInterConect;
 
 namespace SIMANET_W22R.GestionGobernanza.Indicadores
 {
-    public partial class AdministrarObjetivosAcciones : GobernanzaBase,IPaginaBase
+    public partial class ListaReponsablePorArea : GobernanzaBase, IPaginaBase
     {
-        EasyMessageBox oeasyMessageBox;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -28,7 +25,6 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
                 if (!Page.IsPostBack)
                 {
-                    this.LlenarJScript();
                     this.LlenarGrilla();
                 }
             }
@@ -40,7 +36,6 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                 this.LanzarException(NombreMetodo, ex);
             }
         }
-
         public void ConfigurarAccesoControles()
         {
             throw new NotImplementedException();
@@ -68,30 +63,40 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
         public void LlenarGrilla()
         {
-            this.EasyGridView1.DataInterconect = ListarObjetivos(80, 1);//Pbjetivos de la version 1
+            this.EasyGridView1.DataInterconect = ListarResponsable();//Pbjetivos de la version 1
             EasyGridView1.LoadData();
         }
-        EasyDataInterConect ListarObjetivos(int IdTabla, int idItem)
+
+        EasyDataInterConect ListarResponsable()
         {
             EasyDataInterConect odi = new EasyDataInterConect();
             odi.ConfigPathSrvRemoto = "PathBaseWSCore";
             odi.MetodoConexion = MetododeConexion.WebServiceExterno;
             odi.UrlWebService = "GestionGobernanza/Indicadores.asmx";
-            odi.Metodo = "ListarObjetivosoAcciones";
+            odi.Metodo = "ResponsablePorArea_Lst";
 
             EasyFiltroParamURLws oParam = new EasyFiltroParamURLws();
-            oParam.ParamName = "IdTblObjetivo";
-            oParam.Paramvalue = IdTabla.ToString();
-            oParam.TipodeDato = TiposdeDatos.Int;
+            oParam.ParamName = "CodEmp";
+            oParam.Paramvalue = "001";
+            oParam.TipodeDato = TiposdeDatos.String;
             oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
             odi.UrlWebServicieParams.Add(oParam);
 
             oParam = new EasyFiltroParamURLws();
-            oParam.ParamName = "IdObjetivo";
-            oParam.Paramvalue = idItem.ToString();
-            oParam.TipodeDato = TiposdeDatos.Int;
+            oParam.ParamName = "CodCeo";
+            oParam.Paramvalue = "001";
+            oParam.TipodeDato = TiposdeDatos.String;
             oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
             odi.UrlWebServicieParams.Add(oParam);
+
+
+            oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "CodArea";
+            oParam.Paramvalue = this.CodArea;
+            oParam.TipodeDato = TiposdeDatos.String;
+            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
+            odi.UrlWebServicieParams.Add(oParam);
+
 
 
             oParam = new EasyFiltroParamURLws();
@@ -102,7 +107,6 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
             return odi;
         }
 
-       
 
         public void LlenarGrilla(string strFilter)
         {
@@ -111,7 +115,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
         public void LlenarJScript()
         {
-            this.btnPostBack.Attributes["style"] = "display:none";
+            throw new NotImplementedException();
         }
 
         public void RegistrarJScript()
@@ -135,20 +139,24 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
             {
                 DataRowView drv = (DataRowView)e.Row.DataItem;
                 DataRow dr = drv.Row;
-                
-                e.Row.Cells[1].Controls.Add(this.NodoTree("EasyGridView1",dr,e.Row.RowIndex, 1, dr["IDITEM"].ToString(), "0", dr["CODIGO"].ToString(), true, "OnClickObjetivo"));
-                e.Row.Cells[3].Text=dr["DESCRIPCION"].ToString();
+
+                string FotoPersona = EasyUtilitario.Helper.Configuracion.Leer("ConfigBase", "PathFotos") + dr["NRODNI"].ToString() + ".jpg";
+                HtmlImage oImg = new HtmlImage();
+                oImg.Src = FotoPersona;
+                oImg.Attributes.Add("class", "ms-n2 rounded-circle img-fluid");
+                oImg.Attributes["onerror"] = "this.onerror=null;this.src=SIMA.Utilitario.Constantes.ImgDataURL.ImgSF;";
+
+                e.Row.Cells[1].Controls.Add(oImg);
+                e.Row.Cells[2].Text = dr["NRODNI"].ToString();
+                e.Row.Cells[3].Text = dr["APELLIDOSYNOMBRES"].ToString();
+
+                oImg = new HtmlImage();
+                oImg.Src = EasyUtilitario.Constantes.ImgDataURL.IconDelete;
+                oImg.Attributes.Add(EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString(), "ListaReponsablePorArea.Eliminar(this)");
+                oImg.Style.Add("cursor", "pointer");
+                e.Row.Cells[4].Controls.Add(oImg);
+
             }
-        }
-
-        protected void EasyGridView1_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
-        {
-            LlenarGrilla();
-        }
-
-        protected void btnPostBack_Click(object sender, EventArgs e)
-        {
-            this.LlenarGrilla();
         }
     }
 }

@@ -46,7 +46,7 @@
                     <cc1:EasyTextBox ID="txtNombreArea" runat="server" BackColor="Silver" ForeColor="White" ReadOnly="True"></cc1:EasyTextBox>
                 </td>
                <td>
-                     <cc1:EasyDropdownList ID="ddlProceso" runat="server" CargaInmediata="True" required DataTextField="NOMBRE" DataValueField="IDITEM" MensajeValida="No se ha seleccionado ESTADO" fnOnSelected="onChangePlazo" >
+                     <cc1:EasyDropdownList ID="ddlProceso" runat="server" CargaInmediata="True" required DataTextField="NOMBRE" DataValueField="IDITEM" MensajeValida="No se ha seleccionado ESTADO" >
                          <EasyStyle Ancho="Dos"></EasyStyle>
                          <DataInterconect  MetodoConexion="WebServiceExterno">
                              <UrlWebService>/General/TablasGenerales.asmx</UrlWebService>
@@ -111,7 +111,7 @@
                </td>
                <td class="Etiqueta" reference="ddlMedicion">PLAZO:</td>
                <td>
-                     <cc1:EasyDropdownList ID="ddlMedicion" runat="server" CargaInmediata="True" required DataTextField="NOMBRE" DataValueField="IDITEM" MensajeValida="No se ha seleccionado ESTADO" >
+                     <cc1:EasyDropdownList ID="ddlMedicion" runat="server" CargaInmediata="True" required DataTextField="NOMBRE" DataValueField="IDITEM" MensajeValida="No se ha seleccionado ESTADO" fnOnSelected="onChangePlazo" >
                           <EasyStyle Ancho="Dos"></EasyStyle>
                           <DataInterconect  MetodoConexion="WebServiceExterno">
                               <UrlWebService>/General/TablasGenerales.asmx</UrlWebService>

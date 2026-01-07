@@ -98,17 +98,16 @@
                  </tr>
                  <tr>
                      <td style="width:100%; height:100%">
-                         <cc1:EasyGridView ID="EasyGridView1" runat="server" AutoGenerateColumns="False" ShowFooter="True" TituloHeader="GESTION DE INDICADORES" ToolBarButtonClick="OnEasyGridButton_Click" Width="100%" AllowPaging="True"   fncExecBeforeServer="" OnRowDataBound="EasyGridView1_RowDataBound" >
+                         <cc1:EasyGridView ID="EasyGridView1" runat="server" AutoGenerateColumns="False" ShowFooter="True" TituloHeader="GESTION DE INDICADORES"  ToolBarButtonClick="OnEasyGridButton_Click" Width="100%" AllowPaging="True"   fncExecBeforeServer="AdministrarObjetivosAcciones.EliminarItem" OnRowDataBound="EasyGridView1_RowDataBound" OnEasyGridButton_Click="EasyGridView1_EasyGridButton_Click" >
                              <EasyGridButtons>
                                  <cc1:EasyGridButton ID="btnAgregar" SilenceWait="true"  Descripcion="" Icono="fa fa-plus-square-o" MsgConfirm="" RunAtServer="false" Texto="Agregar" Ubicacion="Derecha"  />
-                                 <cc1:EasyGridButton ID="btnEliminar" Descripcion="" Icono="fa fa-close" MsgConfirm="Desea Eliminar este registro ahora?" RequiereSelecciondeReg="true" SolicitaConfirmar="true" RunAtServer="True" Texto="Eliminar" Ubicacion="Derecha" />
+                                 <cc1:EasyGridButton ID="btnEliminar" Descripcion="" Icono="fa fa-close" MsgConfirm="Desea Eliminar este registro ahora?"  RequiereSelecciondeReg="true" SolicitaConfirmar="true" RunAtServer="True" Texto="Eliminar" Ubicacion="Derecha" />
                              </EasyGridButtons>
 
                                  <EasyStyleBtn ClassName="btn btn-primary" FontSize="1em" TextColor="white" />
                                      <DataInterconect MetodoConexion="WebServiceExterno">
                                          <UrlWebService></UrlWebService>
-                                         <Metodo>
-Requerimientos_lst</Metodo>
+                                         <Metodo>Requerimientos_lst</Metodo>
                                          <UrlWebServicieParams>
                                              <cc2:EasyFiltroParamURLws ObtenerValor="Session" ParamName="IdUsuario" Paramvalue="IdUsuario" TipodeDato="Int" />
                                              <cc2:EasyFiltroParamURLws ObtenerValor="Fijo" ParamName="UserName" Paramvalue="UserName" TipodeDato="String"/>
@@ -148,8 +147,31 @@ Requerimientos_lst</Metodo>
         <cc3:EasyPopupBase ID="EasyPopupDetalleObjetivo" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="OBJETIVO"  ValidarDatos="true" CtrlDisplayMensaje="msgValRqr"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="AdministrarObjetivosAcciones.Detalle.Aceptar"></cc3:EasyPopupBase>
 
 
-    </form>
       <script>
+          AdministrarObjetivosAcciones.EliminarItem = function (btnItem, ItemRowBE) {
+
+              var oParamCollections = new SIMA.ParamCollections();
+              var oParam = new SIMA.Param("IdTabla", ItemRowBE.IDTBL, TipodeDato.Int);
+              oParamCollections.Add(oParam);
+
+              oParam = new SIMA.Param("IdItem", ItemRowBE.IDITEM, TipodeDato.Int);
+              oParamCollections.Add(oParam);
+
+              oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
+              oParamCollections.Add(oParam);
+
+              var oEasyDataInterConect = new EasyDataInterConect();
+              oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
+              oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + '/GestionGobernanza/Indicadores.asmx';
+              oEasyDataInterConect.Metodo = 'Indicador_del';
+              oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+              var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
+              var ResultBE = oEasyDataResult.sendData();
+
+              return true;
+          }
+
           function GridetalleNull() {
           }
 
@@ -208,12 +230,13 @@ Requerimientos_lst</Metodo>
               var TabladeAcciones = 82;
               var oDataRowBE = oGridView.GetDataRow(oRow.attr("Guid"));
               AdministrarObjetivosAcciones.Data.ListarAccionesxObjetivos(oDataRowBE.IDTBL, oDataRowBE.IDITEM).Rows.forEach(function (oDataRow, r) {
+                  var IdFila = (r+1);
                   if (oDataRowBE.IDTBL != TabladeAcciones) {
-                      AdministrarObjetivosAcciones.ObjetivoAccion(oGridView, oRow, NodeBE, oDataRow);
+                      AdministrarObjetivosAcciones.ObjetivoAccion(oGridView, (oRow.rowIndex + IdFila), NodeBE, oDataRow);
                   }
                   else { 
 
-                      AdministrarObjetivosAcciones.ObjetivoAccionIndicador(oGridView, oRow, NodeBE, oDataRow);
+                      AdministrarObjetivosAcciones.ObjetivoAccionIndicador(oGridView, (oRow.rowIndex + IdFila), NodeBE, oDataRow);
                   }
 
               });
@@ -223,8 +246,9 @@ Requerimientos_lst</Metodo>
               AdministrarObjetivosAcciones.Detalle.Objetivo('OBETIVO',"DetalleObjetivo.aspx", SIMA.Utilitario.Enumerados.ModoPagina.M, Data.IDTBL, Data.IDITEM);
           }
 
-          AdministrarObjetivosAcciones.ObjetivoAccion = function (_GridView, _Row, _NodeBE, _DataRow) {
-              _GridView.InsertRow(_Row.rowIndex + 1, function (oCellNew, c) {
+          AdministrarObjetivosAcciones.ObjetivoAccion = function (_GridView, _RowPos, _NodeBE, _DataRow) {
+             // var RowIni = _Row.rowIndex + 1;
+              _GridView.InsertRow(_RowPos, function (oCellNew, c) {
                   switch (c) {
                       case 0:
                           oCellNew.css("background-color", "white");
@@ -265,7 +289,7 @@ Requerimientos_lst</Metodo>
               });
           }
 
-          AdministrarObjetivosAcciones.ObjetivoAccionIndicador = function (_GridView, _Row, _NodeBE, _DataRow) {
+          AdministrarObjetivosAcciones.ObjetivoAccionIndicador = function (_GridView, _RowPos, _NodeBE, _DataRow) {
               var TblTipoRecurso = 88;
               var IdTipoRecurso = 4;//Tipo de Indicadores
               if (
@@ -273,7 +297,7 @@ Requerimientos_lst</Metodo>
                   &&
                   (_DataRow["VAL4"].toString().Equal(IdTipoRecurso))
               ) {
-                  _GridView.InsertRow(_Row.rowIndex + 1, function (oCellNew, c) {
+                  _GridView.InsertRow(_RowPos, function (oCellNew, c) {
                       switch (c) {
                           case 0:
                               oCellNew.css("background-color", "white");
@@ -345,9 +369,6 @@ Requerimientos_lst</Metodo>
 
           AdministrarObjetivosAcciones.PaintsResponsable = function (oCellNew,Idtbl,IdItem) {
               oCellNew.attr("align", "left");
-
-             // alert(Idtbl +' - '+ IdItem);
-
               AdministrarObjetivosAcciones.Data.ListarAccionesResponsables(Idtbl, IdItem).Rows.forEach(function (oDataRowResponsable, r) {
                   var tblArea = SIMA.Utilitario.Helper.HtmlControlsDesign.HtmlTable(1, 2);
                   var sclass = ((oDataRowResponsable["IDTBLITEMRELACION"].toString() == "0") ? "ItemAreaNoInfo" : "ItemArea");
@@ -395,6 +416,8 @@ Requerimientos_lst</Metodo>
               var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
               return oEasyDataResult.getDataTable();
           }
+
+
           AdministrarObjetivosAcciones.Data.ListarAccionesResponsables = function (IdTablaObjetivo, IdItemObjetivo) {
 
               var oEasyDataInterConect = new EasyDataInterConect();
@@ -479,8 +502,13 @@ Requerimientos_lst</Metodo>
                       var oParamCollections = new SIMA.ParamCollections();
                       var oParam = new SIMA.Param("IdItem", ((DetalleObjetivo.Data==undefined)?"0": DetalleObjetivo.Data.IDITEM), TipodeDato.Int);
                           oParamCollections.Add(oParam);
+                      // oParam = new SIMA.Param("Codigo", txtCodigo.GetValue());
+                          oParam = new SIMA.Param("Codigo", '0');
+                          oParamCollections.Add(oParam);
+
                           oParam = new SIMA.Param("Nombre", txtNombre.GetValue());
                           oParamCollections.Add(oParam);
+
                           oParam = new SIMA.Param("Descripcion", txtDescripcion.GetValue());
                           oParamCollections.Add(oParam);
                           oParam = new SIMA.Param("IdVersion", AdministrarObjetivosAcciones.Params[AdministrarObjetivosAcciones.KEYOBJETIVOVERSION], TipodeDato.Int);
@@ -494,13 +522,23 @@ Requerimientos_lst</Metodo>
                           oEasyDataInterConect.Metodo = 'Objetivo_ins';
                           oEasyDataInterConect.ParamsCollection = oParamCollections;
 
-                      var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
-                      var ResultBE = oEasyDataResult.sendData();
+                          var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
+                          var ResultBE = oEasyDataResult.sendData();
 
-                      //Actualiza la fila de la grilla
-                      var oRow = EasyGridView1.GetRowActive();
-                      var xcell = jNet.get(oRow.cells[2]);
-                      xcell.innerHTML = txtNombre.GetValue();
+                          if (DetalleObjetivo.Params[DetalleObjetivo.KEYMODOPAGINA] == SIMA.Utilitario.Enumerados.ModoPagina.M) {
+                              //Actualiza la fila de la grilla
+                              var oRow = EasyGridView1.GetRowActive();
+                              var orowsNodo = oRow.cells[1].children[0].rows[0];
+                              var xcellNodo = orowsNodo.cells[orowsNodo.cells.length - 1];
+                              xcellNodo.innerHTML = txtCodigo.GetValue();
+
+                              var xcell = jNet.get(oRow.cells[2]);
+                              xcell.innerHTML = txtNombre.GetValue();
+                              jNet.get(oRow.cells[3]).innerHTML = txtDescripcion.GetValue();;
+                          }
+                          else {
+                              __doPostBack('btnPostBack', '');
+                          }
 
                           return true;
 
@@ -510,6 +548,11 @@ Requerimientos_lst</Metodo>
                       var oParamCollections = new SIMA.ParamCollections();
                       var oParam = new SIMA.Param("IdItem", ((DetalleAcciones.Data == undefined)?"0":DetalleAcciones.Data.IDITEM), TipodeDato.Int);
                       oParamCollections.Add(oParam);
+
+                      //oParam = new SIMA.Param("Codigo", txtCodigo.GetValue());
+                      oParam = new SIMA.Param("Codigo", '0');
+                      oParamCollections.Add(oParam);
+
                       oParam = new SIMA.Param("Nombre", txtNombre.GetValue());
                       oParamCollections.Add(oParam);
                       oParam = new SIMA.Param("Descripcion", txtDescripcion.GetValue());
@@ -527,17 +570,33 @@ Requerimientos_lst</Metodo>
 
                       var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
                       var ResultIdAccion = oEasyDataResult.sendData();
-                      //Actualiza la fila de la grilla
-                      var oRow = EasyGridView1.GetRowActive();
-                      var xcell = jNet.get(oRow.cells[2]);
-                      xcell.innerHTML = txtNombre.GetValue();
-                      
+
+                      if (DetalleAcciones.Params[DetalleAcciones.KEYMODOPAGINA]== SIMA.Utilitario.Enumerados.ModoPagina.M) {
+                          //Actualiza la fila de la grilla
+                          var oRow = EasyGridView1.GetRowActive();
+
+                          var orowsNodo = oRow.cells[1].children[0].rows[0];
+                          var xcellNodo = orowsNodo.cells[orowsNodo.cells.length - 1];
+                          xcellNodo.innerHTML = txtCodigo.GetValue();
+
+                          var xcell = jNet.get(oRow.cells[2]);
+                          xcell.innerHTML = txtNombre.GetValue();
+                          jNet.get(oRow.cells[3]).innerHTML = txtDescripcion.GetValue();
+                      }
+                      else {
+                          
+                          __doPostBack('btnPostBack', '');
+                      }
+
                       return true;
 
                       break;
                   case "DetalleIndicador":
                       var oParamCollections = new SIMA.ParamCollections();
                       var oParam = new SIMA.Param("IdItem", ((DetalleIndicador.Data == undefined)?"0": DetalleIndicador.Data.IDITEM), TipodeDato.Int);
+                      oParamCollections.Add(oParam);
+                      //oParam = new SIMA.Param("Codigo", txtCodigo.GetValue());
+                      oParam = new SIMA.Param("Codigo", '0');
                       oParamCollections.Add(oParam);
                       oParam = new SIMA.Param("Nombre", txtNombre.GetValue());
                       oParamCollections.Add(oParam);
@@ -560,19 +619,30 @@ Requerimientos_lst</Metodo>
                       EasyAcBuscarPersonal.GetCollection().forEach(function (oItem, i) {
                           AdministrarObjetivosAcciones.ResponsablesInsAct(oItem, ResultIdIndicador);
                       });
-                      //Actualiza las celdas
-                      var oRow = EasyGridView1.GetRowActive();
-                      var xcell = jNet.get(oRow.cells[3]);
-                      xcell.remove();
-                      //Carga las nuevas areas
-                      AdministrarObjetivosAcciones.PaintsResponsable(xcell, 87, DetalleIndicador.Data.IDITEM);
-                      //Actualiza la fila de la grilla
-                      var oRow = EasyGridView1.GetRowActive();
-                      var xcell = jNet.get(oRow.cells[2]);
-                      var tblInd = jNet.get(xcell.children[0]);
-                      tblInd.rows[0].cells[1].innerHTML = txtNombre.GetValue();
-                      tblInd.rows[1].cells[0].innerHTML = txtDescripcion.GetValue();
 
+                      if (DetalleIndicador.Params[DetalleIndicador.KEYMODOPAGINA] == SIMA.Utilitario.Enumerados.ModoPagina.M) {
+                          //Actualiza las celdas
+                          var oRow = EasyGridView1.GetRowActive();
+                          var xcell = jNet.get(oRow.cells[3]);
+                          xcell.remove();
+                          //Carga las nuevas areas
+                          AdministrarObjetivosAcciones.PaintsResponsable(xcell, 87, DetalleIndicador.Data.IDITEM);
+                          //Actualiza la fila de la grilla
+                          var oRow = EasyGridView1.GetRowActive();
+
+                          var orowsNodo = oRow.cells[1].children[0].rows[0];
+                          var xcellNodo = orowsNodo.cells[orowsNodo.cells.length - 1];
+                          xcellNodo.innerHTML = txtCodigo.GetValue();
+
+
+                          var xcell = jNet.get(oRow.cells[2]);
+                          var tblInd = jNet.get(xcell.children[0]);
+                          tblInd.rows[0].cells[1].innerHTML = txtNombre.GetValue();
+                          tblInd.rows[1].cells[0].innerHTML = txtDescripcion.GetValue();
+                      }
+                      else {
+                          __doPostBack('btnPostBack', '');
+                      }
                       break;
                   case "DetalleAreaIndicador":
                   case "ListadodeMetasPorArea":
@@ -707,5 +777,10 @@ Requerimientos_lst</Metodo>
 
       </script>
 
+          <asp:Button ID="btnPostBack" runat="server" Text="Button" OnClick="btnPostBack_Click" />
+          <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/GestionGobernanza/Indicadores/AdministrarInformeMetaPorArea.aspx" Visible="False">HyperLink</asp:HyperLink>
+          <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/GestionGobernanza/Indicadores/AdministrarResponsablePorArea.aspx" Visible="False">Responsable por Area</asp:HyperLink>
+    </form>
+  
 </body>
 </html>

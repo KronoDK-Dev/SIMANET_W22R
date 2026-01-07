@@ -11,7 +11,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 {
 
 
-    public partial class DetalleIndicador
+    public partial class AdministrarInformeMetaPorArea
     {
 
         /// <summary>
@@ -24,39 +24,21 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control txtCodigo.
+        /// Control Header.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtCodigo;
+        protected global::SIMANET_W22R.Controles.Header Header;
 
         /// <summary>
-        /// Control txtNombre.
+        /// Control EasyTabMetas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtNombre;
-
-        /// <summary>
-        /// Control txtDescripcion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtDescripcion;
-
-        /// <summary>
-        /// Control EasyAcBuscarPersonal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyListAutocompletar EasyAcBuscarPersonal;
+        protected global::EasyControlWeb.Form.Controls.EasyTabControl EasyTabMetas;
     }
 }

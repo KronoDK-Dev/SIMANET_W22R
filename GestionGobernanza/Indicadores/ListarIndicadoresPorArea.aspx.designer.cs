@@ -11,7 +11,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 {
 
 
-    public partial class DetalleIndicador
+    public partial class ListarIndicadoresPorArea
     {
 
         /// <summary>
@@ -24,39 +24,39 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control txtCodigo.
+        /// Control ddlPeriodo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtCodigo;
+        protected global::EasyControlWeb.Form.Controls.EasyDropdownList ddlPeriodo;
 
         /// <summary>
-        /// Control txtNombre.
+        /// Control LsIndicadores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtNombre;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell LsIndicadores;
 
         /// <summary>
-        /// Control txtDescripcion.
+        /// Control DetIndicador.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtDescripcion;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell DetIndicador;
 
         /// <summary>
-        /// Control EasyAcBuscarPersonal.
+        /// Control EasyPopupDetalle.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyListAutocompletar EasyAcBuscarPersonal;
+        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupDetalle;
     }
 }

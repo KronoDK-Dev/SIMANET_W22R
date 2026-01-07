@@ -11,7 +11,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 {
 
 
-    public partial class ConfiguracionIndicadoresXArea
+    public partial class AdministrarMetasPorArea
     {
 
         /// <summary>

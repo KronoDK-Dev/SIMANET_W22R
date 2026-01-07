@@ -11,7 +11,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 {
 
 
-    public partial class DetalleIndicador
+    public partial class AdministrarResponsablePorArea
     {
 
         /// <summary>
@@ -24,39 +24,30 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control txtCodigo.
+        /// Control Header.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtCodigo;
+        protected global::SIMANET_W22R.Controles.Header Header;
 
         /// <summary>
-        /// Control txtNombre.
+        /// Control aucArea.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtNombre;
+        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar aucArea;
 
         /// <summary>
-        /// Control txtDescripcion.
+        /// Control aucPersona.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtDescripcion;
-
-        /// <summary>
-        /// Control EasyAcBuscarPersonal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyListAutocompletar EasyAcBuscarPersonal;
+        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar aucPersona;
     }
 }
