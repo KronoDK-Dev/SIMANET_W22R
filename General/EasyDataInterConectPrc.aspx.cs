@@ -1,11 +1,18 @@
 ﻿using EasyControlWeb;
 using EasyControlWeb.InterConeccion;
 using EasyControlWeb.InterConecion;
+using Microsoft.SqlServer.Server;
+using SIMANET_W22R.GestiondeCalidad;
+using SIMANET_W22R.GestionReportes;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Runtime.Remoting.Contexts;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -20,11 +27,11 @@ namespace SIMANET_W22R.General
         const string KEYQPARAMS = "ParamsSW";
         const string KEYQPARAMSTIPO = "ParamsSWTipo";
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
         public override void ProcessRequest(HttpContext context)
         {
             DataTable dt;
@@ -34,12 +41,12 @@ namespace SIMANET_W22R.General
             string TipoObjReturn = context.Request.Params[KEYQTIPO_RETORNO];
             //Datos del webService y del metodo
             string sw = context.Request.Params[KEYQURL_WEB_SERVICE];
-            /* int Existe = sw.ToUpper().LastIndexOf(".ASMX");
-             if (Existe != -1) {
-                 //desemcritar
-                // sw = EasyEncrypta.DesEncriptar(sw);
-             }
-             */
+           /* int Existe = sw.ToUpper().LastIndexOf(".ASMX");
+            if (Existe != -1) {
+                //desemcritar
+               // sw = EasyEncrypta.DesEncriptar(sw);
+            }
+            */
             string mtd = context.Request.Params[KEYQMETODO_WEB_SERVICE];
 
             Dictionary<string, string> oEntity = EasyUtilitario.Helper.Data.SeriaizedDiccionario(strEntity);
@@ -59,9 +66,9 @@ namespace SIMANET_W22R.General
                         break;
                     case "Double":
                         param[i] = Convert.ToDouble(valor);
-                        break;
+                        break;                  
                 }
-
+                
                 i++;
             }
             try
@@ -70,7 +77,7 @@ namespace SIMANET_W22R.General
                 {
                     case EasyDataInterConect.MetododeConexion.WebServiceInterno:
                     case EasyDataInterConect.MetododeConexion.WebServiceExterno:
-
+                      
                         EasyUtilitario.Helper.Pagina.DEBUG(mtd);
 
                         object objResult = EasyWebServieHelper.InvokeWebService(sw, "", mtd, param);
@@ -94,11 +101,15 @@ namespace SIMANET_W22R.General
                         break;
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 this.ErrorToXML("0002", this.GetPageName(), ex);
 
             }
+
+
+           
+            //Llamar a los webs Services
+           
         }
     }
 }

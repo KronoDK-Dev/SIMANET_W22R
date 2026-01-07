@@ -11,7 +11,7 @@ namespace SIMANET_W22R.General
 {
 
 
-    public partial class EasyDataInterConectPrc
+    public partial class Iteroperabilidad
     {
 
         /// <summary>

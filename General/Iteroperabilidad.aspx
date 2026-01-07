@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EasyDataInterConectPrc.aspx.cs" Inherits="SIMANET_W22R.General.EasyDataInterConectPrc" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Iteroperabilidad.aspx.cs" Inherits="SIMANET_W22R.General.Iteroperabilidad" %>
 
 <!DOCTYPE html>
 
@@ -9,8 +9,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-        </div>
+        
     </form>
+    
 </body>
 </html>

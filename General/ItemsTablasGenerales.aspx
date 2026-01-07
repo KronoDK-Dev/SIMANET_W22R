@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EasyDataInterConectPrc.aspx.cs" Inherits="SIMANET_W22R.General.EasyDataInterConectPrc" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ItemsTablasGenerales.aspx.cs" Inherits="SIMANET_W22R.General.ItemsTablasGenerales" %>
 
 <!DOCTYPE html>
 
