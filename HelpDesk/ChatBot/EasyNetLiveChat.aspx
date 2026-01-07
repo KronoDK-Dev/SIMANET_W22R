@@ -76,13 +76,13 @@
     <style>
         /*Usado en la burbuja de bienvenida*/
         .BubbleAmarillo{
-  position: relative;
-  padding: 20px 20px 20px 65px;
-  background: orange;
-  border-radius: 10px;
-  margin-bottom: 35px;
-  color: white;
-}
+                      position: relative;
+                      padding: 20px 20px 20px 65px;
+                      background: orange;
+                      border-radius: 10px;
+                      margin-bottom: 35px;
+                      color: white;
+                    }
 
 /* Speach bouble Quote */
 .BubbleAmarillo:before{
@@ -141,7 +141,19 @@ font-family: 'Courier New', Courier, monospace;
     </style>
 
  
-
+    <style>
+        .notify-badge{
+            position: absolute;
+            right:-20px;
+            top:10px;
+            background:red;
+            text-align: center;
+            border-radius: 30px 30px 30px 30px;
+            color:white;
+            padding:5px 10px;
+            font-size:20px;
+        }
+    </style>
 
 
 
@@ -396,9 +408,27 @@ font-family: 'Courier New', Courier, monospace;
                     var lItm = jNet.get(EasyNetLiveChat.ItemplateApp(DataRow).toString().HtmlToDOMobj());
                     lItm.attr("Data", ''.Serialized(DataRow).Replace(cmll, "'"));
                     lItm.addEvent("click", function () {
-                        var strBE = jNet.get(this).attr("Data");
-                        var DataBE = strBE.tostring().SerializedToObject();
-                        alert(DataBE.RESPUESTA);
+                            var strBE = jNet.get(this).attr("Data").toString();
+                            var DataBE = strBE.SerializedToObject();
+
+                        if (EasyNetLiveChat.Panel.Body().find("bubble_" + DataBE.ID_RESP) == false) {
+                                EasyNetLiveChat.Panel.Body().innerHTML += NetSuite.Manager.Broker.Response(DataBE.ID_RESP, '');
+                                var objWriterErr = (new Maquina("t" + DataBE.ID_RESP));
+                                    document.getElementById("t" + DataBE.ID_RESP).scrollIntoView({ behavior: 'smooth' });
+                                    objWriterErr.Clear();
+                                    objWriterErr.typeWriter("Un momento por favor se están cargando los servicios para </br>" + DataBE.RESPUESTA, function () {
+                                                                                                                //Ejecutar el inicio de la libreria
+                                                                                                                objWriterErr.Clear();
+                                                                                                                NetSuite.Manager.Broker.InjectServicio(DataBE);
+                                                                                                                document.getElementById("t" + DataBE.ID_RESP).scrollIntoView({ behavior: 'smooth' });
+                                                                                                            });
+                        }
+                        else {
+                          //  alert();
+                            document.getElementById("t" + DataBE.ID_RESP).scrollIntoView({ behavior: 'smooth' });
+                        }
+                        //Cierra la ventana de aplicaciones
+                        closeModal();
                     });
                     ulApp.insert(lItm);
                 });
@@ -632,39 +662,6 @@ font-family: 'Courier New', Courier, monospace;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
      
         <style>
              .Base-message {
@@ -850,6 +847,7 @@ font-family: 'Courier New', Courier, monospace;
              var htmlLike = EasyNetLiveChat.ItemplateChatContenidoLikes(oContenidoBE.AllLikes);
              strBE = strBE.Serialized(oContenidoBE).Replace(cmll, "'");
 
+             //   return '         <div class="chat-msg-text"  Data="' + strBE + '"  id="' + oContenidoBE.IdContenido + '" onclick="NetSuite.LiveChat.bubble.Click(this);"   >' + oContenidoBE.Texto + ((htmlLike == undefined) ? "" : htmlLike) + '</div>';
              return '         <div class="chat-msg-text"  Data="' + strBE + '"  id="' + oContenidoBE.IdContenido + '" onclick="NetSuite.LiveChat.bubble.Click(this);"   >' + oContenidoBE.Texto + ((htmlLike == undefined) ? "" : htmlLike) + '</div>';
          }
          EasyNetLiveChat.ItemplateChatContenidoLikes = function (AllMensajeContenidoLikes) {
@@ -958,10 +956,8 @@ font-family: 'Courier New', Courier, monospace;
          EasyNetLiveChat.IdMiembroGrupoSeleccionado = 0;
 
          EasyNetLiveChat.ServicioExistFileJs = false;
+
          EasyNetLiveChat.OnItemSelected = function (value, ItemBE) {
-             
-             //Registra la libreria relacionada a l grupo y por ende al servicio o incidencia
-             NetSuite.Manager.Broker.RegistrarLib(ItemBE.LIB_JS_SRVBROKER.toString().Replace(" ", ""));
 
              //Datos del Contacto Destino
              oContactoDestinoBE = new NetSuite.LiveChat.ContactBE();
@@ -970,9 +966,28 @@ font-family: 'Courier New', Courier, monospace;
              oContactoDestinoBE.Nombre = ItemBE.NOMBRECONTACTO;
              oContactoDestinoBE.Tipo = ItemBE.ISGRUPO;
 
-             //Implementado 28-10-2025
-             EasyNetLiveChat.DisplaySelected.ContactoInfo(oContactoDestinoBE);
+
+             var LibLoadExist = false;
+             //Registra la libreria relacionada a l grupo y por ende al servicio o incidencia
+             var pCollection = new Array();
+             pCollection.Add(new ScriptManager.Params("LoadData", 1));
+             var ScriptInfoBE = NetSuite.Manager.Broker.RegistrarLib(ItemBE.LIB_JS_SRVBROKER, pCollection, function () {//Solo se ejecutara si la libreria ha sido cargada
+                                                                                                             NetSuite.Manager.Broker.LoadEvent(ItemBE.ID_CONTACT);
+                                                                                                             //Implementado 28-10-2025
+                                                                                                             EasyNetLiveChat.DisplaySelected.ContactoInfo(oContactoDestinoBE)
+                                                                                                             LibLoadExist = true;
+                                                                                                            });
+             if (LibLoadExist == true) {
+                 EasyNetLiveChat.DisplaySelected.ContactoInfo(oContactoDestinoBE);
+             }
+           
          }
+
+
+
+
+
+
 
          EasyNetLiveChat.DisplaySelected = {};
          EasyNetLiveChat.DisplaySelected.ContactoInfo = function (oContactoDestinoBE) {
@@ -1239,7 +1254,7 @@ font-family: 'Courier New', Courier, monospace;
              oParam = new SIMA.Param("IdContactDes", ContactoToBE.IdContacto, TipodeDato.Int);
              oParamCollections.Add(oParam);
 
-             oParam = new SIMA.Param("IdTablaInfo", ((oMensajeBE.IdTablaInfo == undefined) ? "7" : oMensajeBE.IdTablaInfo));
+             oParam = new SIMA.Param("IdTablaInfo", ((oMensajeBE.IdTablaInfo == undefined) ? "7" : oMensajeBE.IdTablaInfo), TipodeDato.Int);
              oParamCollections.Add(oParam);
              oParam = new SIMA.Param("IdInfo", ((oMensajeBE.IdInfo == undefined) ? "0" : oMensajeBE.IdInfo));
              oParamCollections.Add(oParam);
@@ -1547,31 +1562,31 @@ font-family: 'Courier New', Courier, monospace;
               font-size: 12px;
             }
 
-            .message-box:after {
-              content: "";
-              position: absolute;
-              border: 10px solid transparent;
-              border-top: 10px solid rgba(100, 170, 0, .2);
-              border-right: none;
-              bottom: -22px;
-              right: 10px;
-            }
+        .message-box:after {
+            content: "";
+            position: absolute;
+            border: 10px solid transparent;
+            border-top: 10px solid rgba(100, 170, 0, .2);
+            border-right: none;
+            bottom: -22px;
+            right: 10px;
+        }
             
-            .message-partner {
-              background: rgba(0, 114, 135, .1);
-              border: 2px solid rgba(0, 114, 135, .1);
-              align-self: flex-start;
-            }
+        .message-partner {
+            background: rgba(0, 114, 135, .1);
+            border: 2px solid rgba(0, 114, 135, .1);
+            align-self: flex-start;
+        }
 
-            .message-partner:after {
-              right: auto;
-              bottom: auto;
-              top: -22px;
-              left: 9px;
-              border: 10px solid transparent;
-              border-bottom: 10px solid rgba(0, 114, 135, .2);
-              border-left: none;
-            }
+        .message-partner:after {
+            right: auto;
+            bottom: auto;
+            top: -22px;
+            left: 9px;
+            border: 10px solid transparent;
+            border-bottom: 10px solid rgba(0, 114, 135, .2);
+            border-left: none;
+        }
     </STYLE>
 
 
