@@ -1,13 +1,14 @@
 ﻿using EasyControlWeb;
 using EasyControlWeb.Form.Controls;
-using SIMANET_W22R.srvSeguridad;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SIMANET_W22R.srvSeguridad;
+using System.Data;
+using SIMANET_W22R.ClasesExtendidas;
 using SIMANET_W22R.PublicClass;
 
 namespace SIMANET_W22R
@@ -16,7 +17,6 @@ namespace SIMANET_W22R
     {
         EasyNavigatorHistorial oEasyNavigatorHistorial;
         EasyMessageBox oeasyMessageBox = new EasyMessageBox();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             sglGlobalData oGD = sglGlobalData.GetInstance();
@@ -25,7 +25,7 @@ namespace SIMANET_W22R
             EasyLoginCard1.AutenticacionWindows = Convert.ToBoolean(EasyUtilitario.Helper.Configuracion.Leer(EasyUtilitario.Enumerados.Configuracion.SeccionKey.Nombre.Seguridad, EasyUtilitario.Enumerados.Configuracion.SeccionKey.valor.AutenticacionAD));
         }
 
-        protected void EasyLoginCard1_Validacion(EasyUsuario oEasyUsuario, EasyLoginCard.LoginAccion Accion)
+        protected void EasyLoginCard1_Validacion(EasyControlWeb.Form.Controls.EasyUsuario oEasyUsuario, EasyControlWeb.Form.Controls.EasyLoginCard.LoginAccion Accion)
         {
             SeguridadSoapClient oSeguridad = new SeguridadSoapClient();
             if (Accion == EasyLoginCard.LoginAccion.Validacion)
@@ -34,8 +34,7 @@ namespace SIMANET_W22R
                 {
                     oEasyUsuario.IdUsuario = oSeguridad.ValidateUser(oEasyUsuario.Login, oEasyUsuario.Login);
                 }
-                catch (Exception ex)
-                {
+                catch (Exception ex){
                     oeasyMessageBox = new EasyMessageBox();
                     oeasyMessageBox.ID = "msgb";
                     oeasyMessageBox.Titulo = "COMUNICACION";
@@ -59,7 +58,7 @@ namespace SIMANET_W22R
                         oeasyMessageBox.Tipo = EasyUtilitario.Enumerados.MessageBox.Tipo.AlertType;
                         oeasyMessageBox.AlertStyle = EasyUtilitario.Enumerados.MessageBox.AlertStyle.modern;
                         Page.Controls.Add(oeasyMessageBox);
-
+                            
                     }
                     else
                     {
@@ -83,8 +82,7 @@ namespace SIMANET_W22R
                         oEasyNavigatorHistorial.IrA(oEasyNavigatorBE);
                     }
                 }
-                else
-                {
+                else {
                     //Verificar su caducidad.
                     oeasyMessageBox = new EasyMessageBox();
                     oeasyMessageBox.ID = "msgb2";
@@ -96,6 +94,11 @@ namespace SIMANET_W22R
 
                 }
             }
+        }
+
+        protected void btnLoginA_Click(object sender, EventArgs e)
+        {
+            int i = 0;
         }
     }
 }
