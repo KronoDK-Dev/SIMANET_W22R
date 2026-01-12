@@ -1093,6 +1093,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Listar_Detalle_Ot_Recursos_Pry_fec">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="N_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CODATV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CODDIV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CODPROY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_NROOTS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_TIPRCS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_FECHAINI_EMI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_FECHAFIN_EMI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Detalle_Ot_Recursos_Pry_fecResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Detalle_Ot_Recursos_Pry_fecResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Listar_indicadores">
         <s:complexType>
           <s:sequence>
@@ -2026,6 +2048,12 @@
   <wsdl:message name="Listar_detalle_ots_recursos_pryc2SoapOut">
     <wsdl:part name="parameters" element="tns:Listar_detalle_ots_recursos_pryc2Response" />
   </wsdl:message>
+  <wsdl:message name="Listar_Detalle_Ot_Recursos_Pry_fecSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Detalle_Ot_Recursos_Pry_fec" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Detalle_Ot_Recursos_Pry_fecSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Detalle_Ot_Recursos_Pry_fecResponse" />
+  </wsdl:message>
   <wsdl:message name="Listar_indicadoresSoapIn">
     <wsdl:part name="parameters" element="tns:Listar_indicadores" />
   </wsdl:message>
@@ -2644,6 +2672,20 @@
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="Listar_detalle_ots_recursos_pryc2HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Detalle_Ot_Recursos_Pry_fecHttpGetIn">
+    <wsdl:part name="N_CEO" type="s:string" />
+    <wsdl:part name="V_CODATV" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_CODPROY" type="s:string" />
+    <wsdl:part name="V_NROOTS" type="s:string" />
+    <wsdl:part name="V_TIPRCS" type="s:string" />
+    <wsdl:part name="D_FECHAINI_EMI" type="s:string" />
+    <wsdl:part name="D_FECHAFIN_EMI" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Detalle_Ot_Recursos_Pry_fecHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="Listar_indicadoresHttpGetIn">
@@ -3374,6 +3416,20 @@
   <wsdl:message name="Listar_detalle_ots_recursos_pryc2HttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="Listar_Detalle_Ot_Recursos_Pry_fecHttpPostIn">
+    <wsdl:part name="N_CEO" type="s:string" />
+    <wsdl:part name="V_CODATV" type="s:string" />
+    <wsdl:part name="V_CODDIV" type="s:string" />
+    <wsdl:part name="V_CODPROY" type="s:string" />
+    <wsdl:part name="V_NROOTS" type="s:string" />
+    <wsdl:part name="V_TIPRCS" type="s:string" />
+    <wsdl:part name="D_FECHAINI_EMI" type="s:string" />
+    <wsdl:part name="D_FECHAFIN_EMI" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Detalle_Ot_Recursos_Pry_fecHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="Listar_indicadoresHttpPostIn">
     <wsdl:part name="V_CO" type="s:string" />
     <wsdl:part name="V_DIVISION" type="s:string" />
@@ -3880,6 +3936,11 @@
       <wsdl:input message="tns:Listar_detalle_ots_recursos_pryc2SoapIn" />
       <wsdl:output message="tns:Listar_detalle_ots_recursos_pryc2SoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Listar_Detalle_Ot_Recursos_Pry_fec">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Actividades que incluyen Servicios en Ordenes de Trabajo  - string xml</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Detalle_Ot_Recursos_Pry_fecSoapIn" />
+      <wsdl:output message="tns:Listar_Detalle_Ot_Recursos_Pry_fecSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Listar_indicadores">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Informacion de actividades por Ordenes de Trabajo</wsdl:documentation>
       <wsdl:input message="tns:Listar_indicadoresSoapIn" />
@@ -4252,6 +4313,11 @@
       <wsdl:input message="tns:Listar_detalle_ots_recursos_pryc2HttpGetIn" />
       <wsdl:output message="tns:Listar_detalle_ots_recursos_pryc2HttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="Listar_Detalle_Ot_Recursos_Pry_fec">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Actividades que incluyen Servicios en Ordenes de Trabajo  - string xml</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Detalle_Ot_Recursos_Pry_fecHttpGetIn" />
+      <wsdl:output message="tns:Listar_Detalle_Ot_Recursos_Pry_fecHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="Listar_indicadores">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Informacion de actividades por Ordenes de Trabajo</wsdl:documentation>
       <wsdl:input message="tns:Listar_indicadoresHttpGetIn" />
@@ -4623,6 +4689,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"> Actividades que incluyen Servicios en Ordenes de Trabajo  - string xml</wsdl:documentation>
       <wsdl:input message="tns:Listar_detalle_ots_recursos_pryc2HttpPostIn" />
       <wsdl:output message="tns:Listar_detalle_ots_recursos_pryc2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Detalle_Ot_Recursos_Pry_fec">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Actividades que incluyen Servicios en Ordenes de Trabajo  - string xml</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Detalle_Ot_Recursos_Pry_fecHttpPostIn" />
+      <wsdl:output message="tns:Listar_Detalle_Ot_Recursos_Pry_fecHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="Listar_indicadores">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Informacion de actividades por Ordenes de Trabajo</wsdl:documentation>
@@ -5178,6 +5249,15 @@
     </wsdl:operation>
     <wsdl:operation name="Listar_detalle_ots_recursos_pryc2">
       <soap:operation soapAction="http://tempuri.org/Listar_detalle_ots_recursos_pryc2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Detalle_Ot_Recursos_Pry_fec">
+      <soap:operation soapAction="http://tempuri.org/Listar_Detalle_Ot_Recursos_Pry_fec" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -5854,6 +5934,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Listar_Detalle_Ot_Recursos_Pry_fec">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Detalle_Ot_Recursos_Pry_fec" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Listar_indicadores">
       <soap12:operation soapAction="http://tempuri.org/Listar_indicadores" style="document" />
       <wsdl:input>
@@ -6521,6 +6610,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Listar_Detalle_Ot_Recursos_Pry_fec">
+      <http:operation location="/Listar_Detalle_Ot_Recursos_Pry_fec" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Listar_indicadores">
       <http:operation location="/Listar_indicadores" />
       <wsdl:input>
@@ -7181,6 +7279,15 @@
     </wsdl:operation>
     <wsdl:operation name="Listar_detalle_ots_recursos_pryc2">
       <http:operation location="/Listar_detalle_ots_recursos_pryc2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Detalle_Ot_Recursos_Pry_fec">
+      <http:operation location="/Listar_Detalle_Ot_Recursos_Pry_fec" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

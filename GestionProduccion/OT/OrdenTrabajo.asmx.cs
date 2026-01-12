@@ -1,6 +1,7 @@
 ﻿using Aspose.Cells.Revisions;
 using EasyControlWeb;
 using Microsoft.Win32;
+//using NPOI.SS.Formula.Functions;
 using SIMANET_W22R.srvGestionLogistica;
 using SIMANET_W22R.srvGestionProduccion;
 using SIMANET_W22R.srvGestionProyecto;
@@ -12,11 +13,13 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+//using System.Net.PeerToPeer;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Web.UI.WebControls.WebParts;
+using static SIMANET_W22R.ClasesExtendidas.Utilitario;
 
 namespace SIMANET_W22R.GestionProduccion.OT
 {
@@ -131,9 +134,32 @@ namespace SIMANET_W22R.GestionProduccion.OT
             dtError.Columns.Add("DES_EST_OT", typeof(string));
             try
             {
+                // -----validamos datos Obligatorios ----
+                if (N_CEO == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["DES_EST_OT"] = "Seleccione el Centro Operativo, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_NROOTS == "-1" || V_NROOTS == "")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["DES_EST_OT"] = "Ingresa un número de OT o un listado separado por / , es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_CODDIV == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["DES_EST_OT"] = "Seleccione la Linea de Negocio, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
 
-                dt = oPD.Listar_actividad_ot(N_CEO, V_CODDIV, V_NROOTS, UserName);
-                dt.TableName = "SP_Actividad_OT";
+
+                    dt = oPD.Listar_actividad_ot(N_CEO, V_CODDIV, V_NROOTS, UserName);
+                
 
 
                 if (dt != null)  // valida vacio
@@ -462,8 +488,8 @@ catch (Exception ex)
                     return dtError;
                 }
                 // ----  corrigo datos por defecto --- nota: no enviar nulos
-                if (V_NROOTS == "0")
-                { V_NROOTS = ""; }
+                if (V_NROOTS == "")
+                { V_NROOTS = "0"; }
                 if (V_TIPRCS == "MATE")
                 { V_TIPRCS = ""; }
                 if (V_CODATV == "T")
@@ -473,6 +499,7 @@ catch (Exception ex)
 
                 // dt = oPD.Listar_detalle_ots_recursos_pryc(N_CEO, V_CODATV, V_CODDIV, V_CODPROY, V_NROOTS, V_TIPRCS, UserName);
                 string xmlData = oPD.Listar_detalle_ots_recursos_pryc2(N_CEO, V_CODATV, V_CODDIV, V_CODPROY, V_NROOTS, V_TIPRCS, UserName);
+                
                 // Crear un DataSet y cargar el XML
                 DataSet ds = new DataSet();
                 using (StringReader sr = new StringReader(xmlData))
@@ -537,6 +564,161 @@ catch (Exception ex)
             }
         }
 
+
+        [WebMethod]
+        public DataTable DetalleOtsRecursosPry_fec(string N_CEO, string V_CODATV, string V_CODDIV, string V_CODPROY, string V_NROOTS, string V_TIPRCS, string D_FECHAINI_EMI, string D_FECHAFIN_EMI,string UserName)
+        {
+            ProduccionSoapClient oPD = new ProduccionSoapClient();
+            DataTable dtError = new DataTable("SP_Detalle_Ot_Recursos_Pry_fec");//28_detalle_ots_recursos_proyectos.rpt 
+
+            dtError.TableName = "SP_Detalle_Ot_Recursos_Pry_fec";
+            dtError.Columns.Add("COD_PRY", typeof(string));
+            dtError.Columns.Add("Detalle  :", typeof(string)); // el campo se toma de reporte crystal
+
+            try
+            {
+                // -----validamos datos Obligatorios ----
+                if (N_CEO == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["Detalle  :"] = "Seleccione el Centro Operativo, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_CODPROY == "-1" || V_CODPROY == "")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["Detalle  :"] = "Seleccione un Proyecto, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_CODDIV == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["Detalle  :"] = "Seleccione la Linea de Negocio, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+
+                if (V_TIPRCS == "-1")
+                {
+                    V_TIPRCS = "";
+                }
+                if (V_NROOTS == "000000")
+                {
+                    V_NROOTS = "0";
+                }
+
+
+
+
+
+
+                if (!string.IsNullOrWhiteSpace(D_FECHAINI_EMI))
+                { 
+                    // 1) Intentar parsear en formatos admitidos para FECHAS
+                    // Ajusta los formatos a lo que realmente recibe tu sistema
+                    var formatos = new[] { "dd/MM/yyyy", "d/M/yyyy", "yyyy-MM-dd", "dd-MM-yyyy" };
+
+                    // Cultura peruana; si tu servidor está en otra cultura, especifica explícitamente
+                    var cultura = new CultureInfo("es-PE");
+
+
+                    DateTime fechaIni;
+                        bool ok = DateTime.TryParseExact(
+                            D_FECHAINI_EMI.Trim(),
+                            formatos,
+                            cultura,
+                            DateTimeStyles.None,
+                            out fechaIni
+                        );
+
+                    if (!ok)
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["Detalle  :"] = $"La fecha inicial '{D_FECHAINI_EMI}' no tiene un formato válido. Use dd/MM/yyyy (p.ej. 01/12/2025).";
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+
+                }
+
+                // ----  corrigo datos por defecto --- nota: no enviar nulos
+                if (V_NROOTS == "")
+                { V_NROOTS = "0"; }
+                if (V_TIPRCS == "MATE")
+                { V_TIPRCS = ""; }
+                if (V_CODATV == "T")
+                { V_CODATV = ""; }
+
+                // ----------------------------------------------------
+
+                // dt = oPD.Listar_detalle_ots_recursos_pryc(N_CEO, V_CODATV, V_CODDIV, V_CODPROY, V_NROOTS, V_TIPRCS, UserName);
+                string xmlData = oPD.Listar_Detalle_Ot_Recursos_Pry_fec(N_CEO, V_CODATV, V_CODDIV, V_CODPROY, V_NROOTS, V_TIPRCS, D_FECHAINI_EMI, D_FECHAFIN_EMI, UserName);
+
+                // Crear un DataSet y cargar el XML
+                DataSet ds = new DataSet();
+                using (StringReader sr = new StringReader(xmlData))
+                {
+                    ds.ReadXml(sr);
+                }
+
+                // Extraer el DataTable del DataSet
+                dt = ds.Tables["SP_Detalle_Ot_Recursos_Pry_fec"];
+
+
+                if (dt != null)  // valida vacio
+                {
+                    dt.TableName = "SP_Detalle_Ot_Recursos_Pry_fec";
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "SP_Detalle_Ot_Recursos_Pry_fec";
+                        return dt;
+                    }
+
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["Detalle  :"] = "No existen registros! para los parámetros consultados: " + V_CODPROY + " " + V_CODDIV + " OT=" + V_NROOTS + " ACT=" + V_CODATV + " D_FECHAINI_EMI=" + D_FECHAINI_EMI + " " + D_FECHAFIN_EMI;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["Detalle  :"] = "No existen registros para los parámetros consultados: " + V_CODPROY + " " + V_CODDIV + " OT=" + V_NROOTS + " ACT=" + V_CODATV + " D_FECHAINI_EMI=" + D_FECHAINI_EMI + " " + D_FECHAFIN_EMI;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["Detalle  :"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oPD != null)
+                {
+                    try
+                    {
+                        if (oPD.State != System.ServiceModel.CommunicationState.Faulted)
+                            oPD.Close();
+                        else
+                            oPD.Abort();
+                    }
+                    catch
+                    { oPD.Abort(); }
+                }
+            }
+        }
 
         [WebMethod]
         public DataTable Listar_acta_conf(string V_CODUND, string V_NROOTS, string UserName)

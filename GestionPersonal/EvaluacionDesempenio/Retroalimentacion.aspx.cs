@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
-using System.Web.Script.Serialization;
-using SIMANET_W22R.InterfaceUI;
+//using System.Web.Script.Serialization;
+//using SIMANET_W22R.InterfaceUI;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Web;
 
 namespace SIMANET_W22R.GestionPersonal.EvaluacionDesempenio
 {
@@ -44,7 +44,7 @@ namespace SIMANET_W22R.GestionPersonal.EvaluacionDesempenio
 
             if (!string.IsNullOrEmpty(dni))
             {
-                
+
                 using (SqlConnection con = new SqlConnection(cadena))
                 {
                     SqlCommand cmd = new SqlCommand("RRHHevaluacion.sp_ObtenerEvaluadorRetroalimentacion", con);

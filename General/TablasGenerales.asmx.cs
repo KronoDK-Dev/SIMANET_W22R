@@ -404,6 +404,107 @@ namespace SIMANET_W22R.General
             return (new GeneralSoapClient()).listadecisión34(UserName);
         }
 
+        #region faltantes
+
+        [WebMethod(Description = "Lista Liquidaciones por Año")]
+        public DataTable ListaLiquidacionesxAnio(string V_ANIO, string UserName)
+        {
+            return (new GeneralSoapClient()).listaliquidacionesxanio(V_ANIO, UserName);
+        }
+
+        [WebMethod(Description = "Lista Lotes de Detraccion por CODIGO")]
+        public DataTable ListaLoteDetraccxCodigo(string V_CODIGO, string UserName)
+        {
+            return (new GeneralSoapClient()).listalotedetraccxcodigo(V_CODIGO, UserName);
+        }
+
+        [WebMethod(Description = "Lista meses del año")]
+        public DataTable ListaMeses40(string UserName)
+        {
+            return (new GeneralSoapClient()).listameses40(UserName);
+        }
+
+        [WebMethod(Description = "Lista monedas")]
+        public DataTable ListaMonedas41(string UserName)
+        {
+            return (new GeneralSoapClient()).listamonedas41(UserName);
+        }
+
+        [WebMethod(Description = "Lista Programa de Adquisición de Material  por Codigo o Descripción del proyecto")]
+        public DataTable ListaPGAMxCodxDescrip(string V_CODIGO, string V_DESCRIPCION, string UserName)
+        {
+            return (new GeneralSoapClient()).listapgamxcodxdescrip(V_CODIGO, V_DESCRIPCION, UserName);
+        }
+
+        [WebMethod(Description = "Lista Programa de Adquisición de Material  por Codigo o Descripción del proyecto")]
+        public DataTable ListaProcedencia_Compra26(string UserName)
+        {
+            return (new GeneralSoapClient()).listaprocedencia_compra26(UserName);
+        }
+
+        [WebMethod(Description = "Lista Programa de Adquisición de Material  por Codigo o Descripción del proyecto")]
+        public DataTable ListaProv_PdtePagoxRUCxDesc(string V_CODIGO, string V_DESCRIPCION, string UserName)
+        {
+            return (new GeneralSoapClient()).listaprov_pdtepagoxrucxde(V_CODIGO, V_DESCRIPCION, UserName);
+        }
+
+        [WebMethod(Description = "Lista Programa de Adquisición de Material  por Codigo o Descripción del proyecto")]
+        public DataTable ListaProyec_PdtePagoxDesc(string V_DESCRIPCION, string UserName)
+        {
+            return (new GeneralSoapClient()).listaproyec_pdtepagoxdesc(V_DESCRIPCION, UserName);
+        }
+
+        [WebMethod(Description = "Lista Programa de Adquisición de Material  por Codigo o Descripción del proyecto")]
+        public DataTable ListaProyectosxCodxDescrip(string V_CODIGO, string V_DESCRIPCION, string UserName)
+        {
+            return (new GeneralSoapClient()).listaproyectosxcodxdescri(V_CODIGO, V_DESCRIPCION, UserName);
+        }
+
+        [WebMethod(Description = "Lista Proyecto por destino compra y área usuaria o Descripción del proyecto")]
+        public DataTable ListaProyectosxDCxAUSxDescr(string V_CODIGO, string V_DESCRIPCION, string V_DESTINO_COMPRA, string UserName)
+        {
+            return (new GeneralSoapClient()).listaproyectosxdcxausxdes(V_CODIGO, V_DESCRIPCION, V_DESTINO_COMPRA, UserName);
+        }
+
+        [WebMethod(Description = "Lista Talleres / divisiones  por codigo y descripcion")]
+        public DataTable ListaTalleresxCodxDescr(string V_DESCRIPCION, string UserName)
+        {
+            return (new GeneralSoapClient()).listatalleresxcodxdescr(V_DESCRIPCION, UserName);
+        }
+
+        [WebMethod(Description = "Lista tipo de Egresos: chque o efectivo")]
+        public DataTable ListaTipo_Egresos42(string UserName)
+        {
+            return (new GeneralSoapClient()).listatipo_egresos42(UserName);
+        }
+
+        [WebMethod(Description = "Lista Tipos de Orden compra")]
+        public DataTable ListaTipo_OCompra31(string UserName)
+        {
+            return (new GeneralSoapClient()).listatipo_ocompra31(UserName);
+        }
+
+        [WebMethod(Description = "Lista Tipo de Proveedor: Materiales , Servicios , seguro médico, otros")]
+        public DataTable ListaTipo_Proveedor36(string UserName)
+        {
+            return (new GeneralSoapClient()).listatipo_proveedor36(UserName);
+        }
+
+        [WebMethod(Description = "Lista Tipo de Recurso: Materiales o Servicios")]
+        public DataTable ListaTipo_Recurso33(string UserName)
+        {
+            return (new GeneralSoapClient()).listatipo_recurso33(UserName);
+        }
+
+        [WebMethod(Description = "Lista tipo reporte Actividades por fechas:  Termino OT, Inicio Actividad, Fecha Termino Actividad")]
+        public DataTable ListaTipo_ReportACTI39(string UserName)
+        {
+            return (new GeneralSoapClient()).listatipo_reportacti39(UserName);
+        }
+        
+
+        #endregion
+
         [WebMethod(Description = "Lista tipo bien")]
         public DataTable ListaTipoBien(string UserName)
         {

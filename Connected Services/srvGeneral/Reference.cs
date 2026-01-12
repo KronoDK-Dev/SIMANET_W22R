@@ -23,6 +23,13 @@ namespace SIMANET_W22R.srvGeneral {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarCentrosCosto2", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataTable> ListarCentrosCosto2Async(string N_COD_EMP, string V_NOMBRE_CC, string UserName);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarCentrosCosto", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataTable ListarCentrosCosto(string NombreCC, string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarCentrosCosto", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataTable> ListarCentrosCostoAsync(string NombreCC, string UserName);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarItemTablas", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataTable ListarItemTablas(string IdTablaGeneral, string UserName);
@@ -899,18 +906,10 @@ namespace SIMANET_W22R.srvGeneral {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarItemChildxItemRelacionadoOracle", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataTable> ListarItemChildxItemRelacionadoOracleAsync(int IdTblPadre, int IdItemPadre, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarCentrosCosto", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseBE))]
-        System.Data.DataTable ListarCentrosCosto(string NombreCC, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarCentrosCosto", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataTable> ListarCentrosCostoAsync(string NombreCC, string UserName);
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -962,7 +961,7 @@ namespace SIMANET_W22R.srvGeneral {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TablaItemBE))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1208,6 +1207,14 @@ namespace SIMANET_W22R.srvGeneral {
         
         public System.Threading.Tasks.Task<System.Data.DataTable> ListarCentrosCosto2Async(string N_COD_EMP, string V_NOMBRE_CC, string UserName) {
             return base.Channel.ListarCentrosCosto2Async(N_COD_EMP, V_NOMBRE_CC, UserName);
+        }
+        
+        public System.Data.DataTable ListarCentrosCosto(string NombreCC, string UserName) {
+            return base.Channel.ListarCentrosCosto(NombreCC, UserName);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> ListarCentrosCostoAsync(string NombreCC, string UserName) {
+            return base.Channel.ListarCentrosCostoAsync(NombreCC, UserName);
         }
         
         public System.Data.DataTable ListarItemTablas(string IdTablaGeneral, string UserName) {
@@ -2088,14 +2095,6 @@ namespace SIMANET_W22R.srvGeneral {
         
         public System.Threading.Tasks.Task<System.Data.DataTable> ListarItemChildxItemRelacionadoOracleAsync(int IdTblPadre, int IdItemPadre, string UserName) {
             return base.Channel.ListarItemChildxItemRelacionadoOracleAsync(IdTblPadre, IdItemPadre, UserName);
-        }
-        
-        public System.Data.DataTable ListarCentrosCosto(string NombreCC, string UserName) {
-            return base.Channel.ListarCentrosCosto(NombreCC, UserName);
-        }
-        
-        public System.Threading.Tasks.Task<System.Data.DataTable> ListarCentrosCostoAsync(string NombreCC, string UserName) {
-            return base.Channel.ListarCentrosCostoAsync(NombreCC, UserName);
         }
     }
 }

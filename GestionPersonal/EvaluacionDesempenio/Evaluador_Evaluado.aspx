@@ -171,6 +171,31 @@
                           <asp:TextBox ID="txtGrado" runat="server" CssClass="form-control" placeholder="Ej. Licenciado" ReadOnly="true"></asp:TextBox>
                       </div>
                   </div>
+                  <hr>
+                  <hr>
+                  <div class="row g-4 align-items-end">
+                       <div class="col-md-4">
+                           <label class="form-label">Evaluación:</label>
+                           <asp:DropDownList ID="ddlEvaluacion" runat="server" CssClass="form-control"
+                                AutoPostBack="true" OnSelectedIndexChanged="ddlEvaluacion_SelectedIndexChanged">
+                            </asp:DropDownList>
+                       </div>
+                     <div class="col-md-4">
+                        <label class="form-label">Estado General Actual:</label>
+                        <asp:DropDownList ID="ddlEstadoGG" runat="server" CssClass="form-control">
+                         </asp:DropDownList>
+                    </div>
+                       <div class="col-md-4">
+                        <label class="form-label"></label><br/>
+                        <asp:Button ID="BtnModificarEstado" runat="server" Text="Modificar" CssClass="btn btn-success btn-sm" 
+                            ToolTip ="Modificar Estado Evaluación" 
+                            OnClick="BtnModificarEstado_Click"
+                             OnClientClick="return confirm('¿Está seguro de modificar todos los registros?');" />
+                                
+                    </div>
+                  </div>
+
+
               </div>
           </div>
 

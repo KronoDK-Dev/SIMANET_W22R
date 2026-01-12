@@ -340,7 +340,7 @@
                     <table cellpadding="0" cellspacing="0" style="width: 100%; height: 100%" border="0px">
                         <tr style="height: 100%;">
                             <!-- PANEL IZQUIERDO -->
-                            <td style="width: 30%; max-width: 250px; height: 100%; border: 1px dotted #696666; position: relative;" valign="top">
+                            <td id="leftPanel" style="width: 30%; max-width: 250px; height: 100%; border: 1px dotted #696666; position: relative;" valign="top">
                                 <div style="position: relative; width: 100%; height: 100%; display: flex; flex-direction: column;">
 
                                     <!-- Barra de scroll superior -->
@@ -367,6 +367,8 @@
 
                                 </div>
                             </td>
+                         <!-- DIVISOR -->
+                        <td id="divider" class="divider"><span>||</span></td>
 
                             <!-- PANEL DERECHO -->
                             <td class="ReportBody"
