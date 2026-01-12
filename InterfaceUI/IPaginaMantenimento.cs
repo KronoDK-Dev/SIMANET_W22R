@@ -2,30 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SIMANET_W22R.InterfaceUI
 {
     public interface IPaginaMantenimento
     {
-        void Agregar();
+		void Agregar();
 
-        void Modificar();
+		void Modificar();
 
-        void Eliminar();
+		void Eliminar();
 
-        void CargarModoPagina();
+		void CargarModoPagina();
 
-        void CargarModoNuevo();
+		void CargarModoNuevo();
 
-        void CargarModoModificar();
+		void CargarModoModificar();
 
-        void CargarModoConsulta();
+		void CargarModoConsulta();
 
-        bool ValidarCampos();
+		bool ValidarCampos();
 
-        bool ValidarCamposRequeridos();
+		bool ValidarCamposRequeridos();
 
-        bool ValidarExpresionesRegulares();
-    }
+		bool ValidarExpresionesRegulares();
+	}
 }

@@ -4,7 +4,7 @@ using EasyControlWeb.Filtro;
 using EasyControlWeb.Form.Controls;
 using EasyControlWeb.InterConeccion;
 using EasyControlWeb.InterConecion;
-using NPOI.SS.Formula.Functions;
+//using NPOI.SS.Formula.Functions;
 using SIMANET_W22R.ClasesExtendidas;
 using SIMANET_W22R.Exceptiones;
 using SIMANET_W22R.HelpDesk.ITIL;
