@@ -394,8 +394,79 @@
                                        </table>
                     </div> 
                 </td>
+<<<<<<< HEAD
            </tr>
       </table>
+=======
+            </tr>
+            <tr>
+                <td style="width: 100%; height: 100%;" valign="top" align="left">
+                    <table cellpadding="0" cellspacing="0" style="width: 100%; height: 100%" border="0px">
+                        <tr style="height: 100%;">
+                            <!-- PANEL IZQUIERDO -->
+                            <td id="leftPanel" style="width: 30%; max-width: 250px; height: 100%; border: 1px dotted #696666; position: relative;" valign="top">
+                                <div style="position: relative; width: 100%; height: 100%; display: flex; flex-direction: column;">
+
+                                    <!-- Barra de scroll superior -->
+                                    <div class="scroll-top"
+                                        style="flex: 0 0 12px; overflow-x: auto; overflow-y: hidden; z-index: 10;">
+                                        <div style="width: 600px; height: 1px;"></div>
+                                    </div>
+
+                                    <!-- Contenido principal con scroll normal -->
+                                    <div class="scroll-main"
+                                        style="flex: 1; overflow: auto; white-space: nowrap;">
+                                        <div class="content_wrap">
+                                            <div class="zTreeDemoBackground left" style="height: 800px">
+                                                <ul id="treeNav" class="ztree"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Barra de scroll inferior -->
+                                    <div class="scroll-bottom"
+                                        style="flex: 0 0 12px; overflow-x: auto; overflow-y: hidden; z-index: 10;">
+                                        <div style="width: 600px; height: 1px;"></div>
+                                    </div>
+
+                                </div>
+                            </td>
+                         <!-- DIVISOR -->
+                        <td id="divider" class="divider"><span>||</span></td>
+
+                            <!-- PANEL DERECHO -->
+                            <td class="ReportBody"
+                                style="padding: 10px; width: 70%; height: 100%; border: 1px dotted #696666;"
+                                valign="top">
+                                <div id="iframe-container"
+                                    style="position: relative; width: 100%; height: 100%;">
+
+                                    <!-- Botones centrados sobre el iframe -->
+                                    <div id="export-buttons-container"
+                                        style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 1000;">
+                                        <asp:ImageButton ID="ibtn" runat="server" CssClass="export-button"
+                                            ImageUrl="~/Recursos/img/BtnExcel1.jpg"
+                                            OnClick="prExportarExcel"
+                                            ToolTip="Exportar datos a Excel (Histórico)" />
+                                        <asp:ImageButton ID="ibtn2" runat="server" CssClass="export-button"
+                                            ImageUrl="~/Recursos/img/BtnExcel2.jpg"
+                                            OnClick="prExportarExcelDT"
+                                            ToolTip="Exportar datos a Excel (sólo proceso reciente)" />
+                                    </div>
+
+                                    <!-- IFRAME -->
+                                    <iframe runat="server" id="RptInPrevio" src=""
+                                        allowtransparency="true"
+                                        style="background-color: transparent; width: 100%; height: 100%; border: none; margin: 0; padding: 0; overflow: hidden; z-index: 1;"
+                                        frameborder="0"></iframe>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+>>>>>>> 30c3f5d (OK)
         <div style="position: relative;">
 		
 	</div>

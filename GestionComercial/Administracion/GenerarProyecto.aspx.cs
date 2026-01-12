@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 ﻿using CrystalDecisions.ReportAppServer.CommonControls;
 using DocumentFormat.OpenXml.Drawing.Diagrams;
 using DocumentFormat.OpenXml.Math;
 using EasyControlWeb;
 using EasyControlWeb.Form.Controls;
 using Org.BouncyCastle.Asn1.X509;
+=======
+﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+using EasyControlWeb;
+using EasyControlWeb.Form.Controls;
+>>>>>>> 30c3f5d (OK)
 using SIMANET_W22R.InterfaceUI;
 using SIMANET_W22R.srvCliente;
 using SIMANET_W22R.srvGeneral;
@@ -34,6 +40,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         srvGestionProyecto.ProyectoSoapClient oProyectos = new srvGestionProyecto.ProyectoSoapClient();
         protected void Page_Load(object sender, EventArgs e)
         {
+<<<<<<< HEAD
 
             if (IsPostBack )
             {
@@ -52,6 +59,8 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 
             }
 
+=======
+>>>>>>> 30c3f5d (OK)
             if (Session["codPry"]==null || Session["codPry"].ToString() == String.Empty)
             {
                 txtModo.Value = "N";
@@ -687,6 +696,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
         #region Adenda  
         protected void EasyGridAdendas_PageIndexChanged(object sender, EventArgs e)
+<<<<<<< HEAD
             {
                 //this.LlenarGrilla(EasyGestorFiltro1.getFilterString());
                 // this.LlenarGrilla("");
@@ -847,12 +857,35 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         protected void EGVtt_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
         {
             try
+=======
+>>>>>>> 30c3f5d (OK)
             {
-                switch (oEasyGridButton.Id)
+                //this.LlenarGrilla(EasyGestorFiltro1.getFilterString());
+                // this.LlenarGrilla("");
+            }
+            protected void EasyGridOTsProyecto_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+            {
+                try
+                {
+                    switch (oEasyGridButton.Id)
+                    {
+                    
+                    }
+                }
+                catch (Exception ex)
                 {
 
+                    var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                    result = result.Replace("'", "");
+                    string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+                    string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    this.LanzarException(methodName, ex); // error para el log
+                    Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                    string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
                 }
             }
+<<<<<<< HEAD
             catch (Exception ex)
             {
 
@@ -867,6 +900,9 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             }
         }
         protected void EasyGridAdendas_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+=======
+            protected void EasyGridAdendas_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+>>>>>>> 30c3f5d (OK)
             {      
                 try
                 {
@@ -917,6 +953,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                                 script += "</script>";
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
 
+<<<<<<< HEAD
                             }
                             else
                             {
@@ -958,6 +995,32 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
                             }
                         }
+=======
+                            }
+                            else
+                            {
+                                resultado = (new ProyectoSoapClient()).DEL_ADENDAPROYECTO(Recodset["V_PROYADE_CODPRY"], Recodset["N_PROYADE_NROADENDA"],this.UsuarioLogin);
+
+                                if (resultado == "1")
+                                {
+                                    script = "<script>";
+                                    script += "Swal.fire({title: 'Exito',text:'Adenda eliminada', icon: 'success', confirmButtonText: 'Aceptar', confirmButtonColor: '#3085d6', allowOutsideClick: false});";
+                                    script += "</script>";
+                                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
+                                    EasyGridAdendas.LoadData("");
+                                }
+                                else
+                                {
+                                     script = "<script>";
+                                    script += "toastr.error('Error al interntar eliminar adenda', 'Requerido');";
+                                    script += "</script>";
+                                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
+                                }
+
+
+
+                            }
+>>>>>>> 30c3f5d (OK)
                             break;
                     }
                 }
@@ -1234,6 +1297,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     esValido = false;
                 }
                 
+<<<<<<< HEAD
                 script += "</script>";
                 if (!esValido)
                 {
@@ -1315,6 +1379,8 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     esValido = false;
                 }
 
+=======
+>>>>>>> 30c3f5d (OK)
                 script += "</script>";
                 if (!esValido)
                 {
@@ -1466,6 +1532,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                  
                 
                 
+<<<<<<< HEAD
             }
             catch (Exception ex)
             {
@@ -1519,6 +1586,8 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
                 txtCostoDMOB.Focus();  
 
+=======
+>>>>>>> 30c3f5d (OK)
             }
             catch (Exception ex)
             {

@@ -51,20 +51,6 @@ namespace SIMANET_W22R.srvGeneral {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarTablasdeApoyo", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataTable> ListarTablasdeApoyoAsync(string IdtblModulo, string UserName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarTodosOracleQS", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataTable ListarTodosOracleQS(int IdtblModulo, int QuerySelector, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarTodosOracleQS", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataTable> ListarTodosOracleQSAsync(int IdtblModulo, int QuerySelector, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarTodosOracle", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataTable ListarTodosOracle(int IdtblModulo, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarTodosOracle", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataTable> ListarTodosOracleAsync(int IdtblModulo, string UserName);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertaModificaItemsTabla", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseBE))]
@@ -905,6 +891,14 @@ namespace SIMANET_W22R.srvGeneral {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_Reg_TabGeneral", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataTable> Listar_Reg_TabGeneralAsync(string V_COD_TABLA, string V_ESTADO, string V_ORDEN, string UserName);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarTodosOracle", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseBE))]
+        System.Data.DataTable ListarTodosOracle(int IdtblModulo, string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarTodosOracle", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataTable> ListarTodosOracleAsync(int IdtblModulo, string UserName);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarItemChildxItemRelacionadoOracle", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseBE))]
@@ -912,30 +906,6 @@ namespace SIMANET_W22R.srvGeneral {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarItemChildxItemRelacionadoOracle", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataTable> ListarItemChildxItemRelacionadoOracleAsync(int IdTblPadre, int IdItemPadre, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Buscar_Var1_DetalleCatologo", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseBE))]
-        string Buscar_Var1_DetalleCatologo(string IdMaestra, string IdDetalle, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Buscar_Var1_DetalleCatologo", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> Buscar_Var1_DetalleCatologoAsync(string IdMaestra, string IdDetalle, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarAreaPorNombre", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseBE))]
-        string ListarAreaPorNombre(int iIdCentroOperativo, string sNombreArea, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarAreaPorNombre", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> ListarAreaPorNombreAsync(int iIdCentroOperativo, string sNombreArea, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarProveedoresSIMANET", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseBE))]
-        System.Data.DataTable ListarProveedoresSIMANET(string V_NOMBRE, string V_CRITERIO, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarProveedoresSIMANET", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataTable> ListarProveedoresSIMANETAsync(string V_NOMBRE, string V_CRITERIO, string UserName);
     }
     
     /// <remarks/>
@@ -1269,22 +1239,6 @@ namespace SIMANET_W22R.srvGeneral {
         
         public System.Threading.Tasks.Task<System.Data.DataTable> ListarTablasdeApoyoAsync(string IdtblModulo, string UserName) {
             return base.Channel.ListarTablasdeApoyoAsync(IdtblModulo, UserName);
-        }
-        
-        public System.Data.DataTable ListarTodosOracleQS(int IdtblModulo, int QuerySelector, string UserName) {
-            return base.Channel.ListarTodosOracleQS(IdtblModulo, QuerySelector, UserName);
-        }
-        
-        public System.Threading.Tasks.Task<System.Data.DataTable> ListarTodosOracleQSAsync(int IdtblModulo, int QuerySelector, string UserName) {
-            return base.Channel.ListarTodosOracleQSAsync(IdtblModulo, QuerySelector, UserName);
-        }
-        
-        public System.Data.DataTable ListarTodosOracle(int IdtblModulo, string UserName) {
-            return base.Channel.ListarTodosOracle(IdtblModulo, UserName);
-        }
-        
-        public System.Threading.Tasks.Task<System.Data.DataTable> ListarTodosOracleAsync(int IdtblModulo, string UserName) {
-            return base.Channel.ListarTodosOracleAsync(IdtblModulo, UserName);
         }
         
         public int InsertaModificaItemsTabla(SIMANET_W22R.srvGeneral.TablaItemBE oTablaItemBE) {
@@ -2127,36 +2081,20 @@ namespace SIMANET_W22R.srvGeneral {
             return base.Channel.Listar_Reg_TabGeneralAsync(V_COD_TABLA, V_ESTADO, V_ORDEN, UserName);
         }
         
+        public System.Data.DataTable ListarTodosOracle(int IdtblModulo, string UserName) {
+            return base.Channel.ListarTodosOracle(IdtblModulo, UserName);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> ListarTodosOracleAsync(int IdtblModulo, string UserName) {
+            return base.Channel.ListarTodosOracleAsync(IdtblModulo, UserName);
+        }
+        
         public System.Data.DataTable ListarItemChildxItemRelacionadoOracle(int IdTblPadre, int IdItemPadre, string UserName) {
             return base.Channel.ListarItemChildxItemRelacionadoOracle(IdTblPadre, IdItemPadre, UserName);
         }
         
         public System.Threading.Tasks.Task<System.Data.DataTable> ListarItemChildxItemRelacionadoOracleAsync(int IdTblPadre, int IdItemPadre, string UserName) {
             return base.Channel.ListarItemChildxItemRelacionadoOracleAsync(IdTblPadre, IdItemPadre, UserName);
-        }
-        
-        public string Buscar_Var1_DetalleCatologo(string IdMaestra, string IdDetalle, string UserName) {
-            return base.Channel.Buscar_Var1_DetalleCatologo(IdMaestra, IdDetalle, UserName);
-        }
-        
-        public System.Threading.Tasks.Task<string> Buscar_Var1_DetalleCatologoAsync(string IdMaestra, string IdDetalle, string UserName) {
-            return base.Channel.Buscar_Var1_DetalleCatologoAsync(IdMaestra, IdDetalle, UserName);
-        }
-        
-        public string ListarAreaPorNombre(int iIdCentroOperativo, string sNombreArea, string UserName) {
-            return base.Channel.ListarAreaPorNombre(iIdCentroOperativo, sNombreArea, UserName);
-        }
-        
-        public System.Threading.Tasks.Task<string> ListarAreaPorNombreAsync(int iIdCentroOperativo, string sNombreArea, string UserName) {
-            return base.Channel.ListarAreaPorNombreAsync(iIdCentroOperativo, sNombreArea, UserName);
-        }
-        
-        public System.Data.DataTable ListarProveedoresSIMANET(string V_NOMBRE, string V_CRITERIO, string UserName) {
-            return base.Channel.ListarProveedoresSIMANET(V_NOMBRE, V_CRITERIO, UserName);
-        }
-        
-        public System.Threading.Tasks.Task<System.Data.DataTable> ListarProveedoresSIMANETAsync(string V_NOMBRE, string V_CRITERIO, string UserName) {
-            return base.Channel.ListarProveedoresSIMANETAsync(V_NOMBRE, V_CRITERIO, UserName);
         }
     }
 }
