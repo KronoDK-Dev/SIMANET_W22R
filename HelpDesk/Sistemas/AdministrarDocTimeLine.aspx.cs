@@ -1,5 +1,6 @@
 ﻿using EasyControlWeb.Form.Controls;
 using EasyControlWeb.Form.Controls.Cards;
+using NPOI.SS.Formula.Functions;
 using SIMANET_W22R.InterfaceUI;
 using System;
 using System.Collections.Generic;

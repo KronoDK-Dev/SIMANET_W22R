@@ -76,6 +76,9 @@ label {
       
             <table style="width:100%;border="2" >
                 <tr>
+                    <td id="msgValRqr"></td>
+                </tr>
+                <tr>
                     <td class="Etiqueta" reference="txtIdServicioArea">
                         AYUDA/SERVICIO-DESK:
                     </td>
@@ -103,6 +106,7 @@ label {
                     </td>
                 </tr>
         </table>
+
 
 
         <cc1:EasyPopupBase ID="EasyPopupUpLoad" runat="server" Titulo="Subir Archivos" RunatServer="false" DisplayButtons="true" >

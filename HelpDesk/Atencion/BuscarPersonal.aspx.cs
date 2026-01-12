@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace SIMANET_W22R.HelpDesk.Atencion
 {
-    public partial class BuscarPersonal : HelpDeskBase, IPaginaBase
+    public partial class BuscarPersonal : HelpDeskBase,IPaginaBase
     {
 
         protected void Page_Load(object sender, EventArgs e)
@@ -45,16 +45,6 @@ namespace SIMANET_W22R.HelpDesk.Atencion
         public void LlenarDatos()
         {
             this.EasyAcBuscarPersonal.DataInterconect.UrlWebService = this.PathNetCore + "General/Busquedas.asmx";
-        }
-
-        public void CargarModoNuevo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CargarModoModificar()
-        {
-            throw new NotImplementedException();
         }
 
         public void LlenarGrilla()

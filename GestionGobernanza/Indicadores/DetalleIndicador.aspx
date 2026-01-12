@@ -70,11 +70,11 @@
                 <td id="msgValRqr"  colspan="2"> </td>                           
             </tr>
             <tr>
-                <td class="Etiqueta" style="width:20%" >
+                <td class="Etiqueta" style="width:20%"  >
                     CODIGO
                 </td>
                 <td style="width:80%">
-                    <cc1:EasyTextBox ID="txtCodigo" runat="server" ReadOnly="true" BackColor="#e6e6e6"></cc1:EasyTextBox>
+                    <cc1:EasyTextBox ID="txtCodigo" runat="server" BackColor="#e6e6e6" ReadOnly="true"></cc1:EasyTextBox>
                 </td>
             </tr>
 

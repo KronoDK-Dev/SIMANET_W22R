@@ -1,4 +1,4 @@
-﻿
+﻿//Manejo de PROMESAS:  https://web.dev/articles/promises?hl=es
 //Instancia el objeto 
 NetSuite.LiveChat = {};
 
@@ -116,7 +116,7 @@ NetSuite.Manager.Broker.Response = function (IdBubbleResponse,HTMLText) {
         + '      <img class="chat-msg-imgd" src="' + Logo + '" alt="" />'
         + '      <div class="chat-msg-date">Hora:' + ObtenerHora() +'</div>'
         + '   </div>'
-        + '   <div class="chat-msg-content" href="#' + IdBubbleResponse + '" id="' + IdBubbleResponse + '"  >'
+        + '   <div class="chat-msg-content" href="#' + IdBubbleResponse + '" id="Content_' + IdBubbleResponse + '"  >'
         + '         <div id="t' + IdBubbleResponse + '" class="chat-msg-text">' + ((HTMLText == undefined) ? "" : HTMLText) + ' </div>';
         + '   </div>'
         + '</div> ';   
@@ -158,7 +158,7 @@ NetSuite.Manager.Broker.Request = function (IdBubbleRequest) {
         + '          <img class="chat-msg-img" src="' + EasyNetLiveChat.FotoContacto(UsuarioBE.NroDocumento) + '" alt="" />'
         + '          <div class="chat-msg-date">Hora:' + ObtenerHora() +'</div>'
         + '     </div>'
-        + '     <div class="chat-msg-content"  href="#' + IdBubbleRequest + '"   id="' + IdBubbleRequest + '" >'
+        + '     <div class="chat-msg-content"  href="#' + IdBubbleRequest + '"   id="Content_' + IdBubbleRequest + '" >'
         + '         <div class="chat-msg-text"   id="t' + IdBubbleRequest + '" ></div>';
         + '     </div>'
         + '</div>';
@@ -199,23 +199,21 @@ NetSuite.Manager.Broker.Servicios = function (e) {
         if (objChild.tagName.toUpperCase() == "P") {
             var DataBE = objChild.attr("Data").toString().SerializedToObject();
             if (DataBE != null) {
-                //Carga la Libreria relacionada con este item
-                //NetSuite.Manager.Broker.RegistrarLib(DataBE);
-                //Inserta una burbuja de comentario
                 if (EasyNetLiveChat.Panel.Body().find("bubble_" + DataBE.ID_RESP) == false) {
                     EasyNetLiveChat.Panel.Body().innerHTML += NetSuite.Manager.Broker.Response(DataBE.ID_RESP, '');
                     var objWriterErr = (new Maquina("t" + DataBE.ID_RESP));
-                    document.getElementById("t" + DataBE.ID_RESP).scrollIntoView({ behavior: 'smooth' });
-                    objWriterErr.Clear();
-                    objWriterErr.typeWriter("Un momento por favor se están cargando los servicios para </br>" + DataBE.RESPUESTA, function () {
-                        //Ejecutar el inicio de la libreria
-                        objWriterErr.Clear();
-                        NetSuite.Manager.Broker.InjectServicio(DataBE);
                         document.getElementById("t" + DataBE.ID_RESP).scrollIntoView({ behavior: 'smooth' });
-                    });
-
+                        objWriterErr.Clear();
+                        objWriterErr.typeWriter("Un momento por favor se están cargando los servicios para </br>" + DataBE.RESPUESTA, function () {
+                                                                                                                //Ejecutar el inicio de la libreria
+                                                                                                                objWriterErr.Clear();
+                                                                                                                NetSuite.Manager.Broker.InjectServicio(DataBE);
+                                                                                                                document.getElementById("t" + DataBE.ID_RESP).scrollIntoView({ behavior: 'smooth' });
+                                                                                                            });
                 }
                 else {
+                  //  alert('Existe');
+
                     document.getElementById("t" + DataBE.ID_RESP).scrollIntoView({ behavior: 'smooth' });
                 }
             }
@@ -247,20 +245,24 @@ NetSuite.Manager.Broker.ParamsLib = function (QParams, fncTask) {
     }
 }
 
-NetSuite.Manager.Broker.RegistrarLib = function (LibJSSRV) {
+
+
+NetSuite.Manager.Broker.RegistrarLib = function (LibJSSRV,ParamsCollection,fncLoadLib) {
 
     if (LibJSSRV.length == 0) { return; }
 
-    var ArrLib = LibJSSRV.split('/');
-    var NomFile = ArrLib[ArrLib.length - 1].Replace('.','');
+    var sInfo = ScriptManager.GetInfo(Page.Request.ApplicationPath + "/Recursos/LibSIMA/ChatBotServiceBroker" + LibJSSRV);
 
-    var PathChatBoxService = Page.Request.ApplicationPath + "/Recursos/LibSIMA/ChatBotServiceBroker" + LibJSSRV.toString().Replace(" ", "");
-    var options = { dom: true, Prefijo: 'Helpdesk', Id: NomFile };
-
-    if (ScriptManager.Find(options) == null) {
-        ScriptManager.Using(PathChatBoxService, options);
+    if (ParamsCollection != undefined) {
+        ParamsCollection.forEach(function (Param, i) {
+            sInfo.Params.Add(Param);
+        });
     }
 
+    //Registra la Libreria en la pagina 
+    var objScriptInfo = ScriptManager.Using(sInfo, fncLoadLib);
+
+    return sInfo;
 }
 
 
@@ -515,6 +517,11 @@ NetSuite.Manager.Infinity.AcivarPlataforma = function () {
     NetSuite.LiveChat.bubble.Style.MsgText = "chat-msg-text";
     NetSuite.LiveChat.bubble.Style.MsgTextSelect = "chat-msg-text-Select";
 
+    
+    NetSuite.LiveChat.bubble.Style.MsgContent = "chat-msg-content";
+    NetSuite.LiveChat.bubble.Style.MsgContentSelect = "chat-msg-content-Select";
+
+
     NetSuite.LiveChat.bubble.SelectBE = function (_Id, _Class, _IdChild, _ChildClass) {
         this.Id = _Id;
         this.Class = _Class;
@@ -525,8 +532,8 @@ NetSuite.Manager.Infinity.AcivarPlataforma = function () {
 
     NetSuite.LiveChat.bubble.Click = function (e) {
         var htmlBubble = jNet.get(e);
-        var htmlChatMsg = jNet.get(htmlBubble.parentNode.parentNode);
-
+        var htmlChatMsg = jNet.get(htmlBubble.parentNode);
+      
         if (obubbleSelectBE.IdChild == undefined) {
             obubbleSelectBE.Id = htmlChatMsg.attr("id");
             obubbleSelectBE.Class = htmlChatMsg.attr("class");
@@ -540,6 +547,7 @@ NetSuite.Manager.Infinity.AcivarPlataforma = function () {
             var HtmlChatMsgOld = jNet.get(obubbleSelectBE.Id);
             HtmlChatMsgOld.attr("class", obubbleSelectBE.Class);
             var HtmlChildChatMsgOld = jNet.get(obubbleSelectBE.IdChild);
+
             HtmlChildChatMsgOld.attr("class", obubbleSelectBE.ChildClass);
 
             //Nueva seleccion
@@ -551,8 +559,13 @@ NetSuite.Manager.Infinity.AcivarPlataforma = function () {
             //Establecer el estilo de seleccion
             htmlBubble.attr("class", NetSuite.LiveChat.bubble.Style.MsgTextSelect);
         }
-
-        //ale();
+        try {
+            //Evento debe de estar implementada externamente en la libreria que se carga dinamicamente propio del caso de implementacion
+            NetSuite.LiveChat.bubble.OnClick(htmlBubble);
+        }
+        catch (ex) {
+            
+        }
     }
 
     //NetSuite.LiveChat.WindPopupInterface = jNet.get(document.getElementsByName('EasyPopupLiveChat')[0]);
@@ -622,7 +635,7 @@ NetSuite.Manager.Infinity.AcivarPlataforma = function () {
             + '      <img class="chat-msg-img" src="' + oContactoBE.Foto + '" alt="" />'
             + '      <div class="chat-msg-date">Mensaje visto 1.22pm</div>'
             + '   </div>'
-            + '   <div class="chat-msg-content" href="#' + _MensajeBE.IdMsg + '" id="' + _MensajeBE.IdMsg + '"  >'
+            + '   <div class="chat-msg-content"  href="#' + _MensajeBE.IdMsg + '" id="Content_' + _MensajeBE.IdMsg + '"  >'
             + HtmlMsgContenido
             + '   </div>'
             + '</div> ';
@@ -642,7 +655,7 @@ NetSuite.Manager.Infinity.AcivarPlataforma = function () {
             + '          <img class="chat-msg-img" src="' + oContactoBE.Foto + '" alt="" />'
             + '          <div class="chat-msg-date">Mensaje enviado 2.50pm</div>'
             + '     </div>'
-            + '     <div class="chat-msg-content"  href="#' + _MensajeBE.IdMsg + '"   id="' + _MensajeBE.IdMsg + '" >'
+            + '     <div class="chat-msg-content"   href="#' + _MensajeBE.IdMsg + '"   id="Content_' + _MensajeBE.IdMsg + '" >'
             + HtmlMsgContenido
             + '     </div>'
             + '</div>';

@@ -3,37 +3,48 @@ using EasyControlWeb.Errors;
 using EasyControlWeb.Filtro;
 using EasyControlWeb.Form.Controls;
 using EasyControlWeb.InterConeccion;
+using EasyControlWeb.InterConecion;
+using NPOI.SS.Formula.Functions;
+using SIMANET_W22R.ClasesExtendidas;
+using SIMANET_W22R.Exceptiones;
+using SIMANET_W22R.HelpDesk.ITIL;
 using SIMANET_W22R.srvSeguridad;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
-using SIMANET_W22R.Exceptiones;
+using static EasyControlWeb.EasyUtilitario;
+using static EasyControlWeb.EasyUtilitario.Enumerados;
+using static EasyControlWeb.EasyUtilitario.Helper;
+using static iTextSharp.text.pdf.codec.TiffWriter;
+using static SIMANET_W22R.Controles.Header;
 
 namespace SIMANET_W22R
 {
-    public class PaginaBase : Page
+    public class PaginaBase : System.Web.UI.Page
     {
-        #region Controles
-
-        EasyUsuario oUsuario = new EasyUsuario();
-        EasyNavigatorHistorial oEasyNavigatorHistorial = new EasyNavigatorHistorial();
-        EasyMessageBox oeasyMessageBox;
+        #region Controles 
+            EasyUsuario oUsuario = new EasyUsuario();
+            EasyNavigatorHistorial oEasyNavigatorHistorial = new EasyNavigatorHistorial();
+            EasyMessageBox oeasyMessageBox;
 
         #endregion
+        #region  Constantes que se deberan de usuar en todos los modulos
+            public static string KEYIDGENERAL = "idGen";
+        
 
-        #region Constantes que se deberan de usuar en todos los modulos
-
-        public static string KEYIDGENERAL = "idGen";
-        public static string KEYMODOPAGINA = "Modo";
+        public static string KEYMODOPAGINA= "Modo";
         public static string KEYTOKEN = "ToKN";
         public static string KEYQCENTROOPERATIVO = "IdCeo";
         public static string KEYQAÑO = "Anio";
@@ -50,154 +61,147 @@ namespace SIMANET_W22R
         public static string KEYQIDTABLAGENERALREL = "IdTblGenRel";
         public static string KEYQIDITEMTABLAGENERALREL = "IdItemTblGenRel";
 
+
         public static string KEYQRAZONSOCIALCLIENTE = "RazonSocialCliente";
 
         public static string KEYQQUIENLLAMA = "QLlama";
         public static string KEYQEDITABLE = "mEdit";
-        public static string KEYCLIENTEID = "V_CLIENTE_ID";
+
+        public const string KEYCODAREA = "CodArea";
+
+
 
         #endregion
 
         #region Propiedades Publicas
 
         public string TokenId { get { return Page.Request.Params[KEYTOKEN]; } }
-        public string IdGeneral
-        {
-            get { return Page.Request.Params[KEYIDGENERAL]; }
-        }
         public int IdProceso { get { return Convert.ToInt32(Page.Request.Params[KEYQIDPROCESO]); } }
-        public string IdCentroOperativo
-        {
-            get { return Page.Request.Params[KEYQCENTROOPERATIVO]; }
-        }
-        public string Año
-        {
-            get { return Page.Request.Params[KEYQAÑO]; }
-        }
-        public string IdMes
-        {
-            get { return Page.Request.Params[KEYQIDMES]; }
-        }
-        public string Fecha
-        {
-            get { return Page.Request.Params[KEYQFECHA]; }
-        }
-        public EasyUtilitario.Enumerados.ModoPagina ModoPagina
-        {
-            get
-            {
-                try
-                {
-                    return ((Page.Request.Params[EasyUtilitario.Constantes.Pagina.KeyParams.Modo] == null)
-                        ? EasyUtilitario.Enumerados.ModoPagina.C
-                        : (EasyUtilitario.Enumerados.ModoPagina)System.Enum.Parse(
-                            typeof(EasyUtilitario.Enumerados.ModoPagina),
-                            Page.Request.Params[EasyUtilitario.Constantes.Pagina.KeyParams.Modo].ToString()));
-                }
-                catch (Exception ex)
-                {
-                    return EasyUtilitario.Enumerados.ModoPagina.C;
-                }
+        public string IdCentroOperativo{
+                get { return Page.Request.Params[KEYQCENTROOPERATIVO]; }
             }
-        }
-        public int IdEstado { get { return Convert.ToInt32(Page.Request.Params[KEYQIDESTADO]); } }
-        public string Descripcion
-        {
-            get { return Page.Request.Params[KEYQDESCRIPCION]; }
-        }
-        public string ApellidosyNombres
-        {
-            get { return Page.Request.Params[KEYQAPELLIDOSNOMBRES]; }
-        }
-        public string RazonSocialCliente
-        {
-            get { return Page.Request.Params[KEYQRAZONSOCIALCLIENTE]; }
-        }
-        public int ModoEditable { get { return Convert.ToInt32(Page.Request.Params[KEYQEDITABLE]); } }
-        public string IDCLIENTE
-        {
-            get { return (((Page.Request.Params[KEYCLIENTEID] == "") || (Page.Request.Params[KEYCLIENTEID] == null)) ? "0" : Page.Request.Params[KEYCLIENTEID]); }
-        }
+            public string Año
+            {
+                get { return Page.Request.Params[KEYQAÑO]; }
+            }
+            public string IdMes
+            {
+                get { return Page.Request.Params[KEYQIDMES]; }
+            }
+            public string Fecha
+            {
+                get { return Page.Request.Params[KEYQFECHA]; }
+            }
+            public EasyUtilitario.Enumerados.ModoPagina ModoPagina
+                                                                    {
+                                                                        get
+                                                                        {
+                                                                            try
+                                                                            {
+                                                                                return ((Page.Request.Params[EasyUtilitario.Constantes.Pagina.KeyParams.Modo] == null) ? EasyUtilitario.Enumerados.ModoPagina.C : (EasyUtilitario.Enumerados.ModoPagina)System.Enum.Parse(typeof(EasyUtilitario.Enumerados.ModoPagina), Page.Request.Params[EasyUtilitario.Constantes.Pagina.KeyParams.Modo].ToString()));
+                                                                            }
+                                                                            catch (Exception ex)
+                                                                            {
+                                                                                return EasyUtilitario.Enumerados.ModoPagina.C;
+                                                                            }
+                                                                        }
+                                                                    }
+            public int IdEstado { get { return Convert.ToInt32(Page.Request.Params[KEYQIDESTADO]); } }
+            public string Descripcion
+            {
+                get { return Page.Request.Params[KEYQDESCRIPCION]; }
+            }
+
+            public string ApellidosyNombres
+            {
+                get { return Page.Request.Params[KEYQAPELLIDOSNOMBRES]; }
+            }
+            public string RazonSocialCliente
+            {
+                get { return Page.Request.Params[KEYQRAZONSOCIALCLIENTE]; }
+            }
+            public int ModoEditable { get { return Convert.ToInt32(Page.Request.Params[KEYQEDITABLE]); } }
+
+
         public string IdTablaGeneral { get { return Page.Request.Params[KEYQIDTABLAGENERAL]; } }
         public string IdTablaGeneralItems { get { return Page.Request.Params[KEYQIDITEMTABLAGENERAL]; } }
+
         public string IdTablaGeneralRel { get { return Page.Request.Params[KEYQIDTABLAGENERALREL]; } }
         public string IdTablaGeneralItemsRel { get { return Page.Request.Params[KEYQIDITEMTABLAGENERALREL]; } }
+
+
         public string PathFotosPersonal { get { return EasyUtilitario.Helper.Configuracion.PathFotos; } }
+
+        public string CodArea
+        {
+            get { return Page.Request.Params[KEYCODAREA].ToString(); }
+        }
+
+
         public string PathNetCore
         {
             get { return EasyUtilitario.Helper.Configuracion.Leer("ConfigBase", "PathBaseWSCore"); }
         }
-
         #endregion
-
         #region Propiedades de entrega de datos
-
-        public string UsuarioLogin
-        {
-            get
-            {
-                try
-                {
-                    Session["UserName"] = ((EasyUsuario)EasyUtilitario.Helper.Sessiones.Usuario.get()).Login;
-                    return ((EasyUsuario)EasyUtilitario.Helper.Sessiones.Usuario.get()).Login;
-                }
-                catch (Exception ex)
-                {
-                    return "Udefault";
+        public string UsuarioLogin{
+                get {
+                    try
+                    {
+                        Session["UserName"] = ((EasyUsuario)EasyUtilitario.Helper.Sessiones.Usuario.get()).Login;
+                        return ((EasyUsuario)EasyUtilitario.Helper.Sessiones.Usuario.get()).Login;
+                    }
+                    catch (Exception ex) {
+                        return "Udefault";
+                    }
                 }
             }
-        }
-        public int UsuarioId
-        {
-            get
-            {
-                try
-                {
-                    Session["IdUsuario"] = ((EasyUsuario)EasyUtilitario.Helper.Sessiones.Usuario.get()).IdUsuario;
+            public int UsuarioId { 
+                get {
+                        try
+                        {
+                            Session["IdUsuario"] = ((EasyUsuario)EasyUtilitario.Helper.Sessiones.Usuario.get()).IdUsuario;
 
-                    return ((EasyUsuario)EasyUtilitario.Helper.Sessiones.Usuario.get()).IdUsuario;
-                }
-                catch (Exception ex)
-                {
-                    SIMAExceptionSeguridadAccesoForms oex = new SIMAExceptionSeguridadAccesoForms(ex.Message);
-                    this.LanzarException(oex);
-                    return 0;
+                            return ((EasyUsuario)EasyUtilitario.Helper.Sessiones.Usuario.get()).IdUsuario;
+                        }
+                        catch (Exception ex) {
+                                SIMAExceptionSeguridadAccesoForms oex = new SIMAExceptionSeguridadAccesoForms(ex.Message);
+                                this.LanzarException(oex);
+                            return 0;
+                        }
                 }
             }
-        }
-
         #endregion
 
         #region datos usuario Logueado
-
-        public UsuarioBE DatosUsuario
-        {
-            get
-            {
-                return (UsuarioBE)Session["UserBE"];
-            }
+        public UsuarioBE DatosUsuario { 
+            get {
+                    return (UsuarioBE)Session["UserBE"];
+                }
         }
-
         #endregion
 
-        public PaginaBase()
-        {
-            // this.Load += new EventHandler(this.Page_Load);
+
+        public PaginaBase() {
+           // this.Load += new EventHandler(this.Page_Load);
         }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            if (!IsPostBack)
+       protected override void OnLoad(EventArgs e)
+       {
+            
+            if (!Page.IsPostBack)
             {
                 oUsuario = EasyUtilitario.Helper.Sessiones.Usuario.get();
                 try
                 {
+                    
                     if (!Page.IsPostBack)
                     {
                         oEasyNavigatorHistorial.getAllCtrlMemoryValue();
                     }
-
+                    
                     this.ValidarPagina("");
+
                 }
                 catch (SIMAExceptionSeguridadAccesoForms ex)
                 {
@@ -208,28 +212,28 @@ namespace SIMANET_W22R
             }
             this.ListarConstantesPagina();
         }
+       
 
-        public void IrA(EasyControlWeb.Form.Controls.EasyNavigatorBE oEasyNavigatorBE, params object[] LstCtrl)
-        {
+
+        public void IrA(EasyControlWeb.Form.Controls.EasyNavigatorBE oEasyNavigatorBE,params object[] LstCtrl) {
             if (LstCtrl.Length > 0)
             {
                 oEasyNavigatorHistorial.SavePageCtrlStatus(LstCtrl);
             }
             oEasyNavigatorHistorial.IrA(oEasyNavigatorBE);
+            
         }
-
         public void Atras()
         {
             oEasyNavigatorHistorial.Atras();
         }
 
-        public string Param(string Nombre)
-        {
+
+        public string Param(string Nombre) {
             return Page.Request.Params[Nombre];
         }
 
-        public EasyDataInterConect TablaGeneralItem(string IdTabla, string OrigenDB)
-        {
+        public EasyDataInterConect TablaGeneralItem(string IdTabla,string OrigenDB) {
             EasyDataInterConect oEasyDataInterConect = new EasyDataInterConect();
             oEasyDataInterConect.MetodoConexion = EasyDataInterConect.MetododeConexion.WebServiceExterno;
             oEasyDataInterConect.UrlWebService = this.PathNetCore + "General/General.asmx";
@@ -241,7 +245,7 @@ namespace SIMANET_W22R
             oParam.TipodeDato = EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos.Int;
             oEasyDataInterConect.UrlWebServicieParams.Add(oParam);
 
-            oParam = new EasyFiltroParamURLws();
+            oParam =new EasyFiltroParamURLws();
             oParam.ParamName = "UserName";
             oParam.Paramvalue = this.UsuarioLogin;
             oParam.TipodeDato = EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos.String;
@@ -249,29 +253,26 @@ namespace SIMANET_W22R
 
             return oEasyDataInterConect;
         }
-
         public HtmlTable NodoTree(string GridViewID, int Nivel, string Id, string IdPadre, string Texto, bool Children)
         {
-            return NodoTree(GridViewID, null, 0, Nivel, Id, IdPadre, Texto, Children, null);
+            return NodoTree(GridViewID,null,0 ,Nivel, Id, IdPadre, Texto, Children, null);
         }
-
-        public HtmlTable NodoTree(string GridViewID, DataRow Rdata, int rowIndex, int Nivel, string Id, string IdPadre, string Texto, bool Children, string onClickFnc)
+        public HtmlTable NodoTree(string GridViewID,DataRow Rdata,int rowIndex, int Nivel,string Id,string IdPadre, string Texto, bool Children,string onClickFnc)
         {
             string cmll = "\"";
             HtmlTable tblNodo = new HtmlTable();
             //  int Nivel = Convert.ToInt32(dr["NIVEL"]);
             tblNodo = EasyUtilitario.Helper.HtmlControlsDesign.CrearTabla(1, (Nivel + 1));
-            tblNodo.Attributes["DataBE"] = "{Id:'" + Id + "',IdPadre:'" + IdPadre + "',Texto:'" + Texto + "',IdNivel:'" + Id + "." + "',Nivel:'" + Nivel.ToString() + "',IsFather:'" + ((Children == true) ? "true" : "false") + "'}";
+            tblNodo.Attributes["DataBE"] = "{Id:'" + Id + "',IdPadre:'" + IdPadre + "',Texto:'" + Texto + "',IdNivel:'" + Id + "." + "',Nivel:'" + Nivel.ToString() + "',IsFather:'" + ((Children==true)? "true":"false") + "'}";
             tblNodo.Attributes["width"] = "100%";
             //  tblNodo.Attributes["border"]="2";
             tblNodo.Rows[0].Cells[Nivel].InnerText = Texto;
-            if (Rdata != null)
-            {
-                tblNodo.Rows[0].Cells[Nivel].Attributes.Add("Data", EasyUtilitario.Helper.Genericos.DataRowToStringJson(Rdata).Replace(cmll, "'"));
+            if (Rdata != null) {
+                tblNodo.Rows[0].Cells[Nivel].Attributes.Add("Data",EasyUtilitario.Helper.Genericos.DataRowToStringJson(Rdata).Replace(cmll,"'"));
             }
             if (onClickFnc != null)
             {
-                tblNodo.Rows[0].Cells[Nivel].Attributes.Add(EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString(), GridViewID + "_" + rowIndex.ToString() + "_CellText(this)");
+                tblNodo.Rows[0].Cells[Nivel].Attributes.Add(EasyUtilitario.Enumerados.EventosJavaScript.ondblclick.ToString(), GridViewID +"_" + rowIndex.ToString() + "_CellText(this)");
             }
 
             tblNodo.Rows[0].Cells[Nivel].Align = "left";
@@ -289,12 +290,12 @@ namespace SIMANET_W22R
                 //oImg.Src = EasyUtilitario.Constantes.ImgDataURL.IconTreeMinus;
                 oImg.Src = EasyUtilitario.Constantes.ImgDataURL.IconTreePlus;
                 oImg.Attributes["style"] = "cursor:pointer";
-                oImg.Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()] = "(new GridViewTree('" + GridViewID + "')).ExpandeCollapse(this)";
+                oImg.Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()]= "(new GridViewTree('" + GridViewID + "')).ExpandeCollapse(this)";
                 oImg.Attributes["id"] = Id;
                 oImg.Attributes["LoadChild"] = "false";
 
                 tblNodo.Rows[0].Cells[Nivel - 1].Controls.Add(oImg);
-                tblNodo.Rows[0].Cells[Nivel - 1].Style.Add("cursor", "pointer");
+                tblNodo.Rows[0].Cells[Nivel - 1].Style.Add("cursor","pointer");
 
                 for (int i = 0; i <= (Nivel - 2); i++)
                 {
@@ -314,7 +315,7 @@ namespace SIMANET_W22R
             }
             //Crear el Script Relacionado a la 
             string CellTextOnClick = @"<script>
-                                            function " + GridViewID + "_" + rowIndex.ToString() + @"_CellText(e){
+                                            function " + GridViewID +"_" + rowIndex.ToString() + @"_CellText(e){
                                              var CellText = jNet.get(e); 
                                              var Data = CellText.attr('Data').toString().SerializedToObject();
                                              " + onClickFnc + @"(Data);
@@ -325,16 +326,14 @@ namespace SIMANET_W22R
             return tblNodo;
         }
 
-        public void ValidarPagina(string Origen)
-        {
+        public void ValidarPagina(string Origen) {
             EasyUsuario oEasyUsuario = new EasyUsuario();
-            if (oEasyUsuario.ValidaPagina() == false)
-            {
+                if (oEasyUsuario.ValidaPagina()==false) {
                 //throw new Exception("Ud. No cuenta con accesos a esta pagina");
-                throw new SIMAExceptionSeguridadAccesoForms("Ud. No cuenta con accesos a esta pagina");
+                    throw new SIMAExceptionSeguridadAccesoForms("Ud. No cuenta con accesos a esta pagina");
             }
         }
-
+        //public void LanzarException(Exception ex)
         public void LanzarException(SIMAExceptionSeguridadAccesoForms ex)
         {
             StackTrace stack = new StackTrace();
@@ -346,33 +345,31 @@ namespace SIMANET_W22R
             EasyErrorControls oEasyErrorControls = new EasyErrorControls();
             string[] PagSplit = Page.Request.Url.AbsolutePath.Split('/');
             string Pagina = PagSplit[PagSplit.GetUpperBound(0)];
-            string Autorizado = EasyUtilitario.Helper.Configuracion.Leer("FormsFree", Pagina);
-            if ((Autorizado == null) || (Autorizado == "0"))
-            {
-
-                oEasyErrorControls.Origen = ex.TargetSite.Name;
-                string msg = ex.Message.Replace("'", "").Replace("'", "").Replace("\n", "");
-                oEasyErrorControls.Mensaje = msg;
-                oEasyErrorControls.Pagina = Pagina;
-                oEasyErrorControls.LanzarException(Event);
-            }
+                string Autorizado = EasyUtilitario.Helper.Configuracion.Leer("FormsFree", Pagina);
+                if ((Autorizado == null) || (Autorizado == "0"))
+                {
+                   
+                    oEasyErrorControls.Origen = ex.TargetSite.Name;
+                    string msg = ex.Message.Replace("'", "").Replace("'", "").Replace("\n", "");
+                    oEasyErrorControls.Mensaje = msg;
+                    oEasyErrorControls.Pagina = Pagina;
+                    oEasyErrorControls.LanzarException(Event);
+                }
         }
-
-        public string GetPageName()
-        {
+        public string GetPageName() {
             //string[] PagSplit = Page.Request.Url.AbsolutePath.Split('/');
             string[] PagSplit = HttpContext.Current.Request.Url.AbsolutePath.Split('/');
             string Pagina = PagSplit[PagSplit.GetUpperBound(0)].Replace(".aspx", "");
             return Pagina;
         }
 
-        public void ErrorDisplay(SIMAExceptionSeguridadAccesoForms ex)
-        {
+       
+        public void ErrorDisplay(SIMAExceptionSeguridadAccesoForms ex) {
             string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
             oeasyMessageBox = new EasyMessageBox();
             oeasyMessageBox.ID = "Msg";
             oeasyMessageBox.Titulo = "Error";
-            string msg = ex.Message.Replace("'", "").Replace("'", "").Replace("\n", "");
+            string msg = ex.Message.Replace("'", "").Replace("'", "").Replace("\n","");
             oeasyMessageBox.Contenido = msg;
             oeasyMessageBox.Tipo = EasyUtilitario.Enumerados.MessageBox.Tipo.AlertType;
             oeasyMessageBox.AlertStyle = EasyUtilitario.Enumerados.MessageBox.AlertStyle.modern;
@@ -385,7 +382,7 @@ namespace SIMANET_W22R
             string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
             string ScriptConatantes = "";
 
-            //ws://localhost:4649/Chat?name=erosales&Plataforma=WebID&FormId=
+        //ws://localhost:4649/Chat?name=erosales&Plataforma=WebID&FormId=
             /************************************************************************************************************************************/
             string DatosUsuario = "IdUsuario=" + oUsuario.IdUsuario.ToString() + "&" + "UserName=" + oUsuario.Login;
             string strParam = ((Page.ClientQueryString.Length > 0) ? Page.ClientQueryString + "&" + DatosUsuario : DatosUsuario);
@@ -406,14 +403,14 @@ namespace SIMANET_W22R
             string PathWSCore = this.PathNetCore;
             string WebServiceCliente = @"var ConnectService={};
                                           ConnectService.PathNetCore='" + PathWSCore + @"'
-                                          ConnectService.ControlInspeccionesSoapClient='" + PathWSCore + @"GestionCalidad/ControlInspecciones.asmx';
+                                          ConnectService.ControlInspeccionesSoapClient='" + PathWSCore +  @"GestionCalidad/ControlInspecciones.asmx';
                                           ConnectService.GeneralSoapClient='" + PathWSCore + @"General/General.asmx';
                                     ";
             Page.RegisterClientScriptBlock("WebService", "<script>\n" + WebServiceCliente + "\n" + "</script>");
             /*-------------------------------------------------------------------------------------------------------------------------------------*/
+           
 
-
-            string LogCliente = Pagina + @".Trace= {};
+            string LogCliente =  Pagina + @".Trace= {};
                              " + Pagina + @".Trace.Log  = {};
                              " + Pagina + @".Trace.Log.Find = function (_Key,NodoId) {
                                                                                 var NodoEncontrado = null;
@@ -459,13 +456,13 @@ namespace SIMANET_W22R
                                  .Where(fi => fi.IsLiteral && !fi.IsInitOnly && fi.IsSecurityTransparent == false).ToList();*/
 
             List<FieldInfo> fl = this.GetType().GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
-                                                        .Where(fi => fi.IsSecurityTransparent == false).ToList();
+                                                        .Where(fi =>fi.IsSecurityTransparent == false).ToList();
             foreach (FieldInfo fi in fl)
             {
                 //ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + fi.Name + EasyUtilitario.Constantes.Caracteres.SignoIgual + cmll + fi.GetRawConstantValue().ToString().Trim() + cmll + EasyUtilitario.Constantes.Caracteres.PuntoyComa + "\n";
                 ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + fi.Name + EasyUtilitario.Constantes.Caracteres.SignoIgual + cmll + fi.GetValue(this) + cmll + EasyUtilitario.Constantes.Caracteres.PuntoyComa + "\n";
             }
-            ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + "ModoEdit= " + cmll + this.ModoPagina + cmll + ";";
+             ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + "ModoEdit= " + cmll + this.ModoPagina + cmll + ";";
 
             // ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + "PathFotosPersonal = " + cmll + EasyUtilitario.Helper.Configuracion.PathFotos + cmll;
 
@@ -484,9 +481,13 @@ namespace SIMANET_W22R
                                         UsuarioBE.IdCentrOperativo = '" + oUsuarioBE.IdCentroOperativo + @"';
                                         UsuarioBE.NroDocumento = '" + oUsuarioBE.NroDocumento + @"';
                                         UsuarioBE.CodPersonal = '" + oUsuarioBE.CodPersonal + @"'; 
-                                        UsuarioBE.IdContacto = '" + oUsuarioBE.IdContacto.ToString() + "'; ";
+                                        UsuarioBE.IdContacto = '" + oUsuarioBE.IdContacto.ToString() +"'; ";
 
             Page.RegisterClientScriptBlock("UserInfo", "<script>\n" + ScriptUser + "\n" + "</script>");
+
+
+
+
         }
 
         public string UpperCaseFirstChar(string text)
@@ -494,7 +495,7 @@ namespace SIMANET_W22R
             return Regex.Replace(text, " ^ [a-z]", m => m.Value.ToUpper());
         }
 
-        public void EntityInJavascriptFromServer(System.Type t)
+        public  void EntityInJavascriptFromServer(System.Type t)
         {
             string LstProperty = "";
             string LstParametros = "";
@@ -513,9 +514,9 @@ namespace SIMANET_W22R
             }
 
             //Prpiedades de la clase heredada
-            flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy | BindingFlags.DeclaredOnly;
+            flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public |BindingFlags.NonPublic | BindingFlags.FlattenHierarchy |BindingFlags.DeclaredOnly;
             //FieldInfo[] fl = t.BaseType.GetFields(flags);
-
+           
             foreach (FieldInfo F in t.BaseType.GetFields(flags))
             {
                 NomField = F.Name.Substring(0, (F.Name.Length - 5));
@@ -535,224 +536,224 @@ namespace SIMANET_W22R
         }
 
         #region Agentes JavaScript
-
-        public void DataTableToXML(DataTable dt)
-        {
-            try
-            {
-                TransformsData(dt);
-            }
-            catch (Exception ex)
-            {
-                TransformsData(EasyUtilitario.Helper.Data.Error(this.GetPageName(), ex.Message));
-            }
-        }
-
-        public void EntityToXML(object obj)
-        {
-            string returnCarr = EasyUtilitario.Constantes.Caracteres.RetornoCarr;
-            string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
-            try
-            {
-                string Structura = "<DocumentElement>";
-                if (obj == null)
+                public void DataTableToXML(DataTable dt)
                 {
-                    Structura += "<Error>";
-                    Structura += returnCarr;
-                    Structura += "<Number>0001</Number>";
-                    Structura += returnCarr;
-                    Structura += "<Descripcion>No DataFound</Descripcion>";
-                    Structura += returnCarr;
-                    Structura += "</Error>";
-                    Structura += returnCarr;
-                }
-                else
-                {
-                    Type typeData = obj.GetType();
-                    int idx = 0;
-                    Structura += "<Entity Name='" + typeData.Name + "'>";
-                    Structura += returnCarr;
-                    foreach (var propertyInfo in typeData.GetProperties())
+
+                    try
                     {
-                        if (propertyInfo.GetValue(obj, propertyInfo.GetIndexParameters()) != null)
+                        TransformsData(dt);
+                    }
+                    catch (Exception ex)
+                    {
+                        TransformsData(EasyUtilitario.Helper.Data.Error(this.GetPageName(), ex.Message));
+                    }
+                }
+                public void EntityToXML(object obj)
+                {
+                    string returnCarr = EasyUtilitario.Constantes.Caracteres.RetornoCarr;
+                    string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
+                    try
+                    {
+                        string Structura = "<DocumentElement>";
+                        if (obj == null)
                         {
-                            Structura += "<" + propertyInfo.Name.ToString() + ">" + propertyInfo.GetValue(obj, propertyInfo.GetIndexParameters()) + "</" + propertyInfo.Name.ToString() + ">";
+                            Structura += "<Error>";
+                            Structura += returnCarr;
+                            Structura += "<Number>0001</Number>";
+                            Structura += returnCarr;
+                            Structura += "<Descripcion>No DataFound</Descripcion>";
+                            Structura += returnCarr;
+                            Structura += "</Error>";
+                            Structura += returnCarr;
                         }
                         else
                         {
-                            Structura += "<" + propertyInfo.Name.ToString() + "/>";
+                            Type typeData = obj.GetType();
+                            int idx = 0;
+                            Structura += "<Entity Name='" + typeData.Name + "'>";
+                            Structura += returnCarr;
+                            foreach (var propertyInfo in typeData.GetProperties())
+                            {
+                                if (propertyInfo.GetValue(obj, propertyInfo.GetIndexParameters()) != null)
+                                {
+                                    Structura += "<" + propertyInfo.Name.ToString() + ">" + propertyInfo.GetValue(obj, propertyInfo.GetIndexParameters()) + "</" + propertyInfo.Name.ToString() + ">";
+                                }
+                                else
+                                {
+                                    Structura += "<" + propertyInfo.Name.ToString() + "/>";
+                                }
+                                Structura += returnCarr;
+                            }
+                            Structura += "</Entity>";
                         }
-                        Structura += returnCarr;
+                        Structura += "</DocumentElement>";
+
+                        TransformsData(Structura);
                     }
-                    Structura += "</Entity>";
+                    catch (Exception ex)
+                    {
+                        TransformsData(EasyUtilitario.Helper.Data.Error(this.GetPageName(), ex.Message));
+                    }
                 }
-                Structura += "</DocumentElement>";
+                public void DiccionaryToEntityJS(string strEntity)
+                {
+                    string returnCarr = EasyUtilitario.Constantes.Caracteres.RetornoCarr;
+                    string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
+                    try
+                    {
+                        string Structura = "<DocumentElement>";
+                                Structura += returnCarr;
+                                Structura += "<DictionaryBE Name='objJava'>";
+                                Structura += returnCarr;
+                                Structura += "<Esquema>" + strEntity + "</Esquema>";
+                                Structura += returnCarr;
+                                Structura += "</DictionaryBE>";
+                                Structura += returnCarr;
+                                Structura += "</DocumentElement>";
 
-                TransformsData(Structura);
-            }
-            catch (Exception ex)
-            {
-                TransformsData(EasyUtilitario.Helper.Data.Error(this.GetPageName(), ex.Message));
-            }
-        }
+                        TransformsData(Structura);
+                    }
+                    catch (Exception ex)
+                    {
+                        TransformsData(EasyUtilitario.Helper.Data.Error(this.GetPageName(), ex.Message));
+                    }
+                }
 
-        public void DiccionaryToEntityJS(string strEntity)
-        {
-            string returnCarr = EasyUtilitario.Constantes.Caracteres.RetornoCarr;
-            string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
-            try
-            {
-                string Structura = "<DocumentElement>";
-                Structura += returnCarr;
-                Structura += "<DictionaryBE Name='objJava'>";
-                Structura += returnCarr;
-                Structura += "<Esquema>" + strEntity + "</Esquema>";
-                Structura += returnCarr;
-                Structura += "</DictionaryBE>";
-                Structura += returnCarr;
-                Structura += "</DocumentElement>";
-
-                TransformsData(Structura);
-            }
-            catch (Exception ex)
-            {
-                TransformsData(EasyUtilitario.Helper.Data.Error(this.GetPageName(), ex.Message));
-            }
-        }
-
-        public void SetData(DataRow drData)
-        {
+        public void SetData(DataRow drData) {
             string cmll = "\"";
-            string DataBE = "<script>" + GetPageName() + ".Data=" + EasyUtilitario.Helper.Genericos.DataRowToStringJson(drData).Replace(cmll, "'") + "</script>";
+            string strData = EasyUtilitario.Helper.Genericos.DataRowToStringJson(drData).Replace(cmll, "'");
+            strData = strData.Replace(((char)10).ToString(), "");
+            strData = strData.Replace(((char)13).ToString(), "");
+
+            string DataBE = "<script>\n" +  GetPageName() +".Data=" + strData +  "\n </script>";
             Page.Controls.Add(new LiteralControl(DataBE));
         }
 
-        public void EntityServerToEntityJS(object objResultBE)
-        {
-            string returnCarr = EasyUtilitario.Constantes.Caracteres.RetornoCarr;
-            string Structura = "<Esquema>";
-            Structura += returnCarr;
-            Structura += "<Entity>";
-            Structura += returnCarr;
+                public void EntityServerToEntityJS(object objResultBE) {
+                    string returnCarr = EasyUtilitario.Constantes.Caracteres.RetornoCarr;
+                    string Structura = "<Esquema>";
+                           Structura += returnCarr;
+                            Structura += "<Entity>";
+                            Structura += returnCarr;
 
-            Type tModelType = objResultBE.GetType();
-            FieldInfo[] thisFieldInfo = objResultBE.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            foreach (FieldInfo property in thisFieldInfo)
-            {
-                try
-                {
-                    if (property.GetValue(objResultBE) != null)
-                    {
-                        Structura += "<" + property.Name + ">" + property.GetValue(objResultBE).ToString() + "</" + property.Name + ">";
+                                Type tModelType = objResultBE.GetType();
+                                FieldInfo[] thisFieldInfo = objResultBE.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                                foreach (FieldInfo property in thisFieldInfo)
+                                {
+                                    try
+                                    {
+                                        if (property.GetValue(objResultBE) != null)
+                                        {
+                                            Structura += "<" + property.Name + ">" + property.GetValue(objResultBE).ToString() + "</" + property.Name + ">";
+                                            Structura += returnCarr;
+                                        }
+                                        else {
+                                            Structura += "<" + property.Name + ">" + "" + "</" + property.Name + ">";
+                                            Structura += returnCarr;
+
+                                        }
+
+                                    }
+                                    catch (System.NullReferenceException  Nullex) {
+                                        Structura += "<" + property.Name + ">" + "" + "</" + property.Name + ">";
+                                        Structura += returnCarr;
+
+                                    }
+                                }
+                        Structura += "</Entity>";
                         Structura += returnCarr;
+                        Structura += "</Esquema>";
+
+                        TransformsData(Structura);
+
                     }
-                    else
+
+
+
+
+                public void ResultNonQuery(string strValue)
+                {
+                    string returnCarr = EasyUtilitario.Constantes.Caracteres.RetornoCarr;
+                    string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
+                    try
                     {
-                        Structura += "<" + property.Name + ">" + "" + "</" + property.Name + ">";
+                        string Structura = "<DocumentElement>";
                         Structura += returnCarr;
+                        Structura += "<NonQuery Name='objJava'>";
+                        Structura += returnCarr;
+                        Structura += "<Result>" + strValue + "</Result>";
+                        Structura += returnCarr;
+                        Structura += "</NonQuery>";
+                        Structura += returnCarr;
+                        Structura += "</DocumentElement>";
 
+                        TransformsData(Structura);
                     }
-
+                    catch (Exception ex)
+                    {
+                        TransformsData(EasyUtilitario.Helper.Data.Error(this.GetPageName(), ex.Message));
+                    }
                 }
-                catch (System.NullReferenceException Nullex)
+
+        public void ErrorToXML(string ErroNumber,string Origen,Exception ex)
                 {
-                    Structura += "<" + property.Name + ">" + "" + "</" + property.Name + ">";
-                    Structura += returnCarr;
-
+                    string returnCarr = EasyUtilitario.Constantes.Caracteres.RetornoCarr;
+                    string Structura = "<DocumentElement>";
+                            Structura += "<Error>";
+                            Structura += returnCarr;
+                            Structura += "<Number>" + ErroNumber  + "</Number>";
+                            Structura += returnCarr;
+                            Structura += "<Origen>" + Origen + "</Origen>";
+                            Structura += returnCarr;
+                            Structura += "<Descripcion>" +ex.Message + "</Descripcion>";
+                            Structura += returnCarr;
+                            Structura += "</Error>";
+                            Structura += returnCarr;
+                    Structura += "</DocumentElement>";
+                    TransformsData(Structura);
                 }
-            }
-            Structura += "</Entity>";
-            Structura += returnCarr;
-            Structura += "</Esquema>";
 
-            TransformsData(Structura);
-
-        }
-
-        public void ResultNonQuery(string strValue)
-        {
-            string returnCarr = EasyUtilitario.Constantes.Caracteres.RetornoCarr;
-            string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
-            try
-            {
-                string Structura = "<DocumentElement>";
-                Structura += returnCarr;
-                Structura += "<NonQuery Name='objJava'>";
-                Structura += returnCarr;
-                Structura += "<Result>" + strValue + "</Result>";
-                Structura += returnCarr;
-                Structura += "</NonQuery>";
-                Structura += returnCarr;
-                Structura += "</DocumentElement>";
-
-                TransformsData(Structura);
-            }
-            catch (Exception ex)
-            {
-                TransformsData(EasyUtilitario.Helper.Data.Error(this.GetPageName(), ex.Message));
-            }
-        }
-
-        public void ErrorToXML(string ErroNumber, string Origen, Exception ex)
-        {
-            string returnCarr = EasyUtilitario.Constantes.Caracteres.RetornoCarr;
-            string Structura = "<DocumentElement>";
-            Structura += "<Error>";
-            Structura += returnCarr;
-            Structura += "<Number>" + ErroNumber + "</Number>";
-            Structura += returnCarr;
-            Structura += "<Origen>" + Origen + "</Origen>";
-            Structura += returnCarr;
-            Structura += "<Descripcion>" + ex.Message + "</Descripcion>";
-            Structura += returnCarr;
-            Structura += "</Error>";
-            Structura += returnCarr;
-            Structura += "</DocumentElement>";
-            TransformsData(Structura);
-        }
-
-        void TransformsData(string StrSerializado)
-        {
-            HttpContext.Current.Response.ClearContent();
-            HttpContext.Current.Response.Buffer = true;
-            // Response.AddHeader("content-disposition", "attachment; filename=DemoExcel.xls");
-            HttpContext.Current.Response.ContentType = "text/xml"; ;
-            HttpContext.Current.Response.Charset = "";
-            HttpContext.Current.Response.Output.Write(StrSerializado);
-            HttpContext.Current.Response.Flush();
-            HttpContext.Current.Response.Close();
-
-        }
-
-        void TransformsData(DataTable dt)
-        {
-            string result;
-            using (StringWriter sw = new StringWriter())
-            {
-                if (dt != null)
+                 void TransformsData(string StrSerializado)
                 {
-                    dt.WriteXml(sw);
-                    result = sw.ToString();
-                }
-                else
-                {
-                    result = "NoDataFound";
-                }
-            }
-            HttpContext.Current.Response.ClearContent();
-            HttpContext.Current.Response.Buffer = true;
-            // Response.AddHeader("content-disposition", "attachment; filename=DemoExcel.xls");
-            HttpContext.Current.Response.ContentType = "text/xml"; ;
-            HttpContext.Current.Response.Charset = "";
-            HttpContext.Current.Response.Output.Write(result);
-            HttpContext.Current.Response.Flush();
-            HttpContext.Current.Response.Close();
-        }
+                    HttpContext.Current.Response.ClearContent();
+                    HttpContext.Current.Response.Buffer = true;
+                    // Response.AddHeader("content-disposition", "attachment; filename=DemoExcel.xls");
+                    HttpContext.Current.Response.ContentType = "text/xml"; ;
+                    HttpContext.Current.Response.Charset = "";
+                    HttpContext.Current.Response.Output.Write(StrSerializado);
+                    HttpContext.Current.Response.Flush();
+                    HttpContext.Current.Response.Close();
 
+                }
+
+                void TransformsData(DataTable dt)
+                {
+                    string result;
+                    using (StringWriter sw = new StringWriter())
+                    {
+                        if (dt != null)
+                        {
+                            dt.WriteXml(sw);
+                            result = sw.ToString();
+                        }
+                        else {
+                            result = "NoDataFound";
+                        }
+                    }
+                    HttpContext.Current.Response.ClearContent();
+                    HttpContext.Current.Response.Buffer = true;
+                    // Response.AddHeader("content-disposition", "attachment; filename=DemoExcel.xls");
+                    HttpContext.Current.Response.ContentType = "text/xml"; ;
+                    HttpContext.Current.Response.Charset = "";
+                    HttpContext.Current.Response.Output.Write(result);
+                    HttpContext.Current.Response.Flush();
+                    HttpContext.Current.Response.Close();
+        }
         #endregion
 
-        #region Registrar Lib script style etc
 
+
+        #region Registrar Lib script style etc
         public enum TipoLibreria
         {
             Style,
@@ -761,8 +762,11 @@ namespace SIMANET_W22R
         }
 
         string[,] TagCtrl = new string[2, 5] {{ "link","href" ,"rel","stylesheet","Estylos Base"}
-            ,{ "script","src" ,"type", "text/javascript","Scripts Base"}
-        };
+                                                  ,{ "script","src" ,"type", "text/javascript","Scripts Base"}
+                                                 };
+
+
+
 
         public void RegistrarLib(HtmlHead oPagina, TipoLibreria oTipoLib, string[,] LibRef, bool Secuencia)
         {
@@ -778,13 +782,14 @@ namespace SIMANET_W22R
                     csText.Append("<" + TagCtrl[idxTag, 0] + " " + TagCtrl[idxTag, 2] + "=" + cmll + TagCtrl[idxTag, 3] + cmll + " " + TagCtrl[idxTag, 1] + "=" + cmll + LibRef[i, 1] + cmll + "> </" + TagCtrl[idxTag, 0] + ">\n");
                     cs.RegisterClientScriptBlock(csType, LibRef[i, 0], csText.ToString());
                 }
+
             }
         }
 
         public void RegistrarLib(HtmlHead oPagina, TipoLibreria oTipoLib, string[,] LibRef)
         {
-            int idxTag = ((oTipoLib == TipoLibreria.Style) ? 0 : 1);
 
+            int idxTag = ((oTipoLib == TipoLibreria.Style) ? 0 : 1);
             try
             {
                 if (oPagina != null)
@@ -821,8 +826,14 @@ namespace SIMANET_W22R
             {
 
             }
+
+       
         }
 
+
         #endregion
+
+
     }
+
 }

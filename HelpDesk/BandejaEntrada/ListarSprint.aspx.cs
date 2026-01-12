@@ -5,6 +5,7 @@ using EasyControlWeb.Filtro;
 using EasyControlWeb.Form;
 using EasyControlWeb.Form.Base;
 using EasyControlWeb.InterConeccion;
+using MimeKit.Text;
 using SIMANET_W22R.InterfaceUI;
 using System;
 using System.Collections.Generic;
@@ -66,16 +67,6 @@ namespace SIMANET_W22R.HelpDesk.BandejaEntrada
         public void LlenarDatos()
         {
             Page.Controls.Add(HTMSprint());
-        }
-
-        public void CargarModoNuevo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CargarModoModificar()
-        {
-            throw new NotImplementedException();
         }
 
         HtmlGenericControl HTMSprint() {

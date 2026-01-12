@@ -5,7 +5,8 @@ using System.Web;
 
 namespace SIMANET_W22R.GestionGobernanza
 {
-    public class GobernanzaBase : PaginaBase
+
+    public class GobernanzaBase:PaginaBase
     {
         public static string KEYOBJETIVOVERSION = "IdVer";
         public string IdVersion { get { return Page.Request.Params[KEYOBJETIVOVERSION]; } }
@@ -15,5 +16,8 @@ namespace SIMANET_W22R.GestionGobernanza
 
         public static string KEYIDTIPOPLAZO = "IdTipPlazo";
         public string IdTipoPlazo { get { return Page.Request.Params[KEYIDTIPOPLAZO]; } }
+
+        public static string KEYIDINDICADOR = "IdIndica";
+        public string IdIndicador { get { return Page.Request.Params[KEYIDINDICADOR]; } }
     }
 }

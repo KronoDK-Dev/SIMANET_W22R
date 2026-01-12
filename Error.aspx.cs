@@ -2,15 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace SIMANET_W22R
+
 {
     public partial class Error : PaginaBase
     {
-        //  Exception LastError;
+      //  Exception LastError;
         String ErrMessage;
         public string[,] StyleBase
         {
@@ -58,7 +60,7 @@ namespace SIMANET_W22R
         protected void Page_Load(object sender, EventArgs e)
         {
             string ScriptRedirect = "";
-            ScriptRedirect = @"<script>
+                ScriptRedirect = @"<script>
                                             (function(){
                                                 document.getElementById('LblPagina').innerText = sessionStorage.getItem('Pagina');
                                                 document.getElementById('LblMetodo').innerText = sessionStorage.getItem('Metodo');
@@ -66,7 +68,7 @@ namespace SIMANET_W22R
                                                 document.getElementById('LblDescripcion').innerText = sessionStorage.getItem('Mensaje');
                                             })();
                                  </script>";
-
+            
             string strBE = ((System.Web.UI.Page)HttpContext.Current.Handler).Session["Error"].ToString();
 
             Dictionary<string, string> oEntity = EasyUtilitario.Helper.Data.SeriaizedDiccionario(strBE);
@@ -76,7 +78,7 @@ namespace SIMANET_W22R
             LblSource.InnerText = oEntity["Origen"].ToString();
             LblDescripcion.InnerText = oEntity["Mensaje"].ToString();
 
-            Header1.RegistrarLibs(Page.Header, Controles.Header.TipoLib.Style, this.StyleBase, true);
+            Header1.RegistrarLibs(Page.Header,Controles.Header.TipoLib.Style, this.StyleBase, true);
             Header1.RegistrarLibs(Page.Header, Controles.Header.TipoLib.Script, this.ScriptBase, true);
 
 

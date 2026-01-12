@@ -113,16 +113,6 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
             throw new NotImplementedException();
         }
 
-        public void CargarModoNuevo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CargarModoModificar()
-        {
-            throw new NotImplementedException();
-        }
-
         public void LlenarGrilla()
         {
             throw new NotImplementedException();

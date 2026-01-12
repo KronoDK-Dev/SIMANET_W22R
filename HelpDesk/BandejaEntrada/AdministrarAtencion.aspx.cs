@@ -63,16 +63,6 @@ namespace SIMANET_W22R.HelpDesk.BandejaEntrada
             throw new NotImplementedException();
         }
 
-        public void CargarModoNuevo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CargarModoModificar()
-        {
-            throw new NotImplementedException();
-        }
-
         public string ObtenerCodArea() {
             EasyDataInterConect odi = new EasyDataInterConect();
             odi.MetodoConexion = EasyDataInterConect.MetododeConexion.WebServiceExterno;

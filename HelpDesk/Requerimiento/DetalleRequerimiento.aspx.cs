@@ -11,11 +11,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using SIMANET_W22R.HelpDesk.ITIL;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Net;
 using System.Text;
+using SIMANET_W22R.HelpDesk.Sistemas;
 using SIMANET_W22R.srvHelpDesk;
+using MimeKit.Cryptography;
+using System.Net.PeerToPeer;
 
 namespace SIMANET_W22R.HelpDesk.Requerimiento
 {

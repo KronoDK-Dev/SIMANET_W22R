@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SIMANET_W22R.HelpDesk
 {
-    public class HelpDeskBase : PaginaBase
+    public class HelpDeskBase:PaginaBase
     {
         string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
 
@@ -24,6 +24,7 @@ namespace SIMANET_W22R.HelpDesk
         public const string KEYFOTOGRUPO = "FotoGRP";
 
         public const string KEYIDAREA = "IdArea";
+      
 
         public const string KEYIDPADRE = "IdPadre";
 
@@ -54,7 +55,7 @@ namespace SIMANET_W22R.HelpDesk
 
         public string IdRequerimiento
         {
-            get { return ((Page.Request.Params[KEYIDREQUERIMIENTO] == null) ? "0" : Page.Request.Params[KEYIDREQUERIMIENTO]); }
+            get { return ( (Page.Request.Params[KEYIDREQUERIMIENTO]==null)?"0": Page.Request.Params[KEYIDREQUERIMIENTO]); }
         }
         public string IdRequerimientPadre
         {
@@ -136,11 +137,10 @@ namespace SIMANET_W22R.HelpDesk
 
 
 
-        public string IdSistemaProcesoAct
-        {
+        public string IdSistemaProcesoAct {
             get { return Page.Request.Params[KEYIDSYS_PRC].ToString(); }
         }
-        public string IdServicio { get { return Page.Request.Params[KEYIDSERVICIO]; } }
+        public string  IdServicio { get { return Page.Request.Params[KEYIDSERVICIO]; } }
         public string NombreServicio { get { return Page.Request.Params[KEYNOMBRESERVICIO]; } }
 
         public string PathServicio { get { return Page.Request.Params[KEYPATHSERVICIO]; } }
@@ -154,13 +154,12 @@ namespace SIMANET_W22R.HelpDesk
             get { return Page.Request.Params[KEYIDAREA].ToString(); }
         }
 
-
-
+   
 
         public string IdActividad { get { return Page.Request.Params[KEYIDACTIVIDAD]; } }
-        public string IdAccion { get { return Page.Request.Params[KEYIDACCCION]; } }
+        public string IdAccion{ get { return Page.Request.Params[KEYIDACCCION]; } }
         public string IdNota { get { return Page.Request.Params[KEYIDNOTA]; } }
-
+        
 
         public string IdTipoElemento { get { return Page.Request.Params[KEYIDTIPOELEMENTO]; } }
         public string NombreElemento { get { return Page.Request.Params[KEYNOMBREELEMENTO]; } }
@@ -182,7 +181,7 @@ namespace SIMANET_W22R.HelpDesk
 
         public string IdPersonalRequerimiento { get { return Page.Request.Params[KEYIDPERSONALRQR]; } }
 
-
+        
 
 
 
@@ -214,5 +213,6 @@ namespace SIMANET_W22R.HelpDesk
 
             Page.RegisterClientScriptBlock(Pagina, FormCreateVar);
         }
+
     }
 }

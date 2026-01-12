@@ -96,7 +96,7 @@
           oParam = new SIMA.Param("CodigoArea", ListarIncidenciaPorArea.Params[ListarIncidenciaPorArea.KEYIDAREA]);
           oParamCollections.Add(oParam);
 
-          oParam = new SIMA.Param("IdTipoServicio", "2");
+          oParam = new SIMA.Param("IdTipoServicio", "2");//incidencias
           oParamCollections.Add(oParam);
 
           oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
@@ -177,7 +177,10 @@
 
           var oDataBE = treeNode.Data;
           //Registrar la Biblioteca de Libreria a sociada al servicio o incidente
-          NetSuite.Manager.Broker.RegistrarLib(oDataBE.LIB_JS_SRVBROKER);
+          var pCollection = new Array();
+          pCollection.Add(new ScriptManager.Params("LoadData",0));
+          NetSuite.Manager.Broker.RegistrarLib(oDataBE.LIB_JS_SRVBROKER, pCollection);
+
           /*----------------------------------------------------------------------------------------------------*/
           /*llama al formulariio  de detalle de indiccencia o servicio*/
           var urlPag = Page.Request.ApplicationPath + "/HelpDesk/Incidencia/DetalleIncidnecia.aspx";
@@ -194,6 +197,7 @@
           oColletionParams.Add(oParam);
 
           NetSuite.Manager.Broker.Persiana.Popup.Show({ Titulo: oDataBE.NOMBRE, Pagina: urlPag, Parametros: oColletionParams });//llama a la ventana de detalle del servicio
+        //  aler();
       }
 
       ListarIncidenciaPorArea.EasyControl.Tree.Expand = function (event, treeId, treeNode) {

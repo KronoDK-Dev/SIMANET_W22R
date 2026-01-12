@@ -28,6 +28,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
                 if (!Page.IsPostBack)
                 {
+                    this.LlenarJScript();
                     this.LlenarGrilla();
                 }
             }
@@ -65,19 +66,9 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
             throw new NotImplementedException();
         }
 
-        public void CargarModoNuevo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CargarModoModificar()
-        {
-            throw new NotImplementedException();
-        }
-
         public void LlenarGrilla()
         {
-            this.EasyGridView1.DataInterconect = ListarObjetivos(80, 1);
+            this.EasyGridView1.DataInterconect = ListarObjetivos(80, 1);//Pbjetivos de la version 1
             EasyGridView1.LoadData();
         }
         EasyDataInterConect ListarObjetivos(int IdTabla, int idItem)
@@ -120,7 +111,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
         public void LlenarJScript()
         {
-            throw new NotImplementedException();
+            this.btnPostBack.Attributes["style"] = "display:none";
         }
 
         public void RegistrarJScript()
@@ -148,6 +139,16 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                 e.Row.Cells[1].Controls.Add(this.NodoTree("EasyGridView1",dr,e.Row.RowIndex, 1, dr["IDITEM"].ToString(), "0", dr["CODIGO"].ToString(), true, "OnClickObjetivo"));
                 e.Row.Cells[3].Text=dr["DESCRIPCION"].ToString();
             }
+        }
+
+        protected void EasyGridView1_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+        {
+            LlenarGrilla();
+        }
+
+        protected void btnPostBack_Click(object sender, EventArgs e)
+        {
+            this.LlenarGrilla();
         }
     }
 }

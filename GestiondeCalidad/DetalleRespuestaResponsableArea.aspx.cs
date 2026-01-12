@@ -14,7 +14,7 @@ using System.Web.UI.WebControls;
 
 namespace SIMANET_W22R.GestiondeCalidad
 {
-    public partial class DetalleRespuestaResponsableArea : PaginaCalidadBase, IPaginaMantenimento, IPaginaBase
+    public partial class DetalleRespuestaResponsableArea : PaginaCalidadBase,IPaginaMantenimento,IPaginaBase
     {
         string scriptDefEstado = "";
         protected void Page_Load(object sender, EventArgs e)

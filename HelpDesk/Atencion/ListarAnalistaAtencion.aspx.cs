@@ -16,7 +16,7 @@ using EasyControlWeb.Form.Base;
 
 namespace SIMANET_W22R.HelpDesk.Atencion
 {
-    public partial class ListarAnalistaAtencion : HelpDeskBase, IPaginaBase
+    public partial class ListarAnalistaAtencion : HelpDeskBase,IPaginaBase
     {
 
         protected void Page_Load(object sender, EventArgs e)
@@ -80,15 +80,7 @@ namespace SIMANET_W22R.HelpDesk.Atencion
             UserAtencion.Controls.Add(HtmlTbl);
         }
 
-        public void CargarModoNuevo()
-        {
-            throw new NotImplementedException();
-        }
 
-        public void CargarModoModificar()
-        {
-            throw new NotImplementedException();
-        }
 
 
         public void LlenarGrilla()
