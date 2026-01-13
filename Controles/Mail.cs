@@ -1,15 +1,18 @@
-﻿using EasyControlWeb;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
 using System.Web;
 
 namespace SIMANET_W22R.Controles
 {
-    public class MailResult
-    {
-        public string Message { get; set; }
+    using EasyControlWeb;
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Mail;
+    
+
+    public class MailResult{
+        public string Message{  get; set; }
         public bool Exitoso { get; set; }
         public MailResult(string message, bool exitoso)
         {
@@ -20,9 +23,10 @@ namespace SIMANET_W22R.Controles
 
     public class Mail
     {
+
         string From = ""; //de quien procede, puede ser un alias
         string To;  //a quien vamos a enviar el mail
-        string[] Cc;  //Copn copia a quien mas de puede enviar el mail
+        string []Cc;  //Copn copia a quien mas de puede enviar el mail
         string Message;  //mensaje
         string Subject; //asunto
         List<string> Archivo = new List<string>(); //lista de archivos a enviar
@@ -31,17 +35,17 @@ namespace SIMANET_W22R.Controles
         System.Net.Mail.MailMessage Email;
 
         public string error = "";
-        public Mail(string FROM, string Para, string[] _Cc, string Mensaje, string Asunto, List<string> ArchivoPedido_ = null)
+        public Mail(string FROM, string Para,string []_Cc, string Mensaje, string Asunto, List<string> ArchivoPedido_ = null)
         {
             From = FROM;
             To = Para;
-            Cc = ((_Cc.Length > 0) ? _Cc : null);
+            Cc = ((_Cc.Length>0)?_Cc:null);
             Message = Mensaje;
             Subject = Asunto;
             Archivo = ArchivoPedido_;
 
         }
-        public Mail(string FROM, string Para, string Mensaje, string Asunto, List<string> ArchivoPedido_ = null)
+        public Mail(string FROM, string Para,  string Mensaje, string Asunto, List<string> ArchivoPedido_ = null)
         {
             From = FROM;
             To = Para;
@@ -67,14 +71,14 @@ namespace SIMANET_W22R.Controles
             string _strMsg = "";
             bool Enviar = true;
             //una validación básica
-            if (To.Trim().Equals(""))
+            if (To.Trim().Equals("") )
             {
                 _strMsg = "El mail del destino no se ha ingresado";
-                Enviar = false;
+                Enviar=false;
             }
             if (Message.Trim().Equals(""))
             {
-                _strMsg += ((_strMsg.Length > 0) ? " y " : "") + "El mensaje no se ha ingresado";
+                _strMsg +=((_strMsg.Length>0)? " y " : "") + "El mensaje no se ha ingresado";
                 Enviar = false;
             }
             if (Subject.Trim().Equals(""))
@@ -88,8 +92,7 @@ namespace SIMANET_W22R.Controles
                 Enviar = false;
             }
 
-            if (Enviar == false)
-            {
+            if (Enviar == false) {
                 return new MailResult(_strMsg, Enviar);
             }
             //aqui comenzamos el proceso
@@ -99,7 +102,7 @@ namespace SIMANET_W22R.Controles
                 //creamos un objeto tipo MailMessage
                 //este objeto recibe el sujeto o persona que envia el mail,
                 //la direccion de procedencia, el asunto y el mensaje
-                Email = new System.Net.Mail.MailMessage(From, To, Subject, Message);
+                Email = new System.Net.Mail.MailMessage(From, To,Subject, Message);
 
                 //si viene archivo a adjuntar
                 //realizamos un recorrido por todos los adjuntos enviados en la lista
@@ -117,7 +120,7 @@ namespace SIMANET_W22R.Controles
                 }
 
                 Email.IsBodyHtml = true; //definimos si el contenido sera html
-
+                
                 Email.From = new MailAddress(From); //definimos la direccion de procedencia
                 if (Cc != null)
                 {
@@ -147,12 +150,13 @@ namespace SIMANET_W22R.Controles
             catch (Exception ex)
             {
                 //si ocurre un error regresamos false y el error
-                _strMsg = ex.Message.Replace("'", " ");
+                _strMsg = ex.Message.Replace("'"," ");
                 //throw new Exception(_strMsg);
             }
 
             return new MailResult(_strMsg, false);
 
         }
+
     }
 }

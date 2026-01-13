@@ -1,4 +1,8 @@
-﻿using EasyControlWeb.Form.Base;
+﻿using EasyControlWeb.Filtro;
+using EasyControlWeb.Form.Controls;
+using EasyControlWeb.InterConeccion;
+using SIMANET_W22R.srvGestionReportes;
+using EasyControlWeb.Form.Estilo;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,30 +10,34 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using EasyControlWeb;
-using EasyControlWeb.Filtro;
-using EasyControlWeb.Form.Controls;
-using EasyControlWeb.InterConeccion;
-using SIMANET_W22R.srvGestionReportes;
+using EasyControlWeb.Form.Base;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+using SIMANET_W22R.General;
+using SIMANET_W22R.GestionReportes;
+using static EasyControlWeb.EasyUtilitario.Enumerados.Configuracion.SeccionKey;
+using System.Web.UI;
+using static EasyControlWeb.InterConeccion.EasyDataInterConect;
 
 namespace SIMANET_W22R.Controles
 {
-    public static class EasyCtrlExtended
+     public static class EasyCtrlExtended
     {
-        public static EasyAutocompletar SetAttrValue(this EasyAutocompletar oEasyAutocompletar, string IdObjeto, int IdTipoControl)
+        public static EasyAutocompletar  SetAttrValue(this EasyAutocompletar oEasyAutocompletar, string IdObjeto, int IdTipoControl)
         {
 
-            SetAttr(oEasyAutocompletar, IdObjeto, IdTipoControl);
-
+            SetAttr(oEasyAutocompletar, IdObjeto,IdTipoControl);
+            
             return oEasyAutocompletar;
         }
-
         public static EasyListAutocompletar SetAttrValue(this EasyListAutocompletar oEasyListAutocompletar, string IdObjeto, int IdTipoControl)
         {
             SetAttr(oEasyListAutocompletar, IdObjeto, IdTipoControl);
             return oEasyListAutocompletar;
         }
+        
 
-        public static EasyDropdownList SetAttrValue(this EasyDropdownList oEasyDropdownList, string IdObjeto, int IdTipoControl)
+        public static EasyDropdownList SetAttrValue(this EasyDropdownList oEasyDropdownList, string IdObjeto,int IdTipoControl)
         {
 
             SetAttr(oEasyDropdownList, IdObjeto, IdTipoControl);
@@ -86,7 +94,7 @@ namespace SIMANET_W22R.Controles
                         else if ((Atributo == "DataInterconect") && (rowAttrib["SubAttr"].ToString() != "0")) //COn interconexion de datos
                         {
                             EasyDataInterConect oEasyDataInterConect = new EasyDataInterConect();
-                            // oEasyDataInterConect.MetodoConexion = EasyDataInterConect.MetododeConexion.WebServiceInterno;// luego se tendra que estableces como propiedad dinamica
+                           // oEasyDataInterConect.MetodoConexion = EasyDataInterConect.MetododeConexion.WebServiceInterno;// luego se tendra que estableces como propiedad dinamica
                             dtSubProp = ogReports.ListarCtrlAttrParametro(IdObjeto, rowAttrib["IdAtributo"].ToString(), IdTipoControl, "erosales");
                             foreach (DataRow dr in dtSubProp.Rows)
                             {
@@ -109,8 +117,7 @@ namespace SIMANET_W22R.Controles
                                             {
                                                 string NomParam = drParam["NombreAttr"].ToString();
                                                 string ValParam = drParam["Valor"].ToString();
-                                                switch (ValParam)
-                                                {
+                                                switch (ValParam) {
                                                     case "@UserName":
                                                     case "@IdUsuario":
                                                     case "@IdObjeto":
@@ -132,8 +139,7 @@ namespace SIMANET_W22R.Controles
                             ConvertValueRefProperty(obj, Atributo, oEasyDataInterConect);
                         }
 
-                        else if ((Atributo == "EasyCtrlDepend") && (rowAttrib["SubAttr"].ToString() != "0"))
-                        {
+                        else if ((Atributo == "EasyCtrlDepend") && (rowAttrib["SubAttr"].ToString() != "0")) {
                             dtSubProp = ogReports.ListarCtrlAttrParametro(IdObjeto, rowAttrib["IdAtributo"].ToString(), IdTipoControl, "erosales");
                             EasyControlBE oEasyControlBE = new EasyControlBE();
 
@@ -142,7 +148,7 @@ namespace SIMANET_W22R.Controles
                                 string NomAttr = dr["NombreAttr"].ToString();
                                 ConvertValueRefProperty(oEasyControlBE, NomAttr, dr["Valor"].ToString());
                             }
-                            ConvertValueRefProperty(obj, Atributo, oEasyControlBE);
+                           ConvertValueRefProperty(obj, Atributo, oEasyControlBE);
 
                         }
                         else if (rowAttrib["SubAttr"].ToString() == "0")
@@ -160,14 +166,17 @@ namespace SIMANET_W22R.Controles
                                 }
                             }
                         }
+                        
                     }
                     catch (Exception oex)
                     {
 
                     }
+
                 }
             }
         }
+
 
         public static void ConvertValueRefProperty(this object obj, string propertyName, object pValoPropiedad)
         {
@@ -228,7 +237,7 @@ namespace SIMANET_W22R.Controles
             }
             else if (PropType == "EasyControlWeb.InterConeccion.EasyDataInterConect+MetododeConexion")
             {
-                EasyDataInterConect.MetododeConexion oMetodoConexion = (EasyDataInterConect.MetododeConexion)System.Enum.Parse(typeof(EasyDataInterConect.MetododeConexion), Convert.ToString(pValoPropiedad));
+                MetododeConexion oMetodoConexion = (MetododeConexion)System.Enum.Parse(typeof(MetododeConexion), Convert.ToString(pValoPropiedad));
                 oProperty.SetValue(obj, oMetodoConexion, null);
             }
             else if (PropType == "EasyControlWeb.Form.Estilo.Bootstrap+Tamaño")
@@ -243,7 +252,7 @@ namespace SIMANET_W22R.Controles
             }
             else if (PropType == "EasyControlWeb.EasyUtilitario+Enumerados+TiposdeDatos")
             {
-                EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos oTDato = (EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos)System.Enum.Parse(typeof(EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos), Convert.ToString(pValoPropiedad));
+                EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos oTDato= (EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos)System.Enum.Parse(typeof(EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos), Convert.ToString(pValoPropiedad));
                 oProperty.SetValue(obj, oTDato, null);
             }
             else if (PropType == "EasyControlWeb.Filtro.EasyFiltroParamURLws+TipoObtenerValor")
@@ -257,11 +266,12 @@ namespace SIMANET_W22R.Controles
                 {
                     ((EasyDropdownList)obj).EasyCtrlDepend.Add((EasyControlBE)pValoPropiedad);
                 }
-                else
-                {
+                else {
                     ((EasyAutocompletar)obj).EasyCtrlDepend.Add((EasyControlBE)pValoPropiedad);
                 }
             }
+            
+
         }
 
         static object NullableSafeChangeType(string input, Type type)
@@ -277,5 +287,6 @@ namespace SIMANET_W22R.Controles
                     : Convert.ChangeType(input, underlyingType);
             }
         }
+
     }
 }

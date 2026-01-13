@@ -1,16 +1,12 @@
 ﻿using EasyControlWeb.Filtro;
 using EasyControlWeb.Form.Controls;
 using EasyControlWeb.InterConeccion;
-using MailKit.Search;
-using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
-using NPOI.POIFS.FileSystem;
-using NPOI.SS.Formula.Functions;
+
 using SIMANET_W22R.srvHelpDesk;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.DirectoryServices;
-using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;

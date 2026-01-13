@@ -1,7 +1,6 @@
 ﻿using EasyControlWeb;
 using Org.BouncyCastle.Bcpg;
 using SIMANET_W22R.GestionReportes;
-using SIMANET_W22R.RecursosHumanos;
 using SIMANET_W22R.srvGeneral;
 using SIMANET_W22R.srvGestionCalidad;
 using SIMANET_W22R.srvGestionReportes;

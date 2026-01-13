@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SIMANET_W22R.Controles
 {
-    public class DataTableHelper
+    public static class DataTableHelper
     {
         public enum JoinType
         {
