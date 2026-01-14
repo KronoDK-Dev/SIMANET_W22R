@@ -15,7 +15,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using static EasyControlWeb.EasyUtilitario.Enumerados;
 using static EasyControlWeb.InterConeccion.EasyDataInterConect;
-
+ 
 namespace SIMANET_W22R.GestionGobernanza.Indicadores
 {
     public partial class AdministrarObjetivosAcciones : GobernanzaBase,IPaginaBase

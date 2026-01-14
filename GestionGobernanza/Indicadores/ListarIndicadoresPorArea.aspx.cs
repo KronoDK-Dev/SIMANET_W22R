@@ -22,7 +22,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
             try
             {
                 this.LlenarCombos();
-                this.LlenarDatos();
+                this.LlenarDatos(); 
             }
             catch (Exception ex)
             {

@@ -30,7 +30,7 @@ namespace SIMANET_W22R.General
         DataTable dtError = new DataTable();
 
         // ******* Método para obtener el usuario conectado *****************
-        [WebMethod]
+        [WebMethod]  
         public string GetUserCode()
         {
             // Verificar si el usuario está autenticado

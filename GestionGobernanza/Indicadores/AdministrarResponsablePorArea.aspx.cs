@@ -13,7 +13,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
         protected void Page_Load(object sender, EventArgs e)
         {
             try
-            {
+            { 
                 this.LlenarCombos();
             }
             catch (Exception ex)
