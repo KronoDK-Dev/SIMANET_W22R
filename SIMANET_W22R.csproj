@@ -379,8 +379,9 @@
     <Content Include="Connected Services\srvCliente\SIMANET_W22R.srvCliente.EmbarcacionBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\srvGeneral\General.wsdl" />
+    <None Include="Connected Services\srvGeneral\General1.wsdl" />
     <None Include="Connected Services\srvGestionCalidad\ControlInspecciones.wsdl" />
+    <None Include="Connected Services\srvGeneral\General1.disco" />
     <Content Include="Connected Services\srvGestionCalidad\SIMANET_W22R.srvGestionCalidad.InspeccionBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -536,14 +537,12 @@
     <Content Include="Connected Services\srvProyectos\SIMANET_W22R.srvProyectos.ProyectoBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\srvSeguridad\Seguridad.disco" />
     <None Include="Connected Services\srvSeguridad\configuration91.svcinfo" />
     <None Include="Connected Services\srvSeguridad\configuration.svcinfo" />
     <None Include="Connected Services\srvSeguridad\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Connected Services\srvGeneral\General.disco" />
     <None Include="Connected Services\srvGeneral\configuration91.svcinfo" />
     <None Include="Connected Services\srvGeneral\configuration.svcinfo" />
     <None Include="Connected Services\srvGeneral\Reference.svcmap">
@@ -578,6 +577,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\srvSeguridad\Seguridad1.disco" />
     <Content Include="Controles\Header.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
@@ -624,13 +624,18 @@
     <Content Include="GestiondeCalidad\Proceso.asmx" />
     <Content Include="GestiondeCalidad\Proceso.aspx" />
     <Content Include="GestionFinanciera\EstadosFinancieros.asmx" />
+    <Content Include="GestionGobernanza\Indicadores\AdministrarInformeMetaPorArea.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\AdministrarMetasPorArea.aspx" />
     <Content Include="GestionGobernanza\Indicadores\AdministrarObjetivosAcciones.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\AdministrarResponsablePorArea.aspx" />
     <Content Include="GestionGobernanza\Indicadores\ConfiguracionIndicadoresXArea.aspx" />
     <Content Include="GestionGobernanza\Indicadores\DetalleAcciones.aspx" />
     <Content Include="GestionGobernanza\Indicadores\DetalleAreaIndicador.aspx" />
     <Content Include="GestionGobernanza\Indicadores\DetalleIndicador.aspx" />
     <Content Include="GestionGobernanza\Indicadores\DetalleObjetivo.aspx" />
     <Content Include="GestionGobernanza\Indicadores\ListadodeMetasPorArea.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\ListaReponsablePorArea.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\ListarIndicadoresPorArea.aspx" />
     <Content Include="GestionLogistica\ActivoFijo\Bienes.asmx" />
     <Content Include="GestionLogistica\Almacen\Almacen.asmx" />
     <Content Include="GestionLogistica\General\General.asmx" />
@@ -1240,12 +1245,33 @@
     <Compile Include="GestionGobernanza\GobernanzaBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarInformeMetaPorArea.aspx.cs">
+      <DependentUpon>AdministrarInformeMetaPorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarInformeMetaPorArea.aspx.designer.cs">
+      <DependentUpon>AdministrarInformeMetaPorArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarMetasPorArea.aspx.cs">
+      <DependentUpon>AdministrarMetasPorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarMetasPorArea.aspx.designer.cs">
+      <DependentUpon>AdministrarMetasPorArea.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GestionGobernanza\Indicadores\AdministrarObjetivosAcciones.aspx.cs">
       <DependentUpon>AdministrarObjetivosAcciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GestionGobernanza\Indicadores\AdministrarObjetivosAcciones.aspx.designer.cs">
       <DependentUpon>AdministrarObjetivosAcciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarResponsablePorArea.aspx.cs">
+      <DependentUpon>AdministrarResponsablePorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarResponsablePorArea.aspx.designer.cs">
+      <DependentUpon>AdministrarResponsablePorArea.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionGobernanza\Indicadores\ConfiguracionIndicadoresXArea.aspx.cs">
       <DependentUpon>ConfiguracionIndicadoresXArea.aspx</DependentUpon>
@@ -1288,6 +1314,20 @@
     </Compile>
     <Compile Include="GestionGobernanza\Indicadores\ListadodeMetasPorArea.aspx.designer.cs">
       <DependentUpon>ListadodeMetasPorArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ListaReponsablePorArea.aspx.cs">
+      <DependentUpon>ListaReponsablePorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ListaReponsablePorArea.aspx.designer.cs">
+      <DependentUpon>ListaReponsablePorArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ListarIndicadoresPorArea.aspx.cs">
+      <DependentUpon>ListarIndicadoresPorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ListarIndicadoresPorArea.aspx.designer.cs">
+      <DependentUpon>ListarIndicadoresPorArea.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionLogistica\ActivoFijo\Bienes.asmx.cs">
       <DependentUpon>Bienes.asmx</DependentUpon>
@@ -2126,7 +2166,6 @@
     <Content Include="Connected Services\srvGestionReportes\SIMANET_W22R.srvGestionReportes.ObjetoReporteCompartidoBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\srvSeguridad\Seguridad.wsdl" />
     <Content Include="Connected Services\srvSeguridad\SIMANET_W22R.srvSeguridad.UsuarioBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -2135,6 +2174,7 @@
     <Content Include="GestionPersonal\Reportes\RptEvaluacion.rpt" />
     <Content Include="GestionPersonal\Reportes\RptEvaluacion1.rpt" />
     <Content Include="GestionPersonal\Reportes\rptRetroalimentacion.rpt" />
+    <None Include="Connected Services\srvSeguridad\Seguridad1.wsdl" />
     <None Include="packages.config" />
     <Content Include="Properties\DataSources\System.Data.DataTable.datasource" />
     <Content Include="Recursos\fonts\bootstrap-icons.woff" />
@@ -2157,12 +2197,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EasyControlWeb\EasyControlWeb.csproj">
-      <Project>{55AE38B8-E13E-49C3-B779-616864FFC8D0}</Project>
-      <Name>EasyControlWeb</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -2189,7 +2223,12 @@
     <WCFMetadataStorage Include="Connected Services\srvProyectos\" />
     <WCFMetadataStorage Include="Connected Services\srvSeguridad\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\SimaNetCtrl\EasyControlWeb\EasyControlWeb.csproj">
+      <Project>{d35d602c-6c79-4709-b645-b426727c88b6}</Project>
+      <Name>EasyControlWeb</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

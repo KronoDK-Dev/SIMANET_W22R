@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="aYVmeiOS0rgu0bwmW92dOBHumx98O9S6YrJx7cJ6604=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="rtcSHmtK5ACdn9gU17pVY5iY9AG2GWlX1l/ndeSpDfE=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="GeneralSoap">
       <properties>
@@ -263,10 +263,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="GeneralSoap" contract="srvGeneral.GeneralSoap" bindingType="basicHttpBinding" address="http://10.10.18.10:90/Core/General/General.asmx" bindingConfiguration="GeneralSoap">
+    <endpoint name="GeneralSoap" contract="srvGeneral.GeneralSoap" bindingType="basicHttpBinding" address="http://10.10.17.53:1000/Core/General/General.asmx" bindingConfiguration="GeneralSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://10.10.18.10:90/Core/General/General.asmx</serializedValue>
+          <serializedValue>http://10.10.17.53:1000/Core/General/General.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -348,10 +348,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="GeneralSoap12" contract="srvGeneral.GeneralSoap" bindingType="customBinding" address="http://10.10.18.10:90/Core/General/General.asmx" bindingConfiguration="GeneralSoap12">
+    <endpoint name="GeneralSoap12" contract="srvGeneral.GeneralSoap" bindingType="customBinding" address="http://10.10.17.53:1000/Core/General/General.asmx" bindingConfiguration="GeneralSoap12">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://10.10.18.10:90/Core/General/General.asmx</serializedValue>
+          <serializedValue>http://10.10.17.53:1000/Core/General/General.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

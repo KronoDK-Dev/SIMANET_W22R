@@ -25,6 +25,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ListarCentrosCosto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarCentrosCostoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarCentrosCostoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ListarItemTablas">
         <s:complexType>
           <s:sequence>
@@ -2437,28 +2459,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ListarCentrosCosto">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="NombreCC" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ListarCentrosCostoResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ListarCentrosCostoResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
-                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="DataTable" nillable="true">
         <s:complexType>
           <s:sequence>
@@ -2475,6 +2475,12 @@
   </wsdl:message>
   <wsdl:message name="ListarCentrosCosto2SoapOut">
     <wsdl:part name="parameters" element="tns:ListarCentrosCosto2Response" />
+  </wsdl:message>
+  <wsdl:message name="ListarCentrosCostoSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarCentrosCosto" />
+  </wsdl:message>
+  <wsdl:message name="ListarCentrosCostoSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarCentrosCostoResponse" />
   </wsdl:message>
   <wsdl:message name="ListarItemTablasSoapIn">
     <wsdl:part name="parameters" element="tns:ListarItemTablas" />
@@ -3136,18 +3142,19 @@
   <wsdl:message name="ListarItemChildxItemRelacionadoOracleSoapOut">
     <wsdl:part name="parameters" element="tns:ListarItemChildxItemRelacionadoOracleResponse" />
   </wsdl:message>
-  <wsdl:message name="ListarCentrosCostoSoapIn">
-    <wsdl:part name="parameters" element="tns:ListarCentrosCosto" />
-  </wsdl:message>
-  <wsdl:message name="ListarCentrosCostoSoapOut">
-    <wsdl:part name="parameters" element="tns:ListarCentrosCostoResponse" />
-  </wsdl:message>
   <wsdl:message name="ListarCentrosCosto2HttpGetIn">
     <wsdl:part name="N_COD_EMP" type="s:string" />
     <wsdl:part name="V_NOMBRE_CC" type="s:string" />
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListarCentrosCosto2HttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarCentrosCostoHttpGetIn">
+    <wsdl:part name="NombreCC" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarCentrosCostoHttpGetOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:message name="ListarItemTablasHttpGetIn">
@@ -3891,19 +3898,19 @@
   <wsdl:message name="ListarItemChildxItemRelacionadoOracleHttpGetOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
-  <wsdl:message name="ListarCentrosCostoHttpGetIn">
-    <wsdl:part name="NombreCC" type="s:string" />
-    <wsdl:part name="UserName" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="ListarCentrosCostoHttpGetOut">
-    <wsdl:part name="Body" element="tns:DataTable" />
-  </wsdl:message>
   <wsdl:message name="ListarCentrosCosto2HttpPostIn">
     <wsdl:part name="N_COD_EMP" type="s:string" />
     <wsdl:part name="V_NOMBRE_CC" type="s:string" />
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListarCentrosCosto2HttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarCentrosCostoHttpPostIn">
+    <wsdl:part name="NombreCC" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarCentrosCostoHttpPostOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:message name="ListarItemTablasHttpPostIn">
@@ -4647,18 +4654,16 @@
   <wsdl:message name="ListarItemChildxItemRelacionadoOracleHttpPostOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
-  <wsdl:message name="ListarCentrosCostoHttpPostIn">
-    <wsdl:part name="NombreCC" type="s:string" />
-    <wsdl:part name="UserName" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="ListarCentrosCostoHttpPostOut">
-    <wsdl:part name="Body" element="tns:DataTable" />
-  </wsdl:message>
   <wsdl:portType name="GeneralSoap">
     <wsdl:operation name="ListarCentrosCosto2">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">lista Centros de Costo por nombre o código</wsdl:documentation>
       <wsdl:input message="tns:ListarCentrosCosto2SoapIn" />
       <wsdl:output message="tns:ListarCentrosCosto2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarCentrosCosto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">xxlista Centros de Costo por nombre </wsdl:documentation>
+      <wsdl:input message="tns:ListarCentrosCostoSoapIn" />
+      <wsdl:output message="tns:ListarCentrosCostoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ListarItemTablas">
       <wsdl:input message="tns:ListarItemTablasSoapIn" />
@@ -5168,17 +5173,17 @@
       <wsdl:input message="tns:ListarItemChildxItemRelacionadoOracleSoapIn" />
       <wsdl:output message="tns:ListarItemChildxItemRelacionadoOracleSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ListarCentrosCosto">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">lista Centros de Costo por nombre o código</wsdl:documentation>
-      <wsdl:input message="tns:ListarCentrosCostoSoapIn" />
-      <wsdl:output message="tns:ListarCentrosCostoSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="GeneralHttpGet">
     <wsdl:operation name="ListarCentrosCosto2">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">lista Centros de Costo por nombre o código</wsdl:documentation>
       <wsdl:input message="tns:ListarCentrosCosto2HttpGetIn" />
       <wsdl:output message="tns:ListarCentrosCosto2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarCentrosCosto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">xxlista Centros de Costo por nombre </wsdl:documentation>
+      <wsdl:input message="tns:ListarCentrosCostoHttpGetIn" />
+      <wsdl:output message="tns:ListarCentrosCostoHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="ListarItemTablas">
       <wsdl:input message="tns:ListarItemTablasHttpGetIn" />
@@ -5683,17 +5688,17 @@
       <wsdl:input message="tns:ListarItemChildxItemRelacionadoOracleHttpGetIn" />
       <wsdl:output message="tns:ListarItemChildxItemRelacionadoOracleHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="ListarCentrosCosto">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">lista Centros de Costo por nombre o código</wsdl:documentation>
-      <wsdl:input message="tns:ListarCentrosCostoHttpGetIn" />
-      <wsdl:output message="tns:ListarCentrosCostoHttpGetOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="GeneralHttpPost">
     <wsdl:operation name="ListarCentrosCosto2">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">lista Centros de Costo por nombre o código</wsdl:documentation>
       <wsdl:input message="tns:ListarCentrosCosto2HttpPostIn" />
       <wsdl:output message="tns:ListarCentrosCosto2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarCentrosCosto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">xxlista Centros de Costo por nombre </wsdl:documentation>
+      <wsdl:input message="tns:ListarCentrosCostoHttpPostIn" />
+      <wsdl:output message="tns:ListarCentrosCostoHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="ListarItemTablas">
       <wsdl:input message="tns:ListarItemTablasHttpPostIn" />
@@ -6198,16 +6203,20 @@
       <wsdl:input message="tns:ListarItemChildxItemRelacionadoOracleHttpPostIn" />
       <wsdl:output message="tns:ListarItemChildxItemRelacionadoOracleHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="ListarCentrosCosto">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">lista Centros de Costo por nombre o código</wsdl:documentation>
-      <wsdl:input message="tns:ListarCentrosCostoHttpPostIn" />
-      <wsdl:output message="tns:ListarCentrosCostoHttpPostOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="GeneralSoap" type="tns:GeneralSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="ListarCentrosCosto2">
       <soap:operation soapAction="http://tempuri.org/ListarCentrosCosto2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCentrosCosto">
+      <soap:operation soapAction="http://tempuri.org/ListarCentrosCosto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7205,20 +7214,20 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarCentrosCosto">
-      <soap:operation soapAction="http://tempuri.org/ListarCentrosCosto" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="GeneralSoap12" type="tns:GeneralSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="ListarCentrosCosto2">
       <soap12:operation soapAction="http://tempuri.org/ListarCentrosCosto2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCentrosCosto">
+      <soap12:operation soapAction="http://tempuri.org/ListarCentrosCosto" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8216,20 +8225,20 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarCentrosCosto">
-      <soap12:operation soapAction="http://tempuri.org/ListarCentrosCosto" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="GeneralHttpGet" type="tns:GeneralHttpGet">
     <http:binding verb="GET" />
     <wsdl:operation name="ListarCentrosCosto2">
       <http:operation location="/ListarCentrosCosto2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCentrosCosto">
+      <http:operation location="/ListarCentrosCosto" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -9211,15 +9220,6 @@
     </wsdl:operation>
     <wsdl:operation name="ListarItemChildxItemRelacionadoOracle">
       <http:operation location="/ListarItemChildxItemRelacionadoOracle" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ListarCentrosCosto">
-      <http:operation location="/ListarCentrosCosto" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -9239,6 +9239,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListarCentrosCosto">
+      <http:operation location="/ListarCentrosCosto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListarItemTablas">
       <http:operation location="/ListarItemTablas" />
       <wsdl:input>
@@ -10220,28 +10229,19 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarCentrosCosto">
-      <http:operation location="/ListarCentrosCosto" />
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded" />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="General">
     <wsdl:port name="GeneralSoap" binding="tns:GeneralSoap">
-      <soap:address location="http://10.10.18.10:90/Core/General/General.asmx" />
+      <soap:address location="http://10.10.17.53:1000/Core/General/General.asmx" />
     </wsdl:port>
     <wsdl:port name="GeneralSoap12" binding="tns:GeneralSoap12">
-      <soap12:address location="http://10.10.18.10:90/Core/General/General.asmx" />
+      <soap12:address location="http://10.10.17.53:1000/Core/General/General.asmx" />
     </wsdl:port>
     <wsdl:port name="GeneralHttpGet" binding="tns:GeneralHttpGet">
-      <http:address location="http://10.10.18.10:90/Core/General/General.asmx" />
+      <http:address location="http://10.10.17.53:1000/Core/General/General.asmx" />
     </wsdl:port>
     <wsdl:port name="GeneralHttpPost" binding="tns:GeneralHttpPost">
-      <http:address location="http://10.10.18.10:90/Core/General/General.asmx" />
+      <http:address location="http://10.10.17.53:1000/Core/General/General.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

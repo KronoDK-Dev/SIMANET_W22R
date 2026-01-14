@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:90/Core/Seguridad/Seguridad.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://10.10.17.53:1000/Core/Seguridad/Seguridad.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Seguridad.wsdl" MetadataType="Wsdl" ID="d65d44e9-57cf-4184-a2bf-6f72bcae0360" SourceId="1" SourceUrl="http://localhost:90/Core/Seguridad/Seguridad.asmx?wsdl" />
-    <MetadataFile FileName="Seguridad.disco" MetadataType="Disco" ID="1d24a057-5c7f-447a-8603-2c6ff3bbea42" SourceId="1" SourceUrl="http://localhost:90/Core/Seguridad/Seguridad.asmx?disco" />
+    <MetadataFile FileName="Seguridad1.disco" MetadataType="Disco" ID="1095c62d-a09b-4e5a-808c-9f3ff69f59e6" SourceId="1" SourceUrl="http://10.10.17.53:1000/Core/Seguridad/Seguridad.asmx?disco" />
+    <MetadataFile FileName="Seguridad1.wsdl" MetadataType="Wsdl" ID="a4e769f1-4139-4607-8537-0a64f7b9c793" SourceId="1" SourceUrl="http://10.10.17.53:1000/Core/Seguridad/Seguridad.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

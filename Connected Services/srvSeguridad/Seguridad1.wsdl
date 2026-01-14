@@ -1060,16 +1060,16 @@
   </wsdl:binding>
   <wsdl:service name="Seguridad">
     <wsdl:port name="SeguridadSoap" binding="tns:SeguridadSoap">
-      <soap:address location="http://localhost:90/Core/Seguridad/Seguridad.asmx" />
+      <soap:address location="http://10.10.17.53:1000/Core/Seguridad/Seguridad.asmx" />
     </wsdl:port>
     <wsdl:port name="SeguridadSoap12" binding="tns:SeguridadSoap12">
-      <soap12:address location="http://localhost:90/Core/Seguridad/Seguridad.asmx" />
+      <soap12:address location="http://10.10.17.53:1000/Core/Seguridad/Seguridad.asmx" />
     </wsdl:port>
     <wsdl:port name="SeguridadHttpGet" binding="tns:SeguridadHttpGet">
-      <http:address location="http://localhost:90/Core/Seguridad/Seguridad.asmx" />
+      <http:address location="http://10.10.17.53:1000/Core/Seguridad/Seguridad.asmx" />
     </wsdl:port>
     <wsdl:port name="SeguridadHttpPost" binding="tns:SeguridadHttpPost">
-      <http:address location="http://localhost:90/Core/Seguridad/Seguridad.asmx" />
+      <http:address location="http://10.10.17.53:1000/Core/Seguridad/Seguridad.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

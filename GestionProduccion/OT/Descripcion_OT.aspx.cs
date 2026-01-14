@@ -65,17 +65,6 @@ namespace SIMANET_W22R.GestionProduccion.OT
             //   this.btnCarga.Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()] = "Espera();";
         }
 
-
-        void IPaginaBase.CargarModoModificar()
-        {
-            throw new NotImplementedException();
-        }
-
-        void IPaginaBase.CargarModoNuevo()
-        {
-            throw new NotImplementedException();
-        }
-
         void IPaginaBase.ConfigurarAccesoControles()
         {
             throw new NotImplementedException();
