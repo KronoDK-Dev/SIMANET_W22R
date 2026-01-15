@@ -241,6 +241,9 @@
                         var Cumple = false;
 
                         var Existe = DColorBE.VALORCONDICION.toString().indexOf(">");
+
+                        alert(DColorBE.VALORCONDICION.toString());
+
                         Existe = DColorBE.VALORCONDICION.toString().indexOf("<");
                         var strFormula = "";
                         if (Existe != -1) {
