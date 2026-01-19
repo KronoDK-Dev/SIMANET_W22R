@@ -18,7 +18,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
     public partial class DetalleAcciones : GobernanzaBase, IPaginaBase,IPaginaMantenimento
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        { 
             try
             {
                 this.LlenarCombos();

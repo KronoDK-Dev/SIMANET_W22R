@@ -13,5 +13,5 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
         {
 
         }
-    }
+    } 
 }

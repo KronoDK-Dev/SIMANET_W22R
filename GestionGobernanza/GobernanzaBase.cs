@@ -20,4 +20,4 @@ namespace SIMANET_W22R.GestionGobernanza
         public static string KEYIDINDICADOR = "IdIndica";
         public string IdIndicador { get { return Page.Request.Params[KEYIDINDICADOR]; } }
     }
-}
+} 

@@ -21,5 +21,5 @@ Proceso.GestiondeCalidad.BuscarPorRazonSocialCLiente = 13;
 Proceso.RecursosHumanos = {};
 Proceso.RecursosHumanos.BuscarPersonal = 1;
 
-Proceso.General = {};
+Proceso.General = {}; 
 Proceso.General.ListarItems = 1;

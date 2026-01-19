@@ -14,7 +14,7 @@ EasyDatepicker.Setting = function (Id, Formato) {
             }
         }
     );
-}
+} 
 
 
 

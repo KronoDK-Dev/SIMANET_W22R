@@ -132,7 +132,7 @@ SIMA.Utilitario.Helper.Wait = function (Mensaje, TimePause, onClose) {
     }
 }
 
-// 28.02.2025 Nueva función para cerrar manualmente el popup
+// 28.02.2025 Nueva funciï¿½n para cerrar manualmente el popup
 SIMA.Utilitario.Helper.CloseWait = function (callback) {
     try {
         waitingDialog.hide();
@@ -954,9 +954,9 @@ SIMA.ReportXI = function (Config) {
     var doc = new jsPDF(Config);
     doc.setProperties({
         title: 'AREA DE DESARROLLO DE SISTEMAS SIMA PERU ',
-        subject: 'Con el proposito de facilitar la implementación de los desarrolldadores del Area',
+        subject: 'Con el proposito de facilitar la implementaciï¿½n de los desarrolldadores del Area',
         author: 'Rosales Azabache Eddy Jose',
-        keywords: 'Implementación de Framework,JavaScript - ASP.net  V.4.0 IDE 2019',
+        keywords: 'Implementaciï¿½n de Framework,JavaScript - ASP.net  V.4.0 IDE 2019',
         creator: 'MEEE'
     });
 
@@ -1172,7 +1172,7 @@ SIMA.MenuContent = function (id) {
         Me = this;
         var oGroupPopupMenu = jNet.create('div');
         oGroupPopupMenu.attr("class", "dropdown-content");
-        oGroupPopupMenu.attr("id", id);//se debe de estabñecer u id
+        oGroupPopupMenu.attr("id", id);//se debe de estabï¿½ecer u id
         var oItemMenu = null;
         this.ItemsMenu.forEach(function (iMenu, i) {
             var strData = ObjetoToString(iMenu.Data);
@@ -1821,7 +1821,7 @@ function EasyUpLoad() {
                                 }
 
                                 if (Error == true) {
-                                    var msgConfig = { Titulo: "Proceso de Carga", Descripcion: "La propiedad [PaginaProceso] no contiene una definición correcta a la página de proceso de carga de archivos...!!" };
+                                    var msgConfig = { Titulo: "Proceso de Carga", Descripcion: "La propiedad [PaginaProceso] no contiene una definiciï¿½n correcta a la pï¿½gina de proceso de carga de archivos...!!" };
                                     var oMsg = new SIMA.MessageBox(msgConfig);
                                     oMsg.Alert();
                                 }

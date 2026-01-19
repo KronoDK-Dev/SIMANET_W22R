@@ -19,7 +19,7 @@ SIMA.ParamCollections = function () {
     }
     this.getCollection = function () {
         return Collections;
-    }
+    } 
     this.Clear = function () {
        /* while (Collections.length > 0) {
             Collections.pop();

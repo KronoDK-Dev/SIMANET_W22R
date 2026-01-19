@@ -40,6 +40,10 @@
         function ObtenerData() {
             var tblMaster = jNet.get(AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYIDAREAINFO] + "_" + AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYIDINDICADOR] + "-" + AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYQAÑO]);
 
+            arrTitulo.Clear();
+            arrResult.Clear();
+            arrMeta.Clear();
+
             for (var d = 1; d <= tblMaster.rows[3].cells.length-1; d++) {
                 arrTitulo.Add(tblMaster.rows[0].cells[d].innerText);
 
@@ -237,6 +241,9 @@
                         var Cumple = false;
 
                         var Existe = DColorBE.VALORCONDICION.toString().indexOf(">");
+
+                        alert(DColorBE.VALORCONDICION.toString());
+
                         Existe = DColorBE.VALORCONDICION.toString().indexOf("<");
                         var strFormula = "";
                         if (Existe != -1) {

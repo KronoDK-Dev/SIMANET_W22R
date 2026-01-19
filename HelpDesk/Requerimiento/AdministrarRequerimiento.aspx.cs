@@ -17,15 +17,12 @@ using SIMANET_W22R.srvGestionCalidad;
 using DocumentFormat.OpenXml.Drawing.Charts;
 using EasyControlWeb.InterConeccion;
 using SIMANET_W22R.srvHelpDesk;
-using System.Net.PeerToPeer;
+
 using System.Web.UI.HtmlControls;
 using EasyControlWeb.Form.Base;
 using static EasyControlWeb.EasyUtilitario.Enumerados;
 using static EasyControlWeb.InterConeccion.EasyDataInterConect;
-using System.Security.Cryptography;
-using NPOI.SS.Formula.Functions;
-using SIMANET_W22R.HelpDesk.BandejaEntrada;
-using DocumentFormat.OpenXml.Office2010.PowerPoint;
+
 
 namespace SIMANET_W22R.HelpDesk.Requerimiento
 {

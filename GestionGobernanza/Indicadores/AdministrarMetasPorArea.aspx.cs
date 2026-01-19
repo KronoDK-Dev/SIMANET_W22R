@@ -2,7 +2,7 @@
 using EasyControlWeb.Filtro;
 using EasyControlWeb.Form.Controls;
 using EasyControlWeb.InterConeccion;
-using NPOI.SS.UserModel;
+
 using SIMANET_W22R.InterfaceUI;
 using System;
 using System.Collections.Generic;

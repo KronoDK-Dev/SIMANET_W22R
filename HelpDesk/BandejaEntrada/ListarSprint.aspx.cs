@@ -5,7 +5,7 @@ using EasyControlWeb.Filtro;
 using EasyControlWeb.Form;
 using EasyControlWeb.Form.Base;
 using EasyControlWeb.InterConeccion;
-using MimeKit.Text;
+
 using SIMANET_W22R.InterfaceUI;
 using System;
 using System.Collections.Generic;

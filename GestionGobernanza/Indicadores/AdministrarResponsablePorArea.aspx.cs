@@ -1,4 +1,5 @@
-﻿using SIMANET_W22R.InterfaceUI;
+﻿using EasyControlWeb.Filtro;
+using SIMANET_W22R.InterfaceUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
         protected void Page_Load(object sender, EventArgs e)
         {
             try
-            {
+            { 
                 this.LlenarCombos();
             }
             catch (Exception ex)
@@ -39,8 +40,29 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
         public void LlenarCombos()
         {
-            this.aucArea.DataInterconect.UrlWebService = this.PathNetCore + "General/Busquedas.asmx";
+            this.aucArea.DataInterconect.UrlWebService = this.PathNetCore + "/GestionGobernanza/Indicadores.asmx";
+
+            EasyFiltroParamURLws oParam = new EasyFiltroParamURLws();
+            oParam.TipodeDato = EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos.String;
+            oParam.ParamName = "CodEmp";
+            oParam.Paramvalue = "001";//Dato que dee de proviene del usuario
+            this.aucArea.DataInterconect.UrlWebServicieParams.Add(oParam);
+
+            oParam = new EasyFiltroParamURLws();
+            oParam.TipodeDato = EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos.String;
+            oParam.ParamName = "CodSuc";
+            oParam.Paramvalue = "001";//Dato que dee de proviene del usuario
+            this.aucArea.DataInterconect.UrlWebServicieParams.Add(oParam);
+
+            oParam = new EasyFiltroParamURLws();
+            oParam.TipodeDato = EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos.String;
+            oParam.ParamName = "UserName";
+            oParam.Paramvalue = this.UsuarioLogin;
+            this.aucArea.DataInterconect.UrlWebServicieParams.Add(oParam);
+
+
             this.aucPersona.DataInterconect.UrlWebService = this.PathNetCore + "General/Busquedas.asmx";
+
         }
 
         public void LlenarDatos()

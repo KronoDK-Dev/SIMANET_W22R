@@ -43,11 +43,9 @@
     text-align: center;
     vertical-align: middle;
 }
-
 .FondoTool {
     background: url('http://localhost/SIMANET_W22R/Recursos/img/NavTree.jpg');
 }
-
 .ItemGrilla {
     font-size: 10px;
     color: #000080;
@@ -71,21 +69,21 @@ p, li, a {
 
 .pagination {
     padding: 0px 0;
-    /* border-style: dotted solid double dashed;*/
-    vertical-align: top;
-    justify-content: center;
+   /* border-style: dotted solid double dashed;*/
+    vertical-align:top;
+    justify-content:center;
 }
 
-    .pagination ul {
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-    }
+.pagination ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
 
-    .pagination a {
-        display: inline-block;
-        color: #222;
-    }
+.pagination a {
+    display: inline-block;
+    color: #222;
+}
 
 .p4 a {
     width: 30px;
@@ -111,7 +109,7 @@ p, li, a {
         color: blue;
     }
 
-
+   
 .bd-callout {
     padding: 1.25rem;
     margin-top: 1.25rem;
@@ -128,7 +126,7 @@ p, li, a {
 /*mesage box y confirm  REF: https://craftpip.github.io/jquery-confirm/themes.html*/
 
 .jconfirm-bg {
-    background-color: gray;
+    background-color:gray;   
 }
 
 .jconfirm-box {
@@ -137,44 +135,45 @@ p, li, a {
     margin-left: 0px;
 }
 
-    .jconfirm-box.loading {
-    }
+.jconfirm-box.loading {
+}
 
-        .jconfirm-box.loading:before {
-        }
+.jconfirm-box.loading:before {
+}
 
-        .jconfirm-box.loading:after {
-        }
+.jconfirm-box.loading:after {
+}
 
-    .jconfirm-box .jconfirm-closeIcon {
-        color: white;
-    }
+.jconfirm-box .jconfirm-closeIcon {
+    color:white;
+}
 
-    .jconfirm-box .jconfirm-title-c {
-        padding-left: 10px;
-        padding-top: 8px;
-        padding-right: 0px;
-        margin-top: -15px;
-        margin-right: -15px;
-        margin-left: -15px;
-        background-image: url('../img/ToolBar.jpg');
-        color: white;
-        /*opacity:0.5;*/
-    }
+.jconfirm-box .jconfirm-title-c {
+    padding-left: 10px;
+    padding-top: 8px;
+    padding-right: 0px;
 
-    .jconfirm-box .jconfirm-content-pane {
-    }
+    margin-top: -15px;
+    margin-right: -15px;
+    margin-left: -15px;
+    background-image: url('../img/ToolBar.jpg');
+    color: white;
+    /*opacity:0.5;*/
+}
+
+.jconfirm-box .jconfirm-content-pane {
+}
 
     .jconfirm-box .jconfirm-content {
         font-family: Times New Roman;
         font-size: 22px;
     }
 
-    .jconfirm-box .jconfirm-buttons {
-    }
+.jconfirm-box .jconfirm-buttons {
+}
 
-        .jconfirm-box .jconfirm-buttons button {
-        }
+.jconfirm-box .jconfirm-buttons button {
+}
 
 
 
@@ -191,12 +190,12 @@ p, li, a {
     background-color: transparent;
     background-image: url('../img/ToolBar.jpg');
     /* border: 2px solid rgba(0,0,0, 0.25);*/
-    border: 1px solid gray;
+     border: 1px solid gray;
 }
 
 .breadcrumb-caret .breadcrumb-item + .breadcrumb-item::before {
     content: '\f0da';
-    font-family: 'FontAwesome';
+     font-family: 'FontAwesome';
     font: 11px tahoma,arial,sans-serif;
 }
 
@@ -255,7 +254,7 @@ p, li, a {
             height: 40px;
             padding: 0 10px 0 25px;
             color: white;
-            /* font-weight: bold;*/
+           /* font-weight: bold;*/
             line-height: 40px;
         }
 
@@ -313,8 +312,8 @@ p, li, a {
     .breadcrumb-arrow li.active:after,
     .breadcrumb-arrow li.active:before {
         /* border-left-color: #2494be;*/
-        border-left-color: red;
-    }
+                border-left-color: red;
+            }
 
 .ui-progressbar {
     position: relative;
@@ -393,27 +392,26 @@ p, li, a {
     }
     */
 .avatar {
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    margin-right: 10px;
+      border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        margin-right: 10px;
 }
-
-.navbar .navbar-brand {
-    color: #efe5ff;
-    padding-left: 0;
-    /*padding-right: 50px;*/
-    font-size: 24px;
-}
-
-    .navbar .navbar-brand:hover, .navbar .navbar-brand:focus {
-        color: #fff;
+    .navbar .navbar-brand {
+        color: #efe5ff;
+        padding-left: 0;
+        /*padding-right: 50px;*/
+        font-size: 24px;
     }
 
-    .navbar .navbar-brand i {
-        font-size: 25px;
-        /*margin-right: 5px;*/
-    }
+        .navbar .navbar-brand:hover, .navbar .navbar-brand:focus {
+            color: #fff;
+        }
+
+        .navbar .navbar-brand i {
+            font-size: 25px;
+            /*margin-right: 5px;*/
+        }
 
 .search-box {
     position: relative;
@@ -546,18 +544,19 @@ p, li, a {
     color: #fff;
     background: #f44336;
     font-size: 12px;
-    border-radius: 60px;
+     border-radius: 60px;
     position: absolute;
-    min-width: 10px;
-    padding: 4px 6px 0;
-    min-height: 20px;
-    float: right;
+	min-width: 10px;
+	padding: 4px 6px 0;
+	min-height: 20px;
+
+	float:right;
 }
 
 .navbar a.notifications .badge {
     margin-left: -20px;
     top: -30px;
-    /* margin-left: 35px;
+   /* margin-left: 35px;
     top: 5px;*/
 }
 
@@ -644,14 +643,14 @@ p, li, a {
     /* box-shadow: 0 0 0 .25rem rgba(50,31,219,.25)*/
 }
 
-    .form-multi-select.show .form-multi-select-search[size] {
-        display: inline
-    }
+.form-multi-select.show .form-multi-select-search[size] {
+    display: inline
+}
 
-    .form-multi-select.show .form-multi-select-dropdown {
-        z-index: 1000;
-        display: initial
-    }
+.form-multi-select.show .form-multi-select-dropdown {
+    z-index: 1000;
+    display: initial
+}
 
 .form-multi-select-selection {
     display: inline-block;
@@ -711,7 +710,6 @@ p, li, a {
     font: 11px tahoma,arial,sans-serif;
     height: 20px;
 }
-
     .BaseItemSecond td {
         padding: 5px;
         cursor: hand;
@@ -728,14 +726,13 @@ p, li, a {
     background-image: url('../img/ToolBar.jpg');
     background-color: transparent;
     color: #FFF;
-    border-bottom: 1px solid #337AB7;
+    border-bottom: 1px  solid #337AB7;
 }
-
 .modal-title {
     color: white;
     align-content: flex-start;
     font-weight: bold;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial', 'sans-serif';
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', 'Arial', 'sans-serif';
 }
 /*----------------utilizado en el icono de eliminacion o cierre del control UpLoad-----------*/
 .TopRightIcon {
@@ -753,7 +750,6 @@ p, li, a {
 :root {
     --bs-dark-rgb: 41, 48, 80;
 }
-
 .d-flex {
     display: flex !important
 }
@@ -814,7 +810,7 @@ p, li, a {
 /*AUTOCOMPLTE Color de borde la lista de resultados */
 .ui-widget-content {
     border: 1px solid #5394C8;
-    background: #eeeeee url(../img/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x;
+    background: #eeeeee url(images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x;
     color: #333333;
 }
 
@@ -875,15 +871,15 @@ p, li, a {
 }
 
 
-    .ItemDisponible td {
-        padding-left: 5px;
-        padding-right: 5px;
-        height: 35px;
-    }
+.ItemDisponible td {
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 35px;
+}
 
-    .ItemDisponible tr:hover {
-        background-color: #E1EFFA;
-    }
+.ItemDisponible tr:hover {
+    background-color: #E1EFFA;
+}
 
 .ItemSelected {
     /* background: #2794DD;*/
@@ -897,11 +893,11 @@ p, li, a {
     width: 100%;
 }
 
-    .ItemSelected td {
-        padding-left: 5px;
-        padding-right: 5px;
-        height: 35px;
-    }
+.ItemSelected td {
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 35px;
+}
 /*--------------------INICIO EasyLstAutocomplete--------------------------------*/
 .ContentLisItem {
     border: 1px dotted #696666;
@@ -948,10 +944,8 @@ p, li, a {
     }
 /*--------------------FIN EasyLstAutocomplete--------------------------------*/
 
-.mi-titulo-error {
-    color: #b71c1c; /* Rojo oscuro */
-    font-size: 26px;
-}
+/*-----------------------INI BOTOMES----------------------------------------*/
+/*Afecta los botones*/
 
 .btn {
     display: inline-block;
@@ -1257,7 +1251,7 @@ a {
     padding-left: 15px
 }
         */
-.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11,  .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
     position: relative;
     min-height: 1px;
     padding-right: 15px;
@@ -1479,7 +1473,7 @@ a {
 }
 
 
-
+    
 
 
 /*  parte de control tab no borrar
@@ -1991,7 +1985,7 @@ a {
             left: auto
         }
 
-
+    
 /*--------------------------------------------------------------------------------*/
 
 
@@ -2127,7 +2121,7 @@ a {
     */
 
 
-/*INI PERSONALIZAD*/
+    /*INI PERSONALIZAD*/
 
 .tabs-left, .tabs-right {
     border-bottom: none;
@@ -2230,7 +2224,7 @@ a {
         -o-transform: rotate(-90deg);
         transform: rotate(-90deg);
     }
-/*FIN PERSONALIZADO*/
+    /*FIN PERSONALIZADO*/
 
 
 
@@ -2384,12 +2378,12 @@ a {
         border-left: 10px solid #269abc;
     }
 
-.ScrollPath {
-    margin: 0 auto;
-    overflow: hidden;
-    padding-top: 5px;
-    padding-bottom: 5px
-}
+    .ScrollPath {
+        margin: 0 auto;
+        overflow: hidden;
+        padding-top: 5px;
+        padding-bottom: 5px
+    }
 
     .ScrollPath:hover {
         overflow-x: scroll;

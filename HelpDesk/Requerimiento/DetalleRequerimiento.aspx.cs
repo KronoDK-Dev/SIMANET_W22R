@@ -18,8 +18,7 @@ using System.Net;
 using System.Text;
 using SIMANET_W22R.HelpDesk.Sistemas;
 using SIMANET_W22R.srvHelpDesk;
-using MimeKit.Cryptography;
-using System.Net.PeerToPeer;
+
 
 namespace SIMANET_W22R.HelpDesk.Requerimiento
 {

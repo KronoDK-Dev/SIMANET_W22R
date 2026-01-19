@@ -12,7 +12,6 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Web.UI.HtmlControls;
 using EasyControlWeb.Form.Controls;
-using System.Net.PeerToPeer;
 using SIMANET_W22R.srvSeguridad;
 using static EasyControlWeb.EasyUtilitario.Enumerados;
 using DocumentFormat.OpenXml.Office.PowerPoint.Y2021.M06.Main;
@@ -21,7 +20,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 {
     public partial class DetalleAreaIndicador : GobernanzaBase,IPaginaBase,IPaginaMantenimento
     {
-
+     
         protected void Page_Load(object sender, EventArgs e)
         {
             try

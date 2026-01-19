@@ -4,7 +4,7 @@ using EasyControlWeb.Filtro;
 using EasyControlWeb.Form.Controls;
 using EasyControlWeb.InterConeccion;
 using EasyControlWeb.InterConecion;
-using NPOI.SS.Formula.Functions;
+//using NPOI.SS.Formula.Functions;
 using SIMANET_W22R.ClasesExtendidas;
 using SIMANET_W22R.Exceptiones;
 using SIMANET_W22R.HelpDesk.ITIL;
@@ -68,6 +68,8 @@ namespace SIMANET_W22R
         public static string KEYQEDITABLE = "mEdit";
 
         public const string KEYCODAREA = "CodArea";
+        public const string KEYCODEMP = "CodEmp";
+        public const string KEYCODSUC = "CodSuc";
         public static string KEYCLIENTEID = "V_CLIENTE_ID"; // 12.01.2026
 
 
@@ -145,6 +147,14 @@ namespace SIMANET_W22R
             get { return Page.Request.Params[KEYCODAREA].ToString(); }
         }
 
+        public string CodEmpresa
+        {
+            get { return Page.Request.Params[KEYCODEMP].ToString(); }
+        }
+        public string CodSucursal
+        {
+            get { return Page.Request.Params[KEYCODSUC].ToString(); }
+        }
 
         public string PathNetCore
         {

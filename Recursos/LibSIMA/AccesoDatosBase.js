@@ -4,7 +4,7 @@
  */
 
 SIMA.Data.OleDB = {};
-
+ 
 
 SIMA.Data.OleDB.Command = function () {
     this.CadenadeConexion = "";

@@ -25,7 +25,7 @@ Calidad.TablasApoyo.OnSelected = function (e) {
         var oDataBE = ochild.attr("Data").toString().SerializedToObject();
         nclass = ((oDataBE.CODIGO == Calidad.TablasApoyo.ItemSelected.CODIGO) ? "ItemSelected" : "ItemDisponible");
         ochild.attr("class", nclass);
-    });
+    }); 
 }
 
 Calidad.TablasApoyo.Show = function () {
