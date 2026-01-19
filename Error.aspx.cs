@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 namespace SIMANET_W22R
 
 {
-    public partial class Error : PaginaBase
+    public partial class Error : System.Web.UI.Page
     {
       //  Exception LastError;
         String ErrMessage;
@@ -78,11 +78,10 @@ namespace SIMANET_W22R
             LblSource.InnerText = oEntity["Origen"].ToString();
             LblDescripcion.InnerText = oEntity["Mensaje"].ToString();
 
-            Header1.RegistrarLibs(Page.Header,Controles.Header.TipoLib.Style, this.StyleBase, true);
-            Header1.RegistrarLibs(Page.Header, Controles.Header.TipoLib.Script, this.ScriptBase, true);
+       
+            //((System.Web.UI.Page)System.Web.HttpContext.Current.Handler).RegisterStartupScript("Error2021", ScriptRedirect + strBE);
 
-
-            ((System.Web.UI.Page)System.Web.HttpContext.Current.Handler).RegisterStartupScript("Error2021", ScriptRedirect + strBE);
+            ClientScript.RegisterStartupScript(this.GetType(), "Error2021", ScriptRedirect, false);
         }
 
     }

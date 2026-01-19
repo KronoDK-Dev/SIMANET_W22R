@@ -1007,6 +1007,101 @@
 
        </script>
 
-  
- 
+<script>
+    // --- Sincroniza los scrolls horizontales ---
+    const topScroll = document.querySelector('.scroll-top');
+    const bottomScroll = document.querySelector('.scroll-bottom');
+    const mainScroll = document.querySelector('.scroll-main');
+
+    [topScroll, bottomScroll].forEach(bar => {
+        bar.addEventListener('scroll', () => {
+            mainScroll.scrollLeft = bar.scrollLeft;
+            [topScroll, bottomScroll].forEach(other => {
+                if (other !== bar) other.scrollLeft = bar.scrollLeft;
+            });
+        });
+    });
+    mainScroll.addEventListener('scroll', () => {
+        topScroll.scrollLeft = mainScroll.scrollLeft;
+        bottomScroll.scrollLeft = mainScroll.scrollLeft;
+    });
+
+    // --- Control de expansión del panel izquierdo ---
+    const divider = document.getElementById("divider");
+    const leftPanel = document.getElementById("leftPanel");
+
+    let isResizing = false;
+    let startX = 0;
+    let startWidth = 0;
+
+    // Permite arrastrar el divisor
+    divider.addEventListener("mousedown", e => {
+        isResizing = true;
+        startX = e.clientX;
+        startWidth = leftPanel.offsetWidth;
+        document.body.style.cursor = "ew-resize";
+    });
+
+    document.addEventListener("mousemove", e => {
+        if (!isResizing) return;
+        const dx = e.clientX - startX;
+        leftPanel.style.width = Math.min(Math.max(100, startWidth + dx), 600) + "px";
+    });
+
+    document.addEventListener("mouseup", () => {
+        isResizing = false;
+        document.body.style.cursor = "default";
+    });
+
+    // Click en el divisor para colapsar/expandir
+    divider.addEventListener("dblclick", () => {
+        if (leftPanel.style.width === "0px" || leftPanel.offsetWidth < 20) {
+            leftPanel.style.width = "250px";
+            divider.querySelector("span").textContent = "||";
+        } else {
+            leftPanel.style.width = "0px";
+            divider.querySelector("span").textContent = "⟩";
+        }
+    });
+
+    // posiciona los botones de exportacion de excel -- SE COMENTA POR QUE AHOR ASE USA LA funcion ReportExploreV2.btnExportaXLS
+    /*
+    document.addEventListener("DOMContentLoaded", function ()
+    {
+        const iframe = document.getElementById("RptInPrevio");
+        const buttonsContainer = document.getElementById("export-buttons-container");
+
+        function positionButtons() {
+            if (!iframe || !buttonsContainer) return;
+
+            // Rectángulo del iframe relativo al viewport
+            const rect = iframe.getBoundingClientRect();
+
+            // Scroll actual para calcular posición absoluta en la página
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+
+            // Posicionar el contenedor sobre el centro del iframe
+            buttonsContainer.style.position = "absolute";
+            buttonsContainer.style.top = (rect.top + scrollTop + 10) + "px"; // 10px desde la parte superior del iframe
+            buttonsContainer.style.left = (rect.left + scrollLeft + rect.width / 2) + "px"; // centro horizontal del iframe
+            buttonsContainer.style.transform = "translateX(-50%)";
+            buttonsContainer.style.zIndex = 1000;
+        }
+
+        // Recalcular al cargar la página, redimensionar o hacer scroll
+        window.addEventListener("resize", positionButtons);
+        window.addEventListener("scroll", positionButtons);
+
+        // Recalcular cuando el iframe termina de cargar su contenido
+        iframe.addEventListener("load", positionButtons);
+
+        // Inicial
+        positionButtons();
+    });
+    */
+   
+    
+</script>
+
 </html>
