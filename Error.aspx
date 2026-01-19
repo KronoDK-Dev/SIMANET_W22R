@@ -1,8 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error.aspx.cs" Inherits="SIMANET_W22R.Error" %>
 
-<%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Form.Controls" TagPrefix="cc1" %>
-
-<%@ Register src="Controles/Header.ascx" tagname="Header" tagprefix="uc1" %>
 
 <!DOCTYPE html>
 
@@ -109,7 +106,7 @@
 
     
         
-        <cc1:EasyClockDigital ID="EasyClockDigital1" runat="server" />
+     
 
     </form>
   

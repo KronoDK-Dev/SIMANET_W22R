@@ -392,22 +392,75 @@ NetSuite.Manager.Infinity.WorkingFrame = function ()
                         });
      */
 
-    // Estado interno para evitar múltiples intentos en paralelo
-    NetSuite.Manager.Infinity._connecting = false;
-    NetSuite.Manager.Infinity._circleStarted = false;
 
-    // Handlers centralizados para reusar en reconexiones del wrapper
-    NetSuite.Manager.Infinity._onClose = function (event) {
-        NetSuite.Manager.Infinity.User.Contectado = false;
+    // Validar que UsuarioBE exista antes de usarlo
+
+
+    if (typeof UsuarioBE === "undefined") {
+        if (!UsuarioBEWarningShown) {
+            console.error(" UsuarioBE no está definido en el contexto del cliente. No se puede iniciar el chat.");
+            UsuarioBEWarningShown = true; // Evita mostrarlo más veces
+        }
+        return;
+    }
+
+    if (!UsuarioBE.UserName || !UsuarioBE.CodPersonal || !UsuarioBE.IdContacto) {
+        if (!UsuarioBEWarningShown) {
+            console.warn(" UsuarioBE está incompleto. Faltan propiedades requeridas.");
+            UsuarioBEWarningShown = true;
+        }
+        return;
+    }
+
+
+    // Construir la URL para el socket
+    var socketUrl = SIMA.Utilitario.Helper.Configuracion.Leer("ConfigBase", "NetSuteSocket") +
+        "platform=WebID" +
+        "&App=SIMANetSuiteWeb" +
+        "&name=" + encodeURIComponent(UsuarioBE.UserName) +
+        "&CodPer=" + encodeURIComponent(UsuarioBE.CodPersonal) +
+        "&IdContac=" + encodeURIComponent(UsuarioBE.IdContacto);
+
+    // Intentar conexión
+    var oConect = new _NetSuite.Chat(socketUrl);
+    oConect.then(function (wSocket) {
+        NetSuite.LiveChat = wSocket;
+        NetSuite.Manager.StatusConect();
+    }).catch(function (err) {
+        console.error(" Error al conectar con el socket:", err);
         NetSuite.Manager.TestingSocketListener();
-        try { NetSuite.LiveChat.Data.UpDEstadoContacto(UsuarioBE.CodPersonal, 2); } catch (_) { }
-        // No volvemos a llamar WorkingFrame aquí: el wrapper reintentará cada 10 min
-    };
+        NetSuite.LiveChat = null;
+        });
 
-    NetSuite.Manager.Infinity._onError = function (error) {
-        NetSuite.Manager.Infinity.User.Contectado = false;
-        try { NetSuite.LiveChat.Data.UpDEstadoContacto(UsuarioBE.CodPersonal, 2); } catch (_) { }
-    };
+    //----------------------------
+    if (NetSuite.LiveChat instanceof WebSocket) {
+        NetSuite.LiveChat.LinkService = null;//Funcion que permite el enlace de la implementacion LibBroker
+        /*----------------------------------------------------------------------------------------------------------------*/
+        /*Eventoa de conectividad*/
+        /*----------------------------------------------------------------------------------------------------------------*/
+        NetSuite.LiveChat.onclose = function (event) {
+            NetSuite.Manager.Infinity.User.Contectado = false;
+            NetSuite.Manager.TestingSocketListener();
+            NetSuite.LiveChat.Data.UpDEstadoContacto(UsuarioBE.CodPersonal, 2);//Close Listener o servicio NetSuiteSockry
+            ConSleep = 1000;
+            NetSuite.Manager.Infinity.CircleConeccion(true);
+
+
+            if (event.wasClean) {
+               // alert('Conexión cerrada correctamente, code=' + event.code + ' reason=' + event.reason);
+            } else {
+                // e.g. server process killed or network down
+                // event.code is usually 1006 in this case
+               // alert('[close] La conexión se perdió');
+            }
+            //NetSuite.LiveChat = null;//velve a inicializar
+        };
+      
+
+        NetSuite.LiveChat.onerror = function (error) {
+            NetSuite.Manager.Infinity.User.Contectado = false;
+            NetSuite.LiveChat.Data.UpDEstadoContacto(UsuarioBE.CodPersonal, 2);
+        }
 
     NetSuite.Manager.Infinity._onMessage = function (evt) {
         // === (Pegado 1: mueve aquí el contenido que antes estaba en NetSuite.LiveChat.onmessage) ===

@@ -718,6 +718,9 @@ namespace SIMANET_W22R.GestionReportes
                 // 28.01.206 Colocamos la licencia
                 OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
+                // Asegura el contexto ANTES de crear el paquete (paracaídas local)
+                OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
                 using (var package = new ExcelPackage())
             {
                 DateTime dfecha = DateTime.Now;

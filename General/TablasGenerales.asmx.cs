@@ -809,95 +809,127 @@ namespace SIMANET_W22R.General
         [WebMethod(Description = "Lista Liquidaciones por Año")]
         public DataTable ListaLiquidacionesxAnio(string V_ANIO, string UserName)
         {
-            return (new GeneralSoapClient()).listaliquidacionesxanio(V_ANIO, UserName);
+            return (new GeneralSoapClient()).listatipo_reportot37(UserName);
         }
 
-        [WebMethod(Description = "Lista Lotes de Detraccion por CODIGO")]
-        public DataTable ListaLoteDetraccxCodigo(string V_CODIGO, string UserName)
+        [WebMethod(Description = "Lista Tipo de Servicios: SR... por codigo y descripcion")]
+        public DataTable ListaTipo_Servicios(string V_DESCRIPCION, string UserName)
         {
-            return (new GeneralSoapClient()).listalotedetraccxcodigo(V_CODIGO, UserName);
+            return (new GeneralSoapClient()).listatipo_servicios(V_DESCRIPCION, UserName);
         }
 
-        [WebMethod(Description = "Lista meses del año")]
-        public DataTable ListaMeses40(string UserName)
+        [WebMethod(Description = "Lista de Tipos de Stock")]
+        public DataTable ListaTipoStock(string UserName)
         {
-            return (new GeneralSoapClient()).listameses40(UserName);
+            return (new GeneralSoapClient()).listatipo_stock25(UserName);
         }
 
-        [WebMethod(Description = "Lista monedas")]
-        public DataTable ListaMonedas41(string UserName)
+        [WebMethod(Description = "Lista Colaboradores por codigo y descripcion")]
+        public DataTable ListaTrabxCodxDescr(string V_CODIGO, string V_DESCRIPCION, string UserName)
         {
-            return (new GeneralSoapClient()).listamonedas41(UserName);
+            return (new GeneralSoapClient()).listatrabxcodxdescr(V_CODIGO, V_DESCRIPCION, UserName);
         }
 
-        [WebMethod(Description = "Lista Programa de Adquisición de Material  por Codigo o Descripción del proyecto")]
-        public DataTable ListaPGAMxCodxDescrip(string V_CODIGO, string V_DESCRIPCION, string UserName)
+       
+        [WebMethod(Description = "Lista  usuarios unisys")]
+        public DataTable ListaU(string v_descripcion, string UserName)
         {
-            return (new GeneralSoapClient()).listapgamxcodxdescrip(V_CODIGO, V_DESCRIPCION, UserName);
+            return (new GeneralSoapClient()).ListaUserUnisysxNom(v_descripcion, UserName);
         }
 
-        [WebMethod(Description = "Lista Programa de Adquisición de Material  por Codigo o Descripción del proyecto")]
-        public DataTable ListaProcedencia_Compra26(string UserName)
+        [WebMethod(Description = "Lista de Cuentas")]
+        public DataTable ListaContabCuentas(string V_NOMBRE, string V_PERIODO, string UserName)
         {
-            return (new GeneralSoapClient()).listaprocedencia_compra26(UserName);
+        DataTable dt = new DataTable();
+            dt = (new GeneralSoapClient()).ListaContabCuentas(V_NOMBRE, V_PERIODO, UserName);
+            dt.TableName = "Table";
+
+            return dt;
         }
 
-        [WebMethod(Description = "Lista Programa de Adquisición de Material  por Codigo o Descripción del proyecto")]
-        public DataTable ListaProv_PdtePagoxRUCxDesc(string V_CODIGO, string V_DESCRIPCION, string UserName)
+        [WebMethod(Description = "Lista de Cuentas")]
+        public DataTable ListaContabCuentaMayor(string V_NOMBRE, string UserName)
         {
-            return (new GeneralSoapClient()).listaprov_pdtepagoxrucxde(V_CODIGO, V_DESCRIPCION, UserName);
+            return (new GeneralSoapClient()).ListaContabCuentaMayor(V_NOMBRE, UserName);
         }
 
-        [WebMethod(Description = "Lista Programa de Adquisición de Material  por Codigo o Descripción del proyecto")]
-        public DataTable ListaProyec_PdtePagoxDesc(string V_DESCRIPCION, string UserName)
+        [WebMethod(Description = "Lista de Subdiarios")]
+        public DataTable ListaSubDiarios(string V_NOMBRE, string UserName)
         {
-            return (new GeneralSoapClient()).listaproyec_pdtepagoxdesc(V_DESCRIPCION, UserName);
+            return (new GeneralSoapClient()).ListaSubDiario(V_NOMBRE, UserName);
         }
 
-        [WebMethod(Description = "Lista Programa de Adquisición de Material  por Codigo o Descripción del proyecto")]
-        public DataTable ListaProyectosxCodxDescrip(string V_CODIGO, string V_DESCRIPCION, string UserName)
+        [WebMethod(Description = "Lista de Cuentas sin Periodo")]
+        public DataTable ListaContabCuentaSinPeriodo(string V_NOMBRE, string UserName)
         {
-            return (new GeneralSoapClient()).listaproyectosxcodxdescri(V_CODIGO, V_DESCRIPCION, UserName);
+            return (new GeneralSoapClient()).ListaContabCuentaSinPeriodo(V_NOMBRE, UserName);
         }
 
-        [WebMethod(Description = "Lista Proyecto por destino compra y área usuaria o Descripción del proyecto")]
-        public DataTable ListaProyectosxDCxAUSxDescr(string V_CODIGO, string V_DESCRIPCION, string V_DESTINO_COMPRA, string UserName)
+        [WebMethod(Description = "Busqueda de Proveedores")]
+        public DataTable ListaProveedores(string V_NOMBRE, string UserName)
         {
-            return (new GeneralSoapClient()).listaproyectosxdcxausxdes(V_CODIGO, V_DESCRIPCION, V_DESTINO_COMPRA, UserName);
+            return (new GeneralSoapClient()).ListaProveedores(V_NOMBRE, UserName);
         }
 
-        [WebMethod(Description = "Lista Talleres / divisiones  por codigo y descripcion")]
-        public DataTable ListaTalleresxCodxDescr(string V_DESCRIPCION, string UserName)
+        [WebMethod(Description = "Tipo de Documentos")]
+        public DataTable TipoDocumento(string UserName)
         {
-            return (new GeneralSoapClient()).listatalleresxcodxdescr(V_DESCRIPCION, UserName);
+            return (new GeneralSoapClient()).TipoDocumento(UserName);
         }
 
-        [WebMethod(Description = "Lista tipo de Egresos: chque o efectivo")]
-        public DataTable ListaTipo_Egresos42(string UserName)
+        [WebMethod(Description = "Tipos de Orden")]
+        public DataTable TipoOrden(string UserName)
         {
-            return (new GeneralSoapClient()).listatipo_egresos42(UserName);
+            return (new GeneralSoapClient()).TipoOrden(UserName);
         }
-
-        [WebMethod(Description = "Lista Tipos de Orden compra")]
-        public DataTable ListaTipo_OCompra31(string UserName)
+        /*
+        [WebMethod(Description = "Lista de Centros Operativos por Perfil")]
+        public DataTable ListaCentrosOperativosPorPerfil(string IdUsuario, string UserName)
         {
-            return (new GeneralSoapClient()).listatipo_ocompra31(UserName);
+            return (new GeneralSoapClient()).ListarCentroOperativoPorPerfil(IdUsuario, UserName);
         }
-
-        [WebMethod(Description = "Lista Tipo de Proveedor: Materiales , Servicios , seguro médico, otros")]
-        public DataTable ListaTipo_Proveedor36(string UserName)
+        */
+        [WebMethod(Description = "Lista de Centros Operativos por Perfil")]
+        public DataTable ListaCentrosOperativosPorPerfil(string IdUsuario, string UserName)
         {
-            return (new GeneralSoapClient()).listatipo_proveedor36(UserName);
+            try
+            {
+                string cacheKey = $"{IdUsuario}_{UserName}"; // Combinar los filtros para crear una clave única para la caché
+                MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
+                                                          // Verificar si ya existe el resultado en caché
+                if (cache.Contains(cacheKey))
+                {
+                    return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
+                }
+
+                dtResultados = (new GeneralSoapClient()).ListarCentroOperativoPorPerfil(IdUsuario, UserName);             // Si no está en caché, llamar al servicio para obtener los datos
+
+                // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
+                CacheItemPolicy policy = new CacheItemPolicy
+                {
+                    AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(1) // Expira en 30 minutos
+                };
+                if (!string.IsNullOrEmpty(IdUsuario))  // Almacenar el resultado en caché, si es un valor correcto
+                {
+                    cache.Add(cacheKey, dtResultados, policy);
+                }
+
+
+                return dtResultados;              // Retornar los datos obtenidos
+
+            }
+            catch (Exception ex)
+            {
+                // Si hay error, devolver un DataTable con el mensaje de error
+
+                dtError.Columns.Add("Error", typeof(string));
+                dtError.Rows.Add("Error en el servicio SIMANET: " + ex.Message);
+                return dtError;
+            }
         }
 
-        [WebMethod(Description = "Lista Tipo de Recurso: Materiales o Servicios")]
-        public DataTable ListaTipo_Recurso33(string UserName)
-        {
-            return (new GeneralSoapClient()).listatipo_recurso33(UserName);
-        }
-
-        [WebMethod(Description = "Lista tipo reporte Actividades por fechas:  Termino OT, Inicio Actividad, Fecha Termino Actividad")]
-        public DataTable ListaTipo_ReportACTI39(string UserName)
+        [WebMethod(Description = "Lista de Unidad Operativa por Centro Operativo")]
+        public DataTable ListaUnidad_OpexCEO(string sCodigo, string UserName)
         {
             return (new GeneralSoapClient()).listatipo_reportacti39(UserName);
         }
