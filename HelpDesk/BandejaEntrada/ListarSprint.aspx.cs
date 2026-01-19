@@ -20,7 +20,7 @@ using System.Web.UI.WebControls;
 
 namespace SIMANET_W22R.HelpDesk.BandejaEntrada
 {
-    public partial class ListarSprint : HelpDeskBase,IPaginaBase
+    public partial class ListarSprint : HelpDeskBase,IPaginaBase, IPaginaMantenimento
     {
         //https://www.bootdey.com/snippets/view/bs4-user-card-task-list#html
         protected void Page_Load(object sender, EventArgs e)
@@ -235,5 +235,54 @@ namespace SIMANET_W22R.HelpDesk.BandejaEntrada
             throw new NotImplementedException();
         }
 
+        public void Agregar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Modificar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Eliminar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CargarModoPagina()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CargarModoNuevo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CargarModoModificar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CargarModoConsulta()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ValidarCampos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ValidarCamposRequeridos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ValidarExpresionesRegulares()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

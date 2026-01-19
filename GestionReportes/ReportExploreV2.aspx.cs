@@ -713,6 +713,9 @@ namespace SIMANET_W22R.GestionReportes
                 DataTable my_dataTable = iHojas == 1 ? ds.Tables[0] : new DataTable();
                 s_pto = "0.1";
 
+                // Asegura el contexto ANTES de crear el paquete (paracaídas local)
+                OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
                 using (var package = new ExcelPackage())
                 {
                     DateTime dfecha = DateTime.Now;

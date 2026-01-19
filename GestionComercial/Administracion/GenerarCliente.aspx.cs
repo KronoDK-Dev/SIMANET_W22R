@@ -40,6 +40,9 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     case EasyUtilitario.Enumerados.ModoPagina.M:
                         CargarModoModificar();
                         break;
+                    case EasyUtilitario.Enumerados.ModoPagina.C:
+                        CargarModoNuevo();
+                        break;
                 }
             }
             catch (Exception ex)

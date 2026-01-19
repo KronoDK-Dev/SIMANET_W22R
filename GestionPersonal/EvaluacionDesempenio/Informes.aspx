@@ -20,7 +20,7 @@
     </script>
 
 <link id="cssBootstrap" rel="stylesheet" />
-<script>  <!-- le adicionamos su referencia al control LINK -->
+<script>  <!-- le adicionamos su referencia al control LINK  * Bootstrap v4.0.0 -->
     window.addEventListener('DOMContentLoaded', function () {
         document.getElementById("cssBootstrap").href = getBasePath() + "/Recursos/css/bootstrap.min.css";
     });

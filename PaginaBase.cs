@@ -68,13 +68,21 @@ namespace SIMANET_W22R
         public static string KEYQEDITABLE = "mEdit";
 
         public const string KEYCODAREA = "CodArea";
-
+        public static string KEYCLIENTEID = "V_CLIENTE_ID"; // 12.01.2026
 
 
         #endregion
 
         #region Propiedades Publicas
 
+        public string IdGeneral // 12.01.2026
+        {
+            get { return Page.Request.Params[KEYIDGENERAL]; }
+        }
+        public string IDCLIENTE
+        {
+            get { return (((Page.Request.Params[KEYCLIENTEID] == "") || (Page.Request.Params[KEYCLIENTEID] == null)) ? "0" : Page.Request.Params[KEYCLIENTEID]); }
+        }
         public string TokenId { get { return Page.Request.Params[KEYTOKEN]; } }
         public int IdProceso { get { return Convert.ToInt32(Page.Request.Params[KEYQIDPROCESO]); } }
         public string IdCentroOperativo{

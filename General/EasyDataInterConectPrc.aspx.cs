@@ -80,7 +80,7 @@ namespace SIMANET_W22R.General
                       
                         EasyUtilitario.Helper.Pagina.DEBUG(mtd);
 
-                        object objResult = EasyWebServieHelper.InvokeWebService(sw, "", mtd, param);
+                        object objResult = EasyWebServieHelper.InvokeWebService2(sw, "", mtd, param);
                         switch (TipoObjReturn)
                         {
                             case "Table":

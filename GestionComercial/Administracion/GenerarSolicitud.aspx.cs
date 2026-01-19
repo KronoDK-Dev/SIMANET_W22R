@@ -19,6 +19,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // this.IdGeneral es una propiedad de la clase PaginaBase.cs
             if (this.ModoPagina.ToString().Equals("M") && !string.IsNullOrEmpty(this.IdGeneral))
             {
                 nroSOL.InnerText = "N° SOLICITUD: " + this.IdGeneral;
