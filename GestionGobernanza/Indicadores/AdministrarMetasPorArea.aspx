@@ -240,22 +240,25 @@
                         var DColorBE = CellDataColor.attr("C_" + i).toString().SerializedToObject();
                         var Cumple = false;
 
-                        var Existe = DColorBE.VALORCONDICION.toString().indexOf(">");
-
-                        alert(DColorBE.VALORCONDICION.toString());
-
-                        Existe = DColorBE.VALORCONDICION.toString().indexOf("<");
                         var strFormula = "";
-                        if (Existe != -1) {
-                            strFormula = "(" + Resultado + DColorBE.VALORCONDICION + ")";
+                        if ((DColorBE.VALORCONDICION.toString().indexOf("<") != -1) || (DColorBE.VALORCONDICION.toString().indexOf(">")!=-1)) {
+                            strFormula = "(" + DColorBE.VALORCONDICION + ")";
                         }
                         else {
-                            strFormula = "(" + Resultado + DColorBE.VALORCONDICION.Replace("=", "==") + ")";
+                            strFormula = "(" + DColorBE.VALORCONDICION.Replace("=", "==") + ")";
                         }
+                        
+                        strFormula = strFormula.Replace('R', Resultado);
+                        strFormula = strFormula.toString().toUpperCase().Replace("O", ") || (");
+                        strFormula = strFormula.toString().toUpperCase().Replace("Y", ") && (");
+
                         Cumple = eval(strFormula);
-                        jNet.get(oHtmlTable.rows[3].cells[e.parentNode.cellIndex]).css("background-color", DColorBE.COLOR).css("color", DColorBE.FONTCOLOR);
-                        DataIndicadorBE.COLOR = DColorBE.COLOR;
-                        DataIndicadorBE.FONTCOLOR = DColorBE.FONTCOLOR;
+                        if (Cumple) {
+                            jNet.get(oHtmlTable.rows[3].cells[e.parentNode.cellIndex]).css("background-color", DColorBE.COLOR).css("color", DColorBE.FONTCOLOR);
+                            DataIndicadorBE.COLOR = DColorBE.COLOR;
+                            DataIndicadorBE.FONTCOLOR = DColorBE.FONTCOLOR;
+                        }
+                       
                     }
 
                     //Actualizar los datos de la entidad

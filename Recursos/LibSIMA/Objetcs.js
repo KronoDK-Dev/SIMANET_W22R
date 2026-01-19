@@ -2024,11 +2024,11 @@ function EasyUpLoad() {
 String.prototype.LPad = function (l, c) { return new Array(l - this.length + 1).join(c || '0') + this; }
 //String.prototype.RPad = function (n, c) (var i; var a = this.split (''); for (i = 0; i <n - this.length; i++) (a.push(c) );
 String.prototype.Igual = function (Nombre) { return (this.toString().toUpperCase() == Nombre.toString().toUpperCase()); }
-String.prototype.Replace = function (RegExp, replacetext) {
+/*String.prototype.Replace = function (RegExp, replacetext) {
     var valor = this; var arrCarOrg = valor.split(RegExp);
     for (var c = 0; c <= arrCarOrg.length - 1; c++) { valor = valor.replace(RegExp, replacetext); }
     return valor;
-}
+}*/
 
 String.prototype.Equal = function (ValComp) {
     return this == ValComp;
@@ -2489,7 +2489,9 @@ Background.Canal = function (_Pagina) {
 
 String.prototype.Replace = function (RegExp, replacetext) {
     var valor = this; var arrCarOrg = valor.split(RegExp);
-    for (var c = 0; c <= arrCarOrg.length - 1; c++) { valor = valor.replace(RegExp, replacetext); }
+    for (var c = 0; c <= arrCarOrg.length - 1; c++) {
+        valor = valor.replace(RegExp, replacetext);
+    }
     return valor;
 }
 
