@@ -819,13 +819,13 @@
     <Content Include="Recursos\LibSIMA\HtmlToCanvas.js" />
     <Content Include="Recursos\LibSIMA\MasterConfig.js" />
     <Content Include="Recursos\LibSIMA\NetSuiteSocket.js" />
+    <Content Include="Recursos\LibSIMA\Objetcs.js" />
     <Content Include="Recursos\LibSIMA\ScriptManager.js" />
     <Content Include="Recursos\js\sweetalert2.all.min.js" />
     <Content Include="Recursos\js\sweetalert2.js" />
     <Content Include="Recursos\js\sweetalert2.min.js" />
     <Content Include="Recursos\js\toastr.min.js" />
     <Content Include="Recursos\LibSIMA\AccesoDatosBase.js" />
-    <Content Include="Recursos\LibSIMA\Object.js" />
     <Content Include="Recursos\LibSIMA\SIMA.GidView.Entended.js" />
     <Content Include="Recursos\Toas\nostfly.min.css" />
     <Content Include="Recursos\Tree\img\line_conn.gif" />
