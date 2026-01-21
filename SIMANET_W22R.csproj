@@ -837,6 +837,7 @@
     <Content Include="Recursos\Tree\jquery.ztree.excheck.js" />
     <Content Include="Recursos\Tree\jquery.ztree.exedit.js" />
     <Content Include="Recursos\Tree\zTreeStyle.css" />
+    <Content Include="SIMANET\SeguridadPlanta\AdministrarContratista.aspx" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2159,6 +2160,16 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicClass\sglGlobalData.cs" />
+    <Compile Include="SIMANET\SeguridadPlanta\AdministrarContratista.aspx.cs">
+      <DependentUpon>AdministrarContratista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\AdministrarContratista.aspx.designer.cs">
+      <DependentUpon>AdministrarContratista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\SeguridadPlantaBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2229,6 +2240,7 @@
       <Name>EasyControlWeb</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
