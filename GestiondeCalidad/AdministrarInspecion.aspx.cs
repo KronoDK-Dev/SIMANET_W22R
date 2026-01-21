@@ -43,6 +43,7 @@ namespace SIMANET_W22R.GestiondeCalidad
                     */
                     //this.LlenarGrilla(EasyGestorFiltro1.getFilterString());
 
+                    
                     ConfigurarFiltroPorDefault();
                     this.LlenarGrilla("");
 

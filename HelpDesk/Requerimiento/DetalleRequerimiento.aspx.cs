@@ -19,7 +19,6 @@ using System.Text;
 using SIMANET_W22R.HelpDesk.Sistemas;
 using SIMANET_W22R.srvHelpDesk;
 
-
 namespace SIMANET_W22R.HelpDesk.Requerimiento
 {
     public partial class DetalleRequerimiento : HelpDeskBase,IPaginaBase,IPaginaMantenimento
