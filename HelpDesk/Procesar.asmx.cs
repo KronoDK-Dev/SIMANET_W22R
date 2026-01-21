@@ -1,17 +1,12 @@
 ﻿using EasyControlWeb.Filtro;
 using EasyControlWeb.Form.Controls;
 using EasyControlWeb.InterConeccion;
-
 using SIMANET_W22R.srvHelpDesk;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.DirectoryServices;
-using System.Linq;
 using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using System.Web;
 using System.Web.Services;
 using static EasyControlWeb.EasyUtilitario.Enumerados;
 using static EasyControlWeb.InterConeccion.EasyDataInterConect;

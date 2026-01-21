@@ -17,12 +17,11 @@ using SIMANET_W22R.srvGestionCalidad;
 using DocumentFormat.OpenXml.Drawing.Charts;
 using EasyControlWeb.InterConeccion;
 using SIMANET_W22R.srvHelpDesk;
-
 using System.Web.UI.HtmlControls;
 using EasyControlWeb.Form.Base;
 using static EasyControlWeb.EasyUtilitario.Enumerados;
 using static EasyControlWeb.InterConeccion.EasyDataInterConect;
-
+using System.Security.Cryptography;
 
 namespace SIMANET_W22R.HelpDesk.Requerimiento
 {

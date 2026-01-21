@@ -24,13 +24,13 @@ namespace SIMANET_W22R.GestionReportes
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control Header.
+        /// Control Header1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::SIMANET_W22R.Controles.Header Header;
+        protected global::SIMANET_W22R.Controles.Header Header1;
 
         /// <summary>
         /// Control EasyToolBarAdmRPT.

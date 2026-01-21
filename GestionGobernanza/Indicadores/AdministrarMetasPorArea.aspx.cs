@@ -143,7 +143,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                     otxt = new EasyTextBox();
                     otxt.ID = "D_" + dr["IDITEM"].ToString();
                     otxt.SetValue(dr["DENOMINADOR"].ToString());
-                    otxt.Attributes.Add("onblur", "AdministrarMetasPorArea.OnChange(jNet.get(this))");
+                    otxt.Attributes.Add("onblur", "AdministrarMetasPorArea.OnChange(jNet.get(this),'" + this.CodArea + "')");
                     tblBase.Rows[2].Cells[i].Attributes.Add("onclick", "AdministrarMetasPorArea.DetalleAnalisis(jNet.get(this),'" + this.CodArea + "');");
                     tblBase.Rows[2].Cells[i].Controls.Add(otxt);
 
