@@ -7,6 +7,6 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 {
     public class SeguridadPlantaBase:PaginaBase
     {
-
+     
     }
 }
