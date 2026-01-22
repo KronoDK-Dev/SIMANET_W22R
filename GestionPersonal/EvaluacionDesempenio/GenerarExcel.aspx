@@ -24,6 +24,8 @@
     <!-- JS que falta -->
       <!--  <script src="/SIMANET_W22R/Recursos/js/jquery-3.6.4.min.js"></script> -->
 
+    <!--  la funcion getBasePath()  esta en el:Header.ascx -->
+
      <script id="scriptJquery364"></script>
     <script>
         window.addEventListener('DOMContentLoaded', function () {

@@ -31,9 +31,6 @@ namespace SIMANET_W22R.General
         DataTable dtError = new DataTable();
 
 
-        // 12.01.2026 v. ybañez
-        DataTable dtResultados = new DataTable();
-        DataTable dtError = new DataTable();
 
         // ******* Método para obtener el usuario conectado *****************
         [WebMethod]  
@@ -621,164 +618,7 @@ namespace SIMANET_W22R.General
             return (new GeneralSoapClient()).ListarCentroOperativoPorPerfil(IdUsuario, UserName);
         }
         */
-        [WebMethod(Description = "Lista de Centros Operativos por Perfil")]
-        public DataTable ListaCentrosOperativosPorPerfil(string IdUsuario, string UserName)
-        {
-            try
-            {
-                string cacheKey = $"{IdUsuario}_{UserName}"; // Combinar los filtros para crear una clave única para la caché
-                MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
-                                                          // Verificar si ya existe el resultado en caché
-                if (cache.Contains(cacheKey))
-                {
-                    return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
-                }
-
-                dtResultados = (new GeneralSoapClient()).ListarCentroOperativoPorPerfil(IdUsuario, UserName);             // Si no está en caché, llamar al servicio para obtener los datos
-
-                // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
-                CacheItemPolicy policy = new CacheItemPolicy
-                {
-                    AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(1) // Expira en 30 minutos
-                };
-                if (!string.IsNullOrEmpty(IdUsuario))  // Almacenar el resultado en caché, si es un valor correcto
-                {
-                    cache.Add(cacheKey, dtResultados, policy);
-                }
-
-
-                return dtResultados;              // Retornar los datos obtenidos
-
-            }
-            catch (Exception ex)
-            {
-                // Si hay error, devolver un DataTable con el mensaje de error
-
-                dtError.Columns.Add("Error", typeof(string));
-                dtError.Rows.Add("Error en el servicio SIMANET: " + ex.Message);
-                return dtError;
-            }
-        }
-
-        [WebMethod(Description = "Lista de Unidad Operativa por Centro Operativo")]
-        public DataTable ListaUnidad_OpexCEO(string sCodigo, string UserName)
-        {
-            try
-            {
-                return (new GeneralSoapClient()).ListaUnidad_OpexCEO(sCodigo, UserName);
-            }
-            catch (Exception ex)
-            {
-                // Si hay error, devolver un DataTable con el mensaje de error
-
-                dtError.Columns.Add("Error", typeof(string));
-                dtError.Rows.Add("Error en el servicio: " + ex.Message);
-                return dtError;
-            }
-        }
-
-        [WebMethod(Description = "Lista Linea de Negocio por centro operativo")]
-        public DataTable ListaLineas_NegxCEO(string V_CODIGO, string UserName)
-        {
-            try
-            {
-                if (!string.IsNullOrEmpty(V_CODIGO))
-                {
-                    string cacheKey = $"{V_CODIGO}"; // Combinar los filtros para crear una clave única para la caché
-                    MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
-                                                              // Verificar si ya existe el resultado en caché
-                    if (cache.Contains(cacheKey))
-                    {
-                        return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
-                    }
-
-                    dtResultados = (new GeneralSoapClient()).SP_ListaLineas_NegxCEO(V_CODIGO, UserName, UserName);             // Si no está en caché, llamar al servicio para obtener los datos
-
-                    // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
-                    CacheItemPolicy policy = new CacheItemPolicy
-                    {
-                        AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(30) // Expira en 30 minutos
-                    };
-                    if (!string.IsNullOrEmpty(V_CODIGO))  // Almacenar el resultado en caché, si es un valor correcto
-                    {
-                        cache.Add(cacheKey, dtResultados, policy);
-                    }
-                }
-                return dtResultados;              // Retornar los datos obtenidos
-
-            }
-            catch (Exception ex)
-            {
-                // Si hay error, devolver un DataTable con el mensaje de error
-
-                dtError.Columns.Add("Error", typeof(string));
-                dtError.Rows.Add("Error en el servicio: " + ex.Message);
-                return dtError;
-            }
-        }
-
-    
-
-        [WebMethod(Description = "Lista Linea de Negocio por centro operativo y unidad operativa")]
-        public DataTable ListaLineasNegxCEOxUO(string V_CEO, string V_UNI_OPE, string UserName)
-        {
-            try
-            {
-
-                if (V_UNI_OPE == "-1")
-                {
-                    V_UNI_OPE = "";
-                }
-                dtResultados = (new GeneralSoapClient()).ListaLineasNegxCEOxUO(V_CEO, V_UNI_OPE, UserName);
-
-                return dtResultados;
-            }
-            catch (Exception ex)
-            {
-                // Si hay error, devolver un DataTable con el mensaje de error
-
-                dtError.Columns.Add("Error", typeof(string));
-                dtError.Rows.Add("Error en el servicio: " + ex.Message);
-                return dtError;
-            }
-        }
-
-        [WebMethod(Description = "Lista Sub Linea de Negocio por centro operativo , unidad operativa y Linea")]
-        public DataTable ListaSubLineasNegxCEOxUOxL(string V_CEO, string V_UNI_OPE, string V_LINEA, string UserName)
-        {
-            try
-            {
-
-                if (V_UNI_OPE == "-1")
-                {
-                    V_UNI_OPE = "";
-                }
-
-                if (V_LINEA == "-1")
-                {
-                    V_LINEA = "";
-                }
-                dtResultados = (new GeneralSoapClient()).ListaSubLineasNegxCEOxUOxL(V_CEO, V_UNI_OPE, V_LINEA, UserName);
-
-                return dtResultados;
-            }
-            catch (Exception ex)
-            {
-                // Si hay error, devolver un DataTable con el mensaje de error
-
-                dtError.Columns.Add("Error", typeof(string));
-                dtError.Rows.Add("Error en el servicio: " + ex.Message);
-                return dtError;
-            }
-        }
-
       
-
-        [WebMethod(Description = "Lista SubLineas Callao")]
-        public DataTable ListaSubLineasCallao(string UserName)
-        {
-            return (new GeneralSoapClient()).ListaSubLineasCallao(UserName);
-        }
         //**********************************************************************
         // metodos faltantes en integracion de la solucion 13.01.2026
         //*****************************************************************
@@ -868,6 +708,348 @@ namespace SIMANET_W22R.General
                 return dtError;
             }
         }
+
+        #region METODOS QUE NO SE CONSIDERARON
+
+        [WebMethod(Description = "Lista de Meses")]
+        public DataTable ListaMeses50(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().ListaMeses50(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Lista de unidades")]
+        public DataTable ListaUnidades(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().ListaUnidades(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Lista de clientes")]
+        public DataTable ListarClientes(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().BuscarCliente(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Lista de monedas ")]
+        public DataTable ListaMonedaMulti(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().ListaMonedaMulti(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Lista de  unidades 2")]
+        public DataTable ListaUnidades2(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().ListaUnidades2(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Lista de  recursos")]
+        public DataTable BuscarRecursos35(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().BuscarRecursos35(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Tipo documento LT")]
+        public DataTable TipoDocumentoLt(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().TipoDocumentoLt(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Origen LT")]
+        public DataTable OrigenLt(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().OrigenLt(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "listalineas_simaperu30Multi")]
+        public DataTable LineasNegocioLt(string v_descripcion, string UserName)
+        {
+            return (new GeneralSoapClient().LineasNegocioLt(v_descripcion, UserName));
+        }
+        [WebMethod(Description = "listaDoc_Estado")]
+        public DataTable ListaDoc_Estado(string UserName)
+        {
+            return (new GeneralSoapClient().ListaDoc_Estado(UserName));
+        }
+        [WebMethod(Description = "Lista Codigos Corte de todos los años")]
+        public DataTable Lista_CodigoCorte(string UserName)
+        {
+            return (new GeneralSoapClient().Lista_CodigoCorte(UserName));
+        }
+        [WebMethod(Description = "Lista Grupo bienes")]
+        public DataTable Listar_GrupoBienesDropdown(string UserName)
+        {
+            return (new GeneralSoapClient().Listar_GrupoBienesDropdown(UserName));
+        }
+        [WebMethod(Description = "Lista Codigos Subgrupos por descrpicion")]
+        public DataTable Listar_SubGrupoBienesDropdown(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().Listar_SubGrupoBienesDropdown(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Lista Codigos Subgrupos")]
+        public DataTable Listar_SubGrupoBienesT(string UserName)
+        {
+            return (new GeneralSoapClient().Listar_SubGrupoBienesT(UserName));
+        }
+        [WebMethod(Description = "Lista embarque por OC")]
+        public DataTable Listar_EmbarquePorOC(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().Listar_EmbarquePorOC(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Lista Tipo Planilla MOB")]
+        public DataTable Listar_TipoMOB(string UserName)
+        {
+            return (new GeneralSoapClient().Listar_TipoMOB(UserName));
+        }
+        [WebMethod(Description = "Lista usuarios y filtras por nombre")]
+        public DataTable Listar_UsuariosPorNombre(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().Listar_UsuariosPorNombre(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Lista codigot ot y filtra por nombre")]
+        public DataTable Listar_CodigoOT(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().Listar_CodigoOT(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Lista numero guia filtrado por OC")]
+        public DataTable Listar_NumeroGuiaPorOC(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().Listar_NumeroGuiaPorOC(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Lista numero VDE")]
+        public DataTable Listar_NumeroVDE(string V_NOMBRE, string UserName)
+        {
+            return (new GeneralSoapClient().Listar_NumeroVDE(V_NOMBRE, UserName));
+        }
+        [WebMethod(Description = "Lista numero VDE")]
+        public DataTable Listar_Estado_VDE(string UserName)
+        {
+            return (new GeneralSoapClient().Listar_ESTADO_VDE(UserName));
+        }
+        [WebMethod(Description = "Tipo Centro Costo")]
+        public DataTable Listar_TipoCentroCosto(string UserName)
+        {
+            return (new GeneralSoapClient().Listar_TipoCentroCosto(UserName));
+        }
+        [WebMethod(Description = "Estados de Solicitudes de Trabajo por CEO")]
+        public DataTable ListarEstadoSolicitud(string ceo, string UserName)
+        {
+            return (new GeneralSoapClient()).ListaEstado_SolTrabxCEO(ceo, UserName);
+        }
+        [WebMethod(Description = "Lista de Tipos de Trabajo")]
+        public DataTable ListarTiposTrabajo(string UserName)
+        {
+            string cacheKey = $"ListarTiposTrabajo"; // Combinar los filtros para crear una clave única para la caché
+            MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
+            // Verificar si ya existe el resultado en caché
+            if (cache.Contains(cacheKey))
+            {
+                return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
+            }
+
+            dtResultados = (new GeneralSoapClient()).ListaTipo_Trabajo(UserName);   // Si no está en caché, llamar al servicio para obtener los datos
+
+            // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
+            CacheItemPolicy policy = new CacheItemPolicy
+            {
+                AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(30) // Expira en 30 minutos
+            };
+            cache.Add(cacheKey, dtResultados, policy);
+            return dtResultados;              // Retornar los datos obtenidos
+
+        }
+
+        [WebMethod(Description = "Lista de Diques x CEO")]
+        public DataTable ListarDiquesCEO(string ceo, string UserName)
+        {
+
+            string cacheKey = $"{ceo}_{UserName}"; // Combinar los filtros para crear una clave única para la caché
+            MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
+            // Verificar si ya existe el resultado en caché
+            if (cache.Contains(cacheKey))
+            {
+                return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
+            }
+
+            dtResultados = (new GeneralSoapClient()).ListaDiques(ceo, UserName);              // Si no está en caché, llamar al servicio para obtener los datos
+
+            // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
+            CacheItemPolicy policy = new CacheItemPolicy
+            {
+                AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(30) // Expira en 30 minutos
+            };
+            if (!ceo.Contains("-1"))  // Almacenar el resultado en caché, si es un valor correcto
+            {
+                cache.Add(cacheKey, dtResultados, policy);
+            }
+
+            return dtResultados;              // Retornar los datos obtenidos
+
+        }
+        [WebMethod(Description = "Listar areas usuarios por linea de negocio")]
+        public DataTable ListarAreasxLinea(string sLinea, string UserName)
+        {
+            DataTable dtError = new DataTable("SP_ListaAreaUsuariaxLN");
+            dtError.TableName = "SP_ListaAreaUsuariaxLN";
+            dtError.Columns.Add("CODIGO", typeof(string));
+            dtError.Columns.Add("NOMBRE", typeof(string));
+            dtError.Columns.Add("COD_CC", typeof(string));
+            dtError.Columns.Add("COD_DIV", typeof(string)); // el campo se toma de reporte crystal
+
+            // -----validamos datos Obligatorios ----
+            if (sLinea == "-1")
+            {
+                DataRow row = dtError.NewRow();
+                row["NOMBRE"] = "Seleccione una linea negocio, es un parámetro obligatorio para retornar información";
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+
+
+            if (sLinea != null && !string.IsNullOrEmpty(sLinea))
+            {
+                string cacheKey = $"{sLinea}"; // Combinar los filtros para crear una clave única para la caché
+                MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
+                                                          // Verificar si ya existe el resultado en caché
+                if (cache.Contains(cacheKey))
+                {
+                    return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
+                }
+
+                dtResultados = (new GeneralSoapClient()).ListaAreasUsuariaxLN(sLinea, UserName);             // Si no está en caché, llamar al servicio para obtener los datos
+                if (dtResultados != null)  // valida vacio
+                {
+
+                    if (dtResultados.Rows.Count > 0)
+                    {
+
+                        // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
+                        CacheItemPolicy policy = new CacheItemPolicy
+                        {
+                            AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(30) // Expira en 30 minutos
+                        };
+                        if (!sLinea.Contains("-1"))  // Almacenar el resultado en caché, si es un valor correcto
+                        {
+                            cache.Add(cacheKey, dtResultados, policy);             // Almacenar el resultado en caché
+                        }
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["NOMBRE"] = "No existen registros para los parámetros consultados: " + sLinea;
+                        dtError.Rows.Add(row);
+                        return dtError;
+
+                    }
+
+
+                }
+            }
+            return dtResultados;              // Retornar los datos obtenidos
+
+        }
+        [WebMethod(Description = "Lista de Tipos de Trabajo")]
+        public DataTable ListarTiposSolictudTrabajo(string ceo, string UserName)
+        {
+            string cacheKey = $"{ceo}_{UserName}"; // Combinar los filtros para crear una clave única para la caché
+            MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
+            // Verificar si ya existe el resultado en caché
+            if (cache.Contains(cacheKey))
+            {
+                return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
+            }
+
+            dtResultados = (new GeneralSoapClient()).ListaEstado_SolTrabxCEO(ceo, UserName);              // Si no está en caché, llamar al servicio para obtener los datos
+
+            // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
+            CacheItemPolicy policy = new CacheItemPolicy
+            {
+                AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(30) // Expira en 30 minutos
+            };
+            if (!ceo.Contains("-1"))  // Almacenar el resultado en caché, si es un valor correcto
+            {
+                cache.Add(cacheKey, dtResultados, policy);             // Almacenar el resultado en caché
+            }
+            return dtResultados;              // Retornar los datos obtenidos
+
+        }
+        [WebMethod(Description = "Sublineas de trabajo por Linea")]
+        public DataTable ListarSublineasxLinea(string ceo, string s_linea, string UserName)
+        {
+            string cacheKey = $"{ceo}_{s_linea}"; // Combinar los filtros para crear una clave única para la caché
+            MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
+            // Verificar si ya existe el resultado en caché
+            if (cache.Contains(cacheKey))
+            {
+                return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
+            }
+
+            dtResultados = (new GeneralSoapClient()).ListaSubLinea_Trabajo(ceo, s_linea, UserName);              // Si no está en caché, llamar al servicio para obtener los datos
+
+            // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
+            CacheItemPolicy policy = new CacheItemPolicy
+            {
+                AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(30) // Expira en 30 minutos
+            };
+            if (!ceo.Contains("-1") && !s_linea.Contains("-1"))  // Almacenar el resultado en caché, si es un valor correcto
+            {
+                cache.Add(cacheKey, dtResultados, policy);             // Almacenar el resultado en caché
+            }
+
+            return dtResultados;
+
+        }
+        [WebMethod(Description = "Tarifas para diques")]
+        public DataTable ListarTarifas(string UserName)
+        {
+            string cacheKey = $"ListarTarifas"; // Combinar los filtros para crear una clave única para la caché
+            MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
+                                                      // Verificar si ya existe el resultado en caché
+            if (cache.Contains(cacheKey))
+            {
+                return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
+            }
+
+            dtResultados = (new GeneralSoapClient()).ListaTipo_TarifaDique(UserName);          // Si no está en caché, llamar al servicio para obtener los datos
+
+            // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
+            CacheItemPolicy policy = new CacheItemPolicy
+            {
+                AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(30) // Expira en 30 minutos
+            };
+
+            cache.Add(cacheKey, dtResultados, policy);             // Almacenar el resultado en caché
+
+            return dtResultados;
+
+        }
+
+        [WebMethod(Description = "Listar tipos de solicitud")]
+        public DataTable ListarTiposSolicitud(string UserName)
+        {
+            try
+            {
+                string cacheKey = $"ListarTiposSolicitud"; // Combinar los filtros para crear una clave única para la caché
+                MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
+                                                          // Verificar si ya existe el resultado en caché
+                if (cache.Contains(cacheKey))
+                {
+                    return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
+                }
+
+                dtResultados = (new GeneralSoapClient()).ListaTipo_SolTrab(UserName);            // Si no está en caché, llamar al servicio para obtener los datos
+
+                // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
+                CacheItemPolicy policy = new CacheItemPolicy
+                {
+                    AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(30) // Expira en 30 minutos
+                };
+
+                cache.Add(cacheKey, dtResultados, policy);             // Almacenar el resultado en caché
+
+                return dtResultados;
+
+            }
+            catch (Exception ex)
+            {
+                // Si hay error, devolver un DataTable con el mensaje de error
+
+                dtError.Columns.Add("Error", typeof(string));
+                dtError.Rows.Add("Error en el servicio: " + ex.Message);
+                return dtError;
+            }
+        }
+        #endregion 
 
     }
 }

@@ -113,14 +113,58 @@ EasyDataResult = function (EasyDataInterConect) {
         formData.append("ParamsSW", lstParams);
         formData.append("ParamsSWTipo", lstParamsTipo);
         /*------------------------------------------------------------------------------------------------------------*/
-        //Inicial la impementacion sobreescrita del or procedimientos
+        //Inicia la impLementacion sobreescrita del LOS procedimientos (EasyDataInterConect.js)
         Request.onreadystatechange = function () {
             if (Request.readyState === XMLHttpRequest.DONE) {
                 if (Request.status === 200) {
+                    /* cambiado 21.01.2026
                     var TipoObj = Array.prototype.slice.call(Request.responseXML.all);
                     var itemsXml = null;
-                    if (TipoObj.length == 1) { throw new SIMA.DataException("No existen Datos"); }
 
+
+                    var TipoObj = Array.prototype.slice.call(Request.responseXML.all);
+
+                    if (TipoObj.length == 1) {
+                        throw new SIMA.DataException("No existen Datos");
+                    }
+                    */
+
+
+                    // Validar XML
+                    var xmlDoc = Request.responseXML;
+                    if (!xmlDoc || !xmlDoc.documentElement) {
+                 //       console.error("XML inválido. Texto recibido:", Request.responseText);
+                        throw new SIMA.DataException("La respuesta del servidor no contiene XML válido.");
+                    }
+
+                    // ESTE ES EL CAMBIO IMPORTANTE
+                    var TipoObj = xmlDoc.getElementsByTagName("*");
+                    /*
+                    console.log("XML recibido (raw):", Request.responseText);
+                    console.log("TipoObj length:", TipoObj.length);
+                    console.log("Primer nodo:", TipoObj[0]?.tagName);
+                    */
+
+                    if (TipoObj.length <= 1) {
+                        console.warn("Sin datos en XML. Retornando DataTable vacío.");
+                        var dt = new SIMA.Data.DataTable("tbl");
+                        dt.Rows = [];
+                        // Si tu patrón es síncrono:
+                        return dt;
+                        // Si es asíncrono con algún callback u objeto resultado:
+                        // this.OnSuccess && this.OnSuccess(dt);
+                        // return;
+                    }
+
+
+                    var nodoPrincipal = TipoObj[1];
+                    var tag = nodoPrincipal.tagName;
+
+               //     console.log("Nodo principal detectado:", tag);
+
+
+
+                    //******************************************* */
                     switch (TipoObj[1].tagName) {
                         case "Entity":
                             var NodoRaiz = "Entity";

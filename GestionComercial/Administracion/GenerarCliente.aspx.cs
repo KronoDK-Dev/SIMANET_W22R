@@ -86,7 +86,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     PropertyNameCaseInsensitive = true
                 };
 
-                var objeto = System.Text.Json.JsonSerializer.Deserialize<ResponseRuc>(sanitizedJson, options);
+                var objeto = System.Text.Json.JsonSerializer.Deserialize<ResponseRuc>(sanitizedJson, options); // Install-Package System.Text.Json -ProjectName SIMANET_W22R
 
                 sMensaje = objeto.Mensaje;
                 //PROV. CONST. DEL CALLAO

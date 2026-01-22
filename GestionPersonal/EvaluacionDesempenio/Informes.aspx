@@ -5,11 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Informes</title>
+    <!--  la funcion getBasePath()  esta en el:Header.ascx -->
 
     <!-- Bootstrap CSS -->
     
     <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  
+   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" /> -->
 
         <!-- Scripts -->
     <link id="cssPersonalizado" rel="stylesheet" />

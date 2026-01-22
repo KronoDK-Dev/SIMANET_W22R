@@ -1,29 +1,38 @@
 ﻿using Aspose.Cells;
+using ClosedXML.Excel;
 using EasyControlWeb;
 using EasyControlWeb.Filtro;
 using EasyControlWeb.Form;
 using EasyControlWeb.Form.Controls;
 using EasyControlWeb.InterConeccion;
+using EasyControlWeb.InterConecion;
+using Newtonsoft.Json;
+using OfficeOpenXml;
+using OfficeOpenXml.Table;
 using SIMANET_W22R.Controles;
 using SIMANET_W22R.Exceptiones;
 using SIMANET_W22R.InterfaceUI;
+using SIMANET_W22R.srvGeneral;
 using SIMANET_W22R.srvGestionCalidad;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using static System.Net.WebRequestMethods;
-using ClosedXML.Excel;
-using Newtonsoft.Json;
-using EasyControlWeb.InterConecion;
+
+
 
 namespace SIMANET_W22R.GestionReportes
 {
     public partial class ReportExploreV2 : ReporteBase,IPaginaBase
     {
+        string s_pto;
+        string s_Corregidos;
         public string[,] StyleBase
         {
             //         { "dos","https://www.jqueryscript.net/demo/Powerful-Multi-Functional-jQuery-Folder-Tree-Plugin-zTree/css/zTreeStyle/zTreeStyle.css" }
@@ -133,11 +142,8 @@ namespace SIMANET_W22R.GestionReportes
 
         #endregion
 
-
-
-        protected void prExportarExcel(object sender, ImageClickEventArgs e)
+        protected void prExportarExcel1(object sender, ImageClickEventArgs e)
         {
-
             
             EasyDataInterConect oEasyDataInterConect = (EasyDataInterConect)Session["objRpt"] ;
             string UrlApp = EasyUtilitario.Helper.Pagina.PathSite();// (string)Session["UrlApp"] ;
@@ -157,97 +163,113 @@ namespace SIMANET_W22R.GestionReportes
                 ds.Tables.Add(dt);
 
             }
-
             ExportDataTableToExcel(ds);
-
         }
 
-        public void ExportDataTableToExcel(DataSet ds)
+        // exportar a excel ibtn
+
+        protected void prExportarExcel(object sender, ImageClickEventArgs e)
         {
-            int iHojas=0;
-            iHojas = ds.Tables.Count;
-            DataTable my_dataTable = new DataTable();
-            if (iHojas == 1) 
-            {
-                 my_dataTable = ds.Tables[0];
-            }
-            
+            // Exportar a excel un reporte historico,si seleccionas el pdf y ejecuta este metodo , va buscar el excel histotico del servidor y lo descarga
+            string pathReporte = hdnPathRpt.Value?.Trim();
+            string fileName = null;
+            string filePath = null;
 
-            using (var workbook = new XLWorkbook())
+            try
             {
-                // Capturar la fecha actual del sistema
-                DateTime dfecha = DateTime.Now;
-                string sfecha = dfecha.ToString().Replace("/","_").Replace(":","-")  ;
+                if (!string.IsNullOrEmpty(pathReporte))
+                {
+                    // 🔹 1. Limpiar caracteres no imprimibles y espacios extra
+                    pathReporte = System.Text.RegularExpressions.Regex.Replace(pathReporte, @"[^\u0020-\u007E]", "").Trim();
 
-                if (iHojas == 1)
-                {
-                    var worksheet = workbook.Worksheets.Add("Datos_Sima");
-                    worksheet.Cell(1, 1).InsertTable(my_dataTable);
-                }
-                else // para varias tablas
-                {
-                    for (int i = 1; i <= iHojas; i++) 
-                    {
-                        var worksheet = workbook.Worksheets.Add("Datos_Sima"+ iHojas  );
-                        worksheet.Cell(1, 1).InsertTable(ds.Tables[i-1]);
-                    }
-                    
+                    // 🔹 2. Obtener nombre seguro del archivo (sin caracteres invisibles)
+                    fileName = Path.GetFileNameWithoutExtension(pathReporte);
+                    fileName = System.Text.RegularExpressions.Regex.Replace(fileName ?? "", @"[^\u0020-\u007E]", "").Trim() + ".xlsx";
+
+                    // 🔹 3. Convertir URL a ruta física
+                    filePath = ConvertirUrlARutaFisica(pathReporte, ".xlsx");
+
+                    // 🔹 4. Limpiar la ruta física final por si quedan caracteres extraños
+                    filePath = System.Text.RegularExpressions.Regex.Replace(filePath ?? "", @"[^\u0020-\u007E]", "").Trim();
                 }
 
+                // 🔹 5. Si hay sesión con archivo generado previamente
+                if (Session["archivoDescarga"] != null && !string.IsNullOrWhiteSpace(Session["archivoDescarga"].ToString()))
+                {
+                    filePath = Session["archivoDescarga"].ToString();
+                    filePath = System.Text.RegularExpressions.Regex.Replace(filePath ?? "", @"[^\u0020-\u007E]", "").Trim();
 
-                    // Configuración del Response para descargar el archivo
+                    fileName = Session["NombreArchivo"]?.ToString() ?? "archivo.xlsx";
+                    fileName = System.Text.RegularExpressions.Regex.Replace(fileName ?? "", @"[^\u0020-\u007E]", "").Trim();
+                }
+
+                // 🔹 6. Validar existencia del archivo
+                if (!string.IsNullOrEmpty(filePath) && System.IO.File.Exists(filePath))
+                {
                     Response.Clear();
-                    Response.Buffer = true;
                     Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    Response.AddHeader("content-disposition", "attachment;filename=RpExcel_" + sfecha + ".xlsx");
-                    using (var memoryStream = new System.IO.MemoryStream())
+                    Response.AddHeader("Content-Disposition", $"attachment; filename=\"{fileName}\"");
+                    Response.TransmitFile(filePath);
+                    Response.Flush();
+                    Response.SuppressContent = true; // evita errores de Response.End()
+                    HttpContext.Current.ApplicationInstance.CompleteRequest();
+                }
+                else
+                {
+                    // el nombre del archivo quizas no sea el correcto, probaremos con la variable de la session
+
+                    if (!string.IsNullOrEmpty(filePath) && System.IO.File.Exists(fileName))
                     {
-                        workbook.SaveAs(memoryStream);
-                        memoryStream.WriteTo(Response.OutputStream);
+                        Response.Clear();
+                        Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                        Response.AddHeader("Content-Disposition", $"attachment; filename=\"{fileName}\"");
+                        Response.TransmitFile(filePath);
                         Response.Flush();
-                        try
-                        {
-                            Response.End();
-                        }
-                        catch
-                        {
-                            HttpContext.Current.ApplicationInstance.CompleteRequest(); // ✅ Alternativa segura
-                        }
+                        Response.SuppressContent = true; // evita errores de Response.End()
+                        HttpContext.Current.ApplicationInstance.CompleteRequest();
+                    }
+                    else
+                    {
+                        // ahora el nombre del archivo si existe pero al buscarlo no existe la ruta completa, asi que completariamos en duro la ruta
 
+                        if (string.IsNullOrEmpty(filePath) && !System.IO.File.Exists(fileName) && !string.IsNullOrEmpty(fileName))
+                        {
+                            // armamos la ruta y validamos
+                            string usuario = Session["Login"].ToString();  // HttpContext.Current.User.Identity.Name;
+                            filePath = EasyUtilitario.Helper.Configuracion.Leer("ConfigBase", "PathFileRpt") + usuario + "\\" + fileName;
+                            //--- validamos
 
+                            Response.Clear();
+                            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                            Response.AddHeader("Content-Disposition", $"attachment; filename=\"{fileName}\"");
+                            Response.TransmitFile(filePath);
+                            Response.Flush();
+                            Response.SuppressContent = true; // evita errores de Response.End()
+                            HttpContext.Current.ApplicationInstance.CompleteRequest();
+
+                        }
+                        else
+                        {
+                            string mensaje = $"Archivo no encontrado (prExportarExcel): {filePath} | URL original: {pathReporte}";
+                            MostrarSweetAlert("Archivo no encontrado", mensaje, "warning");
+                        }
                     }
                 }
 
+                ClientScript.RegisterStartupScript(this.GetType(), "logRuta",
+                        $"console.log('Archivo generado: {filePath}');", true);
             }
             catch (Exception ex)
             {
-                if (ex.Message != "Subproceso anulado.")
-                {
-                    var result = "" + ex.Message + " " + s_Corregidos;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
-                    result = result.Replace("'", "");
-                    string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
-                    string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name + " pto=" + s_pto;
-                    this.LanzarException(methodName, ex); // error para el log
-                    Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
-                    string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
-                    /// retornamos el error
-                    ///  // Crear una tabla para almacenar el error
-                    DataTable dtError = new DataTable("Error");
-                    dtError.Columns.Add("Mensaje", typeof(string));
-                    dtError.Columns.Add("StackTrace", typeof(string));
+                s_pto = ex.Message + " " + filePath;
+                MostrarSweetAlert("Error:", s_pto, "warning");
+                ClientScript.RegisterStartupScript(this.GetType(), "logRuta",
+                        $"console.log('Archivo generado: {filePath}');", true);
 
-                    DataRow filaError = dtError.NewRow();
-                    filaError["Mensaje"] = ex.Message;
-                    filaError["StackTrace"] = ex.StackTrace;
-                    dtError.Rows.Add(filaError);
 
-                    // Agregar la tabla de error al DataSet
-                    ds.Tables.Add(dtError);
-
-                }
             }
         }
+
 
 
         /* using OfficeOpenXml;
@@ -255,11 +277,18 @@ namespace SIMANET_W22R.GestionReportes
         using System.IO;
         using System.Linq;
         EPPlus 4.5.3.2  OfficeOpenXml
+                  ANTES=>  Install-Package EPPlus -Version 4.5.3.2 -ProjectName SIMANET_W22R
+                  AHORA=>  Install-Package EPPlus -Version 7.7.1 -ProjectName "SIMANET_W22R"
+                           Install-Package System.Memory -Version 4.5.5 -ProjectName "SIMANET_W22R"
+     Nota: en caso haya referencias rotas: Install-Package Microsoft.IO.RecyclableMemoryStream -Version 2.3.2 -ProjectName "SIMANET_W22R"
+
+
          */
 
 
         public void ExportDataTableToExcel(DataSet ds)
         {
+            // metodo usado por el metodo: prExportarExcelDT vinculado al boton : ibtn2
             try
             {
                 int iHojas = ds.Tables.Count;
@@ -469,6 +498,175 @@ namespace SIMANET_W22R.GestionReportes
                 }
             }
         }
+
+        // 21.01.2026
+        /// Convierte una URL (ej: https://.../SIMANET_W22R/Archivos/HomeRptGen/file.pdf)
+        /// a la ruta física en el servidor, cambiando extensión si es necesario.
+        /// </summary>
+
+        private string ConvertirUrlARutaFisica(string url, string nuevaExtension = null)
+        {
+            try
+            {
+                //  1. Limpiar caracteres invisibles desde el inicio
+                url = System.Text.RegularExpressions.Regex.Replace(url, @"[^\u0020-\u007E]", "").Trim();
+
+                string relativeFromArchivos = "";
+
+                //  2. Caso especial: debug local (URL contiene localhost o 127.0.0.1)
+                if (!string.IsNullOrEmpty(url) && (url.Contains("localhost") || url.Contains("127.0.0.1")))
+                {
+                    int idx = url.IndexOf("/Archivos/", StringComparison.OrdinalIgnoreCase);
+                    if (idx >= 0)
+                    {
+                        relativeFromArchivos = url.Substring(idx + "/Archivos/".Length);
+                    }
+                    else
+                    {
+                        throw new Exception("No se encontró la carpeta /Archivos/ en la URL local: " + url);
+                    }
+                }
+                else if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
+                {
+                    //  3. Procesar como URL absoluta
+                    Uri uri = new Uri(url);
+                    string absPath = uri.AbsolutePath;
+
+                    int idx = absPath.IndexOf("/Archivos/", StringComparison.OrdinalIgnoreCase);
+                    if (idx >= 0)
+                    {
+                        relativeFromArchivos = absPath.Substring(idx + "/Archivos/".Length);
+                    }
+                    else
+                    {
+                        throw new Exception("No se encontró la carpeta /Archivos/ en la URL: " + url);
+                    }
+                }
+                else
+                {
+                    //  4. Caso: ya es una ruta relativa desde Archivos
+                    relativeFromArchivos = url;
+                    if (relativeFromArchivos.StartsWith("/Archivos/", StringComparison.OrdinalIgnoreCase))
+                    {
+                        relativeFromArchivos = relativeFromArchivos.Substring("/Archivos/".Length);
+                    }
+                }
+
+                //  5. Normalizar separadores y limpiar caracteres invisibles otra vez
+                relativeFromArchivos = System.Text.RegularExpressions.Regex.Replace(relativeFromArchivos, @"[^\u0020-\u007E]", "");
+                relativeFromArchivos = relativeFromArchivos.Replace("\\", "/").Replace("//", "/").Trim();
+
+                //  6. Eliminar querystring
+                int q = relativeFromArchivos.IndexOf('?');
+                if (q >= 0) relativeFromArchivos = relativeFromArchivos.Substring(0, q);
+
+                //  7. Cambiar extensión si se indica
+                if (!string.IsNullOrEmpty(nuevaExtension))
+                {
+                    int punto = relativeFromArchivos.LastIndexOf('.');
+                    if (punto > 0)
+                        relativeFromArchivos = relativeFromArchivos.Substring(0, punto) + nuevaExtension;
+                }
+
+                //  8. Obtener ruta base desde configuración
+                string rutaBase = ConfigurationManager.AppSettings["RutaBaseReportes"];
+                if (string.IsNullOrEmpty(rutaBase))
+                    throw new Exception("No se encontró la clave 'RutaBaseReportes' en web.config.");
+
+                // Normalizar ruta base
+                rutaBase = rutaBase.TrimEnd('\\').TrimEnd('/') + "\\";
+
+                //  9. Combinar usando Path.Combine (seguro)
+                string physicalPath = Path.Combine(rutaBase, relativeFromArchivos.Replace("/", "\\"));
+
+                //  10. Limpieza final (por si queda algo raro)
+                physicalPath = System.Text.RegularExpressions.Regex.Replace(physicalPath, @"[^\u0020-\u007E]", "");
+
+                //  11. Logs para depuración
+                System.Diagnostics.Debug.WriteLine($"[DEBUG] URL original: {url}");
+                System.Diagnostics.Debug.WriteLine($"[DEBUG] relativeFromArchivos limpio: '{relativeFromArchivos}'");
+                System.Diagnostics.Debug.WriteLine($"[DEBUG] physicalPath final: '{physicalPath}'");
+
+                return physicalPath;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[ConvertirUrlARutaFisica ERROR] {ex.Message} | URL: {url}");
+                return null;
+            }
+        }
+        protected void prExportarExcelDT(object sender, ImageClickEventArgs e)
+        {
+            EasyDataInterConect oEasyDataInterConect = (EasyDataInterConect)Session["objRpt"];
+            string UrlApp = EasyUtilitario.Helper.Pagina.PathSite();// (string)Session["UrlApp"] ;
+            object objResult;
+            if (oEasyDataInterConect != null)
+            {
+                // traemos la data,
+                // 05.05.2025 usamos el servicio con tiempo ampliado InvokeWebService2
+                // debemos retulizar el proceso ya realizado para ahorar tiempo
+                // Session["o_objResult"] variable de session llenada en la pantalla GenerarPDF.aspx metodo: ProcessRequest
+
+
+                if (Session["o_objResult"] != null)
+                {
+                    // Ya existe un objeto en sesión
+                    objResult = Session["o_objResult"];
+                }
+                else
+                {
+                    objResult = EasyWebServieHelper.InvokeWebService2(UrlApp, oEasyDataInterConect);
+                    Session["o_objResult"] = objResult; // para la siguiente exportacion
+                }
+
+
+                DataSet ds = new DataSet();
+
+                if (objResult is DataSet dataset)
+                {
+                    ds = dataset;
+                }
+                else if (objResult is DataTable datatable)
+                {
+                    ds.Tables.Add(datatable.Copy());
+                }
+                else
+                {
+                    // Error: tipo inesperado
+                    throw new InvalidCastException("El resultado no es un DataSet ni un DataTable.");
+                }
+
+                ExportDataTableToExcel(ds);
+            }
+            else
+            {
+                if (Session["DataXLS"] != null)
+                {
+                    DataSet ds = (DataSet)Session["DataXLS"];
+                    ExportDataTableToExcel(ds);
+                }
+
+
+            }
+        }
+        private void MostrarSweetAlert(string titulo, string mensaje, string icono)
+        {
+            string script = $"Swal.fire('{titulo}', '{mensaje}', '{icono}');";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alerta", script, true);
+        }
+
+        public static bool EsFechaValidaParaExcel(string fechaStr, out DateTime fechaValida)
+        {
+            // Intentar convertir la cadena a DateTime
+            if (DateTime.TryParse(fechaStr, out fechaValida))
+            {
+                DateTime fechaMinima = new DateTime(1900, 1, 1);
+                DateTime fechaMaxima = new DateTime(9999, 12, 31);
+                return fechaValida >= fechaMinima && fechaValida <= fechaMaxima;
+            }
+            return false; // Si no se puede convertir, la fecha no es válida
+        }
+
 
     }
 }

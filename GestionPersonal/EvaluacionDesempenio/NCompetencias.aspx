@@ -20,6 +20,9 @@
      <link rel="stylesheet" type="text/css" href="/SIMANET_W22R/Recursos/css/Personalizado.css" /> -->
  <!-- CSS que falta -->
   <!--   <link rel="stylesheet" href="/SIMANET_W22R/Recursos/css/bootstrap.min.css" />  -->
+
+    <!--  la funcion getBasePath()  esta en el:Header.ascx -->
+
     <link id="cssPersonalizado" rel="stylesheet" />
     <script>
         window.addEventListener('DOMContentLoaded', function () {

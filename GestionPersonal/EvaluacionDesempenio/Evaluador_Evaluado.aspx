@@ -21,6 +21,8 @@
     <!-- CSS que falta -->          <!--    estilo para downdroplist bootstrap 4: form-control  para bootsrap 5: form-select -->
     <!-- <link rel="stylesheet" href="/SIMANET_W22R/Recursos/css/bootstrap.min.css" />  -->
 
+    <!--  la funcion getBasePath()  esta en el:Header.ascx -->
+
      <link id="cssPersonalizado" rel="stylesheet" />
     <script>
         window.addEventListener('DOMContentLoaded', function () {
