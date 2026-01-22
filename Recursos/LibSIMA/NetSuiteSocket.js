@@ -394,11 +394,9 @@ NetSuite.Manager.Infinity.WorkingFrame = function ()
 
 
     // Validar que UsuarioBE exista antes de usarlo
-
-
     if (typeof UsuarioBE === "undefined") {
         if (!UsuarioBEWarningShown) {
-            console.error(" UsuarioBE no está definido en el contexto del cliente. No se puede iniciar el chat.");
+            console.warn(" UsuarioBE no está definido en el contexto del cliente. No se puede iniciar el chat.");
             UsuarioBEWarningShown = true; // Evita mostrarlo más veces
         }
         return;
@@ -436,7 +434,7 @@ NetSuite.Manager.Infinity.WorkingFrame = function ()
     if (NetSuite.LiveChat instanceof WebSocket) {
         NetSuite.LiveChat.LinkService = null;//Funcion que permite el enlace de la implementacion LibBroker
         /*----------------------------------------------------------------------------------------------------------------*/
-        /*Eventoa de conectividad*/
+        /*Evento de conectividad*/
         /*----------------------------------------------------------------------------------------------------------------*/
         NetSuite.LiveChat.onclose = function (event) {
             NetSuite.Manager.Infinity.User.Contectado = false;
