@@ -1,0 +1,2233 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C2B4FF85-0956-47F4-A783-8CCCDB150FC4}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SIMANET_W22R</RootNamespace>
+    <AssemblyName>SIMANET_W22R</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44377</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=25.12.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>packages\Aspose.Cells.25.12.0\lib\net461\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.105.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>packages\ClosedXML.0.105.0\lib\netstandard2.0\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML.Parser, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1d5f7376574c51ec, processorArchitecture=MSIL">
+      <HintPath>packages\ClosedXML.Parser.2.0.0\lib\netstandard2.0\ClosedXML.Parser.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.CrystalReports.Engine.1.0.0\lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.ClientDoc.13.0.4000\lib\net40\CrystalDecisions.ReportAppServer.ClientDoc.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommLayer, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.CommLayer.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.CommLayer.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonControls, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.CommonControls.13.0.4000\lib\net40\CrystalDecisions.ReportAppServer.CommonControls.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.CommonObjectModel.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.CommonObjectModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Controllers, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.Controllers.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.Controllers.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CubeDefModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.CubeDefModel.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.CubeDefModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.DataDefModel.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.DataDefModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ReportDefModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.ReportDefModel.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.ReportDefModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.ReportSource.1.0.0\lib\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.Shared.13.0.4003\lib\net40\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=3.1.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.3.1.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml.Framework, Version=3.1.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.Framework.3.1.1\lib\net46\DocumentFormat.OpenXml.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=6.2.14.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.6.2.14\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.Interfaces.6.1.1\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="Irony, Version=1.0.11.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>packages\Irony.NetCore.1.0.11\lib\net461\Irony.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.barcodes, Version=9.4.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.9.4.0\lib\net461\itext.barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.bouncy-castle-connector, Version=9.4.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.9.4.0\lib\net461\itext.bouncy-castle-connector.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.commons, Version=9.4.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.commons.9.4.0\lib\net461\itext.commons.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.forms, Version=9.4.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.9.4.0\lib\net461\itext.forms.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.io, Version=9.4.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.9.4.0\lib\net461\itext.io.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.kernel, Version=9.4.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.9.4.0\lib\net461\itext.kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.layout, Version=9.4.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.9.4.0\lib\net461\itext.layout.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfa, Version=9.4.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.9.4.0\lib\net461\itext.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfua, Version=9.4.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.9.4.0\lib\net461\itext.pdfua.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.sign, Version=9.4.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.9.4.0\lib\net461\itext.sign.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.styledxmlparser, Version=9.4.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.9.4.0\lib\net461\itext.styledxmlparser.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.svg, Version=9.4.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.9.4.0\lib\net461\itext.svg.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.10.0.1\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=10.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Caching.Abstractions.10.0.1\lib\net462\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.8.0.1\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=10.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.10.0.1\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.8.0.1\lib\net462\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=10.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.10.0.1\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=10.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Options.10.0.1\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=10.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Primitives.10.0.1\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=6.2.3.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp.6.2.3\lib\netstandard2.0\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.BarCodes, Version=6.2.3.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp.6.2.3\lib\netstandard2.0\PdfSharp.BarCodes.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=6.2.3.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp.6.2.3\lib\netstandard2.0\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Cryptography, Version=6.2.3.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp.6.2.3\lib\netstandard2.0\PdfSharp.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Quality, Version=6.2.3.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp.6.2.3\lib\netstandard2.0\PdfSharp.Quality.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Shared, Version=6.2.3.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp.6.2.3\lib\netstandard2.0\PdfSharp.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Snippets, Version=6.2.3.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp.6.2.3\lib\netstandard2.0\PdfSharp.Snippets.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.System, Version=6.2.3.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp.6.2.3\lib\netstandard2.0\PdfSharp.System.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.WPFonts, Version=6.2.3.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp.6.2.3\lib\netstandard2.0\PdfSharp.WPFonts.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="RBush, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c77e27b81f4d0187, processorArchitecture=MSIL">
+      <HintPath>packages\RBush.Signed.4.0.0\lib\net47\RBush.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>packages\SixLabors.ImageSharp.2.1.13\lib\net472\SixLabors.ImageSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=10.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.DiagnosticSource.10.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.FileSystem.AccessControl.5.0.0\lib\net461\System.IO.FileSystem.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.Packaging.6.0.0\lib\net461\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.AccessControl.6.0.1\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=8.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Pkcs.8.0.1\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=6.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Xml.6.0.2\lib\net461\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\simanet_w22r.vswh\e1000b11\_shadow\714e2945\12204\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.RegularExpressions.4.3.1\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="XLParser, Version=1.5.2.0, Culture=neutral, PublicKeyToken=63397e1e46bb91b4, processorArchitecture=MSIL">
+      <HintPath>packages\XLParser.1.5.2\lib\net461\XLParser.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\srvCliente\Cliente.wsdl" />
+    <Content Include="Connected Services\srvCliente\SIMANET_W22R.srvCliente.ClienteBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\srvCliente\SIMANET_W22R.srvCliente.EmbarcacionBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\srvGeneral\General.wsdl" />
+    <None Include="Connected Services\srvGestionCalidad\ControlInspecciones.wsdl" />
+    <Content Include="Connected Services\srvGestionCalidad\SIMANET_W22R.srvGestionCalidad.InspeccionBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\srvGestionCalidad\SIMANET_W22R.srvGestionCalidad.InspectorBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\srvGestionCalidad\SIMANET_W22R.srvGestionCalidad.ProyectoActividadBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\srvGestionCalidad\SIMANET_W22R.srvGestionCalidad.ResponsableAreaBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\srvGestionCalidad\SIMANET_W22R.srvGestionCalidad.ResponsableAreaDetalleBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\srvGestionComercial\Solicitud.wsdl" />
+    <None Include="Connected Services\srvGestionContabilidad\contabilidad.wsdl" />
+    <None Include="Connected Services\srvGestionCostos\Costos.wsdl" />
+    <None Include="Connected Services\srvGestionCalidad\ControlInspecciones.disco" />
+    <None Include="Connected Services\srvGestionCalidad\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionCalidad\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionCalidad\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\srvGestionCostos\SIMANET_W22R.srvGestionCostos.Listar_Costo_Prod_Linea_Neg_DetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\srvGestionFinanciera\Reportes.wsdl" />
+    <None Include="Connected Services\srvGestionLogistica\logistica.wsdl" />
+    <None Include="Connected Services\srvGestionPersonal\Personal.wsdl" />
+    <None Include="Connected Services\srvGestionFinanciera\Reportes.disco" />
+    <None Include="Connected Services\srvGestionFinanciera\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionFinanciera\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionFinanciera\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\srvGestionPersonal\SIMANET_W22R.srvGestionPersonal.PersonalUbicacionBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\srvGestionPresupuesto\presupuesto.wsdl" />
+    <None Include="Connected Services\srvGestionProduccion\Produccion.wsdl" />
+    <None Include="Connected Services\srvGestionProd_Mantenimiento\Mantenimiento.wsdl" />
+    <None Include="Connected Services\srvGestionProyecto\Proyecto.wsdl" />
+    <None Include="Connected Services\srvGestionLogistica\logistica.disco" />
+    <None Include="Connected Services\srvGestionLogistica\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionLogistica\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionLogistica\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvGestionComercial\Solicitud.disco" />
+    <None Include="Connected Services\srvGestionComercial\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionComercial\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionComercial\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvGestionContabilidad\contabilidad.disco" />
+    <None Include="Connected Services\srvGestionContabilidad\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionContabilidad\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionContabilidad\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvGestionCostos\Costos.disco" />
+    <None Include="Connected Services\srvGestionCostos\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionCostos\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionCostos\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvGestionPersonal\Personal.disco" />
+    <None Include="Connected Services\srvGestionPersonal\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionPersonal\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionPersonal\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvGestionPresupuesto\presupuesto.disco" />
+    <None Include="Connected Services\srvGestionPresupuesto\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionPresupuesto\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionPresupuesto\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvGestionProduccion\Produccion.disco" />
+    <None Include="Connected Services\srvGestionProduccion\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionProduccion\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionProduccion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvGestionProd_Mantenimiento\Mantenimiento.disco" />
+    <None Include="Connected Services\srvGestionProd_Mantenimiento\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionProd_Mantenimiento\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionProd_Mantenimiento\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\srvGestionProyecto\SIMANET_W22R.srvGestionProyecto.ProyectoBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\srvGestionReportes\AdministrarReportes.disco" />
+    <None Include="Connected Services\srvGestionReportes\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionReportes\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionReportes\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvGestionTesoreria\Tesoreria.wsdl" />
+    <None Include="Connected Services\srvHelpDesk\AdministrarHD.wsdl" />
+    <Content Include="Connected Services\srvHelpDesk\SIMANET_W22R.srvHelpDesk.PlanCronogramaActividadTareaBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\srvHelpDesk\SIMANET_W22R.srvHelpDesk.PlandeTrabajoBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\srvHelpDesk\SIMANET_W22R.srvHelpDesk.RequerimientoBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\srvITIL\GestiondeConfiguracion.wsdl" />
+    <Content Include="Connected Services\srvITIL\SIMANET_W22R.srvITIL.ProcedimientoNotaBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\srvITIL\SIMANET_W22R.srvITIL.ServicioBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\srvLog_ActivoFijo\activofijo.wsdl" />
+    <None Include="Connected Services\srvProyectos\Proyectos.wsdl" />
+    <None Include="Connected Services\srvGestionProyecto\Proyecto.disco" />
+    <None Include="Connected Services\srvGestionProyecto\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionProyecto\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionProyecto\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvHelpDesk\AdministrarHD.disco" />
+    <None Include="Connected Services\srvHelpDesk\configuration91.svcinfo" />
+    <None Include="Connected Services\srvHelpDesk\configuration.svcinfo" />
+    <None Include="Connected Services\srvHelpDesk\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvITIL\GestiondeConfiguracion.disco" />
+    <None Include="Connected Services\srvITIL\configuration91.svcinfo" />
+    <None Include="Connected Services\srvITIL\configuration.svcinfo" />
+    <None Include="Connected Services\srvITIL\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\srvProyectos\SIMANET_W22R.srvProyectos.ProyectoBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\srvSeguridad\Seguridad.disco" />
+    <None Include="Connected Services\srvSeguridad\configuration91.svcinfo" />
+    <None Include="Connected Services\srvSeguridad\configuration.svcinfo" />
+    <None Include="Connected Services\srvSeguridad\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvGeneral\General.disco" />
+    <None Include="Connected Services\srvGeneral\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGeneral\configuration.svcinfo" />
+    <None Include="Connected Services\srvGeneral\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvCliente\Cliente.disco" />
+    <None Include="Connected Services\srvCliente\configuration91.svcinfo" />
+    <None Include="Connected Services\srvCliente\configuration.svcinfo" />
+    <None Include="Connected Services\srvCliente\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvGestionTesoreria\Tesoreria.disco" />
+    <None Include="Connected Services\srvGestionTesoreria\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionTesoreria\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionTesoreria\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvLog_ActivoFijo\activofijo.disco" />
+    <None Include="Connected Services\srvLog_ActivoFijo\configuration91.svcinfo" />
+    <None Include="Connected Services\srvLog_ActivoFijo\configuration.svcinfo" />
+    <None Include="Connected Services\srvLog_ActivoFijo\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvProyectos\Proyectos.disco" />
+    <None Include="Connected Services\srvProyectos\configuration91.svcinfo" />
+    <None Include="Connected Services\srvProyectos\configuration.svcinfo" />
+    <None Include="Connected Services\srvProyectos\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Controles\Header.ascx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="FooterDefault.aspx" />
+    <Content Include="General\EasyDataInterConectPrc.aspx" />
+    <Content Include="General\TablasGenerales.asmx" />
+    <Content Include="GestionActivoFijo\Activo\Activo.asmx" />
+    <Content Include="GestionActivoFijo\Custodio\Custodio.asmx" />
+    <Content Include="GestionComercial\Administracion\Clientes.aspx" />
+    <Content Include="GestionComercial\Administracion\Embarcaciones.aspx" />
+    <Content Include="GestionComercial\Administracion\GenerarCliente.aspx" />
+    <Content Include="GestionComercial\Administracion\GenerarEmbarcacion2.aspx" />
+    <Content Include="GestionComercial\Administracion\GenerarProyecto.aspx" />
+    <Content Include="GestionComercial\Administracion\GenerarSolicitud.aspx" />
+    <Content Include="GestionComercial\Administracion\Proyectos.aspx" />
+    <Content Include="GestionComercial\Administracion\SolicitudTrabajo.aspx" />
+    <Content Include="GestionComercial\Proceso.asmx" />
+    <Content Include="GestionContabilidad\Balance\Balance.asmx" />
+    <Content Include="GestionContabilidad\Cobros\Cobros.asmx" />
+    <Content Include="GestionContabilidad\Estados\Estados.asmx" />
+    <Content Include="GestionContabilidad\General\General.asmx" />
+    <Content Include="GestionContabilidad\Operaciones\Operaciones.asmx" />
+    <Content Include="GestionContabilidad\Pagos\Pagos.asmx" />
+    <Content Include="GestionCostos\Costos\Costos.asmx" />
+    <Content Include="GestionCostos\Pagos\Pagos.asmx" />
+    <Content Include="GestionCostos\Ventas\Ventas.asmx" />
+    <Content Include="GestiondeCalidad\AdministrarActividadxProyecto.aspx" />
+    <Content Include="GestiondeCalidad\AdministrarDetallePorResponsabledeArea.aspx" />
+    <Content Include="GestiondeCalidad\AdministrarInspecion.aspx" />
+    <Content Include="GestiondeCalidad\AdministrarProyecto.aspx" />
+    <Content Include="GestiondeCalidad\AdministrarSolicitudAprobacion.aspx" />
+    <Content Include="GestiondeCalidad\AdminstrarUsuariosFirmantes.aspx" />
+    <Content Include="GestiondeCalidad\AdmnistrarRespuestaResponsableArea.aspx" />
+    <Content Include="GestiondeCalidad\ConfigurarFirmasAprobadores.aspx" />
+    <Content Include="GestiondeCalidad\DetalleInspeccion.aspx" />
+    <Content Include="GestiondeCalidad\DetalleProyecto.aspx" />
+    <Content Include="GestiondeCalidad\DetalleRespuestaResponsableArea.aspx" />
+    <Content Include="GestiondeCalidad\EnviarPorCorreo.aspx" />
+    <Content Include="GestiondeCalidad\FindAprobadorRI.aspx" />
+    <Content Include="GestiondeCalidad\HistorialdeInspeccion.aspx" />
+    <Content Include="GestiondeCalidad\ListarActividades.aspx" />
+    <Content Include="GestiondeCalidad\ListaReporteIndicadores.aspx" />
+    <Content Include="GestiondeCalidad\ListarReposanbleAprobacion.aspx" />
+    <Content Include="GestiondeCalidad\Proceso.asmx" />
+    <Content Include="GestiondeCalidad\Proceso.aspx" />
+    <Content Include="GestionFinanciera\EstadosFinancieros.asmx" />
+    <Content Include="GestionGobernanza\Indicadores\AdministrarObjetivosAcciones.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\ConfiguracionIndicadoresXArea.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\DetalleAcciones.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\DetalleAreaIndicador.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\DetalleIndicador.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\DetalleObjetivo.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\ListadodeMetasPorArea.aspx" />
+    <Content Include="GestionLogistica\ActivoFijo\Bienes.asmx" />
+    <Content Include="GestionLogistica\Almacen\Almacen.asmx" />
+    <Content Include="GestionLogistica\General\General.asmx" />
+    <Content Include="GestionLogistica\Materiales\Materiales.asmx" />
+    <Content Include="GestionLogistica\Ordenes\Ordenes.asmx" />
+    <Content Include="GestionLogistica\Proveedores\Proveedores.asmx" />
+    <Content Include="GestionLogistica\Proyectos\Proyectos.asmx" />
+    <Content Include="GestionLogistica\Requerimientos\Requerimientos.asmx" />
+    <Content Include="GestionLogistica\Servicios\Servicios.asmx" />
+    <Content Include="GestionLogistica\Stock\Stock.asmx" />
+    <Content Include="GestionPersonal\EvaluacionDesempenio\Calibracion.aspx" />
+    <Content Include="GestionPersonal\EvaluacionDesempenio\Evaluacion.aspx" />
+    <Content Include="GestionPersonal\EvaluacionDesempenio\Evaluador_Evaluado.aspx" />
+    <Content Include="GestionPersonal\EvaluacionDesempenio\Evaluados.aspx" />
+    <Content Include="GestionPersonal\EvaluacionDesempenio\GenerarExcel.aspx" />
+    <Content Include="GestionPersonal\EvaluacionDesempenio\GenerarPDF.aspx" />
+    <Content Include="GestionPersonal\EvaluacionDesempenio\GraficoTest.aspx" />
+    <Content Include="GestionPersonal\EvaluacionDesempenio\Informes.aspx" />
+    <Content Include="GestionPersonal\EvaluacionDesempenio\NCompetencias.aspx" />
+    <Content Include="GestionPersonal\EvaluacionDesempenio\NObjetivos.aspx" />
+    <Content Include="GestionPersonal\EvaluacionDesempenio\Retroalimentacion.aspx" />
+    <Content Include="GestionPersonal\EvaluacionDesempenio\retroalimentacionprint.aspx" />
+    <Content Include="GestionPresupuesto\Ordenes\Ordenes.asmx" />
+    <Content Include="GestionProduccion\General\General.asmx" />
+    <Content Include="GestionProduccion\Mantenimiento\Mantenimiento.asmx" />
+    <Content Include="GestionProduccion\Materiales\Materiales.asmx" />
+    <Content Include="GestionProduccion\Mob\ManoObra.asmx" />
+    <Content Include="GestionProduccion\Ordenes\Ordenes.asmx" />
+    <Content Include="GestionProduccion\OT\Actividades_OT.aspx" />
+    <Content Include="GestionProduccion\OT\Descripcion_OT.aspx" />
+    <Content Include="GestionProduccion\OT\OrdenTrabajo.asmx" />
+    <Content Include="GestionProduccion\Proyectos.asmx" />
+    <Content Include="GestionProduccion\Submarinos\Submarinos.asmx" />
+    <Content Include="GestionProduccion\Valorizacion\Valorizacion.asmx" />
+    <Content Include="GestionProyecto\Adquisiciones\Adquisiciones.asmx" />
+    <Content Include="GestionProyecto\Balance\Balance.asmx" />
+    <Content Include="GestionProyecto\Facturacion\Facturacion.asmx" />
+    <Content Include="GestionProyecto\FlujoCaja\FlujoCaja.asmx" />
+    <Content Include="GestionProyecto\Materiales\Materiales.asmx" />
+    <Content Include="GestionProyecto\Mob\ManoObra.asmx" />
+    <Content Include="GestionProyecto\Ordenes\Ordenes.asmx" />
+    <Content Include="GestionProyecto\OT\OrdenTrabajo.asmx" />
+    <Content Include="GestionProyecto\Pagos\Pagos.asmx" />
+    <Content Include="GestionProyecto\Proyecto.asmx" />
+    <Content Include="GestionReportes\AdministrarMapeoCampos.aspx" />
+    <Content Include="GestionReportes\AdministrarPropiedades.aspx" />
+    <Content Include="GestionReportes\AdministrarReporte.aspx" />
+    <Content Include="GestionReportes\DetalleCarpeta.aspx" />
+    <Content Include="GestionReportes\DetalleConfiguraParametro.aspx" />
+    <Content Include="GestionReportes\DetalleObjetoSeccion.aspx" />
+    <Content Include="GestionReportes\DetalleObjeto_Reporte.aspx" />
+    <Content Include="GestionReportes\DetalleReporte.aspx" />
+    <Content Include="GestionReportes\GenerarPdf.aspx" />
+    <Content Include="GestionReportes\PortafolioPBI.aspx" />
+    <Content Include="GestionReportes\Procesar.asmx" />
+    <Content Include="GestionReportes\ReporteCompartir.aspx" />
+    <Content Include="GestionReportes\ReportExplore.aspx" />
+    <Content Include="GestionReportes\ReportExploreV2.aspx" />
+    <Content Include="GestionReportes\ReportParams.aspx" />
+    <Content Include="GestionReportes\ReportPrevio.aspx" />
+    <Content Include="GestionReportes\RptPrevioInPopup.aspx" />
+    <Content Include="GestionReportes\UsuarioCompartido.aspx" />
+    <Content Include="GestionTesoreria\Balance\Balance.asmx" />
+    <Content Include="GestionTesoreria\Cobros\Cobros.asmx" />
+    <Content Include="GestionTesoreria\Pagos\Pagos.asmx" />
+    <Content Include="HelpDesk\Atencion\AdmAtencionActXUseReq.aspx" />
+    <Content Include="HelpDesk\Atencion\AdministraGantt.aspx" />
+    <Content Include="HelpDesk\Atencion\AdministrarAtenciondeRequerimiento.aspx" />
+    <Content Include="HelpDesk\Atencion\AdministrarEstadoAtencionReque.aspx" />
+    <Content Include="HelpDesk\Atencion\AdministrarPlandeTrabajo.aspx" />
+    <Content Include="HelpDesk\Atencion\AdministrarTaskTimeLine.aspx" />
+    <Content Include="HelpDesk\Atencion\BuscarPersonal.aspx" />
+    <Content Include="HelpDesk\Atencion\DetalleItemCronograma.aspx" />
+    <Content Include="HelpDesk\Atencion\DetallePlanTrabajo.aspx" />
+    <Content Include="HelpDesk\Atencion\DetalleTaskTimeLine.aspx" />
+    <Content Include="HelpDesk\Atencion\ListarAnalistaAtencion.aspx" />
+    <Content Include="HelpDesk\Atencion\ListarTareas.aspx" />
+    <Content Include="HelpDesk\BandejaEntrada\AdministrarAtencion.aspx" />
+    <Content Include="HelpDesk\BandejaEntrada\ListarSprint.aspx" />
+    <Content Include="HelpDesk\BandejaEntrada\SprintAgilCargaPorTrabajador.aspx" />
+    <Content Include="HelpDesk\ChatBot\EasyNetLiveChat.aspx" />
+    <Content Include="HelpDesk\ChatBot\EasyNetLiveChatFind.aspx" />
+    <Content Include="HelpDesk\ChatBot\ListarServiciosIncidencias.aspx" />
+    <Content Include="HelpDesk\Configuracion\AdministraServicioPorArea.aspx" />
+    <Content Include="HelpDesk\HDProcesos.asmx" />
+    <Content Include="HelpDesk\Incidencia\DetalleIncidnecia.aspx" />
+    <Content Include="HelpDesk\Incidencia\ListarIncidenciaPorArea.aspx" />
+    <Content Include="HelpDesk\ITIL\AdministrarActividadProcedimiento.aspx" />
+    <Content Include="HelpDesk\ITIL\AdministrarActividadPuntoInOut.aspx" />
+    <Content Include="HelpDesk\ITIL\AdministrarComponentesdeActividad.aspx" />
+    <Content Include="HelpDesk\ITIL\AdministrarDetalleAccion.aspx" />
+    <Content Include="HelpDesk\ITIL\AdministrarServicios.aspx" />
+    <Content Include="HelpDesk\ITIL\BaseServioAreaDisponibles.aspx" />
+    <Content Include="HelpDesk\ITIL\DetalledeNota.aspx" />
+    <Content Include="HelpDesk\ITIL\DetalleRqrServicio.aspx" />
+    <Content Include="HelpDesk\ITIL\DetalleServicio.aspx" />
+    <Content Include="HelpDesk\ITIL\ListarServicioXArea.aspx" />
+    <Content Include="HelpDesk\Procesar.asmx" />
+    <Content Include="HelpDesk\Requerimiento\AdministrarAprobaciondeRequerimiento.aspx" />
+    <Content Include="HelpDesk\Requerimiento\AdministrarRequerimiento.aspx" />
+    <Content Include="HelpDesk\Requerimiento\DetalleRequerimiento.aspx" />
+    <Content Include="HelpDesk\Requerimiento\ListarServicioXAreaRQR.aspx" />
+    <Content Include="HelpDesk\Servicios\Administrar.aspx" />
+    <Content Include="HelpDesk\Servicios\AdministrarActividadesXProducto.aspx" />
+    <Content Include="HelpDesk\Servicios\AdministrarAreaXProducto.aspx" />
+    <Content Include="HelpDesk\Servicios\AdministrarCopiaArea.aspx" />
+    <Content Include="HelpDesk\Servicios\DetalleComponentesServicio.aspx" />
+    <Content Include="HelpDesk\Servicios\DetalleComponentesServicio_Actividad.aspx" />
+    <Content Include="HelpDesk\Servicios\DetalleComponentesServicio_Area.aspx" />
+    <Content Include="HelpDesk\Servicios\DetalleComponentesServicio_StakeHolder.aspx" />
+    <Content Include="HelpDesk\Servicios\DetalleResponsable.aspx" />
+    <Content Include="HelpDesk\Servicios\DetalleServicio_Proceso.aspx" />
+    <Content Include="HelpDesk\Sistemas\Administrar.aspx" />
+    <Content Include="HelpDesk\Sistemas\AdministrarAprobacion.aspx" />
+    <Content Include="HelpDesk\Sistemas\AdministrarDiccionario.aspx" />
+    <Content Include="HelpDesk\Sistemas\AdministrarDocTimeLine.aspx" />
+    <Content Include="HelpDesk\Sistemas\AdministrarElementos.aspx" />
+    <Content Include="HelpDesk\Sistemas\AdministrarPoint_In_Out.aspx" />
+    <Content Include="HelpDesk\Sistemas\AdministrarStakeHolders.aspx" />
+    <Content Include="HelpDesk\Sistemas\BaseControlCambios.aspx" />
+    <Content Include="HelpDesk\Sistemas\BaseDiccionarioDatos.aspx" />
+    <Content Include="HelpDesk\Sistemas\BaseHelpDesk.aspx" />
+    <Content Include="HelpDesk\Sistemas\BaseStakeHolders.aspx" />
+    <Content Include="HelpDesk\Sistemas\DetalleElementos.aspx" />
+    <Content Include="HelpDesk\Sistemas\DetallePoint_In.aspx" />
+    <Content Include="HelpDesk\Sistemas\DetalleSistema_Proceso.aspx" />
+    <Content Include="HelpDesk\Sistemas\DetalleStakeHolder.aspx" />
+    <Content Include="HelpDesk\Sistemas\HelpDeskListarAtenciones.aspx" />
+    <Content Include="HelpDesk\Sistemas\ListadeAprobadores.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Recursos\css\1.4.1.bootstrap-datepicker3.css" />
+    <Content Include="Recursos\css\Alerts.css" />
+    <Content Include="Recursos\css\bootstrap-icons.css" />
+    <Content Include="Recursos\css\bootstrap.min.css" />
+    <Content Include="Recursos\css\EasyNetLiveChat.css" />
+    <Content Include="Recursos\css\EasyStyleProgressBar.css" />
+    <Content Include="Recursos\css\font-awesome.min.css" />
+    <Content Include="Recursos\css\jquery-confirm.min.css" />
+    <Content Include="Recursos\css\jquery-ui.css" />
+    <Content Include="Recursos\css\jqx.base.css" />
+    <Content Include="Recursos\css\jqx.light.css" />
+    <Content Include="Recursos\css\Personalizado.css" />
+    <Content Include="Recursos\css\StyleEasy.css" />
+    <Content Include="Recursos\css\sweetalert2.min.css" />
+    <Content Include="Recursos\css\toastr.min.css" />
+    <Content Include="Recursos\css\Toas\nostfly.min.css" />
+    <Content Include="Recursos\fonts\fontawesome-webfont.svg" />
+    <Content Include="Recursos\img\FondoLogin.jpg" />
+    <Content Include="Recursos\img\FondoLogin.png" />
+    <Content Include="Recursos\img\header.jpg" />
+    <Content Include="Recursos\img\Splash\FONDO-construccion.jpg" />
+    <Content Include="Recursos\img\Splash\Fondo-Cortar.png" />
+    <Content Include="Recursos\img\Splash\Fondo-DES.jpg" />
+    <Content Include="Recursos\img\Splash\Fondo-DES2.jpg" />
+    <Content Include="Recursos\img\Splash\FONDO-deslizadores.jpg" />
+    <Content Include="Recursos\img\Splash\Fondo-DIQUE.jpg" />
+    <Content Include="Recursos\img\Splash\FONDO-HANGAR.png" />
+    <Content Include="Recursos\img\Splash\FONDO-Sima_a.jpg" />
+    <Content Include="Recursos\img\Splash\Fondo-tallerX41.png" />
+    <Content Include="Recursos\img\Splash\FONDO_misilera.jpg" />
+    <Content Include="Recursos\img\Splash\FONDO_Patru.jpg" />
+    <Content Include="Recursos\img\Splash\FONDO_Plataf.jpg" />
+    <Content Include="Recursos\img\Splash\FONDO_Puente.jpg" />
+    <Content Include="Recursos\img\Splash\FONDO_repara.jpg" />
+    <Content Include="Recursos\img\Splash\Fondo_repara_DR.jpg" />
+    <Content Include="Recursos\img\ToolBar.jpg" />
+    <Content Include="Recursos\js\1.4.1.bootstrap-datepicker.min.js" />
+    <Content Include="Recursos\js\4.5.2.bootstrap.min.js" />
+    <Content Include="Recursos\js\bootstrap-waitingfor.js" />
+    <Content Include="Recursos\js\jquery-3.6.4.min.js" />
+    <Content Include="Recursos\js\jquery-confirm.min.js" />
+    <Content Include="Recursos\js\jquery-ui.min.js" />
+    <Content Include="Recursos\js\jquery.min.js" />
+    <Content Include="Recursos\js\jqxcore.js" />
+    <Content Include="Recursos\js\jqxmenu.js" />
+    <Content Include="Recursos\js\simple-context-menu.min.js" />
+    <Content Include="Recursos\js\Toas\nostfly.min.js" />
+    <Content Include="Recursos\LibSIMA\ConstanteProcesos.js" />
+    <Content Include="Recursos\LibSIMA\EasyControlSetting.js" />
+    <Content Include="Recursos\LibSIMA\EasyDataInterConect.js" />
+    <Content Include="Recursos\LibSIMA\HtmlToCanvas.js" />
+    <Content Include="Recursos\LibSIMA\MasterConfig.js" />
+    <Content Include="Recursos\LibSIMA\NetSuiteSocket.js" />
+    <Content Include="Recursos\LibSIMA\ScriptManager.js" />
+    <Content Include="Recursos\js\sweetalert2.all.min.js" />
+    <Content Include="Recursos\js\sweetalert2.js" />
+    <Content Include="Recursos\js\sweetalert2.min.js" />
+    <Content Include="Recursos\js\toastr.min.js" />
+    <Content Include="Recursos\LibSIMA\AccesoDatosBase.js" />
+    <Content Include="Recursos\LibSIMA\Object.js" />
+    <Content Include="Recursos\LibSIMA\SIMA.GidView.Entended.js" />
+    <Content Include="Recursos\Toas\nostfly.min.css" />
+    <Content Include="Recursos\Tree\img\line_conn.gif" />
+    <Content Include="Recursos\Tree\img\loading.gif" />
+    <Content Include="Recursos\Tree\img\zTreeStandard.gif" />
+    <Content Include="Recursos\Tree\img\zTreeStandard.png" />
+    <Content Include="Recursos\Tree\jquery.ztree.core-3.5.js" />
+    <Content Include="Recursos\Tree\jquery.ztree.core.js" />
+    <Content Include="Recursos\Tree\jquery.ztree.excheck.js" />
+    <Content Include="Recursos\Tree\jquery.ztree.exedit.js" />
+    <Content Include="Recursos\Tree\zTreeStyle.css" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClasesExtendidas\StringExt.cs" />
+    <Compile Include="ClasesExtendidas\Utilitario.cs" />
+    <Compile Include="Connected Services\srvCliente\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGeneral\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionCalidad\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionComercial\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionContabilidad\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionCostos\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionFinanciera\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionLogistica\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionPersonal\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionPresupuesto\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionProduccion\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionProd_Mantenimiento\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionProyecto\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionReportes\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvGestionTesoreria\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvHelpDesk\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvITIL\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvLog_ActivoFijo\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvProyectos\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvSeguridad\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\DataTableHelper.cs" />
+    <Compile Include="Controles\EasyCtrlExtended.cs" />
+    <Compile Include="Controles\Header.ascx.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\Header.ascx.designer.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Mail.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Exceptiones\SIMAExceptionSeguridadAccesoForms.cs" />
+    <Compile Include="FooterDefault.aspx.cs">
+      <DependentUpon>FooterDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FooterDefault.aspx.designer.cs">
+      <DependentUpon>FooterDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General\EasyDataInterConectPrc.aspx.cs">
+      <DependentUpon>EasyDataInterConectPrc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\EasyDataInterConectPrc.aspx.designer.cs">
+      <DependentUpon>EasyDataInterConectPrc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General\TablasGenerales.asmx.cs">
+      <DependentUpon>TablasGenerales.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionActivoFijo\Activo\Activo.asmx.cs">
+      <DependentUpon>Activo.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionActivoFijo\Custodio\Custodio.asmx.cs">
+      <DependentUpon>Custodio.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\Clientes.aspx.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\Clientes.aspx.designer.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\Embarcaciones.aspx.cs">
+      <DependentUpon>Embarcaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\Embarcaciones.aspx.designer.cs">
+      <DependentUpon>Embarcaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\GenerarCliente.aspx.cs">
+      <DependentUpon>GenerarCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\GenerarCliente.aspx.designer.cs">
+      <DependentUpon>GenerarCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\GenerarEmbarcacion2.aspx.cs">
+      <DependentUpon>GenerarEmbarcacion2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\GenerarEmbarcacion2.aspx.designer.cs">
+      <DependentUpon>GenerarEmbarcacion2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\GenerarProyecto.aspx.cs">
+      <DependentUpon>GenerarProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\GenerarProyecto.aspx.designer.cs">
+      <DependentUpon>GenerarProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\GenerarSolicitud.aspx.cs">
+      <DependentUpon>GenerarSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\GenerarSolicitud.aspx.designer.cs">
+      <DependentUpon>GenerarSolicitud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\Proyectos.aspx.cs">
+      <DependentUpon>Proyectos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\Proyectos.aspx.designer.cs">
+      <DependentUpon>Proyectos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\SolicitudTrabajo.aspx.cs">
+      <DependentUpon>SolicitudTrabajo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionComercial\Administracion\SolicitudTrabajo.aspx.designer.cs">
+      <DependentUpon>SolicitudTrabajo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionComercial\BaseComercial.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionComercial\Proceso.asmx.cs">
+      <DependentUpon>Proceso.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionContabilidad\Balance\Balance.asmx.cs">
+      <DependentUpon>Balance.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionContabilidad\Cobros\Cobros.asmx.cs">
+      <DependentUpon>Cobros.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionContabilidad\Estados\Estados.asmx.cs">
+      <DependentUpon>Estados.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionContabilidad\General\General.asmx.cs">
+      <DependentUpon>General.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionContabilidad\Operaciones\Operaciones.asmx.cs">
+      <DependentUpon>Operaciones.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionContabilidad\Pagos\Pagos.asmx.cs">
+      <DependentUpon>Pagos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionCostos\Costos\Costos.asmx.cs">
+      <DependentUpon>Costos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionCostos\Pagos\Pagos.asmx.cs">
+      <DependentUpon>Pagos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionCostos\Ventas\Ventas.asmx.cs">
+      <DependentUpon>Ventas.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdministrarActividadxProyecto.aspx.cs">
+      <DependentUpon>AdministrarActividadxProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdministrarActividadxProyecto.aspx.designer.cs">
+      <DependentUpon>AdministrarActividadxProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdministrarDetallePorResponsabledeArea.aspx.cs">
+      <DependentUpon>AdministrarDetallePorResponsabledeArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdministrarDetallePorResponsabledeArea.aspx.designer.cs">
+      <DependentUpon>AdministrarDetallePorResponsabledeArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdministrarInspecion.aspx.cs">
+      <DependentUpon>AdministrarInspecion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdministrarInspecion.aspx.designer.cs">
+      <DependentUpon>AdministrarInspecion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdministrarProyecto.aspx.cs">
+      <DependentUpon>AdministrarProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdministrarProyecto.aspx.designer.cs">
+      <DependentUpon>AdministrarProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdministrarSolicitudAprobacion.aspx.cs">
+      <DependentUpon>AdministrarSolicitudAprobacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdministrarSolicitudAprobacion.aspx.designer.cs">
+      <DependentUpon>AdministrarSolicitudAprobacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdminstrarUsuariosFirmantes.aspx.cs">
+      <DependentUpon>AdminstrarUsuariosFirmantes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdminstrarUsuariosFirmantes.aspx.designer.cs">
+      <DependentUpon>AdminstrarUsuariosFirmantes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdmnistrarRespuestaResponsableArea.aspx.cs">
+      <DependentUpon>AdmnistrarRespuestaResponsableArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\AdmnistrarRespuestaResponsableArea.aspx.designer.cs">
+      <DependentUpon>AdmnistrarRespuestaResponsableArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\ConfigurarFirmasAprobadores.aspx.cs">
+      <DependentUpon>ConfigurarFirmasAprobadores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\ConfigurarFirmasAprobadores.aspx.designer.cs">
+      <DependentUpon>ConfigurarFirmasAprobadores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\DetalleInspeccion.aspx.cs">
+      <DependentUpon>DetalleInspeccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\DetalleInspeccion.aspx.designer.cs">
+      <DependentUpon>DetalleInspeccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\DetalleProyecto.aspx.cs">
+      <DependentUpon>DetalleProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\DetalleProyecto.aspx.designer.cs">
+      <DependentUpon>DetalleProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\DetalleRespuestaResponsableArea.aspx.cs">
+      <DependentUpon>DetalleRespuestaResponsableArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\DetalleRespuestaResponsableArea.aspx.designer.cs">
+      <DependentUpon>DetalleRespuestaResponsableArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\EnviarPorCorreo.aspx.cs">
+      <DependentUpon>EnviarPorCorreo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\EnviarPorCorreo.aspx.designer.cs">
+      <DependentUpon>EnviarPorCorreo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\FindAprobadorRI.aspx.cs">
+      <DependentUpon>FindAprobadorRI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\FindAprobadorRI.aspx.designer.cs">
+      <DependentUpon>FindAprobadorRI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\HistorialdeInspeccion.aspx.cs">
+      <DependentUpon>HistorialdeInspeccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\HistorialdeInspeccion.aspx.designer.cs">
+      <DependentUpon>HistorialdeInspeccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\ListarActividades.aspx.cs">
+      <DependentUpon>ListarActividades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\ListarActividades.aspx.designer.cs">
+      <DependentUpon>ListarActividades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\ListaReporteIndicadores.aspx.cs">
+      <DependentUpon>ListaReporteIndicadores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\ListaReporteIndicadores.aspx.designer.cs">
+      <DependentUpon>ListaReporteIndicadores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\ListarReposanbleAprobacion.aspx.cs">
+      <DependentUpon>ListarReposanbleAprobacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\ListarReposanbleAprobacion.aspx.designer.cs">
+      <DependentUpon>ListarReposanbleAprobacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeCalidad\PaginaCalidadBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\Proceso.asmx.cs">
+      <DependentUpon>Proceso.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\Proceso.aspx.cs">
+      <DependentUpon>Proceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeCalidad\Proceso.aspx.designer.cs">
+      <DependentUpon>Proceso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionFinanciera\EstadosFinancieros.asmx.cs">
+      <DependentUpon>EstadosFinancieros.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\GobernanzaBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarObjetivosAcciones.aspx.cs">
+      <DependentUpon>AdministrarObjetivosAcciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarObjetivosAcciones.aspx.designer.cs">
+      <DependentUpon>AdministrarObjetivosAcciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ConfiguracionIndicadoresXArea.aspx.cs">
+      <DependentUpon>ConfiguracionIndicadoresXArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ConfiguracionIndicadoresXArea.aspx.designer.cs">
+      <DependentUpon>ConfiguracionIndicadoresXArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\DetalleAcciones.aspx.cs">
+      <DependentUpon>DetalleAcciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\DetalleAcciones.aspx.designer.cs">
+      <DependentUpon>DetalleAcciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\DetalleAreaIndicador.aspx.cs">
+      <DependentUpon>DetalleAreaIndicador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\DetalleAreaIndicador.aspx.designer.cs">
+      <DependentUpon>DetalleAreaIndicador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\DetalleIndicador.aspx.cs">
+      <DependentUpon>DetalleIndicador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\DetalleIndicador.aspx.designer.cs">
+      <DependentUpon>DetalleIndicador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\DetalleObjetivo.aspx.cs">
+      <DependentUpon>DetalleObjetivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\DetalleObjetivo.aspx.designer.cs">
+      <DependentUpon>DetalleObjetivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ListadodeMetasPorArea.aspx.cs">
+      <DependentUpon>ListadodeMetasPorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ListadodeMetasPorArea.aspx.designer.cs">
+      <DependentUpon>ListadodeMetasPorArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionLogistica\ActivoFijo\Bienes.asmx.cs">
+      <DependentUpon>Bienes.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionLogistica\Almacen\Almacen.asmx.cs">
+      <DependentUpon>Almacen.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionLogistica\General\General.asmx.cs">
+      <DependentUpon>General.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionLogistica\Materiales\Materiales.asmx.cs">
+      <DependentUpon>Materiales.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionLogistica\Ordenes\Ordenes.asmx.cs">
+      <DependentUpon>Ordenes.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionLogistica\Proveedores\Proveedores.asmx.cs">
+      <DependentUpon>Proveedores.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionLogistica\Proyectos\Proyectos.asmx.cs">
+      <DependentUpon>Proyectos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionLogistica\Requerimientos\Requerimientos.asmx.cs">
+      <DependentUpon>Requerimientos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionLogistica\Servicios\Servicios.asmx.cs">
+      <DependentUpon>Servicios.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionLogistica\Stock\Stock.asmx.cs">
+      <DependentUpon>Stock.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\Calibracion.aspx.cs">
+      <DependentUpon>Calibracion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\Calibracion.aspx.designer.cs">
+      <DependentUpon>Calibracion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\Evaluacion.aspx.cs">
+      <DependentUpon>Evaluacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\Evaluacion.aspx.designer.cs">
+      <DependentUpon>Evaluacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\Evaluador_Evaluado.aspx.cs">
+      <DependentUpon>Evaluador_Evaluado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\Evaluador_Evaluado.aspx.designer.cs">
+      <DependentUpon>Evaluador_Evaluado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\Evaluados.aspx.cs">
+      <DependentUpon>Evaluados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\Evaluados.aspx.designer.cs">
+      <DependentUpon>Evaluados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\GenerarExcel.aspx.cs">
+      <DependentUpon>GenerarExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\GenerarExcel.aspx.designer.cs">
+      <DependentUpon>GenerarExcel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\GenerarPDF.aspx.cs">
+      <DependentUpon>GenerarPDF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\GenerarPDF.aspx.designer.cs">
+      <DependentUpon>GenerarPDF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\GraficoTest.aspx.cs">
+      <DependentUpon>GraficoTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\GraficoTest.aspx.designer.cs">
+      <DependentUpon>GraficoTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\Informes.aspx.cs">
+      <DependentUpon>Informes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\Informes.aspx.designer.cs">
+      <DependentUpon>Informes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\NCompetencias.aspx.cs">
+      <DependentUpon>NCompetencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\NCompetencias.aspx.designer.cs">
+      <DependentUpon>NCompetencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\NObjetivos.aspx.cs">
+      <DependentUpon>NObjetivos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\NObjetivos.aspx.designer.cs">
+      <DependentUpon>NObjetivos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\Retroalimentacion.aspx.cs">
+      <DependentUpon>Retroalimentacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\Retroalimentacion.aspx.designer.cs">
+      <DependentUpon>Retroalimentacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\retroalimentacionprint.aspx.cs">
+      <DependentUpon>retroalimentacionprint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\EvaluacionDesempenio\retroalimentacionprint.aspx.designer.cs">
+      <DependentUpon>retroalimentacionprint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPersonal\Reportes\RptCalibracion.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\Reportes\RptCalibracion1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\Reportes\RptEvaluacion.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\Reportes\RptEvaluacion1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionPersonal\Reportes\rptRetroalimentacion.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionPresupuesto\Ordenes\Ordenes.asmx.cs">
+      <DependentUpon>Ordenes.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProduccion\General\General.asmx.cs">
+      <DependentUpon>General.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProduccion\Mantenimiento\Mantenimiento.asmx.cs">
+      <DependentUpon>Mantenimiento.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProduccion\Materiales\Materiales.asmx.cs">
+      <DependentUpon>Materiales.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProduccion\Mob\ManoObra.asmx.cs">
+      <DependentUpon>ManoObra.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProduccion\Ordenes\Ordenes.asmx.cs">
+      <DependentUpon>Ordenes.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProduccion\OT\Actividades_OT.aspx.cs">
+      <DependentUpon>Actividades_OT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionProduccion\OT\Actividades_OT.aspx.designer.cs">
+      <DependentUpon>Actividades_OT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProduccion\OT\Descripcion_OT.aspx.cs">
+      <DependentUpon>Descripcion_OT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionProduccion\OT\Descripcion_OT.aspx.designer.cs">
+      <DependentUpon>Descripcion_OT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProduccion\OT\OrdenTrabajo.asmx.cs">
+      <DependentUpon>OrdenTrabajo.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProduccion\Proyectos.asmx.cs">
+      <DependentUpon>Proyectos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProduccion\Submarinos\Submarinos.asmx.cs">
+      <DependentUpon>Submarinos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProduccion\Valorizacion\Valorizacion.asmx.cs">
+      <DependentUpon>Valorizacion.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProyecto\Adquisiciones\Adquisiciones.asmx.cs">
+      <DependentUpon>Adquisiciones.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProyecto\Balance\Balance.asmx.cs">
+      <DependentUpon>Balance.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProyecto\Facturacion\Facturacion.asmx.cs">
+      <DependentUpon>Facturacion.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProyecto\FlujoCaja\FlujoCaja.asmx.cs">
+      <DependentUpon>FlujoCaja.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProyecto\Materiales\Materiales.asmx.cs">
+      <DependentUpon>Materiales.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProyecto\Mob\ManoObra.asmx.cs">
+      <DependentUpon>ManoObra.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProyecto\Ordenes\Ordenes.asmx.cs">
+      <DependentUpon>Ordenes.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProyecto\OT\OrdenTrabajo.asmx.cs">
+      <DependentUpon>OrdenTrabajo.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProyecto\Pagos\Pagos.asmx.cs">
+      <DependentUpon>Pagos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionProyecto\Proyecto.asmx.cs">
+      <DependentUpon>Proyecto.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\AdministrarMapeoCampos.aspx.cs">
+      <DependentUpon>AdministrarMapeoCampos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\AdministrarMapeoCampos.aspx.designer.cs">
+      <DependentUpon>AdministrarMapeoCampos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\AdministrarPropiedades.aspx.cs">
+      <DependentUpon>AdministrarPropiedades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\AdministrarPropiedades.aspx.designer.cs">
+      <DependentUpon>AdministrarPropiedades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\AdministrarReporte.aspx.cs">
+      <DependentUpon>AdministrarReporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\AdministrarReporte.aspx.designer.cs">
+      <DependentUpon>AdministrarReporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\DetalleCarpeta.aspx.cs">
+      <DependentUpon>DetalleCarpeta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\DetalleCarpeta.aspx.designer.cs">
+      <DependentUpon>DetalleCarpeta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\DetalleConfiguraParametro.aspx.cs">
+      <DependentUpon>DetalleConfiguraParametro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\DetalleConfiguraParametro.aspx.designer.cs">
+      <DependentUpon>DetalleConfiguraParametro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\DetalleObjetoSeccion.aspx.cs">
+      <DependentUpon>DetalleObjetoSeccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\DetalleObjetoSeccion.aspx.designer.cs">
+      <DependentUpon>DetalleObjetoSeccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\DetalleObjeto_Reporte.aspx.cs">
+      <DependentUpon>DetalleObjeto_Reporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\DetalleObjeto_Reporte.aspx.designer.cs">
+      <DependentUpon>DetalleObjeto_Reporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\DetalleReporte.aspx.cs">
+      <DependentUpon>DetalleReporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\DetalleReporte.aspx.designer.cs">
+      <DependentUpon>DetalleReporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\GenerarPdf.aspx.cs">
+      <DependentUpon>GenerarPdf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\GenerarPdf.aspx.designer.cs">
+      <DependentUpon>GenerarPdf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\PortafolioPBI.aspx.cs">
+      <DependentUpon>PortafolioPBI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\PortafolioPBI.aspx.designer.cs">
+      <DependentUpon>PortafolioPBI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\Procesar.asmx.cs">
+      <DependentUpon>Procesar.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\ReporteBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\ReporteCompartir.aspx.cs">
+      <DependentUpon>ReporteCompartir.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\ReporteCompartir.aspx.designer.cs">
+      <DependentUpon>ReporteCompartir.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\ReportExplore.aspx.cs">
+      <DependentUpon>ReportExplore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\ReportExplore.aspx.designer.cs">
+      <DependentUpon>ReportExplore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\ReportExploreV2.aspx.cs">
+      <DependentUpon>ReportExploreV2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\ReportExploreV2.aspx.designer.cs">
+      <DependentUpon>ReportExploreV2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\ReportParams.aspx.cs">
+      <DependentUpon>ReportParams.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\ReportParams.aspx.designer.cs">
+      <DependentUpon>ReportParams.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\ReportPrevio.aspx.cs">
+      <DependentUpon>ReportPrevio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\ReportPrevio.aspx.designer.cs">
+      <DependentUpon>ReportPrevio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\RptPrevioInPopup.aspx.cs">
+      <DependentUpon>RptPrevioInPopup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\RptPrevioInPopup.aspx.designer.cs">
+      <DependentUpon>RptPrevioInPopup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionReportes\UsuarioCompartido.aspx.cs">
+      <DependentUpon>UsuarioCompartido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionReportes\UsuarioCompartido.aspx.designer.cs">
+      <DependentUpon>UsuarioCompartido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionTesoreria\Balance\Balance.asmx.cs">
+      <DependentUpon>Balance.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionTesoreria\Cobros\Cobros.asmx.cs">
+      <DependentUpon>Cobros.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GestionTesoreria\Pagos\Pagos.asmx.cs">
+      <DependentUpon>Pagos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\AdmAtencionActXUseReq.aspx.cs">
+      <DependentUpon>AdmAtencionActXUseReq.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\AdmAtencionActXUseReq.aspx.designer.cs">
+      <DependentUpon>AdmAtencionActXUseReq.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\AdministraGantt.aspx.cs">
+      <DependentUpon>AdministraGantt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\AdministraGantt.aspx.designer.cs">
+      <DependentUpon>AdministraGantt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\AdministrarAtenciondeRequerimiento.aspx.cs">
+      <DependentUpon>AdministrarAtenciondeRequerimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\AdministrarAtenciondeRequerimiento.aspx.designer.cs">
+      <DependentUpon>AdministrarAtenciondeRequerimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\AdministrarEstadoAtencionReque.aspx.cs">
+      <DependentUpon>AdministrarEstadoAtencionReque.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\AdministrarEstadoAtencionReque.aspx.designer.cs">
+      <DependentUpon>AdministrarEstadoAtencionReque.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\AdministrarPlandeTrabajo.aspx.cs">
+      <DependentUpon>AdministrarPlandeTrabajo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\AdministrarPlandeTrabajo.aspx.designer.cs">
+      <DependentUpon>AdministrarPlandeTrabajo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\AdministrarTaskTimeLine.aspx.cs">
+      <DependentUpon>AdministrarTaskTimeLine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\AdministrarTaskTimeLine.aspx.designer.cs">
+      <DependentUpon>AdministrarTaskTimeLine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\BuscarPersonal.aspx.cs">
+      <DependentUpon>BuscarPersonal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\BuscarPersonal.aspx.designer.cs">
+      <DependentUpon>BuscarPersonal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\DetalleItemCronograma.aspx.cs">
+      <DependentUpon>DetalleItemCronograma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\DetalleItemCronograma.aspx.designer.cs">
+      <DependentUpon>DetalleItemCronograma.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\DetallePlanTrabajo.aspx.cs">
+      <DependentUpon>DetallePlanTrabajo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\DetallePlanTrabajo.aspx.designer.cs">
+      <DependentUpon>DetallePlanTrabajo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\DetalleTaskTimeLine.aspx.cs">
+      <DependentUpon>DetalleTaskTimeLine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\DetalleTaskTimeLine.aspx.designer.cs">
+      <DependentUpon>DetalleTaskTimeLine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\ListarAnalistaAtencion.aspx.cs">
+      <DependentUpon>ListarAnalistaAtencion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\ListarAnalistaAtencion.aspx.designer.cs">
+      <DependentUpon>ListarAnalistaAtencion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\ListarTareas.aspx.cs">
+      <DependentUpon>ListarTareas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Atencion\ListarTareas.aspx.designer.cs">
+      <DependentUpon>ListarTareas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\BandejaEntrada\AdministrarAtencion.aspx.cs">
+      <DependentUpon>AdministrarAtencion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\BandejaEntrada\AdministrarAtencion.aspx.designer.cs">
+      <DependentUpon>AdministrarAtencion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\BandejaEntrada\ListarSprint.aspx.cs">
+      <DependentUpon>ListarSprint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\BandejaEntrada\ListarSprint.aspx.designer.cs">
+      <DependentUpon>ListarSprint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\BandejaEntrada\SprintAgilCargaPorTrabajador.aspx.cs">
+      <DependentUpon>SprintAgilCargaPorTrabajador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\BandejaEntrada\SprintAgilCargaPorTrabajador.aspx.designer.cs">
+      <DependentUpon>SprintAgilCargaPorTrabajador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ChatBot\EasyNetLiveChat.aspx.cs">
+      <DependentUpon>EasyNetLiveChat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ChatBot\EasyNetLiveChat.aspx.designer.cs">
+      <DependentUpon>EasyNetLiveChat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ChatBot\EasyNetLiveChatFind.aspx.cs">
+      <DependentUpon>EasyNetLiveChatFind.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ChatBot\EasyNetLiveChatFind.aspx.designer.cs">
+      <DependentUpon>EasyNetLiveChatFind.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ChatBot\ListarServiciosIncidencias.aspx.cs">
+      <DependentUpon>ListarServiciosIncidencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ChatBot\ListarServiciosIncidencias.aspx.designer.cs">
+      <DependentUpon>ListarServiciosIncidencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Configuracion\AdministraServicioPorArea.aspx.cs">
+      <DependentUpon>AdministraServicioPorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Configuracion\AdministraServicioPorArea.aspx.designer.cs">
+      <DependentUpon>AdministraServicioPorArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\HDProcesos.asmx.cs">
+      <DependentUpon>HDProcesos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\HelpDeskBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Incidencia\DetalleIncidnecia.aspx.cs">
+      <DependentUpon>DetalleIncidnecia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Incidencia\DetalleIncidnecia.aspx.designer.cs">
+      <DependentUpon>DetalleIncidnecia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Incidencia\ListarIncidenciaPorArea.aspx.cs">
+      <DependentUpon>ListarIncidenciaPorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Incidencia\ListarIncidenciaPorArea.aspx.designer.cs">
+      <DependentUpon>ListarIncidenciaPorArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\AdministrarActividadProcedimiento.aspx.cs">
+      <DependentUpon>AdministrarActividadProcedimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\AdministrarActividadProcedimiento.aspx.designer.cs">
+      <DependentUpon>AdministrarActividadProcedimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\AdministrarActividadPuntoInOut.aspx.cs">
+      <DependentUpon>AdministrarActividadPuntoInOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\AdministrarActividadPuntoInOut.aspx.designer.cs">
+      <DependentUpon>AdministrarActividadPuntoInOut.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\AdministrarComponentesdeActividad.aspx.cs">
+      <DependentUpon>AdministrarComponentesdeActividad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\AdministrarComponentesdeActividad.aspx.designer.cs">
+      <DependentUpon>AdministrarComponentesdeActividad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\AdministrarDetalleAccion.aspx.cs">
+      <DependentUpon>AdministrarDetalleAccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\AdministrarDetalleAccion.aspx.designer.cs">
+      <DependentUpon>AdministrarDetalleAccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\AdministrarServicios.aspx.cs">
+      <DependentUpon>AdministrarServicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\AdministrarServicios.aspx.designer.cs">
+      <DependentUpon>AdministrarServicios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\BaseServioAreaDisponibles.aspx.cs">
+      <DependentUpon>BaseServioAreaDisponibles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\BaseServioAreaDisponibles.aspx.designer.cs">
+      <DependentUpon>BaseServioAreaDisponibles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\DetalledeNota.aspx.cs">
+      <DependentUpon>DetalledeNota.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\DetalledeNota.aspx.designer.cs">
+      <DependentUpon>DetalledeNota.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\DetalleRqrServicio.aspx.cs">
+      <DependentUpon>DetalleRqrServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\DetalleRqrServicio.aspx.designer.cs">
+      <DependentUpon>DetalleRqrServicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\DetalleServicio.aspx.cs">
+      <DependentUpon>DetalleServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\DetalleServicio.aspx.designer.cs">
+      <DependentUpon>DetalleServicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\ListarServicioXArea.aspx.cs">
+      <DependentUpon>ListarServicioXArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\ITIL\ListarServicioXArea.aspx.designer.cs">
+      <DependentUpon>ListarServicioXArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Procesar.asmx.cs">
+      <DependentUpon>Procesar.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Requerimiento\AdministrarAprobaciondeRequerimiento.aspx.cs">
+      <DependentUpon>AdministrarAprobaciondeRequerimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Requerimiento\AdministrarAprobaciondeRequerimiento.aspx.designer.cs">
+      <DependentUpon>AdministrarAprobaciondeRequerimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Requerimiento\AdministrarRequerimiento.aspx.cs">
+      <DependentUpon>AdministrarRequerimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Requerimiento\AdministrarRequerimiento.aspx.designer.cs">
+      <DependentUpon>AdministrarRequerimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Requerimiento\DetalleRequerimiento.aspx.cs">
+      <DependentUpon>DetalleRequerimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Requerimiento\DetalleRequerimiento.aspx.designer.cs">
+      <DependentUpon>DetalleRequerimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Requerimiento\ListarServicioXAreaRQR.aspx.cs">
+      <DependentUpon>ListarServicioXAreaRQR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Requerimiento\ListarServicioXAreaRQR.aspx.designer.cs">
+      <DependentUpon>ListarServicioXAreaRQR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\Administrar.aspx.cs">
+      <DependentUpon>Administrar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\Administrar.aspx.designer.cs">
+      <DependentUpon>Administrar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\AdministrarActividadesXProducto.aspx.cs">
+      <DependentUpon>AdministrarActividadesXProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\AdministrarActividadesXProducto.aspx.designer.cs">
+      <DependentUpon>AdministrarActividadesXProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\AdministrarAreaXProducto.aspx.cs">
+      <DependentUpon>AdministrarAreaXProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\AdministrarAreaXProducto.aspx.designer.cs">
+      <DependentUpon>AdministrarAreaXProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\AdministrarCopiaArea.aspx.cs">
+      <DependentUpon>AdministrarCopiaArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\AdministrarCopiaArea.aspx.designer.cs">
+      <DependentUpon>AdministrarCopiaArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\DetalleComponentesServicio.aspx.cs">
+      <DependentUpon>DetalleComponentesServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\DetalleComponentesServicio.aspx.designer.cs">
+      <DependentUpon>DetalleComponentesServicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\DetalleComponentesServicio_Actividad.aspx.cs">
+      <DependentUpon>DetalleComponentesServicio_Actividad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\DetalleComponentesServicio_Actividad.aspx.designer.cs">
+      <DependentUpon>DetalleComponentesServicio_Actividad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\DetalleComponentesServicio_Area.aspx.cs">
+      <DependentUpon>DetalleComponentesServicio_Area.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\DetalleComponentesServicio_Area.aspx.designer.cs">
+      <DependentUpon>DetalleComponentesServicio_Area.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\DetalleComponentesServicio_StakeHolder.aspx.cs">
+      <DependentUpon>DetalleComponentesServicio_StakeHolder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\DetalleComponentesServicio_StakeHolder.aspx.designer.cs">
+      <DependentUpon>DetalleComponentesServicio_StakeHolder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\DetalleResponsable.aspx.cs">
+      <DependentUpon>DetalleResponsable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\DetalleResponsable.aspx.designer.cs">
+      <DependentUpon>DetalleResponsable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\DetalleServicio_Proceso.aspx.cs">
+      <DependentUpon>DetalleServicio_Proceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Servicios\DetalleServicio_Proceso.aspx.designer.cs">
+      <DependentUpon>DetalleServicio_Proceso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\Administrar.aspx.cs">
+      <DependentUpon>Administrar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\Administrar.aspx.designer.cs">
+      <DependentUpon>Administrar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\AdministrarAprobacion.aspx.cs">
+      <DependentUpon>AdministrarAprobacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\AdministrarAprobacion.aspx.designer.cs">
+      <DependentUpon>AdministrarAprobacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\AdministrarDiccionario.aspx.cs">
+      <DependentUpon>AdministrarDiccionario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\AdministrarDiccionario.aspx.designer.cs">
+      <DependentUpon>AdministrarDiccionario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\AdministrarDocTimeLine.aspx.cs">
+      <DependentUpon>AdministrarDocTimeLine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\AdministrarDocTimeLine.aspx.designer.cs">
+      <DependentUpon>AdministrarDocTimeLine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\AdministrarElementos.aspx.cs">
+      <DependentUpon>AdministrarElementos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\AdministrarElementos.aspx.designer.cs">
+      <DependentUpon>AdministrarElementos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\AdministrarPoint_In_Out.aspx.cs">
+      <DependentUpon>AdministrarPoint_In_Out.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\AdministrarPoint_In_Out.aspx.designer.cs">
+      <DependentUpon>AdministrarPoint_In_Out.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\AdministrarStakeHolders.aspx.cs">
+      <DependentUpon>AdministrarStakeHolders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\AdministrarStakeHolders.aspx.designer.cs">
+      <DependentUpon>AdministrarStakeHolders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\BaseControlCambios.aspx.cs">
+      <DependentUpon>BaseControlCambios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\BaseControlCambios.aspx.designer.cs">
+      <DependentUpon>BaseControlCambios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\BaseDiccionarioDatos.aspx.cs">
+      <DependentUpon>BaseDiccionarioDatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\BaseDiccionarioDatos.aspx.designer.cs">
+      <DependentUpon>BaseDiccionarioDatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\BaseHelpDesk.aspx.cs">
+      <DependentUpon>BaseHelpDesk.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\BaseHelpDesk.aspx.designer.cs">
+      <DependentUpon>BaseHelpDesk.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\BaseStakeHolders.aspx.cs">
+      <DependentUpon>BaseStakeHolders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\BaseStakeHolders.aspx.designer.cs">
+      <DependentUpon>BaseStakeHolders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\DetalleElementos.aspx.cs">
+      <DependentUpon>DetalleElementos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\DetalleElementos.aspx.designer.cs">
+      <DependentUpon>DetalleElementos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\DetallePoint_In.aspx.cs">
+      <DependentUpon>DetallePoint_In.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\DetallePoint_In.aspx.designer.cs">
+      <DependentUpon>DetallePoint_In.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\DetalleSistema_Proceso.aspx.cs">
+      <DependentUpon>DetalleSistema_Proceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\DetalleSistema_Proceso.aspx.designer.cs">
+      <DependentUpon>DetalleSistema_Proceso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\DetalleStakeHolder.aspx.cs">
+      <DependentUpon>DetalleStakeHolder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\DetalleStakeHolder.aspx.designer.cs">
+      <DependentUpon>DetalleStakeHolder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\HelpDeskListarAtenciones.aspx.cs">
+      <DependentUpon>HelpDeskListarAtenciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\HelpDeskListarAtenciones.aspx.designer.cs">
+      <DependentUpon>HelpDeskListarAtenciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\ListadeAprobadores.aspx.cs">
+      <DependentUpon>ListadeAprobadores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpDesk\Sistemas\ListadeAprobadores.aspx.designer.cs">
+      <DependentUpon>ListadeAprobadores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InterfaceUI\IPaginaBase.cs" />
+    <Compile Include="InterfaceUI\IPaginaMantenimento.cs" />
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicClass\sglGlobalData.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\srvGestionReportes\AdministrarReportes.wsdl" />
+    <Content Include="Connected Services\srvGestionReportes\SIMANET_W22R.srvGestionReportes.ObjetoReporteCompartidoBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\srvSeguridad\Seguridad.wsdl" />
+    <Content Include="Connected Services\srvSeguridad\SIMANET_W22R.srvSeguridad.UsuarioBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="GestionPersonal\Reportes\RptCalibracion.rpt" />
+    <Content Include="GestionPersonal\Reportes\RptCalibracion1.rpt" />
+    <Content Include="GestionPersonal\Reportes\RptEvaluacion.rpt" />
+    <Content Include="GestionPersonal\Reportes\RptEvaluacion1.rpt" />
+    <Content Include="GestionPersonal\Reportes\rptRetroalimentacion.rpt" />
+    <None Include="packages.config" />
+    <Content Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <Content Include="Recursos\fonts\bootstrap-icons.woff" />
+    <Content Include="Recursos\fonts\bootstrap-icons.woff2" />
+    <Content Include="Recursos\fonts\fontawesome-webfont.eot" />
+    <Content Include="Recursos\fonts\fontawesome-webfont.eot#iefix&amp;v=4.3.0.eot" />
+    <Content Include="Recursos\fonts\fontawesome-webfont.ttfv=4.3.0.ttf" />
+    <Content Include="Recursos\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Recursos\fonts\fontawesome-webfont.woffv=4.3.0.woff" />
+    <Content Include="Recursos\fonts\jqx-icons.eot" />
+    <Content Include="Recursos\fonts\jqx-icons.ttf" />
+    <Content Include="Recursos\fonts\jqx-icons.woff" />
+    <Content Include="Recursos\fonts\jqx-icons.woff2" />
+    <Content Include="Recursos\fonts\jqx-icons_old.ttf" />
+    <Content Include="Recursos\fonts\jqx-icons_old.woff" />
+    <Content Include="Recursos\fonts\jqx-icons_old.woff2" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EasyControlWeb\EasyControlWeb.csproj">
+      <Project>{55AE38B8-E13E-49C3-B779-616864FFC8D0}</Project>
+      <Name>EasyControlWeb</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\srvCliente\" />
+    <WCFMetadataStorage Include="Connected Services\srvGeneral\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionCalidad\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionComercial\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionContabilidad\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionCostos\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionFinanciera\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionLogistica\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionPersonal\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionPresupuesto\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionProduccion\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionProd_Mantenimiento\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionProyecto\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionReportes\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionTesoreria\" />
+    <WCFMetadataStorage Include="Connected Services\srvHelpDesk\" />
+    <WCFMetadataStorage Include="Connected Services\srvITIL\" />
+    <WCFMetadataStorage Include="Connected Services\srvLog_ActivoFijo\" />
+    <WCFMetadataStorage Include="Connected Services\srvProyectos\" />
+    <WCFMetadataStorage Include="Connected Services\srvSeguridad\" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59710</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/SIMANET_W22R</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets'))" />
+  </Target>
+  <Import Project="packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
+</Project>

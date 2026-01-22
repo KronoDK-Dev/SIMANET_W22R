@@ -810,7 +810,7 @@ p, li, a {
 /*AUTOCOMPLTE Color de borde la lista de resultados */
 .ui-widget-content {
     border: 1px solid #5394C8;
-    background: #eeeeee url(images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x;
+    background: #eeeeee url(../img/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x;
     color: #333333;
 }
 

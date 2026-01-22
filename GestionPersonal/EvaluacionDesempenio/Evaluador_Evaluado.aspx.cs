@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -22,7 +23,7 @@ namespace SIMANET_W22R.GestionPersonal.EvaluacionDesempenio
             //{
             //    CargarEvaluadores();
             //}
-
+            CargarEvaluacion();
             btnAgregarTrabajador.Enabled = false;
 
         }
@@ -475,8 +476,6 @@ namespace SIMANET_W22R.GestionPersonal.EvaluacionDesempenio
 
         }
 
-
-
         protected void btnGuardarEvaluador_Click(object sender, EventArgs e)
         {
             string dniEvaluadorN = txtDNIE.Text.Trim();
@@ -572,7 +571,6 @@ namespace SIMANET_W22R.GestionPersonal.EvaluacionDesempenio
             }
 
         }
-
 
 
         protected void gvEvaluados_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -742,7 +740,177 @@ namespace SIMANET_W22R.GestionPersonal.EvaluacionDesempenio
         }
 
 
-       
+        protected void ddlEvaluacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string s_evaluacion = ddlEvaluacion.SelectedValue;
+            //CargarResultados(anio);
 
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionSQL"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT Estado_O, Estado_C,Estado_EO, Estado_EC, total_O, total_C, total_Reg, Total_Retro, total_calib FROM RRHHevaluacion.vw_EstadoEvaluados", con))
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    DataTable dt = new DataTable();
+
+                    int rows = da.Fill(dt); // devuelve el número de filas cargadas
+
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        // Obtiene el valor de la columna, manejando posibles DBNull
+                        string estadoC = dt.Rows[0]["Estado_EC"] == DBNull.Value ? string.Empty : dt.Rows[0]["Estado_EC"].ToString();
+                        string estadoO = dt.Rows[0]["Estado_EO"] == DBNull.Value ? string.Empty : dt.Rows[0]["Estado_EO"].ToString();
+                        int iRetro = dt.Rows[0]["Total_Retro"] == DBNull.Value ? 0 : int.Parse(dt.Rows[0]["Total_Retro"].ToString());
+
+                        // Según la evaluación seleccionada, asigna el valor
+                        if (s_evaluacion == "CO")
+                        {
+                            // Asegúrate que el valor exista en el DropDownList
+                            if (ddlEstadoGG.Items.FindByValue(estadoC) != null)
+                                ddlEstadoGG.SelectedValue = estadoC;
+                            else
+                                ddlEstadoGG.SelectedIndex = -1; // o asigna un valor por defecto
+                        }
+                        else if (s_evaluacion == "OB") // ejemplo para OBjetivos
+                        {
+                            if (ddlEstadoGG.Items.FindByValue(estadoO) != null)
+                                ddlEstadoGG.SelectedValue = estadoO;
+                            else
+                                ddlEstadoGG.SelectedIndex = -1;
+                        }
+                        else if (s_evaluacion == "RE")
+                         {
+                            if (iRetro >= 0)
+                            {ddlEstadoGG.SelectedIndex = 1;}
+                            else 
+                            {ddlEstadoGG.SelectedIndex = 0;}
+                          }
+                        else
+                        {
+                            ddlEstadoGG.SelectedIndex = -1;
+                        }
+                        // Si quieres además mostrar totales (por ejemplo en labels)
+                        // lblTotalO.Text = dt.Rows[0]["total_O"].ToString();
+                        // lblTotalC.Text = dt.Rows[0]["total_C"].ToString();
+                        // lblTotalReg.Text = dt.Rows[0]["total_Reg"].ToString();
+                    }
+                    else
+                    {
+                        // No hay filas: limpia selección o muestra mensaje
+                        ddlEstadoGG.SelectedIndex = -1;
+                        // lblMensaje.Text = "No hay datos en la vista.";
+                    }
+                }
+
+            }
+         
+        }
+
+        private void CargarEvaluacion()
+        {
+            if (ddlEvaluacion.Items.Count == 0)
+            { 
+                ddlEvaluacion.Items.Clear();
+                ddlEvaluacion.Items.Add(new System.Web.UI.WebControls.ListItem("-- Seleccione --", "-1"));
+                ddlEvaluacion.Items.Add(new System.Web.UI.WebControls.ListItem("Desempeño - Competencias", "CO"));
+                ddlEvaluacion.Items.Add(new System.Web.UI.WebControls.ListItem("Desempeño - Objetivos", "OB"));
+                ddlEvaluacion.Items.Add(new System.Web.UI.WebControls.ListItem("Retroalimentación", "RE"));
+
+            }
+            if (ddlEstadoGG.Items.Count == 0)
+            {
+                ddlEstadoGG.Items.Clear();
+                ddlEstadoGG.Items.Add(new System.Web.UI.WebControls.ListItem("-- Seleccione --", "-1"));
+                ddlEstadoGG.Items.Add(new System.Web.UI.WebControls.ListItem("ACTIVO", "1"));
+                ddlEstadoGG.Items.Add(new System.Web.UI.WebControls.ListItem("INACTIVO", "0"));
+
+            }
+
+        }
+
+        protected void BtnModificarEstado_Click(object sender, EventArgs e)
+        {
+
+
+            string valor =  ddlEstadoGG.SelectedValue;
+            string sEvaluacion = ddlEvaluacion.SelectedValue;
+            string sEvaluacionN = ddlEvaluacion.SelectedItem.Text  ;
+            string cs = ConfigurationManager.ConnectionStrings["ConexionSQL"].ConnectionString;
+            int afectados=0;
+
+            using (SqlConnection con = new SqlConnection(cs))
+            { 
+                if (sEvaluacion == "CO")
+                {
+                    using (SqlCommand cmd = new SqlCommand(
+                        @"UPDATE [SIMANET2005].[RRHHevaluacion].[Evaluados]
+                            SET EstadoC = @NuevoEstadoC;", con))
+                    {
+                        cmd.Parameters.Add("@NuevoEstadoC", SqlDbType.Int).Value = int.Parse(valor);
+                        con.Open();
+                        afectados = cmd.ExecuteNonQuery();   // filas actualizadas
+                    }
+                }
+                else if (sEvaluacion == "OB") // ejemplo para OBjetivos
+                {
+                    using (SqlCommand cmd = new SqlCommand(
+                        @"UPDATE [SIMANET2005].[RRHHevaluacion].[Evaluados]
+                            SET EstadoO = @NuevoEstadoO;", con))
+                    {
+                        cmd.Parameters.Add("@NuevoEstadoO", SqlDbType.Int).Value = int.Parse(valor);
+                        con.Open();
+                        afectados = cmd.ExecuteNonQuery();   // filas actualizadas
+
+                    }
+
+                }
+                // cambiamos la pantalla a visualizar
+                if (new[] { "CO", "OB" }.Contains(sEvaluacion) && valor=="1")
+                {
+                    using (SqlCommand cmd = new SqlCommand(
+                        @"UPDATE  [SIMANET2005].[dbo].[PaginaInicio] 
+                            SET Pantalla= '/GestionPersonal/EvaluacionDesempenio/Evaluacion.aspx' 
+                                WHERE Login IN
+	                      (SELECT USERNAME  FROM [SIMANET2005].[RRHHevaluacion].[UsuarioEDD] );", con))
+                    {
+                        con.Open();
+                        afectados = cmd.ExecuteNonQuery();   // filas actualizadas
+                    }
+
+                }
+                else if(new[] { "RE" }.Contains(sEvaluacion) && valor == "1")
+                {
+                    using (SqlCommand cmd = new SqlCommand(
+                        @"UPDATE  [SIMANET2005].[dbo].[PaginaInicio] 
+                            SET Pantalla= '/GestionPersonal/EvaluacionDesempenio/Retroalimentacion.aspx' 
+                                WHERE Login IN
+	                      (SELECT USERNAME  FROM [SIMANET2005].[RRHHevaluacion].[UsuarioEDD] );", con))
+                    {
+                        con.Open();
+                        afectados = cmd.ExecuteNonQuery();   // filas actualizadas
+                    }
+
+                }
+
+            }
+
+            if (afectados > 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                    "Swal.fire({ icon: 'success', title: 'Actualización completa', text: 'Los registros para la Evaluación " + sEvaluacionN + " fueron modificados.' });",
+                    true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                    "Swal.fire({ icon: 'warning', title: 'Sin cambios', text: 'No se actualizó ningún registro.' });",
+                    true);
+            }
+
+
+        }
+    
+    
+    
     }
 }

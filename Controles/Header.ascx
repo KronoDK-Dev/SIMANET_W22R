@@ -2,10 +2,80 @@
 <%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Filtro" TagPrefix="cc2" %>
 <%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Form.Controls" TagPrefix="cc1" %>
 
+<!-- ********** 21.01.2026 lineas para optimizar pantallas  ***********************************************   -->
+
+<link id="cssBootstrapIcons" rel="stylesheet" />
+<script>  <!-- le adicionamos su referencia al control LINK -->
+
+
+    function getBasePath() {
+        // Obtiene el origen (dominio + puerto)
+        var origin = window.location.origin;
+        // Obtiene el primer segmento del path (nombre del proyecto)
+        var pathSegments = window.location.pathname.split('/');
+        var projectName = pathSegments.length > 1 ? pathSegments[1] : '';
+        // Devuelve la ruta base completa
+        return origin + '/' + projectName;
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+        document.getElementById("cssBootstrapIcons").href = getBasePath() + "/Recursos/css/bootstrap-icons.css";
+    });
+</script>
+
+<link id="cssToastr" rel="stylesheet" />
+<script>  <!-- le adicionamos su referencia al control LINK -->
+    window.addEventListener('DOMContentLoaded', function () {
+        document.getElementById("cssToastr").href = getBasePath() + "/Recursos/css/toastr.min.css";
+    });
+</script>
+
+<link id="cssSweetalert2" rel="stylesheet" />
+<script>  <!-- le adicionamos su referencia al control LINK -->
+    window.addEventListener('DOMContentLoaded', function () {
+        document.getElementById("cssSweetalert2").href = getBasePath() + "/Recursos/css/sweetalert2.min.css";
+    });
+</script>
+
+<link id="cssStyleEasy" rel="stylesheet" />
+<script>  <!-- le adicionamos su referencia al control LINK -->
+    window.addEventListener('DOMContentLoaded', function () {
+        document.getElementById("cssStyleEasy").href = getBasePath() + "/Recursos/css/StyleEasy.css";
+    });
+</script>
+
+
+    
+
+<!-- *************** -->
+<!-- Referencias JS -->
+<!-- *************** -->
+ <!-- <script src="/SIMANET_W22R/Recursos/js/toastr.min.js"></script>   -->
+
+<!-- para navegadores antiguos -->
+ <!-- <script src="/SIMANET_W22R/Recursos/js/sweetalert2.all.min.js"></script>   -->
+
+<script id="scriptToastr"></script>
+<script id="scriptSweetAlert"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        document.getElementById("scriptToastr").src = getBasePath() + "/Recursos/js/toastr.min.js";
+    });
+    window.addEventListener('DOMContentLoaded', function () {
+        document.getElementById("scriptSweetAlert").src = getBasePath() + "/Recursos/js/sweetalert2.all.min.js";
+    });
+</script>
+
+<!-- ***********************************        -->
+
 <table  border="0px" style="width:100%">
     <tr>
         <td  style="width:100%;" class="breadcrumb">
-             <cc1:EasyNavigatorBarMenu ID="EasyNavigatorBarMenu1" runat="server" fc_OnMenuItem_Click="Perfil"  OnHelpSnapShot="EasyNavigatorBarMenu1_HelpSnapShot" ImagenLogoHeader="../Recursos/img/header.jpg" ParamMenuDescrip="MnuDescrib" ParamMenuText="MnuNombre">
+             <cc1:EasyNavigatorBarMenu ID="EasyNavigatorBarMenu1" runat="server" 
+                 fc_OnMenuItem_Click="Perfil"  
+                 OnHelpSnapShot="EasyNavigatorBarMenu1_HelpSnapShot" 
+                 ParamMenuDescrip="MnuDescrib" ParamMenuText="MnuNombre">
              </cc1:EasyNavigatorBarMenu>	
         </td>
     </tr>
@@ -17,7 +87,7 @@
 
 <style>
 body {
-   background-image: url('/Recursos/img/default0.png');
+   background-image: url('<%= ResolveUrl("~/Recursos/img/default0.png") %>');
    background-repeat: No-repeat;
    background-size: 30px;
 }

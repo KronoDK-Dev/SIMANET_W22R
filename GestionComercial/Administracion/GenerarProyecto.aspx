@@ -1485,6 +1485,7 @@
                 <br />
                 <asp:Label runat="server" Text="Fecha Ingreso:" />
                 <asp:TextBox ID="dtFechaIngreso" runat="server" Width="90px" />
+                <!-- uso de control ajax para definir el formato de ingreso de fecha -->
                 <ajaxtoolkit:calendarextender
                     id="CalendarExtender1"
                     runat="server"

@@ -79,7 +79,28 @@ namespace SIMANET_W22R
                         oEasyNavigatorBE.Texto = "DEFAULT";
                         oEasyNavigatorBE.Descripcion = "Pagina por defecto";
                         oEasyNavigatorBE.Pagina = "/Default.aspx";
-                        oEasyNavigatorHistorial.IrA(oEasyNavigatorBE);
+
+
+                        // CAMBIO DE PAGINA DE INICIO
+                        if (oUsuarioBE != null)
+                        {
+                            if (oUsuarioBE.IdEstado == 1 && oUsuarioBE.Observacion.ToString() != null)
+                             {oEasyNavigatorBE.Pagina = oUsuarioBE.Observacion.ToString(); }
+                            else
+                             {oEasyNavigatorBE.Pagina = "/Default.aspx"; }
+
+                        }
+                        else
+                        {
+                            if (oEasyUsuario.Login == "EDD_GGH")
+                            {oEasyNavigatorBE.Pagina = "/GestionPersonal/EvaluacionDesempenio/Evaluacion.aspx";}
+                            else
+                            {oEasyNavigatorBE.Pagina = "/Default.aspx"; }
+
+                        }
+                        // -----------
+                         oEasyNavigatorHistorial.IrA(oEasyNavigatorBE);
+
                     }
                 }
                 else {

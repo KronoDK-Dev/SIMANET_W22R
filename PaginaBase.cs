@@ -76,6 +76,7 @@ namespace SIMANET_W22R
         #endregion
 
         #region Propiedades Publicas
+
         public string IdGeneral // 12.01.2026
         {
             get { return Page.Request.Params[KEYIDGENERAL]; }

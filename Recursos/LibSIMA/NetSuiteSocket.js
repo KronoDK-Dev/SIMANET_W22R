@@ -318,8 +318,12 @@ NetSuite.Manager.TestingSocketListener = function () {
     }
 }
 
-NetSuite.Manager.Infinity.WorkingFrame = function () {
+var UsuarioBEWarningShown = false;
+
+NetSuite.Manager.Infinity.WorkingFrame = function ()
+{
     // NetSuite.LiveChat = new _NetSuite.Chat(SIMA.Utilitario.Helper.Configuracion.Leer("ConfigBase", "NetSuteSocket") + "platform=WebID" + "&App=SIMANetSuiteWeb&name=" + UsuarioBE.UserName + "&CodPer=" + UsuarioBE.CodPersonal + "&IdContac=" + UsuarioBE.IdContacto);
+    /*  13.01.2026 CAMBIADO PARA REALIZAR VALIDACION PREVIA DE EXISTENCIA DE CLASE  UsuarioBE
     var oConect = new _NetSuite.Chat(SIMA.Utilitario.Helper.Configuracion.Leer("ConfigBase", "NetSuteSocket") + "platform=WebID" + "&App=SIMANetSuiteWeb&name=" + UsuarioBE.UserName + "&CodPer=" + UsuarioBE.CodPersonal + "&IdContac=" + UsuarioBE.IdContacto);
         oConect.then(function (wSocket) {
                         NetSuite.LiveChat = wSocket;
@@ -327,12 +331,52 @@ NetSuite.Manager.Infinity.WorkingFrame = function () {
                     }).catch(function (err) {
                         NetSuite.Manager.TestingSocketListener();
                         NetSuite.LiveChat = null;
-                    });
+                        });
+     */
 
+
+    // Validar que UsuarioBE exista antes de usarlo
+    if (typeof UsuarioBE === "undefined") {
+        if (!UsuarioBEWarningShown) {
+            console.warn(" UsuarioBE no está definido en el contexto del cliente. No se puede iniciar el chat.");
+            UsuarioBEWarningShown = true; // Evita mostrarlo más veces
+        }
+        return;
+    }
+
+    if (!UsuarioBE.UserName || !UsuarioBE.CodPersonal || !UsuarioBE.IdContacto) {
+        if (!UsuarioBEWarningShown) {
+            console.warn(" UsuarioBE está incompleto. Faltan propiedades requeridas.");
+            UsuarioBEWarningShown = true;
+        }
+        return;
+    }
+
+
+    // Construir la URL para el socket
+    var socketUrl = SIMA.Utilitario.Helper.Configuracion.Leer("ConfigBase", "NetSuteSocket") +
+        "platform=WebID" +
+        "&App=SIMANetSuiteWeb" +
+        "&name=" + encodeURIComponent(UsuarioBE.UserName) +
+        "&CodPer=" + encodeURIComponent(UsuarioBE.CodPersonal) +
+        "&IdContac=" + encodeURIComponent(UsuarioBE.IdContacto);
+
+    // Intentar conexión
+    var oConect = new _NetSuite.Chat(socketUrl);
+    oConect.then(function (wSocket) {
+        NetSuite.LiveChat = wSocket;
+        NetSuite.Manager.StatusConect();
+    }).catch(function (err) {
+        console.error(" Error al conectar con el socket:", err);
+        NetSuite.Manager.TestingSocketListener();
+        NetSuite.LiveChat = null;
+        });
+
+    //----------------------------
     if (NetSuite.LiveChat instanceof WebSocket) {
         NetSuite.LiveChat.LinkService = null;//Funcion que permite el enlace de la implementacion LibBroker
         /*----------------------------------------------------------------------------------------------------------------*/
-        /*Eventoa de conectividad*/
+        /*Evento de conectividad*/
         /*----------------------------------------------------------------------------------------------------------------*/
         NetSuite.LiveChat.onclose = function (event) {
             NetSuite.Manager.Infinity.User.Contectado = false;

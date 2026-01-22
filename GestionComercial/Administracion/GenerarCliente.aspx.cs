@@ -40,6 +40,9 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     case EasyUtilitario.Enumerados.ModoPagina.M:
                         CargarModoModificar();
                         break;
+                    case EasyUtilitario.Enumerados.ModoPagina.C:
+                        CargarModoNuevo();
+                        break;
                 }
             }
             catch (Exception ex)
@@ -83,7 +86,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     PropertyNameCaseInsensitive = true
                 };
 
-                var objeto = System.Text.Json.JsonSerializer.Deserialize<ResponseRuc>(sanitizedJson, options);
+                var objeto = System.Text.Json.JsonSerializer.Deserialize<ResponseRuc>(sanitizedJson, options); // Install-Package System.Text.Json -ProjectName SIMANET_W22R
 
                 sMensaje = objeto.Mensaje;
                 //PROV. CONST. DEL CALLAO

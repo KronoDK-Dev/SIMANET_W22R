@@ -15,7 +15,7 @@ using System.Web.UI.WebControls;
 
 namespace SIMANET_W22R.HelpDesk.Sistemas
 {
-    public partial class HelpDeskListarAtenciones : HelpDeskBase, IPaginaBase
+    public partial class HelpDeskListarAtenciones : HelpDeskBase, IPaginaMantenimento
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -131,6 +131,56 @@ namespace SIMANET_W22R.HelpDesk.Sistemas
 
 
             }
+        }
+
+        void IPaginaMantenimento.Agregar()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPaginaMantenimento.Modificar()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPaginaMantenimento.Eliminar()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPaginaMantenimento.CargarModoPagina()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPaginaMantenimento.CargarModoNuevo()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPaginaMantenimento.CargarModoModificar()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPaginaMantenimento.CargarModoConsulta()
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IPaginaMantenimento.ValidarCampos()
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IPaginaMantenimento.ValidarCamposRequeridos()
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IPaginaMantenimento.ValidarExpresionesRegulares()
+        {
+            throw new NotImplementedException();
         }
     }
 }

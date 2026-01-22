@@ -141,6 +141,33 @@ namespace SIMANET_W22R.GestionPersonal.EvaluacionDesempenio
         protected global::System.Web.UI.WebControls.TextBox txtGrado;
 
         /// <summary>
+        /// Control ddlEvaluacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEvaluacion;
+
+        /// <summary>
+        /// Control ddlEstadoGG.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstadoGG;
+
+        /// <summary>
+        /// Control BtnModificarEstado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnModificarEstado;
+
+        /// <summary>
         /// Control btnAgregarTrabajador.
         /// </summary>
         /// <remarks>
