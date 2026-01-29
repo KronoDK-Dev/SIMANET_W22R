@@ -2024,11 +2024,11 @@ function EasyUpLoad() {
 String.prototype.LPad = function (l, c) { return new Array(l - this.length + 1).join(c || '0') + this; }
 //String.prototype.RPad = function (n, c) (var i; var a = this.split (''); for (i = 0; i <n - this.length; i++) (a.push(c) );
 String.prototype.Igual = function (Nombre) { return (this.toString().toUpperCase() == Nombre.toString().toUpperCase()); }
-String.prototype.Replace = function (RegExp, replacetext) {
+/*String.prototype.Replace = function (RegExp, replacetext) {
     var valor = this; var arrCarOrg = valor.split(RegExp);
     for (var c = 0; c <= arrCarOrg.length - 1; c++) { valor = valor.replace(RegExp, replacetext); }
     return valor;
-}
+}*/
 
 String.prototype.Equal = function (ValComp) {
     return this == ValComp;
@@ -2368,6 +2368,7 @@ function Underground() {
 /* Referencia : https://websocket.org/reference/websocket-api 
               : https://stackoverflow.com/questions/42304996/javascript-using-promises-on-websocket
 */
+/*  28.01.2026 mejoramos la conexion
 var _NetSuite = {};
 _NetSuite.Chat = function (NetPath) {   
     return new Promise(function (resolve, reject) {
@@ -2383,8 +2384,266 @@ _NetSuite.Chat = function (NetPath) {
     });
 
 }
+*/
 
 
+/* -----------------------------------------------------------
+   Chat socket wrapper con ws/wss, keepalive y reconexión pausada
+   ----------------------------------------------------------- */
+var _NetSuite = _NetSuite || {};
+_NetSuite.Chat = function (netPath, options) {
+    options = options || {};
+
+    // === Config por defecto (pensado para entorno donde el chat puede estar caído) ===
+    var RECONNECT_INTERVAL_MS = (typeof options.reconnectIntervalMs === 'number')
+        ? options.reconnectIntervalMs
+        : (10 * 60 * 1000); // 10 minutos
+
+    var CONNECT_TIMEOUT_MS = (typeof options.connectTimeoutMs === 'number')
+        ? options.connectTimeoutMs
+        : 4500; // 4.5s: si no abre, abortamos y esperamos al próximo ciclo
+
+    // Mantén pings solo si realmente tienes un servidor que responde "pong".
+    // Si no lo tienes aún, pon pingInterval: 0 para desactivarlo.
+    var PING_INTERVAL_MS = (typeof options.pingInterval === 'number')
+        ? options.pingInterval
+        : 0; // desactivado por defecto para no gastar recursos si no hay server
+
+    var PONG_TIMEOUT_MS = (typeof options.pongTimeout === 'number')
+        ? options.pongTimeout
+        : 5000;
+
+    var ENABLE_RECONNECT = (typeof options.enableReconnect === 'boolean')
+        ? options.enableReconnect
+        : true;
+
+    var JITTER_MS = (typeof options.jitterMs === 'number')
+        ? options.jitterMs
+        : 1000; // pequeño jitter aleatorio para evitar sincronías
+
+    // === Normalización del esquema ws/wss (solo si no viene explícito) ===
+    var hasExplicitScheme = /^wss?:\/\//i.test(netPath);
+    if (!hasExplicitScheme) {
+        try {
+            var isHttps = (window.location && window.location.protocol === 'https:');
+            var urlObj = new URL(netPath, window.location.origin);
+            urlObj.protocol = isHttps ? 'wss:' : 'ws:';
+            netPath = urlObj.toString();
+        } catch (e) {
+            var originScheme = (location.protocol === 'https:') ? 'wss://' : 'ws://';
+            if (netPath.startsWith('//')) netPath = originScheme + netPath.slice(2);
+            else if (netPath.startsWith('/')) netPath = originScheme + location.host + netPath;
+            else netPath = originScheme + netPath;
+        }
+    }
+    // Si trae ws:// o wss:// explícito, se respeta.
+
+    // === Estado interno ===
+    var ws = null;
+    var resolveOpen = null;
+    var rejectOpen = null;
+    var openPromise = null;
+
+    var pingTimer = null;
+    var pongTimer = null;
+    var reconnectTimer = null;
+
+    var closedByUser = false;
+    var everOpened = false;      // Alguna vez se abrió (para decidir estrategia)
+    var lastCloseCode = null;
+
+    // Handlers persistentes para no perderlos en reconexión
+    var userOnMessage = null;
+    var userOnError = null;
+    var userOnClose = null;
+
+    // === Utilitarios ===
+    function startPing() {
+        stopPing();
+        if (!PING_INTERVAL_MS) return; // si está desactivado, nada
+        pingTimer = setInterval(function () {
+            if (!ws || ws.readyState !== WebSocket.OPEN) return;
+            try {
+                ws.send(JSON.stringify({ type: 'ping', t: Date.now() }));
+                clearTimeout(pongTimer);
+                pongTimer = setTimeout(function () {
+                    try { ws.close(4000, 'pong-timeout'); } catch (_) { }
+                }, PONG_TIMEOUT_MS);
+            } catch (_) { /* noop */ }
+        }, PING_INTERVAL_MS);
+    }
+    function stopPing() {
+        if (pingTimer) { clearInterval(pingTimer); pingTimer = null; }
+        if (pongTimer) { clearTimeout(pongTimer); pongTimer = null; }
+    }
+
+    function clearReconnectTimer() {
+        if (reconnectTimer) {
+            clearTimeout(reconnectTimer);
+            reconnectTimer = null;
+        }
+    }
+
+    function withJitter(baseMs) {
+        // +/- JITTER_MS/2
+        var delta = Math.floor((Math.random() - 0.5) * JITTER_MS);
+        return Math.max(0, baseMs + delta);
+    }
+
+    function scheduleReconnect() {
+        if (!ENABLE_RECONNECT) return;
+        if (closedByUser) return;
+
+        clearReconnectTimer();
+
+        // Si la pestaña está oculta, esperamos y reintenta cuando vuelva al frente:
+        if (document.visibilityState === 'hidden') {
+            // Espera mínima corta y re-chequea visibilidad
+            reconnectTimer = setTimeout(scheduleReconnect, 5000);
+            return;
+        }
+
+        // Política: reconexión fija cada N minutos, siempre (hay o no haya éxito).
+        // Si N = 10m, no martillamos la red.
+        var delay = withJitter(RECONNECT_INTERVAL_MS);
+        reconnectTimer = setTimeout(connect, delay);
+    }
+
+    // Aplica handlers del usuario al ws actual
+    function attachUserHandlers(_ws) {
+        _ws._onmsgProxy = userOnMessage;
+        _ws._onerrProxy = userOnError;
+        _ws._oncloseProxy = userOnClose;
+    }
+
+    function connect() {
+        // Evita múltiplos connect() en paralelo
+        try { ws && ws.close(); } catch (_) { }
+        ws = null;
+        clearReconnectTimer();
+        stopPing();
+
+        var openedOrTimedOut = false;
+        ws = new WebSocket(netPath);
+        attachUserHandlers(ws);
+
+        // Implementar timeout manual: si no abre en CONNECT_TIMEOUT_MS, cerramos y programamos reconexión
+        var connectTimeout = setTimeout(function () {
+            if (openedOrTimedOut) return;
+            openedOrTimedOut = true;
+            try { ws && ws.close(4008, 'connect-timeout'); } catch (_) { }
+            // Programar reconexión espaciada
+            scheduleReconnect();
+        }, CONNECT_TIMEOUT_MS);
+
+        ws.onopen = function () {
+            if (openedOrTimedOut) return; // ya expiró timeout y cerramos
+            clearTimeout(connectTimeout);
+            openedOrTimedOut = true;
+
+            everOpened = true;
+            lastCloseCode = null;
+
+            startPing();
+
+            if (resolveOpen) { resolveOpen(ws); resolveOpen = null; }
+            // No hay que llamar rejectOpen
+
+            // Reatacha handlers por si fueron establecidos después
+            attachUserHandlers(ws);
+        };
+
+        ws.onmessage = function (evt) {
+            // Reset del contador de pong si recibimos algo
+            clearTimeout(pongTimer);
+            // Manejo de pong lógico
+            try {
+                var data = JSON.parse(evt.data);
+                if (data && data.type === 'pong') {
+                    // listo, no hacer nada extra
+                }
+            } catch (e) {
+                // Mensaje normal
+            }
+            if (typeof ws._onmsgProxy === 'function') {
+                try { ws._onmsgProxy(evt); } catch (_) { }
+            }
+        };
+
+        ws.onerror = function (err) {
+            if (typeof ws._onerrProxy === 'function') {
+                try { ws._onerrProxy(err); } catch (_) { }
+            }
+            // No reconectamos aquí: dejamos que onclose gestione el ciclo
+        };
+
+        ws.onclose = function (e) {
+            clearTimeout(connectTimeout);
+            stopPing();
+            lastCloseCode = e && e.code;
+
+            if (typeof ws._oncloseProxy === 'function') {
+                try { ws._oncloseProxy(e); } catch (_) { }
+            }
+
+            // Si el cierre no fue por el usuario, planificar reconexión con ventana grande (10m)
+            if (!closedByUser) {
+                scheduleReconnect();
+            }
+
+            // Si la promesa inicial aún no se resolvió (falló antes de abrir)
+            if (resolveOpen) {
+                rejectOpen && rejectOpen(new Error('WS closed before open: ' + (e && e.code)));
+                resolveOpen = rejectOpen = null;
+            }
+        };
+    }
+
+    // Promesa inicial (se resuelve la PRIMERA vez que logre abrirse)
+    openPromise = new Promise(function (resolve, reject) {
+        resolveOpen = resolve;
+        rejectOpen = reject;
+        connect();
+    });
+
+    // Método para cierre explícito desde la app
+    openPromise.close = function (code, reason) {
+        closedByUser = true;
+        stopPing();
+        clearReconnectTimer();
+        if (ws) try { ws.close(code || 1000, reason || 'client-close'); } catch (_) { }
+    };
+
+    // Atajos para registrar proxys (persisten a través de reconexión)
+    openPromise.onmessage = function (fn) {
+        userOnMessage = fn;
+        if (ws) ws._onmsgProxy = fn;
+        return openPromise;
+    };
+    openPromise.onerror = function (fn) {
+        userOnError = fn;
+        if (ws) ws._onerrProxy = fn;
+        return openPromise;
+    };
+    openPromise.onclose = function (fn) {
+        userOnClose = fn;
+        if (ws) ws._oncloseProxy = fn;
+        return openPromise;
+    };
+
+    // Pausar reconexiones cuando la pestaña está oculta, reintentar al volver visible
+    // (sin acortar tu ventana de 10 min; solo evita reintentos con la pestaña en background)
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'visible') {
+            // Si no hay conexión abierta y no hay reconexión programada, programa una
+            if (ENABLE_RECONNECT && (!ws || ws.readyState !== WebSocket.OPEN) && !reconnectTimer) {
+                scheduleReconnect();
+            }
+        }
+    });
+
+    return openPromise;
+};
 
 
 
@@ -2489,7 +2748,9 @@ Background.Canal = function (_Pagina) {
 
 String.prototype.Replace = function (RegExp, replacetext) {
     var valor = this; var arrCarOrg = valor.split(RegExp);
-    for (var c = 0; c <= arrCarOrg.length - 1; c++) { valor = valor.replace(RegExp, replacetext); }
+    for (var c = 0; c <= arrCarOrg.length - 1; c++) {
+        valor = valor.replace(RegExp, replacetext);
+    }
     return valor;
 }
 

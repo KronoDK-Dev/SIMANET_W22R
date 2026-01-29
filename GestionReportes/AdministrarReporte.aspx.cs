@@ -26,11 +26,11 @@ using static System.Net.WebRequestMethods;
 
 namespace SIMANET_W22R.GestionReportes
 {
-    public partial class AdministrarReporte : ReporteBase, IPaginaBase
+    public partial class AdministrarReporte :ReporteBase,IPaginaBase
     {
         public string[,] StyleBase
         {
-            //         { "dos","https://www.jqueryscript.net/demo/Powerful-Multi-Functional-jQuery-Folder-Tree-Plugin-zTree/css/zTreeStyle/zTreeStyle.css" }
+        //         { "dos","https://www.jqueryscript.net/demo/Powerful-Multi-Functional-jQuery-Folder-Tree-Plugin-zTree/css/zTreeStyle/zTreeStyle.css" }
             get
             {
                 return new string[1, 2]{
@@ -38,7 +38,7 @@ namespace SIMANET_W22R.GestionReportes
                                             { "cssTree", EasyUtilitario.Helper.Pagina.PathSite() + "/Recursos/Tree/zTreeStyle.css" }
                                             /*,{ "tres","https://davidsekar.github.io/jQuery-UI-ScrollTabs/css/style.cssz"}*/
                                         };
-
+                
             }
         }
 
@@ -48,7 +48,7 @@ namespace SIMANET_W22R.GestionReportes
             get
             {
                 return new string[3, 2]{
-                                         { "jsTree",  EasyUtilitario.Helper.Pagina.PathSite() + "/Recursos/Tree/jquery.ztree.core.js"}
+                                         { "jsTree",  EasyUtilitario.Helper.Pagina.PathSite() + "/Recursos/Tree/jquery.ztree.core.js"}                                         
                                         ,{ "jsTree2",EasyUtilitario.Helper.Pagina.PathSite() + "/Recursos/Tree/jquery.ztree.exedit.js"}
                                         ,{ "jsTree3", EasyUtilitario.Helper.Pagina.PathSite() + "/Recursos/Tree/jquery.ztree.excheck.js"}
                                        };
@@ -61,8 +61,11 @@ namespace SIMANET_W22R.GestionReportes
         {
             try
             {
-                Header.RegistrarLibs(Page.Header, Header.TipoLib.Style, this.StyleBase, true);
-                Header.RegistrarLibs(Page.Header, Header.TipoLib.Script, this.ScriptBase, true);
+                //Header.RegistrarLibs(Page.Header, Header.TipoLib.Style, this.StyleBase, true);
+                //Header.RegistrarLibs(Page.Header, Header.TipoLib.Script, this.ScriptBase, true);
+                this.RegistrarLib(Page.Header, PaginaBase.TipoLibreria.Style , this.StyleBase, true);
+                this.RegistrarLib(Page.Header, PaginaBase.TipoLibreria.Script, this.ScriptBase, true);
+
                 this.LlenarJScript();
                 this.LlenarCombos();
                 this.LlenarDatos();
@@ -106,8 +109,8 @@ namespace SIMANET_W22R.GestionReportes
 
         public void LlenarCombos()
         {
-            /*  sglGlobalData oGD = sglGlobalData.GetInstance();
-             DataTable dt= oGD.ListarContactos(86);*/
+          /*  sglGlobalData oGD = sglGlobalData.GetInstance();
+           DataTable dt= oGD.ListarContactos(86);*/
 
         }
 
@@ -117,7 +120,7 @@ namespace SIMANET_W22R.GestionReportes
 
         public void LlenarGrilla()
         {
-
+               
         }
 
         public void LlenarGrilla(string strFilter)
@@ -156,7 +159,7 @@ namespace SIMANET_W22R.GestionReportes
         {
 
         }
-
+      
 
     }
 }

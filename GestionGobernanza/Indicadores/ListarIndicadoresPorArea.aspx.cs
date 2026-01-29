@@ -22,7 +22,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
             try
             {
                 this.LlenarCombos();
-                this.LlenarDatos();
+                this.LlenarDatos(); 
             }
             catch (Exception ex)
             {
@@ -111,7 +111,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                         oimg = new HtmlImage();
                         oimg.Src = EasyUtilitario.Constantes.ImgDataURL.IconConfig;
                         oimg.Attributes.Add("style", "cursor:pointer");
-                        oimg.Attributes.Add(EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString(), "ListarIndicadoresPorArea.CondigIndicador(jNet.get(this.parentNode.parentNode.parentNode.parentNode),'" + dr["IDITEMINFOCOMPLE"].ToString() + "','" + dr["IDINDICADOR"].ToString() + "');");
+                        oimg.Attributes.Add(EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString(), "ListarIndicadoresPorArea.ConfigIndicador(jNet.get(this.parentNode.parentNode.parentNode.parentNode),'" + dr["IDITEMINFOCOMPLE"].ToString() + "','" + dr["IDINDICADOR"].ToString() + "');");
                         oimg.Attributes.Add(EasyUtilitario.Enumerados.EventosJavaScript.onmouseover.ToString(), "jNet.get(this.parentNode.parentNode.parentNode.parentNode).attr('bloqueado','1')");
                         oimg.Attributes.Add(EasyUtilitario.Enumerados.EventosJavaScript.onmouseout.ToString(), "jNet.get(this.parentNode.parentNode.parentNode.parentNode).attr('bloqueado','0')");
 

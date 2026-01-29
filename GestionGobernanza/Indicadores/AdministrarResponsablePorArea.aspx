@@ -113,7 +113,7 @@
 
 
 </head>
-<body>
+<body> 
     <form id="form1" runat="server">
         <table style="width:100%;height:100%"  border="0">
             <tr>
@@ -129,14 +129,11 @@
                                  AREA:
                              </td>
                              <td  style="width:90%;">
-                                  <cc1:EasyAutocompletar ID="aucArea" runat="server"  NroCarIni="4"  DisplayText="NOMBRE_AREA" ValueField="COD_AREA" fnOnSelected="onItemSeleccionado" fncTempaleCustom="onDisplayTemplateArea">
+                                  <cc1:EasyAutocompletar ID="aucArea" runat="server"  NroCarIni="4"  DisplayText="NOMBRE_AREA" ValueField="IDAREA" fnOnSelected="onItemSeleccionado" fncTempaleCustom="onDisplayTemplateArea">
                                      <EasyStyle Ancho="Dos"></EasyStyle>
                                          <DataInterconect MetodoConexion="WebServiceExterno">
-                                             <UrlWebService>/General/Busquedas.asmx</UrlWebService>
+                                             <UrlWebService>/GestionGobernanza/Indicadores.asmx</UrlWebService>
                                              <Metodo>BuscarArea</Metodo>
-                                             <UrlWebServicieParams>
-                                                 <cc3:EasyFiltroParamURLws  ParamName="UserName" Paramvalue="UserName" ObtenerValor="Session" />
-                                             </UrlWebServicieParams>
                                          </DataInterconect>
                                  </cc1:EasyAutocompletar>
 
@@ -182,6 +179,9 @@
 
     <script>
         AdministrarResponsablePorArea.GuardarDatos = function (ItemReponSeleccionadoBE) {
+
+           
+
             var oParamCollections = new SIMA.ParamCollections();
             var oParam = new SIMA.Param("IdItem", ItemReponSeleccionadoBE.IDITEM);
             oParamCollections.Add(oParam);
@@ -210,10 +210,21 @@
 
 
         AdministrarResponsablePorArea.ListarResponsables = function () {
+
+            var DataAreaBE = aucArea.GetItemSelected();
+
             var urlPag = Page.Request.ApplicationPath + "/GestionGobernanza/Indicadores/ListaReponsablePorArea.aspx";
             var oColletionParams = new SIMA.ParamCollections();
+
             var oParam = new SIMA.Param(AdministrarResponsablePorArea.KEYCODAREA, aucArea.GetValue());
             oColletionParams.Add(oParam);
+
+            oParam = new SIMA.Param(AdministrarResponsablePorArea.KEYCODEMP, DataAreaBE.COD_EMP);
+            oColletionParams.Add(oParam);
+
+            oParam = new SIMA.Param(AdministrarResponsablePorArea.KEYCODSUC, DataAreaBE.COD_SUC);
+            oColletionParams.Add(oParam);
+
 
             var oLoadConfig = {
                 CtrlName: "RespContent",

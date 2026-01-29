@@ -1,15 +1,22 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReportExploreV2.aspx.cs" Inherits="SIMANET_W22R.GestionReportes.ReportExploreV2" %>
 <%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Form" TagPrefix="cc4" %>
 <%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Form.Controls" TagPrefix="cc3" %>
-
 <%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Filtro" TagPrefix="cc2" %>
-
 <%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb" TagPrefix="cc1" %>
-
 <%@ Register Src="~/Controles/Header.ascx" TagPrefix="uc1" TagName="Header" %>
 
 
 <!DOCTYPE html>
+   <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/StyleEasy.css") %> ">
+   <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/Personalizado.css") %> ">
+   <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/toastr.min.css") %> ">
+<!--  Esta referencia esta ya en e Header.ascx
+   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+-->
+   <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/font-awesome.min.css") %> ">
+    <script src="<%= ResolveUrl("~/Recursos/js/jquery-3.6.4.min.js") %>"></script>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -102,25 +109,142 @@
        border: 1px dotted #5394C8;
     }
 
+    #ibtn2 {
+    width: 30px !important;
+    height: 30px !important;
+    padding: 0;
+    border: none;
+    /* overflow: hidden; /* evita que sobresalga la imagen */
+    overflow: visible;
+        }
+
+     #ibtn2 img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain; /* mantiene proporciones */
+            }
+
+    /*  para linea de expansion del panel */
+     /* --- Estructura principal --- */
+  .layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Panel izquierdo */
+  .left-panel {
+    width: 250px;
+    min-width: 100px;
+    max-width: 600px;
+    border: 1px dotted #696666;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+    position: relative;
+  }
+
+  /* Scrolls superior e inferior sincronizados */
+  .scroll-top,
+  .scroll-bottom {
+    flex: 0 0 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .scroll-main {
+    flex: 1;
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+  /* Botón divisor */
+  .divider {
+    width: 6px;
+    background-color: #ccc;
+    cursor: ew-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: background-color 0.2s;
+  }
+  .divider:hover {
+    background-color: #aaa;
+  }
+
+  .divider span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-weight: bold;
+    color: #555;
+    font-family: monospace;
+  }
+
+  /* Panel derecho */
+  .right-panel {
+    flex: 1;
+    border: 1px dotted #696666;
+    padding: 10px;
+    position: relative;
+  }
+
+  /* Botones sobre el PDF */
+  #export-buttons-container {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+  }
 </style>
 
     <style>
+        .ReportBody {
+                      position: relative; /* crea contexto para absolute */
+                    }
+
+        #iframe-container {
+            position: relative; /* contexto para los botones */
+        }
+     #export-buttons-container {
+                        position: absolute;
+                        top: 10px; /* distancia desde arriba del iframe */
+                        left: 50%; /* centro del contenedor padre */
+                        transform: translateX(-50%); /* centra el div respecto a su ancho */
+                        display: flex;
+                        gap: 10px;
+                        z-index: 1000;
+                    }
+       /*
+        #export-buttons-container {
+                                    display: flex;
+                                    gap: 15px;
+                                    padding: 5px;
+                                    width: auto;
+                                    height: auto;
+                                    overflow: visible;
+                                }
+          */
+
         .export-button {
-            position: absolute;
-            z-index: 1;
-          /*  background-color: #007bff; /* Color de fondo del botón */
-            padding: 2px; /* Relleno del botón */
-            color: white; /* Color del texto del botón */
-            border: none; /* Sin borde */
-            
+                width: 30px !important;
+                height: 30px !important;
+                padding: 0;
+                border: none;
+                display: inline-block;     
             cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
            /* border-radius: 5px; /* Bordes redondeados */
         }
+
         .export-button:hover {
             background-color: #0056b3; /* Color del botón al pasar el mouse */
         }
 
     </style> 
+
     <script type="text/javascript">
         function positionButton() {
           /*  var iframe = document.getElementById('RptInPrevio');
@@ -146,6 +270,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        
           <table id="tblReport" style="width:100%;height:100%"  border="0px" >
            <tr>
                <td>
@@ -154,23 +279,73 @@
            </tr>
            <tr>
                <td style="width:100%; height:100%;" valign="top"  align="left"  >
-                           <table cellpadding="0" cellspacing="0"  style="width:100%; height:100%"   border="0px">
-                               <tr>
-                                   <td  style="width:15%; height:90%;  border: 1px  dotted #696666; "  align="left"  valign="top" >
-                                       <div class="content_wrap">
-                                           <div class="zTreeDemoBackground left" style="height:800px">
-                                                <ul id="treeNav" class="ztree"></ul>
-                                           </div>
-                                       </div>
-                                    
-                                   </td>
-                                     <td class="ReportBody"   style="padding:10px; width:85%;height:100%;border: 1px  dotted #696666; " align="left "  valign="top" >
-                                           <asp:ImageButton ID="ibtn" runat="server"   CssClass="export-button" style="display:none"
-                                                  ImageUrl="~/Recursos/img/BtnExcel.jpg"  OnClick="prExportarExcel"   />
-                                            <iframe runat="server" id="RptInPrevio" src="" allowtransparency="true" style="background-color:transparent; solid #000000; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"  frameborder="0" > </iframe>
-                                    </td>
-                               </tr>
-                           </table>
+                                       <table cellpadding="0" cellspacing="0"  style="width:100%; height:100%"   border="0px">
+                                           <tr style="height:100%;">
+                                                  <!-- PANEL IZQUIERDO -->
+                                                  <td style="width:30%; max-width:250px; height:100%; border:1px dotted #696666; position:relative;" valign="top">
+                                                    <div id="leftPanel""  style="position:relative; width:100%; height:100%; display:flex; flex-direction:column;">
+      
+                                                      <!-- Barra de scroll superior -->
+                                                      <div class="scroll-top" 
+                                                           style="flex:0 0 12px; overflow-x:auto; overflow-y:hidden; z-index:10;">
+                                                        <div style="width:600px; height:1px;"></div>
+                                                      </div>
+
+                                                      <!-- Contenido principal con scroll normal -->
+                                                      <div class="scroll-main" 
+                                                           style="flex:1; overflow:auto; white-space:nowrap;">
+                                                        <div class="content_wrap">
+                                                          <div class="zTreeDemoBackground left" style="height:800px">
+                                                            <ul id="treeNav" class="ztree"></ul>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+
+                                                      <!-- Barra de scroll inferior -->
+                                                      <div class="scroll-bottom" 
+                                                           style="flex:0 0 12px; overflow-x:auto; overflow-y:hidden; z-index:10;">
+                                                        <div style="width:600px; height:1px;"></div>
+                                                      </div>
+
+                                                    </div>
+                                                  </td>
+
+                                                  <!--  DIVISOR   -->
+                                                        <td id="divider" 
+                                                            style="width:6px; cursor:ew-resize; background:#ccc;">
+                                                            <span>||</span>
+                                                        </td>
+
+
+                                                  <!-- PANEL DERECHO -->
+                                                  <td class="ReportBody" 
+                                                      style="padding:10px; width:70%; height:100%; border:1px dotted #696666;" 
+                                                      valign="top">
+                                                    <div id="iframe-container" 
+                                                         style="position:relative; width:100%; height:100%;">
+      
+                                                      <!-- Botones centrados sobre el iframe -->
+                                                      <div id="export-buttons-container" 
+                                                           style="position:absolute; top:10px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:1000;">
+                                                        <asp:ImageButton ID="ibtn" runat="server" CssClass="export-button"
+                                                            ImageUrl="~/Recursos/img/BtnExcel1.jpg"
+                                                            OnClick="prExportarExcel"
+                                                            ToolTip="Exportar datos a Excel (Histórico)" />
+                                                        <asp:ImageButton ID="ibtn2" runat="server" CssClass="export-button"
+                                                            ImageUrl="~/Recursos/img/BtnExcel2.jpg"
+                                                            OnClick="prExportarExcelDT"
+                                                            ToolTip="Exportar datos a Excel (sólo proceso reciente)" />
+                                                      </div>
+
+                                                      <!-- IFRAME -->
+                                                      <iframe runat="server" id="RptInPrevio" src=""
+                                                              allowtransparency="true"
+                                                              style="background-color:transparent; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:1;"
+                                                              frameborder="0"></iframe>
+                                                    </div>
+                                                  </td>
+                                                </tr>
+                                       </table>
                </td>
            </tr>
       </table>
@@ -184,7 +359,56 @@
 
     <cc3:EasyPopupBase ID="EasyPrevioRpt"  runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="Vista previa" RunatServer="false" DisplayButtons="true" fncScriptAceptar="EasyPrevioRpt_Aceptar">
    </cc3:EasyPopupBase>
+        <asp:HiddenField ID="hdnPathRpt" runat="server" />
+
     </form>
+    
+<script>
+    //   28.01.2026 --- 1) Congela los constructores para que nadie los pueda pisar ---
+    function lockPopupConstructors() {
+        var EPT = window.EasyPopupTestReportParam;
+        if (!EPT) return; // si aún no existe, no pasa nada; puedes volver a llamarlo luego
+
+        // Haz backup una sola vez
+        if (!EPT.ParamCtorBackup) {
+            EPT.ParamCtorBackup = EPT.Param;
+            EPT.ParamCollectionCtorBackup = EPT.ParamCollection;
+        }
+
+        // Define getters para que SIEMPRE devuelvan los constructores originales
+        try {
+            Object.defineProperty(EPT, 'Param', {
+                configurable: false, enumerable: true,
+                get() { return EPT.ParamCtorBackup; },
+                set(v) {
+                    console.warn('[lockPopupConstructors] Ignorado intento de sobrescribir Param:', v);
+                }
+            });
+            Object.defineProperty(EPT, 'ParamCollection', {
+                configurable: false, enumerable: true,
+                get() { return EPT.ParamCollectionCtorBackup; },
+                set(v) {
+                    console.warn('[lockPopupConstructors] Ignorado intento de sobrescribir ParamCollection:', v);
+                }
+            });
+        } catch (e) {
+            console.warn('[lockPopupConstructors] No se pudo congelar Param/ParamCollection:', e);
+        }
+    }
+
+    // --- 3) Llama a lockPopupConstructors cuando el DOM esté listo ---
+    document.addEventListener('DOMContentLoaded', function () {
+        // Puede que EPT aún no exista si lo crea tu Header.ascx más tarde; por eso:
+        // - llama ahora (por si ya está)
+        // - y vuelve a llamar justo antes de abrir el popup (en AbrirPopupParametros)
+        if (window.EasyPopupTestReportParam) {
+            lockPopupConstructors();
+        }
+    });
+</script>
+
+
+ 
 </body>
 
      <script>
@@ -202,12 +426,55 @@
 
      </script>
 
- <script>
+     <script>
      ReportExploreV2.IconFolder = "data:image/gif;base64,R0lGODlhHgAaAHAAACH5BAEAAAcALAAAAAAeABoAggAAADo6OHp6ePr6+uXl5VtbWX19ewAAAANSeLrc/jBKF6q9QcwXhv8fUWgb04GgiK2Ywl4GKoOBO9+4Vx9n7n+73s8XHA6LRqItmUMyb86nLCqlLasoKnagxXarX2n4OWaWk8GXel1qu9+LBAA7";
      ReportExploreV2.IconReporte = "data:image/gif;base64,R0lGODlhHQAhAHAAACH5BAEAAA4ALAAAAAAdACEAgwAAAIqJhnl3dH99esrJyPr6+oSCgM/OzRhavf///0Gl7it80+bt+KzD5wAAAAAAAATA0MlJq73YBcG75wORVUJhnqgpGOIolWksHCy2fXioFnRLxjJWAdazwICnGetYpByRQ57w1HxBk6beZ+C87rJTVdf77CUR6LRafbp5BmdvAXE9ChCJvD6PokMFCip4e4R5fkh2g4V7h0ACC4KLhHQKlZaBUZGLDHqNMn53kg2dBQump5CZQ4qTpH9nkop0a2hfq7GuiHFenimJcr0oibTEdUljcr7HE0/JtgLIzs/R0h4B1M7QF83ZNjjfONcu4xkRADs=";
      ReportExploreV2.OpcionObjetSelected=null
 
 
+     ReportExploreV2.VistaPrevia = function (PathRpt) {
+         var oRptInPrevio = jNet.get("RptInPrevio");
+         oRptInPrevio.attr("src", PathRpt);
+         document.getElementById('<%= hdnPathRpt.ClientID %>').value = PathRpt;
+
+         var DataBE = ReportExploreV2.Navigator.Node.Select.Data;
+         /*
+         if (DataBE.IdTipo != '9999') {
+             Manager.Task.Excecute(function () {
+                 var rect = jNet.get('RptInPrevio').getBoundingClientRect();
+
+                 // Posiciona el contenedor en relación al iframe
+                 jNet.get("export-buttons-container")
+                     .css("display", "flex")
+                    // .css("position", "absolute")
+                     .css("top", (rect.top + 16.5) + 'px');
+                    // .css("left", (rect.left + (rect.width / 2) + 150) + 'px');
+             }, 900, true);
+         }
+         */
+     };
+
+
+     ReportExploreV2.btnExportaXLS = function () {
+         var rect = jNet.get('RptInPrevio').getBoundingClientRect();
+         jNet.get("ibtn").css("display", "block")
+             .css("top", rect.top + '16.5' + 'px')
+             .css("left", rect.left + (rect.width / 2) + 220 + 'px');
+
+         // Obtener el tamaño y posición actual de ibtn
+         var ibtnRect = jNet.get('ibtn').getBoundingClientRect();
+
+         // Mostrar y posicionar ibtn2 al costado derecho (10px de separación)
+         jNet.get("ibtn2").css("display", "block")
+             .css("position", "absolute")
+             .css("top", ibtnRect.top + 'px')
+             .css("left", ibtnRect.right + 10 + 'px')
+             
+             ;
+     }
+
+
+          /*   19.02.2025 se le quita el true
      ReportExploreV2.VistaPrevia = function(PathRpt){
          var oRptInPrevio = jNet.get("RptInPrevio");
          oRptInPrevio.attr("src", PathRpt);
@@ -220,18 +487,11 @@
                      .css("position", "absolute")
                      .css("top", rect.top + '16.5' + 'px')
                      .css("left", rect.left + (rect.width / 2) + 220 + 'px');
-             }, 900,true);
+             }, 900);
          }
 
      }
-
-     ReportExploreV2.btnExportaXLS = function () {
-         var rect = jNet.get('RptInPrevio').getBoundingClientRect();
-         jNet.get("ibtn").css("display", "block")
-             .css("top", rect.top + '16.5' + 'px')
-             .css("left", rect.left + (rect.width / 2) + 220 + 'px');
-     }
-
+     */
      ReportExploreV2.SeleccionarOpcion = function (e,idOp) {
          var objContent = jNet.get("tblContentObj");
              objContent.forEach(function (ochild, i) {
@@ -253,10 +513,17 @@
          return MsgTemplate;
      }
 
+    
  </script>
 
-	<SCRIPT type="text/javascript">
-		<!--
+	
+
+       
+
+   
+
+    <SCRIPT type="text/javascript">
+		
      /*Definicion de eventos*/
      ReportExploreV2.Navigator = {};
      ReportExploreV2.Navigator.Node = {};
@@ -487,8 +754,7 @@
           var oEasyDataInterConect = new EasyDataInterConect();
               oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
               oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + "GestionReportes/AdministrarReportes.asmx";
-              oEasyDataInterConect.Metodo = "ListarReportesCompartidosPorUsuario";
-
+              oEasyDataInterConect.Metodo = "ListarReportesCompartidosPorUsuario";              
               var oParamCollections = new SIMA.ParamCollections();
               var oParam = new SIMA.Param("IdUsuario", UsuarioBE.IdUsuario, TipodeDato.Int);
               oParamCollections.Add(oParam);
@@ -557,8 +823,69 @@
      $(document).ready(function () {
          treeObjet = $.fn.zTree.init($("#treeNav"), setting, arrData);
      });
-		//-->
+		
 
     </SCRIPT>
 
+
+       <script>
+           // --- Sincroniza los scrolls horizontales ---
+           const topScroll = document.querySelector('.scroll-top');
+           const bottomScroll = document.querySelector('.scroll-bottom');
+           const mainScroll = document.querySelector('.scroll-main');
+
+           [topScroll, bottomScroll].forEach(bar => {
+               bar.addEventListener('scroll', () => {
+                   mainScroll.scrollLeft = bar.scrollLeft;
+                   [topScroll, bottomScroll].forEach(other => {
+                       if (other !== bar) other.scrollLeft = bar.scrollLeft;
+                   });
+               });
+           });
+           mainScroll.addEventListener('scroll', () => {
+               topScroll.scrollLeft = mainScroll.scrollLeft;
+               bottomScroll.scrollLeft = mainScroll.scrollLeft;
+           });
+
+           // --- Control de expansión del panel izquierdo ---
+           const divider = document.getElementById("divider");
+           const leftPanel = document.getElementById("leftPanel");
+
+           let isResizing = false;
+           let startX = 0;
+           let startWidth = 0;
+
+           // Permite arrastrar el divisor
+           divider.addEventListener("mousedown", e => {
+               isResizing = true;
+               startX = e.clientX;
+               startWidth = leftPanel.offsetWidth;
+               document.body.style.cursor = "ew-resize";
+           });
+
+           document.addEventListener("mousemove", e => {
+               if (!isResizing) return;
+               const dx = e.clientX - startX;
+               leftPanel.style.width = Math.min(Math.max(100, startWidth + dx), 600) + "px";
+           });
+
+           document.addEventListener("mouseup", () => {
+               isResizing = false;
+               document.body.style.cursor = "default";
+           });
+
+           // Click en el divisor para colapsar/expandir
+           divider.addEventListener("dblclick", () => {
+               if (leftPanel.style.width === "0px" || leftPanel.offsetWidth < 20) {
+                   leftPanel.style.width = "250px";
+                   divider.querySelector("span").textContent = "||";
+               } else {
+                   leftPanel.style.width = "0px";
+                   divider.querySelector("span").textContent = "⟩";
+               }
+           });
+      
+
+       </script>
+ 
 </html>

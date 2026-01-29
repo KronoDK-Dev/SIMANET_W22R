@@ -68,12 +68,15 @@ namespace SIMANET_W22R
         public static string KEYQEDITABLE = "mEdit";
 
         public const string KEYCODAREA = "CodArea";
+        public const string KEYCODEMP = "CodEmp";
+        public const string KEYCODSUC = "CodSuc";
         public static string KEYCLIENTEID = "V_CLIENTE_ID"; // 12.01.2026
 
 
         #endregion
 
         #region Propiedades Publicas
+
         public string IdGeneral // 12.01.2026
         {
             get { return Page.Request.Params[KEYIDGENERAL]; }
@@ -144,6 +147,14 @@ namespace SIMANET_W22R
             get { return Page.Request.Params[KEYCODAREA].ToString(); }
         }
 
+        public string CodEmpresa
+        {
+            get { return Page.Request.Params[KEYCODEMP].ToString(); }
+        }
+        public string CodSucursal
+        {
+            get { return Page.Request.Params[KEYCODSUC].ToString(); }
+        }
 
         public string PathNetCore
         {

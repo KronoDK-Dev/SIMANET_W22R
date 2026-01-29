@@ -19,6 +19,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // this.IdGeneral es una propiedad de la clase PaginaBase.cs
             if (this.ModoPagina.ToString().Equals("M") && !string.IsNullOrEmpty(this.IdGeneral))
             {
                 nroSOL.InnerText = "N° SOLICITUD: " + this.IdGeneral;
@@ -326,7 +327,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             }
             catch (Exception ex)
             {
-
+                System.Diagnostics.Debug.WriteLine(ex.ToString()); // 21.01.2026
                 var result = "" + ex.Message;
                 string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
@@ -554,7 +555,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             }
             catch (Exception ex)
             {
-
+                System.Diagnostics.Debug.WriteLine(ex.ToString()); // 21.01.2026
                 var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
                 result = result.Replace("'", "");
                 string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);

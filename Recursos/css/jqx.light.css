@@ -2552,27 +2552,27 @@ textarea.jqx-input-light:-ms-input-placeholder {
 }
 
 .jqx-fill-state-pressed-light .jqx-icon-delete-light {
-    background-image: url('images/icon-delete-white.png');
+    background-image: url('../img/icon-delete-white.png');
 }
 
 .jqx-fill-state-pressed-light .jqx-icon-edit-light {
-    background-image: url('images/icon-edit-white.png');
+    background-image: url('../img/icon-edit-white.png');
 }
 
 .jqx-fill-state-pressed-light .jqx-icon-save-light {
-    background-image: url('images/icon-save-white.png');
+    background-image: url('../img/icon-save-white.png');
 }
 
 .jqx-fill-state-pressed-light .jqx-icon-cancel-light {
-    background-image: url('images/icon-cancel-white.png');
+    background-image: url('../img/icon-cancel-white.png');
 }
 
 .jqx-fill-state-pressed-light .jqx-icon-search-light {
-    background-image: url('images/search_white.png');
+    background-image: url('../img/search_white.png');
 }
 
 .jqx-fill-state-pressed-light .jqx-icon-plus-light {
-    background-image: url('images/plus_white.png');
+    background-image: url('../img/plus_white.png');
 }
 
 .jqx-menu-minimized-button-light {
@@ -2580,19 +2580,19 @@ textarea.jqx-input-light:-ms-input-placeholder {
 }
 
 .jqx-fill-state-pressed-light .jqx-menu-minimized-button-light {
-    background-image: url('images/icon-menu-minimized-white.png');
+    background-image: url('../img/icon-menu-minimized-white.png');
 }
 
 
 .jqx-editor-toolbar-icon-light {
-    background: url('images/html_editor.png') no-repeat;
+    background: url('../img/html_editor.png') no-repeat;
 }
 
 .jqx-fill-state-hover-light .jqx-editor-toolbar-icon-fontsize-light,
 .jqx-fill-state-pressed-light .jqx-editor-toolbar-icon-fontsize-light,
 .jqx-fill-state-hover-light .jqx-editor-toolbar-icon-forecolor-light,
 .jqx-fill-state-pressed-light .jqx-editor-toolbar-icon-forecolor-light {
-    background: url('images/html_editor.png') no-repeat;
+    background: url('../img/html_editor.png') no-repeat;
 }
 
 .jqx-editor-toolbar-button-light {

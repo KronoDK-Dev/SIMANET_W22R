@@ -16,7 +16,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
     public partial class DetalleObjetivo : GobernanzaBase,IPaginaMantenimento
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        { 
             try
             {
                 this.CargarModoPagina();

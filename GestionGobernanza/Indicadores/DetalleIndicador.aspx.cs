@@ -18,7 +18,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            try 
             {
                 this.LlenarCombos();
                 this.CargarModoPagina();
@@ -53,11 +53,6 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                     this.txtNombre.SetValue(dr["NOMBRE"].ToString());
                     this.txtDescripcion.SetValue(dr["DESCRIPCION"].ToString());
                    // this.txtMeta.SetValue(dr["VAL5"].ToString());
-
-
-               
-                   
-
                 }
             }
         }

@@ -1,6 +1,10 @@
-﻿using EasyControlWeb;
+﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+using EasyControlWeb;
+using EasyControlWeb.Form.Controls;
 using SIMANET_W22R.InterfaceUI;
+using SIMANET_W22R.srvCliente;
 using SIMANET_W22R.srvGeneral;
+// servicios
 using SIMANET_W22R.srvGestionComercial;
 using SIMANET_W22R.srvGestionProyecto;
 using System;
@@ -15,13 +19,13 @@ using System.Web.UI.WebControls;
 
 namespace SIMANET_W22R.GestionComercial.Administracion
 {
-    public partial class GenerarProyecto : BaseComercial, IPaginaBase
+    public partial class GenerarProyecto : BaseComercial , IPaginaBase
     {
         DataTable dt;
         ProyectoSoapClient servicio = new ProyectoSoapClient("ProyectoSoap");
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["codPry"] == null || Session["codPry"].ToString() == String.Empty)
+            if (Session["codPry"]==null || Session["codPry"].ToString() == String.Empty)
             {
                 txtModo.Value = "N";
             }
@@ -36,10 +40,10 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             {
                 this.LlenarDatos();
             }
-
+           
             if (hfMostrarPopup.Value == "1")
             {
-                //  ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirPopup", "epuColaboradores.Show();", true); //mostrarPopup()
+              //  ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirPopup", "epuColaboradores.Show();", true); //mostrarPopup()
                 hfMostrarPopup.Value = "0"; // Reinicia para que no se muestre en postbacks siguientes
             }
 
@@ -50,7 +54,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
         }
 
-
+      
 
         public void LlenarDatos()
         {
@@ -92,7 +96,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
                 lblTitulo.Text = "Nuevo Proyecto";
                 lblSubtitulo.Text = "";
-
+           
                 if (eDDLCentros.Items.Count == 0)
                 {
                     eDDLCentros.LoadData();
@@ -189,13 +193,19 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             try
             {
                 ProyectoSoapClient oProyecto = new ProyectoSoapClient();
+
+                if (!string.IsNullOrWhiteSpace((txtCodProyecto.Text)))
+                {
+                    txtCodProyecto.Text= Session["codPry"].ToString();
+                }
+                
                 ProyectoBE oProyectoBE = oProyecto.ListarProyectoPorId(txtCodProyecto.Text, this.UsuarioLogin);
-                lblTitulo.Text = oProyectoBE.DES_PRY;
+                lblTitulo.Text = oProyectoBE.DES_PRY;               
                 lblSubtitulo.Text = oProyectoBE.COD_PRY;
                 lblTotalProy.Text = "Total Proyecto (inc. Adendas) = ";
 
 
-                txtCodProyecto.Text = oProyectoBE.COD_PRY;
+                txtCodProyecto.Text= oProyectoBE.COD_PRY;
                 eDDLCentros.LoadData();
                 eDDLCentros.SetValue(oProyectoBE.COD_CEO);
                 eDDLUnidadO.LoadData();
@@ -208,12 +218,12 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 {
                     eDDLUnidadO.SetValue(oProyectoBE.V_PRY_UNDOPER);
                 }
-
+                    
                 eDDLUnidadO.SetValue(oProyectoBE.V_PRY_UNDOPER);
                 eDDLLineasN.LoadData();
                 eDDLLineasN.SetValue(oProyectoBE.COD_DIV);
-                // if (eDDLLineasN.Items.Count > 0)
-                //  { eDDLLineasN.SelectedValue = oProyectoBE.COD_DIV; } // se requier igual el valor para permitir en la siguiente busqueda resultados correctos
+               // if (eDDLLineasN.Items.Count > 0)
+              //  { eDDLLineasN.SelectedValue = oProyectoBE.COD_DIV; } // se requier igual el valor para permitir en la siguiente busqueda resultados correctos
                 eDDLSubLineasN.LoadData();
                 eDDLSubLineasN.SetValue(oProyectoBE.V_PRY_SUBLINEA);
                 ltEstadoPr.LoadData();
@@ -223,18 +233,18 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 EDDLcategoria.LoadData();
                 //acCliente.SetValue(oProyectoBE.V_CLIENTE_ID);
                 txtCorreo.SetValue(oProyectoBE.CORREO);
-                dpcFechaIni.Text = string.IsNullOrEmpty(oProyectoBE.FECINI_PRY) ? "" : DateTime.Parse(oProyectoBE.FECINI_PRY).ToString("dd/MM/yyyy");
-                dpcFechaFin.Text = string.IsNullOrEmpty(oProyectoBE.FECFIN_PRY) ? "" : DateTime.Parse(oProyectoBE.FECFIN_PRY).ToString("dd/MM/yyyy");
+                dpcFechaIni.Text =string.IsNullOrEmpty(oProyectoBE.FECINI_PRY) ? "" : DateTime.Parse(oProyectoBE.FECINI_PRY).ToString("dd/MM/yyyy") ;
+                dpcFechaFin.Text =string.IsNullOrEmpty(oProyectoBE.FECFIN_PRY) ? "" : DateTime.Parse(oProyectoBE.FECFIN_PRY).ToString("dd/MM/yyyy") ;
                 txtMontoContr.SetValue(oProyectoBE.N_PRY_MONTO_SINIMP);
                 txtAlias.SetValue(oProyectoBE.PRY_JDE);
                 ltMoneda.SetValue(oProyectoBE.V_PRY_CODMONEDA);
-
+               
                 txtNumeroCasco.SetValue(oProyectoBE.NROCASCO);
                 txtDescripcion.SetValue(oProyectoBE.DES_PRY);
                 //txtEstadoPry.SetValue(oProyectoBE.EST_PRY);
                 ltEstadoPr.SetValue(oProyectoBE.EST_ATL);
                 txtEslora.SetValue(oProyectoBE.N_PRY_ESLORA);
-
+                
                 ltTipoPry.SetValue(oProyectoBE.TIPO_PRY);
                 txtManga.SetValue(oProyectoBE.N_PRY_MANGA);
                 txtPuntal.SetValue(oProyectoBE.N_PRY_PUNTAL);
@@ -243,14 +253,14 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 txtConvenio.SetValue(oProyectoBE.V_PRY_Convenio);
                 // Controles autocomplete se les pasa dos valores 
                 if (!string.IsNullOrWhiteSpace(oProyectoBE.V_CLIENTE_ID))
-                {
-                    acCliente.SetValue(oProyectoBE.CLIENTE, oProyectoBE.V_CLIENTE_ID); // setea data
+                { 
+                acCliente.SetValue(oProyectoBE.CLIENTE,oProyectoBE.V_CLIENTE_ID); // setea data
 
                     if (!string.IsNullOrEmpty(acCliente.GetText()?.ToString().Trim()))
                     {
                         acCliente.SetReadOnly(); // bloquea data llenada solo si hay
                     }
-
+                    
                 }
 
                 if (!string.IsNullOrWhiteSpace(oProyectoBE.V_PRY_COD_JEFEPROY))
@@ -261,8 +271,8 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 try
                 {
                     EasyGridOtsProyecto.LoadData("");
-
-
+                                        
+                    
                     DataView dv = (DataView)EasyGridOtsProyecto.DataSource;
                     DataTable dt = dv.ToTable();
                     int totalFilas = dt.Rows.Count;
@@ -275,9 +285,9 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 eDDLCentros.Enabled = false;
                 eDDLUnidadO.Enabled = false;
                 if (oProyectoBE.COD_DIV != "-1")
-                {
-                    eDDLLineasN.Enabled = false;
-
+                { 
+                     eDDLLineasN.Enabled = false;
+                
                 }
 
 
@@ -308,14 +318,14 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         {
             try
             {
-
+                
                 if (!ValidarDatos())
                 {
                     // Si hay errores, detener el procesamiento
                     return;
                 }
 
-
+                
                 string ip = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"]; //Auditoria
 
                 if (string.IsNullOrEmpty(ip))
@@ -337,8 +347,8 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                         // Si falla la resolución de DNS, se utiliza la IP
                     }
                 }
-                string cli_auditoria = "Centro=" + eDDLCentros.SelectedItem.Text + "Descripcion=" + txtDescripcion.Text.Trim() + "UniOpera=" + eDDLUnidadO.SelectedItem.Text + "Linea=" + eDDLLineasN.SelectedItem.Text + "Sublinea=" + eDDLSubLineasN.SelectedItem.Text + "Cliente=" + acCliente.GetValue() + "FechaIni=" + dpcFechaIni.Text.Trim() + "FechaFin=" + dpcFechaFin.Text + "Monto=" + txtMontoContr.Text; //Auditoria
-
+                string cli_auditoria = "Centro=" + eDDLCentros.SelectedItem.Text + "Descripcion="+ txtDescripcion.Text.Trim() + "UniOpera=" + eDDLUnidadO.SelectedItem.Text + "Linea=" + eDDLLineasN.SelectedItem.Text + "Sublinea=" + eDDLSubLineasN.SelectedItem.Text + "Cliente=" + acCliente.GetValue() + "FechaIni=" + dpcFechaIni.Text.Trim() + "FechaFin=" + dpcFechaFin.Text + "Monto=" + txtMontoContr.Text; //Auditoria
+   
                 try
                 {
                     string resultado;
@@ -363,15 +373,15 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
 
                         // lblSubtitulo.Text (ANTES)
-                        resultado = (new ProyectoSoapClient()).InsertarProyecto(eDDLCentros.SelectedValue, txtCodProyecto.Text, ((eDDLCentros.SelectedValue == "1") ? "" : txtCodProyecto.Text),
-                                                                eDDLLineasN.SelectedValue, txtDescripcion.Text, "", ltEstadoPr.Text, txtCodProyecto.Text, this.UsuarioLogin, txtAlias.Text, txtEstadoPry.Text, ltTipoPry.SelectedValue,
-                                                                dpcFechaIni.Text, dpcFechaFin.Text, eDDLUnidadO.SelectedValue,
+                        resultado = (new ProyectoSoapClient()).InsertarProyecto(eDDLCentros.SelectedValue, txtCodProyecto.Text, ((eDDLCentros.SelectedValue == "1") ? "" : txtCodProyecto.Text), 
+                                                                eDDLLineasN.SelectedValue, txtDescripcion.Text,"", ltEstadoPr.Text, txtCodProyecto.Text, this.UsuarioLogin, txtAlias.Text  ,txtEstadoPry.Text, ltTipoPry.SelectedValue, 
+                                                                dpcFechaIni.Text, dpcFechaFin.Text, eDDLUnidadO.SelectedValue, 
                                                                 eDDLSubLineasN.SelectedValue, acCliente.GetValue().ToString(), EAC_usuarios.GetValue().ToString(), txtMontoContr.Text, ltMoneda.SelectedValue,
-                                                                txtEslora.Text, txtManga.Text, txtPuntal.Text, txtBodega.Text, ip, cli_auditoria.Substring(0, cli_auditoria.Length < 200 ? cli_auditoria.Length : 200), txtObservacion.Text, txtCorreo.Text, txtNumeroCasco.Text, txtConvenio.Text,
+                                                                txtEslora.Text,txtManga.Text,txtPuntal.Text,txtBodega.Text, ip, cli_auditoria.Substring(0, cli_auditoria.Length < 200 ? cli_auditoria.Length : 200), txtObservacion.Text,txtCorreo.Text,txtNumeroCasco.Text, txtConvenio.Text, 
                                                                 "1");
-
-
-                        // resultado = "0";
+                        
+                                             
+                       // resultado = "0";
                         if (resultado == "0")
                         {
                             string script = "<script>";
@@ -406,15 +416,15 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     {
 
                         decimal monto;
-                        int i_decimal = 0;
+                        int  i_decimal=0;
                         if (txtMontoContr.Text.Contains("."))
-                        { i_decimal = 1; }
-                        else
-                        { i_decimal = 0; }
+                           {i_decimal = 1;}
+                        else 
+                           { i_decimal = 0; }
 
-                        string valorLimpio = txtMontoContr.Text.Replace(".", "").Replace(",", "").Replace("'", "").Replace("’", "");
+                          string valorLimpio = txtMontoContr.Text.Replace(".", "").Replace(",", "").Replace("'", "").Replace("’", "");
                         if (i_decimal == 1)
-                        { monto = Convert.ToDecimal(valorLimpio) / 100; }
+                         { monto = Convert.ToDecimal(valorLimpio)/100; }
                         else
                         {
                             if (!string.IsNullOrEmpty(valorLimpio))
@@ -427,12 +437,12 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
                         txtMontoContr.Text = monto.ToString();
                         // MODIFICAR
-                        resultado = (new ProyectoSoapClient()).InsertarProyecto(eDDLCentros.SelectedValue, lblSubtitulo.Text, ((eDDLCentros.SelectedValue == "1") ? "" : lblSubtitulo.Text),
-                          eDDLLineasN.SelectedValue, txtDescripcion.Text, "", ltEstadoPr.Text, lblSubtitulo.Text, this.UsuarioLogin, txtAlias.Text, ltEstadoPr.Text, ltTipoPry.SelectedValue,
-                          dpcFechaIni.Text, dpcFechaFin.Text, eDDLUnidadO.SelectedValue,
-                          eDDLSubLineasN.SelectedValue, acCliente.GetValue().ToString(), EAC_usuarios.GetValue().ToString(), txtMontoContr.Text, ltMoneda.SelectedValue,
-                          txtEslora.Text, txtManga.Text, txtPuntal.Text, txtBodega.Text, ip, cli_auditoria.Substring(0, cli_auditoria.Length < 200 ? cli_auditoria.Length : 200), txtObservacion.Text, txtCorreo.Text, txtNumeroCasco.Text, txtConvenio.Text,
-                          "2");
+                                      resultado = (new ProyectoSoapClient()).InsertarProyecto(eDDLCentros.SelectedValue, lblSubtitulo.Text, ((eDDLCentros.SelectedValue == "1") ? "" : lblSubtitulo.Text),
+                                        eDDLLineasN.SelectedValue, txtDescripcion.Text, "", ltEstadoPr.Text, lblSubtitulo.Text, this.UsuarioLogin,  txtAlias.Text  , ltEstadoPr.Text, ltTipoPry.SelectedValue,
+                                        dpcFechaIni.Text, dpcFechaFin.Text, eDDLUnidadO.SelectedValue,
+                                        eDDLSubLineasN.SelectedValue, acCliente.GetValue().ToString(), EAC_usuarios.GetValue().ToString(), txtMontoContr.Text, ltMoneda.SelectedValue,
+                                        txtEslora.Text, txtManga.Text, txtPuntal.Text, txtBodega.Text, ip, cli_auditoria.Substring(0, cli_auditoria.Length < 200 ? cli_auditoria.Length : 200), txtObservacion.Text, txtCorreo.Text, txtNumeroCasco.Text, txtConvenio.Text,
+                                        "2");
 
                         // resultado = "0";
                         if (resultado == "0")
@@ -466,7 +476,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowPopupImmediate", $"mostrarMensajeExito('Actualizacion exitosa','{resultado}');", true);
                             lblTitulo.Text = txtDescripcion.Text;
                         }
-                    }
+                    } 
 
                 }
                 catch (Exception ex)
@@ -480,7 +490,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);//
                                                                                                              // ClientScript.RegisterStartupScript(this.GetType(), "Validaciones", script);
 
-                }
+                } 
             }
             catch (Exception ex)
             {
@@ -518,7 +528,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     eDDLUnidadO.LoadData(); ;
 
 
-                    if (eDDLCentros.SelectedValue == "1" && eDDLUnidadO.Items.Count > 1)
+                    if(eDDLCentros.SelectedValue == "1" && eDDLUnidadO.Items.Count > 1)
                     {
                         eDDLUnidadO.SelectedIndex = 1;
                     }
@@ -572,14 +582,14 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         {
             try
             {
-                eDDLSubLineasN.ClearSelection();
+                eDDLSubLineasN.ClearSelection(); 
                 eDDLSubLineasN.LoadData();
 
                 // validamos que carga datos sino, cargamos por esta lado
-                if (eDDLSubLineasN.Items.Count < 1)
+                if (eDDLSubLineasN.Items.Count <  1)
                 {
-                    dt = (new GeneralSoapClient()).ListaSubLinea_Trabajo(this.eDDLUnidadO.SelectedValue, this.eDDLLineasN.SelectedValue, this.DatosUsuario.Login);
-                    if (dt != null)
+                    dt = (new GeneralSoapClient()).ListaSubLinea_Trabajo(this.eDDLUnidadO.SelectedValue   ,   this.eDDLLineasN.SelectedValue  , this.DatosUsuario.Login);
+                    if(dt != null)
                     {
                         eDDLSubLineasN.DataSource = dt;
                         eDDLSubLineasN.DataBind();
@@ -612,18 +622,18 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             try
             {
                 string resultado;
-                resultado = (new ProyectoSoapClient()).GEN_PROYECTO_ID(eDDLCentros.SelectedValue, (eDDLUnidadO.SelectedValue == "C") ? "SC" : eDDLUnidadO.SelectedValue, eDDLLineasN.SelectedValue, eDDLSubLineasN.SelectedValue, acCliente.GetValue());
+                resultado = (new ProyectoSoapClient()).GEN_PROYECTO_ID(eDDLCentros.SelectedValue,(eDDLUnidadO.SelectedValue=="C") ? "SC": eDDLUnidadO.SelectedValue, eDDLLineasN.SelectedValue, eDDLSubLineasN.SelectedValue, acCliente.GetValue());
                 if (!string.IsNullOrEmpty(resultado))
                 {
-                    if (txtModo.Value == "N")
-                    {
-                        lblSubtitulo.Visible = true;
-                        lblSubtitulo.Text = "Cod. Proyecto";
-                        txtCodProyecto.Visible = true;
-                        txtCodProyecto.Text = resultado;
+                    if(txtModo.Value  =="N")
+                    { 
+                    lblSubtitulo.Visible = true;
+                    lblSubtitulo.Text = "Cod. Proyecto";
+                    txtCodProyecto.Visible = true;
+                    txtCodProyecto.Text = resultado;
                     }
                 }
-
+                
             }
             catch (Exception ex)
             {
@@ -648,45 +658,45 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
         #region Adenda  
         protected void EasyGridAdendas_PageIndexChanged(object sender, EventArgs e)
-        {
-            //this.LlenarGrilla(EasyGestorFiltro1.getFilterString());
-            // this.LlenarGrilla("");
-        }
-        protected void EasyGridOTsProyecto_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
-        {
-            try
             {
-                switch (oEasyGridButton.Id)
+                //this.LlenarGrilla(EasyGestorFiltro1.getFilterString());
+                // this.LlenarGrilla("");
+            }
+            protected void EasyGridOTsProyecto_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+            {
+                try
+                {
+                    switch (oEasyGridButton.Id)
+                    {
+                    
+                    }
+                }
+                catch (Exception ex)
                 {
 
+                    var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                    result = result.Replace("'", "");
+                    string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+                    string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    this.LanzarException(methodName, ex); // error para el log
+                    Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                    string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
                 }
             }
-            catch (Exception ex)
-            {
-
-                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
-                result = result.Replace("'", "");
-                string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-                this.LanzarException(methodName, ex); // error para el log
-                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
-                string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
-            }
-        }
-        protected void EasyGridAdendas_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
-        {
-            try
-            {
-                string resultado;
-                string script;
-                switch (oEasyGridButton.Id)
+            protected void EasyGridAdendas_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+            {      
+                try
                 {
-                    case "btnAgregarAdenda":
+                    string resultado;
+                    string script;
+                    switch (oEasyGridButton.Id)
+                    {                
+                        case "btnAgregarAdenda":
 
                         if (!string.IsNullOrEmpty(txtCodProyecto.Text))
                         {
-                            if (string.IsNullOrEmpty(txtMontoContr.Text) && ltMoneda.SelectedValue == "-1")
+                            if (string.IsNullOrEmpty(txtMontoContr.Text) && ltMoneda.SelectedValue == "-1" )
                             {
                                 script = "<script>";
                                 script += "Swal.fire({title: 'Alerta Adenda',text:'Se requiere colocar Monto del Proyecto y/o Moneda', icon: 'error', confirmButtonText: 'Aceptar', confirmButtonColor: '#3085d6', allowOutsideClick: false});";
@@ -694,20 +704,20 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
 
                             }
+                                
+                                    script = "<script>";
+                                    script += "epuAdenda.Show();";
+                                    script += "</script>";
+                                    ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarPopupAdenda", script, false);
+                                
+                            
+                                txtPopMontoContractual.Text = "";
+                                ltPopMoneda.LoadData();
+                                ltPopMoneda.SetValue("-1");
+                                txtFlag.Value = "1";
+                                txtPopcodProyecto.Value = txtCodProyecto.Text;
 
-                            script = "<script>";
-                            script += "epuAdenda.Show();";
-                            script += "</script>";
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarPopupAdenda", script, false);
-
-
-                            txtPopMontoContractual.Text = "";
-                            ltPopMoneda.LoadData();
-                            ltPopMoneda.SetValue("-1");
-                            txtFlag.Value = "1";
-                            txtPopcodProyecto.Value = txtCodProyecto.Text;
-
-
+                            
                         }
                         else
                         {
@@ -716,75 +726,75 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                             script += "</script>";
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
                         }
-                        break;
-                    case "btnEliminarAdenda":
-                        if (Recodset.Count == 0)
-                        {
-                            script = "<script>";
-                            script += "toastr.error('Debe seleccionar el registro a eliminar', 'Requerido');";
-                            script += "</script>";
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
-
-                        }
-                        else
-                        {
-                            resultado = (new ProyectoSoapClient()).DEL_ADENDAPROYECTO(Recodset["V_PROYADE_CODPRY"], Recodset["N_PROYADE_NROADENDA"], this.UsuarioLogin);
-
-                            if (resultado == "1")
+                                break;
+                        case "btnEliminarAdenda":
+                            if (Recodset.Count == 0)
                             {
-                                script = "<script>";
-                                script += "Swal.fire({title: 'Exito',text:'Adenda eliminada', icon: 'success', confirmButtonText: 'Aceptar', confirmButtonColor: '#3085d6', allowOutsideClick: false});";
+                                 script = "<script>";
+                                script += "toastr.error('Debe seleccionar el registro a eliminar', 'Requerido');";
                                 script += "</script>";
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
-                                EasyGridAdendas.LoadData("");
+
                             }
                             else
                             {
-                                script = "<script>";
-                                script += "toastr.error('Error al interntar eliminar adenda', 'Requerido');";
-                                script += "</script>";
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
+                                resultado = (new ProyectoSoapClient()).DEL_ADENDAPROYECTO(Recodset["V_PROYADE_CODPRY"], Recodset["N_PROYADE_NROADENDA"],this.UsuarioLogin);
+
+                                if (resultado == "1")
+                                {
+                                    script = "<script>";
+                                    script += "Swal.fire({title: 'Exito',text:'Adenda eliminada', icon: 'success', confirmButtonText: 'Aceptar', confirmButtonColor: '#3085d6', allowOutsideClick: false});";
+                                    script += "</script>";
+                                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
+                                    EasyGridAdendas.LoadData("");
+                                }
+                                else
+                                {
+                                     script = "<script>";
+                                    script += "toastr.error('Error al interntar eliminar adenda', 'Requerido');";
+                                    script += "</script>";
+                                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
+                                }
+
+
+
                             }
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
 
-
-
-                        }
-                        break;
+                    var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                    result = result.Replace("'", "");
+                    string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+                    string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    this.LanzarException(methodName, ex); // error para el log
+                    Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                    string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
                 }
             }
-            catch (Exception ex)
-            {
 
-                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
-                result = result.Replace("'", "");
-                string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-                this.LanzarException(methodName, ex); // error para el log
-                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
-                string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
-            }
-        }
-
-        protected void ActualizarGrillaAdendas(object sender, EventArgs e)
-        {
-            try
+            protected void ActualizarGrillaAdendas(object sender, EventArgs e)
             {
-                EasyGridAdendas.LoadData("");
-            }
+                try
+                {
+                    EasyGridAdendas.LoadData("");
+                }
 
-            catch (Exception ex)
-            {
-                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
-                result = result.Replace("'", "");
-                string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-                this.LanzarException(methodName, ex); // error para el log
-                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
-                string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
+                catch (Exception ex)
+                {
+                    var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                    result = result.Replace("'", "");
+                    string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+                    string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    this.LanzarException(methodName, ex); // error para el log
+                    Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                    string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
+                }
             }
-        }
         #endregion
 
         #region Personal    
@@ -792,12 +802,12 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         {
             try
             {
-
+              
                 //this.epuColaboradores.ViewStateMode = ViewStateMode.Enabled; // para que se mantenga el estado de la ventana emergente
-                //  epuColaboradores.Visible = true;
+              //  epuColaboradores.Visible = true;
                 EasyGridColaboradores.LoadData("");
-                //   hfMostrarPopup.Value = "1"; // Indica que debe mostrarse el popup en el PreRender
-                //pnlColaboradores.Style["display"] = "block";
+             //   hfMostrarPopup.Value = "1"; // Indica que debe mostrarse el popup en el PreRender
+                                            //pnlColaboradores.Style["display"] = "block";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirPopup", "mostrarPopup();", true);
 
 
@@ -817,7 +827,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
         protected void btnAgregarColaborador_Click(object sender, EventArgs e)
         {
-
+           
 
             int accion = ViewState["accion"] != null && ViewState["accion"].ToString() == "2" ? 2 : 1;
             lblmensaje.Text = "";
@@ -843,17 +853,17 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     // Si falla la resolución de DNS, se utiliza la IP
                 }
             }
-
+             
             var colaborador = new ColaboradorProyectoBE
             {
                 N_ACCION = accion, // Puedes cambiar a 2 si ya existe
                 Sucursal = string.IsNullOrEmpty(this.IdCentroOperativo) ? eDDLCentros.SelectedValue : this.IdCentroOperativo,
                 V_COLPROY_SUCURSAL = string.IsNullOrEmpty(this.IdCentroOperativo) ? eDDLCentros.SelectedValue : this.IdCentroOperativo,
                 V_COLPROY_PROYECTO = lblSubtitulo.Text.Trim(),
-                DT_COLPROY_INGRESO = DateTime.TryParse(dtFechaIngreso.Text.Trim(), out DateTime f) ? f.ToString("dd/MM/yyyy") : "",
+                DT_COLPROY_INGRESO = DateTime.TryParse(dtFechaIngreso.Text.Trim(), out DateTime f) ? f.ToString("dd/MM/yyyy") : "" ,
                 V_COLPROY_PR = txtPR.Text.Trim(),
                 V_COLPROY_CODTRA = txtCodTra.Text.Trim(),
-                DT_COLPROY_CESE = DateTime.TryParse(dtFechaCese.Text.Trim(), out DateTime f1) ? f1.ToString("dd/MM/yyyy") : "",
+                DT_COLPROY_CESE = DateTime.TryParse(dtFechaCese.Text.Trim(), out DateTime f1) ? f1.ToString("dd/MM/yyyy") : "" ,
                 UserName = this.UsuarioLogin, // Reemplazar con usuario real
                 Estacion = ip
             };
@@ -947,7 +957,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
         public void LlenarGrilla(string strFilter)
         {
-
+            
             try
             {
                 EasyGridOtsProyecto.LoadData("");
@@ -1024,7 +1034,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
                     esValido = false;
                 }
-
+                
                 script += "</script>";
                 if (!esValido)
                 {
@@ -1069,9 +1079,9 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 var servicio = new ProyectoSoapClient();
                 switch (opc)
                 {
-
+               
                     case "btnAgregar":
-
+                        
                         break;
                     case "btnInfoRel":
                         break;
@@ -1152,31 +1162,30 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
         protected void EGV_EasyGridDetalle_Click(Dictionary<string, string> Recodset)
         {
-            try
-            {
-                string V_COLPROY_PROYECTO = Recodset["V_COLPROY_PROYECTO"].ToString();
-                string DT_COLPROY_INGRESO = Recodset["DT_COLPROY_INGRESO"].ToString();
-                string V_COLPROY_PR = Recodset["V_COLPROY_PR"].ToString();
-                string V_COLPROY_CODTRA = Recodset["V_COLPROY_CODTRA"].ToString();
-                string DT_COLPROY_CESE = Recodset["DT_COLPROY_CESE"].ToString();
-                string PERSONAL = Recodset["PERSONAL"].ToString();
+            try { 
+            string V_COLPROY_PROYECTO = Recodset["V_COLPROY_PROYECTO"].ToString();
+            string DT_COLPROY_INGRESO = Recodset["DT_COLPROY_INGRESO"].ToString(); 
+            string V_COLPROY_PR = Recodset["V_COLPROY_PR"].ToString(); 
+            string V_COLPROY_CODTRA = Recodset["V_COLPROY_CODTRA"].ToString(); 
+            string DT_COLPROY_CESE = Recodset["DT_COLPROY_CESE"].ToString(); 
+            string PERSONAL = Recodset["PERSONAL"].ToString();
 
-                lblmensaje.Text = "";
-                lblSubtitulo.Text = V_COLPROY_PROYECTO;
-                dtFechaIngreso.Text = DateTime.TryParse(DT_COLPROY_INGRESO.Trim(), out DateTime f) ? f.ToString("dd/MM/yyyy") : "";
-                txtPR.Text = V_COLPROY_PR;
-                txtCodTra.Text = V_COLPROY_CODTRA;
-                dtFechaCese.Text = DateTime.TryParse(DT_COLPROY_CESE.Trim(), out DateTime g) ? g.ToString("dd/MM/yyyy") : "";
-                lblTrabajador.Text = PERSONAL;
+                lblmensaje.Text = ""; 
+            lblSubtitulo.Text = V_COLPROY_PROYECTO;
+            dtFechaIngreso.Text = DateTime.TryParse(DT_COLPROY_INGRESO.Trim(), out DateTime f) ? f.ToString("dd/MM/yyyy") : "" ;
+            txtPR.Text = V_COLPROY_PR;
+            txtCodTra.Text = V_COLPROY_CODTRA;
+            dtFechaCese.Text = DateTime.TryParse(DT_COLPROY_CESE.Trim(), out DateTime g) ? g.ToString("dd/MM/yyyy") : "";
+            lblTrabajador.Text = PERSONAL;
                 if (!string.IsNullOrEmpty(txtPR.Text))
-                {
-                    ViewState["accion"] = "2";
-                }
+                    { 
+                      ViewState["accion"] = "2";
+                  }
                 Dictionary<string, string> RowSelectd = EasyGridColaboradores.getDataItemSelected();
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirPopup", "mostrarPopup();", true);
-
-
-
+                 
+                
+                
             }
             catch (Exception ex)
             {
@@ -1210,10 +1219,10 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         protected void BtnBuscar_Colaborador(object sender, EventArgs e)
         {
             try
-            {
+            { 
 
-                string scentro = Session["IdCentro"].ToString();
-                string codigo = string.IsNullOrWhiteSpace(txtPR.Text) ? txtCodTra.Text : txtPR.Text;
+            string scentro = Session["IdCentro"].ToString() ;
+            string codigo = string.IsNullOrWhiteSpace(txtPR.Text) ? txtCodTra.Text : txtPR.Text;
                 lblmensaje.Text = "";
                 dt = servicio.Buscar_Colaborador_xCod(scentro, codigo);
                 if (dt != null && dt.Rows.Count > 0)
@@ -1226,7 +1235,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     string PR = dt.Rows[0]["PR"].ToString();
                     lblTrabajador.Text = nombre;
                     dtFechaIngreso.Text = DateTime.TryParse(fingreso.Trim(), out DateTime f) ? f.ToString("dd/MM/yyyy") : "";
-                    dtFechaCese.Text = DateTime.TryParse(fcese.Trim(), out DateTime g) ? g.ToString("dd/MM/yyyy") : "";
+                    dtFechaCese.Text    = DateTime.TryParse(fcese.Trim(), out DateTime g) ? g.ToString("dd/MM/yyyy") : "";
                     txtCodTra.Text = Codtra;
                     txtPR.Text = PR;
                 }

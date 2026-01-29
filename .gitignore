@@ -3,6 +3,58 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#############
+# Visual Studio / .NET – archivos locales/temporales
+#############
+
+# VS user / per-user
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Carpeta .vs de Visual Studio
+.vs/
+.vscode/
+
+# Salidas de compilación
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+
+# Subcarpetas comunes de Debug/Release (redundante por bin/ y obj/, pero más explícito)
+**/bin/Debug/
+**/bin/Release/
+**/obj/Debug/
+**/obj/Release/
+
+# Archivos compilados
+*.dll
+*.pdb
+*.cache
+
+# Archivos intermedios de MSBuild/CSC/VS
+*.AssemblyReference.cache
+*.CoreCompileInputs.cache
+*.FileListAbsolute.txt
+
+# SQLite que crea VS
+*.sqlite
+
+# Publicación / perfiles
+*.pubxml
+*.pubxml.user
+*.Publish.xml
+
+# NuGet (si restauras en build)
+packages/
+*.nupkg
+
+# Otros
+_ReSharper*/
+*.ide/
+
 # User-specific files
 *.rsuser
 *.suo
@@ -362,3 +414,11 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Recursos/css/skin-vista
+FodyWeavers.xsd
+
+
+/webconfig.NetsuiteID.zip
+/Web.Release.config
+/Web.Debug.config
+/packages.config
+/SIMANET_W22R.slnx

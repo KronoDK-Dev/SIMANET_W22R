@@ -149,6 +149,7 @@ namespace SIMANET_W22R.Controles
                 EasyNavigatorBarMenu1.IconColor = "white";
                 EasyNavigatorBarMenu1.IconColorOver = "green";
                 this.btnIconMenu.Style.Add("display", "none");
+                EasyNavigatorBarMenu1.ImagenLogoHeader = ResolveUrl("~/Recursos/img/header.jpg");
             }
             try
             {

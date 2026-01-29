@@ -32,7 +32,7 @@
        </script>
 
 </head>
-<body>
+<body> 
     <form id="form1" runat="server">
         <table id="tblServicios" style="width:100%;height:100%"  border="0" >            
              <tr>
@@ -134,7 +134,7 @@
             }
 
 
-            ListarIndicadoresPorArea.CondigIndicador = function (e, IdAreaInfo, IdIndicador) {
+            ListarIndicadoresPorArea.ConfigIndicador = function (e, IdAreaInfo, IdIndicador) {
                 var oDataTable = ListarIndicadoresPorArea.ListarCriterioXIndicador(IdAreaInfo, IdIndicador);
 
                 var tblCond = SIMA.Utilitario.Helper.HtmlControlsDesign.HtmlTable(oDataTable.Rows.Count(), 2);
@@ -144,9 +144,9 @@
                     var Cell0 = jNet.get(tblCond.rows[f].cells[0]);
                         Cell0.innerText = item.NOMBRECOLOR
                         Cell0.attr("class", "Etiqueta")
-                        .css("background-color", item.COLOR)
-                        .css("color", item.FONTCOLOR)
-                        .css("padding-left", "20px");
+                            .css("background-color", item.COLOR)
+                            .css("color", item.FONTCOLOR)
+                            .css("padding-left", "20px");
 
                     var Cell1 = jNet.get(tblCond.rows[f].cells[1]);
                     Cell1.innerText = item.VALORCONDICION;

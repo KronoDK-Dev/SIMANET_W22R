@@ -16,6 +16,7 @@ using SIMANET_W22R.srvProyectos;
 using static EasyControlWeb.EasyUtilitario.Enumerados.Configuracion.SeccionKey;
 
 using SIMANET_W22R.Controles;
+//using SIMANET_W22R.RecursosHumanos; // 12.01.2026 se comenta porque no se tiene la referencia de donde obtenerlo
 using static iTextSharp.text.pdf.AcroFields;
 using System.Drawing;
 using System.Net;

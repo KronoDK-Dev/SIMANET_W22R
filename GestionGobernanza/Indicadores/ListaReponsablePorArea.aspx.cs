@@ -20,7 +20,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            try 
             {
 
                 if (!Page.IsPostBack)
@@ -77,14 +77,14 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
             EasyFiltroParamURLws oParam = new EasyFiltroParamURLws();
             oParam.ParamName = "CodEmp";
-            oParam.Paramvalue = "001";
+            oParam.Paramvalue = this.CodEmpresa;
             oParam.TipodeDato = TiposdeDatos.String;
             oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
             odi.UrlWebServicieParams.Add(oParam);
 
             oParam = new EasyFiltroParamURLws();
             oParam.ParamName = "CodCeo";
-            oParam.Paramvalue = "001";
+            oParam.Paramvalue = this.CodSucursal;
             oParam.TipodeDato = TiposdeDatos.String;
             oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
             odi.UrlWebServicieParams.Add(oParam);
