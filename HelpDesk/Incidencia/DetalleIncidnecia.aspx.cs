@@ -16,7 +16,7 @@ using static EasyControlWeb.InterConeccion.EasyDataInterConect;
 
 namespace SIMANET_W22R.HelpDesk.Incidencia
 {
-    public partial class DetalleIncidnecia : HelpDeskBase,IPaginaBase
+    public partial class DetalleIncidnecia : HelpDeskBase,IPaginaBase, IPaginaMantenimento
     {
 
         protected void Page_Load(object sender, EventArgs e)
@@ -155,8 +155,54 @@ namespace SIMANET_W22R.HelpDesk.Incidencia
             throw new NotImplementedException();
         }
 
-      
+        public void Agregar()
+        {
+            throw new NotImplementedException();
+        }
 
+        public void Modificar()
+        {
+            throw new NotImplementedException();
+        }
 
+        public void Eliminar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CargarModoPagina()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CargarModoNuevo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CargarModoModificar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CargarModoConsulta()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ValidarCampos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ValidarCamposRequeridos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ValidarExpresionesRegulares()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

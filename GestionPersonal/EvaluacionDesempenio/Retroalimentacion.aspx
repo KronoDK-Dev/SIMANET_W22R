@@ -233,7 +233,7 @@
             </div>
 
             <div class="text-center mb-0">
-                <p class="section-title mb-0">SECCIÓN: RESULTADOS DE LA EVACUACIÓN DE DESEMPEÑO POR COMPETENCIAS</p>
+                <p class="section-title mb-0">SECCIÓN: RESULTADOS DE LA EVALUACIÓN DE DESEMPEÑO POR COMPETENCIAS</p>
             </div>
             <div class="card shadow-sm mb-4">
                 <div class="card-body">

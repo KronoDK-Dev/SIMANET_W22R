@@ -1,0 +1,1075 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://CoreSIMAdll.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://CoreSIMAdll.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://CoreSIMAdll.org/">
+      <s:element name="GetPerfiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdUser" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPerfilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPerfilesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidateUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateUserAD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateUserADResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidateUserADResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaCaducidadUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaCaducidadUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VerificaCaducidadUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOptionsByProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idSystem" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idProfile" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pagina" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOptionsByProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOptionsByProfileResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPerfilAccesoDirecto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idSystem" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPerfilAccesoDirectoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPerfilAccesoDirectoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDatosUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDatosUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDatosUsuarioResult" type="tns:UsuarioBE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UsuarioBE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseBE">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IdPersonal" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Clave" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Foto" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdEquipo" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="NroDocumento" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApellidosyNombres" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Area" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodPersonal" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdCentroOperativo" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="NroCentroOperativo" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IdContacto" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseBE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdEstado" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImgEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreEstado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdCodigo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ambiente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CodigoUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="s_idUsuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CodigoUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoUsuarioResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AsignarSucursal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="i_IdUsuario" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="i_IdCentro" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="s_UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AsignarSucursalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AsignarSucursalResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AsignarLineaUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginNetsuite" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sUnidado_clase" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="slinea" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSublinea" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AsignarLineaUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AsignarLineaUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InspeccionCambiarEstado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdInspeccion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdEstado" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InspeccionCambiarEstadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InspeccionCambiarEstadoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="int" type="s:int" />
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="UsuarioBE" nillable="true" type="tns:UsuarioBE" />
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetPerfilesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPerfiles" />
+  </wsdl:message>
+  <wsdl:message name="GetPerfilesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPerfilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateUser" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserADSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateUserAD" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserADSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateUserADResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCaducidadUserSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaCaducidadUser" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCaducidadUserSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaCaducidadUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOptionsByProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOptionsByProfile" />
+  </wsdl:message>
+  <wsdl:message name="GetOptionsByProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOptionsByProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPerfilAccesoDirectoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPerfilAccesoDirecto" />
+  </wsdl:message>
+  <wsdl:message name="GetPerfilAccesoDirectoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPerfilAccesoDirectoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDatosUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDatosUsuario" />
+  </wsdl:message>
+  <wsdl:message name="GetDatosUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDatosUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="CodigoUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:CodigoUsuario" />
+  </wsdl:message>
+  <wsdl:message name="CodigoUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:CodigoUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="AsignarSucursalSoapIn">
+    <wsdl:part name="parameters" element="tns:AsignarSucursal" />
+  </wsdl:message>
+  <wsdl:message name="AsignarSucursalSoapOut">
+    <wsdl:part name="parameters" element="tns:AsignarSucursalResponse" />
+  </wsdl:message>
+  <wsdl:message name="AsignarLineaUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:AsignarLineaUsuario" />
+  </wsdl:message>
+  <wsdl:message name="AsignarLineaUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:AsignarLineaUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="InspeccionCambiarEstadoSoapIn">
+    <wsdl:part name="parameters" element="tns:InspeccionCambiarEstado" />
+  </wsdl:message>
+  <wsdl:message name="InspeccionCambiarEstadoSoapOut">
+    <wsdl:part name="parameters" element="tns:InspeccionCambiarEstadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPerfilesHttpGetIn">
+    <wsdl:part name="IdUser" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPerfilesHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserHttpGetIn">
+    <wsdl:part name="login" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserADHttpGetIn">
+    <wsdl:part name="login" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserADHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCaducidadUserHttpGetIn">
+    <wsdl:part name="IdUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCaducidadUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetOptionsByProfileHttpGetIn">
+    <wsdl:part name="idSystem" type="s:string" />
+    <wsdl:part name="idProfile" type="s:string" />
+    <wsdl:part name="pagina" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOptionsByProfileHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetPerfilAccesoDirectoHttpGetIn">
+    <wsdl:part name="idSystem" type="s:string" />
+    <wsdl:part name="idUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPerfilAccesoDirectoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetDatosUsuarioHttpGetIn">
+    <wsdl:part name="idUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDatosUsuarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:UsuarioBE" />
+  </wsdl:message>
+  <wsdl:message name="CodigoUsuarioHttpGetIn">
+    <wsdl:part name="s_idUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CodigoUsuarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="AsignarSucursalHttpGetIn">
+    <wsdl:part name="i_IdUsuario" type="s:string" />
+    <wsdl:part name="i_IdCentro" type="s:string" />
+    <wsdl:part name="s_UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AsignarSucursalHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="AsignarLineaUsuarioHttpGetIn">
+    <wsdl:part name="LoginNetsuite" type="s:string" />
+    <wsdl:part name="sUnidado_clase" type="s:string" />
+    <wsdl:part name="slinea" type="s:string" />
+    <wsdl:part name="sSublinea" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AsignarLineaUsuarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InspeccionCambiarEstadoHttpGetIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="IdEstado" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InspeccionCambiarEstadoHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetPerfilesHttpPostIn">
+    <wsdl:part name="IdUser" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPerfilesHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserHttpPostIn">
+    <wsdl:part name="login" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserADHttpPostIn">
+    <wsdl:part name="login" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserADHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCaducidadUserHttpPostIn">
+    <wsdl:part name="IdUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCaducidadUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetOptionsByProfileHttpPostIn">
+    <wsdl:part name="idSystem" type="s:string" />
+    <wsdl:part name="idProfile" type="s:string" />
+    <wsdl:part name="pagina" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOptionsByProfileHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetPerfilAccesoDirectoHttpPostIn">
+    <wsdl:part name="idSystem" type="s:string" />
+    <wsdl:part name="idUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPerfilAccesoDirectoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetDatosUsuarioHttpPostIn">
+    <wsdl:part name="idUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDatosUsuarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:UsuarioBE" />
+  </wsdl:message>
+  <wsdl:message name="CodigoUsuarioHttpPostIn">
+    <wsdl:part name="s_idUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CodigoUsuarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="AsignarSucursalHttpPostIn">
+    <wsdl:part name="i_IdUsuario" type="s:string" />
+    <wsdl:part name="i_IdCentro" type="s:string" />
+    <wsdl:part name="s_UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AsignarSucursalHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="AsignarLineaUsuarioHttpPostIn">
+    <wsdl:part name="LoginNetsuite" type="s:string" />
+    <wsdl:part name="sUnidado_clase" type="s:string" />
+    <wsdl:part name="slinea" type="s:string" />
+    <wsdl:part name="sSublinea" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AsignarLineaUsuarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InspeccionCambiarEstadoHttpPostIn">
+    <wsdl:part name="IdInspeccion" type="s:string" />
+    <wsdl:part name="IdEstado" type="s:string" />
+    <wsdl:part name="IdUsuario" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InspeccionCambiarEstadoHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:portType name="SeguridadSoap">
+    <wsdl:operation name="GetPerfiles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Perfiles por usuario</wsdl:documentation>
+      <wsdl:input message="tns:GetPerfilesSoapIn" />
+      <wsdl:output message="tns:GetPerfilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Valida usuario</wsdl:documentation>
+      <wsdl:input message="tns:ValidateUserSoapIn" />
+      <wsdl:output message="tns:ValidateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserAD">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Valida usuario en Active Directory</wsdl:documentation>
+      <wsdl:input message="tns:ValidateUserADSoapIn" />
+      <wsdl:output message="tns:ValidateUserADSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCaducidadUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica caducidad del usuario</wsdl:documentation>
+      <wsdl:input message="tns:VerificaCaducidadUserSoapIn" />
+      <wsdl:output message="tns:VerificaCaducidadUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOptionsByProfile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Opciones por perfil de usuario</wsdl:documentation>
+      <wsdl:input message="tns:GetOptionsByProfileSoapIn" />
+      <wsdl:output message="tns:GetOptionsByProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPerfilAccesoDirecto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Acceso Directo de Opciones por usuario</wsdl:documentation>
+      <wsdl:input message="tns:GetPerfilAccesoDirectoSoapIn" />
+      <wsdl:output message="tns:GetPerfilAccesoDirectoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDatosUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Datos del Usuario por codigo de usuario SIMANET</wsdl:documentation>
+      <wsdl:input message="tns:GetDatosUsuarioSoapIn" />
+      <wsdl:output message="tns:GetDatosUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CodigoUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Codigo de Usuario Simanet por codigo de usuario de Red</wsdl:documentation>
+      <wsdl:input message="tns:CodigoUsuarioSoapIn" />
+      <wsdl:output message="tns:CodigoUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsignarSucursal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Asignar Sucursal a Usuario, por idusuario  y idcentro  (valores de SIMANET)</wsdl:documentation>
+      <wsdl:input message="tns:AsignarSucursalSoapIn" />
+      <wsdl:output message="tns:AsignarSucursalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsignarLineaUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Asignar Linea de Negocio a Usuario</wsdl:documentation>
+      <wsdl:input message="tns:AsignarLineaUsuarioSoapIn" />
+      <wsdl:output message="tns:AsignarLineaUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cambiar estado de Inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:InspeccionCambiarEstadoSoapIn" />
+      <wsdl:output message="tns:InspeccionCambiarEstadoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SeguridadHttpGet">
+    <wsdl:operation name="GetPerfiles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Perfiles por usuario</wsdl:documentation>
+      <wsdl:input message="tns:GetPerfilesHttpGetIn" />
+      <wsdl:output message="tns:GetPerfilesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Valida usuario</wsdl:documentation>
+      <wsdl:input message="tns:ValidateUserHttpGetIn" />
+      <wsdl:output message="tns:ValidateUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserAD">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Valida usuario en Active Directory</wsdl:documentation>
+      <wsdl:input message="tns:ValidateUserADHttpGetIn" />
+      <wsdl:output message="tns:ValidateUserADHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCaducidadUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica caducidad del usuario</wsdl:documentation>
+      <wsdl:input message="tns:VerificaCaducidadUserHttpGetIn" />
+      <wsdl:output message="tns:VerificaCaducidadUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOptionsByProfile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Opciones por perfil de usuario</wsdl:documentation>
+      <wsdl:input message="tns:GetOptionsByProfileHttpGetIn" />
+      <wsdl:output message="tns:GetOptionsByProfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPerfilAccesoDirecto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Acceso Directo de Opciones por usuario</wsdl:documentation>
+      <wsdl:input message="tns:GetPerfilAccesoDirectoHttpGetIn" />
+      <wsdl:output message="tns:GetPerfilAccesoDirectoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDatosUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Datos del Usuario por codigo de usuario SIMANET</wsdl:documentation>
+      <wsdl:input message="tns:GetDatosUsuarioHttpGetIn" />
+      <wsdl:output message="tns:GetDatosUsuarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CodigoUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Codigo de Usuario Simanet por codigo de usuario de Red</wsdl:documentation>
+      <wsdl:input message="tns:CodigoUsuarioHttpGetIn" />
+      <wsdl:output message="tns:CodigoUsuarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsignarSucursal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Asignar Sucursal a Usuario, por idusuario  y idcentro  (valores de SIMANET)</wsdl:documentation>
+      <wsdl:input message="tns:AsignarSucursalHttpGetIn" />
+      <wsdl:output message="tns:AsignarSucursalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsignarLineaUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Asignar Linea de Negocio a Usuario</wsdl:documentation>
+      <wsdl:input message="tns:AsignarLineaUsuarioHttpGetIn" />
+      <wsdl:output message="tns:AsignarLineaUsuarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cambiar estado de Inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:InspeccionCambiarEstadoHttpGetIn" />
+      <wsdl:output message="tns:InspeccionCambiarEstadoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SeguridadHttpPost">
+    <wsdl:operation name="GetPerfiles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Perfiles por usuario</wsdl:documentation>
+      <wsdl:input message="tns:GetPerfilesHttpPostIn" />
+      <wsdl:output message="tns:GetPerfilesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Valida usuario</wsdl:documentation>
+      <wsdl:input message="tns:ValidateUserHttpPostIn" />
+      <wsdl:output message="tns:ValidateUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserAD">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Valida usuario en Active Directory</wsdl:documentation>
+      <wsdl:input message="tns:ValidateUserADHttpPostIn" />
+      <wsdl:output message="tns:ValidateUserADHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCaducidadUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica caducidad del usuario</wsdl:documentation>
+      <wsdl:input message="tns:VerificaCaducidadUserHttpPostIn" />
+      <wsdl:output message="tns:VerificaCaducidadUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOptionsByProfile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Opciones por perfil de usuario</wsdl:documentation>
+      <wsdl:input message="tns:GetOptionsByProfileHttpPostIn" />
+      <wsdl:output message="tns:GetOptionsByProfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPerfilAccesoDirecto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Acceso Directo de Opciones por usuario</wsdl:documentation>
+      <wsdl:input message="tns:GetPerfilAccesoDirectoHttpPostIn" />
+      <wsdl:output message="tns:GetPerfilAccesoDirectoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDatosUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Datos del Usuario por codigo de usuario SIMANET</wsdl:documentation>
+      <wsdl:input message="tns:GetDatosUsuarioHttpPostIn" />
+      <wsdl:output message="tns:GetDatosUsuarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CodigoUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Codigo de Usuario Simanet por codigo de usuario de Red</wsdl:documentation>
+      <wsdl:input message="tns:CodigoUsuarioHttpPostIn" />
+      <wsdl:output message="tns:CodigoUsuarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsignarSucursal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Asignar Sucursal a Usuario, por idusuario  y idcentro  (valores de SIMANET)</wsdl:documentation>
+      <wsdl:input message="tns:AsignarSucursalHttpPostIn" />
+      <wsdl:output message="tns:AsignarSucursalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsignarLineaUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Asignar Linea de Negocio a Usuario</wsdl:documentation>
+      <wsdl:input message="tns:AsignarLineaUsuarioHttpPostIn" />
+      <wsdl:output message="tns:AsignarLineaUsuarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cambiar estado de Inspeccion</wsdl:documentation>
+      <wsdl:input message="tns:InspeccionCambiarEstadoHttpPostIn" />
+      <wsdl:output message="tns:InspeccionCambiarEstadoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SeguridadSoap" type="tns:SeguridadSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPerfiles">
+      <soap:operation soapAction="http://CoreSIMAdll.org/GetPerfiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <soap:operation soapAction="http://CoreSIMAdll.org/ValidateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserAD">
+      <soap:operation soapAction="http://CoreSIMAdll.org/ValidateUserAD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCaducidadUser">
+      <soap:operation soapAction="http://CoreSIMAdll.org/VerificaCaducidadUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOptionsByProfile">
+      <soap:operation soapAction="http://CoreSIMAdll.org/GetOptionsByProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerfilAccesoDirecto">
+      <soap:operation soapAction="http://CoreSIMAdll.org/GetPerfilAccesoDirecto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDatosUsuario">
+      <soap:operation soapAction="http://CoreSIMAdll.org/GetDatosUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CodigoUsuario">
+      <soap:operation soapAction="http://CoreSIMAdll.org/CodigoUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsignarSucursal">
+      <soap:operation soapAction="http://CoreSIMAdll.org/AsignarSucursal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsignarLineaUsuario">
+      <soap:operation soapAction="http://CoreSIMAdll.org/AsignarLineaUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <soap:operation soapAction="http://CoreSIMAdll.org/InspeccionCambiarEstado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SeguridadSoap12" type="tns:SeguridadSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPerfiles">
+      <soap12:operation soapAction="http://CoreSIMAdll.org/GetPerfiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <soap12:operation soapAction="http://CoreSIMAdll.org/ValidateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserAD">
+      <soap12:operation soapAction="http://CoreSIMAdll.org/ValidateUserAD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCaducidadUser">
+      <soap12:operation soapAction="http://CoreSIMAdll.org/VerificaCaducidadUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOptionsByProfile">
+      <soap12:operation soapAction="http://CoreSIMAdll.org/GetOptionsByProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerfilAccesoDirecto">
+      <soap12:operation soapAction="http://CoreSIMAdll.org/GetPerfilAccesoDirecto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDatosUsuario">
+      <soap12:operation soapAction="http://CoreSIMAdll.org/GetDatosUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CodigoUsuario">
+      <soap12:operation soapAction="http://CoreSIMAdll.org/CodigoUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsignarSucursal">
+      <soap12:operation soapAction="http://CoreSIMAdll.org/AsignarSucursal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsignarLineaUsuario">
+      <soap12:operation soapAction="http://CoreSIMAdll.org/AsignarLineaUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <soap12:operation soapAction="http://CoreSIMAdll.org/InspeccionCambiarEstado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SeguridadHttpGet" type="tns:SeguridadHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetPerfiles">
+      <http:operation location="/GetPerfiles" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <http:operation location="/ValidateUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserAD">
+      <http:operation location="/ValidateUserAD" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCaducidadUser">
+      <http:operation location="/VerificaCaducidadUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOptionsByProfile">
+      <http:operation location="/GetOptionsByProfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerfilAccesoDirecto">
+      <http:operation location="/GetPerfilAccesoDirecto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDatosUsuario">
+      <http:operation location="/GetDatosUsuario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CodigoUsuario">
+      <http:operation location="/CodigoUsuario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsignarSucursal">
+      <http:operation location="/AsignarSucursal" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsignarLineaUsuario">
+      <http:operation location="/AsignarLineaUsuario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <http:operation location="/InspeccionCambiarEstado" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SeguridadHttpPost" type="tns:SeguridadHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetPerfiles">
+      <http:operation location="/GetPerfiles" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <http:operation location="/ValidateUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserAD">
+      <http:operation location="/ValidateUserAD" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCaducidadUser">
+      <http:operation location="/VerificaCaducidadUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOptionsByProfile">
+      <http:operation location="/GetOptionsByProfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerfilAccesoDirecto">
+      <http:operation location="/GetPerfilAccesoDirecto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDatosUsuario">
+      <http:operation location="/GetDatosUsuario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CodigoUsuario">
+      <http:operation location="/CodigoUsuario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsignarSucursal">
+      <http:operation location="/AsignarSucursal" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsignarLineaUsuario">
+      <http:operation location="/AsignarLineaUsuario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InspeccionCambiarEstado">
+      <http:operation location="/InspeccionCambiarEstado" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Seguridad">
+    <wsdl:port name="SeguridadSoap" binding="tns:SeguridadSoap">
+      <soap:address location="http://localhost:90/Core/Seguridad/Seguridad.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SeguridadSoap12" binding="tns:SeguridadSoap12">
+      <soap12:address location="http://localhost:90/Core/Seguridad/Seguridad.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SeguridadHttpGet" binding="tns:SeguridadHttpGet">
+      <http:address location="http://localhost:90/Core/Seguridad/Seguridad.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SeguridadHttpPost" binding="tns:SeguridadHttpPost">
+      <http:address location="http://localhost:90/Core/Seguridad/Seguridad.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

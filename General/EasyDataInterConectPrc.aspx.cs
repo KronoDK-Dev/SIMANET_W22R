@@ -80,7 +80,7 @@ namespace SIMANET_W22R.General
                       
                         EasyUtilitario.Helper.Pagina.DEBUG(mtd);
 
-                        object objResult = EasyWebServieHelper.InvokeWebService(sw, "", mtd, param);
+                        object objResult = EasyWebServieHelper.InvokeWebService2(sw, "", mtd, param);
                         switch (TipoObjReturn)
                         {
                             case "Table":
@@ -103,13 +103,22 @@ namespace SIMANET_W22R.General
             }
             catch (Exception ex) {
                 this.ErrorToXML("0002", this.GetPageName(), ex);
+                // 21.01.2026 capturamos el error:
+
+                string msg = ex.ToString().Replace("'", "");
+                context.Response.Clear();
+                context.Response.Write($"console.error('Error en el metodo ProcessRequest del servidor: {msg}');");
+                context.Response.End();
 
             }
 
 
-           
+
             //Llamar a los webs Services
-           
+
         }
+    
+    
+    
     }
 }

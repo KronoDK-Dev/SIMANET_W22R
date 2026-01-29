@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="BOO4gE4mxIG+G3O1uPIAP1ue/vlpLhgLIhmavVadJ74=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="ijmec1xxZebwthhumEAmjWs1OBU9bMIAsU/i0H3xvGM=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="SeguridadSoap">
       <properties>
@@ -263,10 +263,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="SeguridadSoap" contract="srvSeguridad.SeguridadSoap" bindingType="basicHttpBinding" address="http://10.10.17.53:1000/Core/Seguridad/Seguridad.asmx" bindingConfiguration="SeguridadSoap">
+    <endpoint name="SeguridadSoap" contract="srvSeguridad.SeguridadSoap" bindingType="basicHttpBinding" address="http://localhost:90/Core/Seguridad/Seguridad.asmx" bindingConfiguration="SeguridadSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://10.10.17.53:1000/Core/Seguridad/Seguridad.asmx</serializedValue>
+          <serializedValue>http://localhost:90/Core/Seguridad/Seguridad.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -348,10 +348,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="SeguridadSoap12" contract="srvSeguridad.SeguridadSoap" bindingType="customBinding" address="http://10.10.17.53:1000/Core/Seguridad/Seguridad.asmx" bindingConfiguration="SeguridadSoap12">
+    <endpoint name="SeguridadSoap12" contract="srvSeguridad.SeguridadSoap" bindingType="customBinding" address="http://localhost:90/Core/Seguridad/Seguridad.asmx" bindingConfiguration="SeguridadSoap12">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://10.10.17.53:1000/Core/Seguridad/Seguridad.asmx</serializedValue>
+          <serializedValue>http://localhost:90/Core/Seguridad/Seguridad.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

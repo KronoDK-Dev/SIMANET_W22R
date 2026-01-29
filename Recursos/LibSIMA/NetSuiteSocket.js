@@ -37,6 +37,64 @@ NetSuite.Manager.Broker.Persiana.Close = function () {
 NetSuite.Manager.Broker.Persiana.Popup = {};//Para las ventanas de servicios
 
 NetSuite.Manager.Data = {};
+
+// 28.01.2026
+
+// ==== LECTURA DE CONFIG SEGURA (no requiere EasyDataInterConect) ====
+window.NetSuite = window.NetSuite || {};
+NetSuite.Config = (function () {
+    var cache = {};
+
+    function get(section, key, defValue) {
+        var ck = section + "." + key;
+
+        // 1) Si ya lo resolvimos antes, usa cache
+        if (cache.hasOwnProperty(ck)) return cache[ck];
+
+        // 2) Si existe la función original Y existe EasyDataInterConect, úsala
+        try {
+            if (SIMA && SIMA.Utilitario && SIMA.Utilitario.Helper &&
+                SIMA.Utilitario.Helper.Configuracion &&
+                typeof SIMA.Utilitario.Helper.Configuracion.Leer === "function" &&
+                typeof EasyDataInterConect !== "undefined") {
+
+                var v = SIMA.Utilitario.Helper.Configuracion.Leer(section, key);
+                if (v !== undefined && v !== null && v !== "") {
+                    cache[ck] = v;
+                    return v;
+                }
+            }
+        } catch (e) {
+            // ignoramos; seguimos con fallbacks
+        }
+
+        // 3) Fallbacks: <meta name="app:Section.Key" content="...">, APP_SETTINGS, localStorage
+        try {
+            var meta = document.querySelector('meta[name="app:' + ck + '"]');
+            if (meta) { cache[ck] = meta.content; return meta.content; }
+        } catch (_) { }
+
+        try {
+            var ws = window.APP_SETTINGS && window.APP_SETTINGS[section] && window.APP_SETTINGS[section][key];
+            if (ws !== undefined) { cache[ck] = ws; return ws; }
+        } catch (_) { }
+
+        try {
+            var ls = localStorage.getItem(ck);
+            if (ls !== null) { cache[ck] = ls; return ls; }
+        } catch (_) { }
+
+        // 4) Por defecto
+        cache[ck] = defValue;
+        return defValue;
+    }
+
+    return { get: get, cache: cache };
+})();
+
+
+
+
 NetSuite.Manager.Data.Response = function (IdResponse,IdTipo) {
     var oEasyDataInterConect = new EasyDataInterConect();
     oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
@@ -318,8 +376,12 @@ NetSuite.Manager.TestingSocketListener = function () {
     }
 }
 
-NetSuite.Manager.Infinity.WorkingFrame = function () {
+var UsuarioBEWarningShown = false;
+
+NetSuite.Manager.Infinity.WorkingFrame = function ()
+{
     // NetSuite.LiveChat = new _NetSuite.Chat(SIMA.Utilitario.Helper.Configuracion.Leer("ConfigBase", "NetSuteSocket") + "platform=WebID" + "&App=SIMANetSuiteWeb&name=" + UsuarioBE.UserName + "&CodPer=" + UsuarioBE.CodPersonal + "&IdContac=" + UsuarioBE.IdContacto);
+    /*  13.01.2026 CAMBIADO PARA REALIZAR VALIDACION PREVIA DE EXISTENCIA DE CLASE  UsuarioBE
     var oConect = new _NetSuite.Chat(SIMA.Utilitario.Helper.Configuracion.Leer("ConfigBase", "NetSuteSocket") + "platform=WebID" + "&App=SIMANetSuiteWeb&name=" + UsuarioBE.UserName + "&CodPer=" + UsuarioBE.CodPersonal + "&IdContac=" + UsuarioBE.IdContacto);
         oConect.then(function (wSocket) {
                         NetSuite.LiveChat = wSocket;
@@ -327,181 +389,205 @@ NetSuite.Manager.Infinity.WorkingFrame = function () {
                     }).catch(function (err) {
                         NetSuite.Manager.TestingSocketListener();
                         NetSuite.LiveChat = null;
-                    });
+                        });
+     */
 
-    if (NetSuite.LiveChat instanceof WebSocket) {
-        NetSuite.LiveChat.LinkService = null;//Funcion que permite el enlace de la implementacion LibBroker
-        /*----------------------------------------------------------------------------------------------------------------*/
-        /*Eventoa de conectividad*/
-        /*----------------------------------------------------------------------------------------------------------------*/
-        NetSuite.LiveChat.onclose = function (event) {
-            NetSuite.Manager.Infinity.User.Contectado = false;
-            NetSuite.Manager.TestingSocketListener();
-            NetSuite.LiveChat.Data.UpDEstadoContacto(UsuarioBE.CodPersonal, 2);//Close Listener o servicio NetSuiteSockry
-            ConSleep = 1000;
-            NetSuite.Manager.Infinity.CircleConeccion(true);
+    // Estado interno para evitar múltiples intentos en paralelo
+    NetSuite.Manager.Infinity._connecting = false;
+    NetSuite.Manager.Infinity._circleStarted = false;
 
+    // Handlers centralizados para reusar en reconexiones del wrapper
+    NetSuite.Manager.Infinity._onClose = function (event) {
+        NetSuite.Manager.Infinity.User.Contectado = false;
+        NetSuite.Manager.TestingSocketListener();
+        try { NetSuite.LiveChat.Data.UpDEstadoContacto(UsuarioBE.CodPersonal, 2); } catch (_) { }
+        // No volvemos a llamar WorkingFrame aquí: el wrapper reintentará cada 10 min
+    };
 
-            if (event.wasClean) {
-               // alert('Conexión cerrada correctamente, code=' + event.code + ' reason=' + event.reason);
-            } else {
-                // e.g. server process killed or network down
-                // event.code is usually 1006 in this case
-               // alert('[close] La conexión se perdió');
-            }
-            //NetSuite.LiveChat = null;//velve a inicializar
-        };
-      
+    NetSuite.Manager.Infinity._onError = function (error) {
+        NetSuite.Manager.Infinity.User.Contectado = false;
+        try { NetSuite.LiveChat.Data.UpDEstadoContacto(UsuarioBE.CodPersonal, 2); } catch (_) { }
+    };
 
-        NetSuite.LiveChat.onerror = function (error) {
-            NetSuite.Manager.Infinity.User.Contectado = false;
-            NetSuite.LiveChat.Data.UpDEstadoContacto(UsuarioBE.CodPersonal, 2);
-        }
+    NetSuite.Manager.Infinity._onMessage = function (evt) {
+        // === (Pegado 1: mueve aquí el contenido que antes estaba en NetSuite.LiveChat.onmessage) ===
+        //     No modifiques la lógica, solo la ubicación. Tal como la tenías:
+        var ObjectResult = evt.data.split('|');
+        var oPaqueteBE = ObjectResult[1].toString().SerializedToObject();
 
-        NetSuite.LiveChat.onmessage = function (evt) {
-            var ObjectResult = evt.data.split('|');
-            var oPaqueteBE = ObjectResult[1].toString().SerializedToObject();
+        if (NetSuite.Manager.Infinity.InterfaceLoad == true) {
+            switch (ObjectResult[0]) {
+                case "chatPaqueteBE":
+                    if (oContactoDestinoBE != null) {
+                        NetSuite.LiveChat.MiembrosGrupo.Estado(oPaqueteBE.codPersonal, "green");
+                    }
+                    break;
+                case "PaqueteBE":
+                    if (oContactoDestinoBE != null) {
+                        if (((oPaqueteBE.IdContactoTo == UsuarioBE.IdContacto) && (oPaqueteBE.IdContactoFrom == oContactoDestinoBE.IdContacto)) && (oPaqueteBE.IdContactoFrom != UsuarioBE.IdContacto)) {
 
-            if (NetSuite.Manager.Infinity.InterfaceLoad == true) {
-                switch (ObjectResult[0]) {
-                    case "chatPaqueteBE"://Adicional que confirma que se ha conectado
-                        if (oContactoDestinoBE != null) {
-                            NetSuite.LiveChat.MiembrosGrupo.Estado(oPaqueteBE.codPersonal, "green");
+                            EasyNetLiveChat.Data.LstMiembroGrupoSeleccionado(oPaqueteBE.IdContactoFrom).Rows.forEach(function (oDataRow, i) {
+                                var oContactBE = new NetSuite.LiveChat.ContactBE();
+                                oContactBE.Foto = EasyNetLiveChat.FotoContacto(oDataRow.NRODOCUMENTO);
+                                oContactBE.IdContacto = oDataRow.ID_CONTACT;
+                                oContactBE.IdMiembro = oDataRow.ID_MIEMBRO;
+                                oContactBE.Nombre = oDataRow.APELLIDOSYNOMBRES;
+
+                                if (oContactBE.IdMiembro == oPaqueteBE.IdMiembro) {
+                                    var oMensajeBE = new NetSuite.LiveChat.MensajeBE();
+                                    oMensajeBE.ContactoFrom = oContactBE;
+                                    oMensajeBE.IdMsg = oPaqueteBE.IdMsg;
+                                    oMensajeBE.AllContenidoBE = EasyNetLiveChat.Data.ListaHistorialChatContenido(oPaqueteBE.IdMsg);
+
+                                    EasyNetLiveChat.Panel.Body().innerHTML += NetSuite.LiveChat.ItemplateChatContact(oMensajeBE);
+                                    document.getElementById(oPaqueteBE.IdMsg).scrollIntoView({ behavior: 'smooth' });
+                                }
+                            });
                         }
-                        break;
-                    case "PaqueteBE":
-                        if (oContactoDestinoBE != null) {//Contacto seleccionado
-                            if (((oPaqueteBE.IdContactoTo == UsuarioBE.IdContacto) && (oPaqueteBE.IdContactoFrom == oContactoDestinoBE.IdContacto)) && (oPaqueteBE.IdContactoFrom != UsuarioBE.IdContacto)) {
+                        else if ((oContactoSendDestinoSeleccionadoBE != undefined)
+                            && (oPaqueteBE.IdContactoTo == oContactoDestinoBE.IdContacto)
+                            && (oPaqueteBE.IdContactoFrom == oContactoSendDestinoSeleccionadoBE.IdContacto)) {
 
-                                EasyNetLiveChat.Data.LstMiembroGrupoSeleccionado(oPaqueteBE.IdContactoFrom).Rows.forEach(function (oDataRow, i) {
-                                    //Verificar si los usuarios estan conectados
-                                    var oContactBE = new NetSuite.LiveChat.ContactBE();
-                                    oContactBE.Foto = EasyNetLiveChat.FotoContacto(oDataRow.NRODOCUMENTO);
-                                    oContactBE.IdContacto = oDataRow.ID_CONTACT;
-                                    oContactBE.IdMiembro = oDataRow.ID_MIEMBRO;
-                                    oContactBE.Nombre = oDataRow.APELLIDOSYNOMBRES;
+                            var oContactBE = new NetSuite.LiveChat.ContactBE();
+                            oContactBE.Foto = oContactoSendDestinoSeleccionadoBE.Foto;
+                            oContactBE.IdContacto = oContactoSendDestinoSeleccionadoBE.IdContacto;
+                            oContactBE.IdMiembro = oContactoSendDestinoSeleccionadoBE.IdContacto;
+                            oContactBE.Nombre = oContactoSendDestinoSeleccionadoBE.Nombre;
 
-                                    //if ((oContactBE.IdMiembro == oPaqueteBE.IdMiembro) ||(oContactBE.IdMiembro != oPaqueteBE.IdMiembro)) {
-                                    if (oContactBE.IdMiembro == oPaqueteBE.IdMiembro) {
-                                        var oMensajeBE = new NetSuite.LiveChat.MensajeBE();
-                                        oMensajeBE.ContactoFrom = oContactBE;
-                                        oMensajeBE.IdMsg = oPaqueteBE.IdMsg;
-                                        oMensajeBE.AllContenidoBE = EasyNetLiveChat.Data.ListaHistorialChatContenido(oPaqueteBE.IdMsg);
+                            var oMensajeBE = new NetSuite.LiveChat.MensajeBE();
+                            oMensajeBE.ContactoFrom = oContactBE;
+                            oMensajeBE.IdMsg = oPaqueteBE.IdMsg;
+                            oMensajeBE.AllContenidoBE = EasyNetLiveChat.Data.ListaHistorialChatContenido(oPaqueteBE.IdMsg);
 
-                                        EasyNetLiveChat.Panel.Body().innerHTML += NetSuite.LiveChat.ItemplateChatContact(oMensajeBE);
-                                        //11-08-2025 desplazamiento del mensaje
-                                        document.getElementById(oPaqueteBE.IdMsg).scrollIntoView({ behavior: 'smooth' });
-                                    }
-                                });
-                            }
-                            else if ((oContactoSendDestinoSeleccionadoBE != undefined)
-                                && (oPaqueteBE.IdContactoTo == oContactoDestinoBE.IdContacto)
-                                && (oPaqueteBE.IdContactoFrom == oContactoSendDestinoSeleccionadoBE.IdContacto)
-                            ) {
+                            EasyNetLiveChat.Panel.Body().innerHTML += NetSuite.LiveChat.ItemplateChatContact(oMensajeBE);
+                            document.getElementById(oPaqueteBE.IdMsg).scrollIntoView({ behavior: 'smooth' });
+                        }
+                        else if ((oPaqueteBE.IdContactoFrom == oContactoDestinoBE.IdContacto)) {
+                            if ((oPaqueteBE.IdContactoTo == oContactoSendDestinoSeleccionadoBE.IdContacto)
+                                && (EasyNetLiveChat.IdMiembroGrupoSeleccionado != oPaqueteBE.IdMiembro)) {
 
                                 var oContactBE = new NetSuite.LiveChat.ContactBE();
-                                oContactBE.Foto = oContactoSendDestinoSeleccionadoBE.Foto;
-                                oContactBE.IdContacto = oContactoSendDestinoSeleccionadoBE.IdContacto;
-                                oContactBE.IdMiembro = oContactoSendDestinoSeleccionadoBE.IdContacto;
-                                oContactBE.Nombre = oContactoSendDestinoSeleccionadoBE.Nombre;
-
-                                var oMensajeBE = new NetSuite.LiveChat.MensajeBE();
-                                oMensajeBE.ContactoFrom = oContactBE;
-                                oMensajeBE.IdMsg = oPaqueteBE.IdMsg;
-                                oMensajeBE.AllContenidoBE = EasyNetLiveChat.Data.ListaHistorialChatContenido(oPaqueteBE.IdMsg);
-
-                                EasyNetLiveChat.Panel.Body().innerHTML += NetSuite.LiveChat.ItemplateChatContact(oMensajeBE);
-                                //11-08-2025 desplazamiento del mensaje
-                                document.getElementById(oPaqueteBE.IdMsg).scrollIntoView({ behavior: 'smooth' });
-                            }
-                            else if ((oPaqueteBE.IdContactoFrom == oContactoDestinoBE.IdContacto)) {//and contactoto del paquete sea igual al contacto destino seleccionado
-
-                                if ((oPaqueteBE.IdContactoTo == oContactoSendDestinoSeleccionadoBE.IdContacto) && (EasyNetLiveChat.IdMiembroGrupoSeleccionado != oPaqueteBE.IdMiembro)) {//si estoy en el grupo saber a quien se envia y que no muestre el mensaje al miembro del grupo que evia
-                                    //Buscar El contacto del grupo que envio
-                                    var oContactBE = new NetSuite.LiveChat.ContactBE();
-                                    //Buscar de los miembros del grupo quien envio el mensaje
-                                    EasyNetLiveChat.Data.LstMiembroGrupoSeleccionado(oPaqueteBE.IdContactoFrom).Select("ID_MIEMBRO", "=", oPaqueteBE.IdMiembro).forEach(function (oDataContactSend, x) {
+                                EasyNetLiveChat.Data.LstMiembroGrupoSeleccionado(oPaqueteBE.IdContactoFrom)
+                                    .Select("ID_MIEMBRO", "=", oPaqueteBE.IdMiembro)
+                                    .forEach(function (oDataContactSend, x) {
                                         oContactBE.Foto = EasyNetLiveChat.FotoContacto(oDataContactSend.NRODOCUMENTO);
                                         oContactBE.IdContacto = oDataContactSend.ID_CONTACT;
                                         oContactBE.IdMiembro = oDataContactSend.ID_MIEMBRO;
                                         oContactBE.Nombre = oDataContactSend.APELLIDOSYNOMBRES;
                                     });
 
-                                    var oMensajeBE = new NetSuite.LiveChat.MensajeBE();
-                                    oMensajeBE.ContactoFrom = oContactBE;
-                                    oMensajeBE.IdMsg = oPaqueteBE.IdMsg;
-                                    oMensajeBE.AllContenidoBE = EasyNetLiveChat.Data.ListaHistorialChatContenido(oPaqueteBE.IdMsg);
+                                var oMensajeBE = new NetSuite.LiveChat.MensajeBE();
+                                oMensajeBE.ContactoFrom = oContactBE;
+                                oMensajeBE.IdMsg = oPaqueteBE.IdMsg;
+                                oMensajeBE.AllContenidoBE = EasyNetLiveChat.Data.ListaHistorialChatContenido(oPaqueteBE.IdMsg);
 
-                                    EasyNetLiveChat.Panel.Body().innerHTML += NetSuite.LiveChat.ItemplateChatOwner(oMensajeBE);
-                                    //11-08-2025 desplazamiento del mensaje
-                                    document.getElementById(oPaqueteBE.IdMsg).scrollIntoView({ behavior: 'smooth' });
-                                }
+                                EasyNetLiveChat.Panel.Body().innerHTML += NetSuite.LiveChat.ItemplateChatOwner(oMensajeBE);
+                                document.getElementById(oPaqueteBE.IdMsg).scrollIntoView({ behavior: 'smooth' });
                             }
-                            else if (
-                                (oContactoSendDestinoSeleccionadoBE == null)
-                                ||
-                                (oContactoSendDestinoSeleccionadoBE == undefined)
-                            ) {
-                                //verificar  si el contacto que envia obtener datos idpersonal y verificar cn el usuario ogueado con el codpersonal si son iguales no mostrar mensaje
-                                var oContactBETmp = new NetSuite.LiveChat.ContactBE();
-                                EasyNetLiveChat.Data.LstMiembroGrupoSeleccionado(oPaqueteBE.IdContactoFrom).Select("ID_MIEMBRO", "=", oPaqueteBE.IdMiembro).forEach(function (oDataContactSend, x) {
+                        }
+                        else if ((oContactoSendDestinoSeleccionadoBE == null) || (oContactoSendDestinoSeleccionadoBE == undefined)) {
+                            var oContactBETmp = new NetSuite.LiveChat.ContactBE();
+                            EasyNetLiveChat.Data.LstMiembroGrupoSeleccionado(oPaqueteBE.IdContactoFrom)
+                                .Select("ID_MIEMBRO", "=", oPaqueteBE.IdMiembro)
+                                .forEach(function (oDataContactSend, x) {
                                     oContactBETmp.IdContacto = oDataContactSend.ID_CONTACT;
                                     oContactBETmp.IdMiembro = oDataContactSend.ID_MIEMBRO;
                                     oContactBETmp.Nombre = oDataContactSend.APELLIDOSYNOMBRES;
                                 });
 
-                                if (oContactBETmp.IdContacto != oPaqueteBE.IdContactoFrom) {
-                                    new Nostfly({
-                                        openAnimate: 'nostfly-open-slide-up',
-                                        content: 'No se ha seleccionado contacto que emite se debera mostrar remitente y contenido',
-                                        closeAnimate: 'your-custom-class'
-                                    });
-                                }
+                            if (oContactBETmp.IdContacto != oPaqueteBE.IdContactoFrom) {
+                                new Nostfly({
+                                    openAnimate: 'nostfly-open-slide-up',
+                                    content: 'No se ha seleccionado contacto que emite se debera mostrar remitente y contenido',
+                                    closeAnimate: 'your-custom-class'
+                                });
                             }
                         }
-                        else {
-
-                            new Nostfly({
-                                header: 'Supports HTML',
-                                content: '<table border="5px"><tr><td> ' + ObjectResult + '</td></tr></table>',
-                            });
-                        }
-                        break;
-                    case "chatCloseContact":
-                        var oPaqueteBE = ObjectResult[1].toString().SerializedToObject();
-                        if (oContactoDestinoBE != null) {
-                            NetSuite.LiveChat.MiembrosGrupo.Estado(oPaqueteBE.codPersonal, "red");
-                        }
-                        break;
-                }
-            }
-            else {
-                //en caso la ventana de mensajes este desactivada
-                if (oPaqueteBE.IdContactoTo != undefined) {
-                    if (NetSuite.LiveChat.MiembrosGrupo.DisplayAlertMsgRecibe(oPaqueteBE.IdContactoTo) == true) {
-
-
+                    }
+                    else {
                         new Nostfly({
-                            // Or: 'nostfly-open-slide-left', 'nostfly-open-slide-down', 'nostfly-open-fade'
-                            header: 'recibido',
-                            content: NetSuite.LiveChat.ItemplateMsgRecibidoNoWind(oPaqueteBE),
-                            openAnimate: 'nostfly-open-slide-up',
-                            // Or: 'nostfly-close-slide-left', 'nostfly-close-slide-up', 'nostfly-close-slide-down', 'nostfly-close-fade'
-                            //closeAnimate: 'your-custom-class'
-                            closeAnimate: 'nostfly-close-slide-left'//, 'nostfly-close-slide-up', 'nostfly-close-slide-down', 'nostfly-close-fade'
+                            header: 'Supports HTML',
+                            content: '<table border="5px"><tr><td>' + ObjectResult + '</td></tr></table>',
                         });
-
-                        //alert(NetSuite.LiveChat.ItemplateMsgRecibidoNoWind(oPaqueteBE));
-
                     }
-                    else if (NetSuite.LiveChat.MiembrosGrupo.DisplayAlertMsgRecibe(oPaqueteBE.IdContactoFrom) == true) {
+                    break;
+
+                case "chatCloseContact":
+                    var oPaqueteBE2 = ObjectResult[1].toString().SerializedToObject();
+                    if (oContactoDestinoBE != null) {
+                        NetSuite.LiveChat.MiembrosGrupo.Estado(oPaqueteBE2.codPersonal, "red");
                     }
+                    break;
+            }
+        } else {
+            if (oPaqueteBE.IdContactoTo != undefined) {
+                if (NetSuite.LiveChat.MiembrosGrupo.DisplayAlertMsgRecibe(oPaqueteBE.IdContactoTo) == true) {
+                    new Nostfly({
+                        header: 'recibido',
+                        content: NetSuite.LiveChat.ItemplateMsgRecibidoNoWind(oPaqueteBE),
+                        openAnimate: 'nostfly-open-slide-up',
+                        closeAnimate: 'nostfly-close-slide-left'
+                    });
                 }
             }
-
         }
-        /*----------------------------------------------------------------------------------------------------------------*/
-    }
+        // === (Fin Pegado 1) ===
+    };
+
+    // Arranque de conexión (idempotente)
+    NetSuite.Manager.Infinity.WorkingFrame = function () {
+        if (NetSuite.Manager.Infinity._connecting) return; // ya intentando
+        NetSuite.Manager.Infinity._connecting = true;
+
+        // Validación de UsuarioBE
+        if (typeof UsuarioBE === "undefined" ||
+            !UsuarioBE.UserName || !UsuarioBE.CodPersonal || !UsuarioBE.IdContacto) {
+            console.warn(" UsuarioBE no disponible o incompleto. No se inicia el chat.");
+            NetSuite.Manager.Infinity._connecting = false;
+            return;
+        }
+
+        // Construir URL del socket (OJO: usar & en JS, no &amp;)
+        var socketUrl =
+            SIMA.Utilitario.Helper.Configuracion.Leer("ConfigBase", "NetSuteSocket") +
+            "platform=WebID" +
+            "&App=SIMANetSuiteWeb" +
+            "&name=" + encodeURIComponent(UsuarioBE.UserName) +
+            "&CodPer=" + encodeURIComponent(UsuarioBE.CodPersonal) +
+            "&IdContac=" + encodeURIComponent(UsuarioBE.IdContacto);
+
+        // Invocar wrapper con reconexión espaciada (10 min), sin pings si el server no existe aún
+        var oConect = _NetSuite.Chat(socketUrl, {
+            reconnectIntervalMs: 10 * 60 * 1000, // 10 minutos
+            connectTimeoutMs: 4500,
+            pingInterval: 0,
+            enableReconnect: true,
+            jitterMs: 1500
+        });
+
+        // Registra handlers persistentes en el wrapper (aplican a reconexión también)
+        oConect
+            .onmessage(NetSuite.Manager.Infinity._onMessage)
+            .onerror(NetSuite.Manager.Infinity._onError)
+            .onclose(NetSuite.Manager.Infinity._onClose);
+
+        // Cuando abre por primera vez:
+        oConect
+            .then(function (wSocket) {
+                NetSuite.LiveChat = wSocket;
+                NetSuite.Manager.Infinity.User.Contectado = true;
+                NetSuite.Manager.StatusConect(); // pinta el círculo en verde, etc.
+            })
+            .catch(function (err) {
+                console.error(" Error al conectar con el socket:", err);
+                NetSuite.Manager.TestingSocketListener();
+                NetSuite.LiveChat = null;
+            })
+            .finally(function () {
+                NetSuite.Manager.Infinity._connecting = false;
+            });
+    };
+
 
 }
 
@@ -826,7 +912,7 @@ NetSuite.Manager.Infinity.AcivarPlataforma = function () {
 
 }
 
-
+/* 28.01.2026 
 
 var ConSleep = 1000;
 NetSuite.Manager.Infinity.CircleConeccion = function (EnabledSocket) {
@@ -843,5 +929,30 @@ NetSuite.Manager.Infinity.CircleConeccion = function (EnabledSocket) {
     }
 
 }
+*/
+
+
+
+var ConSleep = 10 * 60 * 1000; // 10 min (ya no reintenta cada segundo)
+NetSuite.Manager = NetSuite.Manager || {};
+NetSuite.Manager.Infinity = NetSuite.Manager.Infinity || {};
+NetSuite.Manager.Infinity._circleStarted = NetSuite.Manager.Infinity._circleStarted || false;
+
+NetSuite.Manager.Infinity.CircleConeccion = function (EnabledSocket) {
+    if (EnabledSocket !== true) return;
+
+    // <<<--- aquí usamos la lectura segura
+    var enableFlag = NetSuite.Config.get("ConfigBase", "NetSuteSocketEnable", "0"); // OJO: respeta tu key "NetSute..." tal cual
+    if (enableFlag !== "1") return;
+
+    if (NetSuite.Manager.Infinity._circleStarted) return;
+    NetSuite.Manager.Infinity._circleStarted = true;
+
+    // Inicia una sola vez; el wrapper maneja reconexión cada 10 min
+    NetSuite.Manager.Infinity.WorkingFrame();
+};
+
+
+//----------------------------
 NetSuite.Manager.Infinity.CircleConeccion(true);
 

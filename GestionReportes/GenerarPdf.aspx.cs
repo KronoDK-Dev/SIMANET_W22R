@@ -1,44 +1,64 @@
-﻿using EasyControlWeb;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportAppServer;
+using CrystalDecisions.ReportAppServer.CommonObjectModel;
+using CrystalDecisions.Shared;
+using DocumentFormat.OpenXml.InkML;
+using EasyControlWeb;
 using EasyControlWeb.Filtro;
+using EasyControlWeb.Form.Controls;
 using EasyControlWeb.InterConeccion;
+using EasyControlWeb.InterConecion;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.qrcode;
+using Microsoft.Win32;
+//using NPOI.SS.Formula.Functions;
+//using NPOI.Util;
+using OfficeOpenXml;
+using PdfSharp.Pdf;
 using SIMANET_W22R.srvGestionReportes;
 using System;
-using System.Data;
-using System.Web;
-using CrystalDecisions.Shared;
-using System.IO;
-using CrystalDecisions.ReportAppServer;
-using CrystalDecisions.CrystalReports.Engine;
-using static System.Net.Mime.MediaTypeNames;
-using iTextSharp.text.pdf;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
-using iTextSharp.text;
-using static SIMANET_W22R.GestionReportes.GenerarPdf;
-using System.Runtime.Remoting.Contexts;
-using System.Web.UI;
-using EasyControlWeb.Form.Controls;
-using iTextSharp.text.pdf.qrcode;
-using PdfSharp.Pdf;
-using static iTextSharp.text.pdf.PdfCopy;
-using System.Runtime.InteropServices.ComTypes;
-using static EasyControlWeb.EasyUtilitario.Enumerados;
-using static EasyControlWeb.EasyUtilitario;
 using System.Drawing.Printing;
-using CrystalDecisions.ReportAppServer.CommonObjectModel;
-using static EasyControlWeb.EasyUtilitario.Helper;
-using EasyControlWeb.InterConecion;
-using static iTextSharp.text.pdf.AcroFields;
+using System.IO;
 using System.Linq;
-using static EasyControlWeb.EasyUtilitario.Enumerados.MessageBox;
+using System.Runtime.InteropServices.ComTypes;
+using System.Runtime.Remoting.Contexts;
 using System.Security.Cryptography;
+using System.Security.Cryptography.Xml;
+using System.Web;
+using System.Web.UI;
+using static EasyControlWeb.EasyUtilitario;
 using static EasyControlWeb.EasyUtilitario.Constantes.Formato;
+using static EasyControlWeb.EasyUtilitario.Enumerados;
+using static EasyControlWeb.EasyUtilitario.Enumerados.MessageBox;
+using static EasyControlWeb.EasyUtilitario.Helper;
+using static iTextSharp.text.pdf.AcroFields;
+using static iTextSharp.text.pdf.PdfCopy;
+using static SIMANET_W22R.GestionReportes.GenerarPdf;
+using static System.Net.Mime.MediaTypeNames;
 //using CrystalDecisions.ReportAppServer.DataDefModel;
-
+//*********************
+/*
+Session["objRpt"] = oEasyDataInterConect; EasyDataInterConect oEasyDataInterConect = new EasyDataInterConect();
+Session["DataXLS"] = ds;        DataSet ds = new DataSet();
+  Session["o_objResult"] = objResult;
+  Session["NombreArchivo"] = nuevoArchivo;
+  Session["archivoDescarga"] = filePath;
+*/
+//******************
 namespace SIMANET_W22R.GestionReportes
 {
+
     public partial class GenerarPdf : PaginaBase
     {
+        string CadenadeFiltro = "";
+        bool terminoOK = false;
+        string DataObjeto = "";
+        string sPto_Error = "";
         /*
                   foreach (CrystalDecisions.CrystalReports.Engine.ParameterFieldDefinition pField in (ParameterFieldDefinitions)_rpt.DataDefinition.ParameterFields)
                   {
@@ -73,9 +93,7 @@ namespace SIMANET_W22R.GestionReportes
       
         public override void ProcessRequest(HttpContext context)
         {
-            string CadenadeFiltro = "";
-            bool terminoOK = false;
-            string DataObjeto = "";
+          
             /*  int IdReporte = Convert.ToInt32(EasyEncrypta.DesEncriptar(context.Request.Params["IdReporte"]));
               string UserName = EasyEncrypta.DesEncriptar(context.Request.Params["UserName"]);*/
             int IdReporte = Convert.ToInt32(context.Request.Params["IdReporte"]);
@@ -87,25 +105,28 @@ namespace SIMANET_W22R.GestionReportes
                 EasyFiltroParamURLws oParam;
                 context.Response.Buffer = true;
                 context.Response.Clear();
-                //Inicia la Instancia de los datos del reporte
-                ReporteBE oReporteBE = new ReporteBE();
-                oReporteBE = PefildelReporte(IdReporte, UserName);
-                oEasyDataInterConect.MetodoConexion = EasyDataInterConect.MetododeConexion.WebServiceInterno;//Agregado 08-03-2024
-                oEasyDataInterConect.UrlWebService = oReporteBE.WebService;
-                oEasyDataInterConect.Metodo = oReporteBE.Metodo;
+
 
 
                 string []ObjetosParam = context.Request.Params["oEasyFiltroParamURLws"].Split('@');//Formato:{Parametro:valor,etc..}@
-                
+                string tipoImpresora="A4";
                 object[] param = new object[ObjetosParam.Length]; int i = 0;
 
                 foreach (string objParam in ObjetosParam) {
-
+                    sPto_Error = "obteniendo parámetros con valores"; // SI LOS DATOS TIENES COMAS CAUSARÁ ERROR AL INTENTAR RECORTAR LOS VALORES
                     Dictionary<string, string> oEntity = EasyUtilitario.Helper.Data.SeriaizedDiccionario(objParam);
+                    
                     string ParamName = oEntity.Keys.ElementAt(0);
                     string ParamValue = oEntity[ParamName];
                     //Cadena de Filtro
+                    sPto_Error = "CadenadeFiltro";
                     CadenadeFiltro += oEntity["FiltroText"] + EasyUtilitario.Constantes.Caracteres.SignoIgual + oEntity["FiltroValor"] + Environment.NewLine;
+
+                    if (ParamName == "V_IMPRESORA")
+                    {
+                        tipoImpresora = ParamValue;
+                    }
+
 
                     EasyFiltroParamURLws easyParam = new EasyFiltroParamURLws();
                     easyParam.ParamName = ParamName;
@@ -116,23 +137,34 @@ namespace SIMANET_W22R.GestionReportes
                     i++;
                 }
 
+                //Inicia la Instancia de los datos del reporte
+                ReporteBE oReporteBE = new ReporteBE();
+                oReporteBE = PefildelReporte(IdReporte, UserName, tipoImpresora);
+                oEasyDataInterConect.MetodoConexion = EasyDataInterConect.MetododeConexion.WebServiceInterno;//Agregado 08-03-2024
+                oEasyDataInterConect.UrlWebService = oReporteBE.WebService;
+                oEasyDataInterConect.Metodo = oReporteBE.Metodo;
+
                 Session["objRpt"] = oEasyDataInterConect;
                 //Session["UrlApp"] = UrlApp;
-
-                object objResult = EasyWebServieHelper.InvokeWebService(UrlApp, oEasyDataInterConect);
-
-                DataSet ds = new DataSet();
+                // 05.05.2025 que cambiar a um metodo controlado por tiempo manual
+                sPto_Error = "InvokeWebService2 " + oReporteBE.WebService + " " + oReporteBE.Metodo;
+                object objResult = EasyWebServieHelper.InvokeWebService2(UrlApp, oEasyDataInterConect);
+                
+                Session["o_objResult"] = objResult;
+                DataSet ds1 = new DataSet();
                 if (objResult.GetType() == typeof(DataSet))
                 {
-                    ds = (DataSet)objResult;
+                    ds1 = (DataSet)objResult;
                 }
                 else
                 {
                     DataTable dt = (DataTable)objResult;
-                    ds.Tables.Add(dt);
+                    ds1.Tables.Add(dt);
                 }
-                string NomFileRpt = CrystalGeneraPdf(oReporteBE, ds);
-
+                string NomFileRpt = CrystalGeneraPdf(oReporteBE, ds1);
+                //----------------------------------
+                string nombre = System.IO.Path.GetFileName(NomFileRpt); // tomamos el nombre generado anteriormente para guardar relacion
+                string NomFileRptxls = CrystalGeneraXlsx(oReporteBE, ds1, nombre);
 
                 #region Footer report
 
@@ -140,28 +172,38 @@ namespace SIMANET_W22R.GestionReportes
                 //Obtener datos del reporte y sus caracteristicas de gestion
                 AdministrarReportesSoapClient ogReports = new AdministrarReportesSoapClient();
                   DataTable dtInfoFooterReport = ogReports.ListarCabeceradeReporte(IdReporte, UserName);
-
-                  ds = new DataSet();     
+                DataSet ds = new DataSet();
+                ds = new DataSet();     
                   dtInfoFooterReport.TableName = "RPT_uspNTADDetalleReporte;1";
                   
                   dtInfoFooterReport.Rows[0]["Criterios"] = CadenadeFiltro;
-                  dtInfoFooterReport.AcceptChanges();
-
-                  ds.Tables.Add(dtInfoFooterReport);
-
-                  //Cambia algunos datos para el nuevo reporte
-                  
+                // 10.03.2025 COLOCAMOS AL USUARIO COMO QUIEN SOLICITA Y CREA EL REPORTE
+                string sUsuario;
+                dtInfoFooterReport.Rows[0]["IdUsuarioSolicitante1"] = ((EasyUsuario)EasyUtilitario.Helper.Sessiones.Usuario.get()).IdUsuario;
+                sUsuario= ((EasyUsuario)EasyUtilitario.Helper.Sessiones.Usuario.get()).ApellidosyNombres;
+                if (string.IsNullOrEmpty(sUsuario))
+                {
+                    sUsuario = UserName;
+                }
+                dtInfoFooterReport.Rows[0]["UsuarioSolicitante"] = sUsuario;
+                
+                dtInfoFooterReport.AcceptChanges();
+                ds.Tables.Add(dtInfoFooterReport);
+                
+                //Cambia algunos datos para el nuevo reporte
                   oReporteBE.SourceRpt = EasyUtilitario.Helper.Configuracion.Leer(EasyUtilitario.Enumerados.Configuracion.SeccionKey.Nombre.ConfigBase, "PathFileRptFooter");
                   oReporteBE.GUID = GenerarGUId();
 
-                //Copia para permitir que al archivo rpt footer sea usado en otro proceso
-                  string GuidRPTFooter = GenerarGUId();
-                  string rptFooterTmp = oReporteBE.PathLocalDestino + EasyUtilitario.Constantes.Caracteres.BackSlash + GuidRPTFooter + ".rpt";
-                  File.Copy(oReporteBE.SourceRpt, rptFooterTmp, overwrite: true);
-                  oReporteBE.SourceRpt = rptFooterTmp;//Reeplaza el nombre del archivo base por el tempral generado para ser incrustado
-
+                //==== 31.07.2025  se Copia el archivo para permitir que al archivo rpt footer sea usado en otro proceso
+                string GuidRPTFooter = GenerarGUId();
+                string rptFooterTmp = oReporteBE.PathLocalDestino + EasyUtilitario.Constantes.Caracteres.BackSlash + GuidRPTFooter + ".rpt";
+                File.Copy(oReporteBE.SourceRpt, rptFooterTmp, overwrite: true);
+                oReporteBE.SourceRpt = rptFooterTmp;//Reeplaza el nombre del archivo base por el tempral generado para ser incrustado
+                //=================================================================
 
                 string PathUrlFooter = CrystalGeneraPdf(oReporteBE, ds);
+
+
                   //----------------------------Fin Footer---------------------------------------------------
 
 
@@ -171,15 +213,32 @@ namespace SIMANET_W22R.GestionReportes
                   string FilePDFReport =  oReporteBE.PathLocalDestino + "\\" + ReportFileFinal;
                   string[] lst = new string[2] { oReporteBE.PathLocalDestino + "\\" + NomFileRpt, oReporteBE.PathLocalDestino + "\\" + PathUrlFooter };
                   MergePdf(FilePDFReport, lst);
-                   Array.Resize(ref lst, 3);
-                   lst[2] = oReporteBE.SourceRpt;
-                  //Elimanalst los temporales
-                  foreach (string f in lst)
+
+                // despues de unir los pdf podemos crear el xls ya que recien le dará un Nombre final   21.08.2025
+              //  string nombre1 = System.IO.Path.GetFileName(ReportFileFinal); // tomamos el nombre generado anteriormente para guardar relacion
+              //  string NomFileRptxls1 = CrystalGeneraXlsx(oReporteBE, ds1, nombre1);
+                
+                
+                string directorio = Path.GetDirectoryName(FilePDFReport); // C:\AppWebs\AppTest\Archivos\HomeRptGen\user
+                string nombreSinExtension = Path.GetFileNameWithoutExtension(ReportFileFinal); // 248_55a2a6feeaf243ceb487ec95964a00ad
+                string nuevoArchivo = Path.Combine(directorio, nombreSinExtension + ".xlsx");                  // Construir nueva ruta con extensión .xlsx
+                string AnteriorPath = Path.Combine(directorio, NomFileRptxls);
+                sPto_Error = "rename file";
+                File.Move(AnteriorPath, nuevoArchivo); // Renombrar el archivo
+
+                Session["NombreArchivo"] = nuevoArchivo;
+
+                //==== 31.07.2025  redimensiona la lista
+                Array.Resize(ref lst, 3);
+                lst[2] = oReporteBE.SourceRpt;
+                //==========================================
+                sPto_Error = "Limpiando file";
+                //Elimina listas  temporales
+                foreach (string f in lst)
                   {
                       File.Delete(f);
                   }
-                //-----------------------------------FinFile Report Final con Merge----------------------------------------------------------
-               
+                  //-----------------------------------FinFile Report Final con Merge----------------------------------------------------------
                 #endregion
 
                 string PathUrl = EasyUtilitario.Helper.Configuracion.Leer("ConfigBase", "PathFileRptHttp") +  oReporteBE.UserName + "/" + ReportFileFinal;
@@ -190,28 +249,62 @@ namespace SIMANET_W22R.GestionReportes
                 // context.Response.End();
                 HttpContext.Current.ApplicationInstance.CompleteRequest();//Se utriliza en lugar de context.Response.End(), para evitar conflito de tareas
 
+
+                // 
+
+
             }
             catch (Exception ex) {
                 if (terminoOK == false)
                 {
-                    DataObjeto += "ERROR:=" + ex.Message;
+                    DataObjeto += "ERROR:=" + ex.Message + " " + sPto_Error;
                     context.Response.Write("{Estado:'ERROR',Descripcion:'" + DataObjeto + "',PathFile:'GenerarPdf.aspx/ProcessRequest'}");
                     context.Response.Flush();
-                    HttpContext.Current.ApplicationInstance.CompleteRequest(); ;
+                    HttpContext.Current.ApplicationInstance.CompleteRequest();
+                    // mandamos alerta de error empleando: SweetAlert2, para saber que esta pasando, esto como parte del CONCEPTO UX (User Experience) 
+                    var result = "" + ex.Message;
+                    string scriptSuccess = $"Swal.fire('Error', 'GenerarPDF - ProcessRequest(): {result}', 'error');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
                 }
             }
         }
 
-        
 
-
-        public ReporteBE PefildelReporte(int IdReporte,string UserName) {
+        public ReporteBE PefildelReporte(int IdReporte, string UserName)
+        {
             AdministrarReportesSoapClient ogReports = new AdministrarReportesSoapClient();
             DataTable dtInfoReport = ogReports.ListarInformacionReporte(IdReporte.ToString(), UserName);
             DataRow drInfo = dtInfoReport.Rows[0];
-
             ReporteBE oReporteBE = new ReporteBE();
+   
             oReporteBE.SourceRpt = EasyUtilitario.Helper.Configuracion.Leer(EasyUtilitario.Enumerados.Configuracion.SeccionKey.Nombre.ConfigBase, "PathFileSourceRpts") + drInfo["Ref1"].ToString();
+            oReporteBE.IdReporte = IdReporte.ToString();
+            oReporteBE.UserName = UserName;
+            oReporteBE.Extension = drInfo["Ref4"].ToString();
+            oReporteBE.GUID = GenerarGUId();
+            oReporteBE.PathLocalDestino = CrearHome(oReporteBE.UserName);
+            oReporteBE.WebService = drInfo["Ref2"].ToString(); ;
+            oReporteBE.Metodo = drInfo["Ref3"].ToString();
+            oReporteBE.Descripcion = drInfo["Descripcion"].ToString();
+            oReporteBE.Nombre = drInfo["Nombre"].ToString();
+
+            return oReporteBE;
+        }
+
+        public ReporteBE PefildelReporte(int IdReporte,string UserName,string Tipoimpresora) {
+            AdministrarReportesSoapClient ogReports = new AdministrarReportesSoapClient();
+            DataTable dtInfoReport = ogReports.ListarInformacionReporte(IdReporte.ToString(), UserName);
+            DataRow drInfo = dtInfoReport.Rows[0];
+            ReporteBE oReporteBE = new ReporteBE();
+            if (Tipoimpresora == "A4")
+            {
+                oReporteBE.SourceRpt = EasyUtilitario.Helper.Configuracion.Leer(EasyUtilitario.Enumerados.Configuracion.SeccionKey.Nombre.ConfigBase, "PathFileSourceRpts") + drInfo["Ref1"].ToString();             
+            }
+            else
+            {
+                oReporteBE.SourceRpt = EasyUtilitario.Helper.Configuracion.Leer(EasyUtilitario.Enumerados.Configuracion.SeccionKey.Nombre.ConfigBase, "PathFileSourceRpts") + drInfo["Ref1"].ToString().Substring(0,(drInfo["Ref1"].ToString().Length ) -4 )  + Tipoimpresora + Path.GetExtension(drInfo["Ref1"].ToString());
+            }
+            
             oReporteBE.IdReporte = IdReporte.ToString();
             oReporteBE.UserName = UserName;
             oReporteBE.Extension = drInfo["Ref4"].ToString();
@@ -241,36 +334,83 @@ namespace SIMANET_W22R.GestionReportes
             
             try
             {
-                //CrystalDecisions.CrystalReports.Engine.ReportDocument _rpt = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                ReportDocument _rpt = new ReportDocument();
-                Linea = "oReporteBE.SourceRpt";
-                _rpt.Load(oReporteBE.SourceRpt);
-                Linea = "_rpt.SetDataSource";
-                _rpt.SetDataSource(ds);
 
-                Linea = "crDiskFileDestinationOptions";
-                                
-                DiskFileDestinationOptions crDiskFileDestinationOptions = new DiskFileDestinationOptions();
-                
-                Linea = oReporteBE.PathLocalDestino + "\\" + NombreArchivo; 
+                /***** 
+                      * Verificar si existe la tabla CONFIG
+                      *****/
+                if (ds.Tables.Contains("config"))
+                {
+                    /***** 
+                     * 1. Leer datos de la tabla CONFIG
+                     *****/
+                    string tipoObjeto = ds.Tables["config"].Rows[0][0].ToString();
+                    string rutaCsv = ds.Tables["config"].Rows[0][1].ToString();
+                    string urlVirtualExcel = ds.Tables["config"].Rows[0][2].ToString();
 
-                crDiskFileDestinationOptions.DiskFileName = oReporteBE.PathLocalDestino + "\\" + NombreArchivo;
-                Linea = "crExportOptions";
-                CrystalDecisions.Shared.ExportOptions crExportOptions = _rpt.ExportOptions;
-                Linea = "DestinationOptions";
-                crExportOptions.DestinationOptions = crDiskFileDestinationOptions;
-                Linea = "ExportDestinationType";
-                crExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
-                Linea = "ExportFormatType";
-                crExportOptions.ExportFormatType = ((oReporteBE.Extension.ToUpper().Equals(".PDF")) ? ExportFormatType.PortableDocFormat : ExportFormatType.Excel);
-                /*---------------------------*/
+                    /***** 
+                     * 2. Convertir CSV a Excel
+                     *****/
+                    string rutaExcel = rutaCsv.Replace(".csv", ".xlsx");
+                    ConvertirCsvAExcel(rutaCsv, rutaExcel);
 
-                _rpt.Export();
+                    /***** 
+                     * 3. Generar PDF desde Excel con URL en cabecera
+                     *****/
+                    string rutaPdf = Path.Combine(oReporteBE.PathLocalDestino, NombreArchivo);
+                    CrearPdfDesdeExcel(rutaExcel, rutaPdf, urlVirtualExcel);
+
+                    return NombreArchivo; // Devuelve el nombre del PDF generado
+                }
+                else
+                {
+                    /***** 
+                     * Lógica original con Crystal Reports
+                     *****/
+
+                    //CrystalDecisions.CrystalReports.Engine.ReportDocument _rpt = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    ReportDocument _rpt = new ReportDocument();
+                    Linea = "oReporteBE.SourceRpt";
+                    _rpt.Load(oReporteBE.SourceRpt);
+                    Linea = "_rpt.SetDataSource";
+                    _rpt.SetDataSource(ds);
+
+                    Linea = "crDiskFileDestinationOptions";
+
+                    DiskFileDestinationOptions crDiskFileDestinationOptions = new DiskFileDestinationOptions();
+
+                    Linea = oReporteBE.PathLocalDestino + "\\" + NombreArchivo;
+
+                    crDiskFileDestinationOptions.DiskFileName = oReporteBE.PathLocalDestino + "\\" + NombreArchivo;
+                    Linea = "crExportOptions";
+                    CrystalDecisions.Shared.ExportOptions crExportOptions = _rpt.ExportOptions;
+                    Linea = "DestinationOptions";
+                    crExportOptions.DestinationOptions = crDiskFileDestinationOptions;
+                    Linea = "ExportDestinationType";
+                    crExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                    Linea = "ExportFormatType";
+
+
+                    crExportOptions.ExportFormatType = ((oReporteBE.Extension.ToUpper().Equals(".PDF")) ? ExportFormatType.PortableDocFormat : ExportFormatType.Excel);
+                    _rpt.Export();
+                    /*---------------------------*/
+
+                    Session["DataXLS"] = ds;
+                }
             }
             catch (Exception ex) {
                 NombreArchivo = "Error.pdf";
                 CrearPdfDefault(oReporteBE.PathLocalDestino + "\\" + NombreArchivo, ex.Message + "\n" + Linea);
+                //-----------
+                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                result = result.Replace("'", "");
+                string pageName ="GenerarPdf.aspx" ;
+                string methodName = "CrystalGeneraPdf";
+                //this.LanzarException(methodName, ex); // error para el log
+                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
             }
+
             /*Proteger el archivo*/
             /*  using (Stream input = new FileStream(oReporteBE.PathLocalDestino + "\\" + NombreArchivo, FileMode.Open, FileAccess.Read, FileShare.Read))           
               using (Stream output = new FileStream(oReporteBE.PathLocalDestino + "\\" + NombreArchivoEncript, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -287,6 +427,157 @@ namespace SIMANET_W22R.GestionReportes
 
             return NombreArchivo;
          }
+
+        public string CrystalGeneraXlsx(ReporteBE oReporteBE, DataSet ds, string NombreArchivo)
+        {
+            string Linea = "";
+            //   string NombreArchivo = oReporteBE.getNomFileGenerado().Replace(".pdf",".xlsx") ;
+            NombreArchivo= NombreArchivo.Replace(".pdf", ".xlsx");
+            string NombreArchivoEncript = GenerarGUId();
+            string RutayArchivo = oReporteBE.PathLocalDestino + "\\" + NombreArchivo;
+
+            try
+            {
+                //CrystalDecisions.CrystalReports.Engine.ReportDocument _rpt = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                ReportDocument _rpt = new ReportDocument();
+                Linea = "oReporteBE.SourceRpt";
+                _rpt.Load(oReporteBE.SourceRpt);
+                Linea = "_rpt.SetDataSource";
+                _rpt.SetDataSource(ds);
+
+                Linea = "crDiskFileDestinationOptions";
+
+                DiskFileDestinationOptions crDiskFileDestinationOptions = new DiskFileDestinationOptions();
+
+                Linea = oReporteBE.PathLocalDestino + "\\" + NombreArchivo;
+
+                crDiskFileDestinationOptions.DiskFileName = oReporteBE.PathLocalDestino + "\\" + NombreArchivo;
+                Linea = "crExportOptions";
+                CrystalDecisions.Shared.ExportOptions crExportOptions = _rpt.ExportOptions;
+                Linea = "DestinationOptions";
+                crExportOptions.DestinationOptions = crDiskFileDestinationOptions;
+                Linea = "ExportDestinationType";
+                crExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                Linea = "ExportFormatType";
+
+
+                /*---------------------------*/
+                crExportOptions.ExportFormatType =  ExportFormatType.ExcelWorkbook;
+                _rpt.Export();
+
+                Session["DataXLS"] = ds;
+
+
+                string filePath = crDiskFileDestinationOptions.DiskFileName; // Ruta del archivo generado
+                string fileName =  NombreArchivo; // Nombre que verá el usuario
+
+                Session["archivoDescarga"] = filePath;
+                Session["NombreArchivo"] = NombreArchivo;
+
+            }
+            catch (Exception ex)
+            {
+                NombreArchivo = "Error.pdf";
+                CrearPdfDefault(oReporteBE.PathLocalDestino + "\\" + NombreArchivo, ex.Message + "\n" + Linea);
+                //-----------
+                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                result = result.Replace("'", "");
+                string pageName = "GenerarPdf.aspx";
+                string methodName = "CrystalGeneraPdf";
+                //this.LanzarException(methodName, ex); // error para el log
+                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
+            }
+            /*Proteger el archivo*/
+            /*  using (Stream input = new FileStream(oReporteBE.PathLocalDestino + "\\" + NombreArchivo, FileMode.Open, FileAccess.Read, FileShare.Read))           
+              using (Stream output = new FileStream(oReporteBE.PathLocalDestino + "\\" + NombreArchivoEncript, FileMode.Create, FileAccess.Write, FileShare.None))
+              {
+                  PdfReader reader = new PdfReader(input);
+                  PdfEncryptor.Encrypt(reader, output, true, "secret", "secret", PdfWriter.AllowFillIn| PdfWriter.AllowScreenReaders);
+
+
+              }
+              //Eliminar El archivo base
+              oReporteBE.GUID = NombreArchivoEncript;
+              return NombreArchivoEncript;*/
+
+
+            return NombreArchivo;
+        }
+
+
+
+        /***** 
+         * Método para convertir CSV a Excel usando EPPlus Install-Package EPPlus -Version 4.5.3.2
+         *****/
+        private void ConvertirCsvAExcel(string rutaCsv, string rutaExcel)
+        {
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Datos");
+                var lines = File.ReadAllLines(rutaCsv);
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    var values = lines[i].Split(',');
+                    for (int j = 0; j < values.Length; j++)
+                    {
+                        worksheet.Cells[i + 1, j + 1].Value = values[j];
+                    }
+                }
+                package.SaveAs(new FileInfo(rutaExcel));
+            }
+        }
+
+        /***** 
+         * Método para crear PDF desde Excel e incrustar la URL en la cabecera
+         *****/
+        private void CrearPdfDesdeExcel(string rutaExcel, string rutaPdf, string urlVirtual)
+        {
+            using (FileStream fs = new FileStream(rutaPdf, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                Document doc = new Document(PageSize.A4);
+                PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+                doc.Open();
+
+                // Cabecera con la URL virtual
+                var fontHeader = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
+                doc.Add(new Paragraph("Descargar Excel: " + urlVirtual, fontHeader));
+                doc.Add(new Paragraph(" "));
+
+                // Leer el Excel y crear tabla en PDF
+                using (var package = new ExcelPackage(new FileInfo(rutaExcel)))
+                {
+                    var worksheet = package.Workbook.Worksheets[0];
+                    int rows = worksheet.Dimension.Rows;
+                    int cols = worksheet.Dimension.Columns;
+
+                    PdfPTable table = new PdfPTable(cols);
+                    table.WidthPercentage = 100;
+
+                    // Encabezados
+                    for (int j = 1; j <= cols; j++)
+                    {
+                        PdfPCell cellHeader = new PdfPCell(new Phrase(worksheet.Cells[1, j].Text));
+                        cellHeader.BackgroundColor = BaseColor.LIGHT_GRAY;
+                        table.AddCell(cellHeader);
+                    }
+
+                    // Filas
+                    for (int i = 2; i <= rows; i++)
+                    {
+                        for (int j = 1; j <= cols; j++)
+                        {
+                            table.AddCell(new Phrase(worksheet.Cells[i, j].Text));
+                        }
+                    }
+
+                    doc.Add(table);
+                }
+
+                doc.Close();
+            }
+        }
 
         public void PrintPrevioWatermark(int IdReporte, string NombreNuevo, string watermarkTemplatePath, string UserName, DataSet ds, params object[] LstCtrl)
         {
@@ -426,7 +717,6 @@ namespace SIMANET_W22R.GestionReportes
         }
 
 
-
         void MergePdf(string targetFile, string[] files)
         {
            /* using (var outputStream = new FileStream("C:\\AppWebs\\AppTest\\Archivos\\HomeRptGen\\erosales\\test.pdf", FileMode.CreateNew))
@@ -451,8 +741,6 @@ namespace SIMANET_W22R.GestionReportes
                 stream.Close();
             }
         }
-
-
 
 
         public string CrearHome(string UserName) {

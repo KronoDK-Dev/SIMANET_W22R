@@ -81,9 +81,11 @@
 
                         case "ReportExploreV2":
                             Manager.Task.Excecute(function () {
-                                ReportExploreV2.VistaPrevia(ResultReportBE.PathFile.toString());
+                                //ReportExploreV2.VistaPrevia(ResultReportBE.PathFile.toString()); // 28.01.2026 cambiado 
+                                 window.top.ReportExploreV2.VistaPrevia(ResultReportBE.PathFile.toString());
                                 SIMA.Utilitario.Helper.Wait.Close(0);
-                                EasyPopupTestReportParam.Close();
+                                //EasyPopupTestReportParam.Close(); // 28.01.2026 cambiado
+                                window.top.EasyPopupTestReportParam.Close();
                             }, 500, true);
                             break;
                     }
@@ -217,7 +219,7 @@
     </script>
 
 </head>
-<body onclick="ReportParams.Chat.send('Hello World eddy');">
+<body >
     <form id="form1" runat="server">
         
         <table style="width:100%">

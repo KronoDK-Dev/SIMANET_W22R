@@ -2,13 +2,9 @@
 
 <%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Form" TagPrefix="cc4" %>
 <%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Form.Controls" TagPrefix="cc3" %>
-
 <%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Filtro" TagPrefix="cc2" %>
-
 <%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb" TagPrefix="cc1" %>
-
 <%@ Register Src="~/Controles/Header.ascx" TagPrefix="uc1" TagName="Header" %>
-
 
 
 
@@ -312,6 +308,7 @@
                         if (AdministrarReporte.Navigator.Node.Select != null) {
                             var ObjetoBE = AdministrarReporte.Navigator.Node.Select.Data;
                             if (ObjetoBE.IdTipo == SIMA.Utilitario.Enumerados.TipoObjeto.Reporte) {
+                                Lock_EasyPopupTestReportParam();  // 28.01.2026
                                 var oParamColletions = new EasyPopupTestReportParam.ParamCollection();
                                 var oParam = new EasyPopupTestReportParam.Param(AdministrarReporte.KEYQIDOBJETO, ObjetoBE.IdObjeto);
                                 oParamColletions.Add(oParam);
@@ -355,7 +352,8 @@
             }
         }
 
-        AdministrarReporte.ShowCompartir = function (IdObj,Nom) {
+        AdministrarReporte.ShowCompartir = function (IdObj, Nom) {
+            Lock_EasyPopupTestReportParam();
                 var oParamColletions = new EasyPopupTestReportParam.ParamCollection();
                 var oParam = new EasyPopupTestReportParam.Param(AdministrarReporte.KEYQIDOBJETO, IdObj);
                 oParamColletions.Add(oParam);
@@ -1110,5 +1108,51 @@
     </SCRIPT>
 
    
+    <script>
+        // ---  28.01.2026 Protege y reconstruye los constructores de EasyPopupTestReportParam ---
+        function Lock_EasyPopupTestReportParam() {
+            var EPT = window.EasyPopupTestReportParam;
+            if (!EPT) return;
+
+            // Hacer backup solo una vez
+            if (!EPT.__backupParam) {
+                EPT.__backupParam = EPT.Param;
+                EPT.__backupParamCollection = EPT.ParamCollection;
+            }
+
+            // Si han sido reemplazados por "object" al cerrar
+            if (typeof EPT.Param !== "function") {
+                EPT.Param = EPT.__backupParam;
+                console.warn("Restaurando Param()");
+            }
+            if (typeof EPT.ParamCollection !== "function") {
+                EPT.ParamCollection = EPT.__backupParamCollection;
+                console.warn("Restaurando ParamCollection()");
+            }
+
+            // Congelar para evitar sobrescrituras
+            try {
+                Object.defineProperty(EPT, "Param", {
+                    configurable: false,
+                    get: function () { return EPT.__backupParam; },
+                    set: function () {
+                        console.warn("Intento ignorado de sobrescribir Param()");
+                    }
+                });
+                Object.defineProperty(EPT, "ParamCollection", {
+                    configurable: false,
+                    get: function () { return EPT.__backupParamCollection; },
+                    set: function () {
+                        console.warn("Intento ignorado de sobrescribir ParamCollection()");
+                    }
+                });
+            } catch (e) {
+                console.warn("No se pudo congelar constructores", e);
+            }
+        }
+
+        // Llamarlo al cargar la página
+        document.addEventListener("DOMContentLoaded", Lock_EasyPopupTestReportParam);
+    </script>
 
 </html>

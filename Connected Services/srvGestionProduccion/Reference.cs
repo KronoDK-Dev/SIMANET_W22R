@@ -345,6 +345,13 @@ namespace SIMANET_W22R.srvGestionProduccion {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_detalle_ots_recursos_pryc2", ReplyAction="*")]
         System.Threading.Tasks.Task<string> Listar_detalle_ots_recursos_pryc2Async(string N_CEO, string V_CODATV, string V_CODDIV, string V_CODPROY, string V_NROOTS, string V_TIPRCS, string UserName);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_Detalle_Ot_Recursos_Pry_fec", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string Listar_Detalle_Ot_Recursos_Pry_fec(string N_CEO, string V_CODATV, string V_CODDIV, string V_CODPROY, string V_NROOTS, string V_TIPRCS, string D_FECHAINI_EMI, string D_FECHAFIN_EMI, string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_Detalle_Ot_Recursos_Pry_fec", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> Listar_Detalle_Ot_Recursos_Pry_fecAsync(string N_CEO, string V_CODATV, string V_CODDIV, string V_CODPROY, string V_NROOTS, string V_TIPRCS, string D_FECHAINI_EMI, string D_FECHAFIN_EMI, string UserName);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_indicadores", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataTable Listar_indicadores(string V_CO, string V_DIVISION, string D_FECHAINI, string D_FECHAFIN, string UserName);
@@ -936,6 +943,14 @@ namespace SIMANET_W22R.srvGestionProduccion {
         
         public System.Threading.Tasks.Task<string> Listar_detalle_ots_recursos_pryc2Async(string N_CEO, string V_CODATV, string V_CODDIV, string V_CODPROY, string V_NROOTS, string V_TIPRCS, string UserName) {
             return base.Channel.Listar_detalle_ots_recursos_pryc2Async(N_CEO, V_CODATV, V_CODDIV, V_CODPROY, V_NROOTS, V_TIPRCS, UserName);
+        }
+        
+        public string Listar_Detalle_Ot_Recursos_Pry_fec(string N_CEO, string V_CODATV, string V_CODDIV, string V_CODPROY, string V_NROOTS, string V_TIPRCS, string D_FECHAINI_EMI, string D_FECHAFIN_EMI, string UserName) {
+            return base.Channel.Listar_Detalle_Ot_Recursos_Pry_fec(N_CEO, V_CODATV, V_CODDIV, V_CODPROY, V_NROOTS, V_TIPRCS, D_FECHAINI_EMI, D_FECHAFIN_EMI, UserName);
+        }
+        
+        public System.Threading.Tasks.Task<string> Listar_Detalle_Ot_Recursos_Pry_fecAsync(string N_CEO, string V_CODATV, string V_CODDIV, string V_CODPROY, string V_NROOTS, string V_TIPRCS, string D_FECHAINI_EMI, string D_FECHAFIN_EMI, string UserName) {
+            return base.Channel.Listar_Detalle_Ot_Recursos_Pry_fecAsync(N_CEO, V_CODATV, V_CODDIV, V_CODPROY, V_NROOTS, V_TIPRCS, D_FECHAINI_EMI, D_FECHAFIN_EMI, UserName);
         }
         
         public System.Data.DataTable Listar_indicadores(string V_CO, string V_DIVISION, string D_FECHAINI, string D_FECHAFIN, string UserName) {
