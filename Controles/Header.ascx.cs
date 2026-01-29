@@ -39,7 +39,7 @@ namespace SIMANET_W22R.Controles
             ScriptFrag,
         }
         public string[,] StyleBase {
-            get { return new string[13, 2]{
+            get { return new string[14, 2]{
                                                   { "bootstrap", EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/css/bootstrap.min.css" }
                                                  /*,{ "jquery-ui",EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/css/1.10.4.jquery-ui.css"} crea conflito con el treeview
                                                  ,{ "Autobusqueda","http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"}*/
@@ -56,13 +56,14 @@ namespace SIMANET_W22R.Controles
                                                  ,{ "toasscc", EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/css/Toas/nostfly.min.css"}
                                                  //Agregado 09-09-2025
                                                  ,{ "cssTree", EasyUtilitario.Helper.Pagina.PathSite() + "/Recursos/Tree/zTreeStyle.css" }
+                                                 ,{ "cssTree", EasyUtilitario.Helper.Pagina.PathSite() + "/Recursos/css/jquery.timepicker.min.css" }
                                                 };
             }
         }
 
         public string[,] ScriptBase
         {
-            get { return new string[24, 2]{
+            get { return new string[25, 2]{
                                                 /*  { "Core", "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"}*/
                                                  { "Core", EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/Js/jquery.min.js"}
                                                  ,{ "bootstrap.min",EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/Js/4.5.2.bootstrap.min.js"}
@@ -81,6 +82,7 @@ namespace SIMANET_W22R.Controles
                                                  //,{ "jquery-ui.min", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"}
                                                  //,{ "jquery-ui.min", "http://code.jquery.com/ui/1.13.0/jquery-ui.min.js"}
                                                  ,{ "datepicker", EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/Js/1.4.1.bootstrap-datepicker.min.js"}
+                                                 ,{ "timepicker", EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/Js/jquery.timepicker.min.js"}
                                                  ,{ "bootstrap-waitingfor", EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/Js/bootstrap-waitingfor.js"}
                                                  ,{ "jqxcore",EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/Js/jqxcore.js"}
                                                  ,{ "jqxmenu",EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/Js/jqxmenu.js"}
