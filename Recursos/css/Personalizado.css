@@ -92,87 +92,361 @@ select.input-control {
 }
 
 /******** Estilo general para el GridView *************/
-/* Contenedor de la grilla para margen y ajuste responsive */
-.STgridview-container {
-    margin: 0 auto;
-    padding: 0 15px; /* Márgenes laterales */
-    overflow-x: auto; /* Hacer la grilla scrollable en pantallas pequeñas */
+
+/* =========================================================
+   === 0) TOKENS / VARIABLES DE TEMA (OPCIONAL)
+   ========================================================= */
+
+/* 0a) Paleta */
+:root {
+    --st-blue-strong: #2F6DB1; /* azul medio principal (título, botones) */
+    --st-blue-strong-hover: #285F99;
+    --st-header-bg: #EAF2FB; /* fondo toolbar y encabezado de columnas */
+    --st-header-fg: #1F3B63; /* texto encabezado de columnas */
+    --st-white: #FFFFFF; /* blanco */
+    /* TAMAÑO BASE DEL CONTENIDO (ajústalo a tu gusto) */
+    --st-body-font-size: 14px; /* Sugerido: 14–15px para legibilidad */
+    --st-body-line-height: 1.35; /* Línea algo compacta pero cómoda */
+    --st-font-family: inherit; /* Hereda del sitio; cambia si quieres forzar otra */
 }
 
-/* Estilo general para el GridView */
+/* 0b) Tipografía base de la grilla (no toca filas/estilos de zebra/hover) */
 .STgridview {
-    width: 100%;
-    max-width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    color: #007bff;
+    font-family: var(--st-font-family);
+    /* No definimos font-size aquí para no alterar headers;
+       lo aplicamos solo al contenido (tbody td) en la sección 4 */
 }
 
-.STtitulo-header {
-    background-color: #b2dfdb; /* Color de fondo */
-    color: #007bff !important; /* Color del texto celeste= #007bff  , antes white */
-    font-weight: bold; /* Negrita */
-    text-align: center; /* Alinear el texto al centro */
-    font-size: 14px; /* Tamaño de letra */
-    padding: 10px; /* Espaciado interno */
-}
 
-/* Cabecera del GridView */
-.STgridview th {
-    background-color: #b2dfdb; /* Verde agua clara */
-    color: #007bff; /* Color de letra */
-    font-size: 16px; /* Tamaño de fuente más grande */
-    font-weight: bold; /* Negrita */
-    padding: 10px;
-    text-align: left;
-    border-bottom: 2px solid #00796b;
-    cursor: pointer; /* Mostrar icono de mano al pasar sobre cabecera */
-    transition: color 0.3s; /* Animación suave para cambio de color */
-}
+    /* =========================================================
+   === 1) TÍTULO (2ª fila HeaderGrilla con TD colspan)
+   ========================================================= */
 
-    /* Cambiar color de texto al pasar el mouse sobre la cabecera */
-    .STgridview th:hover {
-        color: #ff5722; /* Color del texto al pasar el mouse */
+    /* 1a) Regla principal: 2ª fila con tiporow="1" */
+    .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(2) td {
+        background: var(--st-blue-strong);
+        color: var(--st-white) !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 10px 12px;
+        font-size: 15.5px; /* mantener tu tamaño */
+        border: 1px solid var(--st-blue-strong);
+        border-bottom: 2px solid var(--st-blue-strong);
     }
 
-    /* Cambiar color de texto cuando se hace clic */
-    .STgridview th:active {
-        color: #ff9800; /* Color del texto al hacer clic */
+    /* 1b) Fallback: cualquier TD con colspan dentro de HeaderGrilla */
+    .STgridview tr.HeaderGrilla td[colspan] {
+        background: var(--st-blue-strong);
+        color: var(--st-white) !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 10px 12px;
+        font-size: 15.5px;
+        border: 1px solid var(--st-blue-strong);
+        border-bottom: 2px solid var(--st-blue-strong);
     }
 
-/* Filas del GridView */
-.STgridview td {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-    text-align: left;
-    font-size: 14px;
+
+    /* =========================================================
+   === 2) TOOLBAR (1ª fila HeaderGrilla)
+   ========================================================= */
+
+    /* 2a) Fila toolbar */
+    .STgridview > tbody > tr.HeaderGrilla:first-child {
+        background: var(--st-header-bg) !important;
+        border: none;
+    }
+
+        /* 2b) Celdas de la toolbar */
+        .STgridview > tbody > tr.HeaderGrilla:first-child td {
+            background: var(--st-header-bg);
+            padding: 8px 10px;
+            border: none;
+        }
+
+            /* 2c) Tabla interna (si la hay) en toolbar */
+            .STgridview > tbody > tr.HeaderGrilla:first-child td table {
+                width: 100%;
+                background: var(--st-header-bg);
+                border-collapse: collapse;
+            }
+
+    /* 2d) Botón primario */
+    .STgridview .btn.btn-primary {
+        background: var(--st-blue-strong);
+        border-color: var(--st-blue-strong);
+        color: var(--st-white);
+    }
+
+        /* 2e) Hover del botón primario */
+        .STgridview .btn.btn-primary:hover {
+            background: var(--st-blue-strong-hover);
+            border-color: var(--st-blue-strong-hover);
+            color: var(--st-white);
+        }
+
+        /* 2f) Icono dentro del botón primario */
+        .STgridview .btn.btn-primary .fa {
+            color: var(--st-white) !important;
+            margin-right: 4px;
+        }
+
+
+    /* =========================================================
+   === 3) ENCABEZADO DE COLUMNAS (3ª fila HeaderGrilla con TH)
+   ========================================================= */
+
+    /* 3a) TH del encabezado (3ª fila tiporow="1") */
+    .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) th {
+        background-color: var(--st-header-bg);
+        color: var(--st-header-fg);
+        font-size: 12.5px; /* mantener sobrio como pediste */
+        font-weight: 700;
+        padding: 10px;
+        text-align: left;
+        border-bottom: 2px solid var(--st-blue-strong);
+        cursor: pointer;
+        transition: color 0.2s ease, background 0.2s ease, outline-color 0.2s ease;
+    }
+
+        /* 3b) Hover del encabezado */
+        .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) th:hover {
+            color: var(--st-blue-strong);
+        }
+
+        /* 3c) Accesibilidad: foco visible */
+        .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) th:focus {
+            outline: 2px solid var(--st-blue-strong);
+            outline-offset: 1px;
+        }
+
+    /* === 4) CONTENIDO DE CELDAS (TBody) — mejoras de legibilidad === */
+
+    /* 4a) Texto base de celdas (contenido) — SUBIR tamaño y line-height */
+    .STgridview > tbody > tr:not(.HeaderGrilla) td {
+        font-family: var(--st-font-family) !important;
+        font-size: 13px !important; /* ↑ de 14px → 15px */
+        line-height: 1.45; /* ↑ de 1.35 → 1.45 para aire */
+        color: inherit;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+        padding: 10px 10px; /* ↑ padding vertical mejora lectura */
+    }
+
+
+    /* 4f) Borde sutil SIN producir doble línea */
+    .STgridview > tbody > tr:not(.HeaderGrilla) td {
+        border-top: none; /* no forzamos borde superior */
+    }
+
+    .STgridview > tbody > tr:not(.HeaderGrilla):not(:first-child) td {
+        border-bottom: 1px solid #E5EEF7; /* una sola línea abajo */
+    }
+
+
+        .STgridview > tbody > tr:not(.HeaderGrilla) td + td {
+            border-left: 1px solid #EEF4FA; /* sutil separación vertical */
+        }
+
+        /* 4g) Enlaces dentro de celdas: igual tamaño y contraste moderado */
+        .STgridview > tbody > tr:not(.HeaderGrilla) td a {
+            font-size: inherit;
+            line-height: inherit;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+            .STgridview > tbody > tr:not(.HeaderGrilla) td a:hover {
+                text-decoration: underline;
+            }
+
+        /* 4h) Controles dentro de celdas coherentes con el texto */
+        .STgridview > tbody > tr:not(.HeaderGrilla) td select,
+        .STgridview > tbody > tr:not(.HeaderGrilla) td input[type="text"],
+        .STgridview > tbody > tr:not(.HeaderGrilla) td input[type="number"],
+        .STgridview > tbody > tr:not(.HeaderGrilla) td input[type="date"],
+        .STgridview > tbody > tr:not(.HeaderGrilla) td textarea {
+            font: inherit;
+            padding: 6px 8px; /* un poco más cómodo */
+            height: auto;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        /* 4i) Alineación sugerida para números (opcional) */
+        .STgridview > tbody > tr:not(.HeaderGrilla) td.num,
+        .STgridview > tbody > tr:not(.HeaderGrilla) td[data-type="number"]{
+            text-align: right;
+            white-space: nowrap;
+        }
+
+       .STgridview > tbody > tr:not(.HeaderGrilla) td.fecha *,
+        .STgridview > tbody > tr:not(.HeaderGrilla) td.hora * {
+                display: inline !important; /* evita bloques apilados */
+                white-space: inherit !important; /* hereda el nowrap del td */
+                word-break: normal !important;
+                overflow-wrap: normal !important;
+                hyphens: none !important;
+            }
+
+
+    /* (OPCIONAL) Si el texto viene en dos spans separados, evita separación por espacio */
+    .STgridview > tbody > tr:not(.HeaderGrilla) td.fecha span + span,
+    .STgridview > tbody > tr:not(.HeaderGrilla) td.hora span + span {
+        margin-left: 0.15ch; /* espacio fino (no es salto de línea) */
+    }
+
+
+        /* 4j) quinta columna — multi-línea controlada con clamp (moderno) */
+  
+        .STgridview > tbody > tr:not(.HeaderGrilla) td.asunto {
+            display: -webkit-box;
+            /* -webkit-line-clamp: 3;  (si lo necesitas, lo activas) */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            hyphens: auto;
+        }
+
+   
+    /* 4k) Quitar líneas verticales internas y dejar división horizontal sutil */
+    .STgridview > tbody > tr:not(.HeaderGrilla) td {
+        /* Mantén aquí tus props previas (4a/4h/4j), sumo SOLO estas dos: */
+        border-left: none !important; /* ← sin separadores verticales */
+        border-right: none !important; /* ← sin separadores verticales */
+        border-top: 1px solid #E9F0F7; /* línea superior muy suave (opcional) */
+    }
+
+        .STgridview > tbody > tr:not(.HeaderGrilla) td + td {
+            border-left: none !important; /* asegura que no reaparezcan */
+        }
+    /* Si tu tabla ya venía con 'border-collapse: collapse', esto basta.
+   Si ves doble línea otra vez, avísame y te doy una variante con 'outline' en lugar de 'border'. */
+
+    /* 4l) === Ajuste fino de densidad (opcional, puedes comentar si no lo quieres) */
+    .STgridview > tbody > tr:not(.HeaderGrilla) td {
+        padding-top: 10px;
+        padding-bottom: 10px; /* look más “SaaS” */
+    }
+    /* === 4m) Evitar “doble línea” encima de la primera fila del body === */
+    /* Si mantienes bordes en el body (4f o 4k), apaga el borde superior
+   de la primera fila para que se vea solo la línea azul del header */
+    .STgridview > tbody > tr:not(.HeaderGrilla):first-of-type td {
+        border-top: none !important;
+    }
+
+
+    /* =========================================================
+   === 5) HEADER STICKY + limpieza de bordes verticales
+   ========================================================= */
+
+    /* 5a) Header sticky (si ya lo tienes, respeta tu valor de top) */
+    .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) th {
+        position: sticky;
+        top: 140px; /* AJUSTA según tu toolbar/header global */
+        z-index: 3;
+        background-color: var(--st-header-bg);
+    }
+
+        /* 5b) Quitar TODAS las líneas verticales de la cabecera */
+        .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) th,
+        .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) th + th {
+            border-left: none !important;
+            border-right: none !important;
+        }
+
+            /* 5c) Si hay tablas internas en el header, también apaga sus bordes */
+            .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) th table,
+            .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) th table * {
+                border: none !important;
+                border-left: none !important;
+                border-right: none !important;
+                background-color: transparent;
+            }
+
+    /* 5d) Deja solo la división HORIZONTAL inferior del header (línea fina) */
+    .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) th {
+        border-bottom: 1px solid #D4E2F2 !important; /* tono legible sobre tu tema */
+    }
+
+    /* 5e) (Alternativa/Adicional) Sombra muy suave en toda la fila de header */
+    .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) {
+        box-shadow: inset 0 -1px 0 #D4E2F2; /* línea inferior nítida y continua */
+    }
+    /* 5f) Variante anti-bordes tercos bajo border-collapse */
+    .STgridview table,
+    .STgridview thead th {
+        border-collapse: separate !important; /* separa para que el !important gane */
+        border-spacing: 0; /* sin espacios adicionales */
+    }
+
+    /* 5g) Línea horizontal con pseudo-elemento que cruza todo el header */
+    .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) {
+        position: sticky; /* debe estar sticky o al menos relative */
+        top: 140px; /* mismo top que en 5a */
+        z-index: 3;
+    }
+
+        .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3)::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0; /* cubre todo el ancho */
+            bottom: 0; /* pegada al borde inferior del header */
+            height: 1px;
+            background: #D4E2F2; /* color de la línea (ajústalo si quieres más contraste) */
+            pointer-events: none;
+        }
+
+        /* === 5i) Quitar la línea gris del header para no competir con la azul === */
+        /* Anula 5d y 5e (gris) */
+        .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) th {
+            border-bottom: none !important; /* anula 5d */
+        }
+
+    .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) {
+        box-shadow: none !important; /* anula 5e */
+    }
+
+/* === 5j) Línea azul continua bajo el header con pseudo-elemento === */
+.STgridview {
+    position: relative; /* asegura contexto; no cambia layout */
 }
 
-/* Alternar color de fondo para filas */
-.STgridview tr:nth-child(even) {
-    background-color: #f9f9f9;
+    /* Reafirmamos sticky y z-index de la fila del header */
+    .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3) {
+        position: sticky; /* ya lo tienes en 5g, lo reitero por claridad */
+        top: 140px; /* respeta tu valor actual */
+        z-index: 5; /* por encima de filas y celdas body */
+        background-color: var(--st-header-bg); /* sólido bajo sticky */
+    }
+
+        /* Dibuja la línea azul */
+        .STgridview > tbody > tr.HeaderGrilla[tiporow="1"]:nth-of-type(3)::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0; /* cubre todo el ancho del grid */
+            bottom: 0; /* pegada al borde inferior del header */
+            height: 2px; /* grosor visible */
+            background: var(--st-blue-strong); /* 🔵 azul corporativo */
+            pointer-events: none;
+        }
+
+
+/* 7a) Estado sutil compatible con el tema (opcional) */
+.STgridview tr.estado-aviso td {
+    background: #FFF7E6; /* sutil ámbar claro */
 }
 
-/* Hover sobre las filas */
-.STgridview tr:hover {
-    background-color: #e0f2f1;
-}
+/***************************************************/
 
-/* Estilo para la fila de selección, si se usa */
-.STgridview tr.selected-row {
-    background-color: #a7ffeb; /* Verde menta claro */
-    font-weight: bold;
-}
-
-/* Estilo para el pie de página */
-.STgridview tfoot {
-    background-color: #80cbc4;
-    color: #ffffff;
-    font-weight: bold;
-    padding: 10px;
-    text-align: left;
-}
 
 /*  colocar dos div horizontalmente */
 
@@ -209,3 +483,16 @@ select.input-control {
     .mensaje i {
         margin-right: 6px; /* separa el icono del texto */
     }
+
+/* B1) Bloquea scroll del body */
+html, body {
+    height: 100%;
+    overflow: hidden; /* ← sin scroll en la página */
+}
+
+/* B2) El panel principal maneja TODO el scroll */
+.MainContent, .GridLayout, .PanelQueEnvuelveLaGrilla {
+    height: 100vh; /* o calc(100vh - altura-header) */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* suave en móviles */
+}
