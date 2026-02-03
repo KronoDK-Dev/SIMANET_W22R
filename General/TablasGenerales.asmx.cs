@@ -450,12 +450,13 @@ namespace SIMANET_W22R.General
             return (new GeneralSoapClient()).ListarCentroOperativoPorPerfil(IdUsuario, UserName);
         }
         */
+        /*
         [WebMethod(Description = "Lista de Centros Operativos por Perfil")]
         public DataTable ListaCentrosOperativosPorPerfil(string IdUsuario, string UserName)
         {
             try
             {
-                string cacheKey = $"{IdUsuario}_{UserName}"; // Combinar los filtros para crear una clave única para la caché
+                string cacheKey = memoriacache.Crear2Llaves(IdUsuario, UserName);  //   $"{IdUsuario}_{UserName}"; // Combinar los filtros para crear una clave única para la caché
                 MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
                                                           // Verificar si ya existe el resultado en caché
                 if (cache.Contains(cacheKey))
@@ -463,7 +464,7 @@ namespace SIMANET_W22R.General
                     return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
                 }
 
-                dtResultados = (new GeneralSoapClient()).ListarCentroOperativoPorPerfil(IdUsuario, UserName);             // Si no está en caché, llamar al servicio para obtener los datos
+                dtResultados = (new GeneralSoapClient()).ListarCentroOperativoPorPerfil( IdUsuario, UserName);             // Si no está en caché, llamar al servicio para obtener los datos
 
                 // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
                 CacheItemPolicy policy = new CacheItemPolicy
@@ -484,10 +485,68 @@ namespace SIMANET_W22R.General
                 // Si hay error, devolver un DataTable con el mensaje de error
 
                 dtError.Columns.Add("Error", typeof(string));
-                dtError.Rows.Add("Error en el servicio SIMANET: " + ex.Message);
+                dtError.Rows.Add("Error en el servicio NETSUITE: " + ex.Message);
                 return dtError;
             }
         }
+        */
+
+        [WebMethod(Description = "Lista de Centros Operativos por Perfil")]
+        public DataTable ListaCentrosOperativosPorPerfil(string IdUsuario, string UserName)
+        {
+            try
+            {
+                // 0) Si faltan parámetros, intenta completarlos desde memoria (solo 2 params, no DataTable)
+                if (string.IsNullOrWhiteSpace(IdUsuario) || string.IsNullOrWhiteSpace(UserName))
+                {
+                    var pending = memoriacache.ObtieneParams();
+                    if (pending != null)
+                    {
+                        if (string.IsNullOrWhiteSpace(IdUsuario)) IdUsuario = pending.IdUsuario;
+                        if (string.IsNullOrWhiteSpace(UserName)) UserName = pending.UserName;
+                    }
+                }
+
+                // 1) Normaliza SIEMPRE (según tu helper) para alinear clave y llamada al WS
+                var (idNorm, userNorm) = memoriacache.Normalizar(IdUsuario, UserName);
+
+                // 2) Clave de caché coherente con la normalización
+                string cacheKey = $"{idNorm}_{userNorm.ToUpperInvariant()}";
+
+                // 3) HIT de caché
+                MemoryCache cache = MemoryCache.Default;
+                if (cache.Contains(cacheKey))
+                {
+                    return cache.Get(cacheKey) as DataTable;
+                }
+
+                // 4) Llamada al servicio con los NORMALIZADOS
+                dtResultados = (new GeneralSoapClient()).ListarCentroOperativoPorPerfil(idNorm, userNorm);
+
+                // 5) Política de caché (tu valor actual: 1 minuto; actualicé el comentario)
+                CacheItemPolicy policy = new CacheItemPolicy
+                {
+                    AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(1) // Expira en 1 minuto
+                };
+
+                // 6) Manteniendo tu condición original (si prefieres, puedes cambiar a idNorm)
+                if (!string.IsNullOrEmpty(IdUsuario))
+                {
+                    cache.Add(cacheKey, dtResultados, policy);
+                }
+
+                return dtResultados;
+            }
+            catch (Exception ex)
+            {
+                dtError.Columns.Add("Error", typeof(string));
+                dtError.Rows.Add("Error en el servicio NETSUITE: " + ex.Message);
+                return dtError;
+            }
+        }
+
+
+
 
         [WebMethod(Description = "Lista de Unidad Operativa por Centro Operativo")]
         public DataTable ListaUnidad_OpexCEO(string sCodigo, string UserName)
