@@ -77,7 +77,15 @@ namespace SIMANET_W22R
 
         #region Propiedades Publicas
 
-        public string IdGeneral // 12.01.2026
+        public static int Periodo_Actual // 03.02.2026
+        {
+            get
+            {
+                var tz = TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time");
+                return TimeZoneInfo.ConvertTime(DateTime.UtcNow, tz).Year;
+            }
+        }
+        public string IdGeneral // 12.01.2026 FALTABA esta propiedad
         {
             get { return Page.Request.Params[KEYIDGENERAL]; }
         }
@@ -90,19 +98,20 @@ namespace SIMANET_W22R
         public string IdCentroOperativo{
                 get { return Page.Request.Params[KEYQCENTROOPERATIVO]; }
             }
-            public string Año
-            {
+        public string Año
+        {
                 get { return Page.Request.Params[KEYQAÑO]; }
-            }
-            public string IdMes
-            {
+        }
+        
+        public string IdMes
+        {
                 get { return Page.Request.Params[KEYQIDMES]; }
-            }
-            public string Fecha
-            {
+        }
+        public string Fecha
+       {
                 get { return Page.Request.Params[KEYQFECHA]; }
-            }
-            public EasyUtilitario.Enumerados.ModoPagina ModoPagina
+       }
+        public EasyUtilitario.Enumerados.ModoPagina ModoPagina
                                                                     {
                                                                         get
                                                                         {
@@ -162,6 +171,7 @@ namespace SIMANET_W22R
         }
         #endregion
         #region Propiedades de entrega de datos
+        /* 28.01.2026  cambiado
         public string UsuarioLogin{
                 get {
                     try
@@ -189,6 +199,43 @@ namespace SIMANET_W22R
                         }
                 }
             }
+        */
+
+        // Helper interno para no repetir el acceso
+        private EasyUsuario TryGetUsuario()
+        {
+            try
+            {
+                return EasyUtilitario.Helper.Sessiones.Usuario.get() as EasyUsuario;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public string UsuarioLogin
+        {
+            get
+            {
+                var u = TryGetUsuario();
+                var login = u?.Login ?? "Udefault";
+                try { Session["UserName"] = login; } catch { /* por si Session no está disponible */ }
+                return login;
+            }
+        }
+
+        public int UsuarioId
+        {
+            get
+            {
+                var u = TryGetUsuario();
+                var id = u?.IdUsuario ?? 0;
+                try { Session["IdUsuario"] = id; } catch { /* por si Session no está disponible */ }
+                return id;
+            }
+        }
+
         #endregion
 
         #region datos usuario Logueado
@@ -199,12 +246,62 @@ namespace SIMANET_W22R
         }
         #endregion
 
+        #region Permite usuario sin data (para pruebas de pantallas)
+        // 28.01.2026
+        private static string SafeQS(string value) => value ?? string.Empty;
 
+        private static string SafeStr(object value, string fallback = "")
+            => value == null ? fallback : value.ToString();
+
+        private static int SafeInt(object value, int fallback = 0)
+        {
+            if (value == null) return fallback;
+            int n;
+            return int.TryParse(value.ToString(), out n) ? n : fallback;
+        }
+
+        // Devuelve el EasyUsuario de sesión si existe; si no, devuelve uno “vacío” seguro.
+        private EasyUsuario ObtenerUsuarioSeguro()
+        {
+            try
+            {
+                var u = EasyUtilitario.Helper.Sessiones.Usuario.get();
+                if (u != null) return u;
+            }
+            catch { /* ignoramos */ }
+
+            // Usuario “anónimo seguro”
+            return new EasyUsuario
+            {
+                IdUsuario = 0,
+                Login = "Udefault"
+            };
+        }
+
+        // Devuelve el UsuarioBE de sesión, o un BE “anónimo seguro”
+        private UsuarioBE ObtenerUsuarioBESeguro()
+        {
+            var u = Session["UserBE"] as UsuarioBE;
+            if (u != null) return u;
+
+            return new UsuarioBE
+            {
+                IdPersonal = 0,
+                ApellidosyNombres = "Invitado",
+                IdCentroOperativo = 0,
+                NroDocumento = "00000000",
+                CodPersonal = "0",
+                IdContacto = 0
+            };
+        }
+
+        #endregion
         public PaginaBase() {
            // this.Load += new EventHandler(this.Page_Load);
         }
 
-       protected override void OnLoad(EventArgs e)
+        /*  28.01.2026 cambiado para pruebas directas de formularios
+        protected override void OnLoad(EventArgs e)
        {
             
             if (!Page.IsPostBack)
@@ -230,8 +327,44 @@ namespace SIMANET_W22R
             }
             this.ListarConstantesPagina();
         }
-       
+        */
+        // nueva 28.01.2026
+        protected override void OnLoad(EventArgs e)
+        {
+            // No dependas de oUsuario sin inicializar
+            oUsuario = ObtenerUsuarioSeguro();
 
+            if (!Page.IsPostBack)
+            {
+                try
+                {
+                    // No fallar si no hay memoria de navegación
+                    try { oEasyNavigatorHistorial.getAllCtrlMemoryValue(); }
+                    catch { /* opcional log */ }
+
+                    // Si deseas bloquear por permisos, aquí podrías
+                    // this.ValidarPagina("");  // <-- si quieres mantenerlo, envuélvelo en try/catch
+                    try { this.ValidarPagina(""); }
+                    catch (SIMAExceptionSeguridadAccesoForms ex)
+                    {
+                        // Si quieres mostrar mensaje y permitir continuar:
+                        // ErrorDisplay(ex);
+                        // return; // o no retornar, según tu política
+                        LanzarException(ex); // si mantienes tu mecanismo
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // No reventar la página
+                    Debug.WriteLine("OnLoad (no crítico): " + ex.Message);
+                }
+            }
+
+            base.OnLoad(e);
+
+            // Siempre intentamos registrar constantes de página; dentro se maneja seguro
+            this.ListarConstantesPagina();
+        }
 
         public void IrA(EasyControlWeb.Form.Controls.EasyNavigatorBE oEasyNavigatorBE,params object[] LstCtrl) {
             if (LstCtrl.Length > 0)
@@ -245,12 +378,9 @@ namespace SIMANET_W22R
         {
             oEasyNavigatorHistorial.Atras();
         }
-
-
         public string Param(string Nombre) {
             return Page.Request.Params[Nombre];
         }
-
         public EasyDataInterConect TablaGeneralItem(string IdTabla,string OrigenDB) {
             EasyDataInterConect oEasyDataInterConect = new EasyDataInterConect();
             oEasyDataInterConect.MetodoConexion = EasyDataInterConect.MetododeConexion.WebServiceExterno;
@@ -344,6 +474,8 @@ namespace SIMANET_W22R
             return tblNodo;
         }
 
+        /* 28.01.2026 cambiado para optimizar
+         
         public void ValidarPagina(string Origen) {
             EasyUsuario oEasyUsuario = new EasyUsuario();
                 if (oEasyUsuario.ValidaPagina()==false) {
@@ -351,6 +483,37 @@ namespace SIMANET_W22R
                     throw new SIMAExceptionSeguridadAccesoForms("Ud. No cuenta con accesos a esta pagina");
             }
         }
+       */
+        // Helper interno para no repetir el acceso
+        public void ValidarPagina(string origen)
+        {
+            try
+            {
+                var u = TryGetUsuario();
+                if (u == null)
+                {
+                    // No hay sesión → permite página (o decide según tu política)
+                    return;
+                }
+
+                var oEasyUsuario = new EasyUsuario();
+                if (!oEasyUsuario.ValidaPagina())
+                {
+                    throw new SIMAExceptionSeguridadAccesoForms("Ud. No cuenta con accesos a esta pagina");
+                }
+            }
+            catch (SIMAExceptionSeguridadAccesoForms)
+            {
+                throw; // se debe bloquear
+            }
+            catch
+            {
+                // Silencioso si la política es no bloquear sin sesión
+                // (o log si se quiere)
+            }
+        }
+
+
         //public void LanzarException(Exception ex)
         public void LanzarException(SIMAExceptionSeguridadAccesoForms ex)
         {
@@ -380,8 +543,6 @@ namespace SIMANET_W22R
             string Pagina = PagSplit[PagSplit.GetUpperBound(0)].Replace(".aspx", "");
             return Pagina;
         }
-
-       
         public void ErrorDisplay(SIMAExceptionSeguridadAccesoForms ex) {
             string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
             oeasyMessageBox = new EasyMessageBox();
@@ -394,120 +555,243 @@ namespace SIMANET_W22R
             Page.Controls.Add(oeasyMessageBox);
         }
 
+        /* 28.01.2026 cambiado para permitir pruebas de pantallas directas
+         public void ListarConstantesPagina()
+         {
+             string Pagina = GetPageName();
+             string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
+             string ScriptConatantes = "";
+
+         //ws://localhost:4649/Chat?name=erosales&Plataforma=WebID&FormId=
+             string DatosUsuario = "IdUsuario=" + oUsuario.IdUsuario.ToString() + "&" + "UserName=" + oUsuario.Login;
+             string strParam = ((Page.ClientQueryString.Length > 0) ? Page.ClientQueryString + "&" + DatosUsuario : DatosUsuario);
+
+             string FormCreate = @"var " + Pagina + @"={};
+                                       " + Pagina + @".Name='" + Pagina + @"';
+                                       " + Pagina + @".Params =  FormParams('" + strParam + @"');
+                                       var GlobalEntorno={};
+                                           GlobalEntorno =  " + Pagina + @";
+                                           GlobalEntorno.PageName =  '" + Pagina + @"';
+                                           GlobalEntorno.UserName =  '" + oUsuario.Login + @"';
+                                           GlobalEntorno.PathFotosPersonal= " + cmll + this.PathFotosPersonal + cmll + @"
+                                       " + Pagina + @".PathFotosPersonal = GlobalEntorno.PathFotosPersonal;
+             ";
+             Page.RegisterClientScriptBlock("ParamPag", "<script>\n" + FormCreate + "\n" + "</script>");
+
+             //Registrar Ref path webservice-------------------------------------------------------------------------------------------------------
+             string PathWSCore = this.PathNetCore;
+             string WebServiceCliente = @"var ConnectService={};
+                                           ConnectService.PathNetCore='" + PathWSCore + @"'
+                                           ConnectService.ControlInspeccionesSoapClient='" + PathWSCore +  @"GestionCalidad/ControlInspecciones.asmx';
+                                           ConnectService.GeneralSoapClient='" + PathWSCore + @"General/General.asmx';
+                                     ";
+             Page.RegisterClientScriptBlock("WebService", "<script>\n" + WebServiceCliente + "\n" + "</script>");
+             //-------------------------------------------------------------------------------------------------------------------------------------
+
+
+             string LogCliente =  Pagina + @".Trace= {};
+                              " + Pagina + @".Trace.Log  = {};
+                              " + Pagina + @".Trace.Log.Find = function (_Key,NodoId) {
+                                                                                 var NodoEncontrado = null;
+                                                                                 var NodoCollection = new Array();
+                                                                                 var DataLog = localStorage.getItem(UsuarioBE.UserName +_Key)
+                                                                                 var ArrLog = new Array();
+                                                                                 var Encontrado = false;
+
+                                                                                 if (DataLog!=null) {
+                                                                                     ArrLog = DataLog.split('@');
+                                                                                     ArrLog.forEach(function (item, p) {
+                                                                                         var NodoBE = item.toString().SerializedToObject();
+                                                                                         if (NodoBE.id.toString().Equal(NodoId)) {
+                                                                                             Encontrado = true;
+                                                                                             NodoEncontrado = NodoBE;
+                                                                                         }
+                                                                                         else {
+                                                                                             NodoCollection.Add(NodoBE);
+                                                                                         }
+                                                                                     });
+                                                                                     return { NodoBE: NodoEncontrado, DBLog: NodoCollection };
+                                                                                 }
+                                                                                 return { NodoBE: null, DBLog: NodoCollection };
+                                                                             }
+                                         " + Pagina + @".Trace.Log.Save = function (_Key,LogBECollections) {
+                                                                                 var strLog = '';
+                                                                                 LogBECollections.DBLog.forEach(function (item, i) {
+                                                                                     strLog += ((i == 0) ? '' : '@') + item.Serialized(item,false);
+                                                                                 });
+                                                                                 localStorage.setItem(UsuarioBE.UserName + _Key, strLog);
+
+                                                                                 }
+                                         " + Pagina + @".Trace.Log.Clear = function (_Key) {
+                                                                                     localStorage.removeItem(UsuarioBE.UserName + _Key);
+                                                                                 }
+                                         GlobalEntorno.Storage = " + Pagina + @".Trace;
+
+                                         ";
+             Page.RegisterClientScriptBlock("LogLocal", "<script>\n" + LogCliente + "\n" + "</script>");
+             //-------------------------------------------------------------------------------------------------------------------------------------/
+
+             // List<FieldInfo> fl = this.GetType().GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
+             //                     .Where(fi => fi.IsLiteral && !fi.IsInitOnly && fi.IsSecurityTransparent == false).ToList();
+
+             List<FieldInfo> fl = this.GetType().GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
+                                                         .Where(fi =>fi.IsSecurityTransparent == false).ToList();
+             foreach (FieldInfo fi in fl)
+             {
+                 //ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + fi.Name + EasyUtilitario.Constantes.Caracteres.SignoIgual + cmll + fi.GetRawConstantValue().ToString().Trim() + cmll + EasyUtilitario.Constantes.Caracteres.PuntoyComa + "\n";
+                 ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + fi.Name + EasyUtilitario.Constantes.Caracteres.SignoIgual + cmll + fi.GetValue(this) + cmll + EasyUtilitario.Constantes.Caracteres.PuntoyComa + "\n";
+             }
+              ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + "ModoEdit= " + cmll + this.ModoPagina + cmll + ";";
+
+             // ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + "PathFotosPersonal = " + cmll + EasyUtilitario.Helper.Configuracion.PathFotos + cmll;
+
+             Page.RegisterClientScriptBlock("ConstPag", "<script>\n" + ScriptConatantes + "\n" + "</script>");
+
+             //Registra Usuario logueado
+             //  UsuarioBE oUsuarioBE = (new SeguridadSoapClient()).GetDatosUsuario(this.UsuarioId);
+
+             UsuarioBE oUsuarioBE = (UsuarioBE)Session["UserBE"];
+
+             string ScriptUser = @" var UsuarioBE ={};
+                                         UsuarioBE.IdUsuario =  " + this.UsuarioId + @";
+                                         UsuarioBE.UserName  = '" + this.UsuarioLogin + @"';
+                                         UsuarioBE.IdPersonal =  " + oUsuarioBE.IdPersonal + @";
+                                         UsuarioBE.ApellidosyNombres = '" + oUsuarioBE.ApellidosyNombres + @"';
+                                         UsuarioBE.IdCentrOperativo = '" + oUsuarioBE.IdCentroOperativo + @"';
+                                         UsuarioBE.NroDocumento = '" + oUsuarioBE.NroDocumento + @"';
+                                         UsuarioBE.CodPersonal = '" + oUsuarioBE.CodPersonal + @"'; 
+                                         UsuarioBE.IdContacto = '" + oUsuarioBE.IdContacto.ToString() +"'; ";
+
+             Page.RegisterClientScriptBlock("UserInfo", "<script>\n" + ScriptUser + "\n" + "</script>");
+
+
+
+
+         }
+         */
+
+
         public void ListarConstantesPagina()
         {
             string Pagina = GetPageName();
             string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
-            string ScriptConatantes = "";
 
-        //ws://localhost:4649/Chat?name=erosales&Plataforma=WebID&FormId=
-            /************************************************************************************************************************************/
-            string DatosUsuario = "IdUsuario=" + oUsuario.IdUsuario.ToString() + "&" + "UserName=" + oUsuario.Login;
-            string strParam = ((Page.ClientQueryString.Length > 0) ? Page.ClientQueryString + "&" + DatosUsuario : DatosUsuario);
+            // Usuario seguro (no null)
+            oUsuario = oUsuario ?? ObtenerUsuarioSeguro();
 
-            string FormCreate = @"var " + Pagina + @"={};
-                                      " + Pagina + @".Name='" + Pagina + @"';
-                                      " + Pagina + @".Params =  FormParams('" + strParam + @"');
-                                      var GlobalEntorno={};
-                                          GlobalEntorno =  " + Pagina + @";
-                                          GlobalEntorno.PageName =  '" + Pagina + @"';
-                                          GlobalEntorno.UserName =  '" + oUsuario.Login + @"';
-                                          GlobalEntorno.PathFotosPersonal= " + cmll + this.PathFotosPersonal + cmll + @"
-                                      " + Pagina + @".PathFotosPersonal = GlobalEntorno.PathFotosPersonal;
-            ";
-            Page.RegisterClientScriptBlock("ParamPag", "<script>\n" + FormCreate + "\n" + "</script>");
+            // Arma datos de usuario para QS de forma segura
+            string idUsuarioQS = HttpUtility.UrlEncode(oUsuario.IdUsuario.ToString());
+            string userNameQS = HttpUtility.UrlEncode(SafeStr(oUsuario.Login, "Udefault"));
 
-            /*Registrar Ref path webservice-------------------------------------------------------------------------------------------------------*/
-            string PathWSCore = this.PathNetCore;
-            string WebServiceCliente = @"var ConnectService={};
-                                          ConnectService.PathNetCore='" + PathWSCore + @"'
-                                          ConnectService.ControlInspeccionesSoapClient='" + PathWSCore +  @"GestionCalidad/ControlInspecciones.asmx';
-                                          ConnectService.GeneralSoapClient='" + PathWSCore + @"General/General.asmx';
-                                    ";
-            Page.RegisterClientScriptBlock("WebService", "<script>\n" + WebServiceCliente + "\n" + "</script>");
-            /*-------------------------------------------------------------------------------------------------------------------------------------*/
-           
+            // En C# usa '&', no '&amp;'
+            string datosUsuario = $"IdUsuario={idUsuarioQS}&UserName={userNameQS}";
 
-            string LogCliente =  Pagina + @".Trace= {};
-                             " + Pagina + @".Trace.Log  = {};
-                             " + Pagina + @".Trace.Log.Find = function (_Key,NodoId) {
-                                                                                var NodoEncontrado = null;
-                                                                                var NodoCollection = new Array();
-                                                                                var DataLog = localStorage.getItem(UsuarioBE.UserName +_Key)
-                                                                                var ArrLog = new Array();
-                                                                                var Encontrado = false;
+            // `Page.ClientQueryString` puede ser "", no null
+            string qs = SafeQS(Page?.ClientQueryString);
 
-                                                                                if (DataLog!=null) {
-                                                                                    ArrLog = DataLog.split('@');
-                                                                                    ArrLog.forEach(function (item, p) {
-                                                                                        var NodoBE = item.toString().SerializedToObject();
-                                                                                        if (NodoBE.id.toString().Equal(NodoId)) {
-                                                                                            Encontrado = true;
-                                                                                            NodoEncontrado = NodoBE;
-                                                                                        }
-                                                                                        else {
-                                                                                            NodoCollection.Add(NodoBE);
-                                                                                        }
-                                                                                    });
-                                                                                    return { NodoBE: NodoEncontrado, DBLog: NodoCollection };
-                                                                                }
-                                                                                return { NodoBE: null, DBLog: NodoCollection };
-                                                                            }
-                                        " + Pagina + @".Trace.Log.Save = function (_Key,LogBECollections) {
-                                                                                var strLog = '';
-                                                                                LogBECollections.DBLog.forEach(function (item, i) {
-                                                                                    strLog += ((i == 0) ? '' : '@') + item.Serialized(item,false);
-                                                                                });
-                                                                                localStorage.setItem(UsuarioBE.UserName + _Key, strLog);
-            
-                                                                                }
-                                        " + Pagina + @".Trace.Log.Clear = function (_Key) {
-                                                                                    localStorage.removeItem(UsuarioBE.UserName + _Key);
-                                                                                }
-                                        GlobalEntorno.Storage = " + Pagina + @".Trace;
+            string strParam = string.IsNullOrWhiteSpace(qs)
+                ? datosUsuario
+                : $"{qs}&{datosUsuario}";
 
-                                        ";
-            Page.RegisterClientScriptBlock("LogLocal", "<script>\n" + LogCliente + "\n" + "</script>");
-            /*-------------------------------------------------------------------------------------------------------------------------------------*/
+            // Construye el objeto de entorno en JS (usa valores de fallback si es necesario)
+            string safePathFotos = SafeStr(this.PathFotosPersonal, "/Recursos/Fotos/");
 
-            /* List<FieldInfo> fl = this.GetType().GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
-                                 .Where(fi => fi.IsLiteral && !fi.IsInitOnly && fi.IsSecurityTransparent == false).ToList();*/
+            string formCreate = $@"
+                var {Pagina} = {{}};
+                {Pagina}.Name = '{Pagina}';
+                {Pagina}.Params = FormParams('{strParam}');
+                var GlobalEntorno = {Pagina};
+                GlobalEntorno.PageName = '{Pagina}';
+                GlobalEntorno.UserName = '{HttpUtility.JavaScriptStringEncode(SafeStr(oUsuario.Login, "Udefault"))}';
+                GlobalEntorno.PathFotosPersonal = {cmll}{safePathFotos}{cmll};
+                {Pagina}.PathFotosPersonal = GlobalEntorno.PathFotosPersonal;
+                ";
 
-            List<FieldInfo> fl = this.GetType().GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
-                                                        .Where(fi =>fi.IsSecurityTransparent == false).ToList();
-            foreach (FieldInfo fi in fl)
-            {
-                //ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + fi.Name + EasyUtilitario.Constantes.Caracteres.SignoIgual + cmll + fi.GetRawConstantValue().ToString().Trim() + cmll + EasyUtilitario.Constantes.Caracteres.PuntoyComa + "\n";
-                ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + fi.Name + EasyUtilitario.Constantes.Caracteres.SignoIgual + cmll + fi.GetValue(this) + cmll + EasyUtilitario.Constantes.Caracteres.PuntoyComa + "\n";
-            }
-             ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + "ModoEdit= " + cmll + this.ModoPagina + cmll + ";";
+                            Page.RegisterClientScriptBlock("ParamPag", $"<script>\n{formCreate}\n</script>");
 
-            // ScriptConatantes += Pagina + EasyUtilitario.Constantes.Caracteres.Punto + "PathFotosPersonal = " + cmll + EasyUtilitario.Helper.Configuracion.PathFotos + cmll;
+                            /* Registrar Path de servicios */
+                            string pathWSCore = SafeStr(this.PathNetCore, "/"); // fallback
+                            string webServiceCliente = $@"
+                var ConnectService = {{}};
+                ConnectService.PathNetCore = '{pathWSCore}';
+                ConnectService.ControlInspeccionesSoapClient = '{pathWSCore}GestionCalidad/ControlInspecciones.asmx';
+                ConnectService.GeneralSoapClient = '{pathWSCore}General/General.asmx';
+                ";
+                            Page.RegisterClientScriptBlock("WebService", $"<script>\n{webServiceCliente}\n</script>");
 
-            Page.RegisterClientScriptBlock("ConstPag", "<script>\n" + ScriptConatantes + "\n" + "</script>");
+                            /* Registrar “constantes” estáticas de la página hacia JS */
+                            string scriptConstantes = "";
+                            List<FieldInfo> fl = this.GetType()
+                                .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
+                                .Where(fi => fi.IsSecurityTransparent == false)
+                                .ToList();
 
-            //Registra Usuario logueado
-            //  UsuarioBE oUsuarioBE = (new SeguridadSoapClient()).GetDatosUsuario(this.UsuarioId);
+                            foreach (FieldInfo fi in fl)
+                            {
+                                // Si el valor es null, envía vacío para no romper
+                                var val = fi.GetValue(this);
+                                var valStr = HttpUtility.JavaScriptStringEncode(SafeStr(val));
+                                scriptConstantes += $"{Pagina}.{fi.Name} = {cmll}{valStr}{cmll};\n";
+                            }
+                            scriptConstantes += $"{Pagina}.ModoEdit = {cmll}{this.ModoPagina}{cmll};";
 
-            UsuarioBE oUsuarioBE = (UsuarioBE)Session["UserBE"];
+                            Page.RegisterClientScriptBlock("ConstPag", $"<script>\n{scriptConstantes}\n</script>");
 
-            string ScriptUser = @" var UsuarioBE ={};
-                                        UsuarioBE.IdUsuario =  " + this.UsuarioId + @";
-                                        UsuarioBE.UserName  = '" + this.UsuarioLogin + @"';
-                                        UsuarioBE.IdPersonal =  " + oUsuarioBE.IdPersonal + @";
-                                        UsuarioBE.ApellidosyNombres = '" + oUsuarioBE.ApellidosyNombres + @"';
-                                        UsuarioBE.IdCentrOperativo = '" + oUsuarioBE.IdCentroOperativo + @"';
-                                        UsuarioBE.NroDocumento = '" + oUsuarioBE.NroDocumento + @"';
-                                        UsuarioBE.CodPersonal = '" + oUsuarioBE.CodPersonal + @"'; 
-                                        UsuarioBE.IdContacto = '" + oUsuarioBE.IdContacto.ToString() +"'; ";
+                            /* Registrar UsuarioBE (desde Session o anónimo seguro) */
+                            var oUsuarioBE = ObtenerUsuarioBESeguro();
 
-            Page.RegisterClientScriptBlock("UserInfo", "<script>\n" + ScriptUser + "\n" + "</script>");
+                            string scriptUser = $@"
+                var UsuarioBE = {{}};
+                UsuarioBE.IdUsuario   = {SafeInt(this.UsuarioId, 0)};
+                UsuarioBE.UserName    = '{HttpUtility.JavaScriptStringEncode(SafeStr(this.UsuarioLogin, "Udefault"))}';
+                UsuarioBE.IdPersonal  = {SafeInt(oUsuarioBE.IdPersonal, 0)};
+                UsuarioBE.ApellidosyNombres = '{HttpUtility.JavaScriptStringEncode(SafeStr(oUsuarioBE.ApellidosyNombres, "Invitado"))}';
+                UsuarioBE.IdCentrOperativo  = '{HttpUtility.JavaScriptStringEncode(SafeStr(oUsuarioBE.IdCentroOperativo, "0"))}';
+                UsuarioBE.NroDocumento = '{HttpUtility.JavaScriptStringEncode(SafeStr(oUsuarioBE.NroDocumento, "00000000"))}';
+                UsuarioBE.CodPersonal  = '{HttpUtility.JavaScriptStringEncode(SafeStr(oUsuarioBE.CodPersonal, "0"))}';
+                UsuarioBE.IdContacto   = '{HttpUtility.JavaScriptStringEncode(SafeStr(oUsuarioBE.IdContacto.ToString(), "0"))}';
+                ";
+                            Page.RegisterClientScriptBlock("UserInfo", $"<script>\n{scriptUser}\n</script>");
 
-
-
-
+                            /* (Opcional) Log local — también lo puedes proteger si dependiera de UsuarioBE.UserName en localStorage */
+                            string logCliente = $@"
+                {Pagina}.Trace = {Pagina}.Trace || {{}};
+                {Pagina}.Trace.Log = {Pagina}.Trace.Log || {{}};
+                {Pagina}.Trace.Log.Find = function (_Key, NodoId) {{
+                    var NodoEncontrado = null;
+                    var NodoCollection = [];
+                    var usr = (window.UsuarioBE && UsuarioBE.UserName) ? UsuarioBE.UserName : 'anon';
+                    var DataLog = localStorage.getItem(usr + _Key);
+                    if (DataLog!=null) {{
+                        DataLog.split('@').forEach(function (item) {{
+                            var NodoBE = item.toString().SerializedToObject();
+                            if (NodoBE.id && NodoBE.id.toString().Equal(NodoId)) {{
+                                NodoEncontrado = NodoBE;
+                            }} else {{
+                                NodoCollection.Add(NodoBE);
+                            }}
+                        }});
+                    }}
+                    return {{ NodoBE: NodoEncontrado, DBLog: NodoCollection }};
+                }};
+                {Pagina}.Trace.Log.Save = function (_Key, LogBECollections) {{
+                    var usr = (window.UsuarioBE && UsuarioBE.UserName) ? UsuarioBE.UserName : 'anon';
+                    var strLog = '';
+                    LogBECollections.DBLog.forEach(function (item, i) {{
+                        strLog += ((i == 0) ? '' : '@') + item.Serialized(item,false);
+                    }});
+                    localStorage.setItem(usr + _Key, strLog);
+                }};
+                {Pagina}.Trace.Log.Clear = function (_Key) {{
+                    var usr = (window.UsuarioBE && UsuarioBE.UserName) ? UsuarioBE.UserName : 'anon';
+                    localStorage.removeItem(usr + _Key);
+                }};
+                GlobalEntorno.Storage = {Pagina}.Trace;
+                ";
+             Page.RegisterClientScriptBlock("LogLocal", $"<script>\n{logCliente}\n</script>");
         }
 
+        //---------------------------------------------
         public string UpperCaseFirstChar(string text)
         {
             return Regex.Replace(text, " ^ [a-z]", m => m.Value.ToUpper());
@@ -553,8 +837,9 @@ namespace SIMANET_W22R
             Page.RegisterClientScriptBlock("Entity", "<script>\n" + ScriptBE + "\n" + "</script>");
         }
 
+
         #region Agentes JavaScript
-                public void DataTableToXML(DataTable dt)
+        public void DataTableToXML(DataTable dt)
                 {
 
                     try
@@ -768,9 +1053,6 @@ namespace SIMANET_W22R
                     HttpContext.Current.Response.Close();
         }
         #endregion
-
-
-
         #region Registrar Lib script style etc
         public enum TipoLibreria
         {

@@ -79,10 +79,92 @@ namespace SIMANET_W22R.GestionProyecto.Pagos
         public DataTable Listar_gastos_proyectos_ot_v3(string N_CEO, string V_CODDIV, string V_CODPRY, string UserName)
         {
             ProyectoSoapClient oPy = new ProyectoSoapClient();
-            dt = oPy.Listar_gastos_proyectos_ot_v3(N_CEO,V_CODDIV,V_CODPRY,UserName);
-            dt.TableName = "SP_Gastos_Proyectos_OT_v3";
-            return dt;
+            DataTable dtError = new DataTable("SP_Gastos_Proyectos_OT_v3");
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal
+            // Gastos_Proyectos_por_OT_v3.rep 
+            dtError.TableName = "SP_Gastos_Proyectos_OT_v3";
+            dtError.Columns.Add("GRUPO_CC", typeof(string));
+            dtError.Columns.Add("CENTRO_COSTO", typeof(string));
+            try
+            {
+
+                // -----validamos datos Obligatorios ----
+                if (N_CEO == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["CENTRO_COSTO"] = "Seleccione el Centro Operativo, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_CODPRY == "-1" || V_CODPRY == "")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["CENTRO_COSTO"] = "Seleccione un Proyecto, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_CODDIV == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["CENTRO_COSTO"] = "Seleccione la Linea de Negocio, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+
+
+                dt = oPy.Listar_gastos_proyectos_ot_v3(N_CEO, V_CODDIV, V_CODPRY, UserName);
+               
+                if (dt != null)  // valida vacio
+                {
+                    dt.TableName = "SP_Gastos_Proyectos_OT_v3";
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "SP_Gastos_Proyectos_OT_v3";
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["CENTRO_COSTO"] = "No existen registros para los parámetros consultados: " + V_CODPRY + " " + V_CODDIV  + " " + N_CEO;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["CENTRO_COSTO"] = "No existen registros para los parámetros consultados: " + V_CODPRY + " " + V_CODDIV  + " " + N_CEO;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["CENTRO_COSTO"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oPy != null)
+                {
+                    try
+                    {
+                        if (oPy.State != System.ServiceModel.CommunicationState.Faulted)
+                            oPy.Close();
+                        else
+                            oPy.Abort();
+                    }
+                    catch
+                    { oPy.Abort(); }
+                }
+            }
         }
+
+
         [WebMethod]
         public DataTable Listar_CartaFianzas(string v_ANIOCARTA, string V_CODPROYECTO, string UserName)
         {
