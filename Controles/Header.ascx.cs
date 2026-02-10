@@ -56,7 +56,7 @@ namespace SIMANET_W22R.Controles
                                                  ,{ "toasscc", EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/css/Toas/nostfly.min.css"}
                                                  //Agregado 09-09-2025
                                                  ,{ "cssTree", EasyUtilitario.Helper.Pagina.PathSite() + "/Recursos/Tree/zTreeStyle.css" }
-                                                 ,{ "cssTree", EasyUtilitario.Helper.Pagina.PathSite() + "/Recursos/css/jquery.timepicker.min.css" }
+                                                 ,{ "timepicker", EasyUtilitario.Helper.Pagina.PathSite() + "/Recursos/css/jquery.timepicker.min.css" }
                                                 };
             }
         }
