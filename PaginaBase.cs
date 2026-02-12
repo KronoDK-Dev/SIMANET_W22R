@@ -50,6 +50,11 @@ namespace SIMANET_W22R
         public static string KEYQAÑO = "Anio";
         public static string KEYQIDMES = "IdMes";
         public static string KEYQFECHA = "Fecha";
+        public static string KEYQFECHAINI = "FechaI";
+        public static string KEYQFECHAFIN = "FechaF";
+        public static string KEYQHORAINI = "HoraI";
+        public static string KEYQHORAFIN = "HoraF";
+
         public static string KEYQIDPROCESO = "IdPrc";
         public static string KEYQIDESTADO = "IdEst";
         public static string KEYQDESCRIPCION = "Descrip";
@@ -381,6 +386,30 @@ namespace SIMANET_W22R
         public string Param(string Nombre) {
             return Page.Request.Params[Nombre];
         }
+
+        public EasyDataInterConect TablaGeneralItemSQL(string IdTabla)
+        {
+            EasyDataInterConect oEasyDataInterConect = new EasyDataInterConect();
+            oEasyDataInterConect.MetodoConexion = EasyDataInterConect.MetododeConexion.WebServiceInterno;
+            oEasyDataInterConect.UrlWebService = "/General/TablasGenerales.asmx";
+            oEasyDataInterConect.Metodo = "ListarItems";
+
+            EasyFiltroParamURLws oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "IdTabla";
+            oParam.Paramvalue = IdTabla;
+            oParam.TipodeDato = EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos.String;
+            oEasyDataInterConect.UrlWebServicieParams.Add(oParam);
+
+            oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "UserName";
+            oParam.Paramvalue = this.UsuarioLogin;
+            oParam.TipodeDato = EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos.String;
+            oEasyDataInterConect.UrlWebServicieParams.Add(oParam);
+
+            return oEasyDataInterConect;
+        }
+
+
         public EasyDataInterConect TablaGeneralItem(string IdTabla,string OrigenDB) {
             EasyDataInterConect oEasyDataInterConect = new EasyDataInterConect();
             oEasyDataInterConect.MetodoConexion = EasyDataInterConect.MetododeConexion.WebServiceExterno;

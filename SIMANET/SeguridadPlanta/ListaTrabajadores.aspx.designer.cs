@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace SIMANET_W22R.SIMANET.SegudidadIndustrial
+namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 {
 
 
-    public partial class AdministrarContratista
+    public partial class ListaTrabajadores
     {
 
         /// <summary>
@@ -22,5 +22,14 @@ namespace SIMANET_W22R.SIMANET.SegudidadIndustrial
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+        /// <summary>
+        /// Control grvTrabajadores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.EasyGridView grvTrabajadores;
     }
 }

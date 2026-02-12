@@ -27,7 +27,7 @@ function FormParams(queryString) {
     /*Mejorado en:09-11-2023*/
     oParams.forEach(function (NameValue, i) {
         var oParam = NameValue.split('=');
-        result[oParam[0]] = oParam[1].toString().Replace('+',' ');
+        result[oParam[0]] = unescape(oParam[1].toString().Replace('+',' '));
     });
     return result;
 }
@@ -557,16 +557,28 @@ SIMA.Utilitario.Helper.Data.ValidarEmail = function (email) {
 
 SIMA.Utilitario.Helper.Form = {};
 
-SIMA.Utilitario.Helper.Form.Validar = function (NameCtrlDisplay) {
+SIMA.Utilitario.Helper.Form.Validar = function (NameCtrlDisplay,CtrlPopup) {
     var Valido = true;
-    var els = document.querySelectorAll('[required]');
+    //var els = document.querySelectorAll('[required]');//se cambio para que solo usara el control contenedor y no valide otros controles fuere del el
+    var contenedor = document.getElementById(CtrlPopup);
+    var els = contenedor.querySelectorAll('[required]');
+
+
     //Limpia validaciones previas
     Array.prototype.forEach.call(els, function (el) {
         el.classList.remove('required');
-        var QuerySelector = '[reference="' + jNet.get(el).attr('id') + '"]';
+        var obel = jNet.get(el);
+        var QuerySelector = '[reference="' + obel.attr('id') + '"]';
         var arrLabel = document.querySelectorAll(QuerySelector);
         Array.prototype.forEach.call(arrLabel, function (lbl) {
-            lbl.classList.remove('is-required');
+            var ss = obel.attr("TypeIn");
+            if (obel.attr("TypeIn") == "TIMEPICK") {
+                lbl.classList.remove('is-requiredTP');
+            }
+            else {
+                lbl.classList.remove('is-required');
+            }
+            
         });
 
     });
@@ -599,10 +611,17 @@ SIMA.Utilitario.Helper.Form.Validar = function (NameCtrlDisplay) {
         if (SiCumple == false) {
             Valido = false;
             el.classList.add('required');
-            var QuerySelector = '[reference="' + jNet.get(el).attr('id') + '"]';
+            var obel = jNet.get(el);
+            var QuerySelector = '[reference="' + obel.attr('id') + '"]';
             var arrLabel = document.querySelectorAll(QuerySelector);
             Array.prototype.forEach.call(arrLabel, function (lbl) {
-                lbl.classList.add('is-required');
+                var ss = obel.attr("TypeIn");
+                if (obel.attr("TypeIn") == "TIMEPICK") {
+                    lbl.classList.add('is-requiredTP');
+                }
+                else {
+                    lbl.classList.add('is-required');
+                }
             });
         }
 
@@ -2142,12 +2161,21 @@ var jNet = (function () {
                 this.removeEventListener(type, fn, false);
             return this;
         },
-        forEach: function (fnc) {
-            for (var i = 0; i < this.children.length; i++) {
-                var _ctrl = jNet.get(this.children[i]);
-                fnc(_ctrl, i);
+        forEach: function (fnc, TypeFilter) {
+            switch (TypeFilter) {
+                case undefined:
+                    for (var i = 0; i < this.children.length; i++) {
+                        var _ctrl = jNet.get(this.children[i]);
+                        fnc(_ctrl, i);
+                    }
+                        break;
+                default:
+                    Array.prototype.forEach.call(this.getElementsByTagName(TypeFilter), function (ctrl) {
+                        fnc(jNet.get(ctrl));
+                    });
+                    break;
             }
-        },
+        },  
         find: function (NomCtrl) {
             var boolresult = false;
             this.forEach(function (oCtrl, i) {
@@ -2860,6 +2888,14 @@ String.prototype.HtmlToDOMobj = function () {
     return oChild;
 }
 
+
+String.prototype.ParseDateToYYYYmmDD = function (delimitados) {
+    var arrFecha = this.toString().split(delimitados);
+    var strFechaYYYYMMDD = arrFecha[2].toString() + arrFecha[1].toString().LPad(2, '0') + arrFecha[0].toString().LPad(2, '0');
+    return strFechaYYYYMMDD;
+}
+
+
 function Mod(num) {
     return num % 2;
 }
@@ -2899,8 +2935,22 @@ Array.prototype.Find = function (Valor) {
 String.prototype.IsNull = function (_object,Reemplazo) {
     return ((_object == undefined) ? Reemplazo : _object);
 }
-
-
+/*
+function CtrlHijosInContenedor(strNameCntent, fncRead, TypeFilter) {
+    switch (TypeFilter) {
+        case undefined:
+            Array.prototype.slice.call(document.getElementById(strNameCntent).children).forEach(function (ctrl) {
+                fncRead(jNet.get(ctrl));
+            });
+            break;
+        default:
+            Array.prototype.forEach.call(document.getElementById(strNameCntent).getElementsByTagName(TypeFilter), function (ctrl) {
+                fncRead(jNet.get(ctrl));
+            });
+            break;
+    }
+}
+*/
 function generateUUID() {
     return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)

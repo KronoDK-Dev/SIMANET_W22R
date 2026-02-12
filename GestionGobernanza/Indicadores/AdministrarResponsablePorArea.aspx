@@ -175,8 +175,6 @@
 
         </table>
        
-    </form>
-
     <script>
         AdministrarResponsablePorArea.GuardarDatos = function (ItemReponSeleccionadoBE) {
 
@@ -261,5 +259,9 @@
             var ResultBE = oEasyDataResult.sendData();
         }
     </script>
-</body>
+        <asp:HyperLink ID="HyperLink1"  style="display:block" runat="server" NavigateUrl="~/SIMANET/SeguridadPlanta/AdministrarProgramacionContratista.aspx">HyperLink</asp:HyperLink>
+       
+    </form>
+
+    </body>
 </html>

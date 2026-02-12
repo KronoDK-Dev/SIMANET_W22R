@@ -9,6 +9,11 @@
     color: red;
     font-weight: bold;
 }
+.is-requiredTP:after {
+    margin-left: 3px;
+    color: red;
+    font-weight: bold;
+}
 /*-----------------------------------------------------*/
 
 .ItemDetalle {
@@ -2529,3 +2534,27 @@ button[disabled="disabled"] {
         height: 35px;
     }
 /*-----------------------------------------------------------------------*/
+
+.form-control {
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
+
+/********************TIMEPICK****************************************/
+.time-picker {
+    display: flex;
+    gap: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: 240px;
+}
+
+.timeSelectds {
+    /*padding: 5px;*/
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+/*-------------------------------------------------------------------*/
