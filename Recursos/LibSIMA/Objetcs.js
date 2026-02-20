@@ -913,6 +913,8 @@ SIMA.Utilitario.Constantes.ImgSGV.FilePdf = '<svg height="20px" width="20px" ver
 SIMA.MessageBox = function (ConfigMsg) {
     this.Alert = function () {
         $.confirm({
+            Height: "900px",
+            resizable: true,
             columnClass: 'small',
             title: ConfigMsg.Titulo,
             content: ConfigMsg.Descripcion,
@@ -938,6 +940,27 @@ SIMA.MessageBox = function (ConfigMsg) {
 
             }
         });
+        //Buscar la region del msg para aplicar el ancho
+        window.setTimeout(function () {
+            var FrameMsg = jNet.get(document.querySelectorAll(".jconfirm-box")[0]);
+            if (FrameMsg != undefined) {
+                var DivContent = jNet.get(FrameMsg.parentNode);
+                if (ConfigMsg.Width != undefined) {
+                    FrameMsg.css("width", ConfigMsg.Width);
+
+                    DivContent.attr("class", "col-md-8");//reestablece la unicacion del centrado
+                }
+                if ((ConfigMsg.IncluirFondo != undefined) && ConfigMsg.IncluirFondo == true) {
+                    DivContent.css("background-image", "udl('../../Recursos/img/ToolBar.jpg')");
+                }
+            }
+        }, 50);
+        
+
+      /* Array.prototype.slice.call(document.getElementsByClassName("jconfirm-type-animated").children).forEach(function (ctrl) {
+            alert(jNet.get(ctrl));
+        });*/
+
     }
     this.confirm = function () {
         $.confirm({
@@ -1858,17 +1881,17 @@ function CardFileBE(_Nombre, _IdGenerado, _PathHTTP) {
 
 /*UPLOAD*/
 function EasyUpLoad() {
+    var Me = this;
     this.PaginaProceso = "";
     this.CtrlContext = "";
     this.fncComplete = "";
-    this.fncItemComplete = "";//06-05-2025
     this.FileCollections = new Array();
     this.FileCollections.Add = function (_ItemFileBE) {
         this[this.length] = new Array();
         this[this.length - 1] = _ItemFileBE;
     }
     this.Clear = function () {
-       /* while (this.FileCollections.length > 0) {
+        /* while (this.FileCollections.length > 0) {
             this.FileCollections.pop();
         }*/
         this.FileCollections.Clear();
@@ -1878,7 +1901,6 @@ function EasyUpLoad() {
     }
 
     this.Send = function () {
-        var Me = this;
         var IntProgress = 0;
         var NroFiles = 0;
         if (Me.PaginaProceso.length > 0) {
@@ -1886,129 +1908,127 @@ function EasyUpLoad() {
             var strUrlFinal = Me.PaginaProceso;
             var CaracIni = strUrlFinal.substring(0, 2);
 
-            if ((CaracIni == '~/') || (CaracIni == '../')) {strUrlFinal = strUrlFinal.substring(1, strUrlFinal.length);}
-            else if (strUrlFinal.substring(0, 1) != '/') {strUrlFinal = '/' + strUrlFinal;}
+            if ((CaracIni == '~/') || (CaracIni == '../')) {
+                strUrlFinal = strUrlFinal.substring(1, strUrlFinal.length);
+            } else if (strUrlFinal.substring(0, 1) != '/') {
+                strUrlFinal = '/' + strUrlFinal;
+            }
             strUrlFinal = Page.Request.ApplicationPath + strUrlFinal;
 
             var _Collection = Me.FileCollections;
             NroFiles = Me.FileCollections.length;
 
-            if (_Collection.length > 0) {//Si hubiera algun archivo por cargar
+            if (_Collection.length > 0) {
+                //Si hubiera algun archivo por cargar
                 //Inicia la transferencia de los archivos
-                    _Collection.forEach(function (_ItemFile) {
-                        IntProgress = 0;
-                        var FrmDataBits = new FormData();
-                        if (_ItemFile.Binary != undefined) {
-                            FrmDataBits.append(_ItemFile.Nombre, _ItemFile.Binary);
+                _Collection.forEach(function (_ItemFile) {
+                    IntProgress = 0;
+                    var FrmDataBits = new FormData();
+                    FrmDataBits.append(_ItemFile.ClientID, _ItemFile.Binary);
 
-                            /*---------------------------INIT-------------------------------------*/
-                            var ajax = new XMLHttpRequest();
-                            ajax.upload.addEventListener("progress", function (event) {
-                                //SIMA.Utilitario.Helper.Wait.SetTitle('Archivo cargado...!!');
-                                //SIMA.Utilitario.Helper.Wait.SetText(_ItemFile.Nombre);
+                    /*---------------------------INIT-------------------------------------*/
+                    var ajax = new XMLHttpRequest();
+                    ajax.upload.addEventListener("progress", function (event) {//SIMA.Utilitario.Helper.Wait.SetTitle('Archivo cargado...!!');
+                        //SIMA.Utilitario.Helper.Wait.SetText(_ItemFile.Nombre);
 
-                            }, false);
-                            /*-----------------------------INIT---LOAD--------------------------------------------*/
-                            ajax.addEventListener("load", function (event) {
-                                var strFileInfo = '';
-                                var CollectionsFile = new Array();
-                                try {
-                                    var arrCtrl = event.target.responseText.split('@');
-                                    var Error = false;
-                                    if (Me.fncItemComplete != undefined) {
-                                        var NombreFile = "";
-                                        if (arrCtrl instanceof Array) { NombreFile = arrCtrl[0]; }
-                                            //Actualiza el estado a enviado con exito
-                                            Me.FileCollections.forEach(function (iFile, d) {
-                                                if (NombreFile == iFile.Nombre) {
-                                                    iFile.Enviado = true;
-                                                    this[d] = iFile;
-                                                }
-                                            });
-                                        
-                                        Me.fncItemComplete(arrCtrl, Me.FileCollections);
-                                    }
-                                    else {
-                                        arrCtrl.forEach(function (CtrlName, idx) {
-                                            var oBE = Me.Find(CtrlName);
-                                            if (oBE != undefined) {
-                                                CollectionsFile.Add(oBE);
-                                                strFileInfo += ((idx == 0) ? "" : "@") + oBE.toString();
-                                                Me.remove(oBE);
-                                                IntProgress++;
-                                                /*if (IntProgress == NroFiles) {
-                                                }*/
-                                            }
-                                            else {
-                                                Error = true;
-                                            }
-                                        });
-                                    }
+                    }, false);
+                    /*-----------------------------INIT---LOAD--------------------------------------------*/
+                    ajax.addEventListener("load", function (event) {
+                        try {
+                            var strFileInfo = '';
+                            var CollectionsFile = new Array();
+                            var arrCtrl = event.target.responseText.split('@');
+                            var Error = false;
 
-                                    if (Error == true) {
-                                        var msgConfig = { Titulo: "Proceso de Carga", Descripcion: "La propiedad [PaginaProceso] no contiene una definición correcta a la página de proceso de carga de archivos...!!" };
-                                        var oMsg = new SIMA.MessageBox(msgConfig);
-                                        oMsg.Alert();
-                                    }
-                                    //Pasa el array co
-                                    if (Me.fncComplete != "") {//Crea la lsita de items en el Listview
-                                        Me.fncComplete(CollectionsFile, Me.FileCollections);//comentado el 16/10/2023
-                                    }
+                            arrCtrl.forEach(function (CtrlName, idx) {
+                                var oBE = Me.Find(CtrlName);
+                                if (oBE != undefined) {
+                                    CollectionsFile[CollectionsFile.length] = new Array();
+                                    CollectionsFile[CollectionsFile.length - 1] = oBE;
+                                    strFileInfo += ((idx == 0) ? "" : "@") + oBE.toString();
+                                    Me.remove(oBE);
+                                    IntProgress++;
+                                    /*if (IntProgress == NroFiles) {
+                                                                        }*/
+                                } else {
+                                    Error = true;
                                 }
-                                catch (Exception) {
-                                    // SIMA.Utilitario.Helper.Wait.Close(1500);
-                                }
+                            });
 
-                            }, false);//Fin de Load
-
-                            /*-----------------------------FIN---LOAD--------------------------------------------*/
-
-                            /*-----------------------------INIT---ERROR ENVIO--------------------------------------------*/
-                            ajax.addEventListener("error", function (event) {
-                                var msgConfig = { Titulo: "Proceso de Carga", Descripcion: "Problemas a realizar la carga, es muy probable que el archivo sea demasiado grande" };
+                            if (Error == true) {
+                                var msgConfig = {
+                                    Titulo: "Proceso de Carga",
+                                    Descripcion: "La propiedad [PaginaProceso] no contiene una definición correcta a la página de proceso de carga de archivos...!!"
+                                };
                                 var oMsg = new SIMA.MessageBox(msgConfig);
                                 oMsg.Alert();
-                                // SIMA.Utilitario.Helper.Wait.Close(1500);
                             }
-                                , false);
-                            /*-----------------------------FIN---ERROR DE ENVIO--------------------------------------------*/
-
-                            /*-----------------------------INIT---ABORTA--------------------------------------------*/
-                            ajax.addEventListener("abort", function (event) { alert('abortado'); }, false);
-                            /*-----------------------------FIN---ABORTA--------------------------------------------*/
-
-                            /*-----------------------------ENVIA SEGUN ARCHIVOS CARGADOS--------------------------------------------*/
-                            //Ejecuta la transferencia
-                            SIMA.Utilitario.Helper.Wait.SetTitle('Enviando archivo al servidor...');
-                            ajax.open("POST", strUrlFinal, true);
-                            ajax.send(FrmDataBits);
-                            /*-----------------------------FIN ARCHIVOS CARGADOS--------------------------------------------*/
+                            //Pasa el array co
+                            if (Me.fncComplete != "") {
+                                //Crea la lsita de items en el Listview
+                                Me.fncComplete(CollectionsFile);
+                                //comentado el 16/10/2023
+                            }
+                        } catch (Exception) {// SIMA.Utilitario.Helper.Wait.Close(1500);
                         }
 
-                    });//FIn del barrido de archivo desde el array
+                    }, false);
+                    //Fin de Load
 
+                    /*-----------------------------FIN---LOAD--------------------------------------------*/
 
-                    //modificado 16/10/2023
-                   /* if (Me.fncComplete != "") {//Crea la lsita de items en el Listview
+                    /*-----------------------------INIT---ERROR ENVIO--------------------------------------------*/
+                    ajax.addEventListener("error", function (event) {
+                        var msgConfig = {
+                            Titulo: "Proceso de Carga",
+                            Descripcion: "Problemas a realizar la carga, es muy probable que el archivo sea demasiado grande"
+                        };
+                        var oMsg = new SIMA.MessageBox(msgConfig);
+                        oMsg.Alert();
+                        // SIMA.Utilitario.Helper.Wait.Close(1500);
+                    }, false);
+                    /*-----------------------------FIN---ERROR DE ENVIO--------------------------------------------*/
+
+                    /*-----------------------------INIT---ABORTA--------------------------------------------*/
+                    ajax.addEventListener("abort", function (event) {
+                        alert('abortado');
+                    }, false);
+                    /*-----------------------------FIN---ABORTA--------------------------------------------*/
+
+                    /*-----------------------------ENVIA SEGUN ARCHIVOS CARGADOS--------------------------------------------*/
+                    //Ejecuta la transferencia
+                    SIMA.Utilitario.Helper.Wait.SetTitle('Enviando archivo al servidor...');
+                    ajax.open("POST", strUrlFinal, true);
+                    ajax.send(FrmDataBits);
+                    /*-----------------------------FIN ARCHIVOS CARGADOS--------------------------------------------*/
+
+                });
+                //FIn del barrido de archivo desde el array
+
+                //modificado 16/10/2023
+                /* if (Me.fncComplete != "") {//Crea la lsita de items en el Listview
                         // SIMA.Utilitario.Helper.Wait.Close();
                         Me.fncComplete(CollectionsFile);
                     }*/
 
                 return true;
-                }
-                else {
-                    var msgConfig = { Titulo: "Proceso de Carga", Descripcion: "No existen elementos como archivos a ser cargados...!" };
+            } else {
+                var msgConfig = {
+                    Titulo: "Proceso de Carga",
+                    Descripcion: "No existen elementos como archivos a ser cargados...!"
+                };
                 var oMsg = new SIMA.MessageBox(msgConfig);
                 oMsg.Alert();
-            }           
-        }
-        else {
-            var msgConfig = { Titulo: "Proceso de Carga", Descripcion: "No se ha configurado ruta de pagina de proceso" };
+            }
+        } else {
+            var msgConfig = {
+                Titulo: "Proceso de Carga",
+                Descripcion: "No se ha configurado ruta de pagina de proceso"
+            };
             var oMsg = new SIMA.MessageBox(msgConfig);
             oMsg.Alert();
         }
     }
-
 
     this.Find = function (id) {
         var _ItemFileBE = null;
@@ -2026,19 +2046,21 @@ function EasyUpLoad() {
         var _CtrlContext = jNet.get(this.CtrlContext);
         this.FileCollections.forEach(function (_ItemBE) {
             if (_ItemFileBE.ClientID == _ItemBE.ClientID) {
-                _CtrlContext.remove(_ItemFileBE.ClientID);//Remueve el HTML
-                _CtrlContext.remove('br' + _ItemFileBE.ClientID);//Remueve el HTML
+                _CtrlContext.remove(_ItemFileBE.ClientID);
+                //Remueve el HTML
+                _CtrlContext.remove('br' + _ItemFileBE.ClientID);
+                //Remueve el HTML
                 idxs[idxs.length] = new Array();
                 idxs[idxs.length - 1] = idx;
             }
             idx++;
         });
         idxs.forEach(function (Puntero) {
-            arrColl.splice(Puntero, 1);//Remueve del array
+            arrColl.splice(Puntero, 1);
+            //Remueve del array
         });
     }
 }
-
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 String.prototype.LPad = function (l, c) { return new Array(l - this.length + 1).join(c || '0') + this; }
 //String.prototype.RPad = function (n, c) (var i; var a = this.split (''); for (i = 0; i <n - this.length; i++) (a.push(c) );

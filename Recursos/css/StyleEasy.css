@@ -2558,3 +2558,11 @@ button[disabled="disabled"] {
     border: 1px solid #ccc;
 }
 /*-------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------*/
+/*Estavlece una imagen de fondo al SIMA.Message  Alert*/
+.jconfirm-box.jconfirm-type-animated {
+    background-image: url("../../Recursos/img/ToolBar.jpg");
+    background-repeat: repeat-x;
+}
+/*-------------------------------------------------------------------*/
