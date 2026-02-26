@@ -1,12 +1,14 @@
 ﻿using EasyControlWeb;
+using Newtonsoft.Json.Linq;
+using SIMANET_W22R.GestionReportes;
 using SIMANET_W22R.srvGeneral;
 using SIMANET_W22R.srvGestionTesoreria;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-
 using System.Runtime.Caching;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Services;
 using System.Web.Services.Description;
@@ -1108,7 +1110,35 @@ namespace SIMANET_W22R.General
                 return dtError;
             }
         }
-        #endregion 
 
+        #endregion
+
+
+        [WebMethod(Description = "Lista Areas usuarias por descripcion")]
+        public DataTable ListaAreasxDescripcion(string NombreArea, string UserName, string idCentro)
+        {
+            var oGenerarl = new GeneralSoapClient();
+            string json = oGenerarl.ListarAreaPorNombre(Convert.ToInt32(idCentro), NombreArea, UserName);
+
+            if (string.IsNullOrWhiteSpace(json))
+                return dtResultados; // vacío
+
+            // Decodificación por si viniera escapado
+            json = HttpUtility.HtmlDecode(json)?.Trim() ?? string.Empty;
+            if (json.StartsWith("<![CDATA["))
+                json = Regex.Replace(json, @"^<!\[CDATA\[(.*)\]\]>$", "$1", RegexOptions.Singleline).Trim();
+
+            // Si el servicio envía { "success":..., "data":[...] }
+            var token = JToken.Parse(json);
+            var data = token["data"] ?? token;  // si no hay "data", usa el token completo
+
+            dtResultados = JsonToDataTableHelper.ConvertJsonToDataTable(data.ToString());
+
+
+            return dtResultados;
+        }
+
+
+      
     }
 }

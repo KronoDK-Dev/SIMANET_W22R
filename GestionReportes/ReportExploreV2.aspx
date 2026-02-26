@@ -18,7 +18,7 @@
    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/font-awesome.min.css") %> ">
     <script src="<%= ResolveUrl("~/Recursos/js/jquery-3.6.4.min.js") %>"></script>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" class="enable-scroll">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
    
@@ -242,7 +242,11 @@
         .export-button:hover {
             background-color: #0056b3; /* Color del botón al pasar el mouse */
         }
-
+        .report-scroll {
+    height: calc(100vh - 40px); /* ajusta según tu header */
+    overflow-y: auto !important;
+    overflow-x: auto;
+}
     </style> 
 
     <script type="text/javascript">
@@ -267,11 +271,16 @@
         };
     </script>
 
+    <script>
+        document.documentElement.classList.add('enable-scroll');
+        document.body.classList.add('enable-scroll');
+    </script>
+
 </head>
-<body>
+<body class="enable-scroll">
     <form id="form1" runat="server">
         
-          <table id="tblReport" style="width:100%;height:100%"  border="0px" >
+          <table id="tblReport" style="width:100%;"  border="0px" >
            <tr>
                <td>
                    <uc1:Header runat="server" ID="Header" />
@@ -279,6 +288,7 @@
            </tr>
            <tr>
                <td style="width:100%; height:100%;" valign="top"  align="left"  >
+                   <div class="report-scroll">
                                        <table cellpadding="0" cellspacing="0"  style="width:100%; height:100%"   border="0px">
                                            <tr style="height:100%;">
                                                   <!-- PANEL IZQUIERDO -->
@@ -346,7 +356,8 @@
                                                   </td>
                                                 </tr>
                                        </table>
-               </td>
+                    </div> 
+                </td>
            </tr>
       </table>
         <div style="position: relative;">
@@ -363,7 +374,7 @@
 
     </form>
     
-<script>
+    <script>
     //   28.01.2026 --- 1) Congela los constructores para que nadie los pueda pisar ---
     function lockPopupConstructors() {
         var EPT = window.EasyPopupTestReportParam;
@@ -829,6 +840,14 @@
 
 
        <script>
+
+
+               document.addEventListener("DOMContentLoaded", function () {
+                   document.body.classList.add("enable-scroll");
+               document.documentElement.classList.add("enable-scroll");  // <html>
+                  });
+
+
            // --- Sincroniza los scrolls horizontales ---
            const topScroll = document.querySelector('.scroll-top');
            const bottomScroll = document.querySelector('.scroll-bottom');
