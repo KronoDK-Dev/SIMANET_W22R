@@ -132,6 +132,24 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
+        /// Control EAC_Proveedor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar EAC_Proveedor;
+
+        /// <summary>
+        /// Control EAC_Areas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar EAC_Areas;
+
+        /// <summary>
         /// Control EGVResultados.
         /// </summary>
         /// <remarks>
@@ -139,5 +157,32 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::EasyControlWeb.EasyGridView EGVResultados;
+
+        /// <summary>
+        /// Control Label3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+
+        /// <summary>
+        /// Control litEmailIcon.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litEmailIcon;
+
+        /// <summary>
+        /// Control EasyGestorFiltro1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Filtro.EasyGestorFiltro EasyGestorFiltro1;
     }
 }

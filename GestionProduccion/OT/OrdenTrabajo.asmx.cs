@@ -227,9 +227,118 @@ namespace SIMANET_W22R.GestionProduccion.OT
         public DataTable ActividadesJg(string D_FECHAFIN, string D_FECHAINI, string N_CEO, string N_OPCION, string V_CODDIV, string UserName)
         {
             ProduccionSoapClient oPD = new ProduccionSoapClient();
-            dt = oPD.Listar_actividades_jg(D_FECHAFIN, D_FECHAINI, N_CEO, N_OPCION, V_CODDIV, UserName);
-            dt.TableName = "SP_Actividades_Jg";
-                return dt;
+            DataTable dtError = new DataTable("SP_Actividades_Jg");
+            DateTime fechaIni, fechaFin;
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal
+            dtError.TableName = "SP_Actividades_Jg";
+            dtError.Columns.Add("COD_PRY", typeof(string));
+            dtError.Columns.Add("NOM_PRY", typeof(string));
+            try
+            {
+                // -----validamos datos Obligatorios ----
+                if (N_CEO == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["NOM_PRY"] = "Seleccione el Centro Operativo, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (N_OPCION == "-1" || N_OPCION == "")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["NOM_PRY"] = "Seleccione una Opción, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_CODDIV == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["NOM_PRY"] = "Seleccione la Linea de Negocio, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (string.IsNullOrWhiteSpace(D_FECHAINI))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["NOM_PRY"] = "La fecha inicial es obligatoria.";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (!DateTime.TryParseExact(D_FECHAINI, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaFin))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["NOM_PRY"] = "La fecha inicial no tiene un formato válido. Formato correcto: dd/MM/yyyy";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (string.IsNullOrWhiteSpace(D_FECHAFIN))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["NOM_PRY"] = "La fecha Final es obligatoria.";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (!DateTime.TryParseExact(D_FECHAFIN, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaFin))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["NOM_PRY"] = "La fecha Final no tiene un formato válido. Formato correcto: dd/MM/yyyy";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                // ----------------------------------------------------
+
+                dt = oPD.Listar_actividades_jg(D_FECHAFIN, D_FECHAINI, N_CEO, N_OPCION, V_CODDIV, UserName);
+            
+                // return dt;
+                if (dt != null)  // valida vacio
+                {
+                    dt.TableName = "SP_Actividades_Jg";
+                    if (dt.Rows.Count > 0)
+                    {
+                    
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["NOM_PRY"] = "No existen registros para los parámetros consultados: " + N_OPCION + " " + V_CODDIV + " " + D_FECHAINI + " " + D_FECHAFIN;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["NOM_PRY"] = "No existen registros para los parámetros consultados: " + N_OPCION + " " + V_CODDIV + " " + D_FECHAINI + " " + D_FECHAFIN;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["NOM_PRY"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oPD != null)
+                {
+                    try
+                    {
+                        if (oPD.State != System.ServiceModel.CommunicationState.Faulted)
+                            oPD.Close();
+                        else
+                            oPD.Abort();
+                    }
+                    catch
+                    { oPD.Abort(); }
+                }
+            }
+
         }
         [WebMethod]
         public DataTable ActividadesJg2(string D_FECHAFIN, string D_FECHAINI, string N_CEO, string N_OPCION, string V_CODDIV, string V_CODTLLR, string UserName)

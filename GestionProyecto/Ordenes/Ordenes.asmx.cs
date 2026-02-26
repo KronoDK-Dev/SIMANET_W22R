@@ -1,10 +1,12 @@
-﻿using System;
+﻿using SIMANET_W22R.ClasesExtendidas;
+using SIMANET_W22R.srvGestionProyecto;
+using SIMANET_W22R.srvProyectos;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using SIMANET_W22R.srvGestionProyecto;
-using System.Data;
 
 namespace SIMANET_W22R.GestionProyecto.Ordenes
 {
@@ -93,10 +95,18 @@ namespace SIMANET_W22R.GestionProyecto.Ordenes
             dt.TableName = "SP_Detalle_Ose_Femision";
             return dt;
         }
-        [WebMethod]
-        public string HelloWorld()
+
+
+        [WebMethod(Description = "Listar Ordenes de Compra y Servicio (retorna DataTable)")]
+        public DataTable Listar_Ordenes_CS_Coproductor_DT(string N_CEO, string UserName)
         {
-            return "Hola a todos";
+            ProyectoSoapClient oPy = new ProyectoSoapClient();
+            dt = oPy.Listar_Ordenes_CS_Coproductor_DT( N_CEO, UserName);
+            dt.TableName = "SP_Ordenes_CS";
+            return dt;
         }
+
+
+
     }
 }

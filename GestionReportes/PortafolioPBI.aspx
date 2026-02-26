@@ -42,8 +42,13 @@
             <tr>
                 <td>
                     <center>
-                        <h1 class="display-6">Portafolio de Proyectos - Dashboard Power BI</h1>
-                        <p class="lead mb-0">Visualización interactiva de reportes</p>
+                        <h1 style="font-size: 1.1rem; font-weight: 600;">
+                            Portafolio de Dashboard Power BI
+                        </h1>
+                         <p style="font-size: 0.9rem;" class="mb-0">
+                              Visualización interactiva de reportes
+                         </p>
+
                     </center>
                 </td>
             </tr>
@@ -51,7 +56,7 @@
             <!-- Contenido -->
             <tr>
                 <td style="padding:20px;">
-                    <asp:Literal ID="ltlIframe" runat="server"></asp:Literal>
+                    <asp:Literal ID="ltlIframe" runat="server" Mode="PassThrough"></asp:Literal>
                 </td>
             </tr>
         </table>

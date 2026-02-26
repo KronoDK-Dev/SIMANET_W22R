@@ -14,15 +14,19 @@ namespace SIMANET_W22R.GestionReportes
             if (!IsPostBack)
             {
                 // URL de ejemplo: demo de Power BI
-                string reportUrl = "https://playground.powerbi.com/sampleReportEmbed";
+                //string reportUrl = "https://playground.powerbi.com/sampleReportEmbed";
+                // string reportUrl = "http://spsrvpowerbi:771/POWERBI_SIMA/browse";
+                string reportUrl = "https://spsrvpowerbi:444/POWERBI_SIMA/browse";
 
                 // Construye el iframe dinámicamente
                 string iframe = $@"<iframe class='report-frame'
                                          src='{reportUrl}'
                                          frameborder='0'
-                                         allowFullScreen='true'>
+                                         allowFullScreen='true'
+                                    style='width:100%;height:80vh;border:0;'
+                                        >
                                    </iframe>";
-
+                ltlIframe.Mode = LiteralMode.PassThrough;
                 ltlIframe.Text = iframe;
             }
         }

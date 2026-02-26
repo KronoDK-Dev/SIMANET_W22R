@@ -16,6 +16,7 @@
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
 <script src="<%= ResolveUrl("~/Recursos/js/jquery-3.6.4.min.js") %>"></script>
 <script src="<%= ResolveUrl("~/Recursos/js/bootstrap.bundle.min.js") %>"></script>
 <!-- (opcional, si FixSIMA necesita $.confirm) -->
@@ -358,12 +359,6 @@
 
 
 
-        // Compatible con UpdatePanel
-        if (typeof Sys !== 'undefined') {
-            Sys.Application.add_load(aplicarFormatoMoneda);
-        } else {
-            document.addEventListener('DOMContentLoaded', aplicarFormatoMoneda);
-        }
 
 
     </script>
@@ -385,6 +380,7 @@
                     <uc1:Header runat="server" ID="Header" IdGestorFiltro="EasyGestorFiltro1" />
                 </td>
             </tr>
+            <asp:HiddenField ID="hfCollapseOne2Open" runat="server" Value="false" />
             <tr>
                 <!-- ***  INICIO CONETENEDOR  ****  -->
                 <td>
@@ -668,7 +664,159 @@
                             </div>
                         </div>
                         <br />
-                        <!--  DATA ESPECIAL -->
+                            <!--  FICHA TECNICA -->
+                        <div class="row w-100">
+
+                            <div id="accordionFichaTecnica" class="w-100">
+                                <div class="card w-100">
+                                    <div class="card-header" id="headingOne2">
+
+                                        <button class="btn btn-link text-dark font-weight-bold p-0"
+                                            type="button"
+                                            data-toggle="collapse"
+                                            data-target="#collapseOne2"
+                                            aria-expanded="false"
+                                            aria-controls="collapseOne"
+                                            style="text-decoration: none; width: 100%; text-align: left; cursor: pointer">
+                                            Ficha Técnica
+                                           <span class="float-right">&#9662;</span>
+                                            <!-- flecha ▼ -->
+                                        </button>
+
+                                    </div>
+
+                                    <div id="collapseOne2"
+                                        class="collapse w-100"
+                                        aria-labelledby="headingOne"
+                                        >
+                                        <div class="card-body">
+                                            <div class="row">
+
+                                                <table style="width: 90%">
+                                                    <!--  PRESUPUESTADO-->
+                                                    <tr>
+                                                        <td colspan="12" class="text-center font-weight-bold">
+                                                            <asp:Label ID="lblTituloFTP" runat="server" Text="PRESUPUESTADO - COSTOS" />
+                                                            <br />
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12">
+                                                            <br />
+                                                        </td>
+                                                    </tr>
+                                                    <!--  fila titulos 1 -->
+                                                    <tr>
+                                                        <td>
+                                                            <asp:Label ID="LblCDMOB" runat="server" Text="Costo Directo Mano de Obra" />
+                                                        </td>
+                                                        <td></td>
+                                                        <td>
+                                                            <asp:Label ID="LblCDMAT" runat="server" Text="Costo Directo Materiales" />
+                                                        </td>
+                                                        <td></td>
+                                                        <td>
+                                                            <asp:Label ID="LblCDSER" runat="server" Text="Costo Directo Servicios" />
+                                                        </td>
+                                                        <td></td>
+                                                        <td>
+                                                            <asp:Label ID="LblCI" runat="server" Text="Costos Indirectos " />
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <!-- contenido 12 Col -->
+                                                    <tr>
+                                                        <td><cc2:EasyTextBox ID="txtCostoDMOB" runat="server" autocomplete="off" CssClass="form-control" data-validate="true" Requerido="False" Etiqueta="" TextMode="Number" step="0.01"></cc2:EasyTextBox> <cc2:EasyTextBox ID="txtfechaCP" runat="server" Visible="false"   /> </td>
+                                                        <td></td>
+                                                        <td> <cc2:EasyTextBox ID="txtCostoDMAT" runat="server" autocomplete="off" CssClass="form-control" data-validate="true" Requerido="False" Etiqueta="" TextMode="Number" step="0.01" ></cc2:EasyTextBox></td>
+                                                        <td></td>
+                                                        <td> <cc2:EasyTextBox ID="txtCostoDSER" runat="server" autocomplete="off" CssClass="form-control" data-validate="true" Requerido="False" Etiqueta="" TextMode="Number" step="0.01" ></cc2:EasyTextBox> </td>
+                                                        <td></td>
+                                                        <td><cc2:EasyTextBox ID="txtCostoIND" runat="server" autocomplete="off" CssClass="form-control" data-validate="true" Requerido="False" Etiqueta="ññ" TextMode="Number"  step="0.01"></cc2:EasyTextBox>
+                                                             
+                                                        </td>
+									                     <td>
+                                                            <br />
+                                                            <asp:Button ID="BtnAgregarCostos" runat="server" Text="+"
+                                                                        OnClick="btnCostos_Click" ToolTip="Adicionar Costos de Presupuesto" class="button-celeste" />
+                                                        </td>
+                                                        <td colspan="4"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12"></td>
+                                                    </tr>
+                                                    <!--   grilla costos  -->
+                                                    <tr>
+                                                        <td colspan="2"></td>
+                                                        <td colspan="8">
+                                                            <cc4:EasyGridView ID="EGVPresupuesto" runat="server" CssClass="STgridview"
+                                                                AutoGenerateColumns="False" ShowFooter="True" TituloHeader="PRESUPUESTADO - Costos"
+                                                                AllowPaging="True" PageSize="7" Width="100%"
+                                                                ToolBarButtonClick="OnEasyGridButton_Click"
+                                                                OnPageIndexChanging="EasyGridOTsProyecto_PageIndexChanged"
+                                                                OnEasyGridButton_Click="EasyGridOTsProyecto_EasyGridButton_Click"
+                                                                 OnEasyGridDetalle_Click="EGVP_EasyGridDetalle_Click" 
+                                                                >
+                                                                <EasyGridButtons>
+                                                                </EasyGridButtons>
+                                                                <EasyStyleBtn ClassName="btn btn-primary" FontSize="1em" TextColor="white" />
+                                                                <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowCellItemClick=""
+                                                                    IdGestorFiltro="EasyGestorFiltro1"></EasyExtended>
+                                                                <DataInterconect MetodoConexion="WebServiceInterno">
+                                                                    <UrlWebService>/GestionProyecto/Proyecto.asmx</UrlWebService>
+                                                                    <Metodo>Get_ProyectoPresupuesto</Metodo>
+                                                                    <UrlWebServicieParams>
+
+                                                                        <cc3:EasyFiltroParamURLws ObtenerValor="FormControl" ParamName="s_Sucursal" Paramvalue="eDDLCentros" />
+                                                                        <cc3:EasyFiltroParamURLws ObtenerValor="FormControl" ParamName="s_proyecto" Paramvalue="txtCodProyecto" />
+                                                                        <cc3:EasyFiltroParamURLws ObtenerValor="Session" ParamName="UserName " Paramvalue="UserName" />
+                                                                    </UrlWebServicieParams>
+                                                                </DataInterconect>
+
+
+                                                                <EasyRowGroup GroupedDepth="0" ColIniRowMerge="0"></EasyRowGroup>
+
+                                                                <AlternatingRowStyle CssClass="AlternateItemGrilla" />
+
+                                                                <Columns>
+                                                                    <asp:BoundField DataField="DT_FTPRESUPUESTO_FECHA" HeaderText="Fecha" />
+                                                                    <asp:BoundField DataField="N_FTPRESUPUESTO_COSTOMOB" HeaderText="Costo Directo Mano de Obra" />
+                                                                    <asp:BoundField DataField="N_FTPRESUPUESTO_COSTOMAT" HeaderText="Costo Directo Mano de Materiales" />
+                                                                    <asp:BoundField DataField="N_FTPRESUPUESTO_COSTOSER" HeaderText="Costo Directo Servicios" />
+                                                                    <asp:BoundField DataField="N_FTPRESUPUESTO_COSTOIND" HeaderText="Costo Indirectos" />
+                                                                </Columns>
+
+                                                                <HeaderStyle CssClass="HeaderGrilla" />
+                                                                <PagerStyle HorizontalAlign="Center" />
+                                                                <RowStyle CssClass="ItemGrilla" Height="25px" />
+                                                            </cc4:EasyGridView>
+                                                        </td>
+                                                        <td colspan="2"></td>
+                                                    </tr>
+
+                                                </table>
+
+                                            </div>
+                                            <!-- cierre de .row dentro del card-body -->
+                                        </div>
+                                        <!-- cierre de .card-body -->
+                                    </div>
+                                    <!-- cierre de #collapseOne -->
+                                </div>
+                                <!-- cierre de .card  w-100 -->
+                            </div>
+                            <!-- cierre de #accordionFichaTecnica -->
+
+                        </div>
+                        <!-- cierre de row w-100  -->
+
+                        <br />
+                        <!--  REFORMA INDUSTRIAL -->
                         <div class="row w-100">
 
                             <div id="accordionEmbarcacion" class="w-100">
@@ -683,7 +831,7 @@
                                             aria-controls="collapseOne"
                                             style="text-decoration: none; width: 100%; text-align: left; cursor: pointer">
                                             Reforma Industrial
-                              <span class="float-right">&#9662;</span>
+                                           <span class="float-right">&#9662;</span>
                                             <!-- flecha ▼ -->
                                         </button>
 

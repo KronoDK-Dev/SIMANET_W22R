@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
 using EasyControlWeb;
 using EasyControlWeb.Form.Controls;
+using SIMANET_W22R.GestionProyecto;
 using SIMANET_W22R.InterfaceUI;
 using SIMANET_W22R.srvCliente;
 using SIMANET_W22R.srvGeneral;
@@ -23,6 +24,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
     {
         DataTable dt;
         ProyectoSoapClient servicio = new ProyectoSoapClient("ProyectoSoap");
+        srvGestionProyecto.ProyectoSoapClient oProyectos = new srvGestionProyecto.ProyectoSoapClient();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["codPry"]==null || Session["codPry"].ToString() == String.Empty)
@@ -296,6 +298,8 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     eDDLSubLineasN.Enabled = false;
                 }
 
+
+                EGVPresupuesto.LoadData("");
 
 
 
@@ -1200,6 +1204,57 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
             }
         }
+        protected void EGVP_EasyGridDetalle_Click(Dictionary<string, string> Recodset)
+        {
+            try
+            {
+                // CAPTURAMOS VALORES DE LA GRILLA
+                string DT_FTPRESUPUESTO_FECHA   = Recodset["DT_FTPRESUPUESTO_FECHA"].ToString();
+                string N_FTPRESUPUESTO_COSTOMOB = Recodset["N_FTPRESUPUESTO_COSTOMOB"].ToString();
+                string N_FTPRESUPUESTO_COSTOMAT = Recodset["N_FTPRESUPUESTO_COSTOMAT"].ToString();
+                string N_FTPRESUPUESTO_COSTOSER = Recodset["N_FTPRESUPUESTO_COSTOSER"].ToString();
+                string N_FTPRESUPUESTO_COSTOIND = Recodset["N_FTPRESUPUESTO_COSTOIND"].ToString();
+                
+
+                lblmensaje.Text = "";
+                ViewState["accionP"] = "2"; // MODO EDICION
+                txtCostoDMAT.Text = N_FTPRESUPUESTO_COSTOMAT;   
+                txtCostoDMOB.Text = N_FTPRESUPUESTO_COSTOMOB;   
+                txtCostoDSER.Text = N_FTPRESUPUESTO_COSTOSER;
+                txtCostoIND.Text = N_FTPRESUPUESTO_COSTOIND;
+                txtfechaCP.Text = DT_FTPRESUPUESTO_FECHA;
+
+                //Dictionary<string, string> RowSelectd = EasyGridColaboradores.getDataItemSelected();
+
+
+                // En el code-behind (GenerarProyecto.aspx.cs), por ejemplo al final del handler:
+                hfCollapseOne2Open.Value = "true";
+
+                // Y, si el postback es parcial dentro de UpdatePanel, inyecta re-apertura explícita:
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "keepCollapseOne2Open",
+                    "$('#collapseOne2').collapse('show'); $('[data-target=\"#collapseOne2\"]').attr('aria-expanded','true');",
+                    true
+                );
+
+                txtCostoDMAT.Focus();  
+
+            }
+            catch (Exception ex)
+            {
+
+                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                result = result.Replace("'", "");
+                string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                this.LanzarException(methodName, ex); // error para el log
+                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
+            }
+        }
 
         protected void btnCerrarPopup_Click(object sender, EventArgs e)
         {
@@ -1210,7 +1265,82 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         {
 
         }
+        protected void btnCostos_Click(object sender, EventArgs e)
+        {
+            string ip = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
 
+            if (string.IsNullOrEmpty(ip))
+            {
+                ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+
+                try
+                {
+                    IPHostEntry hostEntry = Dns.GetHostEntry(ip);
+                    ip = hostEntry.HostName;
+
+                    if (ip.Contains("."))
+                    {
+                        ip = ip.Split('.')[0];
+                    }
+                }
+                catch
+                {
+                    // Si falla la resolución de DNS, se utiliza la IP
+                }
+            }
+
+            string fecha = txtfechaCP.Text.Trim();
+
+            string sauditoria =
+                (string.IsNullOrEmpty(fecha) ? "" : fecha + " - ") +
+                "Inserta Presupuesto de proyecto - ficha técnica - btnCostos_Click " +
+                DateTime.Now;
+
+
+            string s_accion = ViewState["accionP"] as string ?? "1";
+
+
+            string result = oProyectos.InsUpdDel_ProyectoPresupuesto(s_accion, txtCodProyecto.Text , eDDLCentros.SelectedValue, txtCostoDMOB.Text, txtCostoDMAT.Text, txtCostoDSER.Text, txtCostoIND.Text,
+                this.UsuarioLogin, ip, sauditoria);
+
+            if (result != null)
+            {
+                if (result != "result")
+                {
+                    string scriptSuccess = $"Swal.fire('Éxito', 'Costos Registrados: {result}', 'success');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertSuccess", scriptSuccess, true);
+                    CargarModoModificar(); // luego de registrar nuevo debe cargarse el modo de modificar para evitar duplicidad
+
+                }
+                else
+                {
+                    string scriptSuccess = $"Swal.fire('Éxito', 'Costos No registrados: {result}', 'success');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertSuccess", scriptSuccess, true);
+                }
+
+            }
+            else
+            {
+                string scriptSuccess = $"Swal.fire('Éxito', 'Costos No registrados: {result}', 'success');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertSuccess", scriptSuccess, true);
+            }
+
+            EGVPresupuesto.LoadData("");
+
+            // En el code-behind (GenerarProyecto.aspx.cs), por ejemplo al final del handler:
+            hfCollapseOne2Open.Value = "true";
+
+            // Y, si el postback es parcial dentro de UpdatePanel, inyecta re-apertura explícita:
+            ScriptManager.RegisterStartupScript(
+                this,
+                this.GetType(),
+                "keepCollapseOne2Open",
+                "$('#collapseOne2').collapse('show'); $('[data-target=\"#collapseOne2\"]').attr('aria-expanded','true');",
+                true
+            );
+
+            txtCostoDMAT.Focus();
+        }
         protected void btnDocumentos_Click(object sender, EventArgs e)
         {
 

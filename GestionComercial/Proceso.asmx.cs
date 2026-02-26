@@ -534,8 +534,7 @@ namespace SIMANET_W22R.GestionComercial
             try
             {
                 // Llamar al método y obtener el XML como string
-                string xmlData = (new ProyectoSoapClient()).ListarProyectos(V_CEO, V_UND_OPER, V_LINEA, V_FILTRO,
-                    V_FECHAINI, V_FECHAFIN);
+                string xmlData = (new ProyectoSoapClient()).ListarProyectos(V_CEO, V_UND_OPER, V_LINEA, V_FILTRO, V_FECHAINI, V_FECHAFIN);
 
 
                 // Crear un DataSet y cargar el XML

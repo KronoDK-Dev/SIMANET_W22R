@@ -788,8 +788,16 @@ namespace SIMANET_W22R.GestionProduccion.Mob
         public DataTable Listar_Lista_mob_pago2(string V_rol, string V_tiphex, string V_CentroCostoDesde, string V_CentroCostoHasta, string UserName)
         {
             ProduccionSoapClient oPD = new ProduccionSoapClient();
+            DataTable dtError = new DataTable("SP_Lista_mob_pago");
 
-            if (V_tiphex == "-1")
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal
+            dtError.TableName = "SP_Lista_mob_pago";
+            dtError.Columns.Add("ROL", typeof(string));
+            dtError.Columns.Add("CentroCostos", typeof(string));
+            try
+            {
+
+                if (V_tiphex == "-1")
             { V_tiphex = ""; }
 
 
@@ -803,10 +811,60 @@ namespace SIMANET_W22R.GestionProduccion.Mob
                 ds.ReadXml(sr);
             }
 
-            // Extraer el DataTable del DataSet
-            DataTable dt = ds.Tables["SP_Lista_mob_pago"];
-
-            return dt;
+                if (ds!= null)
+                { 
+                     // Extraer el DataTable del DataSet
+                      dt = ds.Tables["SP_Lista_mob_pago"];
+                }
+                //  return dt;
+                if (dt != null)  // valida vacio
+                {
+                    dt.TableName = "SP_Lista_mob_pago";
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "SP_Lista_mob_pago";
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["CentroCostos"] = "No existen registros para los parámetros consultados: " + V_rol + " " + V_CentroCostoDesde + V_CentroCostoHasta + " " + V_tiphex;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["CentroCostos"] = "No existen registros para los parámetros consultados: " + V_rol + " " + V_CentroCostoDesde + V_CentroCostoHasta + " " + V_tiphex;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["CentroCostos"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oPD != null)
+                {
+                    try
+                    {
+                        if (oPD.State != System.ServiceModel.CommunicationState.Faulted)
+                            oPD.Close();
+                        else
+                            oPD.Abort();
+                    }
+                    catch
+                    { oPD.Abort(); }
+                }
+            }
         }
 
         //*******************
@@ -814,18 +872,154 @@ namespace SIMANET_W22R.GestionProduccion.Mob
         public DataTable Listar_Res_Lista_mob_pago(string V_tiphex, string UserName)
         {
             ProduccionSoapClient oPD = new ProduccionSoapClient();
-            dt = oPD.Listar_Res_Lista_mob_pago(V_tiphex, UserName);
-            dt.TableName = "SP_Res_Lista_mob_pago";
-            return dt;
+            DataTable dtError = new DataTable("SP_Res_Lista_mob_pago");
+           
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal
+            dtError.TableName = "SP_Res_Lista_mob_pago";
+            //dtError.Columns.Add("COD_PRY", typeof(string));
+            dtError.Columns.Add("ULTIMO_MES_CIERRE", typeof(string));
+            try
+            {
+                // -----validamos datos Obligatorios ----
+                if (V_tiphex == "-1")
+                {
+                    V_tiphex = "";
+                }
+
+                
+                dt = oPD.Listar_Res_Lista_mob_pago(V_tiphex, UserName);
+                //dt.TableName = "SP_Res_Lista_mob_pago";
+                // return dt;
+                if (dt != null)  // valida vacio
+                {
+                    
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "SP_Res_Lista_mob_pago";
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["ULTIMO_MES_CIERRE"] = "No existen registros para los parámetros consultados: " + V_tiphex;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["ULTIMO_MES_CIERRE"] = "No existen registros para los parámetros consultados: " + V_tiphex;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["ULTIMO_MES_CIERRE"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oPD != null)
+                {
+                    try
+                    {
+                        if (oPD.State != System.ServiceModel.CommunicationState.Faulted)
+                            oPD.Close();
+                        else
+                            oPD.Abort();
+                    }
+                    catch
+                    { oPD.Abort(); }
+                }
+            }
         }
 
         [WebMethod]
         public DataTable Listar_mob(string D_AÑO, string D_MESINI, string D_MESFIN, string UserName)
         {
             ProduccionSoapClient oPD = new ProduccionSoapClient();
-            dt = oPD.Listar_mob(D_AÑO, D_MESINI, D_MESFIN, UserName);
-            dt.TableName = "SP_mob";
-            return dt;
+            DataTable dtError = new DataTable("SP_mob");
+    
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal / /4_MOB.rpt
+            dtError.TableName = "SP_mob";
+            dtError.Columns.Add("NOMBRE TRABAJADOR", typeof(string));
+            try
+            {
+
+                // -----validamos datos Obligatorios ----
+                if (D_AÑO == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["Detalle  :"] = "Debe ingressr el año, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (D_MESINI=="" || D_MESINI == "-1")
+                {
+                    D_MESINI = "01";
+                }
+                if (D_MESFIN == "" || D_MESFIN == "-1")
+                {
+                    D_MESFIN = DateTime.Now.Month.ToString("00"); 
+                }
+
+                dt = oPD.Listar_mob(D_AÑO, D_MESINI, D_MESFIN, UserName);
+            //dt.TableName = "SP_mob";
+               
+                if (dt != null)  // valida vacio
+                {
+                    dt.TableName = "SP_mob";
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "SP_mob";
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["NOMBRE TRABAJADOR"] = "No existen registros para los parámetros consultados: " + D_AÑO + " " + D_MESINI  + " " + D_MESFIN;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["NOMBRE TRABAJADOR"] = "No existen registros para los parámetros consultados: " + D_AÑO + " " + D_MESINI  + " " + D_MESFIN;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["NOMBRE TRABAJADOR"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oPD != null)
+                {
+                    try
+                    {
+                        if (oPD.State != System.ServiceModel.CommunicationState.Faulted)
+                            oPD.Close();
+                        else
+                            oPD.Abort();
+                    }
+                    catch
+                    { oPD.Abort(); }
+                }
+            }
         }
 
         [WebMethod]
@@ -921,13 +1115,112 @@ namespace SIMANET_W22R.GestionProduccion.Mob
 
         }
         [WebMethod]
-        public DataTable Listar_detalle_mob(string V_CO, string V_DIVISION, string V_OT, string d_fechaini,
-            string d_fecha_fin, string UserName)
+        public DataTable Listar_detalle_mob(string V_CO, string V_DIVISION, string V_OT, string d_fechaini, string d_fecha_fin, string UserName)
         {
             ProduccionSoapClient oPD = new ProduccionSoapClient();
-            dt = oPD.Listar_detalle_mob(V_CO, V_DIVISION, V_OT, d_fechaini, d_fecha_fin, UserName);
-            dt.TableName = "SP_detalle_mob";
-            return dt;
+            DataTable dtError = new DataTable("SP_detalle_mob");
+            DateTime fechaIni, fechaFin;
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal
+            dtError.TableName = "SP_detalle_mob";
+            //dtError.Columns.Add("COD_RCS", typeof(string));
+            dtError.Columns.Add("ATV", typeof(string));
+            try
+            {
+                // -----validamos datos Obligatorios ----
+                if (V_CO == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["ATV"] = "Seleccione el Centro Operativo, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_DIVISION == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["ATV"] = "Seleccione la Linea de Negocio, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (string.IsNullOrWhiteSpace(d_fechaini))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["ATV"] = "La fecha inicial es obligatoria.";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (!DateTime.TryParseExact(d_fechaini, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaIni))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["ATV"] = "La fecha inicial no tiene un formato válido. Formato correcto: dd/MM/yyyy";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (string.IsNullOrWhiteSpace(d_fecha_fin))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["ATV"] = "La fecha inicial es obligatoria.";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (!DateTime.TryParseExact(d_fecha_fin, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaIni))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["ATV"] = "La fecha Final no tiene un formato válido. Formato correcto: dd/MM/yyyy";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+
+                dt = oPD.Listar_detalle_mob(V_CO, V_DIVISION, V_OT, d_fechaini, d_fecha_fin, UserName);
+                // dt.TableName = "SP_detalle_mob";
+                // return dt;
+                if (dt != null)  // valida vacio
+                {
+                    dt.TableName = "SP_detalle_mob";
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "SP_detalle_mob";
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["ATV"] = "No existen registros para los parámetros consultados: " + V_CO + " " + V_DIVISION + " " + d_fechaini + " " + d_fecha_fin;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["ATV"] = "No existen registros para los parámetros consultados: " + V_CO + " " + V_DIVISION + " " + d_fechaini + " " + d_fecha_fin;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["ATV"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oPD != null)
+                {
+                    try
+                    {
+                        if (oPD.State != System.ServiceModel.CommunicationState.Faulted)
+                            oPD.Close();
+                        else
+                            oPD.Abort();
+                    }
+                    catch
+                    { oPD.Abort(); }
+                }
+            }
         }
 
         [WebMethod]

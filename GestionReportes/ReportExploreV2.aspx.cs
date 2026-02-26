@@ -1,4 +1,7 @@
 ﻿using Aspose.Cells;
+//using NPOI.SS.Formula.Functions;
+using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 using EasyControlWeb;
 using EasyControlWeb.Filtro;
 using EasyControlWeb.Form;
@@ -7,8 +10,6 @@ using EasyControlWeb.InterConeccion;
 using EasyControlWeb.InterConecion;
 //using Grpc.Core;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
-//using NPOI.SS.Formula.Functions;
-using ClosedXML.Excel;
 using OfficeOpenXml;
 using OfficeOpenXml.Table;
 using SIMANET_W22R.Controles;
@@ -72,8 +73,8 @@ namespace SIMANET_W22R.GestionReportes
         {
             try
             {
-                Header.RegistrarLibs(Page.Header, Header.TipoLib.Style, this.StyleBase, true);
-                Header.RegistrarLibs(Page.Header, Header.TipoLib.Script, this.ScriptBase, true);
+                Header.RegistrarLibs(Page.Header, SIMANET_W22R.Controles.Header.TipoLib.Style, this.StyleBase, true);
+                Header.RegistrarLibs(Page.Header, SIMANET_W22R.Controles.Header.TipoLib.Script, this.ScriptBase, true);
                 LlenarJScript();
             }
             catch (SIMAExceptionSeguridadAccesoForms ex)
@@ -785,14 +786,25 @@ namespace SIMANET_W22R.GestionReportes
                                         }
                                         else
                                         {
+
+                                                row[col] = CadenaIncluyeHora(fechaValor, fecha) ? fecha : fecha.Date;
+                                                /*
                                                 if (fechaValor.Contains(":"))
                                                 {
-                                                    row[col] = fecha;
+
+                                                    // row[col] = fecha;
+
+                                                    if (CadenaIncluyeHora(fechaValor,fecha))
+                                                        row[col] = fecha.ToString("dd/MM/yyyy HH:mm:ss");
+                                                    else
+                                                        row[col] = fecha;
+
                                                 }
                                                 else
                                                 {
                                                     row[col] = fecha.ToString("dd/MM/yyyy");
                                                 }
+                                                */
                                         }
                                     }
                                 }
@@ -831,24 +843,35 @@ namespace SIMANET_W22R.GestionReportes
                         my_dataTableDepurado.AcceptChanges();
 
                         // Insertar tabla en Excel
-                        worksheet.Cells["A1"].LoadFromDataTable(my_dataTableDepurado, true, TableStyles.Medium9);
+                        worksheet.Cells["A1"].LoadFromDataTable(my_dataTableDepurado, true, OfficeOpenXml.Table.TableStyles.Medium9);
+
+
+                            // formato para fechas
+                            foreach (var col in columnasFecha)
+                            {
+                                var i = my_dataTableDepurado.Columns[col]?.Ordinal ?? -1;
+                                if (i >= 0) worksheet.Column(i + 1).Style.Numberformat.Format = "dd/mm/yyyy";
+                            }
                     }
                     else
                     {
-                        worksheet.Cells["A1"].LoadFromDataTable(my_dataTable, true, TableStyles.Medium9);
+                        worksheet.Cells["A1"].LoadFromDataTable(my_dataTable, true, OfficeOpenXml.Table.TableStyles.Medium9);
                     }
-                }
+
+                       
+
+                    }
                 else
                 {
                     for (int i = 1; i <= iHojas; i++)
                     {
                         var worksheet = package.Workbook.Worksheets.Add(vHoja + iHojas);
-                        worksheet.Cells["A1"].LoadFromDataTable(ds.Tables[i - 1], true, TableStyles.Medium9);
+                        worksheet.Cells["A1"].LoadFromDataTable(ds.Tables[i - 1], true, OfficeOpenXml.Table.TableStyles.Medium9);
                     }
                 }
-
-                // Descargar archivo
-                Response.Clear();
+                    
+                    // Descargar archivo
+                    Response.Clear();
                 Response.Buffer = true;
                 Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 Response.AddHeader("content-disposition", "attachment;filename=RpExcel_" + sfecha + ".xlsx");
@@ -900,7 +923,25 @@ namespace SIMANET_W22R.GestionReportes
             }
     }
 
-    private void FormatNumericCells(IXLWorksheet worksheet)
+        private static bool CadenaIncluyeHora(string fechaTexto, DateTime fechaParseada)
+        {
+            if (string.IsNullOrWhiteSpace(fechaTexto)) return false;
+
+            // Si NO aparece un patrón HH:mm o HH:mm:ss en el texto original, NO incluye hora
+            bool contieneFormatoHora = System.Text.RegularExpressions.Regex.IsMatch(
+                fechaTexto, @"\b\d{1,2}:\d{2}(:\d{2})?\b");
+
+            if (!contieneFormatoHora)
+                return false;
+
+            // Si la hora es EXACTAMENTE 00:00:00, entonces NO incluye hora útil
+            if (fechaParseada.TimeOfDay == TimeSpan.Zero)
+                return false;
+
+            return true;
+        }
+
+        private void FormatNumericCells(IXLWorksheet worksheet)
         {
             // Iterar sobre cada celda en la hoja de cálculo
             foreach (var cell in worksheet.CellsUsed())

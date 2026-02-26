@@ -31,5 +31,15 @@ namespace SIMANET_W22R.GestionProyecto
             dtResultados = oProyectos.Buscar_Colaborador_xCod("1", v_descripcion);
             return dtResultados;
         }
+
+        [WebMethod(Description = "Lista Presupuesto del Proyecto")]
+        public DataTable Get_ProyectoPresupuesto(string s_Sucursal, string s_proyecto,string UserName)
+        {
+            // faaltaria capturar el centro opertivo del usuario logeado
+            dtResultados = oProyectos.Get_ProyectoPresupuesto(s_proyecto,s_Sucursal, UserName);
+            return dtResultados;
+        }
+        
+
     }
 }
