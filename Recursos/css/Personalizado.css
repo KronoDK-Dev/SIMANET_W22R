@@ -485,10 +485,22 @@ select.input-control {
     }
 
 /* B1) Bloquea scroll del body */
+/*
 html, body {
     height: 100%;
-    overflow: hidden; /* ← sin scroll en la página */
+    overflow: hidden;  ← sin scroll en la página 
 }
+*/
+ 
+  /* Habilita scroll vertical SOLO cuando se use esta clase */
+    body.enable-scroll {
+        overflow-y: auto !important;
+        height: auto !important;
+    }
+    html.enable-scroll {
+        overflow-y: auto !important;
+        height: auto !important;
+    }
 
 /* B2) El panel principal maneja TODO el scroll */
 .MainContent, .GridLayout, .PanelQueEnvuelveLaGrilla {
