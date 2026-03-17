@@ -13,18 +13,18 @@
         function onNroDocSeleccionado(value, ItemBE) {
 
            if (DefaultContratista.ValidaVigencia()) {
-                if (ItemBE.ExisteEnProg == "SI") {
+               if (ItemBE.ExisteEnProg == "SI") {
                     DefaultContratista.Data.TrabajadorProgDetalle(ItemBE.NroDNI).Rows.forEach(function (dr,r) {
                         DefaultContratista.MensajeInProg(dr);
                     });
                 }
                 else {
-                    //cuando no esta programado
-                    DefaultContratista.Data.RegistrarTrabajador();
+                   //cuando no esta programado
+                   DefaultContratista.Data.RegistrarTrabajador(acTrabajador.GetValue());
+                   EasyTabBase.RefreshTabSelect();
                 }
             }
-            DefaultContratista.ListarTrabajadores()
-
+           
         }
 
 
@@ -47,28 +47,29 @@
 
         }
 
+        function Tab_OnRefresh(State) {
+            switch (State){
+                case 'Ini':
+                    EasyPopupTrabEqui.ProgressBar.Show('Cargando Trabajadores..');
+                    break
+                case 'Fin':                   
+                    EasyPopupTrabEqui.ProgressBar.Hide();
+                    break;
+            }
+        }
         function TabOnClick(oTab) {
             var idTab = oTab.attr('id').Replace("EasyTabBase_", "");
             switch (idTab) {
                 case "TabDet_1":
-                    Manager.Task.Excecute(function () {
-                        try {
-                         //alert(oTab.attr('Loading'))
-
-                            DefaultContratista.ListarTrabajadores();
-                        }
-                        catch (ex) {
-                            //  alert(ex);
-                        }
-                    }, 1500, true);
+                    break;
+                case "TabDet_2":
                     break;
             }
         }
-
+        var PopupCalenadrio = null;
         function OnEasyToolbarButton_Click(btnItem, DetalleBE) {
             switch (btnItem.Id) {
                 case "dblCalendar":
-                    //DefaultContratista.ListaTrabajadorEnFeriado();
                     var lstDNI = '';
                     var i = 0;
                     grvTrabajadores.querySelector('chkFeriado', function (ctrl) {
@@ -88,10 +89,8 @@
                         + SIMA.Utilitario.Constantes.Caracter.Amperson + DefaultContratista.KEYQFECHAFIN + SIMA.Utilitario.Constantes.Caracter.Igual + DefaultContratista.Params[DefaultContratista.KEYQFECHAFIN].toString().substring(0, 10)
                         + SIMA.Utilitario.Constantes.Caracter.Amperson + DefaultContratista.KEYQLSTDNI + SIMA.Utilitario.Constantes.Caracter.Igual + lstDNI;
 
-                   
-
-                    var popup = window.open(URLPag, 'PopupWindow','width=800,height=600,toolbar=no,menubar=no,resizable=no,scrollbars=no');
-                    if (!popup) {
+                    PopupCalenadrio = window.open(URLPag, '_blank','width=900,height=600,toolbar=no,menubar=no,resizable=no,scrollbars=no,top=100,left=100');
+                    if (!PopupCalenadrio) {
                         alert("Popup blocked! Please allow popups for this site.");
                     }
 
@@ -104,76 +103,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <cc1:EasyTabControl ID="EasyTabBase" fncTabOnClick="TabOnClick" runat="server"></cc1:EasyTabControl>
-
-        <table style="width:100%;visibility:visibility" id="tblTrabajador" >
-            <tr>
-                <td class="Etiqueta">
-                    NRO DOCUMENTO:
-                </td>
-                <td style="width:20%">
-                    <cc1:EasyAutocompletar ID="acTrabajador" runat="server"  NroCarIni="8"  DisplayText="NroDNI" ValueField="NroDNI"  fnOnSelected="onNroDocSeleccionado" fncTempaleCustom="onDisplayTemplateTrabajador" required>
-                        <EasyStyle Ancho="Dos"></EasyStyle>
-                            <DataInterconect MetodoConexion="WebServiceExterno">
-                                 <UrlWebService>/SIMANET/SeguridadPlanta/Contratista.asmx</UrlWebService>
-                                 <Metodo>BuscarTrabajaor</Metodo>
-                                 <UrlWebServicieParams>
-                                     <cc2:EasyFiltroParamURLws  ParamName="FechaProgIni" Paramvalue="DefaultContratista.FechaProgInicio()" ObtenerValor="FunctionScript" />
-                                     <cc2:EasyFiltroParamURLws  ParamName="FechaProgFin" Paramvalue="DefaultContratista.FechaProgFin()" ObtenerValor="FunctionScript" />
-                                     <cc2:EasyFiltroParamURLws  ParamName="UserName" Paramvalue="UserName" ObtenerValor="Session" />
-                                 </UrlWebServicieParams>
-                             </DataInterconect>
-                    </cc1:EasyAutocompletar>
-                </td>
-                <td>
-                    <img id="ibtnAdd" runat="server"/>
-                </td>
-                <td style="width:50%">
-
-                </td>
-                <td style="width:10%">
-                    <cc1:EasyToolBarButtons ID="tbCalendario" runat="server">
-                        <EasyButtons>
-                            <cc1:EasyButton ID="dblCalendar" Descripcion="" Icono="fa fa-calendar" RunAtServer="False" Texto="Feriados" Ubicacion="Derecha" />
-                        </EasyButtons>
-                    </cc1:EasyToolBarButtons>
-                </td>
-            </tr>
-            <tr>
-                <td id="ContentTrab" colspan="5" style="width:100%">
-
-                </td>
-            </tr>
-        </table>
-
-        <table style="width:100%;visibility:hidden" border="0" id="tblEquipos">
-            <tr>
-                <td style="width:10%" class="Etiqueta">
-                    CODIGO:
-                </td>
-                <td style="width:10%">
-                    <cc1:EasyTextBox ID="txtCodigo" runat="server"></cc1:EasyTextBox>
-                </td>               
-                <td class="Etiqueta">CANTIDAD</td>
-                <td style="width:10%"><cc1:EasyTextBox ID="txtCant" runat="server"> </cc1:EasyTextBox></td>
-                <td class="Etiqueta">TIPO</td>
-                <td style="width:50%"> <cc1:EasyDropdownList ID="ddlTipo" runat="server"></cc1:EasyDropdownList></td>
-                <td style="width:50%"></td>
-            </tr>
-            <tr>
-                <td class="Etiqueta"  colspan="7">DESCRIPCION:</td>
-            </tr>
-            <tr>
-                <td colspan="7"><cc1:EasyTextBox ID="txtDescripcion"  TextMode="MultiLine" Height="80px"  runat="server"></cc1:EasyTextBox></td>
-            </tr>
-        </table>
+        <cc1:EasyTabControl ID="EasyTabBase" fncTabOnClick="TabOnClick" LoadSilent="true" fncTabOnRefresh="Tab_OnRefresh" runat="server"></cc1:EasyTabControl>
     </form>
 
     <script>
-        DefaultContratista.Trabajador = function () {
-            
-        }
-
         DefaultContratista.Detalle = function () {
             alert();
         }
@@ -235,18 +168,17 @@
 
 
         DefaultContratista.MensajeInProg = function (TrabajadorProgBE) {
-
             var ConfigMsgb = {
                 Titulo: 'SOLICITUD'
                 , Descripcion: DefaultContratista.ItemplateSolicitud(TrabajadorProgBE)
                 , Icono: 'fa fa-tag'
                 , EventHandle: function (btn) {
                     if (btn == 'OK') {
-                        DefaultContratista.Data.RegistrarTrabajador();
-
-                        /*Manager.Task.Excecute(function () {
-                            AdminstrarUsuariosFirmantes.EnviarEmailSolicitudAprobacion(tPlazo);
-                        }, 1000);*/
+                        DefaultContratista.Data.RegistrarTrabajador(TrabajadorProgBE.NroDocDni);
+                        EasyTabBase.RefreshTabSelect();
+                    }
+                    else {
+                        acTrabajador.SetValue('', '');
                     }
                 }
             };
@@ -266,17 +198,17 @@
                 + '     <td colspan=2 align="center"><img width="120px" class="' + FotoClassName + '" src="' + FotoPersona + '" onerror = "this.onerror=null;this.src=SIMA.Utilitario.Constantes.ImgDataURL.ImgSF;" /></td>'
                 + '</tr>'
                 + '<tr>'
-                + '     <td align="center" style="font-size: 14px;"><br>Trabajador se encuentra programado por el usuario:<span style="color:navy;font-size: 16px;">' + oTrabajadorProgBE.ApellidosyNombres + '</span></td>'
+                + '     <td align="center" style="font-size: 14px;"><br>Trabajador se encuentra en la programado del usuario:<span style="color:navy;font-size: 16px;">' + oTrabajadorProgBE.ApellidosyNombres + '</span></td>'
                 + '</tr>'
                 + '<tr>'
-                + '     <td style="font-size: 14px;">de todas maneras, Desea incluir a: <span  style="color:red;font-size: 16px;">' + oTrabajadorProgBE.NombreTrabajador + '</span> con el Nro de Documento: <span style="color:red;font-size: 16px;">' + oTrabajadorProgBE.NroDNI + '</span> en su programación ahora?</td>'
+                + '     <td style="font-size: 14px;">Deseas incluir a: <span  style="color:red;font-size: 16px;">' + oTrabajadorProgBE.NombreTrabajador + '</span> con el Nro de Documento: <span style="color:red;font-size: 16px;">' + oTrabajadorProgBE.NroDNI + '</span> en tu programación ahora?</td>'
                 + '</tr>'
                 + '</table>';
             return MsgTemplate;
         }
 
 
-        DefaultContratista.Data.RegistrarTrabajador = function () {
+        DefaultContratista.Data.RegistrarTrabajador = function (NroDocumento) {
             var oParamCollections = new SIMA.ParamCollections();
                 var oParam = new SIMA.Param("Periodo", DefaultContratista.Params[DefaultContratista.KEYQAÑO], TipodeDato.Int);
                 oParamCollections.Add(oParam);
@@ -284,7 +216,7 @@
                 oParam = new SIMA.Param("IdProgramacion", DefaultContratista.Params[DefaultContratista.KEYQIDPROGRAMACION], TipodeDato.Int);
                 oParamCollections.Add(oParam);
 
-                oParam = new SIMA.Param("NroDNI", acTrabajador.GetValue());
+            oParam = new SIMA.Param("NroDNI", NroDocumento );
                 oParamCollections.Add(oParam);
 
                 oParam = new SIMA.Param("FechaInicio", DefaultContratista.Params[DefaultContratista.KEYQFECHAINI]);
@@ -319,50 +251,32 @@
 
             var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
             var ResultBE = oEasyDataResult.sendData();
-
         }
 
-
-        DefaultContratista.ListarTrabajadores = function () {
+        DefaultContratista.ListarEquipos = function () {
 
             EasyPopupTrabEqui.ProgressBar.Show('Cargando Trabajadores..');
 
-            var urlPag = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/ListaTrabajadores.aspx";
+            var urlPag = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/ListarEquipos.aspx";
             var oColletionParams = new SIMA.ParamCollections();
 
             var oParam = new SIMA.Param(DefaultContratista.KEYQAÑO, DefaultContratista.Params[DefaultContratista.KEYQAÑO]);
             oColletionParams.Add(oParam);
 
-            oParam = new SIMA.Param(DefaultContratista.KEYQIDPROGRAMACION,DefaultContratista.Params[DefaultContratista.KEYQIDPROGRAMACION]);
+            oParam = new SIMA.Param(DefaultContratista.KEYQIDPROGRAMACION, DefaultContratista.Params[DefaultContratista.KEYQIDPROGRAMACION]);
             oColletionParams.Add(oParam);
 
-           
             var oLoadConfig = {
-                CtrlName: "ContentTrab",
+                CtrlName: "ContentEqui",
                 UrlPage: urlPag,
                 ColletionParams: oColletionParams,
                 fnOnComplete: function () {
                     EasyPopupTrabEqui.ProgressBar.Hide();
+                    jNet.get('ContentEqui').attr("Load", "1");
                 }
             };
 
-
             SIMA.Utilitario.Helper.LoadPageInCtrl(oLoadConfig);
-        }
-
-
-        //Trabajadores em feriados
-        DefaultContratista.ListaTrabajadorEnFeriado = function () {
-
-            var Url = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/ListaTrabajadorEnFeriado.aspx";
-            var oColletionParams = new SIMA.ParamCollections();
-            var oParam = new SIMA.Param(DefaultContratista.KEYQIDPROGRAMACION, DefaultContratista.Params[DefaultContratista.KEYQIDPROGRAMACION]);
-            oColletionParams.Add(oParam);
-
-            oParam = new SIMA.Param(DefaultContratista.KEYQAÑO, DefaultContratista.Params[DefaultContratista.KEYQAÑO]);
-            oColletionParams.Add(oParam);
-
-            EasyPopupFeriado.Load(Url, oColletionParams, false);
         }
     </script>
 </body>

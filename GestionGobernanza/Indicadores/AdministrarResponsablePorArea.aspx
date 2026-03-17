@@ -46,9 +46,10 @@
 
 
 
-
+          var oAreaSelectedBE = null;
           //Evento para El control Autocmpletar    
           function onItemSeleccionado(value, ItemBE) {
+              oAreaSelectedBE = ItemBE;
               AdministrarResponsablePorArea.ListarResponsables();
           }
 
@@ -61,7 +62,7 @@
           }
 
 
-
+          
           function onItemPersonalSeleccionado(value, ItemBE) {
               if (ItemBE.EXISTE != '0') {
                   var msgConfig = { Titulo: "AGREGAR RESPONSABLE", Descripcion: 'No es posible completar esta acción </br>el registro de responsable que desea agregar ya existe' };
@@ -129,7 +130,7 @@
                                  AREA:
                              </td>
                              <td  style="width:90%;">
-                                  <cc1:EasyAutocompletar ID="aucArea" runat="server"  NroCarIni="4"  DisplayText="NOMBRE_AREA" ValueField="IDAREA" fnOnSelected="onItemSeleccionado" fncTempaleCustom="onDisplayTemplateArea">
+                                  <cc1:EasyAutocompletar ID="aucArea" runat="server"  NroCarIni="4"  DisplayText="NOMBRE_AREA" ValueField="COD_AREA" fnOnSelected="onItemSeleccionado" fncTempaleCustom="onDisplayTemplateArea">
                                      <EasyStyle Ancho="Dos"></EasyStyle>
                                          <DataInterconect MetodoConexion="WebServiceExterno">
                                              <UrlWebService>/GestionGobernanza/Indicadores.asmx</UrlWebService>
@@ -178,19 +179,26 @@
     <script>
         AdministrarResponsablePorArea.GuardarDatos = function (ItemReponSeleccionadoBE) {
 
-           
-
             var oParamCollections = new SIMA.ParamCollections();
-            var oParam = new SIMA.Param("IdItem", ItemReponSeleccionadoBE.IDITEM);
+            var oParam = new SIMA.Param("IdItem", 0, TipodeDato.Int);
             oParamCollections.Add(oParam);
-            oParam = new SIMA.Param("CodArea", aucArea.GetValue());
+
+            oParam = new SIMA.Param("CodArea", aucArea.GetValue());//idarea dela tabla indicador area
             oParamCollections.Add(oParam);
-            oParam = new SIMA.Param("CodEmp", ItemReponSeleccionadoBE.CODEMP);
+
+            oParam = new SIMA.Param("CodEmp", oAreaSelectedBE.COD_EMP);
             oParamCollections.Add(oParam);
-            oParam = new SIMA.Param("CodCeo", ItemReponSeleccionadoBE.CODCEO);
+
+
+            oParam = new SIMA.Param("CodSuc", oAreaSelectedBE.COD_SUC);
             oParamCollections.Add(oParam);
+
             oParam = new SIMA.Param("IdUsuarioRepon", ItemReponSeleccionadoBE.IDUSUARIO);
             oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("IdUsuario", UsuarioBE.IdUsuario, TipodeDato.Int);
+            oParamCollections.Add(oParam);
+
             oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
             oParamCollections.Add(oParam);
 
@@ -203,7 +211,7 @@
             var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
             var ResultBE = oEasyDataResult.sendData();
 
-            return true;
+            return true; 
         }
 
 
@@ -259,7 +267,7 @@
             var ResultBE = oEasyDataResult.sendData();
         }
     </script>
-        <asp:HyperLink ID="HyperLink1"  style="display:block" runat="server" NavigateUrl="~/SIMANET/SeguridadPlanta/AdministrarProgramacionContratista.aspx">HyperLink</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1"  style="display:none" runat="server" NavigateUrl="~/SIMANET/SeguridadPlanta/AdministrarProgramacionContratista.aspx">HyperLink</asp:HyperLink>
        
     </form>
 

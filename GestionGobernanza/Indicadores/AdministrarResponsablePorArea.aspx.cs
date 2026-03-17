@@ -21,7 +21,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
             {
                 int i = 0;
             }
-        }
+        } 
 
         public void ConfigurarAccesoControles()
         {

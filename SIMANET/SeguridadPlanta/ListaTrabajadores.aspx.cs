@@ -1,6 +1,7 @@
 ﻿using EasyControlWeb;
 using EasyControlWeb.Filtro;
 using EasyControlWeb.InterConeccion;
+using SIMANET_W22R.ClasesExtendidas;
 using SIMANET_W22R.InterfaceUI;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
                 if (!Page.IsPostBack)
                 {
+                    this.LlenarJScript();
                     this.LlenarGrilla();
                 }
             }
@@ -138,7 +140,12 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
         public void LlenarJScript()
         {
-            throw new NotImplementedException();
+            this.ibtnAdd.Src = EasyUtilitario.Constantes.ImgDataURL.NewItem;
+            //this.ibtnAdd.Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()] = "DefaultContratista.Trabajador(this)";
+            this.ibtnAdd.Attributes["style"] = "cursor:pointer";
+            this.ibtnAdd.Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()] = "ListaTrabajadores.CrearRegTrabajador();";
+
+            acTrabajador.DataInterconect.UrlWebService = this.PathNetCore + "SIMANET/SeguridadPlanta/Contratista.asmx";
         }
 
         public void RegistrarJScript()
@@ -209,6 +216,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                     if (dr["IdEstado"].ToString().Equals("3"))//NO esta activo en esta programacion 
                     {
                         tblAutiriza.Rows[0].Cells[0].Style.Add("text-decoration", "line-through");
+                        
                     }
 
                     //crear el ctrl Chk
@@ -223,6 +231,14 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                     
                     e.Row.Cells[1].Controls.Add(tblAutiriza);
 
+                    if (dr["AutorizadoFeriado"].ToString() == "1")
+                    {
+                        // e.Row.Cells[2].Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()] = "ListaTrabajadores.ListadoAutorizadoPorTrabajador()";
+                        // establecer stylo de subrayado
+                        e.Row.Cells[2].Style.Add("text-decoration", "underline");
+                        e.Row.Cells[2].Style.Add("cursor", "pointer");
+
+                    }
 
 
 

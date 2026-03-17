@@ -230,6 +230,8 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 if (e.Day.Date.Day != DateTime.Now.Day)
                 {
                     e.Cell.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFFC0");
+                    e.Cell.ForeColor= System.Drawing.ColorTranslator.FromHtml("#286090");
+                    e.Cell.Font.Size = 10;
                 }
                 else
                 {

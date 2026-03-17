@@ -80,7 +80,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
             odi.Metodo = "ListarObjetivosoAcciones";
 
             EasyFiltroParamURLws oParam = new EasyFiltroParamURLws();
-            oParam.ParamName = "IdTblObjetivo";
+            oParam.ParamName = "IdTblObjetivo"; 
             oParam.Paramvalue = IdTabla.ToString();
             oParam.TipodeDato = TiposdeDatos.Int;
             oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;

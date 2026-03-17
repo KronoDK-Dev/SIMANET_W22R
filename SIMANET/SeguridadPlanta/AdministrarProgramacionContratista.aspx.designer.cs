@@ -69,12 +69,39 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupTrabEqui;
 
         /// <summary>
-        /// Control EasyPopupFeriado.
+        /// Control EasyPopupEquipoDet.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupFeriado;
+        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupEquipoDet;
+
+        /// <summary>
+        /// Control EasyPopupTrabajador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupTrabajador;
+
+        /// <summary>
+        /// Control EasyPopupReprogramaTrab.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupReprogramaTrab;
+
+        /// <summary>
+        /// Control EasyGestorFiltro1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Filtro.EasyGestorFiltro EasyGestorFiltro1;
     }
 }

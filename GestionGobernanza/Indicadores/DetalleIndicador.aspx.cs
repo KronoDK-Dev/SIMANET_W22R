@@ -14,7 +14,7 @@ using System.Web.UI.WebControls;
 
 namespace SIMANET_W22R.GestionGobernanza.Indicadores
 {
-    public partial class DetalleIndicador : GobernanzaBase,IPaginaMantenimento
+    public partial class DetalleIndicador  : GobernanzaBase,IPaginaMantenimento
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -77,8 +77,6 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
             oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
             oParam.TipodeDato = EasyUtilitario.Enumerados.TiposdeDatos.Int;
             odi.UrlWebServicieParams.Add(oParam);
-
-
 
             oParam = new EasyFiltroParamURLws();
             oParam.ParamName = "UserName";

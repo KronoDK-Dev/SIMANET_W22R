@@ -30,7 +30,7 @@
              return acJefe.SetCustomTemplate(oCustomTemplateBE);
 		}
         function onItemAutorizaSeleccionado(value, ItemBE) {
-
+			//ListaTrabajadores.mensaje();
 		}
 
 
@@ -50,6 +50,13 @@
 			.BaseItemInGrid td {
 				padding-left:10px;
 			}
+
+		.Calendar {
+			background-image: url("../../Recursos/img/ToolBar.jpg");
+		}
+		.Calendar tr {
+			background-color:transparent;
+		}
 	</style>
 </head>
 <body>
@@ -121,13 +128,13 @@
 				
 				</td>
 				<td align="top" style="padding-left: 10px;padding-right: 10px;" >
-					<asp:calendar id="Calendar1" runat="server" Width="100%" DayNameFormat="Full" NextPrevFormat="FullMonth"
-									Height="400px" OnDayRender="Calendar1_DayRender" OnVisibleMonthChanged="Calendar1_VisibleMonthChanged">
+					<asp:calendar id="Calendar1" runat="server" Width="550px" NextPrevFormat="FullMonth"
+									Height="400px" OnDayRender="Calendar1_DayRender" OnVisibleMonthChanged="Calendar1_VisibleMonthChanged" CssClass="Calendar">
 									<NextPrevStyle Font-Bold="True" ForeColor="White"></NextPrevStyle>
 									<DayHeaderStyle HorizontalAlign="Center" Height="35px" CssClass="HeaderGrilla" VerticalAlign="Middle"></DayHeaderStyle>
-									<TitleStyle Font-Bold="True" ForeColor="White" BackColor="Highlight"></TitleStyle>
-									<WeekendDayStyle BackColor="#C0C000"></WeekendDayStyle>
-									<OtherMonthDayStyle Font-Italic="True" ForeColor="Gray" BackColor="InactiveCaptionText"></OtherMonthDayStyle>
+									<TitleStyle Font-Bold="True" ForeColor="White" BackColor="Transparent" CssClass="Calendar" Font-Italic="False" Font-Size="14pt" Font-Strikeout="False"></TitleStyle>
+									<OtherMonthDayStyle Font-Italic="False" ForeColor="White" BackColor="#286090" Font-Bold="True" Font-Overline="False" Font-Size="10pt" Font-Strikeout="False" Font-Underline="False"></OtherMonthDayStyle>
+					                <WeekendDayStyle BackColor="#FFCC00" />
 					</asp:calendar>
 				</td>
 			</tr>
@@ -152,9 +159,10 @@
 			switch (btnItem.Id) {
 				case "btnAceptar":
 					Aprobar();
+                    window.opener.PopupCalenadrio.close();
 					break;
 				case "btnCancelar":
-                    alert('cancel');
+					window.opener.PopupCalenadrio.close();
                     break;
 			}
 		}
@@ -195,42 +203,34 @@
     </script>
 	<script>
 		function Aprobar() {
-
             var ConfigMsgb = {
                 Titulo: 'AUTORIZA FERIADO'
                 , Descripcion: 'Desea hacer efectiva esta autorizacion ahora?'
                 , Icono: 'fa fa-question-circle'
                 , EventHandle: function (btn) {
 					if (btn == 'OK') {
-
-                     //   try {
-                        //    if (acJefe.GetValue() != ""){
-								jNet.get("Calendar1").forEach(function (octrl, i) {
-																if (octrl.type.toLowerCase() === "checkbox") {
-																	var oParent = jNet.get(octrl.parentNode);
-																	if (octrl.checked == true) {
-																		AprobacionDefinitiva(oParent.attr('Fecha'), 2);
+                        try {
+							if (acJefe.GetValue() != ""){
+									jNet.get("Calendar1").forEach(function (octrl, i) {
+																	if (octrl.type.toLowerCase() === "checkbox") {
+																		var oParent = jNet.get(octrl.parentNode);
+																		if (octrl.checked == true) {
+																			AprobacionDefinitiva(oParent.attr('Fecha'), 2);
+																		}
 																	}
-																}
-															}, 'input');
-
-
-
-
-
-                           /* }
+																}, 'input');
+							   }
 							else {
                                 var msgConfig = { Titulo: 'AUTORIZACIÓN FERIADOS Y DIA NO LABORABLE', Descripcion: 'No se ha ingresado personal que autoriza...!!' };
                                 var oMsg = new SIMA.MessageBox(msgConfig);
                                 oMsg.Alert();
-                            }*/
-
-                       /* }
+                            }
+                       }
                         catch (SIMADataException) {
                             var msgConfig = { Titulo: "Error al registrar autorizacion", Descripcion: SIMADataException.Message };
                             var oMsg = new SIMA.MessageBox(msgConfig);
                             oMsg.Alert();
-                        }*/
+                        }
                     }
                 }
             };
@@ -267,7 +267,7 @@
             oParam = new SIMA.Param("IdPersonalAutoriza", IdPersonalAutoriza, TipodeDato.Int);
             oParamCollections.Add(oParam);
 
-            oParam = new SIMA.Param("IdEstado", 1, TipodeDato.Int);
+            oParam = new SIMA.Param("IdEstado", 2, TipodeDato.Int);
             oParamCollections.Add(oParam);
 
             oParam = new SIMA.Param("IdUsuario", UsuarioBE.IdUsuario, TipodeDato.Int);

@@ -28,7 +28,7 @@
 <body>
     <form id="form1" runat="server">
           
-
+         
       
 
     </form>
@@ -60,7 +60,7 @@
         function PaintGraph() {
             ObtenerData();
 
-            var densityCanvas = document.getElementById("Chart_" + AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYCODAREA]);
+            var densityCanvas = document.getElementById("Chart_" + AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYIDAREAINFO]);
             Chart.defaults.global.defaultFontFamily = "Lato";
             Chart.defaults.global.defaultFontSize = 18;
 
@@ -105,8 +105,6 @@
                 options: chartOptions
             });
         }
-
-        PaintGraph();
     </script>
 
 
@@ -137,7 +135,8 @@
         }
 
 
-        AdministrarMetasPorArea.DetalleAnalisis = function (e,CodArea) {
+        AdministrarMetasPorArea.DetalleAnalisis = function (e, CodArea) {
+          
             var oHtmlTable = e.parentNode.parentNode;
             var oCelda = jNet.get(oHtmlTable.rows[0].cells[e.cellIndex]);
             var strData = oCelda.attr("Data");
@@ -161,7 +160,7 @@
             });
         }
 
-        AdministrarMetasPorArea.txtOnChange = function (e,CodArea) {
+        AdministrarMetasPorArea.txtOnChange = function (e,IdAreaInfo) {
 
             var oHtmlTable = e.parentNode.parentNode.parentNode;
             var oCelda = jNet.get(oHtmlTable.rows[0].cells[e.parentNode.cellIndex]);
@@ -170,7 +169,7 @@
 
             var oDataBE = strData.toString().SerializedToObject();
             switch (txtCtrl.id) {
-                case "txtA_" + CodArea:
+                case "txtA_" + IdAreaInfo:
                     if (txtCtrl.value != oDataBE.ANALISIS) {
                         oDataBE.ANALISIS = txtCtrl.value;
                         oDataBE.IDITEM =AdministrarMetasPorArea.ActualizarDatos(e, oDataBE);
@@ -181,7 +180,7 @@
                     }
 
                     break;
-                case "txtAc_" + CodArea:
+                case "txtAc_" + IdAreaInfo:
                     if (txtCtrl.value != oDataBE.ACCIONES) {
                         oDataBE.ACCIONES = txtCtrl.value;
                         oDataBE.IDITEM =AdministrarMetasPorArea.ActualizarDatos(e, oDataBE);
@@ -192,7 +191,7 @@
 
                     break;
             }
-           
+   
         }
 
 
@@ -208,7 +207,6 @@
 
             var DataIndicadorBE = jNet.get(oHtmlTable.rows[0].cells[e.parentNode.cellIndex]).attr('Data').toString().SerializedToObject();
 
-           
 
             if (oHtmlRow.rowIndex == 1) {
                 OtroTxt = oHtmlTable.rows[2].cells[e.parentNode.cellIndex].children[0]
@@ -221,9 +219,11 @@
                 Denominador = e.value;
             }
 
-            //Verifica si hubo cambios en los datos
-            if (((txtAnalisis.value != DataIndicadorBE.NUMERADOR) || (txtAcciones.value != DataIndicadorBE.DENOMINADOR)) || ((txtAnalisis.value != ' ') || (txtAcciones.value,' '))) {
+           
 
+            //Verifica si los operadores possen valor
+
+            if ((Numerador.length == 0) || (Denominador.length == 0)) { return; }
                 //dependiendo del tipo de valor si es porcenta o valor se aplicara el cálculo
                 if (DataIndicadorBE.PORCVALOR == 1) {//Porcen taje
                     Resultado = ((Numerador / Denominador) * 100);
@@ -232,34 +232,55 @@
                     Resultado = (Numerador / Denominador);
                 }
 
-                if (Resultado.toString() != "NaN") {
+            if (Resultado.toString() != "NaN") {
+
+
+                if (DataIndicadorBE.RESULTADO == Resultado) { return; }//no existen cambios y sale de proceso a seguir
+
+
                     oHtmlTable.rows[3].cells[e.parentNode.cellIndex].innerText = parseFloat(Resultado.toFixed(2));
                     //Establecer el Color
                     var CellDataColor = jNet.get(oHtmlTable.rows[0].cells[e.parentNode.cellIndex]);
+                    var strCad = "";
                     for (var i = 1; i <= 3; i++) {
                         var DColorBE = CellDataColor.attr("C_" + i).toString().SerializedToObject();
-                        var Cumple = false;
+                        var boolResult = false;
 
-                        var strFormula = "";
-                        if ((DColorBE.VALORCONDICION.toString().indexOf("<") != -1) || (DColorBE.VALORCONDICION.toString().indexOf(">")!=-1)) {
-                            strFormula = "(" + DColorBE.VALORCONDICION + ")";
-                        }
-                        else {
-                            strFormula = "(" + DColorBE.VALORCONDICION.Replace("=", "==") + ")";
-                        }
-                        
-                        strFormula = strFormula.Replace('R', Resultado);
-                        strFormula = strFormula.toString().toUpperCase().Replace("O", ") || (");
-                        strFormula = strFormula.toString().toUpperCase().Replace("Y", ") && (");
+                        var formula =DColorBE.VALORCONDICION;
+                        var newFormula = '';
+                        formula.EvalWord(function (c, p, l) {
+                            switch (c) {
+                                case '=':
+                                    if (p > 0) {
+                                        if (((formula[p - 1] == '<') || (formula[p - 1] == '>'))
+                                            ||
+                                            ((formula[p + 1] == '<') || (formula[p + 1] == '>'))) {
+                                            newFormula += c;
+                                        }
+                                        else {
+                                            newFormula += c + "=";
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    newFormula += c;
+                            }
+                        });
 
-                        Cumple = eval(strFormula);
-                        if (Cumple) {
-                            jNet.get(oHtmlTable.rows[3].cells[e.parentNode.cellIndex]).css("background-color", DColorBE.COLOR).css("color", DColorBE.FONTCOLOR);
-                            DataIndicadorBE.COLOR = DColorBE.COLOR;
-                            DataIndicadorBE.FONTCOLOR = DColorBE.FONTCOLOR;
-                        }
+                        var boolValue = false;                        
+                        var fre = "" + newFormula.toString().Replace('r', Resultado).Replace('y', '&&').Replace('o', '||') + "";
+                        boolValue = string_exp(fre);
+ 
+                            if (boolValue) {
+
+                                jNet.get(oHtmlTable.rows[3].cells[e.parentNode.cellIndex]).css("background-color", DColorBE.COLOR).css("color", DColorBE.FONTCOLOR);
+                                DataIndicadorBE.COLOR = DColorBE.COLOR;
+                                DataIndicadorBE.FONTCOLOR = DColorBE.FONTCOLOR;
+                            }
+                       
                        
                     }
+                   
 
                     //Actualizar los datos de la entidad
                     DataIndicadorBE.NUMERADOR = Numerador;
@@ -270,16 +291,52 @@
                     DataIndicadorBE.ACCIONES = txtAcciones.GetValue();
                     DataIndicadorBE.RESULTADO = parseFloat(Resultado.toFixed(2));
 
-                    DataIndicadorBE.IDITEM =AdministrarMetasPorArea.ActualizarDatos(e, DataIndicadorBE);
+                    DataIndicadorBE.IDITEM = AdministrarMetasPorArea.ActualizarDatos(e, DataIndicadorBE);
 
                     //actualiza la configutacion
                     var BESerializado = ''.toString().BaseSerialized(DataIndicadorBE); 
                     jNet.get(oHtmlTable.rows[0].cells[e.parentNode.cellIndex]).attr('Data', BESerializado)
                     //Dibujar resultado
-                    PaintGraph();
+                    AdministrarMetasPorArea.ViewGraph();
                 }
-            }
+        }
 
+        AdministrarMetasPorArea.ViewGraph = function () {
+
+              var urlPag = Page.Request.ApplicationPath + "/GestionGobernanza/Indicadores/ViewGraphMeta.aspx";
+              var oColletionParams = new SIMA.ParamCollections();
+            var oParam = new SIMA.Param(AdministrarMetasPorArea.KEYIDAREAINFO, AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYIDAREAINFO]);
+                  oColletionParams.Add(oParam);
+
+                  oParam = new SIMA.Param(AdministrarMetasPorArea.KEYIDINDICADOR, AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYIDINDICADOR]);
+                  oColletionParams.Add(oParam);
+
+                   oParam = new SIMA.Param(AdministrarMetasPorArea.KEYCODAREA, AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYCODAREA]);
+                  oColletionParams.Add(oParam);
+
+                   oParam = new SIMA.Param(AdministrarMetasPorArea.KEYQAÑO, AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYQAÑO]);
+                  oColletionParams.Add(oParam);
+
+             var oLoadConfig = {
+                 CtrlName: "graphContent_" + AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYIDAREAINFO],
+                  UrlPage: urlPag,
+                  ColletionParams: oColletionParams,
+                  fnOnComplete: function () {
+                      PaintGraph();//proyecta el gracico en el contendor del viewgraph
+                  }
+              };
+
+                SIMA.Utilitario.Helper.LoadPageInCtrl(oLoadConfig);
+        }
+
+
+
+
+        function string_exp(sCmd) {
+            return Function(
+                `'use strict'; 
+        return (${sCmd})`
+            )();
         }
 
 

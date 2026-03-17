@@ -15,7 +15,7 @@ using static EasyControlWeb.EasyUtilitario.Enumerados;
 using static EasyControlWeb.InterConeccion.EasyDataInterConect;
 
 namespace SIMANET_W22R.GestionGobernanza.Indicadores
-{
+{ 
     public partial class ListaReponsablePorArea : GobernanzaBase, IPaginaBase
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -63,11 +63,11 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
         public void LlenarGrilla()
         {
-            this.EasyGridView1.DataInterconect = ListarResponsable();//Pbjetivos de la version 1
+            this.EasyGridView1.DataInterconect = ListarResponsable(this.CodArea);//Pbjetivos de la version 1
             EasyGridView1.LoadData();
         }
 
-        EasyDataInterConect ListarResponsable()
+        public EasyDataInterConect ListarResponsable(string CodArea)
         {
             EasyDataInterConect odi = new EasyDataInterConect();
             odi.ConfigPathSrvRemoto = "PathBaseWSCore";
@@ -75,24 +75,11 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
             odi.UrlWebService = "GestionGobernanza/Indicadores.asmx";
             odi.Metodo = "ResponsablePorArea_Lst";
 
-            EasyFiltroParamURLws oParam = new EasyFiltroParamURLws();
-            oParam.ParamName = "CodEmp";
-            oParam.Paramvalue = this.CodEmpresa;
-            oParam.TipodeDato = TiposdeDatos.String;
-            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
-            odi.UrlWebServicieParams.Add(oParam);
-
-            oParam = new EasyFiltroParamURLws();
-            oParam.ParamName = "CodCeo";
-            oParam.Paramvalue = this.CodSucursal;
-            oParam.TipodeDato = TiposdeDatos.String;
-            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
-            odi.UrlWebServicieParams.Add(oParam);
-
-
+           EasyFiltroParamURLws oParam = new EasyFiltroParamURLws();
+          
             oParam = new EasyFiltroParamURLws();
             oParam.ParamName = "CodArea";
-            oParam.Paramvalue = this.CodArea;
+            oParam.Paramvalue = CodArea;// this.CodArea;
             oParam.TipodeDato = TiposdeDatos.String;
             oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
             odi.UrlWebServicieParams.Add(oParam);

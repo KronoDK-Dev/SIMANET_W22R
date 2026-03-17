@@ -11,7 +11,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 {
 
 
-    public partial class ListaTrabajadores
+    public partial class DetalleEquipos
     {
 
         /// <summary>
@@ -24,39 +24,39 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control acTrabajador.
+        /// Control txtCodigo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar acTrabajador;
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtCodigo;
 
         /// <summary>
-        /// Control ibtnAdd.
+        /// Control txtCant.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage ibtnAdd;
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtCant;
 
         /// <summary>
-        /// Control tbCalendario.
+        /// Control ddlTipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyToolBarButtons tbCalendario;
+        protected global::EasyControlWeb.Form.Controls.EasyDropdownList ddlTipo;
 
         /// <summary>
-        /// Control grvTrabajadores.
+        /// Control txtDescripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.EasyGridView grvTrabajadores;
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtDescripcion;
     }
 }

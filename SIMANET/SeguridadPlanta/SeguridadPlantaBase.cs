@@ -9,11 +9,26 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
     {
         public static string KEYQIDPROGRAMACION = "IdProg";
         public static string KEYQLSTDNI = "LstDNI";
-
+        public static string KEYQNROITEM = "NItem";
+        public static string KEYQIDEQUIPO = "IdeQ";
+        public static string KEYQNRODOC = "NDoc";
+        public static string KEYQNOMBRES = "Nom";
 
         public string IdProgramacion 
         {
             get { return Page.Request.Params[KEYQIDPROGRAMACION]; }
+        }
+        public string NroDocumento
+        {
+            get { return Page.Request.Params[KEYQNRODOC]; }
+        }
+        public string Nombres
+        {
+            get { return Page.Request.Params[KEYQNOMBRES]; }
+        }
+        public string IdEquipo
+        {
+            get { return Page.Request.Params[KEYQIDEQUIPO]; }
         }
         public string[] LstNroDNI
         {

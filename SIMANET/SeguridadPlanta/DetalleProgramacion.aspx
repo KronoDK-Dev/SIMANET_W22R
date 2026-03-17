@@ -230,10 +230,9 @@
              </tr>
              <tr>
                  <td  class="Etiqueta" reference="txtRegIng">NRO REG ING</td>
-                 <td  colspan="3"><cc2:EasyTextBox ID="txtRegIng" runat="server" required></cc2:EasyTextBox></td>
+                 <td><cc2:EasyTextBox ID="txtRegIng" runat="server" required></cc2:EasyTextBox></td>
                  <td  class="Etiqueta" reference="txtDocRef">DOC. REF</td>
-                 <td  colspan="3"><cc2:EasyTextBox ID="txtDocRef" runat="server" required></cc2:EasyTextBox></td>
-
+                 <td colspan="5"><cc2:EasyTextBox ID="txtDocRef" runat="server" required></cc2:EasyTextBox></td>
                  <td></td>
              </tr>            
 

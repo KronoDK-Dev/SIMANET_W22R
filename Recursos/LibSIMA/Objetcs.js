@@ -2095,6 +2095,19 @@ String.prototype.isNumeric = function () {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+String.prototype.EvalWord = function (callback) {
+    const palabraNormalizada = this.toLowerCase();
+    // Iteramos sobre cada letra de la palabra
+    for (let i = 0; i < palabraNormalizada.length; i++) {
+        const letra = palabraNormalizada[i];
+        // Llamamos a la función callback proporcionada para procesar la letra
+        callback(letra, i, palabraNormalizada.length);
+    }
+}
+
+
+
+
 /*Objeto de Datos--------------------------------------------------------------------------------------------------------------- */
 
 

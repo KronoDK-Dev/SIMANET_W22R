@@ -3,6 +3,7 @@ using EasyControlWeb;
 using EasyControlWeb.Filtro;
 using EasyControlWeb.Form.Controls;
 using SIMANET_W22R.HelpDesk.Atencion;
+using SIMANET_W22R.HelpDesk.ITIL;
 using SIMANET_W22R.InterfaceUI;
 using System;
 using System.Collections.Generic;
@@ -47,8 +48,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
         public void LlenarCombos()
         {
-            ddlTipo.Items.Add(new ListItem("Ingreso","1" ));
-            ddlTipo.Items.Add(new ListItem("Salida","2"));
+          
         }
 
         public void LlenarDatos()
@@ -63,7 +63,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 oTab.Id = "TabDet_" + dr["CODIGO"].ToString();
                 string htmlTab = "<table><tr><td><img src='" + dr["VAR5"].ToString() + "'/></td><td>"+ dr["VAR1"].ToString() + "</td><td onclick=" + cmll + "DefaultContratista.Detalle();" + cmll + "></td></tr></table>";
                 oTab.Text = htmlTab;
-                oTab.TipoDisplay = TipoTab.ContentCtrl;
+                oTab.TipoDisplay = ((dr["VAR4"].ToString()=="1")? TipoTab.ContentCtrl: TipoTab.UrlLocal);
                 oTab.Value = dr["VAR3"].ToString();
                 oTab.DataCollection = EasyUtilitario.Helper.Genericos.DataRowToStringJson(dr);
 
@@ -72,6 +72,19 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                     oTab.Selected = true;
                     oTab.AccionRefresh = false;
                 }
+                //Parametros
+                EasyFiltroParamURLws oParam = new EasyFiltroParamURLws();
+                oParam.ParamName = DefaultContratista.KEYQAÑO;
+                oParam.Paramvalue = this.Año;
+                oParam.TipodeDato = EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos.Int;
+                oTab.UrlParams.Add(oParam);
+
+                oParam = new EasyFiltroParamURLws();
+                oParam.ParamName = DefaultContratista.KEYQIDPROGRAMACION;
+                oParam.Paramvalue = this.IdProgramacion;
+                oParam.TipodeDato = EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos.Int;
+                oTab.UrlParams.Add(oParam);
+
                 EasyTabBase.TabCollections.Add(oTab);
             }
 
@@ -89,12 +102,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
         public void LlenarJScript()
         {
-            this.ibtnAdd.Src =  EasyUtilitario.Constantes.ImgDataURL.NewItem;
-            this.ibtnAdd.Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()] = "DefaultContratista.Trabajador(this)";
-            this.ibtnAdd.Attributes["style"] = "cursor:pointer";
-
-
-            acTrabajador.DataInterconect.UrlWebService = this.PathNetCore + "SIMANET/SeguridadPlanta/Contratista.asmx";
+            
         }
 
         public void RegistrarJScript()

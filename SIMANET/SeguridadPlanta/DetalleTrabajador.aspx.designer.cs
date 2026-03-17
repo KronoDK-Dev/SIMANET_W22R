@@ -11,7 +11,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 {
 
 
-    public partial class ListaTrabajadores
+    public partial class DetalleTrabajador
     {
 
         /// <summary>
@@ -24,39 +24,48 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control acTrabajador.
+        /// Control txtNroDoc.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar acTrabajador;
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtNroDoc;
 
         /// <summary>
-        /// Control ibtnAdd.
+        /// Control txtApPaterno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage ibtnAdd;
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtApPaterno;
 
         /// <summary>
-        /// Control tbCalendario.
+        /// Control txtApMaterno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyToolBarButtons tbCalendario;
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtApMaterno;
 
         /// <summary>
-        /// Control grvTrabajadores.
+        /// Control txtNombres.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.EasyGridView grvTrabajadores;
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtNombres;
+
+        /// <summary>
+        /// Control ddlNacionalidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyDropdownList ddlNacionalidad;
     }
 }

@@ -72,6 +72,7 @@ namespace SIMANET_W22R
         public static string KEYQQUIENLLAMA = "QLlama";
         public static string KEYQEDITABLE = "mEdit";
 
+        public const string KEYIDAREA = "IdArea";
         public const string KEYCODAREA = "CodArea";
         public const string KEYCODEMP = "CodEmp";
         public const string KEYCODSUC = "CodSuc";
@@ -160,7 +161,10 @@ namespace SIMANET_W22R
         {
             get { return Page.Request.Params[KEYCODAREA].ToString(); }
         }
-
+        public string IdArea
+        {
+            get { return Page.Request.Params[KEYIDAREA].ToString(); }
+        }
         public string CodEmpresa
         {
             get { return Page.Request.Params[KEYCODEMP].ToString(); }

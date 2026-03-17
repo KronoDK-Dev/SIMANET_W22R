@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace SIMANET_W22R.SIMANET.SeguridadPlanta
+namespace SIMANET_W22R.GestionGobernanza.Indicadores
 {
 
 
-    public partial class DefaultContratista
+    public partial class ViewGraphMeta
     {
 
         /// <summary>
@@ -22,14 +22,5 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// Control EasyTabBase.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTabControl EasyTabBase;
     }
 }

@@ -237,5 +237,61 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         {
             this.LlenarGrilla("");
         }
+
+        protected void EasyGestorFiltro1_ProcessCompleted(string FiltroResultante, List<EasyFiltroItem> lstEasyFiltroItem)
+        {
+            this.LlenarGrilla(FiltroResultante);
+        }
+
+        protected void EasyGRContrata_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+        {
+            switch (oEasyGridButton.Id)
+            {
+                case "btnEliminar":
+                    EliminarProgramacion(Convert.ToInt32(Recodset["Periodo"]), Convert.ToInt32(Recodset["NroProgramacion"]));
+                    this.LlenarGrilla(EasyGestorFiltro1.getFilterString());
+                    break;
+            }
+
+        }
+
+        void EliminarProgramacion(int Periodo,int IdProgramacion) {
+            EasyDataInterConect odi = new EasyDataInterConect();
+            odi.MetodoConexion = EasyDataInterConect.MetododeConexion.WebServiceExterno;
+            odi.UrlWebService = this.PathNetCore + "/SIMANET/SeguridadPlanta/Contratista.asmx";
+            odi.Metodo = "ProgramacionContratista_Del";
+
+            EasyFiltroParamURLws oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "Periodo";
+            oParam.Paramvalue = Periodo.ToString();
+            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
+            oParam.TipodeDato = EasyUtilitario.Enumerados.TiposdeDatos.Int;
+            odi.UrlWebServicieParams.Add(oParam);
+
+            oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "NroProgramacion";
+            oParam.Paramvalue = IdProgramacion.ToString();
+            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
+            oParam.TipodeDato = EasyUtilitario.Enumerados.TiposdeDatos.Int;
+            odi.UrlWebServicieParams.Add(oParam);
+
+            oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "IdUsuario";
+            oParam.Paramvalue = this.UsuarioId.ToString();
+            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
+            oParam.TipodeDato = EasyUtilitario.Enumerados.TiposdeDatos.Int;
+            odi.UrlWebServicieParams.Add(oParam);
+
+            oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "UserName";
+            oParam.Paramvalue = this.UsuarioLogin;
+            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
+            oParam.TipodeDato = EasyUtilitario.Enumerados.TiposdeDatos.String;
+            odi.UrlWebServicieParams.Add(oParam);
+
+            odi.SendData();
+        }
+
+
     }
 }

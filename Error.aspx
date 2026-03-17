@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error.aspx.cs" Inherits="SIMANET_W22R.Error" %>
 
+<%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Form.Controls" TagPrefix="cc1" %>
+
+<%@ Register src="Controles/Header.ascx" tagname="Header" tagprefix="uc1" %>
 
 <!DOCTYPE html>
 
@@ -30,11 +33,10 @@
                 #copyright{font-size:10px}
                 @media only screen and (min-width:48em){main{width:85%}#fourohno{animation:linear smokey 12s 5;transform-box:fill-box;transform-origin:bottom center}@keyframes smokey{0%{opacity:0;transform:scale(1,.5)}70%{opacity:.4}100%{opacity:0;transform:scale(1,1)}}}
                 .ColorMsgLbl {
-                    font-weight:bold;
                     color: black;
                 }
                 .ColorMsg {
-                    color: darkblue;
+                    color: white;
 
                 }
         </style>
@@ -47,7 +49,7 @@
         <table style="width:100%;height:100%">
                 <tr>
                     <td style="width:100%">
-                        
+                        <uc1:Header ID="Header1" runat="server" />
                     </td>
                 </tr>
               <tr>
@@ -65,7 +67,7 @@
                                         <td  style="width:100%" align="left"><text><tspan class="ColorMsg" id="LblPagina" runat="server" >Metodo</tspan></text> </td>
                                     </tr>
 				                    <tr>
-                                        <td align="left" class="ColorMsgLbl">Método:</td>
+                                        <td align="left" class="ColorMsgLbl">Metodo:</td>
                                         <td  style="width:100%" align="left"><text><tspan class="ColorMsg" id="LblMetodo" runat="server">Metodo</tspan></text></td>
                                     </tr>
                                     <tr>
@@ -106,7 +108,7 @@
 
     
         
-     
+        <cc1:EasyClockDigital ID="EasyClockDigital1" runat="server" />
 
     </form>
   

@@ -579,6 +579,7 @@
     <Content Include="FooterDefault.aspx" />
     <Content Include="General\EasyDataInterConectPrc.aspx" />
     <Content Include="General\TablasGenerales.asmx" />
+    <Content Include="General\UpLoadMaster.aspx" />
     <Content Include="GestionActivoFijo\Activo\Activo.asmx" />
     <Content Include="GestionActivoFijo\Custodio\Custodio.asmx" />
     <Content Include="GestionComercial\Administracion\Clientes.aspx" />
@@ -619,13 +620,20 @@
     <Content Include="GestiondeCalidad\Proceso.asmx" />
     <Content Include="GestiondeCalidad\Proceso.aspx" />
     <Content Include="GestionFinanciera\EstadosFinancieros.asmx" />
+    <Content Include="GestionGobernanza\Indicadores\AdministrarInformeMetaPorArea.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\AdministrarMetasPorArea.aspx" />
     <Content Include="GestionGobernanza\Indicadores\AdministrarObjetivosAcciones.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\AdministrarResponsablePorArea.aspx" />
     <Content Include="GestionGobernanza\Indicadores\ConfiguracionIndicadoresXArea.aspx" />
     <Content Include="GestionGobernanza\Indicadores\DetalleAcciones.aspx" />
     <Content Include="GestionGobernanza\Indicadores\DetalleAreaIndicador.aspx" />
     <Content Include="GestionGobernanza\Indicadores\DetalleIndicador.aspx" />
     <Content Include="GestionGobernanza\Indicadores\DetalleObjetivo.aspx" />
     <Content Include="GestionGobernanza\Indicadores\ListadodeMetasPorArea.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\ListaReponsablePorArea.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\ListarIndicadoresPorArea.aspx" />
+    <Content Include="GestionGobernanza\Indicadores\ViewGraphMeta.aspx" />
+    <Content Include="GestionGobernanza\Procesar.asmx" />
     <Content Include="GestionLogistica\ActivoFijo\Bienes.asmx" />
     <Content Include="GestionLogistica\Almacen\Almacen.asmx" />
     <Content Include="GestionLogistica\General\General.asmx" />
@@ -827,7 +835,17 @@
     <Content Include="Recursos\Tree\jquery.ztree.excheck.js" />
     <Content Include="Recursos\Tree\jquery.ztree.exedit.js" />
     <Content Include="Recursos\Tree\zTreeStyle.css" />
-    <Content Include="SIMANET\SeguridadPlanta\AdministrarContratista.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\AdministrarProgramacionContratista.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\AdministrarProgVisita.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\DefaultContratista.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\DetalleEquipos.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\DetalleProgramacion.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\DetalleProveedor.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\DetalleTrabajador.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\ListarEquipos.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\ListaTrabajadorEnFeriado.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\ListaTrabajadores.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\ReprogramarTrabajador.aspx" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -988,6 +1006,13 @@
     <Compile Include="General\TablasGenerales.asmx.cs">
       <DependentUpon>TablasGenerales.asmx</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="General\UpLoadMaster.aspx.cs">
+      <DependentUpon>UpLoadMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\UpLoadMaster.aspx.designer.cs">
+      <DependentUpon>UpLoadMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionActivoFijo\Activo\Activo.asmx.cs">
       <DependentUpon>Activo.asmx</DependentUpon>
@@ -1236,12 +1261,33 @@
     <Compile Include="GestionGobernanza\GobernanzaBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarInformeMetaPorArea.aspx.cs">
+      <DependentUpon>AdministrarInformeMetaPorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarInformeMetaPorArea.aspx.designer.cs">
+      <DependentUpon>AdministrarInformeMetaPorArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarMetasPorArea.aspx.cs">
+      <DependentUpon>AdministrarMetasPorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarMetasPorArea.aspx.designer.cs">
+      <DependentUpon>AdministrarMetasPorArea.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GestionGobernanza\Indicadores\AdministrarObjetivosAcciones.aspx.cs">
       <DependentUpon>AdministrarObjetivosAcciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GestionGobernanza\Indicadores\AdministrarObjetivosAcciones.aspx.designer.cs">
       <DependentUpon>AdministrarObjetivosAcciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarResponsablePorArea.aspx.cs">
+      <DependentUpon>AdministrarResponsablePorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\AdministrarResponsablePorArea.aspx.designer.cs">
+      <DependentUpon>AdministrarResponsablePorArea.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionGobernanza\Indicadores\ConfiguracionIndicadoresXArea.aspx.cs">
       <DependentUpon>ConfiguracionIndicadoresXArea.aspx</DependentUpon>
@@ -1284,6 +1330,31 @@
     </Compile>
     <Compile Include="GestionGobernanza\Indicadores\ListadodeMetasPorArea.aspx.designer.cs">
       <DependentUpon>ListadodeMetasPorArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ListaReponsablePorArea.aspx.cs">
+      <DependentUpon>ListaReponsablePorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ListaReponsablePorArea.aspx.designer.cs">
+      <DependentUpon>ListaReponsablePorArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ListarIndicadoresPorArea.aspx.cs">
+      <DependentUpon>ListarIndicadoresPorArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ListarIndicadoresPorArea.aspx.designer.cs">
+      <DependentUpon>ListarIndicadoresPorArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ViewGraphMeta.aspx.cs">
+      <DependentUpon>ViewGraphMeta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionGobernanza\Indicadores\ViewGraphMeta.aspx.designer.cs">
+      <DependentUpon>ViewGraphMeta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGobernanza\Procesar.asmx.cs">
+      <DependentUpon>Procesar.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="GestionLogistica\ActivoFijo\Bienes.asmx.cs">
       <DependentUpon>Bienes.asmx</DependentUpon>
@@ -2110,17 +2181,88 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="memoriacache.cs" />
     <Compile Include="PaginaBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicClass\sglGlobalData.cs" />
-    <Compile Include="SIMANET\SeguridadPlanta\AdministrarContratista.aspx.cs">
-      <DependentUpon>AdministrarContratista.aspx</DependentUpon>
+    <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgramacionContratista.aspx.cs">
+      <DependentUpon>AdministrarProgramacionContratista.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SIMANET\SeguridadPlanta\AdministrarContratista.aspx.designer.cs">
-      <DependentUpon>AdministrarContratista.aspx</DependentUpon>
+    <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgramacionContratista.aspx.designer.cs">
+      <DependentUpon>AdministrarProgramacionContratista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgVisita.aspx.cs">
+      <DependentUpon>AdministrarProgVisita.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgVisita.aspx.designer.cs">
+      <DependentUpon>AdministrarProgVisita.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\DefaultContratista.aspx.cs">
+      <DependentUpon>DefaultContratista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\DefaultContratista.aspx.designer.cs">
+      <DependentUpon>DefaultContratista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\DetalleEquipos.aspx.cs">
+      <DependentUpon>DetalleEquipos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\DetalleEquipos.aspx.designer.cs">
+      <DependentUpon>DetalleEquipos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\DetalleProgramacion.aspx.cs">
+      <DependentUpon>DetalleProgramacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\DetalleProgramacion.aspx.designer.cs">
+      <DependentUpon>DetalleProgramacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\DetalleProveedor.aspx.cs">
+      <DependentUpon>DetalleProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\DetalleProveedor.aspx.designer.cs">
+      <DependentUpon>DetalleProveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\DetalleTrabajador.aspx.cs">
+      <DependentUpon>DetalleTrabajador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\DetalleTrabajador.aspx.designer.cs">
+      <DependentUpon>DetalleTrabajador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\ListarEquipos.aspx.cs">
+      <DependentUpon>ListarEquipos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\ListarEquipos.aspx.designer.cs">
+      <DependentUpon>ListarEquipos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\ListaTrabajadorEnFeriado.aspx.cs">
+      <DependentUpon>ListaTrabajadorEnFeriado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\ListaTrabajadorEnFeriado.aspx.designer.cs">
+      <DependentUpon>ListaTrabajadorEnFeriado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\ListaTrabajadores.aspx.cs">
+      <DependentUpon>ListaTrabajadores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\ListaTrabajadores.aspx.designer.cs">
+      <DependentUpon>ListaTrabajadores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\ReprogramarTrabajador.aspx.cs">
+      <DependentUpon>ReprogramarTrabajador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\ReprogramarTrabajador.aspx.designer.cs">
+      <DependentUpon>ReprogramarTrabajador.aspx</DependentUpon>
     </Compile>
     <Compile Include="SIMANET\SeguridadPlanta\SeguridadPlantaBase.cs">
       <SubType>ASPXCodeBehind</SubType>

@@ -11,7 +11,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 {
 
 
-    public partial class ListaTrabajadores
+    public partial class ReprogramarTrabajador
     {
 
         /// <summary>
@@ -24,39 +24,48 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control acTrabajador.
+        /// Control rpNombreTrab.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar acTrabajador;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell rpNombreTrab;
 
         /// <summary>
-        /// Control ibtnAdd.
+        /// Control rpFIni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage ibtnAdd;
+        protected global::EasyControlWeb.Form.Controls.EasyDatepicker rpFIni;
 
         /// <summary>
-        /// Control tbCalendario.
+        /// Control rpFFin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyToolBarButtons tbCalendario;
+        protected global::EasyControlWeb.Form.Controls.EasyDatepicker rpFFin;
 
         /// <summary>
-        /// Control grvTrabajadores.
+        /// Control rpHIni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.EasyGridView grvTrabajadores;
+        protected global::EasyControlWeb.Form.Controls.EasyTimePicker rpHIni;
+
+        /// <summary>
+        /// Control rpHFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyTimePicker rpHFin;
     }
 }

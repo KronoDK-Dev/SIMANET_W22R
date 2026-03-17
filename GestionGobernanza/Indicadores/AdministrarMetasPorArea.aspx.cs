@@ -17,7 +17,7 @@ using static EasyControlWeb.Form.Controls.EasyPopupBase;
 using static EasyControlWeb.InterConeccion.EasyDataInterConect;
 
 namespace SIMANET_W22R.GestionGobernanza.Indicadores
-{
+{ 
     public partial class AdministrarMetasPorArea : GobernanzaBase, IPaginaBase
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -93,6 +93,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
         public void LlenarDatos()
         {
+            string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
             string IcoDet = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAATCAYAAAB/TkaLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFtSURBVDhPY1y7du1/BmoDahsKMo8FysYAM2eegVv269cvhh8/foDx9+/fUWgQXr68hBGqFAxwGgoC5uZSUBYC1NTMZGhpSYfyGBjq6mZDWQjABKUxwL9//6AsBGhsnMfw588fhvz8HqgIA8O3b9+gLATAaejXr18ZTp58BsetrYsYfv/+zXD9+kEwnZzcABYHqUMHKN5HDkeQxs+fP8PDbdWqcqAB3xns7M4wHD06CaqKgWHWrFlQFgJghGlamjGUhQBTpuwGGzhr1lIGMTEhqChugGIoKLyQgaamMwM7Oysw3H4xTJ3KwsDDw8fg5OQPNPwsVAV2gGLoly9fUDQUFnaB6Zcv7zDU1oaD2egAi+9RIwpkKMj76BiUJkkBKIZii0kQAEWUiUk6VowN4PU+DIBcevbsLJRcgxcg5/3o6L7/2EBqag/R5QPIPIwwpQbAMNTGJh8j3M6duwVVQSSgRdGHM+9TAmhQ8jMwAAAgO9rVbQNukAAAAABJRU5ErkJggg==";
             int i = 1;
             DataTable dt = ListarMetasPorIndicador();
@@ -103,56 +104,70 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                 tblBase.Rows[0].Style.Add("Height","45px");
                 foreach (DataRow dr in dt.Rows)
                 {
-
+                    /*----------------------------------------------------------------------------*/
                     tblBase.Rows[0].Attributes.Add("class", "HeaderGrilla");
                     tblBase.Rows[0].Cells[0].InnerText= dr["NOMBRETIPO"].ToString().ToUpper();
+                    tblBase.Rows[0].Cells[0].Attributes.Add("style", "text-align: left;padding-left: 10px;padding-right:10px");
 
                     tblBase.Rows[1].Cells[0].InnerText = "NUMERADOR";
+                    tblBase.Rows[1].Cells[0].Attributes.Add("style", "text-align: left;padding-left: 10px;padding-right:10px");
+
                     tblBase.Rows[2].Cells[0].InnerText = "DENOMINADOR";
-                    tblBase.Rows[3].Cells[0].InnerText = "RESULTADO";
+                    tblBase.Rows[2].Cells[0].Attributes.Add("style", "text-align: left;padding-left: 10px;padding-right:10px");
+
+                    tblBase.Rows[3].Cells[0].InnerText = "RESULTADO" + ((dr["PORCVALOR"].ToString()=="1")?" (%)":"");
+                    tblBase.Rows[3].Cells[0].Attributes.Add("style", "text-align: left;padding-left: 10px;padding-right:10px");
+
+                    tblBase.Rows[3].Cells[0].Attributes.Add("nowrap", "");
+                    tblBase.Rows[3].Cells[0].Attributes.Add("style", "text-align: left;padding-left: 10px;padding-right:10px");
+
                     tblBase.Rows[4].Cells[0].InnerText = "META";
+                    tblBase.Rows[4].Cells[0].Attributes.Add("style", "text-align: left;padding-left: 10px;padding-right:10px");
 
                     tblBase.Rows[0].Cells[0].Attributes.Add("class", "HeaderGrilla");
                     tblBase.Rows[1].Cells[0].Attributes.Add("class", "HeaderGrilla");
                     tblBase.Rows[2].Cells[0].Attributes.Add("class", "HeaderGrilla");
                     tblBase.Rows[3].Cells[0].Attributes.Add("class", "HeaderGrilla");
                     tblBase.Rows[4].Cells[0].Attributes.Add("class", "HeaderGrilla");
-                    
-                    tblBase.Rows[0].Cells[i].Attributes.Add("Data", EasyUtilitario.Helper.Genericos.DataRowToStringJson(dr));
+                    //Titulo de cabecera
+                    tblBase.Rows[0].Cells[i].InnerHtml = dr["NOMBREPLAZO"].ToString().ToUpper();
 
-                    //Condiciones del indicador
-                    DataTable dtCondInd = (new DetalleAreaIndicador()).ListarCondiciones(this.IdAreaInfo, this.IdIndicador, this.UsuarioLogin);
+                    string strData = EasyUtilitario.Helper.Genericos.DataRowToStringJson(dr).Replace(cmll, "'");
+                    tblBase.Rows[0].Cells[i].Attributes.Add("Data", strData);
+
+                    /*----------------------------------------------------------------------------*/
+
+                    //Condiciones del indicador                    
+                    DataTable dtCondInd = (new DetalleAreaIndicador()).ListarCondiciones(dr["IDAREA"].ToString(), this.IdIndicador, this.UsuarioLogin);
                     foreach (DataRow drc in dtCondInd.Rows) {
                         tblBase.Rows[0].Cells[i].Attributes.Add("C_" +drc["IDCOLOR"].ToString(), EasyUtilitario.Helper.Genericos.DataRowToStringJson(drc));
                     }
-
                    
-                    tblBase.Rows[0].Cells[i].InnerHtml= dr["NOMBRE"].ToString().ToUpper();
-                    tblBase.Rows[0].Cells[i].Attributes.Add("Data", EasyUtilitario.Helper.Genericos.DataRowToStringJson(dr));
-
+                  
 
                     EasyTextBox otxt = new EasyTextBox();
-                    otxt.ID = "n_" + dr["IDITEM"].ToString();
+                    otxt.ID = "n_" + dr["IDPLAZO"].ToString();
                     otxt.SetValue(dr["NUMERADOR"].ToString());
-                    otxt.Attributes.Add("onblur", "AdministrarMetasPorArea.OnChange(jNet.get(this),'" + this.CodArea + "')");
+                    otxt.Attributes.Add("onblur", "AdministrarMetasPorArea.OnChange(jNet.get(this),'" + this.IdAreaInfo + "')");
 
-                    tblBase.Rows[1].Cells[i].Attributes.Add("onclick", "AdministrarMetasPorArea.DetalleAnalisis(jNet.get(this),'" + this.CodArea + "');");
+                    tblBase.Rows[1].Cells[i].Attributes.Add("onclick", "AdministrarMetasPorArea.DetalleAnalisis(jNet.get(this),'" + this.IdAreaInfo + "');");
                     tblBase.Rows[1].Cells[i].Controls.Add(otxt);
                
 
                     otxt = new EasyTextBox();
-                    otxt.ID = "D_" + dr["IDITEM"].ToString();
+                    otxt.ID = "D_" + dr["IDPLAZO"].ToString();
                     otxt.SetValue(dr["DENOMINADOR"].ToString());
-                    otxt.Attributes.Add("onblur", "AdministrarMetasPorArea.OnChange(jNet.get(this),'" + this.CodArea + "')");
-                    tblBase.Rows[2].Cells[i].Attributes.Add("onclick", "AdministrarMetasPorArea.DetalleAnalisis(jNet.get(this),'" + this.CodArea + "');");
+                    otxt.Attributes.Add("onblur", "AdministrarMetasPorArea.OnChange(jNet.get(this),'" + this.IdAreaInfo + "')");
+                    tblBase.Rows[2].Cells[i].Attributes.Add("onclick", "AdministrarMetasPorArea.DetalleAnalisis(jNet.get(this),'" + this.IdAreaInfo + "');");
                     tblBase.Rows[2].Cells[i].Controls.Add(otxt);
 
 
                    
                     tblBase.Rows[3].Cells[i].InnerHtml = dr["RESULTADO"].ToString();
-                    tblBase.Rows[3].Cells[i].Attributes.Add("style", "background-color:" + dr["COLOR"].ToString() + ";color:" + dr["FONTCOLOR"].ToString());
+                    tblBase.Rows[3].Cells[i].Attributes.Add("style", "background-color:" + dr["COLOR"].ToString() + ";color:" + dr["FONTCOLOR"].ToString() + ";font-weight: bold;");
                     //rESULTADO
                     tblBase.Rows[4].Cells[i].InnerHtml = dr["META"].ToString();
+                    tblBase.Rows[4].Cells[i].Attributes.Add("style", "font-weight: bold;");
 
 
                     i++;
@@ -165,22 +180,24 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                 tblMaster.Rows[1].Cells[0].Attributes.Add("class", "Etiqueta");
 
                 EasyTextBox oEasyTextBox = new EasyTextBox();
-                oEasyTextBox.ID = "txtA_" + this.CodArea;                
+                oEasyTextBox.ID = "txtA_" + this.IdAreaInfo;                
                 tblMaster.Rows[2].Cells[0].Controls.Add(oEasyTextBox);
 
 
                 tblMaster.Rows[3].Cells[0].InnerText = "ACCIONES Y RECOMENDACIONES";
                 tblMaster.Rows[3].Cells[0].Attributes.Add("class", "Etiqueta");
                 oEasyTextBox = new EasyTextBox();
-                oEasyTextBox.ID = "txtAc_" + this.CodArea;
+                oEasyTextBox.ID = "txtAc_" + this.IdAreaInfo;
                 tblMaster.Rows[4].Cells[0].Controls.Add(oEasyTextBox);
-                //Control de Barras
-                string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
-                string htmlCanvas = "<canvas id=" + cmll  +"Chart_"+ this.CodArea + cmll  +" width =" + cmll + "600"+ cmll +" height ="+ cmll + "100" + cmll  + "></canvas>";
-                tblMaster.Rows[5].Cells[0].Controls.Add(new LiteralControl(htmlCanvas));
-
+                //Contenedor de Graphcontrol
+                tblMaster.Rows[5].Cells[0].ID = "graphContent_" + this.IdAreaInfo;
 
                 Page.Form.Controls.Add(tblMaster);
+
+                //carga el script de graficos al dbñlclick al indicador
+                string ini= "  Manager.Task.Excecute(function () {AdministrarMetasPorArea.ViewGraph();},1000,true);";
+                Page.Form.Controls.Add(new LiteralControl("<script>" + ini + "</script>"));
+
             }
         }
 
