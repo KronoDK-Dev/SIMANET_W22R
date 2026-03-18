@@ -1,7 +1,7 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
-using OfficeOpenXml;
+using OfficeOpenXml; // Update-Package EPPlus -ProjectName SIMANET_W22R -Version 7.0.5
 using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;

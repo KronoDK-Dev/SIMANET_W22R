@@ -501,7 +501,7 @@ namespace SIMANET_W22R.General
                 // 0) Si faltan parámetros, intenta completarlos desde memoria (solo 2 params, no DataTable)
                 if (string.IsNullOrWhiteSpace(IdUsuario) || string.IsNullOrWhiteSpace(UserName))
                 {
-                    var pending = memoriacache.ObtieneParams();
+                    var pending = memoriacache.ObtieneParams(); // clase memoricache.cs esta en la raiz de la solucion
                     if (pending != null)
                     {
                         if (string.IsNullOrWhiteSpace(IdUsuario)) IdUsuario = pending.IdUsuario;
@@ -1139,7 +1139,7 @@ namespace SIMANET_W22R.General
             var token = JToken.Parse(json);
             var data = token["data"] ?? token;  // si no hay "data", usa el token completo
 
-            dtResultados = JsonToDataTableHelper.ConvertJsonToDataTable(data.ToString());
+            dtResultados = JsonToDataTableHelper.ConvertJsonToDataTable(data.ToString()); // JsonToDataTableHelper es una clase que esta en la carpeta Gestion Reportes / JsonToDataTableHelper.cs
 
 
             return dtResultados;
