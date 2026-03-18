@@ -271,10 +271,46 @@
         };
     </script>
 
+
+     <!--  SCRIPT PARA FORZAR QUE FUNCIONE LOS MENSAJES DE MEDIANTE EL JS Swal --> 
     <script>
-        document.documentElement.classList.add('enable-scroll');
-        document.body.classList.add('enable-scroll');
-    </script>
+    // --- STUB / QUEUE PARA SWEETALERT2 (Swal.fire) ---
+    (function (w) {
+        // Si no existe Swal o no tiene fire, creamos un stub con cola.
+        if (!w.Swal || typeof w.Swal.fire !== 'function') {
+            var queue = [];
+            var stub = {
+                fire: function () {
+                    queue.push(arguments);
+                },
+                // Opcional: si usas Swal.mixin() en algún lado
+                mixin: function (opts) {
+                    // devolver un mini-stub que vuelve a colar el fire
+                    return { fire: function () { queue.push(arguments); } };
+                }
+            };
+            w.Swal = stub;
+
+            function flushIfReady() {
+                if (w.Swal !== stub && typeof w.Swal.fire === 'function') {
+                    var real = w.Swal, args;
+                    while ((args = queue.shift())) {
+                        try { real.fire.apply(real, args); } catch (e) { console.error(e); }
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            // Reintenta hasta ~10s
+            (function retryFlush(n) {
+                if (flushIfReady()) return;
+                if (n <= 0) return;
+                setTimeout(function () { retryFlush(n - 1); }, 100);
+            })(100);
+        }
+    })(window);
+</script>
 
 </head>
 <body class="enable-scroll">
@@ -293,7 +329,7 @@
                                            <tr style="height:100%;">
                                                   <!-- PANEL IZQUIERDO -->
                                                   <td style="width:30%; max-width:250px; height:100%; border:1px dotted #696666; position:relative;" valign="top">
-                                                    <div id="leftPanel""  style="position:relative; width:100%; height:100%; display:flex; flex-direction:column;">
+                                                    <div id="leftPanel"  style="position:relative; width:100%; height:100%; display:flex; flex-direction:column;">
       
                                                       <!-- Barra de scroll superior -->
                                                       <div class="scroll-top" 
@@ -527,13 +563,7 @@
     
  </script>
 
-	
-
-       
-
-   
-
-    <SCRIPT type="text/javascript">
+	 <SCRIPT type="text/javascript">
 		
      /*Definicion de eventos*/
      ReportExploreV2.Navigator = {};
@@ -838,8 +868,7 @@
 
     </SCRIPT>
 
-
-       <script>
+    <script>
 
 
                document.addEventListener("DOMContentLoaded", function () {
@@ -906,5 +935,7 @@
       
 
        </script>
+
+  
  
 </html>
