@@ -136,7 +136,38 @@ namespace SIMANET_W22R.Controles
                 return new string[1, 1] { { "$.jqx.theme = 'light';" } };
             }
         }
+        // Colocamos un icono a todas las paginas de ERP NETSUITE
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            try
+            {
+                // si las páginas hijas no tiene su titulo de página personalizado le creamos
+                if (string.IsNullOrEmpty(Page.Title))
+                {
+                    Page.Title = "NETSUITE";
+                }
 
+                // construimos la etiqueta html para el icono
+
+                HtmlLink iIcono = new HtmlLink();
+                iIcono.Attributes["rel"] = "icon";
+                iIcono.Attributes["type"] = "image/x-icon";  //"image/png"
+                iIcono.Attributes["href"] = "~/Recursos/img/SIMA.ico";  // 16x16 32x32  48x48 64x64   ruta absoluta ~
+                Page.Header.Controls.Add(iIcono);
+            }
+            catch (Exception ex)
+            {
+
+                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                result = result.Replace("'", "");
+                string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                this.LanzarException(methodName, ex.Message); // error para el log
+                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                string scriptSuccess = $"Swal.fire('Error MasterPage Header.ascx.cs ', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
+            }
+        }
         string[,] TagCtrl = new string[2, 5] {{ "link","href" ,"rel","stylesheet","Estylos Base"}
                                                   ,{ "script","src" ,"type", "text/javascript","Scripts Base"}
                                                  };

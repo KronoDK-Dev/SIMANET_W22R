@@ -1228,9 +1228,147 @@ namespace SIMANET_W22R.GestionProduccion.Mob
             string D_FECHAINI, string D_FECHAFIN, string UserName)
         {
             ProduccionSoapClient oPD = new ProduccionSoapClient();
-            dt = oPD.Listar_DETALLE_GASTO_PRY_OT_MOBSU(N_CEO, V_CODDIV, V_CODPRY, D_FECHAINI, D_FECHAFIN, UserName);
-            dt.TableName = "SP_DETALLE_GASTO_PRY_OT_MOBSU";
-            return dt;
+            DataTable dtError = new DataTable("SP_DETALLE_GASTO_PRY_OT_MOBSU");
+            DateTime fechaIni, fechaFin;
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal 2_DETALLE_GASTO_PRY_OT_MOBSU.rpt 
+            dtError.TableName = "SP_DETALLE_GASTO_PRY_OT_MOBSU";
+            dtError.Columns.Add("PROYECTO", typeof(string));
+            dtError.Columns.Add("OT", typeof(int));
+            dtError.Columns.Add("DES_DET", typeof(string));
+
+            try
+            {
+                // -----validamos datos Obligatorios ----
+                if (N_CEO == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["PROYECTO"] = V_CODPRY;
+                    row["DES_DET"] = "Seleccione el Centro Operativo, es un parámetro obligatorio para retornar información";
+                    row["OT"] = 0;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_CODPRY == "-1" || V_CODPRY == "")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["PROYECTO"] = V_CODPRY;
+                    row["DES_DET"] = "Seleccione un Proyecto, es un parámetro obligatorio para retornar información";
+                    row["OT"] = 0;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_CODDIV == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["PROYECTO"] = V_CODPRY;
+                    row["DES_DET"] = "Seleccione la Linea de Negocio, es un parámetro obligatorio para retornar información";
+                    row["OT"] = 0;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (string.IsNullOrWhiteSpace(D_FECHAINI))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["PROYECTO"] = V_CODPRY;
+                    row["DES_DET"] = "La fecha inicial es obligatoria.";
+                    row["OT"] = 0;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (!DateTime.TryParseExact(D_FECHAINI, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaIni))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["PROYECTO"] = V_CODPRY;
+                    row["DES_DET"] = "La fecha inicial no tiene un formato válido. Formato correcto: dd/MM/yyyy";
+                    row["OT"] = 0;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+
+                if (string.IsNullOrWhiteSpace(D_FECHAFIN))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["PROYECTO"] = V_CODPRY;
+                    row["DES_DET"] = "La fecha final es obligatoria.";
+                    row["OT"] = 0;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (!DateTime.TryParseExact(D_FECHAFIN, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaFin))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["PROYECTO"] = V_CODPRY;
+                    row["DES_DET"] = "La fecha final no tiene un formato válido. Formato correcto: dd/MM/yyyy";
+                    row["OT"] = 0;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                // ----------------------------------------------------
+
+                dt = oPD.Listar_DETALLE_GASTO_PRY_OT_MOBSU(N_CEO, V_CODDIV, V_CODPRY, D_FECHAINI, D_FECHAFIN, UserName);
+                //  dt.TableName = "SP_DETALLE_GASTO_PRY_OT_MOBSU";
+                // return dt;
+                if (dt != null)  // valida vacio
+                {
+                    
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "SP_DETALLE_GASTO_PRY_OT_MOBSU";
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["PROYECTO"] = V_CODPRY;
+                        row["DES_DET"] = "No existen registros para los parámetros consultados: " + V_CODPRY + " " + V_CODDIV + " " + D_FECHAINI + " " + D_FECHAFIN;
+                        row["OT"] = 0;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["PROYECTO"] = V_CODPRY;
+                    row["DES_DET"] = "No existen registros para los parámetros consultados: " + V_CODPRY + " " + V_CODDIV + " " + D_FECHAINI + " " + D_FECHAFIN;
+                    row["OT"] = 0;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["PROYECTO"] = V_CODPRY;
+                row["DES_DET"] = "Error en servicio: " + ex.Message;
+                row["OT"] = 0;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oPD != null)
+                {
+                    try
+                    {
+                        if (oPD.State != System.ServiceModel.CommunicationState.Faulted)
+                            oPD.Close();
+                        else
+                            oPD.Abort();
+                    }
+                    catch
+                    { oPD.Abort(); }
+                }
+            }
+
+             
+
         }
+
+
+
+
     }
 }

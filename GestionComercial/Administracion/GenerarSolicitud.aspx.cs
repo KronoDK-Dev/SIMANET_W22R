@@ -44,7 +44,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             else
             {
                 ctrlSublinea.Visible = true;  //ltSubLinea
-                ltUnidadOpe.Visible = false;
+                ltUnidadOpe.Visible = true;
                 lblUnidadOpera.Visible = false;
 
             }
@@ -84,33 +84,48 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     //-- VERIFICA QUE CARGUE
                     if (eDDLCentros.Items.Count == 0)
                     {
+                        idcentro = int.TryParse(this.IdCentroOperativo?.ToString(), out var v) ? v : 1;
+                        switch (idcentro)
+                        {
+                            case 3:
+                                idcentro = 2;
+                                break;
+                            case 2:
+                                idcentro = 3;
+                                break;
+                            default:
+                                idcentro = 1; // Si no es 2 ni 3, mantener el valor original
+                                break;
+                        }
 
-
+                        eDDLCentros.SelectedIndex = idcentro;
                     }
 
-                    /*
-                    switch (int.Parse(this.IdCentroOperativo))
-                    {
-                        case 3:
-                            idcentro = 2;
-                            break;
-                        case 2:
-                            idcentro = 3;
-                            break;
-                        default:
-                            idcentro = int.Parse(this.IdCentroOperativo); // Si no es 2 ni 3, mantener el valor original
-                            break;
-                    }
-
-                    eDDLCentros.SelectedIndex = idcentro;
-                    */
+                    
                     eDDLCentros.SelectedValue = this.IdCentroOperativo;
+                }
+
+                // capturamos variables
+                string LN, CLSTR, SUBLN, UO;
+                LN = Request.QueryString["LnNeg"];   // CAPTURA EL CODIGO DE LINEA ENVIADO
+                SUBLN = Request.QueryString["SUBLnNeg"];
+                CLSTR = Request.QueryString["ClaseT"];
+                UO = Request.QueryString["UnidadOpe"];
+                
+                //----- unidad operativa ----
+                ltUnidadOpe.LoadData();
+
+                if (ltUnidadOpe.Items.Count > 1)
+                {
+                    ltUnidadOpe.SelectedValue = UO;
                 }
 
                 if (this.IdCentroOperativo == "1")
                 {
-                    string LN, CLSTR, SUBLN;
+              
                     eDDLCentros.SelectedValue = this.IdCentroOperativo;
+
+                   
 
                     //llena el combo  de LINEAS
                     //   var dt = new GeneralSoapClient().SP_ListaLineas_NegxCEO(this.IdCentroOperativo, "", this.UsuarioLogin);
@@ -122,9 +137,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     ltLineas.DataBind();
                     ltLineas.Attributes.Add("data-required", "true");
                     //------------------------------
-                    LN = Request.QueryString["LnNeg"];   // CAPTURA EL CODIGO DE LINEA ENVIADO
-                    SUBLN = Request.QueryString["SUBLnNeg"];
-                    CLSTR = Request.QueryString["ClaseT"];
+                
                     if (LN != null)
                     {
                         ltLineas.SelectedValue = LN;
@@ -860,7 +873,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
                 if (ltSubLinea.Items.Count <= 1)
                 {
-                    var dt2 = new GeneralSoapClient().ListaSubLineasNegxCEOxUOxL(this.IdCentroOperativo, "", selectedValue, this.UsuarioLogin);
+                    var dt2 = new GeneralSoapClient().ListaSubLineasNegxCEOxUOxL(this.IdCentroOperativo, ltUnidadOpe.Text, selectedValue, this.UsuarioLogin);
                     ltSubLinea.DataSource = dt2;
                     ltSubLinea.DataTextField = "NOMBRE";
                     ltSubLinea.DataValueField = "CODIGO";

@@ -1027,13 +1027,19 @@ namespace SIMANET_W22R.General
         [WebMethod(Description = "Sublineas de trabajo por Linea")]
         public DataTable ListarSublineasxLinea(string ceo, string s_linea, string UserName)
         {
+            if (ceo == "-1")
+            { ceo="C";    }
+
             string cacheKey = $"{ceo}_{s_linea}"; // Combinar los filtros para crear una clave única para la caché
             MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
             // Verificar si ya existe el resultado en caché
             if (cache.Contains(cacheKey))
             {
-                return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
+                dtResultados = cache.Get(cacheKey) as DataTable;
+
+                return dtResultados;                  // Retornar el DataTable almacenado en caché
             }
+
 
             dtResultados = (new GeneralSoapClient()).ListaSubLinea_Trabajo(ceo, s_linea, UserName);              // Si no está en caché, llamar al servicio para obtener los datos
 
@@ -1047,6 +1053,7 @@ namespace SIMANET_W22R.General
                 cache.Add(cacheKey, dtResultados, policy);             // Almacenar el resultado en caché
             }
 
+            dtResultados.TableName = "Table";
             return dtResultados;
 
         }

@@ -1,22 +1,29 @@
-﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+﻿using CrystalDecisions.ReportAppServer.CommonControls;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
+using DocumentFormat.OpenXml.Math;
 using EasyControlWeb;
 using EasyControlWeb.Form.Controls;
-using SIMANET_W22R.GestionProyecto;
+using Org.BouncyCastle.Asn1.X509;
 using SIMANET_W22R.InterfaceUI;
 using SIMANET_W22R.srvCliente;
 using SIMANET_W22R.srvGeneral;
 // servicios
 using SIMANET_W22R.srvGestionComercial;
+using SIMANET_W22R.srvGestionProduccion;
 using SIMANET_W22R.srvGestionProyecto;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO.Packaging;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static EasyControlWeb.EasyUtilitario.Constantes.Formato;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace SIMANET_W22R.GestionComercial.Administracion
 {
@@ -27,6 +34,24 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         srvGestionProyecto.ProyectoSoapClient oProyectos = new srvGestionProyecto.ProyectoSoapClient();
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (IsPostBack )
+            {
+                string sEvento = Request["__EVENTTARGET"];
+                switch (sEvento)
+                {
+                    case "confirmarretiro":
+                        string nroOT = Request["__EVENTARGUMENT"];
+                        ConfirmarRetiro(nroOT);
+                        break;
+                    case "confirmarretiroprep":
+                        string sProyecto = Request["__EVENTARGUMENT"];
+                        ConfirmarRetiroprep(sProyecto);
+                        break;
+                }
+                
+            }
+
             if (Session["codPry"]==null || Session["codPry"].ToString() == String.Empty)
             {
                 txtModo.Value = "N";
@@ -666,14 +691,28 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 //this.LlenarGrilla(EasyGestorFiltro1.getFilterString());
                 // this.LlenarGrilla("");
             }
-            protected void EasyGridOTsProyecto_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+        protected void EGVOTsProyecto_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
             {
                 try
                 {
-                    switch (oEasyGridButton.Id)
+                string script;
+                string sNroOT = "";
+                if (Recodset.Count > 0)
+                {
+                     sNroOT = Recodset["COD_OTS"];
+                }
+
+                
+
+
+                switch (oEasyGridButton.Id)
                     {
-                    
-                    }
+                    case "btnQuitarReporte":
+                        string smensaje= "Desea No considerar la Ot " + sNroOT + " en los reportes BI?";
+                        fnInsertarMensajeSweetAlert("Ordenes de Trabajo", smensaje,"1", "lbConfirmarRetiroOT", sNroOT, "confirmarretiro");
+                      
+                        break;
+            }
                 }
                 catch (Exception ex)
                 {
@@ -688,7 +727,146 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
                 }
             }
-            protected void EasyGridAdendas_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+        protected void lbConfirmarRetiroOT_Click(object sender, EventArgs e)
+        {
+            string sOT= Request["__EVENTARGUMENT"];
+            ConfirmarRetiro(sOT);
+        }
+        protected void ConfirmarRetiro(string snroOT)
+        {
+            string slinea = eDDLLineasN.SelectedValue;
+            string sCeo = eDDLCentros.SelectedValue ;
+            string sRpta, script;
+                        
+            sRpta = new ProduccionSoapClient().ExcluyeOT_ReporteBI(sCeo, slinea, snroOT, this.UsuarioLogin);
+            if (sRpta == "1")
+            {
+                script = "<script>";
+                script += "Swal.fire({title: 'Ordenes de Trabajo', text:'Actualización Satisfactoria', icon: 'success',  confirmButtonText: 'Aceptar',  confirmButtonColor: '#3085d6',  allowOutsideClick: false})";
+                script += "</script>";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
+
+            }
+            else
+            {
+                script = "<script>";
+                script += "Swal.fire({title: 'Ordenes de Trabajo', text:'No se pudo actualizar la OT', icon: 'error', confirmButtonText: 'Aceptar', confirmButtonColor: '#d33', allowOutsideClick: false});";
+                script += "</script>";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
+            }
+
+            AbreAcordeonOT();
+        }
+        protected void EGVOTsProyecto_EasyGridDetalle_Click(Dictionary<string, string> Recodset)
+        {
+            try
+            {
+            
+            }
+            catch (Exception ex)
+            {
+
+                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                result = result.Replace("'", "");
+                string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                this.LanzarException(methodName, ex); // error para el log
+                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
+            }
+
+        }
+        protected void EGVPresupuesto_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+        {
+            try
+            {
+                switch (oEasyGridButton.Id)
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                result = result.Replace("'", "");
+                string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                this.LanzarException(methodName, ex); // error para el log
+                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
+            }
+        }
+        protected void EGVempresasFC_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+        {
+            try
+            {
+                switch (oEasyGridButton.Id)
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                result = result.Replace("'", "");
+                string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                this.LanzarException(methodName, ex); // error para el log
+                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
+            }
+        }
+
+        protected void EGVEmpresasF_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+        {
+            try
+            {
+                switch (oEasyGridButton.Id)
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                result = result.Replace("'", "");
+                string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                this.LanzarException(methodName, ex); // error para el log
+                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
+            }
+        }
+        protected void EGVtt_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
+        {
+            try
+            {
+                switch (oEasyGridButton.Id)
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                result = result.Replace("'", "");
+                string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                this.LanzarException(methodName, ex); // error para el log
+                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
+            }
+        }
+        protected void EasyGridAdendas_EasyGridButton_Click(EasyGridButton oEasyGridButton, Dictionary<string, string> Recodset)
             {      
                 try
                 {
@@ -742,7 +920,16 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                             }
                             else
                             {
-                                resultado = (new ProyectoSoapClient()).DEL_ADENDAPROYECTO(Recodset["V_PROYADE_CODPRY"], Recodset["N_PROYADE_NROADENDA"],this.UsuarioLogin);
+
+                                // Detectar cuáles faltan (opcional)
+                                var faltan = new List<string>();
+                                if (!Recodset.ContainsKey("V_PROYADE_CODPRY")) faltan.Add("V_PROYADE_CODPRY");
+                                if (!Recodset.ContainsKey("N_PROYADE_NROADENDA")) faltan.Add("N_PROYADE_NROADENDA");
+
+                            if (faltan.Count == 0)
+                            {
+
+                                resultado = (new ProyectoSoapClient()).DEL_ADENDAPROYECTO(Recodset["V_PROYADE_CODPRY"], Recodset["N_PROYADE_NROADENDA"], this.UsuarioLogin);
 
                                 if (resultado == "1")
                                 {
@@ -754,15 +941,23 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                                 }
                                 else
                                 {
-                                     script = "<script>";
-                                    script += "toastr.error('Error al interntar eliminar adenda', 'Requerido');";
+                                    
+                                    script = "<script>";
+                                    script += "Swal.fire({title: 'Alerta en Adenda',text:'Error al intentar eliminar adenda', icon: 'warning', confirmButtonText: 'Aceptar', confirmButtonColor: '#3085d6', allowOutsideClick: false});";
                                     script += "</script>";
                                     ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
                                 }
 
-
+                            }
+                            else
+                            {
+                                script = "<script>";
+                                script += "Swal.fire({title: 'Alerta en Adenda',text:'Registro incompleto para realizar esta operación', icon: 'warning', confirmButtonText: 'Aceptar', confirmButtonColor: '#3085d6', allowOutsideClick: false});";
+                                script += "</script>";
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
 
                             }
+                        }
                             break;
                     }
                 }
@@ -1064,6 +1259,87 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             }
 
         }
+        public bool ValidarDatosPresupuesto()
+        {
+            bool esValido = true;
+            string script = "<script>";
+            try
+            {
+                //Validar 
+                if (string.IsNullOrEmpty(EDPFechaPres.Text))
+                {
+                    script += "toastr.error('Debe seleccionar una Fecha de Presupuesto.', 'Requerido');";
+                    // foco en el control, pero para ello activar en el control la propiedad el evento focus:  onfocus="this.style.borderColor = '';"
+                    script += "document.getElementById('" + EDPFechaPres.ClientID + "').style.borderColor = 'red';"; // Cambiar borde a rojo
+                    script += "document.getElementById('" + EDPFechaPres.ClientID + "').focus();"; // Poner el foco en el campo
+                    esValido = false;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtCostoDMOB.Text))
+                {
+                    script += "toastr.error('Debe completar el campo Costo de Mano de Obra.', 'Requerido');";
+                    // foco en el control, pero para ello activar en el control la propiedad el evento focus:  onfocus="this.style.borderColor = '';"
+                    script += "document.getElementById('" + txtCostoDMOB.ClientID + "').style.borderColor = 'red';"; // Cambiar borde a rojo
+                    script += "document.getElementById('" + txtCostoDMOB.ClientID + "').focus();"; // Poner el foco en el campo
+
+                    esValido = false;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtCostoDMAT.Text))
+                {
+                    script += "toastr.error('Debe completar el campo Costo de Materiales.', 'Requerido');";
+                    // foco en el control, pero para ello activar en el control la propiedad el evento focus:  onfocus="this.style.borderColor = '';"
+                    script += "document.getElementById('" + txtCostoDMAT.ClientID + "').style.borderColor = 'red';"; // Cambiar borde a rojo
+                    script += "document.getElementById('" + txtCostoDMAT.ClientID + "').focus();"; // Poner el foco en el campo
+
+                    esValido = false;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtCostoDSER.Text))
+                {
+                    script += "toastr.error('Debe completar el campo Costo de Servicios.', 'Requerido');";
+                    // foco en el control, pero para ello activar en el control la propiedad el evento focus:  onfocus="this.style.borderColor = '';"
+                    script += "document.getElementById('" + txtCostoDSER.ClientID + "').style.borderColor = 'red';"; // Cambiar borde a rojo
+                    script += "document.getElementById('" + txtCostoDSER.ClientID + "').focus();"; // Poner el foco en el campo
+
+                    esValido = false;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtCostoIND.Text))
+                {
+                    script += "toastr.error('Debe completar el campo Costos Totales Indirectos.', 'Requerido');";
+                    // foco en el control, pero para ello activar en el control la propiedad el evento focus:  onfocus="this.style.borderColor = '';"
+                    script += "document.getElementById('" + txtCostoIND.ClientID + "').style.borderColor = 'red';"; // Cambiar borde a rojo
+                    script += "document.getElementById('" + txtCostoIND.ClientID + "').focus();"; // Poner el foco en el campo
+
+                    esValido = false;
+                }
+
+                script += "</script>";
+                if (!esValido)
+                {
+                    // Registrar el script para que se ejecute en el cliente
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);//
+                                                                                                             // ClientScript.RegisterStartupScript(this.GetType(), "Validaciones", script);
+                }
+
+                return esValido;
+            }
+
+            catch (Exception ex)
+            {
+                var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
+                result = result.Replace("'", "");
+                string pageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                this.LanzarException(methodName, ex); // error para el log
+                Console.WriteLine(pageName + ' ' + methodName + ' ' + result); // error para verlo en el inspector de página
+                string scriptSuccess = $"Swal.fire('Error', 'Página: {pageName} -  {methodName}: {result}', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertError", scriptSuccess, true);
+                return false;
+            }
+
+        }
 
         public bool ValidarFiltros()
         {
@@ -1214,7 +1490,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 string N_FTPRESUPUESTO_COSTOMAT = Recodset["N_FTPRESUPUESTO_COSTOMAT"].ToString();
                 string N_FTPRESUPUESTO_COSTOSER = Recodset["N_FTPRESUPUESTO_COSTOSER"].ToString();
                 string N_FTPRESUPUESTO_COSTOIND = Recodset["N_FTPRESUPUESTO_COSTOIND"].ToString();
-                
+                string N_FTPRESUPUESTO_COSTONAC = Recodset["N_FTPRESUPUESTO_COSTONAC"].ToString();
 
                 lblmensaje.Text = "";
                 ViewState["accionP"] = "2"; // MODO EDICION
@@ -1222,7 +1498,9 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 txtCostoDMOB.Text = N_FTPRESUPUESTO_COSTOMOB;   
                 txtCostoDSER.Text = N_FTPRESUPUESTO_COSTOSER;
                 txtCostoIND.Text = N_FTPRESUPUESTO_COSTOIND;
-                txtfechaCP.Text = DT_FTPRESUPUESTO_FECHA;
+                txtCostoNac.Text = N_FTPRESUPUESTO_COSTONAC;
+                EDPFechaPres.Text = DT_FTPRESUPUESTO_FECHA;
+
 
                 //Dictionary<string, string> RowSelectd = EasyGridColaboradores.getDataItemSelected();
 
@@ -1239,7 +1517,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     true
                 );
 
-                txtCostoDMAT.Focus();  
+                txtCostoDMOB.Focus();  
 
             }
             catch (Exception ex)
@@ -1265,9 +1543,31 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         {
 
         }
+
+
         protected void btnCostos_Click(object sender, EventArgs e)
         {
             string ip = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+            if (!ValidarDatosPresupuesto())
+            {
+                // Si hay errores, detener el procesamiento
+
+                // En el code-behind (GenerarProyecto.aspx.cs), por ejemplo al final del handler:
+                hfCollapseOne2Open.Value = "true";
+
+                // Y, si el postback es parcial dentro de UpdatePanel, inyecta re-apertura explícita:
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "keepCollapseOne2Open",
+                    "$('#collapseOne2').collapse('show'); $('[data-target=\"#collapseOne2\"]').attr('aria-expanded','true');",
+                    true
+                );
+
+                txtCostoDMOB.Focus();
+                return;
+            }
 
             if (string.IsNullOrEmpty(ip))
             {
@@ -1289,7 +1589,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 }
             }
 
-            string fecha = txtfechaCP.Text.Trim();
+            string fecha = EDPFechaPres.Text.Trim();
 
             string sauditoria =
                 (string.IsNullOrEmpty(fecha) ? "" : fecha + " - ") +
@@ -1300,12 +1600,12 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             string s_accion = ViewState["accionP"] as string ?? "1";
 
 
-            string result = oProyectos.InsUpdDel_ProyectoPresupuesto(s_accion, txtCodProyecto.Text , eDDLCentros.SelectedValue, txtCostoDMOB.Text, txtCostoDMAT.Text, txtCostoDSER.Text, txtCostoIND.Text,
+            string result = oProyectos.InsUpdDel_ProyectoPresupuesto(s_accion, txtCodProyecto.Text , eDDLCentros.SelectedValue, txtCostoDMOB.Text, txtCostoDMAT.Text, txtCostoDSER.Text, txtCostoIND.Text,txtCostoNac.Text,
                 this.UsuarioLogin, ip, sauditoria);
 
             if (result != null)
             {
-                if (result != "result")
+                if (result != "result" && result != "0")
                 {
                     string scriptSuccess = $"Swal.fire('Éxito', 'Costos Registrados: {result}', 'success');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alertSuccess", scriptSuccess, true);
@@ -1326,7 +1626,13 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             }
 
             EGVPresupuesto.LoadData("");
+            // Abre acordeon Ficha tecnica
+            AbreAcordeonFichaTecnica();
+        }
 
+        protected void AbreAcordeonFichaTecnica()
+        {
+            // Abre acordeon Ficha tecnica
             // En el code-behind (GenerarProyecto.aspx.cs), por ejemplo al final del handler:
             hfCollapseOne2Open.Value = "true";
 
@@ -1339,7 +1645,250 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 true
             );
 
+            txtCostoDMOB.Focus();
+        }
+
+        protected void AbreAcordeonOT()
+        {
+            // Abre acordeon ot
+            // En el code-behind 
+            hfCollapseOne2Open.Value = "true";
+
+            //  inyecta re-apertura explícita:
+            ScriptManager.RegisterStartupScript(
+                this,
+                this.GetType(),
+                "keepcollapseOT",
+                "$('#collapseOT').collapse('show'); $('[data-target=\"#collapseOT\"]').attr('aria-expanded','true');",
+                true
+            );
+
             txtCostoDMAT.Focus();
+        }
+        protected void fnInsertarMensajeSweetAlert(
+         string stitulo,        // Ficha Técnica - Presupuesto
+         string sMensaje,
+         string sicono,          // "1"=warning (confirmar), "2"=success (OK), "3"=error (OK), otros=info (OK)
+         string sControlEnlace,  // UniqueID del LinkButton oculto (destino del postback)
+         string sIdRegistro,     // Argumento para __doPostBack (p.e., código de proyecto)
+         string sMetodo          // key única para ScriptManager.RegisterStartupScript
+      )
+        {
+            // 1) Escapar valores para JavaScript
+            string tituloJs = System.Web.HttpUtility.JavaScriptStringEncode(stitulo ?? string.Empty);
+            string mensajeJs = System.Web.HttpUtility.JavaScriptStringEncode(sMensaje ?? string.Empty);
+            string argumentoJs = System.Web.HttpUtility.JavaScriptStringEncode(sIdRegistro ?? string.Empty);
+
+            // 2) Determinar icono y armar scontenido según tipo
+            string icono;
+            string scontenido;
+
+            switch (sicono)
+            {
+                case "1": // warning con Sí/No
+                    icono = "warning";
+                    scontenido =
+                        $"title: '{tituloJs}', " +
+                        $"text: '{mensajeJs}', " +
+                        $"icon: '{icono}', " +
+                        $"showCancelButton: true, " +
+                        $"confirmButtonText: 'Sí', " +
+                        $"cancelButtonText: 'No', " +
+                        $"confirmButtonColor: '#3085d6', " +
+                        $"cancelButtonColor: '#6c757d', " +
+                        $"allowOutsideClick: false";
+                    break;
+
+                case "2": // success con OK
+                    icono = "success";
+                    scontenido =
+                        $"title: '{tituloJs}', " +
+                        $"text: '{mensajeJs}', " +
+                        $"icon: '{icono}', " +
+                        $"confirmButtonText: 'Aceptar', " +
+                        $"confirmButtonColor: '#3085d6', " +
+                        $"allowOutsideClick: false";
+                    break;
+
+                case "3": // error con OK
+                    icono = "error";
+                    scontenido =
+                        $"title: '{tituloJs}', " +
+                        $"text: '{mensajeJs}', " +
+                        $"icon: '{icono}', " +
+                        $"confirmButtonText: 'Aceptar', " +
+                        $"confirmButtonColor: '#d33', " +
+                        $"allowOutsideClick: false";
+                    break;
+
+                default: // info con OK
+                    icono = "info";
+                    scontenido =
+                        $"title: '{tituloJs}', " +
+                        $"text: '{mensajeJs}', " +
+                        $"icon: '{icono}', " +
+                        $"confirmButtonText: 'Aceptar', " +
+                        $"confirmButtonColor: '#3085d6', " +
+                        $"allowOutsideClick: false";
+                    break;
+            }
+
+            // 3) Script con fallback (promesa / attach al botón / degradar a confirm/alert)
+            //    - Solo dispara __doPostBack cuando sicono == "1" y se confirma.
+            //    - Para success/error/info muestra el modal y no hace postback.
+            string js = $@"
+                    (function() {{
+                      try {{
+                        var opts = {{ {scontenido} }};
+                        var canConfirm = ({(sicono == "1" ? "true" : "false")});
+
+                        var fireFn = (window.Swal && typeof Swal.fire === 'function') ? Swal.fire : null;
+
+                        // Si no hay SweetAlert2, degradar
+                        if (!fireFn) {{
+                          if (canConfirm) {{
+                            if (window.confirm(opts.text)) {{
+                              {(string.IsNullOrEmpty(sControlEnlace) ? "" : $"__doPostBack('{sControlEnlace}', '{argumentoJs}');")}
+                            }}
+                          }} else {{
+                            window.alert(opts.text);
+                          }}
+                          return;
+                        }}
+
+                        var ret = fireFn(opts);
+
+                        // Camino normal: SweetAlert2 devuelve una Promesa
+                        if (ret && typeof ret.then === 'function') {{
+                          if (canConfirm) {{
+                            ret.then(function(result) {{
+                              if (result && result.isConfirmed) {{
+                                {(string.IsNullOrEmpty(sControlEnlace) ? "" : $"__doPostBack('{sControlEnlace}', '{argumentoJs}');")}
+                              }}
+                            }});
+                          }} else {{
+                            // Para success/error/info no necesitamos then
+                          }}
+                          return;
+                        }}
+
+                        // Fallback: fire() no devolvió promesa (quizá alguien lo sobreescribió)
+                        if (canConfirm) {{
+                          var tries = 0;
+                          var it = setInterval(function() {{
+                            var btn = document.querySelector('.swal2-container .swal2-confirm');
+                            if (btn) {{
+                              clearInterval(it);
+                              btn.addEventListener('click', function() {{
+                                {(string.IsNullOrEmpty(sControlEnlace) ? "" : $"__doPostBack('{sControlEnlace}', '{argumentoJs}');")}
+                              }}, {{ once: true }});
+                            }} else if (++tries > 40) {{ // ~2s
+                              clearInterval(it);
+                              // Degradar a confirm si no logramos enganchar
+                              if (window.confirm(opts.text)) {{
+                                {(string.IsNullOrEmpty(sControlEnlace) ? "" : $"__doPostBack('{sControlEnlace}', '{argumentoJs}');")}
+                              }}
+                            }}
+                          }}, 50);
+                        }}
+                      }} catch (ex) {{
+                        console && console.error && console.error('[fnInsertarMensajeSweetAlert] ', ex);
+                        // Degradar
+                        {(sicono == "1"
+                                    ? $"if (window.confirm('{mensajeJs}')) {{ {(string.IsNullOrEmpty(sControlEnlace) ? "" : $"__doPostBack('{sControlEnlace}', '{argumentoJs}');")} }}"
+                                    : $"window.alert('{mensajeJs}');")}
+                      }}
+                    }})();";
+
+            // 4) Importante: addScriptTags = true (no metas <script> manual)
+            ScriptManager.RegisterStartupScript(this, this.GetType(), sMetodo ?? Guid.NewGuid().ToString("N"), js, true);
+        }
+
+
+        protected void btnCostosQ_Click(object sender, EventArgs e)
+        {
+            string sProyecto = txtCodProyecto.Text?.Trim() ?? string.Empty;
+            string sProyectoJs = System.Web.HttpUtility.JavaScriptStringEncode(sProyecto);
+            string target = lbConfirmarRetiroPrep.UniqueID;
+            string sfecha = EDPFechaPres.Text;
+            string script;
+            if (string.IsNullOrEmpty(sfecha))
+            {
+
+                script = "<script>";
+                script += "Swal.fire({title: 'Ficha Técnica - Presupuesto',text:'Debe seleccionar primero el registro desde la primera columna para realizar la acción', icon: 'warning', confirmButtonText: 'Aceptar', confirmButtonColor: '#3085d6', allowOutsideClick: false});";
+                script += "</script>";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
+                AbreAcordeonFichaTecnica();
+                return;
+            }
+
+            string smensaje = "¿Desea retirar los Costos del proyecto: "+ sProyectoJs + " para los reportes BI, con fecha: " + sfecha + " ?";
+            fnInsertarMensajeSweetAlert("Ficha Técnica - Presupuesto", smensaje, "1", target, sProyectoJs, "ConfirmRetiroPrep");
+            
+        }
+
+        protected void lbConfirmarRetiroPrep_Click(object sender, EventArgs e)
+        {
+            string sProyecto = Request["__EVENTARGUMENT"];
+            ConfirmarRetiroprep(sProyecto);
+        }
+
+
+        protected void ConfirmarRetiroprep(string snroOT)
+        {
+            string slinea = eDDLLineasN.SelectedValue;
+            string sCeo = eDDLCentros.SelectedValue;
+            string script;
+            string ip = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            if (string.IsNullOrEmpty(ip))
+            {
+                ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+
+                try
+                {
+                    IPHostEntry hostEntry = Dns.GetHostEntry(ip);
+                    ip = hostEntry.HostName;
+
+                    if (ip.Contains("."))
+                    {
+                        ip = ip.Split('.')[0];
+                    }
+                }
+                catch
+                {
+                    // Si falla la resolución de DNS, se utiliza la IP
+                }
+            }
+
+            string fecha = EDPFechaPres.Text.Trim();
+
+            string sauditoria =
+                (string.IsNullOrEmpty(fecha) ? "" : fecha + " - ") +
+                "Inserta Presupuesto de proyecto - ficha técnica - btnCostos_Click " +
+                DateTime.Now;
+
+
+            string sRpta = oProyectos.InsUpdDel_ProyectoPresupuesto("3", txtCodProyecto.Text, eDDLCentros.SelectedValue, txtCostoDMOB.Text, txtCostoDMAT.Text, txtCostoDSER.Text, txtCostoIND.Text,txtCostoNac.Text,
+          this.UsuarioLogin, ip, sauditoria);
+
+            if (sRpta == "1")
+            {
+                script = "<script>";
+                script += "Swal.fire({title: 'Ficha Técnica - Presupuesto', text:'Actualización Satisfactoria', icon: 'success',  confirmButtonText: 'Aceptar',  confirmButtonColor: '#3085d6',  allowOutsideClick: false})";
+                script += "</script>";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
+
+            }
+            else
+            {
+                script = "<script>";
+                script += "Swal.fire({title: 'Ficha Técnica - Presupuesto', text:'No se pudo actualizar la OT', icon: 'error', confirmButtonText: 'Aceptar', confirmButtonColor: '#d33', allowOutsideClick: false});";
+                script += "</script>";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Validaciones", script, false);
+            }
+            EGVPresupuesto.LoadData("");
+            AbreAcordeonFichaTecnica();
         }
         protected void btnDocumentos_Click(object sender, EventArgs e)
         {

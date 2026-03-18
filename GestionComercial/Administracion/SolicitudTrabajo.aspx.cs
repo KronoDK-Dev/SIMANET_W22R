@@ -279,6 +279,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 oEasyNavigatorBE.Pagina = "/GestionComercial/Administracion/GenerarSolicitud.aspx";
                 // configuramos los parámetros del control de navagacion, colocando el id del registro actual, el modo de edición que tendrá
                 oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(PaginaBase.KEYQCENTROOPERATIVO, eDDLCentros.SelectedValue.ToString()));
+                oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYUNIDADOPERATIVA, eDDLUnidadO.SelectedValue.ToString()));  // KEYUNIDADOPERATIVA = "UnidadOpe"
                 oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(PaginaBase.KEYIDGENERAL, Recodset["nroSolicitud"]));
                 oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYLNNEGOCIO, Recodset["linea"]));
                 oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYCLASETRAB, Convert.ToString(Session["Clase"])));
@@ -332,7 +333,8 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                         oEasyNavigatorBE.Descripcion = "Registro de Solicitudes";
                         oEasyNavigatorBE.Pagina = "/GestionComercial/Administracion/GenerarSolicitud.aspx";
                         // configuramos los parámetros del control de navagacion, colocando el id del registro actual, el modo de edición que tendrá
-                        oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(PaginaBase.KEYQCENTROOPERATIVO, eDDLCentros.SelectedValue.ToString()));
+                        oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(PaginaBase.KEYQCENTROOPERATIVO, eDDLCentros.SelectedValue.ToString()));    //
+                        oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYUNIDADOPERATIVA, eDDLUnidadO.SelectedValue.ToString()));  // KEYUNIDADOPERATIVA = "UnidadOpe"
                         oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYLNNEGOCIO, eDDLLineas.SelectedValue.ToString()));       //   KEYLNNEGOCIO = "LnNeg";
                         oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYSUBLNNEGOCIO, eDDLSubLinea.SelectedValue.ToString())); //   KEYSUBLNNEGOCIO = "SUBLnNeg";
                         oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYCLASETRAB, Convert.ToString(Session["Clase"])));      //  KEYCLASETRAB = "ClaseT";

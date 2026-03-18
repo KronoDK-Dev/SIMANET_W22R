@@ -533,6 +533,10 @@ namespace SIMANET_W22R.GestionComercial
 
             try
             {
+                if (V_CEO == "1" && V_UND_OPER == "-1")
+                {
+                    V_UND_OPER = "C";
+                }
                 // Llamar al método y obtener el XML como string
                 string xmlData = (new ProyectoSoapClient()).ListarProyectos(V_CEO, V_UND_OPER, V_LINEA, V_FILTRO, V_FECHAINI, V_FECHAFIN);
 

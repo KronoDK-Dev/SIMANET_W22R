@@ -609,6 +609,24 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         protected global::System.Web.UI.WebControls.Label LblCI;
 
         /// <summary>
+        /// Control Label32.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label32;
+
+        /// <summary>
+        /// Control Label31.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label31;
+
+        /// <summary>
         /// Control txtCostoDMOB.
         /// </summary>
         /// <remarks>
@@ -616,15 +634,6 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::EasyControlWeb.Form.Controls.EasyTextBox txtCostoDMOB;
-
-        /// <summary>
-        /// Control txtfechaCP.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtfechaCP;
 
         /// <summary>
         /// Control txtCostoDMAT.
@@ -654,6 +663,24 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         protected global::EasyControlWeb.Form.Controls.EasyTextBox txtCostoIND;
 
         /// <summary>
+        /// Control txtCostoNac.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtCostoNac;
+
+        /// <summary>
+        /// Control EDPFechaPres.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyDatepicker EDPFechaPres;
+
+        /// <summary>
         /// Control BtnAgregarCostos.
         /// </summary>
         /// <remarks>
@@ -661,6 +688,24 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnAgregarCostos;
+
+        /// <summary>
+        /// Control BtnQuitarCostos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnQuitarCostos;
+
+        /// <summary>
+        /// Control lbConfirmarRetiroPrep.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbConfirmarRetiroPrep;
 
         /// <summary>
         /// Control EGVPresupuesto.
@@ -1264,6 +1309,15 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTituloOT;
+
+        /// <summary>
+        /// Control lbConfirmarRetiroOT.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbConfirmarRetiroOT;
 
         /// <summary>
         /// Control EasyGridOtsProyecto.
