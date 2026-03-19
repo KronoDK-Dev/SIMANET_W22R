@@ -63,9 +63,10 @@ namespace SIMANET_W22R.Controles
 
         public string[,] ScriptBase
         {
-            get { return new string[25, 2]{
+            get { return new string[26, 2]{
                                                 /*  { "Core", "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"}*/
-                                                 { "Core", EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/Js/jquery.min.js"}
+                                                  { "util-deps", EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/LibSIMA/util-deps.js"}
+                                                 ,{ "Core", EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/Js/jquery.min.js"}
                                                  ,{ "bootstrap.min",EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/Js/4.5.2.bootstrap.min.js"}
                                                  ,{ "jquery-confirm.min",EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/Js/jquery-confirm.min.js"}
                                                 // ,{ "jspdf.min",EasyUtilitario.Helper.Pagina.PathSite()+"/Recursos/Js/1.5.3-jspdf.min.js"}
