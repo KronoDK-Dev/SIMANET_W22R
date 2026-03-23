@@ -118,6 +118,10 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
                 if (ltUnidadOpe.Items.Count > 1)
                 {
+                    if (this.IdCentroOperativo != "1" && UO == "-1")
+                    {
+                        UO = "A"; // data por defecto
+                    }
                     ltUnidadOpe.SelectedValue = UO;
                 }
 
@@ -125,12 +129,12 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 {
               
                     eDDLCentros.SelectedValue = this.IdCentroOperativo;
+                 
 
-                   
 
                     //llena el combo  de LINEAS
                     //   var dt = new GeneralSoapClient().SP_ListaLineas_NegxCEO(this.IdCentroOperativo, "", this.UsuarioLogin);
-                    var dt = new GeneralSoapClient().ListaLineasNegxCEOxUO(this.IdCentroOperativo, "", this.UsuarioLogin);
+                    var dt = new GeneralSoapClient().ListaLineasNegxCEOxUO(this.IdCentroOperativo, UO, this.UsuarioLogin);
 
                     ltLineas.DataSource = dt;
                     ltLineas.DataTextField = "NOMBRE";
@@ -147,7 +151,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     {
                         if (ltSubLinea.Items.Count == 0)
                         {
-                            var dt2 = new GeneralSoapClient().ListaSubLineasNegxCEOxUOxL(this.IdCentroOperativo, "", LN, this.UsuarioLogin);
+                            var dt2 = new GeneralSoapClient().ListaSubLineasNegxCEOxUOxL(this.IdCentroOperativo, UO, LN, this.UsuarioLogin);
                             ltSubLinea.DataSource = dt2;
                             ltSubLinea.DataTextField = "NOMBRE";
                             ltSubLinea.DataValueField = "CODIGO";
@@ -202,8 +206,18 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
                     ltUnidadOpe.LoadData(); // ListaUnidad_OpexCEO
 
+                    if (this.IdCentroOperativo != "1" && UO == "-1")
+                    {
+                        UO = "A"; // data por defecto
+                    }
+
+                    if (ltUnidadOpe.Items.Count > 1)
+                    {
+                        ltUnidadOpe.SelectedValue = UO;
+                    }
+
                     // LINEAS
-                    var dt = new GeneralSoapClient().SP_ListaLineas_NegxCEO(this.IdCentroOperativo, "", this.UsuarioLogin);
+                    var dt = new GeneralSoapClient().SP_ListaLineas_NegxCEO( this.IdCentroOperativo, UO, this.UsuarioLogin);
 
 
                     if (dt == null || dt.Rows.Count == 0)
@@ -353,7 +367,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
         public void CargarModoModificar(string v_solicitud)
         {
-            string LN = "", SUBLN = "";
+            string LN = "", SUBLN = "" , TIPOSOL = "";
             try
             {
                 var dt = (new SolicitudSoapClient()).DetalleSolicitud(this.IdCentroOperativo, this.IdGeneral, this.LineaNegocio, this.UsuarioLogin);
@@ -444,7 +458,8 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
                 if (ltTipoSolicitud.Items.Count < 2)
                 { ltTipoSolicitud.LoadData(); }
-                ltTipoSolicitud.SelectedValue = dt.Rows[0]["COD. TIP. SOL"].ToString();
+                TIPOSOL= dt.Rows[0]["COD. TIP. SOL"].ToString().Trim() ;
+                ltTipoSolicitud.SelectedValue = TIPOSOL;
 
                 acEmbarcacion.SetValue((dt.Rows[0]["EMBARCACION / PROYECTO"].ToString()), dt.Rows[0]["COD. EMBPROY"].ToString());
                 acCliente.SetValue((dt.Rows[0]["CLIENTE"].ToString()), dt.Rows[0]["COD. CLIENTE"].ToString());
@@ -452,7 +467,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 if (ltTipoTrabajo.Items.Count < 2)
                 { ltTipoTrabajo.LoadData(); }
 
-                ltTipoTrabajo.SelectedValue = dt.Rows[0]["COD. TIP. TBJ"].ToString();
+                ltTipoTrabajo.SelectedValue = dt.Rows[0]["COD. TIP. TBJ"].ToString().Trim() ;
 
 
 
@@ -555,16 +570,20 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                     }
                 }
 
+                if (eDDLCentros.SelectedValue != "3" && ltUnidadOpe.SelectedValue != "A") // CONTROLES DE SOLICITUD DE MANTENIMIENTO
+                { 
+                    txtEquipo.Text = dt.Rows[0]["EQUIPO"].ToString();
+                txtUbicacion.Text = dt.Rows[0]["UBC. BIEN"].ToString();
+
                 dtFecRecepcion1.Value = dt.Rows[0]["RECEPCION"] != DBNull.Value ? Convert.ToDateTime(dt.Rows[0]["RECEPCION"]).ToString("yyyy-MM-ddTHH:mm") : "";
+
                 txtNroSolMgp.Text = dt.Rows[0]["NRO. SOL MGP"].ToString();
 
                 if (dt.Rows[0]["FEC. SOL MGP"].ToString() != "")
                 {
                     dtFecSolMgp.Text = Convert.ToDateTime(dt.Rows[0]["FEC. SOL MGP"]).ToString("dd/MM/yyyy");
                 }
-
-                txtEquipo.Text = dt.Rows[0]["EQUIPO"].ToString();
-                txtUbicacion.Text = dt.Rows[0]["UBC. BIEN"].ToString();
+            }
 
             }
             catch (Exception ex)
