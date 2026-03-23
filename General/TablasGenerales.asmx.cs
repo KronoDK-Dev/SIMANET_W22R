@@ -1036,24 +1036,39 @@ namespace SIMANET_W22R.General
             if (cache.Contains(cacheKey))
             {
                 dtResultados = cache.Get(cacheKey) as DataTable;
-
+                dtResultados.TableName = "Table";
                 return dtResultados;                  // Retornar el DataTable almacenado en caché
             }
 
 
             dtResultados = (new GeneralSoapClient()).ListaSubLinea_Trabajo(ceo, s_linea, UserName);              // Si no está en caché, llamar al servicio para obtener los datos
-
+            dtResultados.TableName = "Table";
             // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
+  /*
             CacheItemPolicy policy = new CacheItemPolicy
             {
                 AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(30) // Expira en 30 minutos
             };
+ */
+            var policy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(30) };
+            
+
+
             if (!ceo.Contains("-1") && !s_linea.Contains("-1"))  // Almacenar el resultado en caché, si es un valor correcto
             {
                 cache.Add(cacheKey, dtResultados, policy);             // Almacenar el resultado en caché
             }
 
-            dtResultados.TableName = "Table";
+            if (dtResultados.Rows.Count == 0)
+            {
+                DataRow row = dtResultados.NewRow();
+                row["CODIGO"] = "-2";
+                row["NOMBRE"] = "Usuario no tiene asignada esta linea de Negocio " + s_linea;
+                dtResultados.Rows.Add(row);
+                dtResultados.TableName = "Table";
+            }
+
+
             return dtResultados;
 
         }

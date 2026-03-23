@@ -31,7 +31,8 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             }
             else
             {
-                CargarModoNuevo();
+                if (!IsPostBack) // Cargar datos solo en la primera carga
+                { CargarModoNuevo(); }
             }
 
             if (this.IdCentroOperativo != "1")
@@ -869,7 +870,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 string selectedValue = ddl.SelectedValue; // Obtenemos el valor seleccionado
                 string selectedText = ddl.SelectedItem.Text; // Obtenemos el texto seleccionado
 
-                ltSubLinea.LoadData();
+               ltSubLinea.LoadData(); // ListarSublineasxLinea   ListaSubLineasNegxCEOxUOxL
 
                 if (ltSubLinea.Items.Count <= 1)
                 {
