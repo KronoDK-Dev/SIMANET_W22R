@@ -478,6 +478,19 @@ namespace SIMANET_W22R.GestionComercial
             string V_FEC_STR_INI,
             string V_FEC_STR_FIN, string UserName)
         {
+            DataTable dtError = new DataTable("PR_GET_SOLICITUD");
+
+
+            dtError.TableName = "PR_GET_SOLICITUD";
+            dtError.Columns.Add("NroSolicitud", typeof(string));
+            dtError.Columns.Add("Linea", typeof(string));
+            dtError.Columns.Add("Cliente", typeof(string));
+            dtError.Columns.Add("Embarcacion / Proyecto", typeof(string));
+            dtError.Columns.Add("TipoSolicitud", typeof(string));
+            dtError.Columns.Add("Actividad", typeof(string));
+            dtError.Columns.Add("Estado", typeof(string));
+            dtError.Columns.Add("UsuarioReg", typeof(string));
+            dtError.Columns.Add("FechaReg", typeof(string));
             try
             {
                 V_AMBIENTE = sAmbiente;
@@ -495,8 +508,31 @@ namespace SIMANET_W22R.GestionComercial
 
                 // Extraer el DataTable del DataSet
                 DataTable dt = ds.Tables["PR_GET_SOLICITUD"];
+                if (dt != null)  // valida vacio
+                {
+               
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "PR_GET_SOLICITUD";
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["Embarcacion / Proyecto"] = "No existen registros para los parámetros consultados: " + V_CEO + " " + V_FILTRO + " " + V_UND_OPER + " " + V_FEC_STR_INI;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["Embarcacion / Proyecto"] = "No existen registros para los parámetros consultados: " + V_CEO + " " + V_FILTRO + " " + V_UND_OPER + " " + V_FEC_STR_INI;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
 
-                return dt;
+
             }
             catch (Exception ex)
             {

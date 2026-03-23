@@ -155,7 +155,7 @@
                             <div class="col-md-6">
                                 <label for="lineaNegocio1">Línea de Negocio</label>
                                 <cc1:EasyDropdownList ID="ltLineas" runat="server" AutoPostBack="True" DisplayText="Linea de Negocio"
-                                    EnableOnChange="True" OnSelectedIndexChanged="fnSubLineaNegocio" OnTextChanged="fnSubLineaNegocio" CargaInmediata="True"
+                                    EnableOnChange="True" OnSelectedIndexChanged="fnSubLineaNegocio"  CargaInmediata="True"
                                     Etiqueta="Linea de Negocio" Requerido="True"
                                     DataValueField="CODIGO" DataTextField="NOMBRE" MensajeValida="Seleccione la Linea Negocio">
                                     <EasyStyle Ancho="Seis" />
@@ -184,10 +184,11 @@
                                     <EasyStyle Ancho="Seis" />
                                     <DataInterconect MetodoConexion="WebServiceInterno">
                                         <UrlWebService>/General/TablasGenerales.asmx</UrlWebService>
-                                        <Metodo>ListarSublineasxLinea</Metodo>
+                                        <Metodo>ListaSubLineasNegxCEOxUOxL</Metodo>
                                         <UrlWebServicieParams>
-                                            <cc5:EasyFiltroParamURLws ObtenerValor="FormControl" ParamName="ceo" Paramvalue="ltUnidadOpe" />
-                                            <cc5:EasyFiltroParamURLws ObtenerValor="FormControl" ParamName="s_linea" Paramvalue="ltLineas" />
+                                            <cc5:EasyFiltroParamURLws ObtenerValor="FormControl" ParamName="V_CEO" Paramvalue="eDDLCentros" TipodeDato="String" />
+                                            <cc5:EasyFiltroParamURLws ObtenerValor="FormControl" ParamName="V_UNI_OPE" Paramvalue="ltUnidadOpe" TipodeDato="String" />
+                                            <cc5:EasyFiltroParamURLws ObtenerValor="FormControl" ParamName="V_LINEA" Paramvalue="ltLineas" TipodeDato="String" />
                                             <cc5:EasyFiltroParamURLws ObtenerValor="Session" ParamName="UserName" Paramvalue="UserName" TipodeDato="String" />
                                         </UrlWebServicieParams>
                                     </DataInterconect>
