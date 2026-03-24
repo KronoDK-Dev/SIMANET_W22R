@@ -292,6 +292,10 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             odi.SendData();
         }
 
-
+        protected void EasyPopupTrabEqui_Click()
+        {
+            this.LlenarGrilla("");
+            
+        }
     }
 }

@@ -73,9 +73,9 @@
             </tr>
 
         </table>
-        <cc2:EasyPopupBase ID="EasyPopInfoGen" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="PROGRAMACIÓN CONTRATISTA"   ValidarDatos="true"  RunatServer="true" DisplayButtons="true" fncScriptAceptar="DetalleProgramacion.Aceptar" OnClick="EasyPopInfoGen_Click" ></cc2:EasyPopupBase>
+        <cc2:EasyPopupBase ID="EasyPopInfoGen" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="PROGRAMACIÓN CONTRATISTA"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true" fncScriptAceptar="DetalleProgramacion.Aceptar" OnClick="EasyPopInfoGen_Click" ></cc2:EasyPopupBase>
         <cc2:EasyPopupBase ID="EasyPopupPrv" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="PROVEEDOR"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true" fncScriptAceptar="DetalleProveedor.Aceptar"></cc2:EasyPopupBase>
-        <cc2:EasyPopupBase ID="EasyPopupTrabEqui" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="TRABAJADORES Y EQUIPOS"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true" fncScriptAceptar=""  ></cc2:EasyPopupBase>
+        <cc2:EasyPopupBase ID="EasyPopupTrabEqui" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="TRABAJADORES Y EQUIPOS"   ValidarDatos="false"  RunatServer="true" DisplayButtons="true" fncScriptAceptar="AdministrarProgramacionContratista.TrabajadorEquipoAceptar" OnClick="EasyPopupTrabEqui_Click"  ></cc2:EasyPopupBase>
         <cc2:EasyPopupBase ID="EasyPopupEquipoDet" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="DETALLE EQUIPO"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="DetalleEquipos.Aceptar"  ></cc2:EasyPopupBase>
         <cc2:EasyPopupBase ID="EasyPopupTrabajador" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="DETALLE TRABAJADOR"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="DetalleTrabajador.Aceptar"  ></cc2:EasyPopupBase>
         <cc2:EasyPopupBase ID="EasyPopupReprogramaTrab" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="REPROGRAMACION DE TRABAJADOR"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="ReprogramarTrabajador.Aceptar"  ></cc2:EasyPopupBase>
@@ -180,30 +180,39 @@
                     break;
 
                 case "btnTrabEquipo":
-
-                    var Url = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/DefaultContratista.aspx";
-                    var oColletionParams = new SIMA.ParamCollections();
-                    var oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQIDPROGRAMACION, DetalleBE.NroProgramacion);
-                    oColletionParams.Add(oParam);
-
-                    oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQAÑO, DetalleBE.Periodo);
-                    oColletionParams.Add(oParam);
-
-                    oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQFECHAINI, DetalleBE.FechaInicio);
-                    oColletionParams.Add(oParam);
-
-                    oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQFECHAFIN, DetalleBE.FechaTermino);
-                    oColletionParams.Add(oParam);
-                    //falta envia la hora de inicio y la hora de fin de la programacion
-                    oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQHORAINI, DetalleBE.HoraInicio);
-                    oColletionParams.Add(oParam);
-
-                    oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQHORAFIN, DetalleBE.HoraTermino);
-                    oColletionParams.Add(oParam);
-
-                    EasyPopupTrabEqui.Load(Url, oColletionParams, false);
+                    AdministrarProgramacionContratista.AdministrarTrabajadoresyEquipos(DetalleBE);
+                    
                     break;
             }
+        }
+
+        AdministrarProgramacionContratista.TrabajadorEquipoAceptar = function () {
+            return true;
+        }
+
+
+        AdministrarProgramacionContratista.AdministrarTrabajadoresyEquipos = function (oDetalleBE) {
+            var Url = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/DefaultContratista.aspx";
+            var oColletionParams = new SIMA.ParamCollections();
+            var oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQIDPROGRAMACION, oDetalleBE.NroProgramacion);
+            oColletionParams.Add(oParam);
+
+            oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQAÑO, oDetalleBE.Periodo);
+            oColletionParams.Add(oParam);
+
+            oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQFECHAINI, oDetalleBE.FechaInicio);
+            oColletionParams.Add(oParam);
+
+            oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQFECHAFIN, oDetalleBE.FechaTermino);
+            oColletionParams.Add(oParam);
+            //falta envia la hora de inicio y la hora de fin de la programacion
+            oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQHORAINI, oDetalleBE.HoraInicio);
+            oColletionParams.Add(oParam);
+
+            oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQHORAFIN, oDetalleBE.HoraTermino);
+            oColletionParams.Add(oParam);
+
+            EasyPopupTrabEqui.Load(Url, oColletionParams, false);
         }
 
         AdministrarProgramacionContratista.InformacionGeneral = function (oItemRowBE) {

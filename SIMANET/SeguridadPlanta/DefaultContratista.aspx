@@ -91,7 +91,7 @@
 
                     PopupCalenadrio = window.open(URLPag, '_blank','width=900,height=600,toolbar=no,menubar=no,resizable=no,scrollbars=no,top=100,left=100');
                     if (!PopupCalenadrio) {
-                        alert("Popup blocked! Please allow popups for this site.");
+                        alert("¡Ventanas emergentes bloqueadas! Por favor, permite ventanas emergentes para este sitio.");
                     }
 
                     break;

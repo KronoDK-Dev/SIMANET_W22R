@@ -338,7 +338,11 @@
         DetalleProgramacion.Aceptar = function () {
 
             if (DetalleProgramacion.Params[DetalleProgramacion.KEYMODOPAGINA] == SIMA.Utilitario.Enumerados.ModoPagina.N) {
-                DetalleProgramacion.Insertar();
+                var IdProg = DetalleProgramacion.Insertar();
+                var arrKey = IdProg.toString().split('-');
+                var DetalleBE = { Periodo: arrKey[0], NroProgramacion: arrKey[1], FechaInicio: FInicio.GetValue(), FechaTermino: FFin.GetValue(), HoraInicio: dpHIni.GetValue(), HoraTermino: dpHFin.GetValue() };
+                AdministrarProgramacionContratista.AdministrarTrabajadoresyEquipos(DetalleBE);
+               
             }
             else {
                 DetalleProgramacion.Modificar();
@@ -422,7 +426,11 @@
             var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
             var ResultBE = oEasyDataResult.sendData();
 
+            return ResultBE;
         }
+
+
+
 
         DetalleProgramacion.Modificar = function () {
 
