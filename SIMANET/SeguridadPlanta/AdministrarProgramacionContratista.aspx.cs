@@ -289,7 +289,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             oParam.TipodeDato = EasyUtilitario.Enumerados.TiposdeDatos.String;
             odi.UrlWebServicieParams.Add(oParam);
 
-            odi.SendData();
+           string rsult= odi.SendData();
         }
 
         protected void EasyPopupTrabEqui_Click()
@@ -297,5 +297,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             this.LlenarGrilla("");
             
         }
+
+        
     }
 }
