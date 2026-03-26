@@ -50,19 +50,14 @@
               var tblItem = '<table border="0"> <tr> <td  style="width:auto;height:30px;"><img  style="width:20px;" src="' + Foto + '"/></td> <td   style="width:90%" >' + oItemBE.NOMBRE_AREA + '</td></tr></table>';
               return tblItem;
           }
+
+          function OnItemDelete(oItemBE) {
+              return true;
+          }
+
       </script>
 
-
-
-    <style type="text/css">
-        .auto-style1 {
-            height: 23px;
-        }
-    </style>
-
-
-
-</head>
+</head> 
 <body> 
     <form id="form1" runat="server">
         <table style="width:100%">
@@ -113,7 +108,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                     <cc1:EasyListAutocompletar ID="EasyAcBuscarPersonal" runat="server"  NroCarIni="4"  DisplayText="NOMBRE_AREA" ValueField="COD_AREA" fnOnSelected="onItemSeleccionado" fncTempaleCustom="onDisplayTemplatePersonal" fncTemplateCustomItemList="TemplateItem" CssClass="ContentLisItem" ClassItem="LstItem">
+                     <cc1:EasyListAutocompletar ID="EasyAcBuscarPersonal" runat="server"  NroCarIni="4"  fncLstItemOnDelete="OnItemDelete" DisplayText="NOMBRE_AREA" ValueField="COD_AREA" fnOnSelected="onItemSeleccionado" fncTempaleCustom="onDisplayTemplatePersonal" fncTemplateCustomItemList="TemplateItem" CssClass="ContentLisItem" ClassItem="LstItem">
                         <EasyStyle Ancho="Dos"></EasyStyle>
                             <DataInterconect MetodoConexion="WebServiceExterno">
                                 <UrlWebService>/General/Busquedas.asmx</UrlWebService>

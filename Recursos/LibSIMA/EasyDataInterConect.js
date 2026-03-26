@@ -257,7 +257,11 @@ EasyDataResult = function (EasyDataInterConect) {
                                 rowsCollection.forEach(function (oRow, RowIndex) {
                                     var Fields = Array.prototype.slice.call(oRow.children);
                                     //throw new SIMA.WebServiceException(Fields[1].textContent, Fields[2].textContent);    
-                                    var msgConfig = { Titulo: "Error", Descripcion: "ORIGEN:" + Fields[1].textContent + "<br> MENSAJE:" + Fields[2].textContent };
+                                    var msgConfig = {
+                                        Titulo: "Error"
+                                        , Width: "800px"
+                                        , Descripcion: "ORIGEN:" + Fields[1].textContent + "<br> MENSAJE:" + Fields[2].textContent
+                                    };
                                     var oMsg = new SIMA.MessageBox(msgConfig);
                                     oMsg.Alert();
                                 });
@@ -267,7 +271,11 @@ EasyDataResult = function (EasyDataInterConect) {
                     }
                 }
                 else {
-                     var msgConfig = { Titulo: "Error", Descripcion: "Hubo un problema al intentar obtener el documento XML:\n MENSAJE:" + Request.statusText };
+                    var msgConfig = {
+                        Titulo: "Error"
+                        ,Width:"800px"
+                        ,Descripcion: "Hubo un problema al intentar obtener el documento XML:\n MENSAJE:" + Request.statusText
+                    };
                      var oMsg = new SIMA.MessageBox(msgConfig);
                      oMsg.Alert();
                  }

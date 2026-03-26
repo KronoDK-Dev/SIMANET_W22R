@@ -148,7 +148,7 @@ namespace SIMANET_W22R.GestionReportes
                 //Session["UrlApp"] = UrlApp;
                 // 05.05.2025 que cambiar a um metodo controlado por tiempo manual
                 sPto_Error = "InvokeWebService2 " + oReporteBE.WebService + " " + oReporteBE.Metodo;
-                object objResult = EasyWebServieHelper.InvokeWebService2(UrlApp, oEasyDataInterConect);
+                object objResult = EasyWebServieHelper.InvokeWebService(UrlApp, oEasyDataInterConect);
                 
                 Session["o_objResult"] = objResult;
                 DataSet ds1 = new DataSet();

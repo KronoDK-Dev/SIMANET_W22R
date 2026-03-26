@@ -86,7 +86,7 @@
               }
 
     </style>
-
+     
 </head>
 <body> 
     <form id="form1" runat="server">
@@ -114,7 +114,7 @@
                                          </UrlWebServicieParams>
                                      </DataInterconect>
 
-                                 <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowItemClick="" RowCellItemClick="GridetalleNull"  idgestorfiltro="EasyGestorFiltro1"></EasyExtended>
+                                 <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowItemClick ="GridetalleNull"  idgestorfiltro="EasyGestorFiltro1"></EasyExtended>
 
                                  <EasyRowGroup GroupedDepth="0" ColIniRowMerge="0"></EasyRowGroup>
 
@@ -612,12 +612,35 @@
                       oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + '/GestionGobernanza/Indicadores.asmx';
                       oEasyDataInterConect.Metodo = 'Indicador_ins';
                       oEasyDataInterConect.ParamsCollection = oParamCollections;
-
+                    
                       var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
                       var ResultIdIndicador = oEasyDataResult.sendData();
                       //Obtener la Lista de responsables
-                      EasyAcBuscarPersonal.GetCollection().forEach(function (oItem, i) {
+                    EasyAcBuscarPersonal.GetCollection().forEach(function (oItem, i) {
                           AdministrarObjetivosAcciones.ResponsablesInsAct(oItem, ResultIdIndicador);
+                    });
+
+                    EasyAcBuscarPersonal.Recycle().forEach(function (oItem, p) {
+                          if (oItem.IDITEM != undefined) {
+                              var oParamCollections = new SIMA.ParamCollections();
+                              var oParam = new SIMA.Param("IdTabla", 86, TipodeDato.Int);
+                              oParamCollections.Add(oParam);
+
+                              oParam = new SIMA.Param("IdItem", oItem.IDITEM, TipodeDato.Int);
+                              oParamCollections.Add(oParam);
+
+                              oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
+                              oParamCollections.Add(oParam);
+
+                              var oEasyDataInterConect = new EasyDataInterConect();
+                              oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
+                              oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + '/GestionGobernanza/Indicadores.asmx';
+                              oEasyDataInterConect.Metodo = 'Indicador_del';
+                              oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+                              var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
+                              var ResultBE = oEasyDataResult.sendData();
+                          }
                       });
 
                       if (DetalleIndicador.Params[DetalleIndicador.KEYMODOPAGINA] == SIMA.Utilitario.Enumerados.ModoPagina.M) {
@@ -710,6 +733,13 @@
               oParamCollections.Add(oParam);
               oParam = new SIMA.Param("CodigoArea", ReponsableBE.COD_AREA);
               oParamCollections.Add(oParam);
+
+              oParam = new SIMA.Param("CodEmp", ReponsableBE.COD_EMP);
+              oParamCollections.Add(oParam);
+
+              oParam = new SIMA.Param("CodCeo", ReponsableBE.COD_SUC);
+              oParamCollections.Add(oParam);
+
               oParam = new SIMA.Param("Descripcion", "");
               oParamCollections.Add(oParam);
               oParam = new SIMA.Param("IdAccion", ((DetalleIndicador.Data == undefined) ? IdIndiador : DetalleIndicador.Data.IDITEM), TipodeDato.Int);

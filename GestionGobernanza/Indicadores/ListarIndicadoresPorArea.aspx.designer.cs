@@ -33,6 +33,15 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
         protected global::EasyControlWeb.Form.Controls.EasyDropdownList ddlPeriodo;
 
         /// <summary>
+        /// Control lstReponsable.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell lstReponsable;
+
+        /// <summary>
         /// Control LsIndicadores.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTableCell LsIndicadores;
+
+        /// <summary>
+        /// Control EasyDGIndicadores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.EasyGridView EasyDGIndicadores;
 
         /// <summary>
         /// Control DetIndicador.

@@ -14,7 +14,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
     public partial class AdministrarMetasPorArea
     {
 
-        /// <summary>
+        /// <summary> 
         /// Control form1.
         /// </summary>
         /// <remarks>

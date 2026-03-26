@@ -13,7 +13,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace SIMANET_W22R.GestionGobernanza.Indicadores
-{
+{ 
     public partial class AdministrarInformeMetaPorArea : GobernanzaBase,IPaginaBase
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -58,7 +58,8 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
             string cmll = "\"";
             int i = 0;
             EasyTabItem oTab = null;
-            foreach (DataRow dr in ObtenerListadodeAreasPorUsuario(this.UsuarioId).GetDataTable().Rows)
+            DataTable dtArea = ObtenerListadodeAreasPorUsuario(this.UsuarioId).GetDataTable();
+            foreach (DataRow dr in dtArea.Rows)
             {
 
                 oTab = new EasyTabItem();
@@ -77,6 +78,18 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                 EasyFiltroParamURLws oParam = new EasyFiltroParamURLws();
                 oParam.ParamName = AdministrarPlandeTrabajo.KEYCODAREA;
                 oParam.Paramvalue = dr["COD_AREA"].ToString();
+                oParam.TipodeDato = EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos.String;
+                oTab.UrlParams.Add(oParam);
+
+                oParam = new EasyFiltroParamURLws();
+                oParam.ParamName = AdministrarPlandeTrabajo.KEYCODEMP;
+                oParam.Paramvalue = dr["COD_EMP"].ToString();
+                oParam.TipodeDato = EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos.String;
+                oTab.UrlParams.Add(oParam);
+
+                oParam = new EasyFiltroParamURLws();
+                oParam.ParamName = AdministrarPlandeTrabajo.KEYCODSUC;
+                oParam.Paramvalue = dr["COD_SUC"].ToString();
                 oParam.TipodeDato = EasyControlWeb.EasyUtilitario.Enumerados.TiposdeDatos.String;
                 oTab.UrlParams.Add(oParam);
 

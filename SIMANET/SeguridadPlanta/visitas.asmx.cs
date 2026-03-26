@@ -39,7 +39,6 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             dtError.Columns.Add("FechaTermino", typeof(DateTime));
             dtError.Columns.Add("HoraInicio", typeof(string));
             dtError.Columns.Add("NroVisitas", typeof(Int16));
-            dtError.Columns.Add("idEstado", typeof(Int16));
 
             try
             {
@@ -82,24 +81,25 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
                 if (dt != null) // valida vacio
                 {
-                    dt.TableName = "uspNTADConsultarProgramacionVisita_CVST";
-                    //----- solo cuando quieres mostrar campos fecha como string, sin hora
 
-                    // Asegura columnas string que la UI espera
-                    EnsureStrCols(dt);
 
-                    bool hasFI = dt.Columns.Contains("FechaInicio");
-                    bool hasFT = dt.Columns.Contains("FechaTermino");
+                    // Asegura crear columnas string auxiliares
+                    if (!dt.Columns.Contains("FechaInicioStr")) dt.Columns.Add("FechaInicioStr", typeof(string));
+                    if (!dt.Columns.Contains("FechaTerminoStr")) dt.Columns.Add("FechaTerminoStr", typeof(string));
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        row["FechaInicioStr"] = hasFI ? FormatearFecha(row["FechaInicio"]) : string.Empty;
-                        row["FechaTerminoStr"] = hasFT ? FormatearFecha(row["FechaTermino"]) : string.Empty;
+                        // Manejar ambos casos: DateTime o string ISO
+                        object fi = row["FechaInicio"];
+                        object ft = row["FechaTermino"];
+
+                        row["FechaInicioStr"] = FormatearFecha(fi);
+                        row["FechaTerminoStr"] = FormatearFecha(ft);
                     }
 
 
                     //---------------------------------------------------------
-                    
+                    dt.TableName = "uspNTADConsultarProgramacionVisita_CVST";
                     if (dt.Rows.Count > 0)
                     {
                         return dt;
@@ -107,7 +107,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                     else
                     {
                         DataRow row = dtError.NewRow();
-                        row["Observaciones"] = "No existen registros para los parámetros consultados: nro programación/periodo/tipo-programación " + S_PROGRAMACION + "-"+ S_PERIODO+ "-"+ S_TIPOPROGRA;
+                        row["Observaciones"] = "No existen registros para los parámetros consultados: nro programación/periodo/tipo programación " + S_PROGRAMACION + "-"+ S_PERIODO+ "-"+ S_TIPOPROGRA;
                         dtError.Rows.Add(row);
                         return dtError;
                     }
@@ -115,10 +115,8 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 else
                 {
                     DataRow row = dtError.NewRow();
-                    row["Observaciones"] = "No existen registros para los parámetros consultados: nro programación/periodo/tipo-programación " + S_PROGRAMACION + "-" + S_PERIODO + "-" + S_TIPOPROGRA;
-                    row["idEstado"] = 0;
+                    row["Observaciones"] = "No existen registros para los parámetros consultados: nro programación/periodo/tipo programación " + S_PROGRAMACION + "-" + S_PERIODO + "-" + S_TIPOPROGRA;
                     dtError.Rows.Add(row);
-                    EnsureStrCols(dtError);
                     return dtError;
                 }
             }
@@ -148,11 +146,6 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                     }
                 }
             }
-        }
-        private static void EnsureStrCols(DataTable t)
-        {
-            if (!t.Columns.Contains("FechaInicioStr")) t.Columns.Add("FechaInicioStr", typeof(string));
-            if (!t.Columns.Contains("FechaTerminoStr")) t.Columns.Add("FechaTerminoStr", typeof(string));
         }
 
 

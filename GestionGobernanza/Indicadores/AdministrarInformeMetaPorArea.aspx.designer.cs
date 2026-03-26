@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 namespace SIMANET_W22R.GestionGobernanza.Indicadores
-{
+{ 
 
 
     public partial class AdministrarInformeMetaPorArea

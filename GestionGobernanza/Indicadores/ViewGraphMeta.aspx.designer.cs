@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace SIMANET_W22R.SIMANET.SegudidadIndustrial
+namespace SIMANET_W22R.GestionGobernanza.Indicadores
 {
 
 
-    public partial class AdministrarContratista
+    public partial class ViewGraphMeta
     {
 
         /// <summary>

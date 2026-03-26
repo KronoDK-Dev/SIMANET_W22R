@@ -14,7 +14,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
     public partial class ListaReponsablePorArea
     {
 
-        /// <summary>
+        /// <summary> 
         /// Control form1.
         /// </summary>
         /// <remarks>
