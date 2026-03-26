@@ -49,7 +49,7 @@
         <table style="width:100%;height:100%">
                 <tr>
                     <td style="width:100%">
-                        <uc1:Header ID="Header1" runat="server" />
+                        
                     </td>
                 </tr>
               <tr>

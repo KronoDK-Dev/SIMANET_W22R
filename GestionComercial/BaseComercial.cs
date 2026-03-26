@@ -9,11 +9,12 @@ namespace SIMANET_W22R.GestionComercial
     {
         public string KEYQCENTROOPERATIVO { get; set; }
         public string KEYNROSOLICITUD { get; set; }
-
+        public static string KEYUNIDADOPERATIVA = "UnidadOpe";
         public static string KEYLNNEGOCIO = "LnNeg";
         public static string KEYCLASETRAB = "ClaseT";
         public static string KEYSUBLNNEGOCIO = "SUBLnNeg";
         public string LineaNegocio { get { return Page.Request.Params[KEYLNNEGOCIO]; } }
         public string ClaseTrabajo { get { return Page.Request.Params[KEYCLASETRAB]; } }
+        public string UnidadOperativa { get { return Page.Request.Params[KEYUNIDADOPERATIVA]; } }
     }
 }

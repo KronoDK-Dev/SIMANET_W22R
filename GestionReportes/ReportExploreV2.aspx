@@ -18,7 +18,7 @@
    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/font-awesome.min.css") %> ">
     <script src="<%= ResolveUrl("~/Recursos/js/jquery-3.6.4.min.js") %>"></script>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" class="enable-scroll">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
    
@@ -242,7 +242,11 @@
         .export-button:hover {
             background-color: #0056b3; /* Color del botón al pasar el mouse */
         }
-
+        .report-scroll {
+    height: calc(100vh - 40px); /* ajusta según tu header */
+    overflow-y: auto !important;
+    overflow-x: auto;
+}
     </style> 
 
     <script type="text/javascript">
@@ -267,11 +271,52 @@
         };
     </script>
 
+
+     <!--  SCRIPT PARA FORZAR QUE FUNCIONE LOS MENSAJES DE MEDIANTE EL JS Swal --> 
+    <script>
+    // --- STUB / QUEUE PARA SWEETALERT2 (Swal.fire) ---
+    (function (w) {
+        // Si no existe Swal o no tiene fire, creamos un stub con cola.
+        if (!w.Swal || typeof w.Swal.fire !== 'function') {
+            var queue = [];
+            var stub = {
+                fire: function () {
+                    queue.push(arguments);
+                },
+                // Opcional: si usas Swal.mixin() en algún lado
+                mixin: function (opts) {
+                    // devolver un mini-stub que vuelve a colar el fire
+                    return { fire: function () { queue.push(arguments); } };
+                }
+            };
+            w.Swal = stub;
+
+            function flushIfReady() {
+                if (w.Swal !== stub && typeof w.Swal.fire === 'function') {
+                    var real = w.Swal, args;
+                    while ((args = queue.shift())) {
+                        try { real.fire.apply(real, args); } catch (e) { console.error(e); }
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            // Reintenta hasta ~10s
+            (function retryFlush(n) {
+                if (flushIfReady()) return;
+                if (n <= 0) return;
+                setTimeout(function () { retryFlush(n - 1); }, 100);
+            })(100);
+        }
+    })(window);
+</script>
+
 </head>
-<body>
+<body class="enable-scroll">
     <form id="form1" runat="server">
         
-          <table id="tblReport" style="width:100%;height:100%"  border="0px" >
+          <table id="tblReport" style="width:100%;"  border="0px" >
            <tr>
                <td>
                    <uc1:Header runat="server" ID="Header" />
@@ -279,11 +324,12 @@
            </tr>
            <tr>
                <td style="width:100%; height:100%;" valign="top"  align="left"  >
+                   <div class="report-scroll">
                                        <table cellpadding="0" cellspacing="0"  style="width:100%; height:100%"   border="0px">
                                            <tr style="height:100%;">
                                                   <!-- PANEL IZQUIERDO -->
                                                   <td style="width:30%; max-width:250px; height:100%; border:1px dotted #696666; position:relative;" valign="top">
-                                                    <div id="leftPanel""  style="position:relative; width:100%; height:100%; display:flex; flex-direction:column;">
+                                                    <div id="leftPanel"  style="position:relative; width:100%; height:100%; display:flex; flex-direction:column;">
       
                                                       <!-- Barra de scroll superior -->
                                                       <div class="scroll-top" 
@@ -346,7 +392,8 @@
                                                   </td>
                                                 </tr>
                                        </table>
-               </td>
+                    </div> 
+                </td>
            </tr>
       </table>
         <div style="position: relative;">
@@ -363,7 +410,7 @@
 
     </form>
     
-<script>
+    <script>
     //   28.01.2026 --- 1) Congela los constructores para que nadie los pueda pisar ---
     function lockPopupConstructors() {
         var EPT = window.EasyPopupTestReportParam;
@@ -516,13 +563,7 @@
     
  </script>
 
-	
-
-       
-
-   
-
-    <SCRIPT type="text/javascript">
+	 <SCRIPT type="text/javascript">
 		
      /*Definicion de eventos*/
      ReportExploreV2.Navigator = {};
@@ -827,8 +868,15 @@
 
     </SCRIPT>
 
+    <script>
 
-       <script>
+
+               document.addEventListener("DOMContentLoaded", function () {
+                   document.body.classList.add("enable-scroll");
+               document.documentElement.classList.add("enable-scroll");  // <html>
+                  });
+
+
            // --- Sincroniza los scrolls horizontales ---
            const topScroll = document.querySelector('.scroll-top');
            const bottomScroll = document.querySelector('.scroll-bottom');
@@ -887,5 +935,7 @@
       
 
        </script>
+
+  
  
 </html>

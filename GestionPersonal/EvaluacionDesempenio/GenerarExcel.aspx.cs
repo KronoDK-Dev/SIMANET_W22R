@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing; // para Color
 using System.Web;
-using OfficeOpenXml;  // Install-Package EPPlus -Version 4.5.3.3
+using OfficeOpenXml;  // Update-Package EPPlus -ProjectName SIMANET_W22R -Version 7.0.5 | Install-Package EPPlus -Version 4.5.3.3 -ProjectName SIMANET_W22R
 using OfficeOpenXml.Style;
 using System.Web.UI;
 

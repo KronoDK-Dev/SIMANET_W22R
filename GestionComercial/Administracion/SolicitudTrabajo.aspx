@@ -24,10 +24,41 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Solicitud de Trabajo</title>
+    
+    <style>
+      .__hide { display: none !important; }
+    </style>
+
     <script>
         function Espera() {
             SIMA.Utilitario.Helper.Wait('Solicitud de Trabajo', 1000, function () { });
         }
+        //
+
+        // 1) Neutralizar beforeunload bloqueado
+        window.onbeforeunload = null;
+
+        // 2) Ocultar overlay “Wait…” siempre
+        (function () {
+            function hideWaitOverlay() {
+                var nodes = document.querySelectorAll('div,section,article');
+                nodes.forEach(n => {
+                    var t = (n.innerText || '').toLowerCase();
+                    if (t.includes('wait') || t.includes('redireccionando')) n.classList.add('__hide');
+                });
+            }
+            window.addEventListener('load', hideWaitOverlay);
+            setTimeout(hideWaitOverlay, 6000);
+        })();
+
+        // 3) Stubs para toastr / Swal si los CDNs fueron bloqueados
+        if (typeof window.toastr === 'undefined') {
+            window.toastr = { options: {}, info: console.log, success: console.log, warning: console.warn, error: console.error };
+        }
+        if (typeof window.Swal === 'undefined') {
+            window.Swal = { fire: function (opts) { console.log('[Swal blocked]', opts); return Promise.resolve({}); } };
+        }
+
     </script>
 </head>
 <body>

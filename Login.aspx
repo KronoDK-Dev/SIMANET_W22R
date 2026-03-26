@@ -13,16 +13,61 @@
       <!--estilos base-->
     <link href="Recursos/css/bootstrap.min.css" rel="stylesheet" />
     <link href="Recursos/css/font-awesome.min.css" rel="stylesheet"/>
+    
     <!--Librria Base-->
+    <script src="Recursos/LibSIMA/util-deps.js"></script>
     <script src="Recursos/Js/jquery.min.js"></script>
     
-    <!-*****************************************************************************************************-->
+    <!-- ***************************************************************************************************** -->
     <link href="Recursos/css/jquery-confirm.min.css" rel="stylesheet" />
     <script src="Recursos/Js/jquery-confirm.min.js"></script>
-    <!-*****************************************************************************************************-->
+    <!-- ***************************************************************************************************** -->
    
     <link href="Recursos/css/StyleEasy.css" rel="stylesheet" />
+    
+    <script>
+        // Bootstrap del namespace SIMA (y ramas usadas por la base)
+        window.SIMA = window.SIMA || {};
+        SIMA.Data = SIMA.Data || {};
+    </script>
+
+    <script>
+        // sima-bootstrap: crea y congela SIMA para que no lo sobreescriban
+        (function (w) {
+            "use strict";
+
+            // 1) Bootstrap de SIMA y ramas usadas por la base
+            if (!w.SIMA) w.SIMA = {};
+            if (!w.SIMA.Data) w.SIMA.Data = {};
+
+            // 2) Congelar las referencias de nivel superior para evitar "var SIMA = new Object()"
+            try {
+                Object.defineProperty(w, 'SIMA', {
+                    value: w.SIMA,
+                    writable: false,        // ← clave: impide reasignación global
+                    configurable: false,
+                    enumerable: true
+                });
+            } catch (_) { }
+
+            try {
+                Object.defineProperty(w.SIMA, 'Data', {
+                    value: w.SIMA.Data,
+                    writable: false,        // ← idem para SIMA.Data
+                    configurable: false,
+                    enumerable: true
+                });
+            } catch (_) { }
+
+            // (opcional) Page mínimo para que llamadas de config no colapsen en login
+            w.Page = w.Page || { Request: { ApplicationPath: "", Params: {} } };
+        })(window);
+    </script>
+
+    <script src="Recursos/LibSIMA/ScriptManager.js"></script>
+    <script src="Recursos/LibSIMA/EasyDataInterConect.js"></script> <!-- BASE SIMA (aquí se declaran SIMA.Param y SIMA.ParamCollections) -->
     <script src="Recursos/LibSIMA/Objetcs.js"></script>
+    <script src="Recursos/LibSIMA/MasterConfig.js"></script>
     <script src="Recursos/LibSIMA/AccesoDatosBase.js"></script>
 
     <script src="Recursos/Js/full-screen-helper.min.js"></script>
@@ -128,46 +173,58 @@
     </form>
  
    
-    <script>
-      /*  var index = 0;
-        var text = 'Servicios Industriales de la Marina S.A';
-        var speed = 50;
+<script>
+    // Elige el/los inputs donde quieres detectar CapsLock (recomendado)
+    const targets = [
+        document.getElementById('txtUsuario'),
+        document.getElementById('txtPassword')
+    ].filter(Boolean);
 
-        function textEffect() {
-            if (index < text.length) {
-                document.getElementById("effect")
-                    .innerHTML += text.charAt(index);
-                index++;
-                setTimeout(textEffect, speed);
-            }
-            else {
-                index = 0;
-                document.getElementById("effect").innerHTML = "";
-                setTimeout(textEffect, 1200);
-            }
-        }
-        textEffect();*/
+    // Si no tienes ids, puedes mantener window:
+    const sources = targets.length ? targets : [window];
 
+    function detectCapsLock(e) {
+        // Normaliza: puede venir de window, input, etc.
+        e = e || window.event;
 
-
-        window.addEventListener('keydown', detectCapsLock)
-        window.addEventListener('keyup', detectCapsLock)
-
-        function detectCapsLock(e) {
-            if (e.getModifierState('CapsLock')) {
-                // caps lock is on 
-                //alert('Mayusculas activas');
+        // 1) Camino feliz: API estándar si existe
+        let isCapsOn = false;
+        if (typeof e.getModifierState === 'function') {
+            isCapsOn = e.getModifierState('CapsLock');
+        } else {
+            // 2) Fallback: deducción por letra + Shift
+            const k = e.key || '';
+            const isLetter = k.length === 1 && k.toLowerCase() !== k.toUpperCase();
+            if (isLetter) {
+                const isUpper = (k === k.toUpperCase() && k !== k.toLowerCase());
+                const isShift = !!e.shiftKey;
+                // mayúscula sin Shift OR minúscula con Shift => Caps ON
+                isCapsOn = (isUpper && !isShift) || (!isUpper && isShift);
             } else {
-                // caps lock is off
-                //alert('Mayusculas desactivada');
+                // No es letra, no inferimos cambio
+                return;
             }
         }
 
-        //amximiza la ventana
+        // 3) Muestra/oculta tu aviso (ajusta a tu UI)
+        const aviso = document.getElementById('capsLockWarning');
+        if (aviso) {
+            aviso.style.display = isCapsOn ? 'block' : 'none';
+            aviso.textContent = isCapsOn ? '¡Bloq Mayús activado!' : '';
+        } else {
+            // Si prefieres alert/console por ahora:
+            // if (isCapsOn) console.log('Bloq Mayús activado');
+        }
+    }
 
-        //onload = "FullScreenHelper.request(document);"  
-
-    </script>
+    // Adjunta listeners
+    sources.forEach(src => {
+        src.addEventListener('keydown', detectCapsLock, false);
+        src.addEventListener('keyup', detectCapsLock, false);
+    });
+</script>
+<!-- Un pequeño placeholder para el aviso -->
+<div id="capsLockWarning" style="display:none;color:#c00;font-weight:600;margin-top:.25rem;"></div>
 </body>
    
 </html>

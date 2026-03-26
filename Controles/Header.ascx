@@ -59,12 +59,17 @@
 <script id="scriptSweetAlert"></script>
 
 <script>
+  
+
     window.addEventListener('DOMContentLoaded', function () {
         document.getElementById("scriptToastr").src = getBasePath() + "/Recursos/js/toastr.min.js";
     });
+
     window.addEventListener('DOMContentLoaded', function () {
         document.getElementById("scriptSweetAlert").src = getBasePath() + "/Recursos/js/sweetalert2.all.min.js";
     });
+
+  
 </script>
 
 <!-- ***********************************        -->

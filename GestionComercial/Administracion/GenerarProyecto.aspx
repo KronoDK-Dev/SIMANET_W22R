@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GenerarProyecto.aspx.cs" Inherits="SIMANET_W22R.GestionComercial.Administracion.GenerarProyecto" %>
+﻿<%@ Page MaintainScrollPositionOnPostBack="true" Language="C#" AutoEventWireup="true" CodeBehind="GenerarProyecto.aspx.cs" Inherits="SIMANET_W22R.GestionComercial.Administracion.GenerarProyecto" %>
 
 <%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb" TagPrefix="cc4" %>
 <%@ Register Assembly="EasyControlWeb" Namespace="EasyControlWeb.Form.Controls" TagPrefix="cc2" %>
@@ -7,23 +7,232 @@
 <%@ Register TagPrefix="uc1" TagName="Header" Src="~/Controles/Header.ascx" %>
 
 <!DOCTYPE html>
-<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/bootstrap.min.css") %> ">
-<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/StyleEasy.css") %> ">
-<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/Personalizado.css") %> ">
-<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/toastr.min.css") %> ">
-<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/font-awesome.min.css") %> ">
 
-<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!-- CSS propios de la página -->
+<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/bootstrap.min.css") %>">
+<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/Personalizado.css") %>">
+<!-- Font Awesome: elige solo una fuente (local o CDN) -->
+<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/font-awesome.min.css") %>">
+
+<!-- JS base necesarios para tus componentes -->
 <script src="<%= ResolveUrl("~/Recursos/js/jquery-3.6.4.min.js") %>"></script>
 <script src="<%= ResolveUrl("~/Recursos/js/bootstrap.bundle.min.js") %>"></script>
-<!-- (opcional, si FixSIMA necesita $.confirm) -->
+<!-- Opcional: solo si realmente usas $.confirm -->
 <script src="<%= ResolveUrl("~/Recursos/js/jquery-confirm.min.js") %>"></script>
-<!--  referencias ya existentes desde el Header 
+
+
+<!--  quitar referencias Solo si ya existenten  Header 
     <script src="<%= ResolveUrl("~/Recursos/LibSIMA/FixSIMA.js") %>"></script>
      <script src="<%= ResolveUrl("~/Recursos/LibSIMA/AccesoDatosBase.js") %>"></script>
         -->
+<script>
+    // Espera a que una condición sea verdadera (p. ej. que exista window.toastr)
+    function waitFor(predicate, { interval = 50, timeout = 8000 } = {}) {
+        return new Promise((resolve, reject) => {
+            const start = Date.now();
+            const timer = setInterval(() => {
+                try {
+                    if (predicate()) {
+                        clearInterval(timer);
+                        resolve(true);
+                    } else if (Date.now() - start > timeout) {
+                        clearInterval(timer);
+                        reject(new Error('Timeout esperando dependencia'));
+                    }
+                } catch (e) {
+                    clearInterval(timer);
+                    reject(e);
+                }
+            }, interval);
+        });
+    }
+
+    // Intenta engancharse al script que crea el Header para saber cuándo carga Toastr.
+    // El Header tiene: <script id="scriptToastr">  y le asigna .src en DOMContentLoaded.
+        function onToastrReady(callback) {
+  const headerScript = document.getElementById('scriptToastr');
+
+  // 1) Si ya está listo, ejecuta callback inmediatamente
+  if (window.toastr && typeof window.toastr.success === 'function') {
+    callback();
+    return;
+  }
+
+  // 2) Si el Header ya creó el <script id="scriptToastr">, nos suscribimos a su evento load
+                                    if (headerScript) {
+                                        headerScript.addEventListener('load', function onLoad() {
+                                            headerScript.removeEventListener('load', onLoad);
+                                            // pequeña espera por seguridad (ejecución del archivo)
+                                            setTimeout(() => {
+                                                if (window.toastr && typeof window.toastr.success === 'function') {
+                                                    callback();
+                                                } else {
+                                                    // fallback si por alguna razón no quedó definido
+                                                    fallbackLoadToastr(callback);
+                                                }
+                                            }, 0);
+                                        });
+
+                                        // Además, por si el Header todavía NO ha asignado el src, vigila hasta que exista toastr
+                                        waitFor(() => window.toastr && typeof window.toastr.success === 'function', { timeout: 6000 })
+                                            .then(() => callback())
+                                            .catch(() => {
+                                                // pasado el timeout, intenta fallback
+                                                fallbackLoadToastr(callback);
+                                            });
+                                    } else {
+                                        // 3) No existe el script del Header (algo cambió o falló): usa fallback
+                                        fallbackLoadToastr(callback);
+                                    }
+}
+
+                                    // Carga Toastr (y su CSS) como respaldo desde esta página en caso de que el Header falle o demore demasiado
+        function fallbackLoadToastr(done) {
+                                        // Evita doble carga
+                                        if (window.toastr && typeof window.toastr.success === 'function') {
+                                            done();
+                                            return;
+                                        }
+
+                                        // Inserta CSS si no existe (no choca si ya está, el navegador lo ignora)
+                                        var cssHref = '<%= ResolveUrl("~/Recursos/css/toastr.min.css") %>';
+  if (!document.querySelector('link[href$="toastr.min.css"]')) {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = cssHref;
+    document.head.appendChild(link);
+  }
+
+  // Inserta JS
+  var jsSrc = '<%= ResolveUrl("~/Recursos/js/toastr.min.js") %>';
+                                        var s = document.createElement('script');
+                                        s.src = jsSrc;
+                                        s.onload = function () {
+                                            done();
+                                        };
+                                        s.onerror = function () {
+                                            console.error('No se pudo cargar toastr.min.js (fallback):', jsSrc);
+                                        };
+                                        document.head.appendChild(s);
+                                    }
+
+                                    // === EJEMPLO DE USO ===
+                                    // Envuelve cualquier uso de Toastr dentro de onToastrReady(...)
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        onToastrReady(function () {
+                                            // Config Toastr (si quieres por página; si ya lo haces en otro sitio, puedes omitir)
+                                            toastr.options = {
+                                                closeButton: true,
+                                                progressBar: true,
+                                                newestOnTop: true,
+                                                positionClass: 'toast-top-right',
+                                                timeOut: 5000
+                                            };
+
+                                            // Ya puedes usar toastr con seguridad:
+                                            // toastr.success('Toastr está listo en GenerarProyecto.aspx');
+                                        });
+                                    });
+  </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Revisa si el script del Header está en el DOM y qué src tiene
+        var s = document.getElementById('scriptToastr');
+        if (s) {
+            console.log('[Toastr][Header] scriptToastr.src =', s.src || '(aún sin src)');
+        } else {
+            console.warn('[Toastr] No se encontró <script id="scriptToastr"> en el DOM');
+        }
+
+        // Espera y reporta
+        setTimeout(function () {
+            if (window.toastr) {
+                console.log('[Toastr] disponible en window');
+            } else {
+                console.warn('[Toastr] NO disponible tras 2s. Revisa pestaña Network por 404/403/blocked.');
+            }
+        }, 2000);
+    });
+</script>
+
+ <!--  SCRIPT PARA FORZAR QUE FUNCIONE LOS MENSAJES DE CAMPOS OBLIGATORIOS MEDIANTE EL JS TOASTR --> 
+<script>
+    // --- STUB / QUEUE PARA TOASTR ---
+    // Crea window.toastr si aún no existe y cola las llamadas hasta que la lib real cargue.
+    (function (w) {
+        if (!w.toastr) {
+            var queue = [];
+            var methods = ['success', 'error', 'info', 'warning', 'clear', 'remove'];
+            var stub = {};
+            methods.forEach(function (m) {
+                stub[m] = function () { queue.push([m, arguments]); };
+            });
+            stub.options = {}; // por si configuras options antes
+            w.toastr = stub;
+
+            function flushIfReady() {
+                // Cuando toastr real esté disponible (no el stub), reproducimos la cola
+                if (w.toastr !== stub && typeof w.toastr.success === 'function') {
+                    var real = w.toastr, item;
+                    while ((item = queue.shift())) {
+                        var m = item[0], args = item[1];
+                        if (typeof real[m] === 'function') real[m].apply(real, args);
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            // Reintenta flush hasta 10s
+            (function retryFlush(attemptsLeft) {
+                if (flushIfReady()) return;
+                if (attemptsLeft <= 0) return;
+                setTimeout(function () { retryFlush(attemptsLeft - 1); }, 100);
+            })(100);
+        }
+    })(window);
+</script>
+
+ <!--  SCRIPT PARA FORZAR QUE FUNCIONE LOS MENSAJES DE MEDIANTE EL JS Swal --> 
+<script>
+    // --- STUB / QUEUE PARA SWEETALERT2 (Swal.fire) ---
+    (function (w) {
+        // Si no existe Swal o no tiene fire, creamos un stub con cola.
+        if (!w.Swal || typeof w.Swal.fire !== 'function') {
+            var queue = [];
+            var stub = {
+                fire: function () {
+                    queue.push(arguments);
+                },
+                // Opcional: si usas Swal.mixin() en algún lado
+                mixin: function (opts) {
+                    // devolver un mini-stub que vuelve a colar el fire
+                    return { fire: function () { queue.push(arguments); } };
+                }
+            };
+            w.Swal = stub;
+
+            function flushIfReady() {
+                if (w.Swal !== stub && typeof w.Swal.fire === 'function') {
+                    var real = w.Swal, args;
+                    while ((args = queue.shift())) {
+                        try { real.fire.apply(real, args); } catch (e) { console.error(e); }
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            // Reintenta hasta ~10s
+            (function retryFlush(n) {
+                if (flushIfReady()) return;
+                if (n <= 0) return;
+                setTimeout(function () { retryFlush(n - 1); }, 100);
+            })(100);
+        }
+    })(window);
+</script>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -355,18 +564,17 @@
             });
         }
 
+       
+         
+               
 
+                           
+     
 
-
-        // Compatible con UpdatePanel
-        if (typeof Sys !== 'undefined') {
-            Sys.Application.add_load(aplicarFormatoMoneda);
-        } else {
-            document.addEventListener('DOMContentLoaded', aplicarFormatoMoneda);
-        }
-
+           
 
     </script>
+
     <style>
         .btn-binocular::before {
             font-family: FontAwesome;
@@ -385,6 +593,7 @@
                     <uc1:Header runat="server" ID="Header" IdGestorFiltro="EasyGestorFiltro1" />
                 </td>
             </tr>
+            <asp:HiddenField ID="hfCollapseOne2Open" runat="server" Value="false" />
             <tr>
                 <!-- ***  INICIO CONETENEDOR  ****  -->
                 <td>
@@ -668,7 +877,183 @@
                             </div>
                         </div>
                         <br />
-                        <!--  DATA ESPECIAL -->
+                            <!--  FICHA TECNICA -->
+                        <div class="row w-100">
+
+                            <div id="accordionFichaTecnica" class="w-100">
+                                <div class="card w-100">
+                                    <div class="card-header" id="headingOne2">
+
+                                        <button class="btn btn-link text-dark font-weight-bold p-0"
+                                            type="button"
+                                            data-toggle="collapse"
+                                            data-target="#collapseOne2"
+                                            aria-expanded="false"
+                                            aria-controls="collapseOne"
+                                            style="text-decoration: none; width: 100%; text-align: left; cursor: pointer">
+                                            Ficha Técnica
+                                           <span class="float-right">&#9662;</span>
+                                            <!-- flecha ▼ -->
+                                        </button>
+
+                                    </div>
+
+                                    <div id="collapseOne2"
+                                        class="collapse w-100"
+                                        aria-labelledby="headingOne"
+                                        >
+                                        <div class="card-body">
+                                            <div class="col-md-16">
+
+                                                <table style="width: 90%">
+                                                    <!--  PRESUPUESTADO-->
+                                                    <tr>
+                                                        <td colspan="16" class="text-center font-weight-bold">
+                                                            <asp:Label ID="lblTituloFTP" runat="server" Text="PRESUPUESTADO - COSTOS" />
+                                                            <br />
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="16">
+                                                            <br />
+                                                        </td>
+                                                    </tr>
+                                                    <!--  fila titulos 16 col -->
+                                                    <tr>
+                                                        <td>
+                                                            <asp:Label ID="LblCDMOB" runat="server" Text="Costo Directo Mano de Obra" />
+                                                        </td>
+                                                        <td></td>
+                                                        <td>
+                                                            <asp:Label ID="LblCDMAT" runat="server" Text="Costo Directo Materiales" />
+                                                        </td>
+                                                        <td></td>
+                                                        <td>
+                                                            <asp:Label ID="LblCDSER" runat="server" Text="Costo Directo Servicios" />
+                                                        </td>
+                                                        <td></td>
+                                                        <td>
+                                                            <asp:Label ID="LblCI" runat="server" Text="Costos Indirectos " />
+                                                        </td>
+                                                        <td></td>
+                                                        <td>
+                                                            <asp:Label ID="Label32" runat="server" Text="Costos Nacionalización" />
+                                                        </td>
+                                                        <td></td>
+                                                        <td>
+                                                            <asp:Label ID="Label31" runat="server" Text="Fecha Presupuesto" />
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <!-- contenido 14 Col -->
+                                                    <tr  class="col-md-16">
+                                                        <td><cc2:EasyTextBox ID="txtCostoDMOB" runat="server" autocomplete="off" CssClass="form-control" data-validate="true" Requerido="False" Etiqueta="" TextMode="Number" step="0.01"></cc2:EasyTextBox>  </td>
+                                                        <td></td>
+                                                        <td> <cc2:EasyTextBox ID="txtCostoDMAT" runat="server" autocomplete="off" CssClass="form-control" data-validate="true" Requerido="False" Etiqueta="" TextMode="Number" step="0.01" ></cc2:EasyTextBox></td>
+                                                        <td></td>
+                                                        <td> <cc2:EasyTextBox ID="txtCostoDSER" runat="server" autocomplete="off" CssClass="form-control" data-validate="true" Requerido="False" Etiqueta="" TextMode="Number" step="0.01" ></cc2:EasyTextBox> </td>
+                                                        <td></td>
+                                                        <td><cc2:EasyTextBox ID="txtCostoIND" runat="server" autocomplete="off" CssClass="form-control" data-validate="true" Requerido="False" Etiqueta="Indirectos" TextMode="Number"  step="0.01"></cc2:EasyTextBox> </td>
+                                                        <td></td>
+                                                        <td><cc2:EasyTextBox ID="txtCostoNac" runat="server" autocomplete="off" CssClass="form-control" data-validate="true" Requerido="False" Etiqueta="Gastos" TextMode="Number"  step="0.01"></cc2:EasyTextBox> </td>
+                                                        <td></td>
+                                                        <td>
+                                                             <cc2:EasyDatepicker ID="EDPFechaPres" runat="server" FormatoFecha="dd/mm/yyyy" Hoy="" autocomplete="off" CssClass="form-control" data-validate="true" Requerido="False">
+                                                             </cc2:EasyDatepicker>
+                                                        </td> 
+                                                        <td></td>
+                                                        <td>
+                                                         <br/>
+                                                          <asp:Button ID="BtnAgregarCostos" runat="server" Text="+"
+                                                                      OnClick="btnCostos_Click" ToolTip="Adicionar Costos de Presupuesto" class="button-celeste" />
+                                                         
+
+                                                        </td>
+                                                         <td>
+                                                             <br/>
+                                                                <asp:Button ID="BtnQuitarCostos" runat="server" Text="-"
+                                                                       OnClick="btnCostosQ_Click" ToolTip="Quitar Costos de Presupuesto" class="button-celeste" />
+                                                               <asp:LinkButton ID="lbConfirmarRetiroPrep" runat="server"
+                                                                   OnClick="lbConfirmarRetiroPrep_Click"  Style="display:none" />
+                                                         </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="14"></td>
+                                                    </tr>
+                                                    <!--   grilla costos  -->
+                                                    <tr>
+                                                        <td colspan="2"></td>
+                                                        <td colspan="10">
+                                                            <a id="anchorEGVPresupuesto"></a> <!-- para regresar la visualizacion de alguna accion   -->
+                                                            <cc4:EasyGridView ID="EGVPresupuesto" runat="server" CssClass="STgridview"
+                                                                AutoGenerateColumns="False" ShowFooter="True" TituloHeader="PRESUPUESTADO - Costos"
+                                                                AllowPaging="True" PageSize="7" Width="100%"
+                                                                ToolBarButtonClick="OnEasyGridButton_Click"
+                                                                OnEasyGridButton_Click="EGVPresupuesto_EasyGridButton_Click"
+                                                                OnPageIndexChanging="EasyGridOTsProyecto_PageIndexChanged"
+                                                                
+                                                                 OnEasyGridDetalle_Click="EGVP_EasyGridDetalle_Click" 
+                                                                >
+                                                                <EasyGridButtons>
+                                                                </EasyGridButtons>
+                                                                <EasyStyleBtn ClassName="btn btn-primary" FontSize="1em" TextColor="white" />
+                                                                <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowCellItemClick=""
+                                                                    IdGestorFiltro="EasyGestorFiltro1"></EasyExtended>
+                                                                <DataInterconect MetodoConexion="WebServiceInterno">
+                                                                    <UrlWebService>/GestionProyecto/Proyecto.asmx</UrlWebService>
+                                                                    <Metodo>Get_ProyectoPresupuesto</Metodo>
+                                                                    <UrlWebServicieParams>
+
+                                                                        <cc3:EasyFiltroParamURLws ObtenerValor="FormControl" ParamName="s_Sucursal" Paramvalue="eDDLCentros" />
+                                                                        <cc3:EasyFiltroParamURLws ObtenerValor="FormControl" ParamName="s_proyecto" Paramvalue="txtCodProyecto" />
+                                                                        <cc3:EasyFiltroParamURLws ObtenerValor="Session" ParamName="UserName " Paramvalue="UserName" />
+                                                                    </UrlWebServicieParams>
+                                                                </DataInterconect>
+
+
+                                                                <EasyRowGroup GroupedDepth="0" ColIniRowMerge="0"></EasyRowGroup>
+
+                                                                <AlternatingRowStyle CssClass="AlternateItemGrilla" />
+
+                                                                <Columns>
+                                                                    <asp:BoundField DataField="DT_FTPRESUPUESTO_FECHA" HeaderText="Fecha      " />
+                                                                    <asp:BoundField DataField="N_FTPRESUPUESTO_COSTOMOB" HeaderText="Costo Directo Mano de Obra" />
+                                                                    <asp:BoundField DataField="N_FTPRESUPUESTO_COSTOMAT" HeaderText="Costo Directo Mano de Materiales" />
+                                                                    <asp:BoundField DataField="N_FTPRESUPUESTO_COSTOSER" HeaderText="Costo Directo Servicios" />
+                                                                    <asp:BoundField DataField="N_FTPRESUPUESTO_COSTOIND" HeaderText="Costo Indirectos" />
+                                                                    <asp:BoundField DataField="N_FTPresupuesto_CostoNAC" HeaderText="Costo de Nacionalización" />
+                                                                    
+                                                                </Columns>
+
+                                                                <HeaderStyle CssClass="HeaderGrilla" />
+                                                                <PagerStyle HorizontalAlign="Center" />
+                                                                <RowStyle CssClass="ItemGrilla" Height="25px" />
+                                                            </cc4:EasyGridView>
+                                                        </td>
+                                                        <td colspan="2"></td>
+                                                    </tr>
+
+                                                </table>
+
+                                            </div>
+                                            <!-- cierre de .row dentro del card-body -->
+                                        </div>
+                                        <!-- cierre de .card-body -->
+                                    </div>
+                                    <!-- cierre de #collapseOne -->
+                                </div>
+                                <!-- cierre de .card  w-100 -->
+                            </div>
+                            <!-- cierre de #accordionFichaTecnica -->
+
+                        </div>
+                        <!-- cierre de row w-100  -->
+
+                        <br />
+                        <!--  REFORMA INDUSTRIAL -->
                         <div class="row w-100">
 
                             <div id="accordionEmbarcacion" class="w-100">
@@ -683,7 +1068,7 @@
                                             aria-controls="collapseOne"
                                             style="text-decoration: none; width: 100%; text-align: left; cursor: pointer">
                                             Reforma Industrial
-                              <span class="float-right">&#9662;</span>
+                                           <span class="float-right">&#9662;</span>
                                             <!-- flecha ▼ -->
                                         </button>
 
@@ -803,12 +1188,14 @@
                                                     <tr>
                                                         <td colspan="2"></td>
                                                         <td colspan="8">
+                                                            <a id="anchorEGVempresasFC"></a>
                                                             <cc4:EasyGridView ID="EGVempresasFC" runat="server" CssClass="STgridview"
                                                                 AutoGenerateColumns="False" ShowFooter="True" TituloHeader="Transferencia de Tecnología"
                                                                 AllowPaging="True" PageSize="7" Width="100%"
                                                                 ToolBarButtonClick="OnEasyGridButton_Click"
+                                                                OnEasyGridButton_Click="EGVempresasFC_EasyGridButton_Click"
                                                                 OnPageIndexChanging="EasyGridOTsProyecto_PageIndexChanged"
-                                                                OnEasyGridButton_Click="EasyGridOTsProyecto_EasyGridButton_Click">
+                                                                >
 
                                                                 <EasyGridButtons>
                                                                 </EasyGridButtons>
@@ -889,12 +1276,14 @@
                                                     <tr>
                                                         <td colspan="2"></td>
                                                         <td colspan="8">
+                                                            <a id="anchorEasyGridView1"></a>
                                                             <cc4:EasyGridView ID="EasyGridView1" runat="server" CssClass="STgridview"
                                                                 AutoGenerateColumns="False" ShowFooter="True" TituloHeader="Transferencia de Tecnología"
                                                                 AllowPaging="True" PageSize="7" Width="100%"
                                                                 ToolBarButtonClick="OnEasyGridButton_Click"
+                                                                OnEasyGridButton_Click="EGVEmpresasF_EasyGridButton_Click"
                                                                 OnPageIndexChanging="EasyGridOTsProyecto_PageIndexChanged"
-                                                                OnEasyGridButton_Click="EasyGridOTsProyecto_EasyGridButton_Click">
+                                                                >
 
                                                                 <EasyGridButtons>
                                                                 </EasyGridButtons>
@@ -1009,12 +1398,14 @@
                                                         <td></td>
                                                         <!--  GRILLA TRANSFERENCIA  -->
                                                         <td colspan="10" id="COL3_10grillaTT">
+                                                            <a id="anchorEGVtt"></a>
                                                             <cc4:EasyGridView ID="EGVtt" runat="server" CssClass="STgridview"
                                                                 AutoGenerateColumns="False" ShowFooter="True" TituloHeader="Transferencia de Tecnología"
                                                                 AllowPaging="True" PageSize="7" Width="100%"
                                                                 ToolBarButtonClick="OnEasyGridButton_Click"
+                                                                OnEasyGridButton_Click="EGVtt_EasyGridButton_Click"
                                                                 OnPageIndexChanging="EasyGridOTsProyecto_PageIndexChanged"
-                                                                OnEasyGridButton_Click="EasyGridOTsProyecto_EasyGridButton_Click">
+                                                                >
 
                                                                 <EasyGridButtons>
                                                                 </EasyGridButtons>
@@ -1280,7 +1671,7 @@
 
             <!--  **************** OTS ******************* -->
             <tr>
-                <td colspan="12">
+                <td>
                     <hr />
                     <hr />
                     <p style="margin: 20px 100px;" class="h5 text-center">
@@ -1298,7 +1689,7 @@
                                     aria-expanded="false" aria-controls="collapseOT"
                                     style="text-decoration: none; width: 100%; text-align: left; cursor: pointer;">
                                     OT´s
-                                      <span class="float-right">&#9662;</span>
+                                                   <span class="float-right">&#9662;</span>
                                 </button>
                             </div>
 
@@ -1309,15 +1700,19 @@
                                         <table style="width: 90%">
                                             <tr>
                                                 <td>
-
+                                                   <a id="anchorEasyGridOtsProyecto"></a>
+                                                      <asp:LinkButton ID="lbConfirmarRetiroOT" runat="server" OnClick="lbConfirmarRetiroOT_Click"  Style="display:none" />
                                                     <cc4:EasyGridView ID="EasyGridOtsProyecto" runat="server" CssClass="STgridview"
                                                         AutoGenerateColumns="False" ShowFooter="True" TituloHeader="OTs"
                                                         AllowPaging="True" PageSize="7" Width="100%"
                                                         ToolBarButtonClick="OnEasyGridButton_Click"
+                                                        OnEasyGridButton_Click="EGVOTsProyecto_EasyGridButton_Click"
+                                                        OnEasyGridDetalle_Click="EGVOTsProyecto_EasyGridDetalle_Click"
                                                         OnPageIndexChanging="EasyGridOTsProyecto_PageIndexChanged"
-                                                        OnEasyGridButton_Click="EasyGridOTsProyecto_EasyGridButton_Click">
+                                                        >
 
                                                         <EasyGridButtons>
+                                                            <cc4:EasyGridButton ID="btnQuitarReporte" Descripcion="" Icono="fa fa-minus-square-o" MsgConfirm="Esta seguro de ya no considerar está OT en el reporte?" RunAtServer="True" Texto="Quitar de Reporte" Ubicacion="Derecha" />
                                                         </EasyGridButtons>
                                                         <EasyStyleBtn ClassName="btn btn-primary" FontSize="1em" TextColor="white" />
                                                         <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowCellItemClick=""
@@ -1386,7 +1781,7 @@
 
                                         <EasyGridButtons>
                                             <cc4:EasyGridButton Id="btnAgregarAdenda" Descripcion="" Icono="fa fa-plus-square-o" MsgConfirm="" RunAtServer="True" Texto="Agregar" Ubicacion="Izquierda" />
-                                            <cc4:EasyGridButton Id="btnEliminarAdenda" Descripcion="" Icono="fa fa-plus-square-o" MsgConfirm="" RunAtServer="True" Texto="Eliminar" Ubicacion="Izquierda" />
+                                            <cc4:EasyGridButton Id="btnEliminarAdenda" Descripcion="" Icono="fa fa-plus-square-o" MsgConfirm="Está seguro de eliminar la adenda? " RunAtServer="True" Texto="Eliminar" Ubicacion="Izquierda" />
                                         </EasyGridButtons>
                                         <EasyStyleBtn ClassName="btn btn-primary" FontSize="1em" TextColor="white" />
                                         <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66"
@@ -1553,25 +1948,9 @@
             </asp:Panel>
         </cc2:EasyPopupBase>
 
-        <!-- ********************  SCRIPT PARA EL FUNCIONAMIENTO         *********************  -->
+        <!-- ********************  SCRIPT PARA EL FUNCIONAMIENTO DE MENSAJES      *********************  -->
         <script>
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            };
+        
 
 
             // **************** BLOQUE DE PROCEDIMIENTO Y FUNCIONES JAVASCRIPT ****************************************** 
@@ -1602,6 +1981,27 @@
 
         </script>
 
+      
+        <script>
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+        </script> 
     </form>
+  
 </body>
 </html>

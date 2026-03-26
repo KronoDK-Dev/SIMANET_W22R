@@ -272,19 +272,67 @@ namespace SIMANET_W22R.GestionComercial.Administracion
         {
             try
             {
+
+
+                // reproyecta a case-insensitive para simplificar
+                var rec = new Dictionary<string, string>(Recodset ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
+
+                string GetFirstOrDefault(params string[] keys)
+                {
+                    foreach (var k in keys)
+                        if (rec.TryGetValue(k, out var v) && !string.IsNullOrWhiteSpace(v))
+                            return v;
+                    return null;
+                }
+
+
+                var nroSol = GetFirstOrDefault("NROSOLICITUD", "NRO_SOLICITUD", "NRO_STR", "nroSolicitud");
+                var linea = GetFirstOrDefault("LINEA_R", "LINEA", "COD_DIV", "linea");
+                var undOpe = eDDLUnidadO?.SelectedValue;
+                var ceo = eDDLCentros?.SelectedValue;
+                var clase = Convert.ToString(Session["Clase"]);
+
+                if (string.IsNullOrWhiteSpace(nroSol))
+                    throw new KeyNotFoundException("No se encontró la clave de Nro Solicitud (intenta NROSOLICITUD o NRO_STR).");
+
+                if (string.IsNullOrWhiteSpace(linea))
+                    throw new KeyNotFoundException("No se encontró la clave de Línea (intenta LINEA_R o LINEA).");
+
+
+                var nav = new EasyControlWeb.Form.Controls.EasyNavigatorBE
+                {
+                    Texto = "Detalle de Solicitud de Trabajo",
+                    Descripcion = "Registro y mantenimiento de Solicitudes",
+                    Pagina = "/GestionComercial/Administracion/GenerarSolicitud.aspx"
+                };
+
+                nav.Params.Add(new EasyNavigatorParam(PaginaBase.KEYQCENTROOPERATIVO, ceo ?? ""));
+                nav.Params.Add(new EasyNavigatorParam(BaseComercial.KEYUNIDADOPERATIVA, undOpe ?? ""));
+                nav.Params.Add(new EasyNavigatorParam(PaginaBase.KEYIDGENERAL, nroSol));
+                nav.Params.Add(new EasyNavigatorParam(BaseComercial.KEYLNNEGOCIO, linea));
+                nav.Params.Add(new EasyNavigatorParam(BaseComercial.KEYCLASETRAB, clase ?? ""));
+                nav.Params.Add(new EasyNavigatorParam(EasyUtilitario.Constantes.Pagina.KeyParams.Modo.ToString(), "M"));
+
                 // usamos un control de navegación colocando el titulo de la siguiente página y su ruta de la página a abrir
+                /*
                 EasyControlWeb.Form.Controls.EasyNavigatorBE oEasyNavigatorBE = new EasyControlWeb.Form.Controls.EasyNavigatorBE();
                 oEasyNavigatorBE.Texto = "Detalle de Solicitud de Trabajo";
                 oEasyNavigatorBE.Descripcion = "Registro y mantenimiento de Solicitudes";
                 oEasyNavigatorBE.Pagina = "/GestionComercial/Administracion/GenerarSolicitud.aspx";
                 // configuramos los parámetros del control de navagacion, colocando el id del registro actual, el modo de edición que tendrá
                 oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(PaginaBase.KEYQCENTROOPERATIVO, eDDLCentros.SelectedValue.ToString()));
+                oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYUNIDADOPERATIVA, eDDLUnidadO.SelectedValue.ToString()));  // KEYUNIDADOPERATIVA = "UnidadOpe"
+                
                 oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(PaginaBase.KEYIDGENERAL, Recodset["nroSolicitud"]));
                 oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYLNNEGOCIO, Recodset["linea"]));
                 oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYCLASETRAB, Convert.ToString(Session["Clase"])));
                 oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(EasyUtilitario.Constantes.Pagina.KeyParams.Modo.ToString(), "M")); // M = MODIFICAR
+                
+                 this.IrA(oEasyNavigatorBE, EGVsolicitudes); //EasyGestorFiltro1
+                 */
 
-                this.IrA(oEasyNavigatorBE, EGVsolicitudes); //EasyGestorFiltro1
+
+                this.IrA(nav, EGVsolicitudes);
             }
             catch (Exception ex)
             {
@@ -332,7 +380,8 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                         oEasyNavigatorBE.Descripcion = "Registro de Solicitudes";
                         oEasyNavigatorBE.Pagina = "/GestionComercial/Administracion/GenerarSolicitud.aspx";
                         // configuramos los parámetros del control de navagacion, colocando el id del registro actual, el modo de edición que tendrá
-                        oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(PaginaBase.KEYQCENTROOPERATIVO, eDDLCentros.SelectedValue.ToString()));
+                        oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(PaginaBase.KEYQCENTROOPERATIVO, eDDLCentros.SelectedValue.ToString()));    //
+                        oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYUNIDADOPERATIVA, eDDLUnidadO.SelectedValue.ToString()));  // KEYUNIDADOPERATIVA = "UnidadOpe"
                         oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYLNNEGOCIO, eDDLLineas.SelectedValue.ToString()));       //   KEYLNNEGOCIO = "LnNeg";
                         oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYSUBLNNEGOCIO, eDDLSubLinea.SelectedValue.ToString())); //   KEYSUBLNNEGOCIO = "SUBLnNeg";
                         oEasyNavigatorBE.Params.Add(new EasyNavigatorParam(BaseComercial.KEYCLASETRAB, Convert.ToString(Session["Clase"])));      //  KEYCLASETRAB = "ClaseT";

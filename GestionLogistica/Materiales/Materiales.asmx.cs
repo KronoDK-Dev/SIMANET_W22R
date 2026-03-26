@@ -1,7 +1,9 @@
-﻿using SIMANET_W22R.srvGestionLogistica;
+﻿using SIMANET_W22R.GestionProyecto;
+using SIMANET_W22R.srvGestionLogistica;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -45,11 +47,130 @@ namespace SIMANET_W22R.GestionLogistica.Materiales
         public DataTable ControlMateriales(string N_OPC, string N_CEO, string D_FECHAINI, string D_FECHAFIN, string C_DESTINO_OPER, string V_COD_CLASE_MAT, string UserName)
         {
             logisticaSoapClient oLg = new logisticaSoapClient();
-            dt = oLg.Listar_controlmateriales(N_OPC, N_CEO, D_FECHAINI, D_FECHAFIN, C_DESTINO_OPER, V_COD_CLASE_MAT,
-                UserName);
-            dt.TableName = "SP_ControlMateriales";
+            DataTable dtError = new DataTable("SP_ControlMateriales");
+            DateTime fechaIni, fechaFin;
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal
+            dtError.TableName = "SP_ControlMateriales";
+            dtError.Columns.Add("CENTRO_OPERATIVO", typeof(string));
+            dtError.Columns.Add("FECHA_INICIAL_MOVIMIENTO", typeof(string));
+            dtError.Columns.Add("FECHA_FINAL_MOVIMIENTO", typeof(string));
+            dtError.Columns.Add("COD_MAT", typeof(string));
+            dtError.Columns.Add("NOM_ALM", typeof(string));
+            dtError.Columns.Add("NRO_UBC", typeof(string));
+            dtError.Columns.Add("DES_MAT", typeof(string));
+            dtError.Columns.Add("UM", typeof(string));
+            
+            
+            
+            
+            
+            
+            
 
-            return dt;
+            try
+            {
+                // -----validamos datos Obligatorios ----
+                if (N_CEO == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["DES_MAT"] = "Seleccione el Centro Operativo, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (N_OPC == "-1" || N_OPC == "")
+                {
+                    N_OPC = "0";
+                }
+                if (C_DESTINO_OPER == "-1" || C_DESTINO_OPER == "0")
+                {
+                    C_DESTINO_OPER = "";
+                }
+
+                if (V_COD_CLASE_MAT == "-1" || V_COD_CLASE_MAT == "0")
+                {
+                    V_COD_CLASE_MAT = "";
+                }
+                if (string.IsNullOrWhiteSpace(D_FECHAINI))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["DES_MAT"] = "La fecha inicial es obligatoria.";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (!DateTime.TryParseExact(D_FECHAINI, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaIni))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["DES_MAT"] = "La fecha inicial no tiene un formato válido. Formato correcto: dd/MM/yyyy";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (string.IsNullOrWhiteSpace(D_FECHAFIN))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["DES_MAT"] = "La fecha Final es obligatoria.";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (!DateTime.TryParseExact(D_FECHAFIN, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaFin))
+                {
+                    DataRow row = dtError.NewRow();
+                    row["DES_MAT"] = "La fecha Final no tiene un formato válido. Formato correcto: dd/MM/yyyy";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                // ----------------------------------------------------
+                dt = oLg.Listar_controlmateriales(N_OPC, N_CEO, D_FECHAINI, D_FECHAFIN, C_DESTINO_OPER, V_COD_CLASE_MAT, UserName);
+                
+
+                if (dt != null)  // valida vacio
+                {
+                    dt.TableName = "SP_ControlMateriales";
+                    if (dt.Rows.Count > 0)
+                    {
+                        
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["DES_MAT"] = "No existen registros para los parámetros consultados: " + N_OPC + " " + N_CEO + "   "+  D_FECHAINI + " " + D_FECHAFIN + " " + C_DESTINO_OPER + " " + V_COD_CLASE_MAT;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["DES_MAT"] = "No existen registros para los parámetros consultados: " + N_OPC + " " + N_CEO + "   " + D_FECHAINI + " " + D_FECHAFIN + " " + C_DESTINO_OPER + " " + V_COD_CLASE_MAT;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["DES_MAT"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oLg != null)
+                {
+                    try
+                    {
+                        if (oLg.State != System.ServiceModel.CommunicationState.Faulted)
+                            oLg.Close();
+                        else
+                            oLg.Abort();
+                    }
+                    catch
+                    { oLg.Abort(); }
+                }
+            }
+
         }
 
         [WebMethod]
@@ -203,11 +324,73 @@ namespace SIMANET_W22R.GestionLogistica.Materiales
         [WebMethod]
         public DataTable PreciosReposicion(string CLAS_MATERIAL, string UserName)
         {
+            DataTable dtError = new DataTable("SP_PRECIOSREPOSICION");
             logisticaSoapClient oLg = new logisticaSoapClient();
-            dt = oLg.Listar_PRECIOSREPOSICION(CLAS_MATERIAL, UserName);
-            dt.TableName = "SP_PRECIOSREPOSICION";
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal
+            dtError.TableName = "SP_PRECIOSREPOSICION";
+            dtError.Columns.Add("CLASE", typeof(string));
+            dtError.Columns.Add("DESCRIPCION", typeof(string));
+            try
+            {
+                if (CLAS_MATERIAL == "00")
+                {
+                    CLAS_MATERIAL = "";
+                }
 
-            return dt;
+            dt = oLg.Listar_PRECIOSREPOSICION(CLAS_MATERIAL, UserName);
+            
+
+                if (dt != null)  // valida vacio
+                {
+                    dt.TableName = "SP_PRECIOSREPOSICION";
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "SP_PRECIOSREPOSICION";
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["CLASE"] = "0";
+                        row["DESCRIPCION"] = "No existen registros para los parámetros consultados: " + CLAS_MATERIAL;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["CLASE"] = "0";
+                    row["DESCRIPCION"] = "No existen registros para los parámetros consultados: " + CLAS_MATERIAL;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["CLASE"] = "0";
+                row["DESCRIPCION"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oLg != null)
+                {
+                    try
+                    {
+                        if (oLg.State != System.ServiceModel.CommunicationState.Faulted)
+                            oLg.Close();
+                        else
+                            oLg.Abort();
+                    }
+                    catch
+                    { oLg.Abort(); }
+                }
+            }
         }
 
         [WebMethod]
@@ -223,8 +406,7 @@ namespace SIMANET_W22R.GestionLogistica.Materiales
         }
 
         [WebMethod]
-        public DataTable PuntoReposicionPreciosPromedio(string TIPO_STOCK, string CLASE_MATERIAL, string MAT_CRI,
-            string UserName)
+        public DataTable PuntoReposicionPreciosPromedio(string TIPO_STOCK, string CLASE_MATERIAL, string MAT_CRI, string UserName)
         {
             MAT_CRI = MAT_CRI.Replace("-1", "T");
 
@@ -236,8 +418,7 @@ namespace SIMANET_W22R.GestionLogistica.Materiales
         }
 
         [WebMethod]
-        public DataTable PedidosMaterialesMultiproposito(string NUMERO_PEDIDO, string EMISION_INICIAL_PEDIDO,
-            string EMISION_FINAL_PEDIDO, string CODIGO_MATERIAL, string CODIGO_AUXILIAR, string UserName)
+        public DataTable PedidosMaterialesMultiproposito(string NUMERO_PEDIDO, string EMISION_INICIAL_PEDIDO, string EMISION_FINAL_PEDIDO, string CODIGO_MATERIAL, string CODIGO_AUXILIAR, string UserName)
         {
             logisticaSoapClient oLg = new logisticaSoapClient();
             dt = oLg.Listar_PedidoMateMultipropo(NUMERO_PEDIDO, EMISION_INICIAL_PEDIDO, EMISION_FINAL_PEDIDO,
@@ -248,8 +429,7 @@ namespace SIMANET_W22R.GestionLogistica.Materiales
         }
 
         [WebMethod]
-        public DataTable ReservasPendientesOtsPro(string Codigo_OT, string Codigo_Material, string Estado_OT,
-            string Estado_Seguimiento_OT, string UserName)
+        public DataTable ReservasPendientesOtsPro(string Codigo_OT, string Codigo_Material, string Estado_OT, string Estado_Seguimiento_OT, string UserName)
         {
             Estado_OT = Estado_OT.Replace("-1", "");
 
@@ -272,8 +452,7 @@ namespace SIMANET_W22R.GestionLogistica.Materiales
         }
 
         [WebMethod]
-        public DataTable ReservaMaterialesAreasUsuarias(string Area_Usuaria, string división, string Material,
-            string OT, string UserName)
+        public DataTable ReservaMaterialesAreasUsuarias(string Area_Usuaria, string división, string Material, string OT, string UserName)
         {
             división = división.Replace("-1", "");
 
@@ -305,8 +484,7 @@ namespace SIMANET_W22R.GestionLogistica.Materiales
         }
 
         [WebMethod]
-        public DataTable MaterialesSinMovimiento(string Centro_Operativo, string Almacen, string Fecha_Inicial,
-            string Fecha_Final, string Clase, string Stock, string UserName)
+        public DataTable MaterialesSinMovimiento(string Centro_Operativo, string Almacen, string Fecha_Inicial,  string Fecha_Final, string Clase, string Stock, string UserName)
         {
             logisticaSoapClient oLg = new logisticaSoapClient();
             dt = oLg.Listar_MatlesSinMov_PDR8701(Centro_Operativo, Almacen, Fecha_Inicial, Fecha_Final, Clase, Stock,
@@ -320,6 +498,8 @@ namespace SIMANET_W22R.GestionLogistica.Materiales
         public DataTable SaldoAlmacen(string Material_Inicial, string Material_Final, string UserName)
         {
             logisticaSoapClient oLg = new logisticaSoapClient();
+            
+            
             dt = oLg.Listar_SaldoAlmacen(Material_Inicial, Material_Final, UserName);
             dt.TableName = "SP_SaldoAlmacen";
 
@@ -330,11 +510,102 @@ namespace SIMANET_W22R.GestionLogistica.Materiales
         public DataTable ValeSalida(string s_CEO, string s_NRO_VALE, string s_COD_ALMA, string s_AREA_USU, string UserName)
         {
             logisticaSoapClient oGL = new logisticaSoapClient();
+            DataTable dtError = new DataTable("SP_VALE_SALIDA_MAT");
+            
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal
+            dtError.TableName = "SP_VALE_SALIDA_MAT";
+            dtError.Columns.Add("COD_ALM", typeof(string));
+            dtError.Columns.Add("PROYECTO", typeof(string));
+            try
+            {
+                // -----validamos datos Obligatorios ----
+                if (s_CEO == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["COD_ALM"] = "-1";
+                    row["PROYECTO"] = "Seleccione el Centro Operativo, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (s_COD_ALMA == "-1" || s_COD_ALMA == "")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["COD_ALM"] = "-1";
+                    row["PROYECTO"] = "Seleccione un Almacen, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (s_AREA_USU == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["COD_ALM"] = "-1";
+                    row["PROYECTO"] = "Seleccione Área Usuaria, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (s_NRO_VALE == "-1" || s_NRO_VALE == "")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["COD_ALM"] = "-1";
+                    row["PROYECTO"] = "Ingrese un Número de Vale, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                // ----------------------------------------------------
 
-            dt = oGL.Listar_Vale_Salida_Mat(s_CEO, s_NRO_VALE, s_COD_ALMA, s_AREA_USU, UserName);
-            dt.TableName = "SP_VALE_SALIDA_MAT";
-            return dt;
+                dt = oGL.Listar_Vale_Salida_Mat(s_CEO, s_NRO_VALE, s_COD_ALMA, s_AREA_USU, UserName);
+         
 
+                if (dt != null)  // valida vacio
+                {
+                    dt.TableName = "SP_VALE_SALIDA_MAT";
+                    if (dt.Rows.Count > 0)
+                    {
+                         return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["COD_ALM"] = "-1";
+                        row["PROYECTO"] = "No existen registros para los parámetros consultados: " + s_COD_ALMA + " " + s_AREA_USU +  " " + s_CEO;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["COD_ALM"] = "-1";
+                    row["PROYECTO"] = "No existen registros para los parámetros consultados: " + s_COD_ALMA + " " + s_AREA_USU +  " " + s_CEO;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["COD_ALM"] = "-1";
+                row["PROYECTO"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oGL != null)
+                {
+                    try
+                    {
+                        if (oGL.State != System.ServiceModel.CommunicationState.Faulted)
+                            oGL.Close();
+                        else
+                            oGL.Abort();
+                    }
+                    catch
+                    { oGL.Abort(); }
+                }
+            }
         }
     }
 }

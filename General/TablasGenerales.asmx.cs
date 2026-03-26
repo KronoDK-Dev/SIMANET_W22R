@@ -1,12 +1,14 @@
 ﻿using EasyControlWeb;
+using Newtonsoft.Json.Linq;
+using SIMANET_W22R.GestionReportes;
 using SIMANET_W22R.srvGeneral;
 using SIMANET_W22R.srvGestionTesoreria;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-
 using System.Runtime.Caching;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Services;
 using System.Web.Services.Description;
@@ -1025,25 +1027,47 @@ namespace SIMANET_W22R.General
         [WebMethod(Description = "Sublineas de trabajo por Linea")]
         public DataTable ListarSublineasxLinea(string ceo, string s_linea, string UserName)
         {
+            if (ceo == "-1")
+            { ceo="C";    }
+
             string cacheKey = $"{ceo}_{s_linea}"; // Combinar los filtros para crear una clave única para la caché
             MemoryCache cache = MemoryCache.Default;  // Obtener la instancia del MemoryCache
             // Verificar si ya existe el resultado en caché
             if (cache.Contains(cacheKey))
             {
-                return cache.Get(cacheKey) as DataTable;                  // Retornar el DataTable almacenado en caché
+                dtResultados = cache.Get(cacheKey) as DataTable;
+                dtResultados.TableName = "Table";
+                return dtResultados;                  // Retornar el DataTable almacenado en caché
             }
 
-            dtResultados = (new GeneralSoapClient()).ListaSubLinea_Trabajo(ceo, s_linea, UserName);              // Si no está en caché, llamar al servicio para obtener los datos
 
+            dtResultados = (new GeneralSoapClient()).ListaSubLinea_Trabajo(ceo, s_linea, UserName);              // Si no está en caché, llamar al servicio para obtener los datos
+            dtResultados.TableName = "Table";
             // Configurar la política de expiración de la caché (30 minutos en este ejemplo)
+  /*
             CacheItemPolicy policy = new CacheItemPolicy
             {
                 AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(30) // Expira en 30 minutos
             };
+ */
+            var policy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(30) };
+            
+
+
             if (!ceo.Contains("-1") && !s_linea.Contains("-1"))  // Almacenar el resultado en caché, si es un valor correcto
             {
                 cache.Add(cacheKey, dtResultados, policy);             // Almacenar el resultado en caché
             }
+
+            if (dtResultados.Rows.Count == 0)
+            {
+                DataRow row = dtResultados.NewRow();
+                row["CODIGO"] = "-2";
+                row["NOMBRE"] = "Usuario no tiene asignada esta linea de Negocio " + s_linea;
+                dtResultados.Rows.Add(row);
+                dtResultados.TableName = "Table";
+            }
+
 
             return dtResultados;
 
@@ -1108,7 +1132,35 @@ namespace SIMANET_W22R.General
                 return dtError;
             }
         }
-        #endregion 
 
+        #endregion
+
+
+        [WebMethod(Description = "Lista Areas usuarias por descripcion")]
+        public DataTable ListaAreasxDescripcion(string NombreArea, string UserName, string idCentro)
+        {
+            var oGenerarl = new GeneralSoapClient();
+            string json = oGenerarl.ListarAreaPorNombre(Convert.ToInt32(idCentro), NombreArea, UserName);
+
+            if (string.IsNullOrWhiteSpace(json))
+                return dtResultados; // vacío
+
+            // Decodificación por si viniera escapado
+            json = HttpUtility.HtmlDecode(json)?.Trim() ?? string.Empty;
+            if (json.StartsWith("<![CDATA["))
+                json = Regex.Replace(json, @"^<!\[CDATA\[(.*)\]\]>$", "$1", RegexOptions.Singleline).Trim();
+
+            // Si el servicio envía { "success":..., "data":[...] }
+            var token = JToken.Parse(json);
+            var data = token["data"] ?? token;  // si no hay "data", usa el token completo
+
+            dtResultados = JsonToDataTableHelper.ConvertJsonToDataTable(data.ToString()); // JsonToDataTableHelper es una clase que esta en la carpeta Gestion Reportes / JsonToDataTableHelper.cs
+
+
+            return dtResultados;
+        }
+
+
+      
     }
 }

@@ -34,10 +34,97 @@ namespace SIMANET_W22R.GestionContabilidad.General
         public DataTable TipodeCambio(string V_ANIO, string V_CODMND, string V_MESFIN, string V_MESINI, string UserName)
         {
             ContabilidadSoapClient oCtbl = new ContabilidadSoapClient();
-            dt = oCtbl.Listar_tipo_de_cambio(V_ANIO, V_CODMND, V_MESFIN, V_MESINI, UserName);
-            dt.TableName = "SP_Tipo_de_Cambio";
+            DataTable dtError = new DataTable("SP_Tipo_de_Cambio");
+            DateTime fechaIni, fechaFin;
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal
+            dtError.TableName = "SP_Tipo_de_Cambio";
+            dtError.Columns.Add("MONEDA", typeof(string));
+            dtError.Columns.Add("FECHA", typeof(string));
+            try
+            {
+                if (V_ANIO == "-1" || V_ANIO == "")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["MONEDA"] = "Ingrese el año, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_CODMND == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["MONEDA"] = "Seleccione la Moneda, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_MESINI == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["MONEDA"] = "Seleccione el Mes inicial, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_MESFIN == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["MONEDA"] = "Seleccione el Mes final, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
 
-            return dt;
+                dt = oCtbl.Listar_tipo_de_cambio(V_ANIO, V_CODMND, V_MESFIN, V_MESINI, UserName);
+            
+
+            // ----------------------------------------------------
+            
+
+            if (dt != null)  // valida vacio
+            {
+                dt.TableName = "SP_Tipo_de_Cambio";
+                if (dt.Rows.Count > 0)
+                {
+                    dt.TableName = "SP_Tipo_de_Cambio";
+                    return dt;
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["MONEDA"] = "No existen registros para los parámetros consultados: " + V_ANIO + " Rango meses:" + V_MESINI + "-" + V_MESFIN + " " + V_CODMND;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            else
+            {
+                DataRow row = dtError.NewRow();
+                row["MONEDA"] = "No existen registros para los parámetros consultados: " + V_ANIO + " Rango meses:" + V_MESINI + "-"+V_MESFIN + " " + V_CODMND;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+        }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                    row["MONEDA"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oCtbl != null)
+                {
+                    try
+                    {
+                        if (oCtbl.State != System.ServiceModel.CommunicationState.Faulted)
+                            oCtbl.Close();
+                        else
+                            oCtbl.Abort();
+                    }
+                    catch
+                    { oCtbl.Abort(); }
+                }
+            }
         }
     }
 }
