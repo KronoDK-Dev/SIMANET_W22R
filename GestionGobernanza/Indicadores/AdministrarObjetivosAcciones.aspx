@@ -783,8 +783,8 @@
 
           function AreaIndicadorCondicion_Ins(AreaIndicadorCondBE) {
               var oParamCollections = new SIMA.ParamCollections();
-
-              var oParam = new SIMA.Param("IdItemConfig", AreaIndicadorCondBE.IDITEMCONDICION, TipodeDato.Int);
+              var idItemConfig = ((AreaIndicadorCondBE.IDITEMCONDICION.length == 0) ? 0 : AreaIndicadorCondBE.IDITEMCONDICION);
+              var oParam = new SIMA.Param("IdItemConfig", idItemConfig, TipodeDato.Int);
               oParamCollections.Add(oParam);
               oParam = new SIMA.Param("Condicion", AreaIndicadorCondBE.VALORCONDICION );
               oParamCollections.Add(oParam);

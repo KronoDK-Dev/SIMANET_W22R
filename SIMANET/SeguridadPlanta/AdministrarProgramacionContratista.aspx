@@ -32,6 +32,7 @@
                                 <cc1:EasyGridButton ID="btnAgregar" Descripcion="" Icono="fa fa-plus-square-o" MsgConfirm="" RequiereSelecciondeReg="False" RunAtServer="False" SilenceWait="True" SolicitaConfirmar="False" Texto="Agregar" Ubicacion="Derecha" />
                                 <cc1:EasyGridButton ID="btnEliminar" Descripcion="" Icono="fa fa-close" MsgConfirm="Desea eliminar ahora el registro seleccionado?" RequiereSelecciondeReg="True" RunAtServer="True" SilenceWait="False" SolicitaConfirmar="True" Texto="Eliminar" Ubicacion="Derecha" />
                                 <cc1:EasyGridButton ID="btnTrabEquipo" Descripcion="" Icono="fa fa-user-plus" RequiereSelecciondeReg="True" RunAtServer="False" SilenceWait="False" Texto="Trabajadores / Equipos" Ubicacion="Centro" />
+                                <cc1:EasyGridButton ID="btnCopiar" Descripcion="" Icono="fa fa-files-o" MsgConfirm="" RequiereSelecciondeReg="true" RunAtServer="False" SilenceWait="True" SolicitaConfirmar="false" Texto="Copiar" Ubicacion="Izquierda" />
                             </EasyGridButtons>
                             <EasyStyleBtn ClassName="btn btn-primary" FontSize="1em" TextColor="white" />
                             <DataInterconect MetodoConexion="WebServiceInterno"></DataInterconect>
@@ -79,6 +80,8 @@
         <cc2:EasyPopupBase ID="EasyPopupEquipoDet" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="DETALLE EQUIPO"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="DetalleEquipos.Aceptar"  ></cc2:EasyPopupBase>
         <cc2:EasyPopupBase ID="EasyPopupTrabajador" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="DETALLE TRABAJADOR"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="DetalleTrabajador.Aceptar"  ></cc2:EasyPopupBase>
         <cc2:EasyPopupBase ID="EasyPopupReprogramaTrab" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="REPROGRAMACION DE TRABAJADOR"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="ReprogramarTrabajador.Aceptar"  ></cc2:EasyPopupBase>
+        
+        <cc2:EasyPopupBase ID="EasyPopupCopiar" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="COPIAR PROGRAMACIÓN"   ValidarDatos="true"  RunatServer="true" DisplayButtons="true"  fncScriptAceptar="DetalleCopyProg.Aceptar" OnClick="EasyPopupCopiar_Click"  ></cc2:EasyPopupBase>
 
 
 
@@ -181,6 +184,20 @@
 
                 case "btnTrabEquipo":
                     AdministrarProgramacionContratista.AdministrarTrabajadoresyEquipos(DetalleBE);
+                    
+                    break;
+                case "btnCopiar":
+
+                    var Url = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/DetalleCopyProg.aspx";
+                    var oColletionParams = new SIMA.ParamCollections();
+                    var oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQIDPROGRAMACION, DetalleBE.NroProgramacion);
+                    oColletionParams.Add(oParam);
+
+                    oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQAÑO, DetalleBE.Periodo);
+                    oColletionParams.Add(oParam);
+
+                    EasyPopupCopiar.Load(Url, oColletionParams, false);
+
                     
                     break;
             }

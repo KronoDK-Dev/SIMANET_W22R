@@ -11,7 +11,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 {
 
 
-    public partial class AdministrarProgramacionContratista
+    public partial class DetalleCopyProg
     {
 
         /// <summary>
@@ -24,93 +24,57 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control Header.
+        /// Control cellNroProg.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::SIMANET_W22R.Controles.Header Header;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell cellNroProg;
 
         /// <summary>
-        /// Control EasyGRContrata.
+        /// Control cellRSocial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.EasyGridView EasyGRContrata;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell cellRSocial;
 
         /// <summary>
-        /// Control EasyPopInfoGen.
+        /// Control CFIni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopInfoGen;
+        protected global::EasyControlWeb.Form.Controls.EasyDatepicker CFIni;
 
         /// <summary>
-        /// Control EasyPopupPrv.
+        /// Control CFFin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupPrv;
+        protected global::EasyControlWeb.Form.Controls.EasyDatepicker CFFin;
 
         /// <summary>
-        /// Control EasyPopupTrabEqui.
+        /// Control CTimeIni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupTrabEqui;
+        protected global::EasyControlWeb.Form.Controls.EasyTimePicker CTimeIni;
 
         /// <summary>
-        /// Control EasyPopupEquipoDet.
+        /// Control CTimeFin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupEquipoDet;
-
-        /// <summary>
-        /// Control EasyPopupTrabajador.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupTrabajador;
-
-        /// <summary>
-        /// Control EasyPopupReprogramaTrab.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupReprogramaTrab;
-
-        /// <summary>
-        /// Control EasyPopupCopiar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupCopiar;
-
-        /// <summary>
-        /// Control EasyGestorFiltro1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::EasyControlWeb.Filtro.EasyGestorFiltro EasyGestorFiltro1;
+        protected global::EasyControlWeb.Form.Controls.EasyTimePicker CTimeFin;
     }
 }

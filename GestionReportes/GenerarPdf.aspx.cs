@@ -118,6 +118,7 @@ namespace SIMANET_W22R.GestionReportes
                     
                     string ParamName = oEntity.Keys.ElementAt(0);
                     string ParamValue = oEntity[ParamName];
+
                     //Cadena de Filtro
                     sPto_Error = "CadenadeFiltro";
                     CadenadeFiltro += oEntity["FiltroText"] + EasyUtilitario.Constantes.Caracteres.SignoIgual + oEntity["FiltroValor"] + Environment.NewLine;

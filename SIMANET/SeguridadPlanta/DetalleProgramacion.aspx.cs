@@ -163,7 +163,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         {
             //Notificaciones: https://freefrontend.com/css-keyframes/
 
-            EasyBaseEntityBE oEasyBaseEntityBE = CargarDetalle();
+            EasyBaseEntityBE oEasyBaseEntityBE = CargarDetalle(this.IdProgramacion, this.Año);
             this.acProveedor.SetValue(oEasyBaseEntityBE.GetValue("NroRuc"), oEasyBaseEntityBE.GetValue("IdEntidad"));
             this.acRSocial.SetValue(oEasyBaseEntityBE.GetValue("RazonSocial"), oEasyBaseEntityBE.GetValue("IdEntidad"));
             this.FInicio.Text = oEasyBaseEntityBE.GetValue("FechaInicio").Substring(0,10);
@@ -201,7 +201,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
         }
        
-        public EasyBaseEntityBE CargarDetalle()
+        public EasyBaseEntityBE CargarDetalle(string IdProg,string Periodo)
         {
 
             EasyDataInterConect odi = new EasyDataInterConect();
@@ -212,14 +212,14 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
             EasyFiltroParamURLws oParam = new EasyFiltroParamURLws();
             oParam.ParamName = "NroProgramacion";
-            oParam.Paramvalue = this.IdProgramacion;
+            oParam.Paramvalue = IdProg;
             oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
             oParam.TipodeDato = EasyUtilitario.Enumerados.TiposdeDatos.Int;
             odi.UrlWebServicieParams.Add(oParam);
 
             oParam = new EasyFiltroParamURLws();
             oParam.ParamName = "Periodo";
-            oParam.Paramvalue = this.Año;
+            oParam.Paramvalue = Periodo;
             oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
             oParam.TipodeDato = EasyUtilitario.Enumerados.TiposdeDatos.Int;
             odi.UrlWebServicieParams.Add(oParam);
