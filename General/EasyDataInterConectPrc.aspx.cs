@@ -53,24 +53,34 @@ namespace SIMANET_W22R.General
             Dictionary<string, string> oEntityTipos = EasyUtilitario.Helper.Data.SeriaizedDiccionario(strEntityTipo);
 
             object[] param = new object[oEntity.Count]; int i = 0;
-            foreach (var item in oEntity)
+            //try
             {
-                string valor = item.Value.ToString().Replace('�', ',');
-                switch (oEntityTipos[item.Key])
+                foreach (var item in oEntity)
                 {
-                    case "String":
-                        param[i] = valor;
-                        break;
-                    case "Int":
-                        param[i] = Convert.ToInt32(valor);
-                        break;
-                    case "Double":
-                        param[i] = Convert.ToDouble(valor);
-                        break;                  
+                    string valor = item.Value.ToString().Replace('�', ',');
+                    switch (oEntityTipos[item.Key])
+                    {
+                        case "String":
+                            param[i] = valor;
+                            break;
+                        case "Int":
+                            param[i] = Convert.ToInt32(valor);
+                            break;
+                        case "Double":
+                            param[i] = Convert.ToDouble(valor);
+                            break;
+                    }
+
+                    i++;
                 }
-                
-                i++;
             }
+             /*catch (Exception ex) {
+               string ScriptError = @" var msgConfig = { Titulo: 'EasyDataInterconect', Descripcion: '" + ex.Message.Replace("'", " ") + @"'};
+                                            var oMsg = new SIMA.MessageBox(msgConfig);
+                                            oMsg.Alert();";
+                        EasyUtilitario.Helper.Genericos.RegistraBlockScriptLiteral(ScriptError);
+            }*/
+
             try
             {
                 switch ((EasyDataInterConect.MetododeConexion)System.Enum.Parse(typeof(EasyDataInterConect.MetododeConexion), context.Request.Params[KEYQMETODOCONEXCION].ToString()))
@@ -80,7 +90,7 @@ namespace SIMANET_W22R.General
                       
                         EasyUtilitario.Helper.Pagina.DEBUG(mtd);
 
-                        object objResult = EasyWebServieHelper.InvokeWebService2(sw, "", mtd, param);
+                        object objResult = EasyWebServieHelper.InvokeWebService(sw, "", mtd, param);
                         switch (TipoObjReturn)
                         {
                             case "Table":

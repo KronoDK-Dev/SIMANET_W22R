@@ -15,7 +15,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
     {
 
         /// <summary>
-        /// Control form1.
+        /// Control form1. 
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.

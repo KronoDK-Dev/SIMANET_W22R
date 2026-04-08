@@ -12,7 +12,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
 
     public partial class DetalleObjetivo
-    {
+    { 
 
         /// <summary>
         /// Control form1.

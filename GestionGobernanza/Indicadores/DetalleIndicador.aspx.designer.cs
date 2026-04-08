@@ -13,7 +13,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
     public partial class DetalleIndicador
     {
-
+     
         /// <summary>
         /// Control form1.
         /// </summary>

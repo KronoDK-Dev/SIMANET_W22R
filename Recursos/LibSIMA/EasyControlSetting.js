@@ -16,8 +16,30 @@ EasyDatepicker.Setting = function (Id, Formato) {
     );
 } 
 
+var EasyTimepicker = {};
 
+EasyTimepicker.Setting = function (Id, Formato, MinuteStep) {
 
+    var $objHora = $("#" + Id);
+
+    var TPK_Config = {
+        timeFormat: Formato || 'H:i',
+        interval: MinuteStep || 1,
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    };
+
+    $objHora.timepicker(TPK_Config)
+        .on('changeTime', function () {
+            try {
+                this.Change({ value: this.value });
+            }
+            catch (Error) {
+                return null;
+            }
+        });
+};
 function EasyUploadFileBE(_FileObj, CtrlBaseID) {
     var CardID = '';
     var ProgressBarID = '';
@@ -33,13 +55,7 @@ function EasyUploadFileBE(_FileObj, CtrlBaseID) {
     this.Nombre = _FileObj.name;
     this.Tipo = _FileObj.type;
     this.Size = fileSize;
-    this.IdEstado = 1;
-    this.Enviado = false;
-
-    if (_FileObj instanceof File) {
-        this.Binary = _FileObj;//Archivo en Binario
-    }
-    this.Existe = false;
+    this.Binary = _FileObj;//Archivo en Binario
     this.toString = function () {
         return this.Nombre + '|' + this.Tipo + '|' + this.Size;
     }
@@ -121,4 +137,3 @@ function EasyUploadFileBE(_FileObj, CtrlBaseID) {
         EasyProgressBar(ProgressBarID, ProgressLabelID);
     }
 }
-

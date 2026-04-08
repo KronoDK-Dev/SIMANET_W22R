@@ -18,7 +18,7 @@ namespace SIMANET_W22R
         EasyMessageBox oeasyMessageBox = new EasyMessageBox();
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            try 
             {
                 List<EasyNavigatorBE> oEasyNavigatorBElst = new List<EasyNavigatorBE>();
                 oEasyNavigatorBElst = (List<EasyNavigatorBE>)Session["S_Historial"];

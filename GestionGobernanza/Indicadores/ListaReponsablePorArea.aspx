@@ -32,7 +32,7 @@
                                     </UrlWebServicieParams>
                                 </DataInterconect>
 
-                            <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowItemClick="ListaReponsablePorArea.OnNull " RowCellItemClick="ListaReponsablePorArea.OnNull "  idgestorfiltro=""></EasyExtended>
+                            <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowItemClick="ListaReponsablePorArea.OnNull"  idgestorfiltro=""></EasyExtended>
 
                             <EasyRowGroup GroupedDepth="0" ColIniRowMerge="0"></EasyRowGroup>
 
@@ -95,3 +95,4 @@
     </script>
 </body>
 </html>
+ 

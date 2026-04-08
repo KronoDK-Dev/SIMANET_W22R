@@ -707,7 +707,7 @@
                                     </UrlWebServicieParams>
                                 </DataInterconect>
 
-                            <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowItemClick="" RowCellItemClick="" idgestorfiltro="EasyGestorFiltro1"></EasyExtended>
+                            <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowItemClick=""  idgestorfiltro="EasyGestorFiltro1"></EasyExtended>
 
                             <EasyRowGroup GroupedDepth="0" ColIniRowMerge="0"></EasyRowGroup>
                        
