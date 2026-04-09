@@ -6,7 +6,7 @@ using SIMANET_W22R.ClasesExtendidas;
 using SIMANET_W22R.General;
 using SIMANET_W22R.GestionComercial;
 using SIMANET_W22R.srvGeneral;
-using SIMANET_W22R.srvGestionSeguridadPlanta;
+using SIMANET_W22R.srvGestionSeguridadPlanta;  // http://10.10.90.4:8000/Core/SeguridadPlanta/Visitas.asmx    https://mesadeayuda.sima.com.pe:448/Core/SeguridadPlanta/Visitas.asmx
 using SIMANET_W22R.srvSeguridad;
 using System;
 using System.Collections.Generic;
