@@ -1,11 +1,13 @@
-﻿using System;
+﻿using SIMANET_W22R.srvGestionCostos;
+using SIMANET_W22R.srvGestionProduccion;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using SIMANET_W22R.srvGestionCostos;
 
 namespace SIMANET_W22R.GestionCostos.Costos
 {
@@ -103,6 +105,7 @@ namespace SIMANET_W22R.GestionCostos.Costos
             dt.TableName = "SP_Hors_HombreNormalUtili_Divi";
             return dt;
         }
+
         [WebMethod]
         public DataTable Listar_Distri_Costo_Grup_Resu(string V_Centro_Operativo, string D_Año, string D_Mes,
            string UserName)
@@ -112,6 +115,7 @@ namespace SIMANET_W22R.GestionCostos.Costos
             dt.TableName = "SP_Distri_Costo_Grup_Resu";
             return dt;
         }
+
         [WebMethod]
         public DataTable Listar_Distri_Costo_Grup_CC_Det(string V_Centro_Operativo, string D_Año, string D_Mes, string V_Grupo_CC_Desde, string V_Grupo_CC_Hasta,
           string UserName)
@@ -121,6 +125,7 @@ namespace SIMANET_W22R.GestionCostos.Costos
             dt.TableName = "SP_Distri_Costo_Grup_CC_Det";
             return dt;
         }
+
         [WebMethod]
         public DataTable Listar_Mano_Obra_Directa_Div_Det(string V_Centro_Operativo, string D_Año, string D_Mes, string V_Division_Inicial, string V_Division_Final,
         string UserName)
@@ -182,6 +187,7 @@ namespace SIMANET_W22R.GestionCostos.Costos
             // retornamos el data table
             return dt;
         }
+
         [WebMethod]
         public DataTable Listar_Materiales_en_Proyectos(string V_Centro_Operativo, string v_materiales, string UserName)
         {
@@ -228,5 +234,81 @@ namespace SIMANET_W22R.GestionCostos.Costos
             // retornamos el data table
             return dt;
         }
-    }
+
+
+        [WebMethod(Description = "Listar áreas usuarias con sus centro de costos basaso en xml string")]
+        public DataTable Listar_AreasUsuarias_CC(string V_Centro_Operativo, string UserName)
+        {
+            CostosSoapClient oC = new CostosSoapClient();
+            DataTable dtError = new DataTable("SP_AreasUsuarias_CC");
+           
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal
+            dtError.TableName = "SP_AreasUsuarias_CC";
+            dtError.Columns.Add("COD_CEO", typeof(string));
+            dtError.Columns.Add("COD_CC", typeof(string));
+            try
+            {
+                // -------CONVERTIMOS---------------------------------------------
+                String xmlData = oC.Listar_AreasUsuarias_CC(V_Centro_Operativo, UserName);
+                // Crear un DataSet y cargar el XML
+                DataSet ds = new DataSet();
+                using (StringReader sr = new StringReader(xmlData))
+                {
+                    ds.ReadXml(sr);
+                }
+
+                // Extraer el DataTable del DataSet
+                 dt = ds.Tables["SP_AreasUsuarias_CC"];
+
+                if (dt != null)  // valida vacio
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "SP_AreasUsuarias_CC";
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["COD_CC"] = "No existen registros para los parámetros consultados: " + V_Centro_Operativo;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["COD_CC"] = "No existen registros para los parámetros consultados: " + V_Centro_Operativo ;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["COD_CC"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oC != null)
+                {
+                    try
+                    {
+                        if (oC.State != System.ServiceModel.CommunicationState.Faulted)
+                            oC.Close();
+                        else
+                            oC.Abort();
+                    }
+                    catch
+                    { oC.Abort(); }
+                }
+            }
+
+        }
+
+      }
 }
