@@ -548,7 +548,12 @@
                                             oNodo.Descripcion = jNet.get('txtDescripcion').value;
                                             oNodo.TextoySubTexto = true;
                                             oNodo.IsFather = true;
-                                            Celda.insert(SIMA.GridTree.Nodos.Crear(oNodo));
+                                            // Celda.insert(SIMA.GridTree.Nodos.Crear(oNodo)); // 10.04.2026 da error, se cambio por estas 03 lineas
+
+                                            var tbl = SIMA.Utilitario.Helper.HtmlControlsDesign.HtmlTable(1, 1);
+                                            tbl.rows[0].cells[0].innerText = oNodo.Text;
+                                            Celda.insert(tbl);
+
                                             break;
 
                                         case 4:
@@ -574,11 +579,26 @@
                                 oDataRow["Nivel"] = 1;
                                 EasyGridViewParamConfig.SetDataRow(oDataRow);
                             }
+                            /*  10.04.2026 se cambio por otro catch para mas detalle del error
                             catch (SIMADataException) {
                                 var msgConfig = { Titulo: "Error al intentar guardar la sección", Descripcion: SIMADataException.Message };
                                 var oMsg = new SIMA.MessageBox(msgConfig);
                                 oMsg.Alert();
                             }
+                            */
+
+                            catch (e) {
+                                console.error("Error real:", e);
+
+                                var msgConfig = {
+                                    Titulo: "Error al intentar guardar la sección",
+                                    Descripcion: e.message || e.toString()
+                                };
+
+                                var oMsg = new SIMA.MessageBox(msgConfig);
+                                oMsg.Alert();
+                            }
+
                         }
                     }
                 };

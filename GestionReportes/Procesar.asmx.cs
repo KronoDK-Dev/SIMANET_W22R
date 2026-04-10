@@ -513,7 +513,7 @@ namespace SIMANET_W22R.GestionReportes
 
                 string Resultado = ogReports.ModificaInsertaObjetoPrivilegio(oObjetoPrivilegioBE);
 
-                string msg = ((IdEstado == 1) ? "Se ha compartido el siguiente reporte: " : "Se ha dejado de compartido el siguiente reporte: ") + Descripcion;
+                string msg = ((IdEstado == 1) ? "Se ha Brindado el acceso al siguiente reporte en NETSUITE: " : "Se ha dejado dar acceso al siguiente reporte: ") + Descripcion;
                 if (Resultado == "1")
                 {
                     //enviar por correo
