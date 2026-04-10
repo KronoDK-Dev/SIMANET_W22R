@@ -412,6 +412,8 @@ namespace SIMANET_W22R
 
             return oEasyDataInterConect;
         }
+
+
         public EasyDataInterConect TablaGeneralItem(string IdTabla,string OrigenDB) {
             EasyDataInterConect oEasyDataInterConect = new EasyDataInterConect();
             oEasyDataInterConect.MetodoConexion = EasyDataInterConect.MetododeConexion.WebServiceExterno;

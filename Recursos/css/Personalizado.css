@@ -487,7 +487,6 @@ select.input-control {
 /* B1) Bloquea scroll del body */
 /*
 html, body {
-    height: 100%;
     overflow: hidden;  ← sin scroll en la página 
 }
 */
@@ -501,6 +500,7 @@ html, body {
         overflow-y: auto !important;
         height: auto !important;
     }
+>>>>>>>>> Temporary merge branch 2
 
 /* B2) El panel principal maneja TODO el scroll */
 .MainContent, .GridLayout, .PanelQueEnvuelveLaGrilla {
