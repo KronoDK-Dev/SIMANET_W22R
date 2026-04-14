@@ -31,11 +31,12 @@
             }).then((result) => {
                 if (result.isConfirmed) {
 
-                    // llama al evento de boton de validar datos, que esta en el boton btnAgregar
-                    document.getElementById('btnAgregar').click();
                     // Ejecutar Espera() antes del postback
                     Espera();
 
+                    // FORZAMOS el postback manualmente
+                    // llama al evento de boton de validar datos, que esta en el boton btnAgregar
+                    __doPostBack('btnAgregar1', '');
                 }
             });
 
@@ -425,7 +426,7 @@
 
                         <div class="row mt-4">
                             <div class="col-md-12 text-end">
-                                <asp:Button ID="btnAgregar1" class="btn btn-primary" runat="server" OnClientClick="return confirmGuardar();" Text="Guardar" />
+                                <asp:Button ID="btnAgregar1" class="btn btn-primary" runat="server" OnClientClick="return confirmGuardar(); return false;" OnClick="btn_Agregar_Post" Text="Guardar" />
                                 <asp:Button ID="btnAgregar" class="btn btn-primary" runat="server" OnClick="btn_Agregar_Post" Text="Guardar" Style="visibility: hidden; display: none;" />
                                 <button id="btnRegresar" class="btn btn-secondary" onclick="history.back(); return false;">Cancelar</button>
                             </div>

@@ -196,7 +196,7 @@
                                 </UrlWebServicieParams>
                             </DataInterconect>
 
-                            <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowItemClick="" RowCellItemClick="" IdGestorFiltro="EasyGestorFiltro1"></EasyExtended>
+                            <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowItemClick=""  IdGestorFiltro="EasyGestorFiltro1"></EasyExtended>
                             <EasyRowGroup GroupedDepth="0" ColIniRowMerge="0"></EasyRowGroup>
                             <AlternatingRowStyle CssClass="AlternateItemGrilla" />
 
