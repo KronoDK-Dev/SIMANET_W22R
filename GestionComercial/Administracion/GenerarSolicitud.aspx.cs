@@ -23,7 +23,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             if (this.ModoPagina.ToString().Equals("M") && !string.IsNullOrEmpty(this.IdGeneral))
             {
                 nroSOL.InnerText = "N° SOLICITUD: " + this.IdGeneral;
-                CargarModoModificar(this.IdGeneral);
+             //   CargarModoModificar(this.IdGeneral);
                 if (!IsPostBack) // Cargar datos solo en la primera carga
                 {
                     CargarModoModificar(this.IdGeneral);
@@ -1000,7 +1000,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 // *********************PROCESAMIENTO****************************************************
                 var result = (new SolicitudSoapClient()).InsertarSolicitud2(oSolicitudBE, this.UsuarioLogin);
                 // *************************************************************************
-                result = result.Replace("\n", "<br/>"); // Para que permita leer saltos
+                result = result?.Replace("\n", "<br/>") ?? result;  // Para que permita leer saltos
                 if (Convert.ToInt32(this.IdGeneral) == 0)
                 {
 
@@ -1036,7 +1036,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
 
                     }
                 }
-                else if ((Convert.ToInt32(this.IdGeneral) > 0 && result == "UPD") || result.Length > 10)
+                else if ((Convert.ToInt32(this.IdGeneral) > 0 && result == "UPD") || (result?.Length > 10) == true)
                 {
                     if (!result.Contains("-:") && !result.Contains("FALLO"))
                     {
