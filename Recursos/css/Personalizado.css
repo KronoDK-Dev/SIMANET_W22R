@@ -500,7 +500,7 @@ html, body {
         overflow-y: auto !important;
         height: auto !important;
     }
->>>>>>>>> Temporary merge branch 2
+
 
 /* B2) El panel principal maneja TODO el scroll */
 .MainContent, .GridLayout, .PanelQueEnvuelveLaGrilla {
@@ -508,3 +508,86 @@ html, body {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch; /* suave en móviles */
 }
+
+
+
+/* ===============================
+   FORMULARIO RESPONSIVE EN TABLE  16.04.2026
+   =============================== */
+
+/* 1) Modo normal: escritorio (no se toca) */
+@media (min-width: 901px) {
+    tr.tr-responsive {
+        display: table-row;
+    }
+
+        tr.tr-responsive > td {
+            display: table-cell;
+            width: auto;
+        }
+}
+
+/* 2) Modo responsive: ventanas medianas / pequeñas */
+@media (max-width: 900px) {
+
+    /* Convertimos la fila en FLEX */
+    tr.tr-responsive {
+        display: flex;
+        flex-wrap: wrap; /*  CLAVE: permite bajar de fila */
+        align-items: center;
+        row-gap: 8px;
+        column-gap: 12px;
+    }
+
+        /* Cada td se comporta como un bloque flexible */
+        tr.tr-responsive > td {
+            display: block;
+            flex: 1 1 240px; /*  ancho mínimo antes de bajar */
+            min-width: 240px;
+            box-sizing: border-box;
+        }
+
+            /* Etiquetas (labels) ocupan toda la fila */
+            tr.tr-responsive > td.Etiqueta {
+                flex: 1 1 100%;
+                font-weight: 600;
+                margin-top: 6px;
+            }
+
+        /* Campos de fecha y hora más compactos */
+        tr.tr-responsive input[type="date"],
+        tr.tr-responsive input[type="time"],
+        tr.tr-responsive input[type="datetime-local"],
+        tr.tr-responsive .form-control {
+            width: 100% !important;
+        }
+
+        /* TD separadores vacíos desaparecen */
+        tr.tr-responsive > td:empty {
+            display: none;
+        }
+}
+
+
+/* ===============================
+   UNIFICAR INPUT-CONTROL Y FORM-CONTROL
+   =============================== */
+
+.input-control,
+.form-control {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    width: 100% !important;
+    box-sizing: border-box;
+    color: black;
+}
+
+    .input-control:focus,
+    .form-control:focus {
+        border-color: #00bfff;
+    }
