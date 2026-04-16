@@ -23,7 +23,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             if (this.ModoPagina.ToString().Equals("M") && !string.IsNullOrEmpty(this.IdGeneral))
             {
                 nroSOL.InnerText = "N° SOLICITUD: " + this.IdGeneral;
-             //   CargarModoModificar(this.IdGeneral);
+             //   CargarModoModificar(this.IdGeneral); // si se habilita esto estara cada rato regresando la data como estaba sin cambios.
                 if (!IsPostBack) // Cargar datos solo en la primera carga
                 {
                     CargarModoModificar(this.IdGeneral);
