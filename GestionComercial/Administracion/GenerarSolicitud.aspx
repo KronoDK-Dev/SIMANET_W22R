@@ -218,7 +218,8 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="cliente">Cliente</label>
-                                <cc1:EasyAutocompletar ID="acCliente" runat="server" Etiqueta="Cliente" DisplayText="NOMBRE" ValueField="CODIGO"
+                                <cc1:EasyAutocompletar ID="acCliente" runat="server" Etiqueta="Cliente"
+                                    DisplayText="NOMBRE" ValueField="CODIGO"
                                     EnableOnChange="True"
                                     Placeholder="Seleccionar Cliente" NroCarIni="3"
                                     Requerido="True">
@@ -239,7 +240,9 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="tipoSolicitud">Tipo de Solicitud</label>
-                                <cc1:EasyDropdownList ID="ltTipoSolicitud" runat="server" DisplayText="Tipo de Solicitud" CargaInmediata="True" Etiqueta="Tipo de Solicitud" Requerido="True" DataValueField="CODIGO" DataTextField="NOMBRE" MensajeValida="Seleccionar Tipo de Solicitud">
+                                <cc1:EasyDropdownList ID="ltTipoSolicitud" runat="server" DisplayText="Tipo de Solicitud" 
+                                    CargaInmediata="True" Etiqueta="Tipo de Solicitud" Requerido="True"
+                                    DataValueField="CODIGO" DataTextField="NOMBRE" MensajeValida="Seleccionar Tipo de Solicitud">
                                     <EasyStyle Ancho="Seis" />
                                     <DataInterconect MetodoConexion="WebServiceInterno">
                                         <UrlWebService>/General/TablasGenerales.asmx</UrlWebService>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -24,10 +25,98 @@ namespace SIMANET_W22R.GestionContabilidad.General
         public DataTable CentrosdeCosto(string V_CENTRO_OPERATIVO, string V_GRUPO_CC_DESDE, string V_GRUPO_CC_HASTA, string UserName)
         {
             ContabilidadSoapClient oCtbl = new ContabilidadSoapClient();
-            dt = oCtbl.Listar_centros_de_costo(V_CENTRO_OPERATIVO, V_GRUPO_CC_DESDE, V_GRUPO_CC_HASTA, UserName);
-            dt.TableName = "SP_Centros_de_Costo";
+            DataTable dtError = new DataTable("SP_Centros_de_Costo");
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal
+            dtError.TableName = "SP_Centros_de_Costo";
+            dtError.Columns.Add("GRUPO", typeof(string));
+            dtError.Columns.Add("NOMBRE", typeof(string));
+            try
+            {
+                // -----validamos datos Obligatorios ----
+                if (V_CENTRO_OPERATIVO == "-1")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["NOMBRE"] = "Seleccione el Centro Operativo, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (V_GRUPO_CC_DESDE == "-1" || V_GRUPO_CC_DESDE == "")
+                {
+                    V_GRUPO_CC_DESDE = "0";
+                    /*
+                    DataRow row = dtError.NewRow();
+                    row["NOMBRE"] = "Seleccione un Centro de Costo como rango inicial, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                    */
+                }
+                if (V_GRUPO_CC_HASTA == "-1" || V_GRUPO_CC_HASTA == "")
+                {
+                    V_GRUPO_CC_HASTA = "9999999999";
+                    /*
+                    DataRow row = dtError.NewRow();
+                    row["NOMBRE"] = "Seleccione la Linea de Negocio, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                    */
+                }
+               
+                // ----------------------------------------------------
 
-            return dt;
+
+                dt = oCtbl.Listar_centros_de_costo(V_CENTRO_OPERATIVO, V_GRUPO_CC_DESDE, V_GRUPO_CC_HASTA, UserName);
+          
+
+                if (dt != null)  // valida vacio
+                {
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "SP_Centros_de_Costo";
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["CEO"] = "1";
+                        row["NOMBRE"] = "No existen registros para los parámetros consultados: " + V_CENTRO_OPERATIVO + " " + V_GRUPO_CC_DESDE  + " " + V_GRUPO_CC_HASTA;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["CEO"] = "1";
+                    row["NOMBRE"] = "No existen registros para los parámetros consultados: " + V_CENTRO_OPERATIVO + " " + V_GRUPO_CC_DESDE  + " " + V_GRUPO_CC_HASTA;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["NOMBRE"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oCtbl != null)
+                {
+                    try
+                    {
+                        if (oCtbl.State != System.ServiceModel.CommunicationState.Faulted)
+                            oCtbl.Close();
+                        else
+                            oCtbl.Abort();
+                    }
+                    catch
+                    { oCtbl.Abort(); }
+                }
+            }
         }
 
         [WebMethod]
