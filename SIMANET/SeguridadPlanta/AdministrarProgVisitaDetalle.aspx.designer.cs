@@ -11,7 +11,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 {
 
 
-    public partial class AdministrarProgVisita
+    public partial class AdministrarProgVisitaDetalle
     {
 
         /// <summary>
@@ -24,183 +24,210 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control header.
+        /// Control TabProg.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::SIMANET_W22R.Controles.Header header;
+        protected global::EasyControlWeb.Form.Controls.EasyTabControl TabProg;
 
         /// <summary>
-        /// Control lblCEO.
+        /// Control eDDLTipoVisita.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCEO;
+        protected global::EasyControlWeb.Form.Controls.EasyDropdownList eDDLTipoVisita;
 
         /// <summary>
-        /// Control eDDLCentros.
+        /// Control eac_AreaDestino.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyDropdownList eDDLCentros;
+        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar eac_AreaDestino;
 
         /// <summary>
-        /// Control lblUO.
+        /// Control eac_ConocimientoA.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUO;
+        protected global::EasyControlWeb.Form.Controls.EasyListAutocompletar eac_ConocimientoA;
 
         /// <summary>
-        /// Control eDDLUnidadO.
+        /// Control dpcFechaIni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyDropdownList eDDLUnidadO;
+        protected global::EasyControlWeb.Form.Controls.EasyDatepicker dpcFechaIni;
 
         /// <summary>
-        /// Control lblLineaN.
+        /// Control dpcFechaFin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLineaN;
+        protected global::EasyControlWeb.Form.Controls.EasyDatepicker dpcFechaFin;
 
         /// <summary>
-        /// Control eDDLLineas.
+        /// Control dtHora.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyDropdownList eDDLLineas;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dtHora;
 
         /// <summary>
-        /// Control lblSLineaN.
+        /// Control txtPoliza.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSLineaN;
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtPoliza;
 
         /// <summary>
-        /// Control eDDLSubLinea.
+        /// Control txtAsunto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyDropdownList eDDLSubLinea;
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtAsunto;
 
         /// <summary>
-        /// Control lblbusqueda.
+        /// Control acProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblbusqueda;
+        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar acProveedor;
 
         /// <summary>
-        /// Control etbCriterio.
+        /// Control acRSocial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTextBox etbCriterio;
+        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar acRSocial;
 
         /// <summary>
-        /// Control btnBuscar.
+        /// Control btnNewPrv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::System.Web.UI.HtmlControls.HtmlImage btnNewPrv;
 
         /// <summary>
-        /// Control EAC_Proveedor.
+        /// Control FInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar EAC_Proveedor;
+        protected global::EasyControlWeb.Form.Controls.EasyDatepicker FInicio;
 
         /// <summary>
-        /// Control EAC_Areas.
+        /// Control FFin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar EAC_Areas;
+        protected global::EasyControlWeb.Form.Controls.EasyDatepicker FFin;
 
         /// <summary>
-        /// Control EGVResultados.
+        /// Control dpHIni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.EasyGridView EGVResultados;
+        protected global::EasyControlWeb.Form.Controls.EasyTimePicker dpHIni;
 
         /// <summary>
-        /// Control Label3.
+        /// Control dpHFin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::EasyControlWeb.Form.Controls.EasyTimePicker dpHFin;
 
         /// <summary>
-        /// Control litEmailIcon.
+        /// Control txtRegIng.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litEmailIcon;
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtRegIng;
 
         /// <summary>
-        /// Control EPP_DetallaProgram.
+        /// Control txtDocRef.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EPP_DetallaProgram;
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtDocRef;
 
         /// <summary>
-        /// Control ctxData_Default.
+        /// Control txtTrabReal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ctxData_Default;
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtTrabReal;
 
         /// <summary>
-        /// Control EasyGestorFiltro1.
+        /// Control acAreaTrab.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::EasyControlWeb.Filtro.EasyGestorFiltro EasyGestorFiltro1;
+        protected global::EasyControlWeb.Form.Controls.EasyAutocompletar acAreaTrab;
+
+        /// <summary>
+        /// Control txtNombreNave.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtNombreNave;
+
+        /// <summary>
+        /// Control txtContacto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtContacto;
+
+        /// <summary>
+        /// Control txtObservaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtObservaciones;
     }
 }
