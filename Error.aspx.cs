@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 namespace SIMANET_W22R
 
 {
-    public partial class Error : PaginaBase
+    public partial class Error : System.Web.UI.Page
     {
       //  Exception LastError;
         String ErrMessage;
