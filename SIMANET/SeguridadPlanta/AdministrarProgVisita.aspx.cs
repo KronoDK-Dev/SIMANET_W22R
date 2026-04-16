@@ -1,4 +1,5 @@
-﻿using EasyControlWeb;
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using EasyControlWeb;
 using EasyControlWeb.Form.Controls;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using Org.BouncyCastle.Tls.Crypto.Impl.BC;
@@ -16,18 +17,30 @@ using System.Runtime.Caching;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 using static EasyControlWeb.EasyUtilitario;
 
 
 namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 {
-    public partial class AdministrarProgVisita : PaginaBase
+    public partial class AdministrarProgVisita :  SeguridadPlantaBase
     {
         string stipoPrg="1";
         string sidTipoEntidad = "";
         VisitasSoapClient oVisitas     = new VisitasSoapClient();
         GeneralSoapClient oGeneral     = new GeneralSoapClient();
         SeguridadSoapClient oSeguridad = new SeguridadSoapClient();
+
+        // ====== KEYS PARA PARAMETROS DE NAVEGACION / POPUP ======
+        public static string KEYQUSUARIO = "Usuario";
+        public static string KEYQIDAREA = "IdArea";
+        public static string KEYQAREA = "sArea";
+        //  public static string KEYQCENTROOPERATIVO = "IdCentroOpe"; / /HEREDARA
+        public static string KEYQTIPOPROGRAMA = "TipoPrograma";
+        public static string KEYQTIPOVISITA = "TipoVisita";
+        public static string KEYQPERIODO = "Periodo";
+
+        // ========================================================
 
         private static string BuildWaitForSwal(string pageName, string methodName, string result)
         {
@@ -68,7 +81,6 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                     if (!IsPostBack) // Cargar datos solo en la primera carga
                     {
                         DatosIniciales();
-                        LlenarDatos();
                         LlenarGrilla("");
                       
                     }
@@ -91,7 +103,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
         protected void DatosIniciales()
             {
-                string s_valor = "";
+             
                 string mensaje = "";
                 try
                 {
@@ -105,8 +117,8 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
                     // ********** CARGAMOS LAS VARIABLES DE LA URL **********
                     // 1) Lee VARIABLES desde la querystring: TipoPrg 
-                    stipoPrg = Request.QueryString["TipoPrg"];
-                    sidTipoEntidad = Request.QueryString["idTipoEntidad"]; // tipo visitante
+                    string stipoPrg = Request.QueryString["TipoPrg"];
+                    string sidTipoEntidad = Request.QueryString["idTipoEntidad"]; // tipo visitante
                     int periodo = PaginaBase.Periodo_Actual;
 
                     // 2) Normaliza: si viene vacío o null, pon un valor por defecto (p.ej. "1")
@@ -115,19 +127,80 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                     // 3) Asigna a la variable session
                 Session["S_TIPOPROGRA"] = stipoPrg;
                 Session["S_TIPOVISITA"] = sidTipoEntidad;
-                Session["S_PERIODO"] = periodo;   
+                Session["S_PERIODO"] = periodo;
 
-
-                    //***********************************************************
-                     if (eDDLCentros.Items.Count == 0)
+                // 4) colocamos datos en el contro de datos, y reutilizamos 
+                /*
+                ctxData_Default.Attributes["data-tipoprogra"] = stipoPrg;
+                ctxData_Default.Attributes["data-tipovisita"] = sidTipoEntidad;
+                ctxData_Default.Attributes["data-periodo"] = periodo.ToString();
+                */
+                //***********************************************************
+                if (eDDLCentros.Items.Count == 0)
                     {
                         eDDLCentros.LoadData();
                     }
 
-              
+                /* *****************************************  */
+                // trae datos del usuario logueado, para mostrar en la parte superior de la página, como el nombre del usuario, su área, etc.
+                // visualizacion 
+                /* DATOS DEL PATRONIZADOR DE LA VISITA
+                /* *****************************************  */
 
+                string sUsuario, sArea;
+                int iIdCentroOpera;
+
+                // Recuperamos daotos de usuario desde la sesión
+                var oUsuario = Session["UserBE"] as UsuarioBE;
+                if (oUsuario == null)
+                {
+                    // Si no existe (p.ej., sesión nueva o vencida), recarga desde el backend
+                    oUsuario = oSeguridad.GetDatosUsuario(this.UsuarioId);
+                    Session["UserBE"] = oUsuario; // Guarda nuevamente para siguientes usos
+                }
+
+
+                sUsuario = oUsuario.ApellidosyNombres;
+                sArea = oUsuario.Area;
+                iIdCentroOpera = oUsuario.IdCentroOperativo;
+
+                // colocamos datos en el control de datos, y reutilizamos 
+
+                ctxData_Default.Attributes["data-susuario"] = sUsuario;
+                ctxData_Default.Attributes["data-sarea"] = sArea;
+                ctxData_Default.Attributes["data-iidcentroopera"] = iIdCentroOpera.ToString();
+                ctxData_Default.Attributes["data-tipoprogra"] = stipoPrg;
+                ctxData_Default.Attributes["data-tipovisita"] = sidTipoEntidad;
+                ctxData_Default.Attributes["data-periodo"] = periodo.ToString();
+
+                //****************
+                // tipo visitante
+                //****************
+                // 1) tipo de entidad (prioriza el parámetro y, si no, la sesión)
+                var tipoEntidad = string.IsNullOrWhiteSpace(sidTipoEntidad) ? Session["S_TIPOVISITA"] as string : sidTipoEntidad;
+                tipoEntidad = tipoEntidad?.Trim();
+
+                // 2) Validación si  hay valor
+                if (!string.IsNullOrWhiteSpace(tipoEntidad))
+                {
+                    // 3) Llamar una sola vez al catalogo tipo de visitante
+                    const string sCatalogoVisitantes = "705";
+                    string tipoVisitante = oGeneral.Buscar_Var1_DetalleCatologo(sCatalogoVisitantes, tipoEntidad, this.UsuarioId.ToString());
 
                 }
+
+                // ***** El control de datos adjuntos solo Se oculta para el caso de tipo de visitante PROVEEDOR.
+                if (sidTipoEntidad == "1") // Proveedor
+                {
+                    //   idUpLoad.Style.Add("display", "block");
+                }
+                else
+                {
+                    // idUpLoad.Style.Add("display", "none");
+                }
+
+
+            }
                 catch (Exception ex)
                 {
                     var result = "" + ex.Message;  // datos del mensaje, le quitamos los apostrofes ya que se empleará en sweet alert
@@ -416,59 +489,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
         #region Metodos_version_anterior
 
-        public void LlenarDatos()
-        {
-            // trae datos del usuario logueado, para mostrar en la parte superior de la página, como el nombre del usuario, su área, etc.
-            // visualizacion 
-            /* DATOS DEL PATRONIZADOR DE LA VISITA
-            /* *****************************************  */
-
-            string sUsuario, sIdArea;
-            int iIdCentroOpera;
-
-            // Recuperamos daotos de usuario desde la sesión
-            var oUsuario = Session["UserBE"] as UsuarioBE;
-            if (oUsuario == null)
-            {
-                // Si no existe (p.ej., sesión nueva o vencida), recarga desde el backend
-                oUsuario = oSeguridad.GetDatosUsuario(this.UsuarioId);
-                Session["UserBE"] = oUsuario; // Guarda nuevamente para siguientes usos
-            }
-
-
-            sUsuario = oUsuario.ApellidosyNombres;
-            sIdArea = oUsuario.Area;
-            iIdCentroOpera = oUsuario.IdCentroOperativo;
-            
-            //****************
-            // tipo visitante
-            //****************
-            // 1) tipo de entidad (prioriza el parámetro y, si no, la sesión)
-            var tipoEntidad = string.IsNullOrWhiteSpace(sidTipoEntidad)?Session["S_TIPOVISITA"] as string: sidTipoEntidad;
-                tipoEntidad = tipoEntidad?.Trim();
-
-            // 2) Validación si  hay valor
-            if (!string.IsNullOrWhiteSpace(tipoEntidad))
-            {
-                // 3) Llamar una sola vez al catalogo tipo de visitante
-                const string sCatalogoVisitantes = "705";
-                string tipoVisitante = oGeneral.Buscar_Var1_DetalleCatologo(sCatalogoVisitantes, tipoEntidad, this.UsuarioId.ToString()  );
-
-            }
-
-            // ***** El control de datos adjuntos solo Se oculta para el caso de tipo de visitante PROVEEDOR.
-             if (sidTipoEntidad == "1") // Proveedor
-            {
-             //   idUpLoad.Style.Add("display", "block");
-            }
-            else
-            {
-               // idUpLoad.Style.Add("display", "none");
-            }
-
-         //   EAC_Areas.DataInterconect.UrlWebService = this.PathNetCore + "/General/TablasGenerales.asmx";
-        }
-
+    
         public void CargarModoModificar()
         {
             /*

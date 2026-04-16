@@ -25,9 +25,9 @@
 
 
 </head>
-<body>
+    <body>
     
-    <form id="form1" runat="server">
+        <form id="form1" runat="server">
 
         <div style="height: 100%; overflow: auto;">
             <table id="tblReport" style="width: 100%; border-collapse: collapse;" border="0px">
@@ -171,12 +171,12 @@
                         <cc6:EasyGridView ID="EGVResultados" runat="server" CssClass=""
                             AutoGenerateColumns="False" ShowFooter="True"
                             TituloHeader="Programacion de Visitas"
-                            ToolBarButtonClick="OnEasyGridButton_Click" Width="100%"
+                            ToolBarButtonClick="fnAcciones_Botones" Width="100%"
                             AllowPaging="True"
                             OnPageIndexChanging="EasyGridView1_PageIndexChanged"
                             OnEasyGridDetalle_Click="EGVResultados_EasyGridDetalle_Click" OnEasyGridButton_Click="EGVResultados_EasyGridButton_Click" fncExecBeforeServer="">
                             <EasyGridButtons>
-                                <cc1:EasyGridButton Id="btnAgregar"       Texto="Agregar"      Descripcion="" Icono="fa fa-plus-square-o" MsgConfirm="" RunAtServer="True" Ubicacion="Derecha" />
+                                <cc1:EasyGridButton Id="btnAgregar"       Texto="Agregar"      Descripcion="" Icono="fa fa-plus-square-o" MsgConfirm="" RunAtServer="False" SilenceWait="True" SolicitaConfirmar="False" Ubicacion="Derecha" />
                                 <cc1:EasyGridButton Id="btnCopiarr"       Texto="Copiar"      Descripcion="" Icono="fa fa-copy" MsgConfirm="" RunAtServer="True" Ubicacion="Derecha" />
                                 <cc1:EasyGridButton Id="btnEquipos"       Texto="List. Equipos" Descripcion="" Icono="fa fa-gear" MsgConfirm="" RunAtServer="True"  Ubicacion="Centro" />
                                 <cc1:EasyGridButton Id="btnPersonas" Texto="List. Personas" Descripcion="" Icono="fa fa-user" MsgConfirm="" RunAtServer="True"  Ubicacion="Centro" />
@@ -236,14 +236,22 @@
                     <td width="20px"></td>
                 </tr>
             </table>
+
         </div>
         <div>
         </div>
-        <cc2:EasyGestorFiltro ID="EasyGestorFiltro1" runat="server" ClassHeader="HeaderGrilla" ClassItem="ItemGrilla" 
+
+
+ <cc3:EasyPopupBase ID="EPP_DetallaProgram" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="Detalle Programación"  
+     ValidarDatos="true"  RunatServer="false" DisplayButtons="true" fncScriptAceptar="AdministrarProgVisitaDetalle.Aceptar"  ></cc3:EasyPopupBase>       
+
+   <div id="ctxData_Default" runat="server"></div>
+
+    <cc2:EasyGestorFiltro ID="EasyGestorFiltro1" runat="server" ClassHeader="HeaderGrilla" ClassItem="ItemGrilla" 
                                 ClassItemAlternating="AlternateItemGrilla"  EasyFiltroCampos-Capacity="4"  DisplayButtonInterface="False" 
                                 OnProcessCompleted="EasyGestorFiltro1_ProcessCompleted">
 
-    <cc2:EasyFiltroCampo Descripcion="Tipo Personal" Nombre="IdProyecto" TipodeDato="String">
+            <cc2:EasyFiltroCampo Descripcion="Tipo Personal" Nombre="IdProyecto" TipodeDato="String">
                 <DataInterconect MetodoConexion="WebServiceInterno">
                     <UrlWebService>/GestiondeCalidad/Proceso.asmx</UrlWebService>
                      <Metodo>BuscarProyectoXNombre</Metodo>
@@ -339,7 +347,102 @@
         
     </form>
 
+     <!--  SCRIPT DE ACCION DE LOS CONTROLES -->
+        <script>
+
+            function fnAcciones_Botones(btnItem, DetalleBE) {
+            try {
+
+                     switch (btnItem.Id) {
+                        case "btnAgregar":
+
+                             // cargamos datos para pasar por los parametros
+
+                             var sUsuario = document.getElementById('ctxData_Default').dataset.susuario;
+                             var sIdArea = document.getElementById('ctxData_Default').dataset.sidArea;
+                             var sArea = document.getElementById('ctxData_Default').dataset.sarea;
+                             var iIdCentroOpera = document.getElementById('ctxData_Default').dataset.iidcentroopera;
+                             var tipoprogra = document.getElementById('ctxData_Default').dataset.tipoprogra;
+                             var tipovisita = document.getElementById('ctxData_Default').dataset.tipovisita;
+                             var periodo    = document.getElementById('ctxData_Default').dataset.periodo;
+
+
+                             var Url = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/AdministrarProgVisitaDetalle.aspx"; // guia: DetalleProgramacion
+                             var oColletionParams = new SIMA.ParamCollections();
+                            // Usamos Reflection, Detecta la clase actual de la pagina, y tomamos el mismo nombre
+                             var oParam = new SIMA.Param(AdministrarProgVisita.KEYQUSUARIO, sUsuario);
+                            oColletionParams.Add(oParam);
+
+                             var oParam = new SIMA.Param(AdministrarProgVisita.KEYQIDAREA, sIdArea);
+                             oColletionParams.Add(oParam);
+
+                             var oParam = new SIMA.Param(AdministrarProgVisita.KEYQAREA, sArea);
+                             oColletionParams.Add(oParam);
+
+                             var oParam = new SIMA.Param(AdministrarProgVisita.KEYQCENTROOPERATIVO, iIdCentroOpera);
+                             oColletionParams.Add(oParam);
+
+                             var oParam = new SIMA.Param(AdministrarProgVisita.KEYQTIPOPROGRAMA, tipoprogra);
+                             oColletionParams.Add(oParam);
+
+                             oParam = new SIMA.Param(AdministrarProgVisita.KEYQTIPOVISITA, tipovisita);
+                             oColletionParams.Add(oParam);
+
+                             oParam = new SIMA.Param(AdministrarProgVisita.KEYQPERIODO, periodo);
+                             oColletionParams.Add(oParam);
+
+                            //---------------------------------
+                            oParam = new SIMA.Param(AdministrarProgVisita.KEYMODOPAGINA, SIMA.Utilitario.Enumerados.ModoPagina.N);
+                            oColletionParams.Add(oParam);
+
+                             // llamada al contendor del Easy Popup
+                             EPP_DetallaProgram.Load(Url, oColletionParams, false);
+
+                            break;
+
+                        case "btnTrabEquipo":
+                            AdministrarProgramacionContratista.AdministrarTrabajadoresyEquipos(DetalleBE);
+
+                            break;
+                        case "btnCopiar":
+
+                            var Url = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/DetalleCopyProg.aspx";
+                            var oColletionParams = new SIMA.ParamCollections();
+                            var oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQIDPROGRAMACION, DetalleBE.NroProgramacion);
+                            oColletionParams.Add(oParam);
+
+                            oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQAÑO, DetalleBE.Periodo);
+                            oColletionParams.Add(oParam);
+
+                            EasyPopupCopiar.Load(Url, oColletionParams, false);
+
+
+                            break;
+                    }
+
+              } catch (ex)
+                 {
+
+                    console.error("❌ Error en fnAcciones_Botones");
+                    console.error("Botón:", btnItem);
+                    console.error("DetalleBE:", DetalleBE);
+                    console.error("Excepción:", ex);
+
+                    // opcional: alerta visual
+                    if (window.Swal) {
+                        Swal.fire(
+                            "Error",
+                            ex.message || ex.toString(),
+                            "error"
+                        );
+                    }
+                 }
+
+            }
+        </script>
     </body>
+
+
     <script> 
         // Para el popup de SweetAlert
         toastr.options = {
@@ -376,5 +479,10 @@
             var oCustomTemplateBE = new EAC_Areas.CustomTemplateBE(ul, item, iTemplate);
             return EAC_Areas.SetCustomTemplate(oCustomTemplateBE);
         }
-    </script>
+        </script>
+
+
+
+
+
 </html>

@@ -1,4 +1,6 @@
-﻿using SIMANET_W22R.srvGestionSeguridadPlanta;
+﻿using EasyControlWeb;
+using SIMANET_W22R.srvGeneral;
+using SIMANET_W22R.srvGestionSeguridadPlanta;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,6 +21,9 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
     // [System.Web.Script.Services.ScriptService]
     public class visitas : System.Web.Services.WebService
     {
+
+        GeneralSoapClient oGeneral = new GeneralSoapClient();
+
         DataTable dtResultados;
         DataTable dtError = new DataTable();
         DataTable dt = new DataTable();
@@ -155,8 +160,6 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             if (!t.Columns.Contains("FechaTerminoStr")) t.Columns.Add("FechaTerminoStr", typeof(string));
         }
 
-
-
         private static string FormatearFecha(object val)
         {
             if (val == null || val == DBNull.Value) return string.Empty;
@@ -170,8 +173,83 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             return s; // fallback
         }
 
+        [WebMethod(Description = "Lista áreas usuaria por nombre")]
+        public DataTable ListarAreaPorNombre(string S_Area , string UserName)
+        {
+            DataTable dtError = new DataTable("GENuspNTADConsultarAreaXNombre");
+   
+            dtError.TableName = "Table";
+            dtError.Columns.Add("IdArea", typeof(Int64));
+            dtError.Columns.Add("NombreArea", typeof(string));
+            
+
+            try
+            {
+                // -----validamos datos Obligatorios ----
+
+                if (S_Area == "-1" || S_Area == "")
+                { S_Area = "";  }
+                
+                // --------recibe un  string--------------------------------------------
+                string xmlData = oGeneral.ListarAreaPorNombre(1, S_Area, UserName);
+                dt = EasyUtilitario.Helper.Genericos.JsonDataToDataTable(xmlData,"1,3");
+                
 
 
+                if (dt != null) // valida vacio
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "Table"; // el nombre de la tabla deber ser "Table" siempre que quedarmos  usar controles autocomplete y drowndroplist
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["IdArea"] = 0;
+                        row["NombreArea"] = "No existen registros para los parámetros consultados:  " + S_Area;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["NombreArea"] = "No existen registros para los parámetros consultados:  " + S_Area;
+                    row["IdArea"] = 0;
+                    dtError.Rows.Add(row);
+                    EnsureStrCols(dtError);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["NombreArea"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oGeneral != null)
+                {
+                    try
+                    {
+                        if (oGeneral.State != System.ServiceModel.CommunicationState.Faulted)
+                            oGeneral.Close();
+                        else
+                            oGeneral.Abort();
+                    }
+                    catch
+                    {
+                        oGeneral.Abort();
+                    }
+                }
+            }
+        }
+        
 
     }
 }
