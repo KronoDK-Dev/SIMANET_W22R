@@ -498,12 +498,86 @@ namespace SIMANET_W22R.GestionLogistica.Materiales
         public DataTable SaldoAlmacen(string Material_Inicial, string Material_Final, string UserName)
         {
             logisticaSoapClient oLg = new logisticaSoapClient();
-            
-            
-            dt = oLg.Listar_SaldoAlmacen(Material_Inicial, Material_Final, UserName);
-            dt.TableName = "SP_SaldoAlmacen";
 
-            return dt;
+            DataTable dtError = new DataTable("SP_SaldoAlmacen");
+          
+            // Configura estructura tabla de error // Los campos se toman de las etiquetas de reporte crystal
+            dtError.TableName = "SP_SaldoAlmacen";
+            dtError.Columns.Add("DESCRIPCION", typeof(string));
+            dtError.Columns.Add("UBICACION", typeof(string));
+            try
+            {
+                // -----validamos datos Obligatorios ----
+                if (Material_Inicial == "-1" || Material_Inicial == "")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["UBICACION"] = "Digite el Código del material, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                if (Material_Final == "-1" || Material_Final == "")
+                {
+                    DataRow row = dtError.NewRow();
+                    row["UBICACION"] = "Digite el Código del material, es un parámetro obligatorio para retornar información";
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+                              
+                
+                // ----------------------------------------------------
+
+                dt = oLg.Listar_SaldoAlmacen(Material_Inicial, Material_Final, UserName);
+                // dt.TableName = "SP_SaldoAlmacen";
+
+                 if (dt != null)  // valida vacio
+                {
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "SP_SaldoAlmacen";
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["UBICACION"] = "No existen registros para los parámetros consultados: " + Material_Inicial + " " +  Material_Final;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["UBICACION"] = "No existen registros para los parámetros consultados: " + Material_Inicial + " " + Material_Final;
+                    dtError.Rows.Add(row);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["UBICACION"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oLg != null)
+                {
+                    try
+                    {
+                        if (oLg.State != System.ServiceModel.CommunicationState.Faulted)
+                            oLg.Close();
+                        else
+                            oLg.Abort();
+                    }
+                    catch
+                    { oLg.Abort(); }
+                }
+            }
+
         }
 
         [WebMethod]
