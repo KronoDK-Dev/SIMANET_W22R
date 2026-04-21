@@ -36,9 +36,11 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         public static string KEYQIDAREA = "IdArea";
         public static string KEYQAREA = "sArea";
         //  public static string KEYQCENTROOPERATIVO = "IdCentroOpe"; / /HEREDARA
+        //  public static string KEYMODOPAGINA = "Modo"; // HEREDEADO DE PaginaBase que es referenciada en SeguridadPlantaBase    public static string KEYMODOPAGINA= "Modo";
         public static string KEYQTIPOPROGRAMA = "TipoPrograma";
         public static string KEYQTIPOVISITA = "TipoVisita";
         public static string KEYQPERIODO = "Periodo";
+      
 
         // ========================================================
 
@@ -147,7 +149,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 /* DATOS DEL PATRONIZADOR DE LA VISITA
                 /* *****************************************  */
 
-                string sUsuario, sArea;
+                string sUsuario, sArea , sIdUsuario;
                 int iIdCentroOpera;
 
                 // Recuperamos daotos de usuario desde la sesión
@@ -163,10 +165,11 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 sUsuario = oUsuario.ApellidosyNombres;
                 sArea = oUsuario.Area;
                 iIdCentroOpera = oUsuario.IdCentroOperativo;
+                sIdUsuario = oUsuario.IdUsuario.ToString();
 
                 // colocamos datos en el control de datos, y reutilizamos 
 
-                ctxData_Default.Attributes["data-susuario"] = sUsuario;
+                ctxData_Default.Attributes["data-susuario"] = sIdUsuario;
                 ctxData_Default.Attributes["data-sarea"] = sArea;
                 ctxData_Default.Attributes["data-iidcentroopera"] = iIdCentroOpera.ToString();
                 ctxData_Default.Attributes["data-tipoprogra"] = stipoPrg;

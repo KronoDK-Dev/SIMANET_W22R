@@ -13,6 +13,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
      <script>
+
+         function getQueryParam(name) {
+             const params = new URLSearchParams(window.location.search);
+             return params.get(name);
+         }
+         
          function fnPasaItem_NroRucSeleccionado(value, ItemBE) {
              // pasa valores enviados a otro objeto autocomplete
              acRSocial.SetValue(ItemBE.IDPROVEEDOR, ItemBE.RAZONSOCIAL);
@@ -68,12 +74,75 @@
              var tblItem = '<table border="0"> <tr> <td  style="width:30px;height:30px;object-fit:cover;"><img  class="rounded-circle"  style="width:30px;" src="' + iFoto + '"/></td> <td   style="width:70%" >' + oItemBE.Nombres + '</td><td>' + oItemBE.Email + '</td></tr></table>';
              return tblItem;
          }
+         // creamos la funcion aceptar para grabar la data , como es llamada de otra pagina debes crearla aqui para tenerla disponible
+       //  var AdministrarProgVisitaDetalle = AdministrarProgVisitaDetalle || {};
+         //  recogemos datos
+
+         var tipoprogra = getQueryParam('V_TIPOPROGRAMA');
+         var tipovisita = getQueryParam('V_TIPOVISITA');
+
+        
+
+         window.Aceptar = function () {
+             console.log("Params recibidos:", EPP_DetallaProgram.Params);
+             // recogemos los datos de los controles y lo pasamos a metodo web
+             // var conocimientoIds = eac_ConocimientoA.GetListValue();
+
+             var collection = eac_ConocimientoA.GetCollection();
+             var emails = collection
+                 .map(function (item) {
+                     return item["Email"];   // ← nombre cmpo a capturar
+                 })
+                 .filter(e => e); // quita null / undefined
+             var emailsStr = emails.join("|");
+
+
+
+             var data = {
+                 Tipovisita   : eDDLTipoVisita.GetValue(),
+                 AreaDestino  : eac_AreaDestino.GetValue(),
+                 ConocimientoA: emailsStr,
+                 FechaInicio  : dpcFechaIni.GetValue(),
+                 FechaTermino : dpcFechaFin.GetValue(),
+                 HoraIngreso  : dtHora.value,
+                 Poliza       : txtPoliza.GetValue(),
+                 Asunto       : txtAsunto.GetValue(),
+                 IdUsuario    : hfUsuario.value, 
+                 TipoProgra   : hfTipoProgra.value 
+                 
+                 
+
+             };
+             // pasamos la data al metodo web, para que funcione debe existir:  <asp:ScriptManager 
+             PageMethods.GuardarProgramacion(data,
+                 function (result) {
+                     // error funcional
+                     if (!result.Ok) {
+                         window.parent.EPP_DetallaProgram.ProgressBar.Hide(); // ocultamos la barra de estado del popup
+                         toastr.error(result.Mensaje, 'Requerido');
+                         return false; // no se cerar popup en caso de mostrar mensaje de error
+                     }        
+                         toastr.success(result.Mensaje, 'Correcto');
+                     
+                     window.parent.EPP_DetallaProgram.Close();  // opción A: cerrar el popup
+                   //  TabProg.SetActiveTab(1); // cambiar el tab
+                     return true;
+                         // incluso puedes refrescar la grilla padre
+                    
+                     
+                 },
+
+                 function (error) { toastr.error(error.get_message(), 'Error técnico'); }       // error técnico
+             );
+
+             return false; // evita cierre automático
+         };
 
      </script>
 </head>
 <body>
     <form id="form1" runat="server">
- 
+    <asp:ScriptManager   ID="ScriptManager1"    runat="server"   EnablePageMethods="true" />
         <cc3:EasyTabControl ID="TabProg" fncTabOnClick="TabOnClickSelected" runat="server"></cc3:EasyTabControl>
      
         <!-- 1er TAB -->
@@ -82,7 +151,7 @@
                 <td class="Etiqueta" reference="eDDLTipoVisita">TIPO VISITA:</td>
                 <td colspan="10">
                     <cc3:EasyDropdownList ID="eDDLTipoVisita" runat="server" CargaInmediata="True"
-                        DataTextField="DESCRIPCION" DataValueField="CODIGO"
+                        DataTextField="DESCRIPCION" DataValueField="CODIGO" Requerido="true"   
                         EnableOnChange="True"  AutoPostBack="True">
                         <EasyStyle Ancho="Uno"></EasyStyle>
                         <DataInterconect MetodoConexion="WebServiceExterno">
@@ -105,7 +174,8 @@
                       <!-- Conexion local para personalizar manejo de errores -->
                    <cc3:EasyAutocompletar ID="eac_AreaDestino" runat="server" Width="35%" 
                          DisplayText  ="NombreArea" ValueField= "IDAREA" NroCarIni="3" 
-                         fnOnSelected ="fnCargaSeleccionado"  EnableOnChange="True"
+                         fnOnSelected ="fnCargaSeleccionado"  EnableOnChange="True" 
+                         required
                          MensajeValida="Este dato es obligatorio" >
                       <EasyStyle Ancho="Dos" TipoTalla="sm"></EasyStyle>
                       <DataInterconect MetodoConexion="WebServiceInterno">
@@ -122,13 +192,13 @@
 
 
               <tr class="tr-responsive">
-                  <td class="Etiqueta" reference="eac_ConocimientoA">CONOCIMIENTO A:</td>
+                  <td class="Etiqueta" reference="eac_ConocimientoA" >CONOCIMIENTO A:</td>
                   <td colspan="10">
-                      <!-- Conexion local para personalizar manejo de errores -->
+               
                       <cc3:EasyListAutocompletar  ID="eac_ConocimientoA" runat="server"  NroCarIni="2"  
-                          DisplayText="Nombres" ValueField="idpersonal"
+                          DisplayText="Nombres" ValueField="idpersonal" Requerido ="true" 
                           fncTempaleCustom="fnMuestraResultados_busquedaPersonal"  
-                          fnOnSelected="fnItemSeleccionado" 
+                          fnOnSelected="fnItemSeleccionado" required
                           fncTemplateCustomItemList="fnEstiloItem"
                           CssClass="ContentLisItem" ClassItem="LstItem" >
                          <EasyStyle Ancho="Dos"></EasyStyle>
@@ -167,15 +237,16 @@
             </tr>
             
            <tr class="tr-responsive">  <!--  12 cols  -->
-             <td class="Etiqueta" >ASUNTO:</td>
+             <td class="Etiqueta" reference="txtAsunto" >ASUNTO:</td>
              <td colspan="10">
-                 <cc3:EasyTextBox ID="txtAsunto" runat="server"
+                 <cc3:EasyTextBox ID="txtAsunto" runat="server" required
                    TextMode="MultiLine" MaxLength="2000">
                  </cc3:EasyTextBox></td>
              <td></td>
            </tr>
 
             <!--  -->
+                <!--
              <tr class="tr-responsive">
                    <td class="Etiqueta" reference="acProveedor" >NRO. RUC:</td>
                    <td class="Etiqueta" colspan="7" reference="acRSocial" >RAZON SOCIAL:</td>
@@ -214,7 +285,7 @@
                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAwUExURQAAAKbK8KDAwMDAwP///0BAgICgwGCgwP/78KCgwGCAwODggEBgwECAwMDcwAAAAIFwGqgAAAAQdFJOU////////////////////wDgI10ZAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAc0lEQVQoU1WPSRLDIAwEQQsRGKP//zbaXHH6Nq0pJJoWvQMAqv4EEQGjtm6MMT5AJBMZQzggImy4sPlaLkQublYNpsfrX1g2MYk2rfuekVNkI/K74St8SzViB7Bd+jT23v0RNbfjUpxzsK4NUY8lr98mql/FMAeEtBlvCQAAAABJRU5ErkJggg==" />
                  </td>
             </tr>
-             <!--
+         
             <tr>
                 <td  class="Etiqueta"  reference="FInicio">F.INICIO:</td>
                 <td>
@@ -298,7 +369,9 @@
             </tr>
             -->
      </table>
-    
+        <!-- controles ocultos para mantener los valores enviados  -->
+       <asp:HiddenField ID="hfUsuario" runat="server" />
+        <asp:HiddenField ID="hfTipoProgra" runat="server" />
     </form>
 </body>
 </html>
