@@ -241,12 +241,12 @@
         <div>
         </div>
 
-
- <cc3:EasyPopupBase ID="EPP_DetallaProgram" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="Detalle Programación"  
-     ValidarDatos="true"  RunatServer="false" DisplayButtons="true" fncScriptAceptar="AdministrarProgVisitaDetalle.Aceptar"  ></cc3:EasyPopupBase>       
-
+ <!-- POPUP -->
+  <cc3:EasyPopupBase ID="EPP_DetallaProgram" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="Detalle Programación"  
+     ValidarDatos="true"  RunatServer="false" DisplayButtons="true" fncScriptAceptar="Aceptar"  ></cc3:EasyPopupBase>       
+   <!-- CONTENEDOR DE DATOS  -->                                                                                    
    <div id="ctxData_Default" runat="server"></div>
-
+<!-- FILTROS -->
     <cc2:EasyGestorFiltro ID="EasyGestorFiltro1" runat="server" ClassHeader="HeaderGrilla" ClassItem="ItemGrilla" 
                                 ClassItemAlternating="AlternateItemGrilla"  EasyFiltroCampos-Capacity="4"  DisplayButtonInterface="False" 
                                 OnProcessCompleted="EasyGestorFiltro1_ProcessCompleted">
@@ -369,7 +369,7 @@
 
                              var Url = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/AdministrarProgVisitaDetalle.aspx"; // guia: DetalleProgramacion
                              var oColletionParams = new SIMA.ParamCollections();
-                            // Usamos Reflection, Detecta la clase actual de la pagina, y tomamos el mismo nombre
+                            // Usamos Reflection, Detecta la clase actual de la pagina (SeguridadPlantaBase.cs para heredar algunos), y tomamos el mismo nombre
                              var oParam = new SIMA.Param(AdministrarProgVisita.KEYQUSUARIO, sUsuario);
                             oColletionParams.Add(oParam);
 

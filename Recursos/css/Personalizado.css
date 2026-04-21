@@ -591,3 +591,11 @@ html, body {
     .form-control:focus {
         border-color: #00bfff;
     }
+
+
+
+
+.filtro-input input.input-control {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
