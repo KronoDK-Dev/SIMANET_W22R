@@ -307,7 +307,8 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             Dictionary<string ,string> drBE= EasyGRContrata.getDataItemSelected();
             string ProgNew = CopiarProgramacion(drBE["Periodo"].ToString(), drBE["NroProgramacion"].ToString());
             string []PerProg = ProgNew.Split('-');
-            Modificar(PerProg[0].ToString(), PerProg[1].ToString(),DataBE);
+             Modificar(PerProg[0].ToString(), PerProg[1].ToString(),DataBE);
+            // Modificar("2026", "3381",DataBE);
 
             this.LlenarGrilla("");
         }
@@ -429,7 +430,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
             oParam = new EasyFiltroParamURLws();
             oParam.ParamName = "IdLugardeTrabajo";
-            oParam.Paramvalue = oEasyBaseEntityBE.GetValue("IdLugardeTrabajo");
+            oParam.Paramvalue = oEasyBaseEntityBE.GetValue("IdArea");
             oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
             oParam.TipodeDato = EasyUtilitario.Enumerados.TiposdeDatos.Int;
             odi.UrlWebServicieParams.Add(oParam);

@@ -53,7 +53,7 @@
                   <cc1:EasyDatepicker ID="CFIni" runat="server" required></cc1:EasyDatepicker></td>
               <td reference="CFFin"></td>
               <td>
-                  <cc1:EasyDatepicker ID="CFFin" runat="server" required></cc1:EasyDatepicker></td>
+                  <cc1:EasyDatepicker ID="CFFin" runat="server" fncSelectDate="DetalleCopyProg.FechaFinOnselected" required></cc1:EasyDatepicker></td>
           </tr>
            <tr>
              <td class="Etiqueta">HORA:</td>
@@ -70,8 +70,12 @@
     </form>
     <script>
 
+        DetalleCopyProg.FechaFinOnselected = function () {
+            alert();
+        }
+
        DetalleCopyProg.Aceptar = function () {
-           EasyPopupCopiar.Arguments = "{FechaIni:'" + CFIni.GetValue() + "',FechaFin:'" + CFFin.GetValue() + "',HoraIni:'" + CTimeIni.GetValue() + "',HoraFin:'" + CTimeFin + "'}";
+           EasyPopupCopiar.Arguments = "{FechaIni:'" + CFIni.GetValue() + "',FechaFin:'" + CFFin.GetValue() + "',HoraIni:'" + CTimeIni.GetValue() + "',HoraFin:'" + CTimeFin.GetValue() + "'}";
            return true;
         }
     </script>

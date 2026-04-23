@@ -105,6 +105,15 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupCopiar;
 
         /// <summary>
+        /// Control EasyPopupDetalleSCTR.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyPopupBase EasyPopupDetalleSCTR;
+
+        /// <summary>
         /// Control EasyGestorFiltro1.
         /// </summary>
         /// <remarks>

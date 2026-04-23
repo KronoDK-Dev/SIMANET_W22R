@@ -24,6 +24,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
         {
             try
             {
+                this.LlenarJScript();
                 this.LlenarCombos();
                 this.LlenarGrilla();
                 this.LlenarDatos(); 
@@ -169,7 +170,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
         public void LlenarJScript()
         {
-            throw new NotImplementedException();
+            this.EasyDGIndicadores.ID = "EasyDGIndicadores_" + this.CodArea;
         }
 
         public void RegistrarJScript()
@@ -194,7 +195,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                 DataRowView drv = (DataRowView)e.Row.DataItem;
                 DataRow dr = drv.Row;
 
-                e.Row.Cells[1].Controls.Add(this.NodoTree("EasyDGIndicadores", dr, e.Row.RowIndex, 1, dr["IDTBLOBJETIVO"].ToString() +"-"+ dr["IDOBJETIVO"].ToString(), "0", dr["CODIGOOBJETIVO"].ToString(), true, "OnClickObjetivo"));
+                e.Row.Cells[1].Controls.Add(this.NodoTree("EasyDGIndicadores_"+ this.CodArea, dr, e.Row.RowIndex, 1, dr["IDTBLOBJETIVO"].ToString() +"-"+ dr["IDOBJETIVO"].ToString(), "0", dr["CODIGOOBJETIVO"].ToString(), true, "OnClickObjetivo"));
                // e.Row.Cells[3].Text = dr["NOMBREOBJETIVO"].ToString();
 
             }

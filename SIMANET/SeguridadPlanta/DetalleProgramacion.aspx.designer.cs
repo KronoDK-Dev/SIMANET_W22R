@@ -177,6 +177,15 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         protected global::EasyControlWeb.Form.Controls.EasyAutocompletar acCiaSeguro;
 
         /// <summary>
+        /// Control txtPension.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtPension;
+
+        /// <summary>
         /// Control FSegIni.
         /// </summary>
         /// <remarks>
@@ -195,15 +204,6 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         protected global::EasyControlWeb.Form.Controls.EasyDatepicker FSegFin;
 
         /// <summary>
-        /// Control txtPension.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::EasyControlWeb.Form.Controls.EasyTextBox txtPension;
-
-        /// <summary>
         /// Control txtSalud.
         /// </summary>
         /// <remarks>
@@ -211,5 +211,23 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::EasyControlWeb.Form.Controls.EasyTextBox txtSalud;
+
+        /// <summary>
+        /// Control FSegIniS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyDatepicker FSegIniS;
+
+        /// <summary>
+        /// Control FSegFinS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::EasyControlWeb.Form.Controls.EasyDatepicker FSegFinS;
     }
 }

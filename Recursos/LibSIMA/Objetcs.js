@@ -2105,7 +2105,11 @@ String.prototype.EvalWord = function (callback) {
     }
 }
 
-
+String.prototype.DateFormatYYYYmmdd=function(CharSep){
+    var sFecha = this;
+    var arrD = sFecha.split(CharSep);
+    return arrD[arrD.length - 1] + arrD[1].toString().LPad(2, '0') + arrD[0].toString().LPad(2, '0');
+}
 
 
 /*Objeto de Datos--------------------------------------------------------------------------------------------------------------- */
@@ -2927,7 +2931,7 @@ String.prototype.HtmlToDOMobj = function () {
 String.prototype.ParseDateToYYYYmmDD = function (delimitados) {
     var arrFecha = this.toString().split(delimitados);
     var strFechaYYYYMMDD = arrFecha[2].toString() + arrFecha[1].toString().LPad(2, '0') + arrFecha[0].toString().LPad(2, '0');
-    return strFechaYYYYMMDD;
+    return strFechaYYYYMMDD.Replace(' ','');
 }
 
 

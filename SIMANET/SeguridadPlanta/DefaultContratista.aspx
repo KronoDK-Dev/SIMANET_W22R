@@ -10,8 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <script>
+        var dtInfSCTR = null;
         function onNroDocSeleccionado(value, ItemBE) {
-
            if (DefaultContratista.ValidaVigencia()) {
                if (ItemBE.ExisteEnProg == "SI") {
                     DefaultContratista.Data.TrabajadorProgDetalle(ItemBE.NroDNI).Rows.forEach(function (dr,r) {
@@ -108,7 +108,7 @@
 
     <script>
         DefaultContratista.Detalle = function () {
-            alert();
+         //   alert();
         }
 
         DefaultContratista.ValidaVigencia = function () {
@@ -149,6 +149,30 @@
             oParamCollections.Add(oParam);
 
             oParam = new SIMA.Param("Periodo", DefaultContratista.Params[DefaultContratista.KEYQAÑO], TipodeDato.Int);
+            oParamCollections.Add(oParam);
+            oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+            oParam = new SIMA.Param("IdProgramacion", DefaultContratista.Params[DefaultContratista.KEYQIDPROGRAMACION], TipodeDato.Int);
+            oParamCollections.Add(oParam);
+            oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+
+            oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
+            oParamCollections.Add(oParam);
+            oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+            var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
+            return oEasyDataResult.getDataTable();
+        }
+
+        DefaultContratista.Data.ListarSCTRActivo = function () {
+            var oEasyDataInterConect = new EasyDataInterConect();
+            oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
+            oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + "SIMANET/SeguridadPlanta/Contratista.asmx";
+            oEasyDataInterConect.Metodo = "SCTR_lstAct";
+
+            var oParamCollections = new SIMA.ParamCollections();
+            var oParam = new SIMA.Param("Periodo", DefaultContratista.Params[DefaultContratista.KEYQAÑO], TipodeDato.Int);
             oParamCollections.Add(oParam);
             oEasyDataInterConect.ParamsCollection = oParamCollections;
 
@@ -216,7 +240,7 @@
                 oParam = new SIMA.Param("IdProgramacion", DefaultContratista.Params[DefaultContratista.KEYQIDPROGRAMACION], TipodeDato.Int);
                 oParamCollections.Add(oParam);
 
-            oParam = new SIMA.Param("NroDNI", NroDocumento );
+                oParam = new SIMA.Param("NroDNI", NroDocumento );
                 oParamCollections.Add(oParam);
 
                 oParam = new SIMA.Param("FechaInicio", DefaultContratista.Params[DefaultContratista.KEYQFECHAINI]);
@@ -251,7 +275,46 @@
 
             var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
             var ResultBE = oEasyDataResult.sendData();
+
+            //Registrar in SCTR por defecto
+            dtInfSCTR.Rows.forEach(function (oDataRow, r) {
+                //DefaultContratista.Data.RegistrarTrabajadorSCTR(oDataRow["IdSCTR"].toString(), "0", NroDocumento, 1);
+                AdministrarProgramacionContratista.RegistrarTrabajadorSCTR(oDataRow["IdSCTR"].toString(), "0", NroDocumento, 1);
+
+            });
         }
+
+
+      /*  DefaultContratista.Data.RegistrarTrabajadorSCTR = function (IdSctr, IdSCTRDetalle,NroDoc,IdEstado) {
+            var oParamCollections = new SIMA.ParamCollections();
+            var oParam = new SIMA.Param("IdSCTR", IdSctr);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("IdDetalleSCTR", IdSCTRDetalle);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("NroDNI", NroDoc);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("IdEstado", IdEstado, TipodeDato.Int);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("IdUsuario", UsuarioBE.IdUsuario, TipodeDato.Int);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
+            oParamCollections.Add(oParam);
+
+            var oEasyDataInterConect = new EasyDataInterConect();
+            oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
+            oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + "SIMANET/SeguridadPlanta/Contratista.asmx";
+            oEasyDataInterConect.Metodo = 'SCTR_Detalle_ins';
+            oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+            var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
+            var ResultBE = oEasyDataResult.sendData();
+        }*/
+
 
         DefaultContratista.ListarEquipos = function () {
 
@@ -278,6 +341,10 @@
 
             SIMA.Utilitario.Helper.LoadPageInCtrl(oLoadConfig);
         }
+
+
+        //Obtener Los SCTR Activos
+        dtInfSCTR = DefaultContratista.Data.ListarSCTRActivo();
     </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +14,15 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         public static string KEYQIDEQUIPO = "IdeQ";
         public static string KEYQNRODOC = "NDoc";
         public static string KEYQNOMBRES = "Nom";
+        public static string KEYQIDENTIDAD = "IdEnty";
+
+        public static string KEYQNROSALUD = "nSalud";
+        public static string KEYQPENSION = "nPension";
+        public static string KEYQIDROSALUD = "IdSalud";
+        public static string KEYQIDPENSION = "IdPension";
+
+
+        public static string KEYQIDSCTR = "idSctr";
 
         public string IdProgramacion 
         {
@@ -44,6 +54,36 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 }
             }
         }
+        public string IdEntidad
+        {
+            get
+            {
+                return Page.Request.Params[KEYQIDENTIDAD].ToString();
+            }
+        }
+        public string NroSalud
+        {
+            get
+            {
+                return Page.Request.Params[KEYQNROSALUD].ToString();
+            }
+        }
+        public string NroPension
+        {
+            get
+            {
+                return Page.Request.Params[KEYQPENSION].ToString();
+            }
+        }
+        public string IdSCTR
+        {
+            get
+            {
+                return Page.Request.Params[KEYQIDSCTR].ToString();
+            }
+        }
 
+
+        
     }
 }

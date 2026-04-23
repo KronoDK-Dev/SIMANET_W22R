@@ -6,12 +6,12 @@ EasyDatepicker.Setting = function (Id, Formato) {
     var objFecha = $("#" + Id);
     objFecha.datepicker(DTPK_Config).on('changeDate',
         function (e) {
-            try {
+            //try {
                 this.Change(e);
-            }
+            /*}
             catch (Error) {
                 return null;
-            }
+            }*/
         }
     );
 } 

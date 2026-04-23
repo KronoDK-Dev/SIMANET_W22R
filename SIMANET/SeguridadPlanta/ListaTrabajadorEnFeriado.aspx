@@ -159,7 +159,7 @@
 			switch (btnItem.Id) {
 				case "btnAceptar":
 					Aprobar();
-                    window.opener.PopupCalenadrio.close();
+                    
 					break;
 				case "btnCancelar":
 					window.opener.PopupCalenadrio.close();
@@ -218,7 +218,9 @@
 																			AprobacionDefinitiva(oParent.attr('Fecha'), 2);
 																		}
 																	}
-																}, 'input');
+									}, 'input');
+								//EasyTabBase.RefreshTabSelect();
+								window.opener.PopupCalenadrio.close();
 							   }
 							else {
                                 var msgConfig = { Titulo: 'AUTORIZACIÓN FERIADOS Y DIA NO LABORABLE', Descripcion: 'No se ha ingresado personal que autoriza...!!' };

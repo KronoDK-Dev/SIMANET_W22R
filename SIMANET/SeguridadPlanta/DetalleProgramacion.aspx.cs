@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.Math;
 using EasyControlWeb;
 using EasyControlWeb.Filtro;
 using EasyControlWeb.Form.Controls;
@@ -16,6 +17,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static EasyControlWeb.EasyUtilitario.Enumerados;
+using static EasyControlWeb.InterConeccion.EasyDataInterConect;
 
 namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 {
@@ -164,13 +167,22 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             //Notificaciones: https://freefrontend.com/css-keyframes/
 
             EasyBaseEntityBE oEasyBaseEntityBE = CargarDetalle(this.IdProgramacion, this.Año);
+
+            this.acProveedor.Enabled = false;
             this.acProveedor.SetValue(oEasyBaseEntityBE.GetValue("NroRuc"), oEasyBaseEntityBE.GetValue("IdEntidad"));
+           
+
             this.acRSocial.SetValue(oEasyBaseEntityBE.GetValue("RazonSocial"), oEasyBaseEntityBE.GetValue("IdEntidad"));
+            this.acRSocial.Enabled = false;
+
             this.FInicio.Text = oEasyBaseEntityBE.GetValue("FechaInicio").Substring(0,10);
+            this.FInicio.Enabled = false;
+
             this.FFin.Text = oEasyBaseEntityBE.GetValue("FechaTermino").Substring(0, 10);
             //falta los atributos horas
 
             this.dpHIni.SetValue(oEasyBaseEntityBE.GetValue("HoraInicio"));
+            this.dpHIni.Enabled = false;
             this.dpHFin.SetValue(oEasyBaseEntityBE.GetValue("HoraTermino"));
 
 
@@ -190,17 +202,37 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
             //Datos de seguro
             acCiaSeguro.SetValue(oEasyBaseEntityBE.GetValue("NombreCIASeguros"), oEasyBaseEntityBE.GetValue("idCIASeguros"));
+            acCiaSeguro.Enabled = false;
 
             FSegIni.Text = oEasyBaseEntityBE.GetValue("FechaInicioPoliza").Substring(0, 10); ;
             FSegFin.Text = oEasyBaseEntityBE.GetValue("FechaTerminoPoliza").Substring(0, 10); ;
 
+            FSegIniS.Text = oEasyBaseEntityBE.GetValue("FechaInicioPolizaS").Substring(0, 10); ;
+            FSegFinS.Text = oEasyBaseEntityBE.GetValue("FechaTerminoPolizaS").Substring(0, 10); ;
+
             txtPension.SetValue(oEasyBaseEntityBE.GetValue("NroPensionPoliza"));
+            txtPension.Enabled = false;
+
+            //Listar SCTR Activo
+            string lstIdSCTR = "";
+            foreach (DataRow dr in ListarSCTRActivo().GetDataTable().Rows) {
+                lstIdSCTR += ",IdSCTR" + ((dr["IdTipoSCTR"].ToString() == "1") ? "p" : "s") + ":'" + dr["IdSCTR"] +"'";
+            }
+            string strDaata = "var sctrBE={FechaTermino:'" + this.FFin.Text + "', pFIni:'" + FSegIni.Text + "',pFFin:'" + FSegFin.Text + "',sFIni:'" + FSegIniS.Text + "',sFFin:'" + FSegFinS.Text + "'" + lstIdSCTR + "}";
+            
+            Page.RegisterClientScriptBlock("EntityData", "<script>\n" + strDaata + "\n" + "</script>");
+
+
+            //txtPension.Attributes["Data"] = 
             txtSalud.SetValue(oEasyBaseEntityBE.GetValue("NroSaludPoliza"));
+            txtSalud.Enabled = false;
 
             int i = 0;
 
         }
-       
+
+
+
         public EasyBaseEntityBE CargarDetalle(string IdProg,string Periodo)
         {
 
@@ -247,6 +279,39 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             odi.UrlWebServicieParams.Add(oParam);
             return odi.GetEntity();
         }
+
+
+        EasyDataInterConect ListarSCTRActivo()
+        {
+            EasyDataInterConect odi = new EasyDataInterConect();
+            odi.ConfigPathSrvRemoto = "PathBaseWSCore";
+            odi.MetodoConexion = MetododeConexion.WebServiceExterno;
+            odi.UrlWebService = "SIMANET/SeguridadPlanta/Contratista.asmx";
+            odi.Metodo = "SCTR_lstAct";
+
+            EasyFiltroParamURLws oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "Periodo";
+            oParam.Paramvalue = this.Año;
+            oParam.TipodeDato = TiposdeDatos.Int;
+            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
+            odi.UrlWebServicieParams.Add(oParam);
+
+            oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "NroProg";
+            oParam.Paramvalue = this.IdProgramacion;
+            oParam.TipodeDato = TiposdeDatos.Int;
+            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
+            odi.UrlWebServicieParams.Add(oParam);
+
+            oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "UserName";
+            oParam.Paramvalue = this.UsuarioLogin;
+            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
+            odi.UrlWebServicieParams.Add(oParam);
+            return odi;
+        }
+
+
 
         public void CargarModoConsulta()
         {

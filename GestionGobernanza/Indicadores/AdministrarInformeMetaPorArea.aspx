@@ -27,7 +27,7 @@
              </tr>
              <tr>
                  <td style="width:100%; height:100%">
-                        <cc3:EasyTabControl ID="EasyTabMetas" runat="server" fncTabOnClick="AdministrarInformeMetaPorArea.TabOnSelectedd" Ubicacion="Top"></cc3:EasyTabControl>               
+                        <cc3:EasyTabControl ID="EasyTabMetas" runat="server" fncTabOnClick="AdministrarInformeMetaPorArea.TabOnSelected" Ubicacion="Top"></cc3:EasyTabControl>               
                  </td>
              </tr>
         </table>

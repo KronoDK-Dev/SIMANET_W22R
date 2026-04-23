@@ -11,11 +11,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    
+
+    <style>
+         .DivScroll {
+            width: 100%;
+            height: 450px;
+            padding: 10px;
+            overflow-y: scroll; 
+            scrollbar-color: rebeccapurple;
+        }
+    </style>
+    <script>
+        function CheckSCTR(e) {
+            var chk = e.children[0];
+            var IdEstadoNew = ((chk.checked == true) ? 1 : 0);
+            var DataBE = jNet.get(e).attr("data").toString().SerializedToObject();
+            
+
+            //DT Cargado en la pagina default
+            //------------------------------------------------------------------------------------------------------------
+            dtInfSCTR.Rows.forEach(function (oDataRow, r) {
+                if (oDataRow["IdTipoSCTR"].toString() == DataBE.IdTipo) {
+                    //DefaultContratista.Data.RegistrarTrabajadorSCTR(oDataRow["IdSCTR"].toString(), DataBE.IdSCTRD, DataBE.NroDoc, IdEstadoNew);
+                    AdministrarProgramacionContratista.RegistrarTrabajadorSCTR(oDataRow["IdSCTR"].toString(), DataBE.IdSCTRD, DataBE.NroDoc, IdEstadoNew);
+                }
+            });
+            //------------------------------------------------------------------------------------------------------------
+           
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
-         <table style="width:100%;" border="0" >
+         <table style="width:100%; height:20%" border="0" >
              <tr>
                  <td class="Etiqueta">
                      NRO DOCUMENTO:
@@ -37,11 +65,11 @@
                  <td>
                      <img id="ibtnAdd" runat="server"/>
                  </td>
-                 <td style="width:50%">
+                 <td style="width:20%">
                      
                  </td>
-                 <td style="width:10%">
-                     <cc1:EasyToolBarButtons ID="tbCalendario" runat="server">
+                 <td style="width:40%">
+                     <cc1:EasyToolBarButtons ID="tbCalendario" runat="server" Width="100%">
                          <EasyButtons>
                              <cc1:EasyButton ID="dblCalendar" Descripcion="" Icono="fa fa-calendar" RunAtServer="False" Texto="Feriados" Ubicacion="Derecha" />
                          </EasyButtons>
@@ -50,46 +78,48 @@
              </tr>
              <tr>
                  <td id="ContentTrab" colspan="5" style="width:100%">
-                     <cc3:EasyGridView ID="grvTrabajadores" runat="server" AutoGenerateColumns="False" ShowFooter="True" TituloHeader="TRABAJADORES CONTRATISTAS"   Width="100%" fncExecBeforeServer="" ToolBarButtonClick="OnEasyGridButton_Click" OnRowDataBound="grvTrabajadores_RowDataBound" >
+                     <div class="DivScroll">
+                             <cc3:EasyGridView ID="grvTrabajadores" runat="server" AutoGenerateColumns="False" ShowFooter="True" TituloHeader="TRABAJADORES CONTRATISTAS"   Width="100%" fncExecBeforeServer="" ToolBarButtonClick="OnEasyGridButton_Click" OnRowDataBound="grvTrabajadores_RowDataBound" >
 
-                             <EasyStyleBtn ClassName="btn btn-primary" FontSize="1em" TextColor="white" />
-                                 <DataInterconect MetodoConexion="WebServiceExterno">
-                                     <UrlWebService></UrlWebService>
-                                     <Metodo></Metodo>
-                                     <UrlWebServicieParams>
-                                         <cc2:EasyFiltroParamURLws ObtenerValor="Fijo" ParamName="UserName" Paramvalue="UserName" TipodeDato="String"/>
-                                     </UrlWebServicieParams>
-                                 </DataInterconect>
+                                     <EasyStyleBtn ClassName="btn btn-primary" FontSize="1em" TextColor="white" />
+                                         <DataInterconect MetodoConexion="WebServiceExterno">
+                                             <UrlWebService></UrlWebService>
+                                             <Metodo></Metodo>
+                                             <UrlWebServicieParams>
+                                                 <cc2:EasyFiltroParamURLws ObtenerValor="Fijo" ParamName="UserName" Paramvalue="UserName" TipodeDato="String"/>
+                                             </UrlWebServicieParams>
+                                         </DataInterconect>
 
-                             <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" idgestorfiltro="" RowItemClick="ListaTrabajadores.GridCellOnClick"></EasyExtended>
+                                     <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" idgestorfiltro="" RowItemClick="ListaTrabajadores.GridCellOnClick"></EasyExtended>
 
-                             <EasyRowGroup GroupedDepth="0" ColIniRowMerge="0"></EasyRowGroup>
+                                     <EasyRowGroup GroupedDepth="0" ColIniRowMerge="0"></EasyRowGroup>
 
-                             <AlternatingRowStyle CssClass="AlternateItemGrilla" />
+                                     <AlternatingRowStyle CssClass="AlternateItemGrilla" />
 
-                             <Columns>
-                                 <asp:BoundField HeaderText="NRO DNI" DataField="NroDNI" >
-                                 <ItemStyle HorizontalAlign="Left" Width="10%" />
-                                 </asp:BoundField>
-                                 <asp:BoundField HeaderText="APELLIDOS Y NOMBRES" DataField="Nombres" >
-                                 <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Width="30%" />
-                                 </asp:BoundField>
-                                 <asp:TemplateField HeaderText="SCTR">
-                                     <ItemStyle Width="15%" />
-                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="EXAMEN">
-                                     <ItemStyle Width="15%" />
-                                 </asp:TemplateField>
-                                 <asp:BoundField DataField="tFechaInicio" HeaderText="F.INICIO" />
-                                 <asp:BoundField DataField="tFechaTermino" HeaderText="F.TERMINO" />
-                                 <asp:TemplateField></asp:TemplateField>
-                             </Columns>
+                                     <Columns>
+                                         <asp:BoundField HeaderText="NRO DNI" DataField="NroDNI" >
+                                         <ItemStyle HorizontalAlign="Left" Width="10%" />
+                                         </asp:BoundField>
+                                         <asp:BoundField HeaderText="APELLIDOS Y NOMBRES" DataField="Nombres" >
+                                         <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Width="30%" />
+                                         </asp:BoundField>
+                                         <asp:TemplateField HeaderText="SCTR">
+                                             <ItemStyle Width="15%" />
+                                         </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="EXAMEN">
+                                             <ItemStyle Width="15%" />
+                                         </asp:TemplateField>
+                                         <asp:BoundField DataField="tFechaInicio" HeaderText="F.INICIO" />
+                                         <asp:BoundField DataField="tFechaTermino" HeaderText="F.TERMINO" />
+                                         <asp:TemplateField></asp:TemplateField>
+                                     </Columns>
 
-                           <HeaderStyle CssClass="HeaderGrilla" />
-                           <PagerStyle HorizontalAlign="Center" />
-                           <RowStyle CssClass="ItemGrilla" Height="25px" />
+                                   <HeaderStyle CssClass="HeaderGrilla" />
+                                   <PagerStyle HorizontalAlign="Center" />
+                                   <RowStyle CssClass="ItemGrilla" Height="25px" />
 
-                     </cc3:EasyGridView>
+                             </cc3:EasyGridView>
+                         </div>
                  </td>
              </tr>
          </table>

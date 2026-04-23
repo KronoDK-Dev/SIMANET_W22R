@@ -53,17 +53,10 @@
             var idTab = oTab.attr('id').Replace("TabProg_", "");
             switch (idTab) {
                 case "TabItem_1":
-
-                    /*Manager.Task.Excecute(function () {
-                        try {
-                            init();
-                            Diagrama.Drawing.Tools.Paint();
-                            Diagrama.Drawing.Paint();
-                        }
-                        catch (ex) {
-                            //  alert(ex);
-                        }
-                    }, 1500, true);*/
+                    break;
+                case "TabItem_2":
+                    //Cargar Lista de CTRS
+                    DetalleProgramacion.LoadCSTR();
                     break;
             }
         }
@@ -193,7 +186,7 @@
                 </td>
                 <td class="Etiqueta" reference="FFin">F.TERMINO:</td>                   
                 <td>
-                       <cc2:EasyDatepicker ID="FFin" runat="server" required></cc2:EasyDatepicker>
+                       <cc2:EasyDatepicker ID="FFin" runat="server" fncSelectDate="DetalleProgramacion.FechaFinOnSelected" required></cc2:EasyDatepicker>
                 </td>
                 <td></td>
                 <td></td>
@@ -297,57 +290,247 @@
                  </td>
                  <td></td>
              </tr>
+           
             <tr>
-                <td colspan="4" class="Etiqueta">
-                    FECHA
-                </td>
+                <td  class="Etiqueta">SCTR</td>
                 <td></td>
+                <td class="Etiqueta">INICIO</td>
                 <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td class="Etiqueta" reference="FSegIni">INICIO</td>
-                <td><cc2:EasyDatepicker ID="FSegIni" runat="server" required></cc2:EasyDatepicker></td>
-                <td class="Etiqueta" reference="FSegFin">FIN</td>
-                <td><cc2:EasyDatepicker ID="FSegFin" runat="server" required></cc2:EasyDatepicker></td>
-                <td class="Etiqueta" colspan="4"></td>
-            </tr>
-            <tr>
-                <td colspan="4" class="Etiqueta">SCTR</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="Etiqueta">TERMINO</td>   
+                <td></td>   
+                <td></td>   
             </tr>
             <tr>
                   <td class="Etiqueta" reference="txtPension">PESNSION:</td>
-                  <td colspan="1"> <cc2:EasyTextBox ID="txtPension" runat="server" required></cc2:EasyTextBox></td>
-                  <td></td>
-                  <td class="Etiqueta"  reference="txtSalud">SALUD:</td>
-                  <td colspan="1"><cc2:EasyTextBox ID="txtSalud" runat="server" required></cc2:EasyTextBox></td>
+                  <td colspan="1"> <cc2:EasyTextBox ID="txtPension" runat="server" required cc2:EasyTextBox/></td>
+                  <td>
+                      <cc2:EasyDatepicker ID="FSegIni" runat="server" fncSelectDate="DetalleProgramacion.FechaSCTRPensionIni" required></cc2:EasyDatepicker>
+
+                  </td>
+                  <td reference="FSegIni"></td>
+                  <td><cc2:EasyDatepicker ID="FSegFin" runat="server" fncSelectDate="DetalleProgramacion.FechaSCTRPensionFin" required></cc2:EasyDatepicker> </td>
+                  <td reference="FSegFin"></td>   
                   <td></td>   
-                  <td></td>   
+            </tr>
+            <tr>
+                 <td class="Etiqueta"  reference="txtSalud">SALUD:</td>
+                 <td colspan="1"><cc2:EasyTextBox ID="txtSalud" runat="server" required></cc2:EasyTextBox></td>
+                 <td><cc2:EasyDatepicker ID="FSegIniS" runat="server" required></cc2:EasyDatepicker></td>
+                 <td reference="FSegIniS"></td>
+                 <td><cc2:EasyDatepicker ID="FSegFinS" runat="server" required></cc2:EasyDatepicker></td>
+                 <td reference="FSegFinS"></td>   
+                 <td></td>   
+            </tr>
+
+            <tr>
+                <td colspan="7" id="ContentSCTR">
+                   
+                </td>
             </tr>
         </table>
 
     </form>
 </body>
     <script>
+        DetalleProgramacion.FechaSCTRPensionIni = function (Fecha) {
+           // alert(FSegFin.GetValue())
+
+            if (Number(Fecha.toString().DateFormatYYYYmmdd('/')) > Number(FSegFin.GetValue().toString().DateFormatYYYYmmdd('/'))) {
+                var msgConfig = { Titulo: 'Alerta', Descripcion: 'Fecha de inicio  no puede ser mayor que la fecha de termino.. vuelva a intentarlo' };
+                var oMsg = new SIMA.MessageBox(msgConfig);
+                oMsg.Alert();
+                FSegIni.SetValue(SIMA.Utilitario.Helper.Hora.Hoy());
+            }
+        }
+
+
+        DetalleProgramacion.FechaSCTRPensionFin = function (Fecha) {
+            if (Number(Fecha.toString().DateFormatYYYYmmdd('/')) < Number(FSegIni.GetValue().toString().DateFormatYYYYmmdd('/'))) {
+                var msgConfig = { Titulo: 'Alerta', Descripcion: 'Fecha de Termino  no puede ser menor que la fecha de inicio.. vuelva a intentarlo' };
+                var oMsg = new SIMA.MessageBox(msgConfig);
+                oMsg.Alert();
+                FSegFin.SetValue(SIMA.Utilitario.Helper.Hora.Hoy());
+            }
+        }
+
+
+
+
+        DetalleProgramacion.FechaFinOnSelected = function (Fecha) {
+            if (DetalleProgramacion.Params[DetalleProgramacion.KEYMODOPAGINA] == SIMA.Utilitario.Enumerados.ModoPagina.M) {
+                if (Number(Fecha.toString().DateFormatYYYYmmdd('/')) > Number(sctrBE.FechaTermino.toString().DateFormatYYYYmmdd('/'))) {
+
+                    var msgConfig = { Titulo: 'Alerta', Descripcion: 'Fecha de termino no puede ser mayor a la establecida.. vuelva a intentarlo' };
+                    var oMsg = new SIMA.MessageBox(msgConfig);
+                    oMsg.Alert();
+                    FFin.SetValue(sctrBE.FechaTermino);
+                }
+
+                if (Number(Fecha.toString().DateFormatYYYYmmdd('/')) < Number(FInicio.GetValue().toString().DateFormatYYYYmmdd('/'))) {
+                    var msgConfig = { Titulo: 'Alerta', Descripcion: 'Fecha de termino no puede ser menor a la fecha de Inicio.. vuelva a intentarlo' };
+                    var oMsg = new SIMA.MessageBox(msgConfig);
+                    oMsg.Alert();
+                    FFin.SetValue(sctrBE.FechaTermino);
+                }
+            }
+        }
+
+        DetalleProgramacion.LoadCSTR = function () {
+
+            if (DetalleProgramacion.Params[DetalleProgramacion.KEYMODOPAGINA] != SIMA.Utilitario.Enumerados.ModoPagina.N) {
+
+                var UrlPag = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/AdministrarSCTR.aspx";
+                var oColletionParams = new SIMA.ParamCollections();
+                var oParam = new SIMA.Param(DetalleProgramacion.KEYQIDENTIDAD, acProveedor.GetValue());
+                oColletionParams.Add(oParam);
+
+                oParam = new SIMA.Param(DetalleProgramacion.KEYQAÑO, DetalleProgramacion.Params[DetalleProgramacion.KEYQAÑO]);
+                oColletionParams.Add(oParam);
+
+                oParam = new SIMA.Param(DetalleProgramacion.KEYQIDPROGRAMACION, DetalleProgramacion.Params[DetalleProgramacion.KEYQIDPROGRAMACION]);
+                oColletionParams.Add(oParam);
+
+                oParam = new SIMA.Param(DetalleProgramacion.KEYQNROSALUD, txtSalud.GetValue());
+                oColletionParams.Add(oParam);
+
+                oParam = new SIMA.Param(DetalleProgramacion.KEYQPENSION, txtPension.GetValue());
+                oColletionParams.Add(oParam);
+
+                var oLoadConfig = {
+                    CtrlName: "ContentSCTR",
+                    UrlPage: UrlPag,
+                    ColletionParams: oColletionParams,
+                    fnOnComplete: function () {
+                        //AdministrarReporte.Navigator.Node.Select.icon = AdministrarReporte.Navigator.Node.Select.iconOld;
+
+                    }
+                };
+
+                SIMA.Utilitario.Helper.LoadPageInCtrl(oLoadConfig);
+            }
+        }
+
         DetalleProgramacion.Aceptar = function () {
 
             if (DetalleProgramacion.Params[DetalleProgramacion.KEYMODOPAGINA] == SIMA.Utilitario.Enumerados.ModoPagina.N) {
                 var IdProg = DetalleProgramacion.Insertar();
                 var arrKey = IdProg.toString().split('-');
-                var DetalleBE = { Periodo: arrKey[0], NroProgramacion: arrKey[1], FechaInicio: FInicio.GetValue(), FechaTermino: FFin.GetValue(), HoraInicio: dpHIni.GetValue(), HoraTermino: dpHFin.GetValue() };
+                var Año = arrKey[0];
+                var NroProgr= arrKey[1];
+                //Registro del primer  SCTR 
+               var idSctrPension = DetalleProgramacion.InsertarSCTR(1, Año, NroProgr,txtPension.GetValue(), FSegIni.GetValue(), FSegFin.GetValue());
+               var idSctrSalud = DetalleProgramacion.InsertarSCTR(2, Año, NroProgr, txtSalud.GetValue(), FSegIniS.GetValue(), FSegFinS.GetValue());
+
+
+
+                //abre la pantalla para  el registro de los trabajadores
+                var DetalleBE = { Periodo: Año, NroProgramacion: NroProgr, FechaInicio: FInicio.GetValue(), FechaTermino: FFin.GetValue(), HoraInicio: dpHIni.GetValue(), HoraTermino: dpHFin.GetValue()};
                 AdministrarProgramacionContratista.AdministrarTrabajadoresyEquipos(DetalleBE);
-               
+
+               // DetalleProgramacion.CallDetalleSCTR('N', acProveedor.GetValue(), txtPension.GetValue(), txtSalud.GetValue(), 0);
             }
-            else {
+            else {//Al modificar la porogramacion
+                var idSctrPension = "";
+                var idSctrSalud = "";
                 DetalleProgramacion.Modificar();
+                //Si Existen diferencia entre las fechas de los SCTR  se procedera a clonar con las nuevas fecha y a establecer como no vigente lo anterior
+                if (DetalleProgramacion.ValidarSCTR(1)) {
+                    //desactivar SCTR
+                    DetalleProgramacion.EliminarSCTRActivo(sctrBE.IdSCTRp);
+                    idSctrPension = DetalleProgramacion.InsertarSCTR(1, DetalleProgramacion.Params[DetalleProgramacion.KEYQAÑO], DetalleProgramacion.Params[DetalleProgramacion.KEYQIDPROGRAMACION], txtPension.GetValue(), FSegIni.GetValue(), FSegFin.GetValue());
+                    DetalleProgramacion.ListarTrabajadores().Rows.forEach(function (oDataRow, r) {
+                        AdministrarProgramacionContratista.RegistrarTrabajadorSCTR(idSctrPension, "0", oDataRow["NroDni"].toString(), 1);
+                    });
+
+                }
+                if (DetalleProgramacion.ValidarSCTR(2)) {
+                    //desactivar SCTR
+                    DetalleProgramacion.EliminarSCTRActivo(sctrBE.IdSCTRs);
+                    idSctrSalud = DetalleProgramacion.InsertarSCTR(2, DetalleProgramacion.Params[DetalleProgramacion.KEYQAÑO], DetalleProgramacion.Params[DetalleProgramacion.KEYQIDPROGRAMACION], txtSalud.GetValue(), FSegIniS.GetValue(), FSegFinS.GetValue());
+
+                    DetalleProgramacion.ListarTrabajadores().Rows.forEach(function (oDataRow, r) {
+                        AdministrarProgramacionContratista.RegistrarTrabajadorSCTR(idSctrSalud, "0", oDataRow["NroDni"].toString(), 1);
+                    });
+
+                }
+              
+                /*EasyGRSCTR.ItemsforEach(function (oRow) {
+                    var oDataRow = oRow.GetData();
+                    alert(oDataRow["IdSCTR"]);
+                });
+                */
+
             }
             return true;
+        }
+
+        DetalleProgramacion.ListarTrabajadores = function () {
+            var oEasyDataInterConect = new EasyDataInterConect();
+            oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
+            oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + "SIMANET/SeguridadPlanta/Contratista.asmx";
+            oEasyDataInterConect.Metodo = "ProgramacionTrabajador_lst";
+
+            var oParamCollections = new SIMA.ParamCollections();
+            var oParam = new SIMA.Param("Periodo", DetalleProgramacion.Params[DetalleProgramacion.KEYQAÑO], TipodeDato.Int);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("IdProgramacion", DetalleProgramacion.Params[DetalleProgramacion.KEYQIDPROGRAMACION], TipodeDato.Int);
+            oParamCollections.Add(oParam);
+            oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+            oParam = new SIMA.Param("NroDNI", "");
+            oParamCollections.Add(oParam);
+            oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+
+            oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
+            oParamCollections.Add(oParam);
+            oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+            var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
+            return oEasyDataResult.getDataTable();
+        }
+
+        DetalleProgramacion.ValidarSCTR = function (IdTipo) {
+            var CrearSCTR = false;
+            switch (IdTipo) {
+                case 1://Pension
+                    if ((sctrBE.pFIni != FSegIni.GetValue()) || (sctrBE.pFFin != FSegFin.GetValue())) {
+                        CrearSCTR=true;
+                    }
+                    break;
+                case 2://Salud
+                    if ((sctrBE.pFIni != FSegIni.GetValue()) || (sctrBE.pFFin != FSegFin.GetValue())) {
+                        CrearSCTR=true;
+                    }
+                    break;
+
+            }
+            return CrearSCTR;
+
+        }
+
+        DetalleProgramacion.EliminarSCTRActivo = function (IdSCTR) {
+            var oParamCollections = new SIMA.ParamCollections();
+            oParam = new SIMA.Param("IdSCTR", IdSCTR);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("IdUsuario", UsuarioBE.IdUsuario, TipodeDato.Int);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
+            oParamCollections.Add(oParam);
+
+            var oEasyDataInterConect = new EasyDataInterConect();
+            oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
+            oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + '/SIMANET/SeguridadPlanta/Contratista.asmx';
+            oEasyDataInterConect.Metodo = 'SCTR_Eli';
+            oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+            var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
+            var ResultBE = oEasyDataResult.sendData();
+
+            return ResultBE;
         }
 
         DetalleProgramacion.Insertar = function () {
@@ -384,6 +567,12 @@
             oParamCollections.Add(oParam);
 
             oParam = new SIMA.Param("FechaTerminoPoliza", FSegFin.GetValue());
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("FechaInicioPolizaS", FSegIniS.GetValue());
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("FechaTerminoPolizaS", FSegFinS.GetValue());
             oParamCollections.Add(oParam);
 
             oParam = new SIMA.Param("NroPensionPoliza", txtPension.GetValue());
@@ -429,9 +618,6 @@
             return ResultBE;
         }
 
-
-
-
         DetalleProgramacion.Modificar = function () {
 
                 var oParamCollections = new SIMA.ParamCollections();
@@ -475,6 +661,12 @@
                 oParam = new SIMA.Param("FechaTerminoPoliza", FSegFin.GetValue());
                 oParamCollections.Add(oParam);
 
+                oParam = new SIMA.Param("FechaInicioPolizaS", FSegIniS.GetValue());
+                oParamCollections.Add(oParam);
+
+                oParam = new SIMA.Param("FechaTerminoPolizaS", FSegFinS.GetValue());
+                oParamCollections.Add(oParam);
+
                 oParam = new SIMA.Param("NroPensionPoliza", txtPension.GetValue());
                 oParamCollections.Add(oParam);
 
@@ -512,8 +704,57 @@
                 var ResultBE = oEasyDataResult.sendData();
             }
     
+
         DetalleProgramacion.Proveedor = function () {
             AdministrarProgramacionContratista.DetalleProveedor();
         }
+
+
+        //Inocado en el Aceptar de la programacion y tambien en el ACEPTAR de l detalle del SCTR
+        DetalleProgramacion.InsertarSCTR = function (IdTipo,Periodo,NroProg,nroCTRS, FechaIni, FechaFin) {
+
+            var oParamCollections = new SIMA.ParamCollections();
+
+            oParam = new SIMA.Param("NroSCTR", nroCTRS);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("IdEntidad", acProveedor.GetValue(), TipodeDato.Int);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("Periodo", Periodo, TipodeDato.Int);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("NroProg", NroProg, TipodeDato.Int);
+            oParamCollections.Add(oParam);
+
+
+            oParam = new SIMA.Param("FechaIni", FechaIni);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("FechaFin", FechaFin);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("IdTipo", IdTipo, TipodeDato.Int);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("IdUsuario", UsuarioBE.IdUsuario, TipodeDato.Int);
+            oParamCollections.Add(oParam);
+
+            oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
+            oParamCollections.Add(oParam);
+
+            var oEasyDataInterConect = new EasyDataInterConect();
+            oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
+            oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + '/SIMANET/SeguridadPlanta/Contratista.asmx';
+            oEasyDataInterConect.Metodo = 'SCTR_ins';
+            oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+            var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
+            var IdResult = oEasyDataResult.sendData();
+
+            return IdResult;
+        }
+
+
     </script>
 </html>

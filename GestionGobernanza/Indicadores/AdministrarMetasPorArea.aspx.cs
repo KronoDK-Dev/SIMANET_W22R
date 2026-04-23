@@ -146,7 +146,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                   
 
                     EasyTextBox otxt = new EasyTextBox();
-                    otxt.ID = "n_" + dr["IDPLAZO"].ToString();
+                    otxt.ID = "n_" + dr["IDPLAZO"].ToString() +"_" + this.CodArea;
                     otxt.SetValue(dr["NUMERADOR"].ToString());
                     otxt.Attributes.Add("onblur", "AdministrarMetasPorArea.OnChange(jNet.get(this),'" + this.IdAreaInfo + "')");
 
@@ -155,7 +155,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                
 
                     otxt = new EasyTextBox();
-                    otxt.ID = "D_" + dr["IDPLAZO"].ToString();
+                    otxt.ID = "D_" + dr["IDPLAZO"].ToString() + "_" + this.CodArea;
                     otxt.SetValue(dr["DENOMINADOR"].ToString());
                     otxt.Attributes.Add("onblur", "AdministrarMetasPorArea.OnChange(jNet.get(this),'" + this.IdAreaInfo + "')");
                     tblBase.Rows[2].Cells[i].Attributes.Add("onclick", "AdministrarMetasPorArea.DetalleAnalisis(jNet.get(this),'" + this.IdAreaInfo + "');");

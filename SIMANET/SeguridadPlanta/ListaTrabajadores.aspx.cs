@@ -201,59 +201,71 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             {
                 DataRowView drv = (DataRowView)e.Row.DataItem;
                 DataRow dr = drv.Row;
+
+
+                //Autorizacion de feriados
+
+                HtmlTable tblAutiriza = EasyUtilitario.Helper.HtmlControlsDesign.CrearTabla(1, 2);
+                tblAutiriza.Style.Add("Width", "100%");
+                tblAutiriza.Rows[0].Attributes["class"] = "ItemGrillaSinColor";
+
+                tblAutiriza.Rows[0].Cells[0].InnerText = dr["NroDni"].ToString();
+                tblAutiriza.Rows[0].Cells[0].Style.Add("Width", "100%");
+                if (dr["IdEstado"].ToString().Equals("3"))//NO esta activo en esta programacion 
+                {
+                    tblAutiriza.Rows[0].Cells[0].Style.Add("text-decoration", "line-through");
+
+                }
+
+                //crear el ctrl Chk
+                CheckBox chkf = new CheckBox();
+                chkf.Checked = ((dr["AutorizadoFeriado"].ToString() == "1") ? true : false);
+                chkf.Attributes["chkFeriado"] = "";
+                chkf.Attributes["Data"] = Helper.Genericos.DataRowToStringJson(dr);
+
+                tblAutiriza.Rows[0].Cells[1].Controls.Add(chkf);
+                //Establece Los Atributos para la autorizacion
+                tblAutiriza.Rows[0].Cells[1].Attributes["NroDNI"] = dr["NroDNI"].ToString();
+
+                e.Row.Cells[1].Controls.Add(tblAutiriza);
+
+                if (dr["AutorizadoFeriado"].ToString() == "1")
+                {
+                    // e.Row.Cells[2].Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()] = "ListaTrabajadores.ListadoAutorizadoPorTrabajador()";
+                    // establecer stylo de subrayado
+                    e.Row.Cells[2].Style.Add("text-decoration", "underline");
+                    e.Row.Cells[2].Style.Add("cursor", "pointer");
+
+                }
+
+
+
+
+
+
                 //Salud y pension
 
                 foreach (DataRow drvr in ListarRequisitosTrabajadores(dr["NroDNI"].ToString()).GetDataTable().Rows) {
-
-                    //Autorizacion de feriados
-
-                    HtmlTable tblAutiriza = EasyUtilitario.Helper.HtmlControlsDesign.CrearTabla(1, 2);
-                    tblAutiriza.Style.Add("Width", "100%");
-                    tblAutiriza.Rows[0].Attributes["class"] = "ItemGrillaSinColor";
-
-                    tblAutiriza.Rows[0].Cells[0].InnerText = dr["NroDni"].ToString();
-                    tblAutiriza.Rows[0].Cells[0].Style.Add("Width", "100%");
-                    if (dr["IdEstado"].ToString().Equals("3"))//NO esta activo en esta programacion 
-                    {
-                        tblAutiriza.Rows[0].Cells[0].Style.Add("text-decoration", "line-through");
-                        
-                    }
-
-                    //crear el ctrl Chk
-                    CheckBox chkf = new CheckBox();
-                    chkf.Checked = ((dr["AutorizadoFeriado"].ToString() == "1") ? true : false);
-                    chkf.Attributes["chkFeriado"] = "";
-                    chkf.Attributes["Data"] = Helper.Genericos.DataRowToStringJson(dr);
-
-                    tblAutiriza.Rows[0].Cells[1].Controls.Add(chkf);
-                    //Establece Los Atributos para la autorizacion
-                    tblAutiriza.Rows[0].Cells[1].Attributes["NroDNI"] = dr["NroDNI"].ToString();
-                    
-                    e.Row.Cells[1].Controls.Add(tblAutiriza);
-
-                    if (dr["AutorizadoFeriado"].ToString() == "1")
-                    {
-                        // e.Row.Cells[2].Attributes[EasyUtilitario.Enumerados.EventosJavaScript.onclick.ToString()] = "ListaTrabajadores.ListadoAutorizadoPorTrabajador()";
-                        // establecer stylo de subrayado
-                        e.Row.Cells[2].Style.Add("text-decoration", "underline");
-                        e.Row.Cells[2].Style.Add("cursor", "pointer");
-
-                    }
-
-
 
                     HtmlTable tblH = EasyUtilitario.Helper.HtmlControlsDesign.CrearTabla(1, 2);
                         tblH.Style.Add("border-collapse", "collapse");
                         tblH.Style.Add("width", "100%");
 
                         System.Web.UI.WebControls.CheckBox chk = new System.Web.UI.WebControls.CheckBox();
-                        chk.Checked = ((drvr["SCTRSalud"].ToString().Equals("SI")) ? true : false);
-
-                        tblH.Rows[0].Cells[0].Controls.Add(chk);
+                    // chk.Checked = ((drvr["SCTRSalud"].ToString().Equals("SI")) ? true : false);
+                    chk.Checked = ((dr["IdEstadoS"].ToString() == "1") ? true : false);
+                    chk.Attributes.Add(Utilitario.Enumerados.EventosJavaScript.onchange.ToString(), "CheckSCTR(this)");
+                        chk.Attributes["Data"] = "{IdTipo:1,NroDoc:'" + dr["NroDNI"].ToString() + "',IdSCTRD:'" + dr["IdDetalleSCTR_S"].ToString() +"',IdEstado:" + dr["IdEstadoS"].ToString()  + "}";
+                        
+                    tblH.Rows[0].Cells[0].Controls.Add(chk);
 
                         chk = new System.Web.UI.WebControls.CheckBox();
-                        chk.Checked = ((drvr["SCTRPension"].ToString().Equals("SI")) ? true : false);
-                        tblH.Rows[0].Cells[1].Controls.Add(chk);
+                    //chk.Checked = ((drvr["SCTRPension"].ToString().Equals("SI")) ? true : false);
+                    chk.Checked = ((dr["IdEstadoP"].ToString() == "1") ? true : false);
+                        chk.Attributes.Add(Utilitario.Enumerados.EventosJavaScript.onchange.ToString(), "CheckSCTR(this)");
+                        chk.Attributes["Data"] = "{IdTipo:2,NroDoc:'" + dr["NroDNI"].ToString() + "',IdSCTRD:'" + dr["IdDetalleSCTR_P"].ToString() + "',IdEstado:" + dr["IdEstadoP"].ToString()  + "}";
+
+                    tblH.Rows[0].Cells[1].Controls.Add(chk);
 
                         e.Row.Cells[3].Controls.Add(tblH);
 

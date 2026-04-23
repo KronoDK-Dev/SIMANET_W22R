@@ -14,6 +14,8 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     
+
+
   
 
 </head>
@@ -82,6 +84,9 @@
         <cc2:EasyPopupBase ID="EasyPopupReprogramaTrab" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="REPROGRAMACION DE TRABAJADOR"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="ReprogramarTrabajador.Aceptar"  ></cc2:EasyPopupBase>
         
         <cc2:EasyPopupBase ID="EasyPopupCopiar" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="COPIAR PROGRAMACIÓN"   ValidarDatos="true"  RunatServer="true" DisplayButtons="true"  fncScriptAceptar="DetalleCopyProg.Aceptar" OnClick="EasyPopupCopiar_Click"  ></cc2:EasyPopupBase>
+        
+        <cc2:EasyPopupBase ID="EasyPopupDetalleSCTR" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="DETALLE SCTR"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="DetalleSCTR.Aceptar"></cc2:EasyPopupBase>
+
 
 
 
@@ -348,6 +353,38 @@
               var oCustomTemplateBE = new EasyGestorFiltro1_idCIASeguros.CustomTemplateBE(ul, item, iTemplate);
               return EasyGestorFiltro1_idCIASeguros.SetCustomTemplate(oCustomTemplateBE);
           }
+
+
+          AdministrarProgramacionContratista.RegistrarTrabajadorSCTR = function (IdSctr, IdSCTRDetalle, NroDoc, IdEstado) {
+              var oParamCollections = new SIMA.ParamCollections();
+              var oParam = new SIMA.Param("IdSCTR", IdSctr);
+              oParamCollections.Add(oParam);
+
+              oParam = new SIMA.Param("IdDetalleSCTR", IdSCTRDetalle);
+              oParamCollections.Add(oParam);
+
+              oParam = new SIMA.Param("NroDNI", NroDoc);
+              oParamCollections.Add(oParam);
+
+              oParam = new SIMA.Param("IdEstado", IdEstado, TipodeDato.Int);
+              oParamCollections.Add(oParam);
+
+              oParam = new SIMA.Param("IdUsuario", UsuarioBE.IdUsuario, TipodeDato.Int);
+              oParamCollections.Add(oParam);
+
+              oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
+              oParamCollections.Add(oParam);
+
+              var oEasyDataInterConect = new EasyDataInterConect();
+              oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
+              oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + "SIMANET/SeguridadPlanta/Contratista.asmx";
+              oEasyDataInterConect.Metodo = 'SCTR_Detalle_ins';
+              oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+              var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
+              var ResultBE = oEasyDataResult.sendData();
+          }
+
       </script>
 </body>
 </html>
