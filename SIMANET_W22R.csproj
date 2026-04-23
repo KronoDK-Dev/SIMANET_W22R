@@ -811,6 +811,8 @@
     <Content Include="Recursos\js\jqxmenu.js" />
     <Content Include="Recursos\js\simple-context-menu.min.js" />
     <Content Include="Recursos\js\Toas\nostfly.min.js" />
+    <Content Include="Recursos\LibSIMA\ChatBotServiceBroker\ITILService\ITILService.js" />
+    <Content Include="Recursos\LibSIMA\ChatBotServiceBroker\ITILService\OpcionesdeServicios.aspx" />
     <Content Include="Recursos\LibSIMA\ConstanteProcesos.js" />
     <Content Include="Recursos\LibSIMA\EasyControlSetting.js" />
     <Content Include="Recursos\LibSIMA\EasyDataInterConect.js" />
@@ -837,7 +839,9 @@
     <Content Include="Recursos\Tree\zTreeStyle.css" />
     <Content Include="SIMANET\SeguridadPlanta\AdministrarProgramacionContratista.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\AdministrarProgVisita.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\AdministrarSCTR.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\DefaultContratista.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\DetalleCopyProg.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\DetalleEquipos.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\DetalleProgramacion.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\DetalleProveedor.aspx" />
@@ -1652,6 +1656,7 @@
     <Compile Include="GestionReportes\GenerarPdf.aspx.designer.cs">
       <DependentUpon>GenerarPdf.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GestionReportes\JsonToDataTableHelper.cs" />
     <Compile Include="GestionReportes\PortafolioPBI.aspx.cs">
       <DependentUpon>PortafolioPBI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2187,6 +2192,13 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicClass\sglGlobalData.cs" />
+    <Compile Include="Recursos\LibSIMA\ChatBotServiceBroker\ITILService\OpcionesdeServicios.aspx.cs">
+      <DependentUpon>OpcionesdeServicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Recursos\LibSIMA\ChatBotServiceBroker\ITILService\OpcionesdeServicios.aspx.designer.cs">
+      <DependentUpon>OpcionesdeServicios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgramacionContratista.aspx.cs">
       <DependentUpon>AdministrarProgramacionContratista.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2201,12 +2213,26 @@
     <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgVisita.aspx.designer.cs">
       <DependentUpon>AdministrarProgVisita.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\AdministrarSCTR.aspx.cs">
+      <DependentUpon>AdministrarSCTR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\AdministrarSCTR.aspx.designer.cs">
+      <DependentUpon>AdministrarSCTR.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SIMANET\SeguridadPlanta\DefaultContratista.aspx.cs">
       <DependentUpon>DefaultContratista.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SIMANET\SeguridadPlanta\DefaultContratista.aspx.designer.cs">
       <DependentUpon>DefaultContratista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\DetalleCopyProg.aspx.cs">
+      <DependentUpon>DetalleCopyProg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\DetalleCopyProg.aspx.designer.cs">
+      <DependentUpon>DetalleCopyProg.aspx</DependentUpon>
     </Compile>
     <Compile Include="SIMANET\SeguridadPlanta\DetalleEquipos.aspx.cs">
       <DependentUpon>DetalleEquipos.aspx</DependentUpon>

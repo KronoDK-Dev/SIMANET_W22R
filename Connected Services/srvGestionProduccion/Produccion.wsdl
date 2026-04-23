@@ -812,6 +812,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="V_CENTRO_OPERATIVO" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="V_DIVISION" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="V_PROYECTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_FECHAINI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="D_FECHAFIN" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -1326,6 +1328,23 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Impresion_OTsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcluyeOT_ReporteBI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Sucursal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_Linea" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_OT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcluyeOT_ReporteBIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExcluyeOT_ReporteBIResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -2114,6 +2133,12 @@
   <wsdl:message name="Impresion_OTsSoapOut">
     <wsdl:part name="parameters" element="tns:Impresion_OTsResponse" />
   </wsdl:message>
+  <wsdl:message name="ExcluyeOT_ReporteBISoapIn">
+    <wsdl:part name="parameters" element="tns:ExcluyeOT_ReporteBI" />
+  </wsdl:message>
+  <wsdl:message name="ExcluyeOT_ReporteBISoapOut">
+    <wsdl:part name="parameters" element="tns:ExcluyeOT_ReporteBIResponse" />
+  </wsdl:message>
   <wsdl:message name="Listar_est_actividadSoapIn">
     <wsdl:part name="parameters" element="tns:Listar_est_actividad" />
   </wsdl:message>
@@ -2557,6 +2582,8 @@
     <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
     <wsdl:part name="V_DIVISION" type="s:string" />
     <wsdl:part name="V_PROYECTO" type="s:string" />
+    <wsdl:part name="D_FECHAINI" type="s:string" />
+    <wsdl:part name="D_FECHAFIN" type="s:string" />
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="Listar_det_gasto_pry_ot_sin_factsuHttpGetOut">
@@ -2785,6 +2812,15 @@
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="Impresion_OTsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ExcluyeOT_ReporteBIHttpGetIn">
+    <wsdl:part name="V_Sucursal" type="s:string" />
+    <wsdl:part name="V_Linea" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExcluyeOT_ReporteBIHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="Listar_est_actividadHttpGetIn">
@@ -3299,6 +3335,8 @@
     <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
     <wsdl:part name="V_DIVISION" type="s:string" />
     <wsdl:part name="V_PROYECTO" type="s:string" />
+    <wsdl:part name="D_FECHAINI" type="s:string" />
+    <wsdl:part name="D_FECHAFIN" type="s:string" />
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="Listar_det_gasto_pry_ot_sin_factsuHttpPostOut">
@@ -3527,6 +3565,15 @@
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="Impresion_OTsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ExcluyeOT_ReporteBIHttpPostIn">
+    <wsdl:part name="V_Sucursal" type="s:string" />
+    <wsdl:part name="V_Linea" type="s:string" />
+    <wsdl:part name="V_OT" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExcluyeOT_ReporteBIHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="Listar_est_actividadHttpPostIn">
@@ -3991,6 +4038,11 @@
       <wsdl:input message="tns:Impresion_OTsSoapIn" />
       <wsdl:output message="tns:Impresion_OTsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ExcluyeOT_ReporteBI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Excluye una Ot de los reportes BI</wsdl:documentation>
+      <wsdl:input message="tns:ExcluyeOT_ReporteBISoapIn" />
+      <wsdl:output message="tns:ExcluyeOT_ReporteBISoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Listar_est_actividad">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de actividades de Valorizacion</wsdl:documentation>
       <wsdl:input message="tns:Listar_est_actividadSoapIn" />
@@ -4368,6 +4420,11 @@
       <wsdl:input message="tns:Impresion_OTsHttpGetIn" />
       <wsdl:output message="tns:Impresion_OTsHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="ExcluyeOT_ReporteBI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Excluye una Ot de los reportes BI</wsdl:documentation>
+      <wsdl:input message="tns:ExcluyeOT_ReporteBIHttpGetIn" />
+      <wsdl:output message="tns:ExcluyeOT_ReporteBIHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="Listar_est_actividad">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de actividades de Valorizacion</wsdl:documentation>
       <wsdl:input message="tns:Listar_est_actividadHttpGetIn" />
@@ -4744,6 +4801,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Impresion de Ots</wsdl:documentation>
       <wsdl:input message="tns:Impresion_OTsHttpPostIn" />
       <wsdl:output message="tns:Impresion_OTsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluyeOT_ReporteBI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Excluye una Ot de los reportes BI</wsdl:documentation>
+      <wsdl:input message="tns:ExcluyeOT_ReporteBIHttpPostIn" />
+      <wsdl:output message="tns:ExcluyeOT_ReporteBIHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="Listar_est_actividad">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de actividades de Valorizacion</wsdl:documentation>
@@ -5348,6 +5410,15 @@
     </wsdl:operation>
     <wsdl:operation name="Impresion_OTs">
       <soap:operation soapAction="http://tempuri.org/Impresion_OTs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluyeOT_ReporteBI">
+      <soap:operation soapAction="http://tempuri.org/ExcluyeOT_ReporteBI" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -6033,6 +6104,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ExcluyeOT_ReporteBI">
+      <soap12:operation soapAction="http://tempuri.org/ExcluyeOT_ReporteBI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Listar_est_actividad">
       <soap12:operation soapAction="http://tempuri.org/Listar_est_actividad" style="document" />
       <wsdl:input>
@@ -6709,6 +6789,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ExcluyeOT_ReporteBI">
+      <http:operation location="/ExcluyeOT_ReporteBI" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Listar_est_actividad">
       <http:operation location="/Listar_est_actividad" />
       <wsdl:input>
@@ -7378,6 +7467,15 @@
     </wsdl:operation>
     <wsdl:operation name="Impresion_OTs">
       <http:operation location="/Impresion_OTs" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluyeOT_ReporteBI">
+      <http:operation location="/ExcluyeOT_ReporteBI" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

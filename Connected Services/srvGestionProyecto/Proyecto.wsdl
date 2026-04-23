@@ -318,6 +318,39 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Listar_Ordenes_CS_Coproductor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="N_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Ordenes_CS_CoproductorResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Listar_Ordenes_CS_Coproductor_DT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="N_CEO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_Ordenes_CS_Coproductor_DTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_Ordenes_CS_Coproductor_DTResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Listar_detg_pry_ot_sinfact">
         <s:complexType>
           <s:sequence>
@@ -893,6 +926,29 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Get_ProyectoPresupuesto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_FTPresupuesto_CodProyecto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_FTPresupuesto_Sucursal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_ProyectoPresupuestoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_ProyectoPresupuestoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GEN_PROYECTO_ID">
         <s:complexType>
           <s:sequence>
@@ -1071,6 +1127,29 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="InsUpdDel_ProyectoPresupuesto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="X_N_ACCION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_V_FTPresupuesto_CodProyecto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_V_FTPresupuesto_Sucursal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_N_FTPresupuesto_CostoMOB" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_N_FTPresupuesto_CostoMAT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_N_FTPresupuesto_CostoSER" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_N_FTPresupuesto_CostoIND" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_V_FTPresupuesto_USUARIO_AUDI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_V_FTPresupuesto_ESTACIONW" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_V_FTPresupuesto_AUDITORIA" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsUpdDel_ProyectoPresupuestoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsUpdDel_ProyectoPresupuestoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="DataTable" nillable="true">
         <s:complexType>
           <s:sequence>
@@ -1160,6 +1239,18 @@
   </wsdl:message>
   <wsdl:message name="Listar_detalle_ose_femisionSoapOut">
     <wsdl:part name="parameters" element="tns:Listar_detalle_ose_femisionResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ordenes_CS_CoproductorSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Ordenes_CS_Coproductor" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ordenes_CS_CoproductorSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Ordenes_CS_CoproductorResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ordenes_CS_Coproductor_DTSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_Ordenes_CS_Coproductor_DT" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ordenes_CS_Coproductor_DTSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_Ordenes_CS_Coproductor_DTResponse" />
   </wsdl:message>
   <wsdl:message name="Listar_detg_pry_ot_sinfactSoapIn">
     <wsdl:part name="parameters" element="tns:Listar_detg_pry_ot_sinfact" />
@@ -1299,6 +1390,12 @@
   <wsdl:message name="Buscar_Colaborador_xCodSoapOut">
     <wsdl:part name="parameters" element="tns:Buscar_Colaborador_xCodResponse" />
   </wsdl:message>
+  <wsdl:message name="Get_ProyectoPresupuestoSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_ProyectoPresupuesto" />
+  </wsdl:message>
+  <wsdl:message name="Get_ProyectoPresupuestoSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_ProyectoPresupuestoResponse" />
+  </wsdl:message>
   <wsdl:message name="GEN_PROYECTO_IDSoapIn">
     <wsdl:part name="parameters" element="tns:GEN_PROYECTO_ID" />
   </wsdl:message>
@@ -1346,6 +1443,12 @@
   </wsdl:message>
   <wsdl:message name="AutorizaUsuarioProyectoSoapOut">
     <wsdl:part name="parameters" element="tns:AutorizaUsuarioProyectoResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsUpdDel_ProyectoPresupuestoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsUpdDel_ProyectoPresupuesto" />
+  </wsdl:message>
+  <wsdl:message name="InsUpdDel_ProyectoPresupuestoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsUpdDel_ProyectoPresupuestoResponse" />
   </wsdl:message>
   <wsdl:message name="Listar_det_gasto_pry_ot_pgmsuHttpGetIn">
     <wsdl:part name="V_CENTRO_OPERATIVO" type="s:string" />
@@ -1473,6 +1576,18 @@
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="Listar_detalle_ose_femisionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ordenes_CS_CoproductorHttpGetIn">
+    <wsdl:part name="N_CEO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ordenes_CS_CoproductorHttpGetOut" />
+  <wsdl:message name="Listar_Ordenes_CS_Coproductor_DTHttpGetIn">
+    <wsdl:part name="N_CEO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ordenes_CS_Coproductor_DTHttpGetOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:message name="Listar_detg_pry_ot_sinfactHttpGetIn">
@@ -1673,6 +1788,14 @@
   <wsdl:message name="Buscar_Colaborador_xCodHttpGetOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
+  <wsdl:message name="Get_ProyectoPresupuestoHttpGetIn">
+    <wsdl:part name="V_FTPresupuesto_CodProyecto" type="s:string" />
+    <wsdl:part name="V_FTPresupuesto_Sucursal" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Get_ProyectoPresupuestoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
   <wsdl:message name="GEN_PROYECTO_IDHttpGetIn">
     <wsdl:part name="p_ceo" type="s:string" />
     <wsdl:part name="p_unidOpe" type="s:string" />
@@ -1751,6 +1874,21 @@
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="AutorizaUsuarioProyectoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsUpdDel_ProyectoPresupuestoHttpGetIn">
+    <wsdl:part name="X_N_ACCION" type="s:string" />
+    <wsdl:part name="X_V_FTPresupuesto_CodProyecto" type="s:string" />
+    <wsdl:part name="X_V_FTPresupuesto_Sucursal" type="s:string" />
+    <wsdl:part name="X_N_FTPresupuesto_CostoMOB" type="s:string" />
+    <wsdl:part name="X_N_FTPresupuesto_CostoMAT" type="s:string" />
+    <wsdl:part name="X_N_FTPresupuesto_CostoSER" type="s:string" />
+    <wsdl:part name="X_N_FTPresupuesto_CostoIND" type="s:string" />
+    <wsdl:part name="X_V_FTPresupuesto_USUARIO_AUDI" type="s:string" />
+    <wsdl:part name="X_V_FTPresupuesto_ESTACIONW" type="s:string" />
+    <wsdl:part name="X_V_FTPresupuesto_AUDITORIA" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsUpdDel_ProyectoPresupuestoHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="Listar_det_gasto_pry_ot_pgmsuHttpPostIn">
@@ -1879,6 +2017,18 @@
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="Listar_detalle_ose_femisionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ordenes_CS_CoproductorHttpPostIn">
+    <wsdl:part name="N_CEO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ordenes_CS_CoproductorHttpPostOut" />
+  <wsdl:message name="Listar_Ordenes_CS_Coproductor_DTHttpPostIn">
+    <wsdl:part name="N_CEO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_Ordenes_CS_Coproductor_DTHttpPostOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:message name="Listar_detg_pry_ot_sinfactHttpPostIn">
@@ -2079,6 +2229,14 @@
   <wsdl:message name="Buscar_Colaborador_xCodHttpPostOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
+  <wsdl:message name="Get_ProyectoPresupuestoHttpPostIn">
+    <wsdl:part name="V_FTPresupuesto_CodProyecto" type="s:string" />
+    <wsdl:part name="V_FTPresupuesto_Sucursal" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Get_ProyectoPresupuestoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
   <wsdl:message name="GEN_PROYECTO_IDHttpPostIn">
     <wsdl:part name="p_ceo" type="s:string" />
     <wsdl:part name="p_unidOpe" type="s:string" />
@@ -2159,6 +2317,21 @@
   <wsdl:message name="AutorizaUsuarioProyectoHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="InsUpdDel_ProyectoPresupuestoHttpPostIn">
+    <wsdl:part name="X_N_ACCION" type="s:string" />
+    <wsdl:part name="X_V_FTPresupuesto_CodProyecto" type="s:string" />
+    <wsdl:part name="X_V_FTPresupuesto_Sucursal" type="s:string" />
+    <wsdl:part name="X_N_FTPresupuesto_CostoMOB" type="s:string" />
+    <wsdl:part name="X_N_FTPresupuesto_CostoMAT" type="s:string" />
+    <wsdl:part name="X_N_FTPresupuesto_CostoSER" type="s:string" />
+    <wsdl:part name="X_N_FTPresupuesto_CostoIND" type="s:string" />
+    <wsdl:part name="X_V_FTPresupuesto_USUARIO_AUDI" type="s:string" />
+    <wsdl:part name="X_V_FTPresupuesto_ESTACIONW" type="s:string" />
+    <wsdl:part name="X_V_FTPresupuesto_AUDITORIA" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsUpdDel_ProyectoPresupuestoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:portType name="ProyectoSoap">
     <wsdl:operation name="Listar_det_gasto_pry_ot_pgmsu">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">PROGRAMA DE ADQUISICIONES DE REQUERIMIENTOS DE OT'S POR PROYECTOS</wsdl:documentation>
@@ -2224,6 +2397,16 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">ORDENES DE SERVICIO POR FECHA DE EMISION</wsdl:documentation>
       <wsdl:input message="tns:Listar_detalle_ose_femisionSoapIn" />
       <wsdl:output message="tns:Listar_detalle_ose_femisionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Ordenes  de Compra y Servicio del Coproductor en JSON Streaming</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Ordenes_CS_CoproductorSoapIn" />
+      <wsdl:output message="tns:Listar_Ordenes_CS_CoproductorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor_DT">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Ordenes CS (retorna DataTable)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Ordenes_CS_Coproductor_DTSoapIn" />
+      <wsdl:output message="tns:Listar_Ordenes_CS_Coproductor_DTSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Listar_detg_pry_ot_sinfact">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RELACION DE OT'S POR PROYECTOS</wsdl:documentation>
@@ -2340,6 +2523,11 @@
       <wsdl:input message="tns:Buscar_Colaborador_xCodSoapIn" />
       <wsdl:output message="tns:Buscar_Colaborador_xCodSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Get_ProyectoPresupuesto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtiene Presupuesto de Proyecto por PK (CodProyecto + Sucursal).</wsdl:documentation>
+      <wsdl:input message="tns:Get_ProyectoPresupuestoSoapIn" />
+      <wsdl:output message="tns:Get_ProyectoPresupuestoSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GEN_PROYECTO_ID">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GENERA PROYECTO ID</wsdl:documentation>
       <wsdl:input message="tns:GEN_PROYECTO_IDSoapIn" />
@@ -2379,6 +2567,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Autoriza a un colaborador a que consulte un proyecto</wsdl:documentation>
       <wsdl:input message="tns:AutorizaUsuarioProyectoSoapIn" />
       <wsdl:output message="tns:AutorizaUsuarioProyectoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsUpdDel_ProyectoPresupuesto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta, actualiza o elimina Presupuesto de Proyecto (N_ACCION = 1/2/3).</wsdl:documentation>
+      <wsdl:input message="tns:InsUpdDel_ProyectoPresupuestoSoapIn" />
+      <wsdl:output message="tns:InsUpdDel_ProyectoPresupuestoSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ProyectoHttpGet">
@@ -2446,6 +2639,16 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">ORDENES DE SERVICIO POR FECHA DE EMISION</wsdl:documentation>
       <wsdl:input message="tns:Listar_detalle_ose_femisionHttpGetIn" />
       <wsdl:output message="tns:Listar_detalle_ose_femisionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Ordenes  de Compra y Servicio del Coproductor en JSON Streaming</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Ordenes_CS_CoproductorHttpGetIn" />
+      <wsdl:output message="tns:Listar_Ordenes_CS_CoproductorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor_DT">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Ordenes CS (retorna DataTable)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Ordenes_CS_Coproductor_DTHttpGetIn" />
+      <wsdl:output message="tns:Listar_Ordenes_CS_Coproductor_DTHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="Listar_detg_pry_ot_sinfact">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RELACION DE OT'S POR PROYECTOS</wsdl:documentation>
@@ -2562,6 +2765,11 @@
       <wsdl:input message="tns:Buscar_Colaborador_xCodHttpGetIn" />
       <wsdl:output message="tns:Buscar_Colaborador_xCodHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="Get_ProyectoPresupuesto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtiene Presupuesto de Proyecto por PK (CodProyecto + Sucursal).</wsdl:documentation>
+      <wsdl:input message="tns:Get_ProyectoPresupuestoHttpGetIn" />
+      <wsdl:output message="tns:Get_ProyectoPresupuestoHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="GEN_PROYECTO_ID">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GENERA PROYECTO ID</wsdl:documentation>
       <wsdl:input message="tns:GEN_PROYECTO_IDHttpGetIn" />
@@ -2591,6 +2799,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Autoriza a un colaborador a que consulte un proyecto</wsdl:documentation>
       <wsdl:input message="tns:AutorizaUsuarioProyectoHttpGetIn" />
       <wsdl:output message="tns:AutorizaUsuarioProyectoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsUpdDel_ProyectoPresupuesto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta, actualiza o elimina Presupuesto de Proyecto (N_ACCION = 1/2/3).</wsdl:documentation>
+      <wsdl:input message="tns:InsUpdDel_ProyectoPresupuestoHttpGetIn" />
+      <wsdl:output message="tns:InsUpdDel_ProyectoPresupuestoHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ProyectoHttpPost">
@@ -2658,6 +2871,16 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">ORDENES DE SERVICIO POR FECHA DE EMISION</wsdl:documentation>
       <wsdl:input message="tns:Listar_detalle_ose_femisionHttpPostIn" />
       <wsdl:output message="tns:Listar_detalle_ose_femisionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Ordenes  de Compra y Servicio del Coproductor en JSON Streaming</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Ordenes_CS_CoproductorHttpPostIn" />
+      <wsdl:output message="tns:Listar_Ordenes_CS_CoproductorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor_DT">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Ordenes CS (retorna DataTable)</wsdl:documentation>
+      <wsdl:input message="tns:Listar_Ordenes_CS_Coproductor_DTHttpPostIn" />
+      <wsdl:output message="tns:Listar_Ordenes_CS_Coproductor_DTHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="Listar_detg_pry_ot_sinfact">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RELACION DE OT'S POR PROYECTOS</wsdl:documentation>
@@ -2774,6 +2997,11 @@
       <wsdl:input message="tns:Buscar_Colaborador_xCodHttpPostIn" />
       <wsdl:output message="tns:Buscar_Colaborador_xCodHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="Get_ProyectoPresupuesto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtiene Presupuesto de Proyecto por PK (CodProyecto + Sucursal).</wsdl:documentation>
+      <wsdl:input message="tns:Get_ProyectoPresupuestoHttpPostIn" />
+      <wsdl:output message="tns:Get_ProyectoPresupuestoHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="GEN_PROYECTO_ID">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GENERA PROYECTO ID</wsdl:documentation>
       <wsdl:input message="tns:GEN_PROYECTO_IDHttpPostIn" />
@@ -2803,6 +3031,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Autoriza a un colaborador a que consulte un proyecto</wsdl:documentation>
       <wsdl:input message="tns:AutorizaUsuarioProyectoHttpPostIn" />
       <wsdl:output message="tns:AutorizaUsuarioProyectoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsUpdDel_ProyectoPresupuesto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta, actualiza o elimina Presupuesto de Proyecto (N_ACCION = 1/2/3).</wsdl:documentation>
+      <wsdl:input message="tns:InsUpdDel_ProyectoPresupuestoHttpPostIn" />
+      <wsdl:output message="tns:InsUpdDel_ProyectoPresupuestoHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ProyectoSoap" type="tns:ProyectoSoap">
@@ -2917,6 +3150,24 @@
     </wsdl:operation>
     <wsdl:operation name="Listar_detalle_ose_femision">
       <soap:operation soapAction="http://tempuri.org/Listar_detalle_ose_femision" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor">
+      <soap:operation soapAction="http://tempuri.org/Listar_Ordenes_CS_Coproductor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor_DT">
+      <soap:operation soapAction="http://tempuri.org/Listar_Ordenes_CS_Coproductor_DT" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3131,6 +3382,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Get_ProyectoPresupuesto">
+      <soap:operation soapAction="http://tempuri.org/Get_ProyectoPresupuesto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GEN_PROYECTO_ID">
       <soap:operation soapAction="http://tempuri.org/GEN_PROYECTO_ID" style="document" />
       <wsdl:input>
@@ -3196,6 +3456,15 @@
     </wsdl:operation>
     <wsdl:operation name="AutorizaUsuarioProyecto">
       <soap:operation soapAction="http://tempuri.org/AutorizaUsuarioProyecto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsUpdDel_ProyectoPresupuesto">
+      <soap:operation soapAction="http://tempuri.org/InsUpdDel_ProyectoPresupuesto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3316,6 +3585,24 @@
     </wsdl:operation>
     <wsdl:operation name="Listar_detalle_ose_femision">
       <soap12:operation soapAction="http://tempuri.org/Listar_detalle_ose_femision" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Ordenes_CS_Coproductor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor_DT">
+      <soap12:operation soapAction="http://tempuri.org/Listar_Ordenes_CS_Coproductor_DT" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3530,6 +3817,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Get_ProyectoPresupuesto">
+      <soap12:operation soapAction="http://tempuri.org/Get_ProyectoPresupuesto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GEN_PROYECTO_ID">
       <soap12:operation soapAction="http://tempuri.org/GEN_PROYECTO_ID" style="document" />
       <wsdl:input>
@@ -3595,6 +3891,15 @@
     </wsdl:operation>
     <wsdl:operation name="AutorizaUsuarioProyecto">
       <soap12:operation soapAction="http://tempuri.org/AutorizaUsuarioProyecto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsUpdDel_ProyectoPresupuesto">
+      <soap12:operation soapAction="http://tempuri.org/InsUpdDel_ProyectoPresupuesto" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3722,6 +4027,22 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor">
+      <http:operation location="/Listar_Ordenes_CS_Coproductor" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor_DT">
+      <http:operation location="/Listar_Ordenes_CS_Coproductor_DT" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Listar_detg_pry_ot_sinfact">
       <http:operation location="/Listar_detg_pry_ot_sinfact" />
       <wsdl:input>
@@ -3929,6 +4250,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Get_ProyectoPresupuesto">
+      <http:operation location="/Get_ProyectoPresupuesto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GEN_PROYECTO_ID">
       <http:operation location="/GEN_PROYECTO_ID" />
       <wsdl:input>
@@ -3976,6 +4306,15 @@
     </wsdl:operation>
     <wsdl:operation name="AutorizaUsuarioProyecto">
       <http:operation location="/AutorizaUsuarioProyecto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsUpdDel_ProyectoPresupuesto">
+      <http:operation location="/InsUpdDel_ProyectoPresupuesto" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -4103,6 +4442,22 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor">
+      <http:operation location="/Listar_Ordenes_CS_Coproductor" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_Ordenes_CS_Coproductor_DT">
+      <http:operation location="/Listar_Ordenes_CS_Coproductor_DT" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Listar_detg_pry_ot_sinfact">
       <http:operation location="/Listar_detg_pry_ot_sinfact" />
       <wsdl:input>
@@ -4310,6 +4665,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Get_ProyectoPresupuesto">
+      <http:operation location="/Get_ProyectoPresupuesto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GEN_PROYECTO_ID">
       <http:operation location="/GEN_PROYECTO_ID" />
       <wsdl:input>
@@ -4357,6 +4721,15 @@
     </wsdl:operation>
     <wsdl:operation name="AutorizaUsuarioProyecto">
       <http:operation location="/AutorizaUsuarioProyecto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsUpdDel_ProyectoPresupuesto">
+      <http:operation location="/InsUpdDel_ProyectoPresupuesto" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

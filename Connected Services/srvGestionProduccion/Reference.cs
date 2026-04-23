@@ -263,10 +263,10 @@ namespace SIMANET_W22R.srvGestionProduccion {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_det_gasto_pry_ot_sin_factsu", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataTable Listar_det_gasto_pry_ot_sin_factsu(string V_CENTRO_OPERATIVO, string V_DIVISION, string V_PROYECTO, string UserName);
+        System.Data.DataTable Listar_det_gasto_pry_ot_sin_factsu(string V_CENTRO_OPERATIVO, string V_DIVISION, string V_PROYECTO, string D_FECHAINI, string D_FECHAFIN, string UserName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_det_gasto_pry_ot_sin_factsu", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataTable> Listar_det_gasto_pry_ot_sin_factsuAsync(string V_CENTRO_OPERATIVO, string V_DIVISION, string V_PROYECTO, string UserName);
+        System.Threading.Tasks.Task<System.Data.DataTable> Listar_det_gasto_pry_ot_sin_factsuAsync(string V_CENTRO_OPERATIVO, string V_DIVISION, string V_PROYECTO, string D_FECHAINI, string D_FECHAFIN, string UserName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_det_gasto_pry_ot_facsu", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -421,6 +421,13 @@ namespace SIMANET_W22R.srvGestionProduccion {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Impresion_OTs", ReplyAction="*")]
         System.Threading.Tasks.Task<string> Impresion_OTsAsync(string V_OT, string V_COD_DIV, string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ExcluyeOT_ReporteBI", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string ExcluyeOT_ReporteBI(string V_Sucursal, string V_Linea, string V_OT, string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ExcluyeOT_ReporteBI", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> ExcluyeOT_ReporteBIAsync(string V_Sucursal, string V_Linea, string V_OT, string UserName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_est_actividad", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -849,12 +856,12 @@ namespace SIMANET_W22R.srvGestionProduccion {
             return base.Channel.Listar_lista_estado_otAsync(D_FECHAFIN, D_FECHAINI, N_CEO, V_CODDIV, V_CODSTD, V_NROOTS, UserName);
         }
         
-        public System.Data.DataTable Listar_det_gasto_pry_ot_sin_factsu(string V_CENTRO_OPERATIVO, string V_DIVISION, string V_PROYECTO, string UserName) {
-            return base.Channel.Listar_det_gasto_pry_ot_sin_factsu(V_CENTRO_OPERATIVO, V_DIVISION, V_PROYECTO, UserName);
+        public System.Data.DataTable Listar_det_gasto_pry_ot_sin_factsu(string V_CENTRO_OPERATIVO, string V_DIVISION, string V_PROYECTO, string D_FECHAINI, string D_FECHAFIN, string UserName) {
+            return base.Channel.Listar_det_gasto_pry_ot_sin_factsu(V_CENTRO_OPERATIVO, V_DIVISION, V_PROYECTO, D_FECHAINI, D_FECHAFIN, UserName);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataTable> Listar_det_gasto_pry_ot_sin_factsuAsync(string V_CENTRO_OPERATIVO, string V_DIVISION, string V_PROYECTO, string UserName) {
-            return base.Channel.Listar_det_gasto_pry_ot_sin_factsuAsync(V_CENTRO_OPERATIVO, V_DIVISION, V_PROYECTO, UserName);
+        public System.Threading.Tasks.Task<System.Data.DataTable> Listar_det_gasto_pry_ot_sin_factsuAsync(string V_CENTRO_OPERATIVO, string V_DIVISION, string V_PROYECTO, string D_FECHAINI, string D_FECHAFIN, string UserName) {
+            return base.Channel.Listar_det_gasto_pry_ot_sin_factsuAsync(V_CENTRO_OPERATIVO, V_DIVISION, V_PROYECTO, D_FECHAINI, D_FECHAFIN, UserName);
         }
         
         public System.Data.DataTable Listar_det_gasto_pry_ot_facsu(string V_CENTRO_OPERATIVO, string V_DIVISIÓN, string V_PROYECTO, string UserName) {
@@ -1031,6 +1038,14 @@ namespace SIMANET_W22R.srvGestionProduccion {
         
         public System.Threading.Tasks.Task<string> Impresion_OTsAsync(string V_OT, string V_COD_DIV, string UserName) {
             return base.Channel.Impresion_OTsAsync(V_OT, V_COD_DIV, UserName);
+        }
+        
+        public string ExcluyeOT_ReporteBI(string V_Sucursal, string V_Linea, string V_OT, string UserName) {
+            return base.Channel.ExcluyeOT_ReporteBI(V_Sucursal, V_Linea, V_OT, UserName);
+        }
+        
+        public System.Threading.Tasks.Task<string> ExcluyeOT_ReporteBIAsync(string V_Sucursal, string V_Linea, string V_OT, string UserName) {
+            return base.Channel.ExcluyeOT_ReporteBIAsync(V_Sucursal, V_Linea, V_OT, UserName);
         }
         
         public System.Data.DataTable Listar_est_actividad(string N_CEO, string V_CODDIV, string V_NROVAL, string UserName) {

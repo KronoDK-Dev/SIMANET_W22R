@@ -107,6 +107,20 @@ namespace SIMANET_W22R.srvGestionProyecto {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_detalle_ose_femision", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataTable> Listar_detalle_ose_femisionAsync(string D_FECHAFIN, string D_FECHAINI, string N_CEO, string UserName);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_Ordenes_CS_Coproductor", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        void Listar_Ordenes_CS_Coproductor(string N_CEO, string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_Ordenes_CS_Coproductor", ReplyAction="*")]
+        System.Threading.Tasks.Task Listar_Ordenes_CS_CoproductorAsync(string N_CEO, string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_Ordenes_CS_Coproductor_DT", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataTable Listar_Ordenes_CS_Coproductor_DT(string N_CEO, string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_Ordenes_CS_Coproductor_DT", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataTable> Listar_Ordenes_CS_Coproductor_DTAsync(string N_CEO, string UserName);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_detg_pry_ot_sinfact", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataTable Listar_detg_pry_ot_sinfact(string CENTRO_OPERATIVO, string DIVISION, string PROYECTO, string AÑO, string UserName);
@@ -281,6 +295,14 @@ namespace SIMANET_W22R.srvGestionProyecto {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Buscar_Colaborador_xCod", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataTable> Buscar_Colaborador_xCodAsync(string V_CEO, string V_CODIGO);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Get_ProyectoPresupuesto", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseBE))]
+        System.Data.DataTable Get_ProyectoPresupuesto(string V_FTPresupuesto_CodProyecto, string V_FTPresupuesto_Sucursal, string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Get_ProyectoPresupuesto", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataTable> Get_ProyectoPresupuestoAsync(string V_FTPresupuesto_CodProyecto, string V_FTPresupuesto_Sucursal, string UserName);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GEN_PROYECTO_ID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseBE))]
@@ -406,10 +428,18 @@ namespace SIMANET_W22R.srvGestionProyecto {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AutorizaUsuarioProyecto", ReplyAction="*")]
         System.Threading.Tasks.Task<string> AutorizaUsuarioProyectoAsync(string userId, string proyId, string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsUpdDel_ProyectoPresupuesto", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseBE))]
+        string InsUpdDel_ProyectoPresupuesto(string X_N_ACCION, string X_V_FTPresupuesto_CodProyecto, string X_V_FTPresupuesto_Sucursal, string X_N_FTPresupuesto_CostoMOB, string X_N_FTPresupuesto_CostoMAT, string X_N_FTPresupuesto_CostoSER, string X_N_FTPresupuesto_CostoIND, string X_V_FTPresupuesto_USUARIO_AUDI, string X_V_FTPresupuesto_ESTACIONW, string X_V_FTPresupuesto_AUDITORIA);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsUpdDel_ProyectoPresupuesto", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> InsUpdDel_ProyectoPresupuestoAsync(string X_N_ACCION, string X_V_FTPresupuesto_CodProyecto, string X_V_FTPresupuesto_Sucursal, string X_N_FTPresupuesto_CostoMOB, string X_N_FTPresupuesto_CostoMAT, string X_N_FTPresupuesto_CostoSER, string X_N_FTPresupuesto_CostoIND, string X_V_FTPresupuesto_USUARIO_AUDI, string X_V_FTPresupuesto_ESTACIONW, string X_V_FTPresupuesto_AUDITORIA);
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -896,7 +926,7 @@ namespace SIMANET_W22R.srvGestionProyecto {
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ColaboradorProyectoBE))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProyectoBE))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1110,7 +1140,7 @@ namespace SIMANET_W22R.srvGestionProyecto {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1347,6 +1377,22 @@ namespace SIMANET_W22R.srvGestionProyecto {
             return base.Channel.Listar_detalle_ose_femisionAsync(D_FECHAFIN, D_FECHAINI, N_CEO, UserName);
         }
         
+        public void Listar_Ordenes_CS_Coproductor(string N_CEO, string UserName) {
+            base.Channel.Listar_Ordenes_CS_Coproductor(N_CEO, UserName);
+        }
+        
+        public System.Threading.Tasks.Task Listar_Ordenes_CS_CoproductorAsync(string N_CEO, string UserName) {
+            return base.Channel.Listar_Ordenes_CS_CoproductorAsync(N_CEO, UserName);
+        }
+        
+        public System.Data.DataTable Listar_Ordenes_CS_Coproductor_DT(string N_CEO, string UserName) {
+            return base.Channel.Listar_Ordenes_CS_Coproductor_DT(N_CEO, UserName);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> Listar_Ordenes_CS_Coproductor_DTAsync(string N_CEO, string UserName) {
+            return base.Channel.Listar_Ordenes_CS_Coproductor_DTAsync(N_CEO, UserName);
+        }
+        
         public System.Data.DataTable Listar_detg_pry_ot_sinfact(string CENTRO_OPERATIVO, string DIVISION, string PROYECTO, string AÑO, string UserName) {
             return base.Channel.Listar_detg_pry_ot_sinfact(CENTRO_OPERATIVO, DIVISION, PROYECTO, AÑO, UserName);
         }
@@ -1531,6 +1577,14 @@ namespace SIMANET_W22R.srvGestionProyecto {
             return base.Channel.Buscar_Colaborador_xCodAsync(V_CEO, V_CODIGO);
         }
         
+        public System.Data.DataTable Get_ProyectoPresupuesto(string V_FTPresupuesto_CodProyecto, string V_FTPresupuesto_Sucursal, string UserName) {
+            return base.Channel.Get_ProyectoPresupuesto(V_FTPresupuesto_CodProyecto, V_FTPresupuesto_Sucursal, UserName);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> Get_ProyectoPresupuestoAsync(string V_FTPresupuesto_CodProyecto, string V_FTPresupuesto_Sucursal, string UserName) {
+            return base.Channel.Get_ProyectoPresupuestoAsync(V_FTPresupuesto_CodProyecto, V_FTPresupuesto_Sucursal, UserName);
+        }
+        
         public string GEN_PROYECTO_ID(string p_ceo, string p_unidOpe, string P_linea, string p_sublinea, string P_V_CLIENTE_ID) {
             return base.Channel.GEN_PROYECTO_ID(p_ceo, p_unidOpe, P_linea, p_sublinea, P_V_CLIENTE_ID);
         }
@@ -1655,6 +1709,14 @@ namespace SIMANET_W22R.srvGestionProyecto {
         
         public System.Threading.Tasks.Task<string> AutorizaUsuarioProyectoAsync(string userId, string proyId, string UserName) {
             return base.Channel.AutorizaUsuarioProyectoAsync(userId, proyId, UserName);
+        }
+        
+        public string InsUpdDel_ProyectoPresupuesto(string X_N_ACCION, string X_V_FTPresupuesto_CodProyecto, string X_V_FTPresupuesto_Sucursal, string X_N_FTPresupuesto_CostoMOB, string X_N_FTPresupuesto_CostoMAT, string X_N_FTPresupuesto_CostoSER, string X_N_FTPresupuesto_CostoIND, string X_V_FTPresupuesto_USUARIO_AUDI, string X_V_FTPresupuesto_ESTACIONW, string X_V_FTPresupuesto_AUDITORIA) {
+            return base.Channel.InsUpdDel_ProyectoPresupuesto(X_N_ACCION, X_V_FTPresupuesto_CodProyecto, X_V_FTPresupuesto_Sucursal, X_N_FTPresupuesto_CostoMOB, X_N_FTPresupuesto_CostoMAT, X_N_FTPresupuesto_CostoSER, X_N_FTPresupuesto_CostoIND, X_V_FTPresupuesto_USUARIO_AUDI, X_V_FTPresupuesto_ESTACIONW, X_V_FTPresupuesto_AUDITORIA);
+        }
+        
+        public System.Threading.Tasks.Task<string> InsUpdDel_ProyectoPresupuestoAsync(string X_N_ACCION, string X_V_FTPresupuesto_CodProyecto, string X_V_FTPresupuesto_Sucursal, string X_N_FTPresupuesto_CostoMOB, string X_N_FTPresupuesto_CostoMAT, string X_N_FTPresupuesto_CostoSER, string X_N_FTPresupuesto_CostoIND, string X_V_FTPresupuesto_USUARIO_AUDI, string X_V_FTPresupuesto_ESTACIONW, string X_V_FTPresupuesto_AUDITORIA) {
+            return base.Channel.InsUpdDel_ProyectoPresupuestoAsync(X_N_ACCION, X_V_FTPresupuesto_CodProyecto, X_V_FTPresupuesto_Sucursal, X_N_FTPresupuesto_CostoMOB, X_N_FTPresupuesto_CostoMAT, X_N_FTPresupuesto_CostoSER, X_N_FTPresupuesto_CostoIND, X_V_FTPresupuesto_USUARIO_AUDI, X_V_FTPresupuesto_ESTACIONW, X_V_FTPresupuesto_AUDITORIA);
         }
     }
 }
