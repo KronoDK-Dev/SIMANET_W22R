@@ -422,7 +422,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             return oListViewResponsable;
         }
 
-        protected void EasyPopupBase1_onClick()
+        protected void EasyPopupBase1_onClick(Dictionary<string, object> DataBE)
         {
             Dictionary<string, string> RowSelectd =  EasyGridView1.getDataItemSelected();
             ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
@@ -497,7 +497,7 @@ namespace SIMANET_W22R.GestiondeCalidad
             this.LlenarGrilla("");
         }
 
-        protected void EasyPopupBase2_Click()
+        protected void EasyPopupBase2_Click(Dictionary<string, object> DataBE)
         {
             Dictionary<string, string> RowSelectd = EasyGridView1.getDataItemSelected();
             ControlInspeccionesSoapClient oCalidad = new ControlInspeccionesSoapClient();
@@ -640,7 +640,7 @@ namespace SIMANET_W22R.GestiondeCalidad
         }
 
 
-        protected void EasyPopupEmailSend_Click()
+        protected void EasyPopupEmailSend_Click(Dictionary<string, object> DataBE)
         {
             try
             {

@@ -267,8 +267,7 @@
             var ResultBE = oEasyDataResult.sendData();
         }
     </script>
-        <asp:HyperLink ID="HyperLink1"  style="display:block" runat="server" NavigateUrl="~/SIMANET/SeguridadPlanta/AdministrarProgramacionContratista.aspx">HyperLink</asp:HyperLink>
-       
+  
     </form>
 
     </body>

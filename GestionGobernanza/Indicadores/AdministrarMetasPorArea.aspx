@@ -22,8 +22,6 @@
            
         }
     </style>
-
- 
 </head>
 <body>
     <form id="form1" runat="server">
@@ -37,7 +35,7 @@
         var arrTitulo = new Array();
         var arrResult = new Array();
         var arrMeta = new Array();
-        function ObtenerData() {
+        AdministrarMetasPorArea.ObtenerData = function () {
             var tblMaster = jNet.get(AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYIDAREAINFO] + "_" + AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYIDINDICADOR] + "-" + AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYQAÑO]);
 
             arrTitulo.Clear();
@@ -58,53 +56,11 @@
         }
 
         function PaintGraph() {
-            ObtenerData();
-
-            var densityCanvas = document.getElementById("Chart_" + AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYIDAREAINFO]);
-            Chart.defaults.global.defaultFontFamily = "Lato";
-            Chart.defaults.global.defaultFontSize = 18;
-
-            var densityData = {
-                label: 'RESULTADO',
-                data: arrResult,
-                backgroundColor: 'rgba(0, 99, 132, 0.6)',
-                borderColor: 'rgba(0, 99, 132, 1)',
-                yAxisID: "y-axis-density"
-            };
-
-            var gravityData = {
-                label: 'META',
-                data: arrMeta,
-                backgroundColor: 'rgba(99, 132, 0, 0.6)',
-                borderColor: 'rgba(99, 132, 0, 1)',
-                yAxisID: "y-axis-gravity"
-            };
-
-            var planetData = {
-                labels: arrTitulo,
-                datasets: [densityData, gravityData]
-            };
-
-            var chartOptions = {
-                scales: {
-                    xAxes: [{
-                        barPercentage: 1,
-                        categoryPercentage: 0.6
-                    }],
-                    yAxes: [{
-                        id: "y-axis-density"
-                    }, {
-                        id: "y-axis-gravity"
-                    }]
-                }
-            };
-
-            var barChart = new Chart(densityCanvas, {
-                type: 'bar',
-                data: planetData,
-                options: chartOptions
-            });
+            AdministrarMetasPorArea.ObtenerData();
+            AdministrarMetasPorArea.ViewGraphPrevio();
         }
+
+        //https://stackoverflow.com/questions/28180871/grouped-bar-charts-in-chart-js
     </script>
 
 
@@ -323,6 +279,7 @@
                   ColletionParams: oColletionParams,
                   fnOnComplete: function () {
                       PaintGraph();//proyecta el gracico en el contendor del viewgraph
+                      AdministrarMetasPorArea.Demo();
                   }
               };
 
@@ -338,6 +295,9 @@
         return (${sCmd})`
             )();
         }
+
+
+
 
 
         AdministrarMetasPorArea.ActualizarDatos = function (e, oDataIndicadorBE) {
@@ -386,6 +346,55 @@
             var IdResult = oEasyDataResult.sendData();
 
             return IdResult;          
+        }
+
+
+        AdministrarMetasPorArea.ViewGraphPrevio = function () {
+           // const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
+            var ctx = document.getElementById("Chart_" + AdministrarMetasPorArea.Params[AdministrarMetasPorArea.KEYIDAREAINFO]);
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: arrTitulo,
+                    datasets: [{
+                        label: 'META',
+                        backgroundColor: 'rgba(255, 205, 86, 0.5)',
+                        borderColor: 'rgba(255, 205, 86, 1)',
+                        data: arrMeta,
+                        borderWidth: 2,
+                        borderRadius:100,
+                        borderSkipped: true
+                    },
+                    {
+                        label: 'RESULTADO',
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        data: arrResult,
+                        borderWidth: 2,
+                        borderRadius: 100,
+                        borderSkipped: true
+                    }]
+                },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Chart.js Bar Chart - Stacked'
+                        },
+                    },
+                    responsive: true,
+                    scales: {
+                        x: {
+                            stacked: true,
+                        },
+                        y: {
+                            stacked: true
+                        }
+                    }
+                }
+            });
+
+
         }
 
     </script>

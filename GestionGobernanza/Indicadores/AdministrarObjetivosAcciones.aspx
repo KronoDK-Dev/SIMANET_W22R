@@ -808,8 +808,7 @@
       </script>
 
           <asp:Button ID="btnPostBack" runat="server" Text="Button" OnClick="btnPostBack_Click" />
-          <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/GestionGobernanza/Indicadores/AdministrarInformeMetaPorArea.aspx" Visible="False">HyperLink</asp:HyperLink>
-          <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/GestionGobernanza/Indicadores/AdministrarResponsablePorArea.aspx" Visible="False">Responsable por Area</asp:HyperLink>
+         
     </form>
   
 </body>

@@ -46,7 +46,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
         public void LlenarDatos()
         {
             string cmll = EasyUtilitario.Constantes.Caracteres.ComillaDoble;
-            string htmlCanvas = "<canvas id=" + cmll + "Chart_" + this.IdAreaInfo + cmll + " width =" + cmll + "600" + cmll + " height =" + cmll + "100" + cmll + ">demo</canvas>";
+            string htmlCanvas = "<canvas id=" + cmll + "Chart_" + this.IdAreaInfo + cmll + " width =" + cmll + "600" + cmll + " height =" + cmll + "100" + cmll + "></canvas>";
             Page.Form.Controls.Add(new LiteralControl(htmlCanvas));
         }
 
