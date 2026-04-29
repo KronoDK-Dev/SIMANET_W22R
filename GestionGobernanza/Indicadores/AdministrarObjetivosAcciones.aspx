@@ -502,8 +502,9 @@
                       var oParamCollections = new SIMA.ParamCollections();
                       var oParam = new SIMA.Param("IdItem", ((DetalleObjetivo.Data==undefined)?"0": DetalleObjetivo.Data.IDITEM), TipodeDato.Int);
                           oParamCollections.Add(oParam);
-                      // oParam = new SIMA.Param("Codigo", txtCodigo.GetValue());
-                          oParam = new SIMA.Param("Codigo", '0');
+
+                      var Codigo = (txtCodigo.GetValue().length > 0) ? ObjetivoBE.CODIGOOLD : "0";
+                          oParam = new SIMA.Param("Codigo", Codigo);
                           oParamCollections.Add(oParam);
 
                           oParam = new SIMA.Param("Nombre", txtNombre.GetValue());
@@ -549,8 +550,8 @@
                       var oParam = new SIMA.Param("IdItem", ((DetalleAcciones.Data == undefined)?"0":DetalleAcciones.Data.IDITEM), TipodeDato.Int);
                       oParamCollections.Add(oParam);
 
-                      //oParam = new SIMA.Param("Codigo", txtCodigo.GetValue());
-                      oParam = new SIMA.Param("Codigo", '0');
+                      var Codigo = (txtCodigo.GetValue().length > 0) ? AccionBE.CODIGOOLD : "0";
+                      oParam = new SIMA.Param("Codigo", Codigo);
                       oParamCollections.Add(oParam);
 
                       oParam = new SIMA.Param("Nombre", txtNombre.GetValue());
@@ -595,8 +596,9 @@
                       var oParamCollections = new SIMA.ParamCollections();
                       var oParam = new SIMA.Param("IdItem", ((DetalleIndicador.Data == undefined)?"0": DetalleIndicador.Data.IDITEM), TipodeDato.Int);
                       oParamCollections.Add(oParam);
-                      //oParam = new SIMA.Param("Codigo", txtCodigo.GetValue());
-                      oParam = new SIMA.Param("Codigo", '0');
+
+                      var Codigo = (txtCodigo.GetValue().length > 0) ? IndicadorBE.CODIGOOLD : "0";
+                      oParam = new SIMA.Param("Codigo", Codigo);
                       oParamCollections.Add(oParam);
                       oParam = new SIMA.Param("Nombre", txtNombre.GetValue());
                       oParamCollections.Add(oParam);

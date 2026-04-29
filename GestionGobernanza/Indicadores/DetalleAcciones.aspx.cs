@@ -117,7 +117,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
         public void CargarModoNuevo()
         {
-            throw new NotImplementedException();
+            EasyUtilitario.Helper.Genericos.RegistraBlockScript("iAcc", "var AccionBE={CODIGOOLD:0};");
         }
 
         public void CargarModoModificar()
@@ -129,6 +129,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                     this.txtCodigo.SetValue(dr["CODIGO"].ToString());
                     this.txtNombre.SetValue(dr["NOMBRE"].ToString());
                     this.txtDescripcion.SetValue(dr["DESCRIPCION"].ToString());
+                    EasyUtilitario.Helper.Genericos.RegistraBlockScript("iAcc", "var AccionBE=" + EasyUtilitario.Helper.Genericos.DataRowToStringJson(dr) + ";");
                 }
             }
         }

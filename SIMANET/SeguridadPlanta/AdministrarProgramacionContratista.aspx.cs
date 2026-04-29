@@ -252,7 +252,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             switch (oEasyGridButton.Id)
             {
                 case "btnEliminar":
-                    EliminarProgramacion(Convert.ToInt32(Recodset["Periodo"]), Convert.ToInt32(Recodset["NroProgramacion"]));
+                   // EliminarProgramacion(Convert.ToInt32(Recodset["Periodo"]), Convert.ToInt32(Recodset["NroProgramacion"]));
                     this.LlenarGrilla(EasyGestorFiltro1.getFilterString());
                     break;
             }

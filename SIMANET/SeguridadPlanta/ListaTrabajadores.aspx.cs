@@ -252,16 +252,27 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                         tblH.Style.Add("width", "100%");
 
                         System.Web.UI.WebControls.CheckBox chk = new System.Web.UI.WebControls.CheckBox();
-                    // chk.Checked = ((drvr["SCTRSalud"].ToString().Equals("SI")) ? true : false);
-                    chk.Checked = ((dr["IdEstadoS"].ToString() == "1") ? true : false);
-                    chk.Attributes.Add(Utilitario.Enumerados.EventosJavaScript.onchange.ToString(), "CheckSCTR(this)");
+                        if (dr["IdEstadoS"].ToString().Length == 0)//en caso no se halla procesado por el netsuite
+                        {
+                            chk.Checked = ((drvr["SCTRSalud"].ToString().Equals("SI")) ? true : false);
+                        }
+                        else
+                        {
+                            chk.Checked = ((dr["IdEstadoS"].ToString() == "1") ? true : false);
+                        }
+                        chk.Attributes.Add(Utilitario.Enumerados.EventosJavaScript.onchange.ToString(), "CheckSCTR(this)");
                         chk.Attributes["Data"] = "{IdTipo:1,NroDoc:'" + dr["NroDNI"].ToString() + "',IdSCTRD:'" + dr["IdDetalleSCTR_S"].ToString() +"',IdEstado:" + dr["IdEstadoS"].ToString()  + "}";
                         
                     tblH.Rows[0].Cells[0].Controls.Add(chk);
 
                         chk = new System.Web.UI.WebControls.CheckBox();
-                    //chk.Checked = ((drvr["SCTRPension"].ToString().Equals("SI")) ? true : false);
-                    chk.Checked = ((dr["IdEstadoP"].ToString() == "1") ? true : false);
+                        if(dr["IdEstadoP"].ToString().Length == 0){
+                            chk.Checked = ((drvr["SCTRPension"].ToString().Equals("SI")) ? true : false);
+                        }
+                        else{
+                            chk.Checked = ((dr["IdEstadoP"].ToString() == "1") ? true : false);
+                        }
+                        
                         chk.Attributes.Add(Utilitario.Enumerados.EventosJavaScript.onchange.ToString(), "CheckSCTR(this)");
                         chk.Attributes["Data"] = "{IdTipo:2,NroDoc:'" + dr["NroDNI"].ToString() + "',IdSCTRD:'" + dr["IdDetalleSCTR_P"].ToString() + "',IdEstado:" + dr["IdEstadoP"].ToString()  + "}";
 

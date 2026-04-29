@@ -36,7 +36,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
         public void CargarModoConsulta()
         {
-            throw new NotImplementedException();
+            EasyUtilitario.Helper.Genericos.RegistraBlockScript("iAcc", "var IndicadorBE={CODIGOOLD:0};");
         }
 
         public void CargarModoModificar()
@@ -52,7 +52,8 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                     this.txtCodigo.SetValue(dr["CODIGO"].ToString());
                     this.txtNombre.SetValue(dr["NOMBRE"].ToString());
                     this.txtDescripcion.SetValue(dr["DESCRIPCION"].ToString());
-                   // this.txtMeta.SetValue(dr["VAL5"].ToString());
+                    // this.txtMeta.SetValue(dr["VAL5"].ToString());
+                    EasyUtilitario.Helper.Genericos.RegistraBlockScript("iAcc", "var IndicadorBE=" + EasyUtilitario.Helper.Genericos.DataRowToStringJson(dr) + ";");
                 }
             }
         }
@@ -109,7 +110,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
         public void CargarModoNuevo()
         {
-            throw new NotImplementedException();
+            EasyUtilitario.Helper.Genericos.RegistraBlockScript("iAcc", "var AccionBE={CODIGOOLD:0};");
         }
 
         public void CargarModoPagina()

@@ -34,7 +34,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
 
         public void CargarModoConsulta()
         {
-            throw new NotImplementedException();
+            EasyUtilitario.Helper.Genericos.RegistraBlockScript("iAcc", "var ObjetivoBE={CODIGOOLD:0};");
         }
 
         public DataTable ListarTodos(string IdTblRel,string IdItemRel,string UserName)
@@ -79,6 +79,7 @@ namespace SIMANET_W22R.GestionGobernanza.Indicadores
                     this.txtCodigo.Text = dr["CODIGO"].ToString();
                     this.txtNombre.Text = dr["NOMBRE"].ToString();
                     this.txtDescripcion.Text = dr["DESCRIPCION"].ToString();
+                    EasyUtilitario.Helper.Genericos.RegistraBlockScript("iAcc", "var ObjetivoBE=" + EasyUtilitario.Helper.Genericos.DataRowToStringJson(dr) + ";");
                 }
             }
         }

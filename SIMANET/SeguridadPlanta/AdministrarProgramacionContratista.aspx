@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <td>
-                    <cc1:EasyGridView ID="EasyGRContrata"   AutoGenerateColumns="False" ShowFooter="True" TituloHeader="Programación de Contratistas" ToolBarButtonClick="OnEasyGridButton_Click" Width="100%" AllowPaging="True" runat="server" fncExecBeforeServer="" OnRowDataBound="EasyGRContrata_RowDataBound" OnPageIndexChanged="EasyGRContrata_PageIndexChanged" OnEasyGridButton_Click="EasyGRContrata_EasyGridButton_Click">
+                    <cc1:EasyGridView ID="EasyGRContrata"   AutoGenerateColumns="False" ShowFooter="True" TituloHeader="Programación de Contratistas" ToolBarButtonClick="OnEasyGridButton_Click" Width="100%" AllowPaging="True" runat="server" fncExecBeforeServer="GridToolBarValidate" OnRowDataBound="EasyGRContrata_RowDataBound" OnPageIndexChanged="EasyGRContrata_PageIndexChanged" OnEasyGridButton_Click="EasyGRContrata_EasyGridButton_Click">
                             <EasyGridButtons>
                                 <cc1:EasyGridButton ID="btnAgregar" Descripcion="" Icono="fa fa-plus-square-o" MsgConfirm="" RequiereSelecciondeReg="False" RunAtServer="False" SilenceWait="True" SolicitaConfirmar="False" Texto="Agregar" Ubicacion="Derecha" />
                                 <cc1:EasyGridButton ID="btnEliminar" Descripcion="" Icono="fa fa-close" MsgConfirm="Desea eliminar ahora el registro seleccionado?" RequiereSelecciondeReg="True" RunAtServer="True" SilenceWait="False" SolicitaConfirmar="True" Texto="Eliminar" Ubicacion="Derecha" />
@@ -165,6 +165,27 @@
 
     </form>
     <script>
+        function GridToolBarValidate(btnItem, ItemRowBE) {
+            switch (btnItem.Id) {
+                case "btnEliminar"://Verificar si tiene programacion antes de ser eliminado
+                    var Retorno=false
+                    if (AdministrarProgramacionContratista.VeridicaPermanencia(ItemRowBE.Periodo, ItemRowBE.NroProgramacion) == 0) {
+                        Retorno = true;
+                    }
+                    else {
+                        var msgConfig = { Titulo: 'PROGRAMACION CONTRATISA', Descripcion: 'Registro que desea eliminar se encuentra bloqueado..<br>Una Programación estara disponible de eliminar cuando no existan ingresos de trabajadores viculados a esta programación' };
+                        var oMsg = new SIMA.MessageBox(msgConfig);
+                        oMsg.Alert();
+                    }
+
+                    return Retorno;
+                    break;
+                default:
+                    return true;
+                    break;
+            }
+            
+        }
 
         function OnEasyGridButton_Click(btnItem, DetalleBE) {
 
@@ -191,6 +212,7 @@
                     AdministrarProgramacionContratista.AdministrarTrabajadoresyEquipos(DetalleBE);
                     
                     break;
+               
                 case "btnCopiar":
 
                     var Url = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/DetalleCopyProg.aspx";
@@ -383,6 +405,28 @@
 
               var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
               var ResultBE = oEasyDataResult.sendData();
+          }
+
+
+          AdministrarProgramacionContratista.VeridicaPermanencia = function (Periodo,NroProgramacion) {
+              var oParamCollections = new SIMA.ParamCollections();
+              var oParam = new SIMA.Param("Periodo", Periodo, TipodeDato.Int);
+              oParamCollections.Add(oParam);
+
+              oParam = new SIMA.Param("NroProg", NroProgramacion, TipodeDato.Int);
+              oParamCollections.Add(oParam);
+
+              oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
+              oParamCollections.Add(oParam);
+
+              var oEasyDataInterConect = new EasyDataInterConect();
+              oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
+              oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + "SIMANET/SeguridadPlanta/Contratista.asmx";
+              oEasyDataInterConect.Metodo = 'ProgramacionPermanencia_count';
+              oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+              var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
+              return oEasyDataResult.sendData();
           }
 
       </script>
