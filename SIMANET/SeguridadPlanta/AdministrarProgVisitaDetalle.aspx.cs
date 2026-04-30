@@ -51,7 +51,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             
             hfUsuario.Value = ReqUsuario;
             hfTipoProgra.Value = ReqTipoPrograma;
-
+            hfAnio.Value = string.IsNullOrEmpty(ReqPeriodo) ? this.Año : ReqPeriodo; ;
                 /*
                  * para que funciones PathFotosPersonal debe heredarse de PaginaBase
                 string Foto = this.PathFotosPersonal + drSol["NRODOCDNI"].ToString() + ".jpg";
@@ -81,8 +81,8 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         public static ResultadoBE GuardarProgramacion(DetalleProgramacionCabeceraDTO data)
         {
             // Aquí ya tienes tipos fuertes
-            int iIdEntidad =0 , iIdCiaSeguros= 99 , iIdUsuarioAprobador=0;
-            string sRpta = "";
+            int iIdEntidad = 0 , iIdCiaSeguros= 99 , iIdUsuarioAprobador=0;
+            string sRpta = "", sListaCorreos;
             try
             {
 
@@ -94,6 +94,9 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 
                 if (data.Tipovisita <= 0)
                     return new ResultadoBE { Ok = false, Mensaje = "Debe seleccionar el Tipo de Visita." };
+
+                if (data.Tipovisita.ToString() !="5" && string.IsNullOrWhiteSpace(data.Poliza))
+                    return new ResultadoBE { Ok = false, Mensaje = "Debe seleccionar ingresar una Compañia de Seguro" };
 
                 if (data.AreaDestino <= 0)
                     return new ResultadoBE { Ok = false, Mensaje = "Debe seleccionar el Área Destino." };
@@ -131,32 +134,50 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
                 #endregion 
 
-                var be = new DetalleProgramacionCabeceraBE
-                {
-                    // obligatorios
-                    Tipovisita = data.Tipovisita,
-                    TipoProgra = data.TipoProgra,  
-                    AreaDestino = data.AreaDestino,
-                    ConocimientoA = data.ConocimientoA,
-                    FechaInicio = DateTime.Parse(data.FechaInicio),
-                    HoraIngreso = TimeSpan.Parse(data.HoraIngreso),
-                    // opcionales
-                    FechaTermino = DateTime.Parse(data.FechaTermino),
-                    IdUsuario = data.IdUsuario,   
-                    Poliza = data.Poliza,
-                    Asunto = data.Asunto,
-                   
-                    FechaRegistro = DateTime.Now
-                };
 
+                sListaCorreos = data.ConocimientoA.ToString().Replace("|", "*");
+
+                var ProgramaBE = new ProgramacionBE
+                {
+
+
+                    // OBLIGATORIOS
+                    ID_TIPO_VISITA = data.Tipovisita,
+                    TIPO_PROGRAMACION = data.TipoProgra,
+                    ID_LUGAR_TRABAJO = data.AreaDestino,
+                    TRABAJOS_A_REALIZAR = data.ConocimientoA,
+
+                    FECHA_INICIO = DateTime.Parse(data.FechaInicio),
+                    HORA_INICIO = data.HoraIngreso,   // viene como string HHmm o HH:mm
+                    HORA_TERMINO = "18:00", // valor por defecto
+                    // OPCIONALES
+                    FECHA_TERMINO = DateTime.Parse(data.FechaTermino),
+                    ID_USUARIO_REGISTRO = data.IdUsuario,
+                    UserName = data.IdUsuario.ToString(),
+                    NRO_POLIZA = data.Poliza,
+                    OBSERVACIONES = data.Asunto,
+                    PERIODO = data.Anio,
+                    FECHA_REGISTRO = DateTime.Now
+
+                };
+                
+                // datos por defecto
+                ProgramaBE.ID_ENTIDAD = 0; // visita no empresa
+                ProgramaBE.ID_USUARIO_APROBACION = 0; // en el primer registro es valor 0
+                ProgramaBE.ID_ESTADO = 1; // COLOCAMOS DIRECTO EL VALOR DE 1 PARA PODER VISUALIZAR EN LA GRILLA, PERO ESTE VALOR DEBE COLOCARSE AL FINAL LA CARGA DEL DETALLE.
                 switch (data.TipoProgra.ToString())
                 {
                     case "1":
 
-                        switch (ReqTipoVisita)
+                        switch (data.Tipovisita.ToString())
                         {
                             case "5":
-                               // "PROGRAMACIÓN VISITAS GENERALES";
+                                // "PROGRAMACIÓN VISITAS GENERALES";
+                                // "PROGRAMACIÓN VISITAS (PERSONAL)";
+
+                                ProgramaBE.ID_CIA_SEGUROS = 99;
+                                ProgramaBE.NRO_POLIZA = "S/N";
+                                iIdUsuarioAprobador = 0;
                                 break;
 
                             case "2":
@@ -168,7 +189,8 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                                 // fallback si llega otro valor o vacío
                                 // "PROGRAMACIÓN VISITAS (PERSONAL)";
                                 iIdEntidad = 0;
-                                iIdCiaSeguros = 99;
+                                ProgramaBE.ID_CIA_SEGUROS = 99;
+                                ProgramaBE.NRO_POLIZA = "S/N";
                                 iIdUsuarioAprobador = 0;
                                 break;
                         }
@@ -189,17 +211,15 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 }
 
 
-                // llamada al servicio
+                // llamada al servicio, debe pasar una entidad y cadena de listados de personal a enviar correo , asi como listado de anexos
                 VisitasSoapClient oVisitas = new VisitasSoapClient();
-                sRpta = oVisitas.ProgramacionVisita_Ins(be.Tipovisita.ToString() , iIdEntidad.ToString(), be.AreaDestino.ToString(), be.FechaInicio.ToString(), be.FechaTermino.ToString(),
-                                                       be.HoraIngreso.ToString(), null, iIdCiaSeguros.ToString(), be.Poliza , be.Asunto,
-                                                       be.IdUsuario.ToString(), be.TipoProgra.ToString(), iIdUsuarioAprobador.ToString(), "1", be.IdUsuario.ToString());    //Servicio.Guardar(be);
+                sRpta = oVisitas.ProgramacionVisitas_Ins(ProgramaBE, sListaCorreos ,"");    //Servicio.Guardar(be); el separado de correos del control es | pero el metodo espera *
 
                 
                 return new ResultadoBE
                 {
                     Ok = true,
-                    Mensaje = "Guardado correcto",
+                    Mensaje = "Programación "+ sRpta+ " generada correctamente...",
                     IdGenerado = sRpta //rpta
                 };
             }

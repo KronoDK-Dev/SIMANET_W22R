@@ -91,10 +91,10 @@
              var collection = eac_ConocimientoA.GetCollection();
              var emails = collection
                  .map(function (item) {
-                     return item["Email"];   // ← nombre cmpo a capturar
+                     return item["idUsuario"] + ";";;   // ← nombre cmpo a capturar
                  })
                  .filter(e => e); // quita null / undefined
-             var emailsStr = emails.join("|");
+             var emailsStr = emails.join("*");
 
 
 
@@ -108,8 +108,8 @@
                  Poliza       : txtPoliza.GetValue(),
                  Asunto       : txtAsunto.GetValue(),
                  IdUsuario    : hfUsuario.value, 
-                 TipoProgra   : hfTipoProgra.value 
-                 
+                 TipoProgra   : hfTipoProgra.value, 
+                 Anio         : hfAnio.value
                  
 
              };
@@ -370,8 +370,9 @@
             -->
      </table>
         <!-- controles ocultos para mantener los valores enviados  -->
-       <asp:HiddenField ID="hfUsuario" runat="server" />
+        <asp:HiddenField ID="hfUsuario" runat="server" />
         <asp:HiddenField ID="hfTipoProgra" runat="server" />
+        <asp:HiddenField ID="hfAnio" runat="server" />
     </form>
 </body>
 </html>

@@ -190,7 +190,7 @@
                                     <cc2:EasyFiltroParamURLws ObtenerValor="FormControl" ParamName="S_PROGRAMACION" Paramvalue="etbCriterio" TipodeDato="String" />
                                     <cc2:EasyFiltroParamURLws ObtenerValor="Session" ParamName="S_PERIODO" Paramvalue="S_PERIODO" TipodeDato="String" />
                                     <cc2:EasyFiltroParamURLws ObtenerValor="Session" ParamName="S_TIPOPROGRA" Paramvalue="S_TIPOPROGRA" TipodeDato="String" />
-                                     <cc2:EasyFiltroParamURLws ObtenerValor="Fijo" ParamName="IdUser" Paramvalue="86" TipodeDato="String" />
+                                     <cc2:EasyFiltroParamURLws ObtenerValor="Session" ParamName="IdUsuario" Paramvalue="IdUsuario" TipodeDato="String" />
                                 </UrlWebServicieParams>
                             </DataInterconect>
 
