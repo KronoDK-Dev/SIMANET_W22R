@@ -45,6 +45,9 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             dtError.Columns.Add("HoraInicio", typeof(string));
             dtError.Columns.Add("NroVisitas", typeof(Int16));
             dtError.Columns.Add("idEstado", typeof(Int16));
+            dtError.Columns.Add("FechaInicioStr", typeof(string));
+            dtError.Columns.Add("FechaTerminoStr", typeof(string));
+            
 
             try
             {
@@ -113,6 +116,9 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                     {
                         DataRow row = dtError.NewRow();
                         row["Observaciones"] = "No existen registros para los parámetros consultados: nro programación/periodo/tipo-programación " + S_PROGRAMACION + "-"+ S_PERIODO+ "-"+ S_TIPOPROGRA;
+                        row["idEstado"] = 0;
+                        row["FechaInicioStr"] = "";
+                        row["FechaTerminoStr"] = "";
                         dtError.Rows.Add(row);
                         return dtError;
                     }
@@ -120,7 +126,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 else
                 {
                     DataRow row = dtError.NewRow();
-                    row["Observaciones"] = "No existen registros para los parámetros consultados: nro programación/periodo/tipo-programación " + S_PROGRAMACION + "-" + S_PERIODO + "-" + S_TIPOPROGRA;
+                    row["Observaciones"] = "No existen registros para los parámetros consultados: nro programación/periodo/tipo-programación/usuario " + S_PROGRAMACION + "-" + S_PERIODO + "-" + S_TIPOPROGRA + "-"+ IdUser;
                     row["idEstado"] = 0;
                     dtError.Rows.Add(row);
                     EnsureStrCols(dtError);
@@ -132,6 +138,9 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 // Log del error y lanzar una excepción HTTP 500
                 DataRow row = dtError.NewRow();
                 row["Observaciones"] = "Error en servicio: " + ex.Message;
+                row["idEstado"] = 0;
+                row["FechaInicioStr"] = "";
+                row["FechaTerminoStr"] = "";
                 dtError.Rows.Add(row);
                 return dtError;
             }

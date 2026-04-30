@@ -111,9 +111,11 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 {
 
                     // ****** Datos en duro para carga de controles de pruebas ****
+                    /*
                     string sid = "943";
                     string suser = "vybanez";
                     memoriacache.Guarda2params(sid, suser, minutos: 30);
+                */
                     //***********************************************************
 
 
