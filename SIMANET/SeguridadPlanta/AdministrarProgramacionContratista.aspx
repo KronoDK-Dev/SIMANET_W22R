@@ -378,6 +378,7 @@
 
 
           AdministrarProgramacionContratista.RegistrarTrabajadorSCTR = function (IdSctr, IdSCTRDetalle, NroDoc, IdEstado) {
+
               var oParamCollections = new SIMA.ParamCollections();
               var oParam = new SIMA.Param("IdSCTR", IdSctr);
               oParamCollections.Add(oParam);

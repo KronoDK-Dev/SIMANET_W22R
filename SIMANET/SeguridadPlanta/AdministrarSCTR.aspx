@@ -44,10 +44,6 @@
                     <td>
                         <cc1:EasyGridView ID="EasyGRSCTR"   AutoGenerateColumns="False" ShowFooter="True" ToolBarButtonClick="OnEasyGridButtonSCTR_Click" TituloHeader="SCTR" Width="100%" AllowPaging="True" runat="server" fncExecBeforeServer="" OnRowDataBound="EasyGRSCTR_RowDataBound" >
 
-                             <EasyGridButtons>
-                                 <cc1:EasyGridButton ID="btnAgregar" Descripcion="" Icono="fa fa-plus-square-o" MsgConfirm="" RequiereSelecciondeReg="False" RunAtServer="False" SilenceWait="True" SolicitaConfirmar="False" Texto="Agregar" Ubicacion="Derecha" />
-                             </EasyGridButtons>
-
                                 <EasyStyleBtn ClassName="btn btn-primary" FontSize="1em" TextColor="white" />
                                 <DataInterconect MetodoConexion="WebServiceInterno"></DataInterconect>
                      

@@ -37,7 +37,7 @@
                 }
             });
             //------------------------------------------------------------------------------------------------------------
-           
+            aler();
         }
     </script>
 </head>
@@ -232,7 +232,7 @@
                   + '			</TD>'
                   + '		</TR>'
                   + '</TABLE>';
-              //Ext.MessageBox.alert('DIAS AUTORIZADOS', srtHTML);
+              
 
               var msgConfig = {
                   Titulo: "Dias Autorizados.."

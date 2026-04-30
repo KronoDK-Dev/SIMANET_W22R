@@ -433,10 +433,16 @@
                 var idSctrPension = "";
                 var idSctrSalud = "";
                 DetalleProgramacion.Modificar();
+
+         
+
                 //Si Existen diferencia entre las fechas de los SCTR  se procedera a clonar con las nuevas fecha y a establecer como no vigente lo anterior
                 if (DetalleProgramacion.ValidarSCTR(1)) {
                     //desactivar SCTR
-                    DetalleProgramacion.EliminarSCTRActivo(sctrBE.IdSCTRp);
+
+                    if (sctrBE.IdSCTRp != undefined) {
+                        DetalleProgramacion.EliminarSCTRActivo(sctrBE.IdSCTRp);
+                    }
                     idSctrPension = DetalleProgramacion.InsertarSCTR(1, DetalleProgramacion.Params[DetalleProgramacion.KEYQAÑO], DetalleProgramacion.Params[DetalleProgramacion.KEYQIDPROGRAMACION], txtPension.GetValue(), FSegIni.GetValue(), FSegFin.GetValue());
                     DetalleProgramacion.ListarTrabajadores().Rows.forEach(function (oDataRow, r) {
                         AdministrarProgramacionContratista.RegistrarTrabajadorSCTR(idSctrPension, "0", oDataRow["NroDni"].toString(), 1);
@@ -445,7 +451,10 @@
                 }
                 if (DetalleProgramacion.ValidarSCTR(2)) {
                     //desactivar SCTR
-                    DetalleProgramacion.EliminarSCTRActivo(sctrBE.IdSCTRs);
+                    if (sctrBE.IdSCTRs != undefined) {
+                        DetalleProgramacion.EliminarSCTRActivo(sctrBE.IdSCTRs);
+                    }
+
                     idSctrSalud = DetalleProgramacion.InsertarSCTR(2, DetalleProgramacion.Params[DetalleProgramacion.KEYQAÑO], DetalleProgramacion.Params[DetalleProgramacion.KEYQIDPROGRAMACION], txtSalud.GetValue(), FSegIniS.GetValue(), FSegFinS.GetValue());
 
                     DetalleProgramacion.ListarTrabajadores().Rows.forEach(function (oDataRow, r) {
@@ -453,7 +462,7 @@
                     });
 
                 }
-              
+
                 /*EasyGRSCTR.ItemsforEach(function (oRow) {
                     var oDataRow = oRow.GetData();
                     alert(oDataRow["IdSCTR"]);

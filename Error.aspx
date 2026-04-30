@@ -33,10 +33,11 @@
                 #copyright{font-size:10px}
                 @media only screen and (min-width:48em){main{width:85%}#fourohno{animation:linear smokey 12s 5;transform-box:fill-box;transform-origin:bottom center}@keyframes smokey{0%{opacity:0;transform:scale(1,.5)}70%{opacity:.4}100%{opacity:0;transform:scale(1,1)}}}
                 .ColorMsgLbl {
+                    font-weight:bold;
                     color: black;
                 }
                 .ColorMsg {
-                    color: white;
+                    color: darkblue;
 
                 }
         </style>
@@ -67,7 +68,7 @@
                                         <td  style="width:100%" align="left"><text><tspan class="ColorMsg" id="LblPagina" runat="server" >Metodo</tspan></text> </td>
                                     </tr>
 				                    <tr>
-                                        <td align="left" class="ColorMsgLbl">Metodo:</td>
+                                        <td align="left" class="ColorMsgLbl">Método:</td>
                                         <td  style="width:100%" align="left"><text><tspan class="ColorMsg" id="LblMetodo" runat="server">Metodo</tspan></text></td>
                                     </tr>
                                     <tr>
