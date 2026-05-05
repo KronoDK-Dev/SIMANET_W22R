@@ -117,7 +117,21 @@ namespace SIMANET_W22R.General
 
                 string msg = ex.ToString().Replace("'", "");
                 context.Response.Clear();
-                context.Response.Write($"console.error('Error en el metodo ProcessRequest del servidor: {msg}');");
+
+                string errorText = $"Error en el metodo: ProcessRequest, de la página: EasyDataInterConectPrc del servidor:\n {sw}\n {msg}";
+
+
+                // Esto convierte todo el texto a un literal JS válido
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(errorText);
+
+                // Escribes JS ejecutable REAL
+                context.Response.Write($@"
+                    <script>
+                        console.error({json});
+                    </script>
+                    ");
+
+                
                 context.Response.End();
 
             }

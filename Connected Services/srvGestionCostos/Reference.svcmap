@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.10.18.10:90/Core/GestionCostos/Costos.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://10.10.90.4:8000/Core/GestionCostos/Costos.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Costos.wsdl" MetadataType="Wsdl" ID="17dba127-a2f7-412f-ac23-c950ca3b51ec" SourceId="1" SourceUrl="http://10.10.18.10:90/Core/GestionCostos/Costos.asmx?wsdl" />
-    <MetadataFile FileName="Costos.disco" MetadataType="Disco" ID="67819684-8a50-4cb3-9798-5d12ee6bbf5f" SourceId="1" SourceUrl="http://10.10.18.10:90/Core/GestionCostos/Costos.asmx?disco" />
+    <MetadataFile FileName="Costos1.disco" MetadataType="Disco" ID="71d886e8-3a6a-4664-8324-d25d8687b50d" SourceId="1" SourceUrl="http://10.10.90.4:8000/Core/GestionCostos/Costos.asmx?disco" />
+    <MetadataFile FileName="Costos1.wsdl" MetadataType="Wsdl" ID="20884c8f-6767-41f8-841f-1c85e48a5344" SourceId="1" SourceUrl="http://10.10.90.4:8000/Core/GestionCostos/Costos.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -14,7 +14,7 @@
     <RootNamespace>SIMANET_W22R</RootNamespace>
     <AssemblyName>SIMANET_W22R</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44377</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
@@ -100,14 +100,14 @@
     <Reference Include="DocumentFormat.OpenXml.Framework, Version=3.1.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>packages\DocumentFormat.OpenXml.Framework.3.1.1\lib\net46\DocumentFormat.OpenXml.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="EPPlus, Version=6.2.14.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
-      <HintPath>packages\EPPlus.6.2.14\lib\net462\EPPlus.dll</HintPath>
+    <Reference Include="EPPlus, Version=7.7.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.7.7.0\lib\net462\EPPlus.dll</HintPath>
     </Reference>
-    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
-      <HintPath>packages\EPPlus.Interfaces.6.1.1\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    <Reference Include="EPPlus.Interfaces, Version=7.7.0.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.Interfaces.7.7.0\lib\net462\EPPlus.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
-      <HintPath>packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    <Reference Include="EPPlus.System.Drawing, Version=7.7.0.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.System.Drawing.7.7.0\lib\net462\EPPlus.System.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
       <HintPath>packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
@@ -185,8 +185,8 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=10.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Primitives.10.0.1\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IO.RecyclableMemoryStream.3.0.1\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -249,8 +249,11 @@
     <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
       <HintPath>packages\SixLabors.ImageSharp.2.1.13\lib\net472\SixLabors.ImageSharp.dll</HintPath>
     </Reference>
-    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=10.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -268,8 +271,8 @@
     <Reference Include="System.IO.Packaging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.IO.Packaging.6.0.0\lib\net461\System.IO.Packaging.dll</HintPath>
     </Reference>
-    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
@@ -277,8 +280,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
@@ -286,8 +289,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Caching" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -374,8 +377,9 @@
     <Content Include="Connected Services\srvCliente\SIMANET_W22R.srvCliente.EmbarcacionBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\srvGeneral\General.wsdl" />
+    <None Include="Connected Services\srvGeneral\General1.wsdl" />
     <None Include="Connected Services\srvGestionCalidad\ControlInspecciones.wsdl" />
+    <None Include="Connected Services\srvGeneral\General1.disco" />
     <Content Include="Connected Services\srvGestionCalidad\SIMANET_W22R.srvGestionCalidad.InspeccionBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -393,7 +397,6 @@
     </Content>
     <None Include="Connected Services\srvGestionComercial\Solicitud.wsdl" />
     <None Include="Connected Services\srvGestionContabilidad\contabilidad.wsdl" />
-    <None Include="Connected Services\srvGestionCostos\Costos.wsdl" />
     <None Include="Connected Services\srvGestionCalidad\ControlInspecciones.disco" />
     <None Include="Connected Services\srvGestionCalidad\configuration91.svcinfo" />
     <None Include="Connected Services\srvGestionCalidad\configuration.svcinfo" />
@@ -401,9 +404,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\srvGestionComercial\Solicitud.disco" />
+    <None Include="Connected Services\srvGestionCostos\Costos1.disco" />
     <Content Include="Connected Services\srvGestionCostos\SIMANET_W22R.srvGestionCostos.Listar_Costo_Prod_Linea_Neg_DetResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\srvGestionCostos\Costos1.wsdl" />
     <None Include="Connected Services\srvGestionFinanciera\Reportes.wsdl" />
     <None Include="Connected Services\srvGestionLogistica\logistica.wsdl" />
     <None Include="Connected Services\srvGestionPersonal\Personal.wsdl" />
@@ -418,9 +424,8 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\srvGestionPresupuesto\presupuesto.wsdl" />
-    <None Include="Connected Services\srvGestionProduccion\Produccion.wsdl" />
+    <None Include="Connected Services\srvGestionProduccion\Produccion1.wsdl" />
     <None Include="Connected Services\srvGestionProd_Mantenimiento\Mantenimiento.wsdl" />
-    <None Include="Connected Services\srvGestionProyecto\Proyecto.wsdl" />
     <None Include="Connected Services\srvGestionLogistica\logistica.disco" />
     <None Include="Connected Services\srvGestionLogistica\configuration91.svcinfo" />
     <None Include="Connected Services\srvGestionLogistica\configuration.svcinfo" />
@@ -428,7 +433,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Connected Services\srvGestionComercial\Solicitud.disco" />
     <None Include="Connected Services\srvGestionComercial\configuration91.svcinfo" />
     <None Include="Connected Services\srvGestionComercial\configuration.svcinfo" />
     <None Include="Connected Services\srvGestionComercial\Reference.svcmap">
@@ -442,7 +446,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Connected Services\srvGestionCostos\Costos.disco" />
     <None Include="Connected Services\srvGestionCostos\configuration91.svcinfo" />
     <None Include="Connected Services\srvGestionCostos\configuration.svcinfo" />
     <None Include="Connected Services\srvGestionCostos\Reference.svcmap">
@@ -463,7 +466,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Connected Services\srvGestionProduccion\Produccion.disco" />
     <None Include="Connected Services\srvGestionProduccion\configuration91.svcinfo" />
     <None Include="Connected Services\srvGestionProduccion\configuration.svcinfo" />
     <None Include="Connected Services\srvGestionProduccion\Reference.svcmap">
@@ -477,10 +479,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\srvGestionProduccion\Produccion1.disco" />
+    <None Include="Connected Services\srvGestionProyecto\Proyecto1.disco" />
     <Content Include="Connected Services\srvGestionProyecto\SIMANET_W22R.srvGestionProyecto.ProyectoBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\srvGestionReportes\AdministrarReportes.disco" />
+    <None Include="Connected Services\srvGestionProyecto\Proyecto1.wsdl" />
+    <None Include="Connected Services\srvGestionReportes\AdministrarReportes1.wsdl" />
     <None Include="Connected Services\srvGestionReportes\configuration91.svcinfo" />
     <None Include="Connected Services\srvGestionReportes\configuration.svcinfo" />
     <None Include="Connected Services\srvGestionReportes\Reference.svcmap">
@@ -515,7 +520,6 @@
     </Content>
     <None Include="Connected Services\srvLog_ActivoFijo\activofijo.wsdl" />
     <None Include="Connected Services\srvProyectos\Proyectos.wsdl" />
-    <None Include="Connected Services\srvGestionProyecto\Proyecto.disco" />
     <None Include="Connected Services\srvGestionProyecto\configuration91.svcinfo" />
     <None Include="Connected Services\srvGestionProyecto\configuration.svcinfo" />
     <None Include="Connected Services\srvGestionProyecto\Reference.svcmap">
@@ -550,7 +554,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Connected Services\srvGeneral\General.disco" />
     <None Include="Connected Services\srvGeneral\configuration91.svcinfo" />
     <None Include="Connected Services\srvGeneral\configuration.svcinfo" />
     <None Include="Connected Services\srvGeneral\Reference.svcmap">
@@ -602,7 +605,6 @@
     <Content Include="General\Iteroperabilidad.aspx" />
     <Content Include="General\ProcedimientoDiagramadeFlujo.aspx" />
     <Content Include="General\TablasGenerales.asmx" />
-    <Content Include="General\UpLoadMaster.aspx" />
     <Content Include="GestionActivoFijo\Activo\Activo.asmx" />
     <Content Include="GestionActivoFijo\Custodio\Custodio.asmx" />
     <Content Include="GestionComercial\Administracion\Clientes.aspx" />
@@ -646,17 +648,12 @@
     <Content Include="GestionGobernanza\Indicadores\AdministrarInformeMetaPorArea.aspx" />
     <Content Include="GestionGobernanza\Indicadores\AdministrarMetasPorArea.aspx" />
     <Content Include="GestionGobernanza\Indicadores\AdministrarObjetivosAcciones.aspx" />
-    <Content Include="GestionGobernanza\Indicadores\AdministrarResponsablePorArea.aspx" />
     <Content Include="GestionGobernanza\Indicadores\ConfiguracionIndicadoresXArea.aspx" />
     <Content Include="GestionGobernanza\Indicadores\DetalleAcciones.aspx" />
     <Content Include="GestionGobernanza\Indicadores\DetalleAreaIndicador.aspx" />
     <Content Include="GestionGobernanza\Indicadores\DetalleIndicador.aspx" />
     <Content Include="GestionGobernanza\Indicadores\DetalleObjetivo.aspx" />
     <Content Include="GestionGobernanza\Indicadores\ListadodeMetasPorArea.aspx" />
-    <Content Include="GestionGobernanza\Indicadores\ListaReponsablePorArea.aspx" />
-    <Content Include="GestionGobernanza\Indicadores\ListarIndicadoresPorArea.aspx" />
-    <Content Include="GestionGobernanza\Indicadores\ViewGraphMeta.aspx" />
-    <Content Include="GestionGobernanza\Procesar.asmx" />
     <Content Include="GestionLogistica\ActivoFijo\Bienes.asmx" />
     <Content Include="GestionLogistica\Almacen\Almacen.asmx" />
     <Content Include="GestionLogistica\General\General.asmx" />
@@ -799,6 +796,7 @@
     <Content Include="Recursos\css\font-awesome.min.css" />
     <Content Include="Recursos\css\jquery-confirm.min.css" />
     <Content Include="Recursos\css\jquery-ui.css" />
+    <Content Include="Recursos\css\jquery.timepicker.min.css" />
     <Content Include="Recursos\css\jqx.base.css" />
     <Content Include="Recursos\css\jqx.light.css" />
     <Content Include="Recursos\css\Personalizado.css" />
@@ -853,6 +851,7 @@
     <Content Include="Recursos\js\toastr.min.js" />
     <Content Include="Recursos\LibSIMA\AccesoDatosBase.js" />
     <Content Include="Recursos\LibSIMA\SIMA.GidView.Entended.js" />
+    <Content Include="Recursos\LibSIMA\util-deps.js" />
     <Content Include="Recursos\Toas\nostfly.min.css" />
     <Content Include="Recursos\Tree\img\line_conn.gif" />
     <Content Include="Recursos\Tree\img\loading.gif" />
@@ -863,6 +862,7 @@
     <Content Include="Recursos\Tree\jquery.ztree.excheck.js" />
     <Content Include="Recursos\Tree\jquery.ztree.exedit.js" />
     <Content Include="Recursos\Tree\zTreeStyle.css" />
+    <Content Include="SIMANET\SeguridadPlanta\AdministrarProgVisitaDetalle.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\AdministrarProgramacionContratista.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\AdministrarProgVisita.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\AdministrarProgVisitaDetalle.aspx" />
@@ -1079,13 +1079,6 @@
     <Compile Include="General\TablasGenerales.asmx.cs">
       <DependentUpon>TablasGenerales.asmx</DependentUpon>
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="General\UpLoadMaster.aspx.cs">
-      <DependentUpon>UpLoadMaster.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="General\UpLoadMaster.aspx.designer.cs">
-      <DependentUpon>UpLoadMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionActivoFijo\Activo\Activo.asmx.cs">
       <DependentUpon>Activo.asmx</DependentUpon>
@@ -1355,13 +1348,6 @@
     <Compile Include="GestionGobernanza\Indicadores\AdministrarObjetivosAcciones.aspx.designer.cs">
       <DependentUpon>AdministrarObjetivosAcciones.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GestionGobernanza\Indicadores\AdministrarResponsablePorArea.aspx.cs">
-      <DependentUpon>AdministrarResponsablePorArea.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionGobernanza\Indicadores\AdministrarResponsablePorArea.aspx.designer.cs">
-      <DependentUpon>AdministrarResponsablePorArea.aspx</DependentUpon>
-    </Compile>
     <Compile Include="GestionGobernanza\Indicadores\ConfiguracionIndicadoresXArea.aspx.cs">
       <DependentUpon>ConfiguracionIndicadoresXArea.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1403,31 +1389,6 @@
     </Compile>
     <Compile Include="GestionGobernanza\Indicadores\ListadodeMetasPorArea.aspx.designer.cs">
       <DependentUpon>ListadodeMetasPorArea.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionGobernanza\Indicadores\ListaReponsablePorArea.aspx.cs">
-      <DependentUpon>ListaReponsablePorArea.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionGobernanza\Indicadores\ListaReponsablePorArea.aspx.designer.cs">
-      <DependentUpon>ListaReponsablePorArea.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionGobernanza\Indicadores\ListarIndicadoresPorArea.aspx.cs">
-      <DependentUpon>ListarIndicadoresPorArea.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionGobernanza\Indicadores\ListarIndicadoresPorArea.aspx.designer.cs">
-      <DependentUpon>ListarIndicadoresPorArea.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionGobernanza\Indicadores\ViewGraphMeta.aspx.cs">
-      <DependentUpon>ViewGraphMeta.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionGobernanza\Indicadores\ViewGraphMeta.aspx.designer.cs">
-      <DependentUpon>ViewGraphMeta.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionGobernanza\Procesar.asmx.cs">
-      <DependentUpon>Procesar.asmx</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="GestionLogistica\ActivoFijo\Bienes.asmx.cs">
       <DependentUpon>Bienes.asmx</DependentUpon>
@@ -2282,12 +2243,21 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicClass\sglGlobalData.cs" />
+<<<<<<< HEAD
     <Compile Include="Recursos\LibSIMA\ChatBotServiceBroker\ITILService\OpcionesdeServicios.aspx.cs">
       <DependentUpon>OpcionesdeServicios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Recursos\LibSIMA\ChatBotServiceBroker\ITILService\OpcionesdeServicios.aspx.designer.cs">
       <DependentUpon>OpcionesdeServicios.aspx</DependentUpon>
+=======
+    <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgVisitaDetalle.aspx.cs">
+      <DependentUpon>AdministrarProgVisitaDetalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgVisitaDetalle.aspx.designer.cs">
+      <DependentUpon>AdministrarProgVisitaDetalle.aspx</DependentUpon>
+>>>>>>> 44dfac1 (WIP: cambios locales antes de rebase 05.05.2026)
     </Compile>
     <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgramacionContratista.aspx.cs">
       <DependentUpon>AdministrarProgramacionContratista.aspx</DependentUpon>
@@ -2302,12 +2272,6 @@
     </Compile>
     <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgVisita.aspx.designer.cs">
       <DependentUpon>AdministrarProgVisita.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgVisitaDetalle.aspx.cs">
-      <DependentUpon>AdministrarProgVisitaDetalle.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgVisitaDetalle.aspx.designer.cs">
-      <DependentUpon>AdministrarProgVisitaDetalle.aspx</DependentUpon>
     </Compile>
     <Compile Include="SIMANET\SeguridadPlanta\AdministrarSCTR.aspx.cs">
       <DependentUpon>AdministrarSCTR.aspx</DependentUpon>
@@ -2397,7 +2361,6 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\srvGestionReportes\AdministrarReportes.wsdl" />
     <Content Include="Connected Services\srvGestionReportes\SIMANET_W22R.srvGestionReportes.ObjetoReporteCompartidoBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -2410,7 +2373,6 @@
     <Content Include="GestionPersonal\Reportes\RptEvaluacion.rpt" />
     <Content Include="GestionPersonal\Reportes\RptEvaluacion1.rpt" />
     <Content Include="GestionPersonal\Reportes\rptRetroalimentacion.rpt" />
-    <None Include="packages.config" />
     <Content Include="Properties\DataSources\System.Data.DataTable.datasource" />
     <Content Include="Recursos\fonts\bootstrap-icons.woff" />
     <Content Include="Recursos\fonts\bootstrap-icons.woff2" />
@@ -2426,6 +2388,7 @@
     <Content Include="Recursos\fonts\jqx-icons_old.ttf" />
     <Content Include="Recursos\fonts\jqx-icons_old.woff" />
     <Content Include="Recursos\fonts\jqx-icons_old.woff2" />
+    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2494,7 +2457,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59710</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/SIMANET_W22R</IISUrl>
+          <IISUrl>http://localhost:59710/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

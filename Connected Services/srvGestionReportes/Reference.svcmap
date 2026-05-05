@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.10.18.10:90/Core/GestionReportes/AdministrarReportes.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://10.10.90.4:8000/Core/GestionReportes/AdministrarReportes.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AdministrarReportes.wsdl" MetadataType="Wsdl" ID="e30929e0-c6fc-460e-b1f1-59c2a38391a9" SourceId="1" SourceUrl="http://10.10.18.10:90/Core/GestionReportes/AdministrarReportes.asmx?wsdl" />
-    <MetadataFile FileName="AdministrarReportes.disco" MetadataType="Disco" ID="ca209351-9426-4c8e-9875-d307f0ec1fbc" SourceId="1" SourceUrl="http://10.10.18.10:90/Core/GestionReportes/AdministrarReportes.asmx?disco" />
+    <MetadataFile FileName="AdministrarReportes1.disco" MetadataType="Disco" ID="19da4331-a297-4ffc-8c3b-cf2804cb2937" SourceId="1" SourceUrl="http://10.10.90.4:8000/Core/GestionReportes/AdministrarReportes.asmx?disco" />
+    <MetadataFile FileName="AdministrarReportes1.wsdl" MetadataType="Wsdl" ID="1e88b28d-ab97-41ff-a1a4-9ee4ef4d3425" SourceId="1" SourceUrl="http://10.10.90.4:8000/Core/GestionReportes/AdministrarReportes.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
