@@ -1600,7 +1600,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
             string s_accion = ViewState["accionP"] as string ?? "1";
 
 
-            string result = oProyectos.InsUpdDel_ProyectoPresupuesto(s_accion, txtCodProyecto.Text , eDDLCentros.SelectedValue, txtCostoDMOB.Text, txtCostoDMAT.Text, txtCostoDSER.Text, txtCostoIND.Text,
+            string result = oProyectos.InsUpdDel_ProyectoPresupuesto(s_accion, txtCodProyecto.Text , eDDLCentros.SelectedValue, txtCostoDMOB.Text, txtCostoDMAT.Text, txtCostoDSER.Text, txtCostoIND.Text,txtCostoNac.Text,
                 this.UsuarioLogin, ip, sauditoria);
 
             if (result != null)
@@ -1869,7 +1869,7 @@ namespace SIMANET_W22R.GestionComercial.Administracion
                 DateTime.Now;
 
 
-            string sRpta = oProyectos.InsUpdDel_ProyectoPresupuesto("3", txtCodProyecto.Text, eDDLCentros.SelectedValue, txtCostoDMOB.Text, txtCostoDMAT.Text, txtCostoDSER.Text, txtCostoIND.Text,
+            string sRpta = oProyectos.InsUpdDel_ProyectoPresupuesto("3", txtCodProyecto.Text, eDDLCentros.SelectedValue, txtCostoDMOB.Text, txtCostoDMAT.Text, txtCostoDSER.Text, txtCostoIND.Text,txtCostoNac.Text,
           this.UsuarioLogin, ip, sauditoria);
 
             if (sRpta == "1")

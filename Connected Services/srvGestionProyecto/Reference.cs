@@ -432,10 +432,17 @@ namespace SIMANET_W22R.srvGestionProyecto {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsUpdDel_ProyectoPresupuesto", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseBE))]
+<<<<<<< HEAD
         string InsUpdDel_ProyectoPresupuesto(string X_N_ACCION, string X_V_FTPresupuesto_CodProyecto, string X_V_FTPresupuesto_Sucursal, string X_N_FTPresupuesto_CostoMOB, string X_N_FTPresupuesto_CostoMAT, string X_N_FTPresupuesto_CostoSER, string X_N_FTPresupuesto_CostoIND, string X_V_FTPresupuesto_USUARIO_AUDI, string X_V_FTPresupuesto_ESTACIONW, string X_V_FTPresupuesto_AUDITORIA);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsUpdDel_ProyectoPresupuesto", ReplyAction="*")]
         System.Threading.Tasks.Task<string> InsUpdDel_ProyectoPresupuestoAsync(string X_N_ACCION, string X_V_FTPresupuesto_CodProyecto, string X_V_FTPresupuesto_Sucursal, string X_N_FTPresupuesto_CostoMOB, string X_N_FTPresupuesto_CostoMAT, string X_N_FTPresupuesto_CostoSER, string X_N_FTPresupuesto_CostoIND, string X_V_FTPresupuesto_USUARIO_AUDI, string X_V_FTPresupuesto_ESTACIONW, string X_V_FTPresupuesto_AUDITORIA);
+=======
+        string InsUpdDel_ProyectoPresupuesto(string X_N_ACCION, string X_V_FTPresupuesto_CodProyecto, string X_V_FTPresupuesto_Sucursal, string X_N_FTPresupuesto_CostoMOB, string X_N_FTPresupuesto_CostoMAT, string X_N_FTPresupuesto_CostoSER, string X_N_FTPresupuesto_CostoIND, string X_N_FTPresupuesto_CostoNAC, string X_V_FTPresupuesto_USUARIO_AUDI, string X_V_FTPresupuesto_ESTACIONW, string X_V_FTPresupuesto_AUDITORIA);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsUpdDel_ProyectoPresupuesto", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> InsUpdDel_ProyectoPresupuestoAsync(string X_N_ACCION, string X_V_FTPresupuesto_CodProyecto, string X_V_FTPresupuesto_Sucursal, string X_N_FTPresupuesto_CostoMOB, string X_N_FTPresupuesto_CostoMAT, string X_N_FTPresupuesto_CostoSER, string X_N_FTPresupuesto_CostoIND, string X_N_FTPresupuesto_CostoNAC, string X_V_FTPresupuesto_USUARIO_AUDI, string X_V_FTPresupuesto_ESTACIONW, string X_V_FTPresupuesto_AUDITORIA);
+>>>>>>> 44dfac1 (WIP: cambios locales antes de rebase 05.05.2026)
     }
     
     /// <remarks/>
@@ -1711,12 +1718,21 @@ namespace SIMANET_W22R.srvGestionProyecto {
             return base.Channel.AutorizaUsuarioProyectoAsync(userId, proyId, UserName);
         }
         
+<<<<<<< HEAD
         public string InsUpdDel_ProyectoPresupuesto(string X_N_ACCION, string X_V_FTPresupuesto_CodProyecto, string X_V_FTPresupuesto_Sucursal, string X_N_FTPresupuesto_CostoMOB, string X_N_FTPresupuesto_CostoMAT, string X_N_FTPresupuesto_CostoSER, string X_N_FTPresupuesto_CostoIND, string X_V_FTPresupuesto_USUARIO_AUDI, string X_V_FTPresupuesto_ESTACIONW, string X_V_FTPresupuesto_AUDITORIA) {
             return base.Channel.InsUpdDel_ProyectoPresupuesto(X_N_ACCION, X_V_FTPresupuesto_CodProyecto, X_V_FTPresupuesto_Sucursal, X_N_FTPresupuesto_CostoMOB, X_N_FTPresupuesto_CostoMAT, X_N_FTPresupuesto_CostoSER, X_N_FTPresupuesto_CostoIND, X_V_FTPresupuesto_USUARIO_AUDI, X_V_FTPresupuesto_ESTACIONW, X_V_FTPresupuesto_AUDITORIA);
         }
         
         public System.Threading.Tasks.Task<string> InsUpdDel_ProyectoPresupuestoAsync(string X_N_ACCION, string X_V_FTPresupuesto_CodProyecto, string X_V_FTPresupuesto_Sucursal, string X_N_FTPresupuesto_CostoMOB, string X_N_FTPresupuesto_CostoMAT, string X_N_FTPresupuesto_CostoSER, string X_N_FTPresupuesto_CostoIND, string X_V_FTPresupuesto_USUARIO_AUDI, string X_V_FTPresupuesto_ESTACIONW, string X_V_FTPresupuesto_AUDITORIA) {
             return base.Channel.InsUpdDel_ProyectoPresupuestoAsync(X_N_ACCION, X_V_FTPresupuesto_CodProyecto, X_V_FTPresupuesto_Sucursal, X_N_FTPresupuesto_CostoMOB, X_N_FTPresupuesto_CostoMAT, X_N_FTPresupuesto_CostoSER, X_N_FTPresupuesto_CostoIND, X_V_FTPresupuesto_USUARIO_AUDI, X_V_FTPresupuesto_ESTACIONW, X_V_FTPresupuesto_AUDITORIA);
+=======
+        public string InsUpdDel_ProyectoPresupuesto(string X_N_ACCION, string X_V_FTPresupuesto_CodProyecto, string X_V_FTPresupuesto_Sucursal, string X_N_FTPresupuesto_CostoMOB, string X_N_FTPresupuesto_CostoMAT, string X_N_FTPresupuesto_CostoSER, string X_N_FTPresupuesto_CostoIND, string X_N_FTPresupuesto_CostoNAC, string X_V_FTPresupuesto_USUARIO_AUDI, string X_V_FTPresupuesto_ESTACIONW, string X_V_FTPresupuesto_AUDITORIA) {
+            return base.Channel.InsUpdDel_ProyectoPresupuesto(X_N_ACCION, X_V_FTPresupuesto_CodProyecto, X_V_FTPresupuesto_Sucursal, X_N_FTPresupuesto_CostoMOB, X_N_FTPresupuesto_CostoMAT, X_N_FTPresupuesto_CostoSER, X_N_FTPresupuesto_CostoIND, X_N_FTPresupuesto_CostoNAC, X_V_FTPresupuesto_USUARIO_AUDI, X_V_FTPresupuesto_ESTACIONW, X_V_FTPresupuesto_AUDITORIA);
+        }
+        
+        public System.Threading.Tasks.Task<string> InsUpdDel_ProyectoPresupuestoAsync(string X_N_ACCION, string X_V_FTPresupuesto_CodProyecto, string X_V_FTPresupuesto_Sucursal, string X_N_FTPresupuesto_CostoMOB, string X_N_FTPresupuesto_CostoMAT, string X_N_FTPresupuesto_CostoSER, string X_N_FTPresupuesto_CostoIND, string X_N_FTPresupuesto_CostoNAC, string X_V_FTPresupuesto_USUARIO_AUDI, string X_V_FTPresupuesto_ESTACIONW, string X_V_FTPresupuesto_AUDITORIA) {
+            return base.Channel.InsUpdDel_ProyectoPresupuestoAsync(X_N_ACCION, X_V_FTPresupuesto_CodProyecto, X_V_FTPresupuesto_Sucursal, X_N_FTPresupuesto_CostoMOB, X_N_FTPresupuesto_CostoMAT, X_N_FTPresupuesto_CostoSER, X_N_FTPresupuesto_CostoIND, X_N_FTPresupuesto_CostoNAC, X_V_FTPresupuesto_USUARIO_AUDI, X_V_FTPresupuesto_ESTACIONW, X_V_FTPresupuesto_AUDITORIA);
+>>>>>>> 44dfac1 (WIP: cambios locales antes de rebase 05.05.2026)
         }
     }
 }

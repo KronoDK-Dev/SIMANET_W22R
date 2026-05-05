@@ -156,8 +156,23 @@
                     </td>
                     <td width="40%">
                         <asp:Label ID="lblbusqueda" runat="server" Text="Criterio Búsqueda: "></asp:Label><br />
-                        <cc3:EasyTextBox ID="etbCriterio" runat="server" onkeydown="checkEnter(event)" Width="35%" Style="display: inline-block;"></cc3:EasyTextBox>
-                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="button-celeste" Icono="fa fa-search" OnClick="btnBuscar_Click" OnClientClick="Espera();" />
+
+                        <div style="display:flex; align-items:center; gap:6px; margin-top:4px;">
+                            <cc3:EasyTextBox 
+                                ID="etbCriterio"
+                                runat="server"
+                                
+                                onkeydown="checkEnter(event)" />
+
+                            <asp:Button 
+                                ID="btnBuscar"
+                                runat="server"
+                                Text="Buscar"
+                                CssClass="button-celeste"
+                                Icono="fa fa-search"
+                                OnClick="btnBuscar_Click"
+                                OnClientClick="Espera();" />
+                        </div>
 
                     </td>
 
@@ -196,7 +211,7 @@
                                 </UrlWebServicieParams>
                             </DataInterconect>
 
-                            <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowItemClick="" RowCellItemClick="" IdGestorFiltro="EasyGestorFiltro1"></EasyExtended>
+                            <EasyExtended ItemColorMouseMove="#CDE6F7" ItemColorSeleccionado="#ffcc66" RowItemClick=""  IdGestorFiltro="EasyGestorFiltro1"></EasyExtended>
                             <EasyRowGroup GroupedDepth="0" ColIniRowMerge="0"></EasyRowGroup>
                             <AlternatingRowStyle CssClass="AlternateItemGrilla" />
 
@@ -251,5 +266,19 @@
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     };
+
+        function checkEnter(event) {
+        if (event.key === 'Enter' || event.keyCode === 13) {
+            event.preventDefault();
+
+        // botón buscar
+        var btn = document.getElementById('<%= btnBuscar.ClientID %>');
+        if (btn) {
+            btn.click();
+            }
+        }
+    }
+
+
 </script>
 </html>

@@ -31,11 +31,12 @@
             }).then((result) => {
                 if (result.isConfirmed) {
 
-                    // llama al evento de boton de validar datos, que esta en el boton btnAgregar
-                    document.getElementById('btnAgregar').click();
                     // Ejecutar Espera() antes del postback
                     Espera();
 
+                    // FORZAMOS el postback manualmente
+                    // llama al evento de boton de validar datos, que esta en el boton btnAgregar
+                    __doPostBack('btnAgregar1', '');
                 }
             });
 
@@ -217,7 +218,8 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="cliente">Cliente</label>
-                                <cc1:EasyAutocompletar ID="acCliente" runat="server" Etiqueta="Cliente" DisplayText="NOMBRE" ValueField="CODIGO"
+                                <cc1:EasyAutocompletar ID="acCliente" runat="server" Etiqueta="Cliente"
+                                    DisplayText="NOMBRE" ValueField="CODIGO"
                                     EnableOnChange="True"
                                     Placeholder="Seleccionar Cliente" NroCarIni="3"
                                     Requerido="True">
@@ -238,7 +240,9 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="tipoSolicitud">Tipo de Solicitud</label>
-                                <cc1:EasyDropdownList ID="ltTipoSolicitud" runat="server" DisplayText="Tipo de Solicitud" CargaInmediata="True" Etiqueta="Tipo de Solicitud" Requerido="True" DataValueField="CODIGO" DataTextField="NOMBRE" MensajeValida="Seleccionar Tipo de Solicitud">
+                                <cc1:EasyDropdownList ID="ltTipoSolicitud" runat="server" DisplayText="Tipo de Solicitud" 
+                                    CargaInmediata="True" Etiqueta="Tipo de Solicitud" Requerido="True"
+                                    DataValueField="CODIGO" DataTextField="NOMBRE" MensajeValida="Seleccionar Tipo de Solicitud">
                                     <EasyStyle Ancho="Seis" />
                                     <DataInterconect MetodoConexion="WebServiceInterno">
                                         <UrlWebService>/General/TablasGenerales.asmx</UrlWebService>
@@ -425,7 +429,7 @@
 
                         <div class="row mt-4">
                             <div class="col-md-12 text-end">
-                                <asp:Button ID="btnAgregar1" class="btn btn-primary" runat="server" OnClientClick="return confirmGuardar();" Text="Guardar" />
+                                <asp:Button ID="btnAgregar1" class="btn btn-primary" runat="server" OnClientClick="return confirmGuardar(); return false;" OnClick="btn_Agregar_Post" Text="Guardar" />
                                 <asp:Button ID="btnAgregar" class="btn btn-primary" runat="server" OnClick="btn_Agregar_Post" Text="Guardar" Style="visibility: hidden; display: none;" />
                                 <button id="btnRegresar" class="btn btn-secondary" onclick="history.back(); return false;">Cancelar</button>
                             </div>

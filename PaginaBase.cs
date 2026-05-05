@@ -391,6 +391,7 @@ namespace SIMANET_W22R
             return Page.Request.Params[Nombre];
         }
 
+
         public EasyDataInterConect TablaGeneralItemSQL(string IdTabla)
         {
             EasyDataInterConect oEasyDataInterConect = new EasyDataInterConect();
@@ -412,6 +413,7 @@ namespace SIMANET_W22R
 
             return oEasyDataInterConect;
         }
+
 
 
         public EasyDataInterConect TablaGeneralItem(string IdTabla,string OrigenDB) {

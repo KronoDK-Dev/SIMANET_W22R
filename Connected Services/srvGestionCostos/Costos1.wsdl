@@ -308,6 +308,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Listar_AreasUsuarias_CC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_Centro_Operativo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_AreasUsuarias_CCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_AreasUsuarias_CCResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Listar_analisis_gastos_ccnatudet">
         <s:complexType>
           <s:sequence>
@@ -494,6 +509,12 @@
   <wsdl:message name="Listar_Materiales_en_ProyectosSoapOut">
     <wsdl:part name="parameters" element="tns:Listar_Materiales_en_ProyectosResponse" />
   </wsdl:message>
+  <wsdl:message name="Listar_AreasUsuarias_CCSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_AreasUsuarias_CC" />
+  </wsdl:message>
+  <wsdl:message name="Listar_AreasUsuarias_CCSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_AreasUsuarias_CCResponse" />
+  </wsdl:message>
   <wsdl:message name="Listar_analisis_gastos_ccnatudetSoapIn">
     <wsdl:part name="parameters" element="tns:Listar_analisis_gastos_ccnatudet" />
   </wsdl:message>
@@ -641,6 +662,13 @@
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="Listar_Materiales_en_ProyectosHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_AreasUsuarias_CCHttpGetIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_AreasUsuarias_CCHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="Listar_analisis_gastos_ccnatudetHttpGetIn">
@@ -805,6 +833,13 @@
   <wsdl:message name="Listar_Materiales_en_ProyectosHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="Listar_AreasUsuarias_CCHttpPostIn">
+    <wsdl:part name="V_Centro_Operativo" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Listar_AreasUsuarias_CCHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="Listar_analisis_gastos_ccnatudetHttpPostIn">
     <wsdl:part name="D_AÑO_DE_PROCESO" type="s:string" />
     <wsdl:part name="D_MES_DE_PROCESO" type="s:string" />
@@ -908,6 +943,11 @@
       <wsdl:input message="tns:Listar_Materiales_en_ProyectosSoapIn" />
       <wsdl:output message="tns:Listar_Materiales_en_ProyectosSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Listar_AreasUsuarias_CC">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar áreas usuarias con sus centro de costos</wsdl:documentation>
+      <wsdl:input message="tns:Listar_AreasUsuarias_CCSoapIn" />
+      <wsdl:output message="tns:Listar_AreasUsuarias_CCSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Listar_analisis_gastos_ccnatudet">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Analisis de Gastos (Por C.Costo y Naturaleza)</wsdl:documentation>
       <wsdl:input message="tns:Listar_analisis_gastos_ccnatudetSoapIn" />
@@ -995,6 +1035,11 @@
       <wsdl:input message="tns:Listar_Materiales_en_ProyectosHttpGetIn" />
       <wsdl:output message="tns:Listar_Materiales_en_ProyectosHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="Listar_AreasUsuarias_CC">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar áreas usuarias con sus centro de costos</wsdl:documentation>
+      <wsdl:input message="tns:Listar_AreasUsuarias_CCHttpGetIn" />
+      <wsdl:output message="tns:Listar_AreasUsuarias_CCHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="Listar_analisis_gastos_ccnatudet">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Analisis de Gastos (Por C.Costo y Naturaleza)</wsdl:documentation>
       <wsdl:input message="tns:Listar_analisis_gastos_ccnatudetHttpGetIn" />
@@ -1081,6 +1126,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">5. Materiales en Proyectos por centro operativo</wsdl:documentation>
       <wsdl:input message="tns:Listar_Materiales_en_ProyectosHttpPostIn" />
       <wsdl:output message="tns:Listar_Materiales_en_ProyectosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_AreasUsuarias_CC">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar áreas usuarias con sus centro de costos</wsdl:documentation>
+      <wsdl:input message="tns:Listar_AreasUsuarias_CCHttpPostIn" />
+      <wsdl:output message="tns:Listar_AreasUsuarias_CCHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="Listar_analisis_gastos_ccnatudet">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Detalle - Analisis de Gastos (Por C.Costo y Naturaleza)</wsdl:documentation>
@@ -1215,6 +1265,15 @@
     </wsdl:operation>
     <wsdl:operation name="Listar_Materiales_en_Proyectos">
       <soap:operation soapAction="http://tempuri.org/Listar_Materiales_en_Proyectos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_AreasUsuarias_CC">
+      <soap:operation soapAction="http://tempuri.org/Listar_AreasUsuarias_CC" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1378,6 +1437,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Listar_AreasUsuarias_CC">
+      <soap12:operation soapAction="http://tempuri.org/Listar_AreasUsuarias_CC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Listar_analisis_gastos_ccnatudet">
       <soap12:operation soapAction="http://tempuri.org/Listar_analisis_gastos_ccnatudet" style="document" />
       <wsdl:input>
@@ -1527,6 +1595,15 @@
     </wsdl:operation>
     <wsdl:operation name="Listar_Materiales_en_Proyectos">
       <http:operation location="/Listar_Materiales_en_Proyectos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_AreasUsuarias_CC">
+      <http:operation location="/Listar_AreasUsuarias_CC" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1690,6 +1767,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Listar_AreasUsuarias_CC">
+      <http:operation location="/Listar_AreasUsuarias_CC" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Listar_analisis_gastos_ccnatudet">
       <http:operation location="/Listar_analisis_gastos_ccnatudet" />
       <wsdl:input>
@@ -1729,16 +1815,16 @@
   </wsdl:binding>
   <wsdl:service name="Costos">
     <wsdl:port name="CostosSoap" binding="tns:CostosSoap">
-      <soap:address location="http://10.10.18.10:90/Core/GestionCostos/Costos.asmx" />
+      <soap:address location="http://10.10.90.4:8000/Core/GestionCostos/Costos.asmx" />
     </wsdl:port>
     <wsdl:port name="CostosSoap12" binding="tns:CostosSoap12">
-      <soap12:address location="http://10.10.18.10:90/Core/GestionCostos/Costos.asmx" />
+      <soap12:address location="http://10.10.90.4:8000/Core/GestionCostos/Costos.asmx" />
     </wsdl:port>
     <wsdl:port name="CostosHttpGet" binding="tns:CostosHttpGet">
-      <http:address location="http://10.10.18.10:90/Core/GestionCostos/Costos.asmx" />
+      <http:address location="http://10.10.90.4:8000/Core/GestionCostos/Costos.asmx" />
     </wsdl:port>
     <wsdl:port name="CostosHttpPost" binding="tns:CostosHttpPost">
-      <http:address location="http://10.10.18.10:90/Core/GestionCostos/Costos.asmx" />
+      <http:address location="http://10.10.90.4:8000/Core/GestionCostos/Costos.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

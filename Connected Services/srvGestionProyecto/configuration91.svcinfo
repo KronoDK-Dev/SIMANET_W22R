@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="Lpb6cR7jHKoXA2C8eu38TVyHdW7jQjD2ZdSYq+QV6TA=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="ng0nGSDmghLXESYcEcX7aJIx97cMZcZSGN5cTJR2aLk=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="ProyectoSoap">
       <properties>
@@ -263,10 +263,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="ProyectoSoap" contract="srvGestionProyecto.ProyectoSoap" bindingType="basicHttpBinding" address="http://10.10.18.10:90/Core/GestionProyecto/Proyecto.asmx" bindingConfiguration="ProyectoSoap">
+    <endpoint name="ProyectoSoap" contract="srvGestionProyecto.ProyectoSoap" bindingType="basicHttpBinding" address="http://10.10.90.4:8000/Core/GestionProyecto/Proyecto.asmx" bindingConfiguration="ProyectoSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://10.10.18.10:90/Core/GestionProyecto/Proyecto.asmx</serializedValue>
+          <serializedValue>http://10.10.90.4:8000/Core/GestionProyecto/Proyecto.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -348,10 +348,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="ProyectoSoap12" contract="srvGestionProyecto.ProyectoSoap" bindingType="customBinding" address="http://10.10.18.10:90/Core/GestionProyecto/Proyecto.asmx" bindingConfiguration="ProyectoSoap12">
+    <endpoint name="ProyectoSoap12" contract="srvGestionProyecto.ProyectoSoap" bindingType="customBinding" address="http://10.10.90.4:8000/Core/GestionProyecto/Proyecto.asmx" bindingConfiguration="ProyectoSoap12">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://10.10.18.10:90/Core/GestionProyecto/Proyecto.asmx</serializedValue>
+          <serializedValue>http://10.10.90.4:8000/Core/GestionProyecto/Proyecto.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

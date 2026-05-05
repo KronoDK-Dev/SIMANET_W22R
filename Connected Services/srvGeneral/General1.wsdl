@@ -10602,16 +10602,16 @@
   </wsdl:binding>
   <wsdl:service name="General">
     <wsdl:port name="GeneralSoap" binding="tns:GeneralSoap">
-      <soap:address location="http://10.10.18.10:90/Core/General/General.asmx" />
+      <soap:address location="http://10.10.90.4:8000/Core/General/General.asmx" />
     </wsdl:port>
     <wsdl:port name="GeneralSoap12" binding="tns:GeneralSoap12">
-      <soap12:address location="http://10.10.18.10:90/Core/General/General.asmx" />
+      <soap12:address location="http://10.10.90.4:8000/Core/General/General.asmx" />
     </wsdl:port>
     <wsdl:port name="GeneralHttpGet" binding="tns:GeneralHttpGet">
-      <http:address location="http://10.10.18.10:90/Core/General/General.asmx" />
+      <http:address location="http://10.10.90.4:8000/Core/General/General.asmx" />
     </wsdl:port>
     <wsdl:port name="GeneralHttpPost" binding="tns:GeneralHttpPost">
-      <http:address location="http://10.10.18.10:90/Core/General/General.asmx" />
+      <http:address location="http://10.10.90.4:8000/Core/General/General.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

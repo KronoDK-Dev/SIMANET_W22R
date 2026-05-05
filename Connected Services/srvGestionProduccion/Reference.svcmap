@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.10.18.10:90/Core/GestionProduccion/Produccion.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://10.10.90.4:8000/Core/GestionProduccion/Produccion.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Produccion.wsdl" MetadataType="Wsdl" ID="f9e4fbf4-9516-49f9-8e3e-acba5289644b" SourceId="1" SourceUrl="http://10.10.18.10:90/Core/GestionProduccion/Produccion.asmx?wsdl" />
-    <MetadataFile FileName="Produccion.disco" MetadataType="Disco" ID="44304d11-4bb0-42d0-8cb4-784b67c7a042" SourceId="1" SourceUrl="http://10.10.18.10:90/Core/GestionProduccion/Produccion.asmx?disco" />
+    <MetadataFile FileName="Produccion1.disco" MetadataType="Disco" ID="8ad0ebe6-d877-4203-aeef-7fe243727824" SourceId="1" SourceUrl="http://10.10.90.4:8000/Core/GestionProduccion/Produccion.asmx?disco" />
+    <MetadataFile FileName="Produccion1.wsdl" MetadataType="Wsdl" ID="7b3de560-fab4-4266-8f3b-ce1804e56e66" SourceId="1" SourceUrl="http://10.10.90.4:8000/Core/GestionProduccion/Produccion.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

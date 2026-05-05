@@ -1,4 +1,6 @@
-﻿using SIMANET_W22R.srvGestionSeguridadPlanta;
+﻿using EasyControlWeb;
+using SIMANET_W22R.srvGeneral;
+using SIMANET_W22R.srvGestionSeguridadPlanta;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,6 +21,9 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
     // [System.Web.Script.Services.ScriptService]
     public class visitas : System.Web.Services.WebService
     {
+
+        GeneralSoapClient oGeneral = new GeneralSoapClient();
+
         DataTable dtResultados;
         DataTable dtError = new DataTable();
         DataTable dt = new DataTable();
@@ -39,6 +44,10 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             dtError.Columns.Add("FechaTermino", typeof(DateTime));
             dtError.Columns.Add("HoraInicio", typeof(string));
             dtError.Columns.Add("NroVisitas", typeof(Int16));
+            dtError.Columns.Add("idEstado", typeof(Int16));
+            dtError.Columns.Add("FechaInicioStr", typeof(string));
+            dtError.Columns.Add("FechaTerminoStr", typeof(string));
+            
 
             try
             {
@@ -81,25 +90,24 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
                 if (dt != null) // valida vacio
                 {
+                    dt.TableName = "uspNTADConsultarProgramacionVisita_CVST";
+                    //----- solo cuando quieres mostrar campos fecha como string, sin hora
 
+                    // Asegura columnas string que la UI espera
+                    EnsureStrCols(dt);
 
-                    // Asegura crear columnas string auxiliares
-                    if (!dt.Columns.Contains("FechaInicioStr")) dt.Columns.Add("FechaInicioStr", typeof(string));
-                    if (!dt.Columns.Contains("FechaTerminoStr")) dt.Columns.Add("FechaTerminoStr", typeof(string));
+                    bool hasFI = dt.Columns.Contains("FechaInicio");
+                    bool hasFT = dt.Columns.Contains("FechaTermino");
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        // Manejar ambos casos: DateTime o string ISO
-                        object fi = row["FechaInicio"];
-                        object ft = row["FechaTermino"];
-
-                        row["FechaInicioStr"] = FormatearFecha(fi);
-                        row["FechaTerminoStr"] = FormatearFecha(ft);
+                        row["FechaInicioStr"] = hasFI ? FormatearFecha(row["FechaInicio"]) : string.Empty;
+                        row["FechaTerminoStr"] = hasFT ? FormatearFecha(row["FechaTermino"]) : string.Empty;
                     }
 
 
                     //---------------------------------------------------------
-                    dt.TableName = "uspNTADConsultarProgramacionVisita_CVST";
+                    
                     if (dt.Rows.Count > 0)
                     {
                         return dt;
@@ -107,7 +115,10 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                     else
                     {
                         DataRow row = dtError.NewRow();
-                        row["Observaciones"] = "No existen registros para los parámetros consultados: nro programación/periodo/tipo programación " + S_PROGRAMACION + "-"+ S_PERIODO+ "-"+ S_TIPOPROGRA;
+                        row["Observaciones"] = "No existen registros para los parámetros consultados: nro programación/periodo/tipo-programación " + S_PROGRAMACION + "-"+ S_PERIODO+ "-"+ S_TIPOPROGRA;
+                        row["idEstado"] = 0;
+                        row["FechaInicioStr"] = "";
+                        row["FechaTerminoStr"] = "";
                         dtError.Rows.Add(row);
                         return dtError;
                     }
@@ -115,8 +126,10 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 else
                 {
                     DataRow row = dtError.NewRow();
-                    row["Observaciones"] = "No existen registros para los parámetros consultados: nro programación/periodo/tipo programación " + S_PROGRAMACION + "-" + S_PERIODO + "-" + S_TIPOPROGRA;
+                    row["Observaciones"] = "No existen registros para los parámetros consultados: nro programación/periodo/tipo-programación/usuario " + S_PROGRAMACION + "-" + S_PERIODO + "-" + S_TIPOPROGRA + "-"+ IdUser;
+                    row["idEstado"] = 0;
                     dtError.Rows.Add(row);
+                    EnsureStrCols(dtError);
                     return dtError;
                 }
             }
@@ -125,6 +138,9 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 // Log del error y lanzar una excepción HTTP 500
                 DataRow row = dtError.NewRow();
                 row["Observaciones"] = "Error en servicio: " + ex.Message;
+                row["idEstado"] = 0;
+                row["FechaInicioStr"] = "";
+                row["FechaTerminoStr"] = "";
                 dtError.Rows.Add(row);
                 return dtError;
             }
@@ -147,8 +163,11 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 }
             }
         }
-
-
+        private static void EnsureStrCols(DataTable t)
+        {
+            if (!t.Columns.Contains("FechaInicioStr")) t.Columns.Add("FechaInicioStr", typeof(string));
+            if (!t.Columns.Contains("FechaTerminoStr")) t.Columns.Add("FechaTerminoStr", typeof(string));
+        }
 
         private static string FormatearFecha(object val)
         {
@@ -163,8 +182,83 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             return s; // fallback
         }
 
+        [WebMethod(Description = "Lista áreas usuaria por nombre")]
+        public DataTable ListarAreaPorNombre(string S_Area , string UserName)
+        {
+            DataTable dtError = new DataTable("GENuspNTADConsultarAreaXNombre");
+   
+            dtError.TableName = "Table";
+            dtError.Columns.Add("IdArea", typeof(Int64));
+            dtError.Columns.Add("NombreArea", typeof(string));
+            
+
+            try
+            {
+                // -----validamos datos Obligatorios ----
+
+                if (S_Area == "-1" || S_Area == "")
+                { S_Area = "";  }
+                
+                // --------recibe un  string--------------------------------------------
+                string xmlData = oGeneral.ListarAreaPorNombre(1, S_Area, UserName);
+                dt = EasyUtilitario.Helper.Genericos.JsonDataToDataTable(xmlData,"1,3");
+                
 
 
+                if (dt != null) // valida vacio
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        dt.TableName = "Table"; // el nombre de la tabla deber ser "Table" siempre que quedarmos  usar controles autocomplete y drowndroplist
+                        return dt;
+                    }
+                    else
+                    {
+                        DataRow row = dtError.NewRow();
+                        row["IdArea"] = 0;
+                        row["NombreArea"] = "No existen registros para los parámetros consultados:  " + S_Area;
+                        dtError.Rows.Add(row);
+                        return dtError;
+                    }
+                }
+                else
+                {
+                    DataRow row = dtError.NewRow();
+                    row["NombreArea"] = "No existen registros para los parámetros consultados:  " + S_Area;
+                    row["IdArea"] = 0;
+                    dtError.Rows.Add(row);
+                    EnsureStrCols(dtError);
+                    return dtError;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log del error y lanzar una excepción HTTP 500
+                DataRow row = dtError.NewRow();
+                row["NombreArea"] = "Error en servicio: " + ex.Message;
+                dtError.Rows.Add(row);
+                return dtError;
+            }
+            // evita que el servicio se bloquee por caida provocada por ese metodo
+            finally
+            {
+                if (oGeneral != null)
+                {
+                    try
+                    {
+                        if (oGeneral.State != System.ServiceModel.CommunicationState.Faulted)
+                            oGeneral.Close();
+                        else
+                            oGeneral.Abort();
+                    }
+                    catch
+                    {
+                        oGeneral.Abort();
+                    }
+                }
+            }
+        }
+        
 
     }
 }
