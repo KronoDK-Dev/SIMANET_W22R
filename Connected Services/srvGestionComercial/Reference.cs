@@ -44,13 +44,6 @@ namespace SIMANET_W22R.srvGestionComercial {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarSolicitudTrabajo2", ReplyAction="*")]
         System.Threading.Tasks.Task<string> ListarSolicitudTrabajo2Async(string V_AMBIENTE, string V_FILTRO, string V_CEO, string V_UND_OPER, string V_FEC_STR_INI, string V_FEC_STR_FIN, string UserName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarSolicitudTrabajo_JSON", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string ListarSolicitudTrabajo_JSON(string V_AMBIENTE, string V_FILTRO, string V_CEO, string V_UND_OPER, string V_FEC_STR_INI, string V_FEC_STR_FIN, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListarSolicitudTrabajo_JSON", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> ListarSolicitudTrabajo_JSONAsync(string V_AMBIENTE, string V_FILTRO, string V_CEO, string V_UND_OPER, string V_FEC_STR_INI, string V_FEC_STR_FIN, string UserName);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InsertarSolicitud", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string InsertarSolicitud(
@@ -198,7 +191,7 @@ namespace SIMANET_W22R.srvGestionComercial {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1062,7 +1055,7 @@ namespace SIMANET_W22R.srvGestionComercial {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(SolicitudBE))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9221.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1332,14 +1325,6 @@ namespace SIMANET_W22R.srvGestionComercial {
         
         public System.Threading.Tasks.Task<string> ListarSolicitudTrabajo2Async(string V_AMBIENTE, string V_FILTRO, string V_CEO, string V_UND_OPER, string V_FEC_STR_INI, string V_FEC_STR_FIN, string UserName) {
             return base.Channel.ListarSolicitudTrabajo2Async(V_AMBIENTE, V_FILTRO, V_CEO, V_UND_OPER, V_FEC_STR_INI, V_FEC_STR_FIN, UserName);
-        }
-        
-        public string ListarSolicitudTrabajo_JSON(string V_AMBIENTE, string V_FILTRO, string V_CEO, string V_UND_OPER, string V_FEC_STR_INI, string V_FEC_STR_FIN, string UserName) {
-            return base.Channel.ListarSolicitudTrabajo_JSON(V_AMBIENTE, V_FILTRO, V_CEO, V_UND_OPER, V_FEC_STR_INI, V_FEC_STR_FIN, UserName);
-        }
-        
-        public System.Threading.Tasks.Task<string> ListarSolicitudTrabajo_JSONAsync(string V_AMBIENTE, string V_FILTRO, string V_CEO, string V_UND_OPER, string V_FEC_STR_INI, string V_FEC_STR_FIN, string UserName) {
-            return base.Channel.ListarSolicitudTrabajo_JSONAsync(V_AMBIENTE, V_FILTRO, V_CEO, V_UND_OPER, V_FEC_STR_INI, V_FEC_STR_FIN, UserName);
         }
         
         public string InsertarSolicitud(

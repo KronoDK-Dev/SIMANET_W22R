@@ -501,7 +501,7 @@ namespace SIMANET_W22R.General
                 // 0) Si faltan parámetros, intenta completarlos desde memoria (solo 2 params, no DataTable)
                 if (string.IsNullOrWhiteSpace(IdUsuario) || string.IsNullOrWhiteSpace(UserName))
                 {
-                    var pending = memoriacache.ObtieneParams(); // clase memoricache.cs esta en la raiz de la solucion
+                    var pending = memoriacache.ObtieneParams();
                     if (pending != null)
                     {
                         if (string.IsNullOrWhiteSpace(IdUsuario)) IdUsuario = pending.IdUsuario;

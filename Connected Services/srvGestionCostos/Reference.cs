@@ -108,13 +108,6 @@ namespace SIMANET_W22R.srvGestionCostos {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_Materiales_en_Proyectos", ReplyAction="*")]
         System.Threading.Tasks.Task<string> Listar_Materiales_en_ProyectosAsync(string V_Centro_Operativo, string v_materiales, string UserName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_AreasUsuarias_CC", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string Listar_AreasUsuarias_CC(string V_Centro_Operativo, string UserName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_AreasUsuarias_CC", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> Listar_AreasUsuarias_CCAsync(string V_Centro_Operativo, string UserName);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Listar_analisis_gastos_ccnatudet", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataTable Listar_analisis_gastos_ccnatudet(string D_AÑO_DE_PROCESO, string D_MES_DE_PROCESO, string V_CENTRO_OPERATIVO, string V_CUENTA_MAYOR, string UserName);
@@ -346,14 +339,6 @@ namespace SIMANET_W22R.srvGestionCostos {
         
         public System.Threading.Tasks.Task<string> Listar_Materiales_en_ProyectosAsync(string V_Centro_Operativo, string v_materiales, string UserName) {
             return base.Channel.Listar_Materiales_en_ProyectosAsync(V_Centro_Operativo, v_materiales, UserName);
-        }
-        
-        public string Listar_AreasUsuarias_CC(string V_Centro_Operativo, string UserName) {
-            return base.Channel.Listar_AreasUsuarias_CC(V_Centro_Operativo, UserName);
-        }
-        
-        public System.Threading.Tasks.Task<string> Listar_AreasUsuarias_CCAsync(string V_Centro_Operativo, string UserName) {
-            return base.Channel.Listar_AreasUsuarias_CCAsync(V_Centro_Operativo, UserName);
         }
         
         public System.Data.DataTable Listar_analisis_gastos_ccnatudet(string D_AÑO_DE_PROCESO, string D_MES_DE_PROCESO, string V_CENTRO_OPERATIVO, string V_CUENTA_MAYOR, string UserName) {

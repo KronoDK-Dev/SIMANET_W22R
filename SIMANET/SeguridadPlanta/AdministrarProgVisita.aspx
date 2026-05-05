@@ -6,12 +6,13 @@
 <%@ Register TagPrefix="cc3" Assembly="EasyControlWeb" Namespace="EasyControlWeb.Form.Controls" %>
 <%@ Register TagPrefix="cc6" Assembly="EasyControlWeb" Namespace="EasyControlWeb" %>
 
-<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/StyleEasy.css") %> " />
-<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/Personalizado.css") %> " />
+<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/StyleEasy.css") %> ">
+<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/Personalizado.css") %> ">
 <script src="<%= ResolveUrl("~/Recursos/Js/jquery-3.6.4.min.js") %> "></script>
 <script src="<%= ResolveUrl("~/Recursos/Js/toastr.min.js") %> "></script>
-<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/toastr.min.css") %> " />
-<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/sweetalert2.min.css") %> "/>
+<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/toastr.min.css") %> ">
+<link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Recursos/css/sweetalert2.min.css") %> ">
+
 
 <!DOCTYPE html>
 
@@ -19,21 +20,16 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>PROGRAMACION DE VISITA</title>
-
-
-
-
-
 </head>
-    <body>
+<body>
     
-        <form id="form1" runat="server">
+    <form id="form1" runat="server">
 
         <div style="height: 100%; overflow: auto;">
             <table id="tblReport" style="width: 100%; border-collapse: collapse;" border="0px">
                 <tr>
                     <td colspan="7">
-                        <uc1:header runat="server" ID="header" IdGestorFiltro="EasyGestorFiltro1" />
+                        <uc1:header runat="server" ID="header" />
                     </td>
                 </tr>
                 <!-- 07 columnas -->
@@ -121,63 +117,29 @@
                         </div>
                     </td>
                     <td width="60%">
-                        <asp:Label ID="lblbusqueda" runat="server"  Visible="false"   Text="Criterio Búsqueda: " ToolTip ="NroProgramación / Visitante / Observaciones / Fecha Ingreso"></asp:Label><br />
-                        <cc3:EasyTextBox ID="etbCriterio" runat="server" Visible="false"  onkeydown="checkEnter(event)" Width="35%" Style="display: inline-block;"></cc3:EasyTextBox>
-                        <asp:Button ID="btnBuscar" runat="server" Visible="false"  Text="Buscar" CssClass="button-celeste" Icono="fa fa-search" OnClick="btnBuscar_Click" OnClientClick="Espera();" />
-                        
-                        <cc3:EasyAutocompletar ID="EAC_Proveedor" runat="server" Width="35%" DisplayText="NombreArea" ValueField="IDAREA" 
-                              MensajeValida="Este dato es obligatorio" EnableOnChange="True" Etiqueta="Area Usuaria destino de la visita">
-                            <EasyStyle Ancho="Dos" TipoTalla="sm"></EasyStyle>
-                             <DataInterconect MetodoConexion="WebServiceInterno">
-                                <UrlWebService>/General/TablasGenerales.asmx</UrlWebService>
-                                <Metodo>ListaAreasxDescripcion</Metodo>
-                                <UrlWebServicieParams>
-                                      <cc2:EasyFiltroParamURLws ObtenerValor="Session" ParamName="UserName" Paramvalue="UserName" TipodeDato="String" />
-                                     <cc2:EasyFiltroParamURLws ObtenerValor="Session" ParamName="IdCentro" Paramvalue="IdCentro" TipodeDato="String" />
-            
-                                </UrlWebServicieParams>
-                             </DataInterconect>
-                          </cc3:EasyAutocompletar>
-                        
-                        <!--
-                            <cc3:EasyAutocompletar ID="EAC_Areas" runat="server" Width="35%" DisplayText="NombreArea" ValueField="IDAREA" 
-                                  MensajeValida="Este dato es obligatorio" EnableOnChange="True" Etiqueta="Area Usuaria destino de la visita">
-                                <EasyStyle Ancho="Dos" TipoTalla="sm"></EasyStyle>
-                                 <DataInterconect MetodoConexion="WebServiceInterno">
-                                    <UrlWebService>/General/TablasGenerales.asmx</UrlWebService>
-                                    <Metodo>ListaAreasxDescripcion</Metodo>
-                                    <UrlWebServicieParams>
-                                          <cc2:EasyFiltroParamURLws ObtenerValor="Session" ParamName="UserName" Paramvalue="UserName" TipodeDato="String" />
-                                         <cc2:EasyFiltroParamURLws ObtenerValor="Session" ParamName="IdCentro" Paramvalue="IdCentro" TipodeDato="String" />
-            
-                                    </UrlWebServicieParams>
-                                 </DataInterconect>
-                              </cc3:EasyAutocompletar>
-                         -->
-
+                        <asp:Label ID="lblbusqueda" runat="server" Text="Criterio Búsqueda: "></asp:Label><br />
+                        <cc3:EasyTextBox ID="etbCriterio" runat="server" onkeydown="checkEnter(event)" Width="35%" Style="display: inline-block;"></cc3:EasyTextBox>
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="button-celeste" Icono="fa fa-search" OnClick="btnBuscar_Click" OnClientClick="Espera();" />
 
                     </td>
 
 
-                    <td width="20px">
-                    
-
-                    </td>
+                    <td width="20px"></td>
                 </tr>
 
                 <tr>
                     <td width="20px"></td>
                     <td colspan="5">
-                        <cc6:EasyGridView ID="EGVResultados" runat="server" CssClass=""
+                        <cc6:EasyGridView ID="EGVResultados" runat="server" CssClass="STgridview"
                             AutoGenerateColumns="False" ShowFooter="True"
                             TituloHeader="Programacion de Visitas"
-                            ToolBarButtonClick="fnAcciones_Botones" Width="100%"
+                            ToolBarButtonClick="OnEasyGridButton_Click" Width="100%"
                             AllowPaging="True"
                             OnPageIndexChanging="EasyGridView1_PageIndexChanged"
                             OnEasyGridDetalle_Click="EGVResultados_EasyGridDetalle_Click" OnEasyGridButton_Click="EGVResultados_EasyGridButton_Click" fncExecBeforeServer="">
                             <EasyGridButtons>
-                                <cc1:EasyGridButton Id="btnAgregar"       Texto="Agregar"      Descripcion="" Icono="fa fa-plus-square-o" MsgConfirm="" RunAtServer="False" SilenceWait="True" SolicitaConfirmar="False" Ubicacion="Derecha" />
-                                <cc1:EasyGridButton Id="btnCopiarr"       Texto="Copiar"      Descripcion="" Icono="fa fa-copy" MsgConfirm="" RunAtServer="True" Ubicacion="Derecha" />
+                                <cc1:EasyGridButton Id="btnAgregar"       Texto="Agregar"      Descripcion="" Icono="fa fa-plus-square-o" MsgConfirm="" RunAtServer="True" Ubicacion="Izquierda" />
+                                <cc1:EasyGridButton Id="btnCopiarr"       Texto="Copiar"      Descripcion="" Icono="fa fa-copy" MsgConfirm="" RunAtServer="True" Ubicacion="Izquierda" />
                                 <cc1:EasyGridButton Id="btnEquipos"       Texto="List. Equipos" Descripcion="" Icono="fa fa-gear" MsgConfirm="" RunAtServer="True"  Ubicacion="Centro" />
                                 <cc1:EasyGridButton Id="btnPersonas" Texto="List. Personas" Descripcion="" Icono="fa fa-user" MsgConfirm="" RunAtServer="True"  Ubicacion="Centro" />
                             </EasyGridButtons>
@@ -190,7 +152,7 @@
                                     <cc2:EasyFiltroParamURLws ObtenerValor="FormControl" ParamName="S_PROGRAMACION" Paramvalue="etbCriterio" TipodeDato="String" />
                                     <cc2:EasyFiltroParamURLws ObtenerValor="Session" ParamName="S_PERIODO" Paramvalue="S_PERIODO" TipodeDato="String" />
                                     <cc2:EasyFiltroParamURLws ObtenerValor="Session" ParamName="S_TIPOPROGRA" Paramvalue="S_TIPOPROGRA" TipodeDato="String" />
-                                     <cc2:EasyFiltroParamURLws ObtenerValor="Session" ParamName="IdUsuario" Paramvalue="IdUsuario" TipodeDato="String" />
+                                     <cc2:EasyFiltroParamURLws ObtenerValor="Fijo" ParamName="IdUser" Paramvalue="86" TipodeDato="String" />
                                 </UrlWebServicieParams>
                             </DataInterconect>
 
@@ -208,23 +170,6 @@
                                 <asp:BoundField DataField="FechaTerminoStr" HeaderText="TERMINO" DataFormatString="{0:dd/MM/yyyy}" />
                                 <asp:BoundField DataField="HoraInicio" HeaderText="HORA INGRESO" />
                                 <asp:BoundField DataField="NroVisitas" HeaderText="NRO VISIT." />
-
-                                <asp:TemplateField SortExpression="idEstado">
-                                        <HeaderStyle Width="50px" />
-                                        <HeaderTemplate>
-                                            <asp:Label ID="Label3" runat="server">Est.<br />EMail</asp:Label>
-                                        </HeaderTemplate>
-
-                                        <ItemTemplate>
-                                            <asp:Literal ID="litEmailIcon" runat="server"
-                                                Text='<%# (Convert.ToInt32(Eval("idEstado")) == 1
-                                                        ? "<i class=\"fa fa-envelope text-success\" title=\"Correo enviado\" aria-label=\"Correo enviado\"></i>"
-                                                        : "<i class=\"fa fa-envelope-o text-warning\" title=\"Pendiente de envío\" aria-label=\"Pendiente de envío\"></i>") %>'>
-                                            </asp:Literal>
-                                        </ItemTemplate>
-
-                                        <ItemStyle HorizontalAlign="Center" />
-                                    </asp:TemplateField>
                             </Columns>
 
                             <HeaderStyle CssClass="HeaderGrilla" />
@@ -236,213 +181,18 @@
                     <td width="20px"></td>
                 </tr>
             </table>
-
         </div>
         <div>
         </div>
 
- <!-- POPUP -->
-  <cc3:EasyPopupBase ID="EPP_DetallaProgram" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="Detalle Programación"  
-     ValidarDatos="true"  RunatServer="false" DisplayButtons="true" fncScriptAceptar="Aceptar"  ></cc3:EasyPopupBase>       
-   <!-- CONTENEDOR DE DATOS  -->                                                                                    
-   <div id="ctxData_Default" runat="server"></div>
-<!-- FILTROS -->
-    <cc2:EasyGestorFiltro ID="EasyGestorFiltro1" runat="server" ClassHeader="HeaderGrilla" ClassItem="ItemGrilla" 
-                                ClassItemAlternating="AlternateItemGrilla"  EasyFiltroCampos-Capacity="4"  DisplayButtonInterface="False" 
-                                OnProcessCompleted="EasyGestorFiltro1_ProcessCompleted">
-
-            <cc2:EasyFiltroCampo Descripcion="Tipo Personal" Nombre="IdProyecto" TipodeDato="String">
-                <DataInterconect MetodoConexion="WebServiceInterno">
-                    <UrlWebService>/GestiondeCalidad/Proceso.asmx</UrlWebService>
-                     <Metodo>BuscarProyectoXNombre</Metodo>
-                    <UrlWebServicieParams>
-                        <cc2:EasyFiltroParamURLws ObtenerValor="Session" ParamName="UserName" Paramvalue="UserName" />
-                    </UrlWebServicieParams>
-                </DataInterconect>
-                <EasyControlAsociado TemplateType="EasyITemplateAutoCompletar" NroCarIni="0" TextField="NombreProyecto" 
-                       ValueField="IdProyecto" fncTempaleCustom="onDisplayTemplate" />
-          </cc2:EasyFiltroCampo>
-
-            <cc2:EasyFiltroCampo Descripcion="Visitante" Nombre="RazonSocial" TipodeDato="String">
-            <DataInterconect MetodoConexion="WebServiceInterno">
-                <UrlWebService>/GestiondeCalidad/Proceso.asmx</UrlWebService>
-                <Metodo>BuscarProyectoXCliente</Metodo>
-                <UrlWebServicieParams>
-                    <cc2:EasyFiltroParamURLws ParamName="UserName" Paramvalue="UserName"  ObtenerValor="Session"  />
-                </UrlWebServicieParams>
-            </DataInterconect>
-            <EasyControlAsociado NroCarIni="4" TemplateType="EasyITemplateAutoCompletar" 
-                TextField  ="RazonSocialCliente"  ValueField="IdCliente" />
-        </cc2:EasyFiltroCampo>
-
-            <cc2:EasyFiltroCampo Descripcion="Asunto" Nombre="Observaciones">
-                <DataInterconect MetodoConexion="WebServiceInterno"></DataInterconect><EasyControlAsociado TemplateType="EasyITemplateTextBox" />
-            </cc2:EasyFiltroCampo>
-
-            <cc2:EasyFiltroCampo Descripcion="Fecha Inicio" Nombre="FechaInicioStr" >
-               <DataInterconect MetodoConexion="WebServiceInterno"></DataInterconect><EasyControlAsociado TemplateType="EasyITemplateDatepicker" />
-            </cc2:EasyFiltroCampo>
-
-            
-
-        </cc2:EasyGestorFiltro>
-
-
     <script type="text/javascript">
-        /*
-            (function () {
-                // Id del contenedor del modal del gestor de filtro
-                var SEL = '#EasyGestorFiltro_Title_Gen';
 
-                function isVisible(el) {
-                    if (!el) return false;
-                    var cs = getComputedStyle(el);
-                    // visible si no está display:none y no está oculto por visibility
-                    return cs.display !== 'none' && cs.visibility !== 'hidden';
-                }
-
-                function syncModalA11y() {
-                    var dlg = document.querySelector(SEL);
-                    if (!dlg) return;
-
-                    if (isVisible(dlg)) {
-                        // Si está visible, NO puede tener aria-hidden="true"
-                        dlg.removeAttribute('aria-hidden');
-                        dlg.setAttribute('aria-modal', 'true');
-                        dlg.setAttribute('tabindex', '-1');
-
-                        // Enfoca el primer control interactivo del modal (buena práctica)
-                        var first = dlg.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-                        if (first) try { first.focus(); } catch (e) { }
-                    } else {
-                        // Si está oculto, puede volver a aria-hidden
-                        dlg.setAttribute('aria-hidden', 'true');
-                        dlg.removeAttribute('aria-modal');
-                        dlg.removeAttribute('tabindex');
-                    }
-                }
-
-                // Observa cambios de estilo/clase para detectar apertura/cierre
-                function attachObserver() {
-                    var dlg = document.querySelector(SEL);
-                    if (!dlg) return false;
-                    var obs = new MutationObserver(syncModalA11y);
-                    obs.observe(dlg, { attributes: true, attributeFilter: ['style', 'class', 'aria-hidden'] });
-                    // Sincroniza una vez al inicio
-                    syncModalA11y();
-                    return true;
-                }
-
-                // Espera a que exista el nodo y conecta el observer
-                if (!attachObserver()) {
-                    var tries = 0, t = setInterval(function () {
-                        tries++;
-                        if (attachObserver() || tries > 50) clearInterval(t);
-                    }, 200);
-                }
-            })();
-            */
-      
+        SolicitudTrabajo.onEasyFind_Selected = function (value, ItemBE) {    }
     </script>
         
     </form>
 
-     <!--  SCRIPT DE ACCION DE LOS CONTROLES -->
-        <script>
-
-            function fnAcciones_Botones(btnItem, DetalleBE) {
-            try {
-
-                     switch (btnItem.Id) {
-                        case "btnAgregar":
-
-                             // cargamos datos para pasar por los parametros
-
-                             var sUsuario = document.getElementById('ctxData_Default').dataset.susuario;
-                             var sIdArea = document.getElementById('ctxData_Default').dataset.sidArea;
-                             var sArea = document.getElementById('ctxData_Default').dataset.sarea;
-                             var iIdCentroOpera = document.getElementById('ctxData_Default').dataset.iidcentroopera;
-                             var tipoprogra = document.getElementById('ctxData_Default').dataset.tipoprogra;
-                             var tipovisita = document.getElementById('ctxData_Default').dataset.tipovisita;
-                             var periodo    = document.getElementById('ctxData_Default').dataset.periodo;
-
-
-                             var Url = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/AdministrarProgVisitaDetalle.aspx"; // guia: DetalleProgramacion
-                             var oColletionParams = new SIMA.ParamCollections();
-                            // Usamos Reflection, Detecta la clase actual de la pagina (SeguridadPlantaBase.cs para heredar algunos), y tomamos el mismo nombre
-                             var oParam = new SIMA.Param(AdministrarProgVisita.KEYQUSUARIO, sUsuario);
-                            oColletionParams.Add(oParam);
-
-                             var oParam = new SIMA.Param(AdministrarProgVisita.KEYQIDAREA, sIdArea);
-                             oColletionParams.Add(oParam);
-
-                             var oParam = new SIMA.Param(AdministrarProgVisita.KEYQAREA, sArea);
-                             oColletionParams.Add(oParam);
-
-                             var oParam = new SIMA.Param(AdministrarProgVisita.KEYQCENTROOPERATIVO, iIdCentroOpera);
-                             oColletionParams.Add(oParam);
-
-                             var oParam = new SIMA.Param(AdministrarProgVisita.KEYQTIPOPROGRAMA, tipoprogra);
-                             oColletionParams.Add(oParam);
-
-                             oParam = new SIMA.Param(AdministrarProgVisita.KEYQTIPOVISITA, tipovisita);
-                             oColletionParams.Add(oParam);
-
-                             oParam = new SIMA.Param(AdministrarProgVisita.KEYQPERIODO, periodo);
-                             oColletionParams.Add(oParam);
-
-                            //---------------------------------
-                            oParam = new SIMA.Param(AdministrarProgVisita.KEYMODOPAGINA, SIMA.Utilitario.Enumerados.ModoPagina.N);
-                            oColletionParams.Add(oParam);
-
-                             // llamada al contendor del Easy Popup
-                             EPP_DetallaProgram.Load(Url, oColletionParams, false);
-
-                            break;
-
-                        case "btnTrabEquipo":
-                            AdministrarProgramacionContratista.AdministrarTrabajadoresyEquipos(DetalleBE);
-
-                            break;
-                        case "btnCopiar":
-
-                            var Url = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/DetalleCopyProg.aspx";
-                            var oColletionParams = new SIMA.ParamCollections();
-                            var oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQIDPROGRAMACION, DetalleBE.NroProgramacion);
-                            oColletionParams.Add(oParam);
-
-                            oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQAÑO, DetalleBE.Periodo);
-                            oColletionParams.Add(oParam);
-
-                            EasyPopupCopiar.Load(Url, oColletionParams, false);
-
-
-                            break;
-                    }
-
-              } catch (ex)
-                 {
-
-                    console.error("❌ Error en fnAcciones_Botones");
-                    console.error("Botón:", btnItem);
-                    console.error("DetalleBE:", DetalleBE);
-                    console.error("Excepción:", ex);
-
-                    // opcional: alerta visual
-                    if (window.Swal) {
-                        Swal.fire(
-                            "Error",
-                            ex.message || ex.toString(),
-                            "error"
-                        );
-                    }
-                 }
-
-            }
-        </script>
     </body>
-
-
     <script> 
         // Para el popup de SweetAlert
         toastr.options = {
@@ -462,27 +212,5 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         };
-
-        AdministrarProgVisita.onEasyFind_Selected = function (value, ItemBE) {
-            var i = value;
-        }
-
-        AdministrarProgVisita.onDisplayTemplateUsuUNIX = function (ul, item) {
-            alert(item.IDAREA);
-            var cmll = "\"";
-            iTemplate = '<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">'
-                + '         <div class= "flex-column">' + item.NombreArea
-                + '             <p><small style="font-weight: bold">User:</small> <small style ="color:red">' + item.IDAREA + '</small><br>'
-                //    + '             <img class=" rounded-circle" width="60px" src="' + Descripcion_OT.PathFotosPersonal + item.NroDocIdentidad + '.jpg" alt="Usuario:=' + item.V_DESCRIPCION + '"  onerror="this.onerror=null;this.src=SIMA.Utilitario.Constantes.ImgDataURL.ImgSF;">'
-                + '         </div>'
-                + '</a>';
-            var oCustomTemplateBE = new EAC_Areas.CustomTemplateBE(ul, item, iTemplate);
-            return EAC_Areas.SetCustomTemplate(oCustomTemplateBE);
-        }
-        </script>
-
-
-
-
-
+    </script>
 </html>

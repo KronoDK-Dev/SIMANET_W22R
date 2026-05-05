@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<discovery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="http://10.10.90.4:7000/Core/SeguridadPlanta/Visitas.asmx?wsdl" docRef="http://10.10.90.4:7000/Core/SeguridadPlanta/Visitas.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="http://10.10.90.4:7000/Core/SeguridadPlanta/Visitas.asmx" xmlns:q1="https://api-netsuite.sima.com.pe/seguridadplanta" binding="q1:VisitasSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="http://10.10.90.4:7000/Core/SeguridadPlanta/Visitas.asmx" xmlns:q2="https://api-netsuite.sima.com.pe/seguridadplanta" binding="q2:VisitasSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-</discovery>

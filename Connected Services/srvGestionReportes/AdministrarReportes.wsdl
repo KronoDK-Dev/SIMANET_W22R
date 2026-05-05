@@ -2034,16 +2034,16 @@
   </wsdl:binding>
   <wsdl:service name="AdministrarReportes">
     <wsdl:port name="AdministrarReportesSoap" binding="tns:AdministrarReportesSoap">
-      <soap:address location="http://10.10.90.4:8000/Core/GestionReportes/AdministrarReportes.asmx" />
+      <soap:address location="http://10.10.18.10:90/Core/GestionReportes/AdministrarReportes.asmx" />
     </wsdl:port>
     <wsdl:port name="AdministrarReportesSoap12" binding="tns:AdministrarReportesSoap12">
-      <soap12:address location="http://10.10.90.4:8000/Core/GestionReportes/AdministrarReportes.asmx" />
+      <soap12:address location="http://10.10.18.10:90/Core/GestionReportes/AdministrarReportes.asmx" />
     </wsdl:port>
     <wsdl:port name="AdministrarReportesHttpGet" binding="tns:AdministrarReportesHttpGet">
-      <http:address location="http://10.10.90.4:8000/Core/GestionReportes/AdministrarReportes.asmx" />
+      <http:address location="http://10.10.18.10:90/Core/GestionReportes/AdministrarReportes.asmx" />
     </wsdl:port>
     <wsdl:port name="AdministrarReportesHttpPost" binding="tns:AdministrarReportesHttpPost">
-      <http:address location="http://10.10.90.4:8000/Core/GestionReportes/AdministrarReportes.asmx" />
+      <http:address location="http://10.10.18.10:90/Core/GestionReportes/AdministrarReportes.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
