@@ -379,7 +379,7 @@ namespace SIMANET_W22R.GestionReportes
                 }
                 else
                 {
-                    objResult = EasyWebServieHelper.InvokeWebService2(UrlApp, oEasyDataInterConect);
+                    objResult = EasyWebServieHelper.InvokeWebService(UrlApp, oEasyDataInterConect);
                     Session["o_objResult"] = objResult; // para la siguiente exportacion
                 }
 

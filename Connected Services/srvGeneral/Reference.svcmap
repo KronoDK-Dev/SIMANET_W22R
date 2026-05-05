@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.10.90.4:8000/Core/General/General.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://10.10.18.10:90/Core/General/General.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="General1.disco" MetadataType="Disco" ID="714957ef-9130-4376-8d8f-bc3759e3ef54" SourceId="1" SourceUrl="http://10.10.90.4:8000/Core/General/General.asmx?disco" />
-    <MetadataFile FileName="General1.wsdl" MetadataType="Wsdl" ID="04a1b5f5-4d21-4f54-a7da-4f414679452f" SourceId="1" SourceUrl="http://10.10.90.4:8000/Core/General/General.asmx?wsdl" />
+    <MetadataFile FileName="General.wsdl" MetadataType="Wsdl" ID="73aa669e-0d36-44e0-b402-ffddddbe45b2" SourceId="1" SourceUrl="http://10.10.18.10:90/Core/General/General.asmx?wsdl" />
+    <MetadataFile FileName="General.disco" MetadataType="Disco" ID="b8f38f5a-e811-47bc-b437-87b178734296" SourceId="1" SourceUrl="http://10.10.18.10:90/Core/General/General.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

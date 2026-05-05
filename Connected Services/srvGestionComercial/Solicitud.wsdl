@@ -97,26 +97,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ListarSolicitudTrabajo_JSON">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="V_AMBIENTE" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="V_FILTRO" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="V_CEO" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="V_UND_OPER" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="V_FEC_STR_INI" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="V_FEC_STR_FIN" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ListarSolicitudTrabajo_JSONResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ListarSolicitudTrabajo_JSONResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="InsertarSolicitud">
         <s:complexType>
           <s:sequence>
@@ -350,12 +330,6 @@
   <wsdl:message name="ListarSolicitudTrabajo2SoapOut">
     <wsdl:part name="parameters" element="tns:ListarSolicitudTrabajo2Response" />
   </wsdl:message>
-  <wsdl:message name="ListarSolicitudTrabajo_JSONSoapIn">
-    <wsdl:part name="parameters" element="tns:ListarSolicitudTrabajo_JSON" />
-  </wsdl:message>
-  <wsdl:message name="ListarSolicitudTrabajo_JSONSoapOut">
-    <wsdl:part name="parameters" element="tns:ListarSolicitudTrabajo_JSONResponse" />
-  </wsdl:message>
   <wsdl:message name="InsertarSolicitudSoapIn">
     <wsdl:part name="parameters" element="tns:InsertarSolicitud" />
   </wsdl:message>
@@ -414,18 +388,6 @@
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListarSolicitudTrabajo2HttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
-  <wsdl:message name="ListarSolicitudTrabajo_JSONHttpGetIn">
-    <wsdl:part name="V_AMBIENTE" type="s:string" />
-    <wsdl:part name="V_FILTRO" type="s:string" />
-    <wsdl:part name="V_CEO" type="s:string" />
-    <wsdl:part name="V_UND_OPER" type="s:string" />
-    <wsdl:part name="V_FEC_STR_INI" type="s:string" />
-    <wsdl:part name="V_FEC_STR_FIN" type="s:string" />
-    <wsdl:part name="UserName" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="ListarSolicitudTrabajo_JSONHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="InsertarSolicitudHttpGetIn">
@@ -543,18 +505,6 @@
   <wsdl:message name="ListarSolicitudTrabajo2HttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="ListarSolicitudTrabajo_JSONHttpPostIn">
-    <wsdl:part name="V_AMBIENTE" type="s:string" />
-    <wsdl:part name="V_FILTRO" type="s:string" />
-    <wsdl:part name="V_CEO" type="s:string" />
-    <wsdl:part name="V_UND_OPER" type="s:string" />
-    <wsdl:part name="V_FEC_STR_INI" type="s:string" />
-    <wsdl:part name="V_FEC_STR_FIN" type="s:string" />
-    <wsdl:part name="UserName" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="ListarSolicitudTrabajo_JSONHttpPostOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
   <wsdl:message name="InsertarSolicitudHttpPostIn">
     <wsdl:part name="v_ambiente" type="s:string" />
     <wsdl:part name="v_cod_ceo" type="s:string" />
@@ -649,11 +599,6 @@
       <wsdl:input message="tns:ListarSolicitudTrabajo2SoapIn" />
       <wsdl:output message="tns:ListarSolicitudTrabajo2SoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ListarSolicitudTrabajo_JSON">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Solicitudes de Trabajo , por Metodo  (JSON) </wsdl:documentation>
-      <wsdl:input message="tns:ListarSolicitudTrabajo_JSONSoapIn" />
-      <wsdl:output message="tns:ListarSolicitudTrabajo_JSONSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="InsertarSolicitud">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserción de Solicitudes de Trabajo</wsdl:documentation>
       <wsdl:input message="tns:InsertarSolicitudSoapIn" />
@@ -691,11 +636,6 @@
       <wsdl:input message="tns:ListarSolicitudTrabajo2HttpGetIn" />
       <wsdl:output message="tns:ListarSolicitudTrabajo2HttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="ListarSolicitudTrabajo_JSON">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Solicitudes de Trabajo , por Metodo  (JSON) </wsdl:documentation>
-      <wsdl:input message="tns:ListarSolicitudTrabajo_JSONHttpGetIn" />
-      <wsdl:output message="tns:ListarSolicitudTrabajo_JSONHttpGetOut" />
-    </wsdl:operation>
     <wsdl:operation name="InsertarSolicitud">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserción de Solicitudes de Trabajo</wsdl:documentation>
       <wsdl:input message="tns:InsertarSolicitudHttpGetIn" />
@@ -727,11 +667,6 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Solicitudes de Trabajo , por Metodo xml string</wsdl:documentation>
       <wsdl:input message="tns:ListarSolicitudTrabajo2HttpPostIn" />
       <wsdl:output message="tns:ListarSolicitudTrabajo2HttpPostOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ListarSolicitudTrabajo_JSON">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Solicitudes de Trabajo , por Metodo  (JSON) </wsdl:documentation>
-      <wsdl:input message="tns:ListarSolicitudTrabajo_JSONHttpPostIn" />
-      <wsdl:output message="tns:ListarSolicitudTrabajo_JSONHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="InsertarSolicitud">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserción de Solicitudes de Trabajo</wsdl:documentation>
@@ -775,15 +710,6 @@
     </wsdl:operation>
     <wsdl:operation name="ListarSolicitudTrabajo2">
       <soap:operation soapAction="http://tempuri.org/ListarSolicitudTrabajo2" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ListarSolicitudTrabajo_JSON">
-      <soap:operation soapAction="http://tempuri.org/ListarSolicitudTrabajo_JSON" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -857,15 +783,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarSolicitudTrabajo_JSON">
-      <soap12:operation soapAction="http://tempuri.org/ListarSolicitudTrabajo_JSON" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="InsertarSolicitud">
       <soap12:operation soapAction="http://tempuri.org/InsertarSolicitud" style="document" />
       <wsdl:input>
@@ -932,15 +849,6 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarSolicitudTrabajo_JSON">
-      <http:operation location="/ListarSolicitudTrabajo_JSON" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="InsertarSolicitud">
       <http:operation location="/InsertarSolicitud" />
       <wsdl:input>
@@ -998,15 +906,6 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarSolicitudTrabajo_JSON">
-      <http:operation location="/ListarSolicitudTrabajo_JSON" />
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded" />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="InsertarSolicitud">
       <http:operation location="/InsertarSolicitud" />
       <wsdl:input>
@@ -1028,16 +927,16 @@
   </wsdl:binding>
   <wsdl:service name="Solicitud">
     <wsdl:port name="SolicitudSoap" binding="tns:SolicitudSoap">
-      <soap:address location="http://10.10.90.4:7000/Core/GestionComercial/Solicitud.asmx" />
+      <soap:address location="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx" />
     </wsdl:port>
     <wsdl:port name="SolicitudSoap12" binding="tns:SolicitudSoap12">
-      <soap12:address location="http://10.10.90.4:7000/Core/GestionComercial/Solicitud.asmx" />
+      <soap12:address location="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx" />
     </wsdl:port>
     <wsdl:port name="SolicitudHttpGet" binding="tns:SolicitudHttpGet">
-      <http:address location="http://10.10.90.4:7000/Core/GestionComercial/Solicitud.asmx" />
+      <http:address location="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx" />
     </wsdl:port>
     <wsdl:port name="SolicitudHttpPost" binding="tns:SolicitudHttpPost">
-      <http:address location="http://10.10.90.4:7000/Core/GestionComercial/Solicitud.asmx" />
+      <http:address location="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

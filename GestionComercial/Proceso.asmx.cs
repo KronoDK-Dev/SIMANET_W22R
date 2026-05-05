@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.IO;
+using SixLabors.ImageSharp;
 using System.Linq;
 using System.Runtime.Caching;
 using System.Web;
@@ -635,8 +636,8 @@ namespace SIMANET_W22R.GestionComercial
 
             dtError.TableName = "PR_GET_OTS_PROYECTO";
             dtError.Columns.Add("DESCRIPCION", typeof(string));
-            dtError.Columns.Add("COD_OTS", typeof(int));
-            dtError.Columns.Add("NRO_VAL_TBJ", typeof(int));
+            dtError.Columns.Add("COD_OTS", typeof(Number));
+            dtError.Columns.Add("NRO_VAL_TBJ", typeof(Number));
             dtError.Columns.Add("UNIDAD", typeof(string));
             dtError.Columns.Add("FEC_REG", typeof(DateTime));
             dtError.Columns.Add("DES_DET", typeof(string));
@@ -716,7 +717,7 @@ namespace SIMANET_W22R.GestionComercial
             DataTable dtError = new DataTable("PR_GET_ADENDAS_POR_PROYECTO");
 
             dtError.TableName = "PR_GET_ADENDAS_POR_PROYECTO";
-            dtError.Columns.Add("N_PROYADE_MONTO", typeof(int));
+            dtError.Columns.Add("N_PROYADE_MONTO", typeof(Number));
             dtError.Columns.Add("V_PROYADE_MONEDA", typeof(string));
             dtError.Columns.Add("D_PROYADE_FECHA", typeof(DateTime));
             try

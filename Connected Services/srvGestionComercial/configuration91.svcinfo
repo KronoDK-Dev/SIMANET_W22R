@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="prhptVMMHwklID3lZHEPZYvZZb8k2Zk7CfnXv8xpSD8=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="oxUsww1mA8qWzyEZdA7iGe8AgAcC1kSmhFBa5cawCWs=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="SolicitudSoap">
       <properties>
@@ -263,10 +263,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="SolicitudSoap" contract="srvGestionComercial.SolicitudSoap" bindingType="basicHttpBinding" address="http://10.10.90.4:7000/Core/GestionComercial/Solicitud.asmx" bindingConfiguration="SolicitudSoap">
+    <endpoint name="SolicitudSoap" contract="srvGestionComercial.SolicitudSoap" bindingType="basicHttpBinding" address="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx" bindingConfiguration="SolicitudSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://10.10.90.4:7000/Core/GestionComercial/Solicitud.asmx</serializedValue>
+          <serializedValue>http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -348,10 +348,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="SolicitudSoap12" contract="srvGestionComercial.SolicitudSoap" bindingType="customBinding" address="http://10.10.90.4:7000/Core/GestionComercial/Solicitud.asmx" bindingConfiguration="SolicitudSoap12">
+    <endpoint name="SolicitudSoap12" contract="srvGestionComercial.SolicitudSoap" bindingType="customBinding" address="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx" bindingConfiguration="SolicitudSoap12">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://10.10.90.4:7000/Core/GestionComercial/Solicitud.asmx</serializedValue>
+          <serializedValue>http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

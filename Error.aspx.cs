@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 namespace SIMANET_W22R
 
 {
-    public partial class Error : System.Web.UI.Page
+    public partial class Error : PaginaBase
     {
       //  Exception LastError;
         String ErrMessage;
@@ -56,7 +56,7 @@ namespace SIMANET_W22R
 
             }
         }
-        /*  29.01.2026 ACTUALIZADO
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string ScriptRedirect = "";
@@ -78,73 +78,12 @@ namespace SIMANET_W22R
             LblSource.InnerText = oEntity["Origen"].ToString();
             LblDescripcion.InnerText = oEntity["Mensaje"].ToString();
 
-       
-            //((System.Web.UI.Page)System.Web.HttpContext.Current.Handler).RegisterStartupScript("Error2021", ScriptRedirect + strBE);
+            Header1.RegistrarLibs(Page.Header,Controles.Header.TipoLib.Style, this.StyleBase, true);
+            Header1.RegistrarLibs(Page.Header, Controles.Header.TipoLib.Script, this.ScriptBase, true);
 
-            ClientScript.RegisterStartupScript(this.GetType(), "Error2021", ScriptRedirect, false);
+
+            ((System.Web.UI.Page)System.Web.HttpContext.Current.Handler).RegisterStartupScript("Error2021", ScriptRedirect + strBE);
         }
-        */
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            // Mantienes tu script que rellena desde sessionStorage como respaldo visual
-            string ScriptRedirect = @"
-                <script>
-                 (function(){
-                   document.getElementById('LblPagina').innerText     = sessionStorage.getItem('Pagina')     || '';
-                   document.getElementById('LblMetodo').innerText     = sessionStorage.getItem('Metodo')     || '';
-                   document.getElementById('LblSource').innerText     = sessionStorage.getItem('Origen')     || '';
-                   document.getElementById('LblDescripcion').innerText= sessionStorage.getItem('Mensaje')    || '';
-                 })();
-                </script>";
-
-            string strBE = null;
-            try
-            {
-                var handler = HttpContext.Current?.Handler as System.Web.UI.Page;
-                var sess = handler?.Session;
-                object errObj = sess?["Error"];
-
-                // 1) Si no hay nada en Session["Error"], sal por el fallback JS
-                if (errObj == null)
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "Error2021", ScriptRedirect, false);
-                    return;
-                }
-
-                strBE = Convert.ToString(errObj);
-
-                // 2) Si viene vacío, mismo criterio
-                if (string.IsNullOrWhiteSpace(strBE))
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "Error2021", ScriptRedirect, false);
-                    return;
-                }
-
-                // 3) Intenta parsear
-                Dictionary<string, string> oEntity = EasyUtilitario.Helper.Data.SeriaizedDiccionario(strBE);
-
-                // 4) Lee de forma segura (TryGetValue)
-                if (oEntity != null)
-                {
-                    string val;
-                    if (oEntity.TryGetValue("Pagina", out val)) LblPagina.InnerText = val ?? "";
-                    if (oEntity.TryGetValue("Metodo", out val)) LblMetodo.InnerText = val ?? "";
-                    if (oEntity.TryGetValue("Origen", out val)) LblSource.InnerText = val ?? "";
-                    if (oEntity.TryGetValue("Mensaje", out val)) LblDescripcion.InnerText = val ?? "";
-                }
-
-                // 5) Ejecuta también el fallback por si faltó algún campo para que el front lo re-intente con sessionStorage
-                ClientScript.RegisterStartupScript(this.GetType(), "Error2021", ScriptRedirect, false);
-            }
-            catch
-            {
-                // Cualquier excepción en parsing: usa el fallback (JS) y evita cortar la página de error
-                ClientScript.RegisterStartupScript(this.GetType(), "Error2021", ScriptRedirect, false);
-            }
-        }
-
-
 
     }
 }

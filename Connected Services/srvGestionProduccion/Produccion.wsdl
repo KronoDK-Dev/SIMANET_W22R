@@ -7639,16 +7639,16 @@
   </wsdl:binding>
   <wsdl:service name="Produccion">
     <wsdl:port name="ProduccionSoap" binding="tns:ProduccionSoap">
-      <soap:address location="http://10.10.90.4:8000/Core/GestionProduccion/Produccion.asmx" />
+      <soap:address location="http://10.10.18.10:90/Core/GestionProduccion/Produccion.asmx" />
     </wsdl:port>
     <wsdl:port name="ProduccionSoap12" binding="tns:ProduccionSoap12">
-      <soap12:address location="http://10.10.90.4:8000/Core/GestionProduccion/Produccion.asmx" />
+      <soap12:address location="http://10.10.18.10:90/Core/GestionProduccion/Produccion.asmx" />
     </wsdl:port>
     <wsdl:port name="ProduccionHttpGet" binding="tns:ProduccionHttpGet">
-      <http:address location="http://10.10.90.4:8000/Core/GestionProduccion/Produccion.asmx" />
+      <http:address location="http://10.10.18.10:90/Core/GestionProduccion/Produccion.asmx" />
     </wsdl:port>
     <wsdl:port name="ProduccionHttpPost" binding="tns:ProduccionHttpPost">
-      <http:address location="http://10.10.90.4:8000/Core/GestionProduccion/Produccion.asmx" />
+      <http:address location="http://10.10.18.10:90/Core/GestionProduccion/Produccion.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

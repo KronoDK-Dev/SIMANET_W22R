@@ -1137,10 +1137,6 @@
             <s:element minOccurs="0" maxOccurs="1" name="X_N_FTPresupuesto_CostoMAT" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="X_N_FTPresupuesto_CostoSER" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="X_N_FTPresupuesto_CostoIND" type="s:string" />
-<<<<<<< HEAD:Connected Services/srvGestionProyecto/Proyecto.wsdl
-=======
-            <s:element minOccurs="0" maxOccurs="1" name="X_N_FTPresupuesto_CostoNAC" type="s:string" />
->>>>>>> 44dfac1 (WIP: cambios locales antes de rebase 05.05.2026):Connected Services/srvGestionProyecto/Proyecto1.wsdl
             <s:element minOccurs="0" maxOccurs="1" name="X_V_FTPresupuesto_USUARIO_AUDI" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="X_V_FTPresupuesto_ESTACIONW" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="X_V_FTPresupuesto_AUDITORIA" type="s:string" />
@@ -1888,10 +1884,6 @@
     <wsdl:part name="X_N_FTPresupuesto_CostoMAT" type="s:string" />
     <wsdl:part name="X_N_FTPresupuesto_CostoSER" type="s:string" />
     <wsdl:part name="X_N_FTPresupuesto_CostoIND" type="s:string" />
-<<<<<<< HEAD:Connected Services/srvGestionProyecto/Proyecto.wsdl
-=======
-    <wsdl:part name="X_N_FTPresupuesto_CostoNAC" type="s:string" />
->>>>>>> 44dfac1 (WIP: cambios locales antes de rebase 05.05.2026):Connected Services/srvGestionProyecto/Proyecto1.wsdl
     <wsdl:part name="X_V_FTPresupuesto_USUARIO_AUDI" type="s:string" />
     <wsdl:part name="X_V_FTPresupuesto_ESTACIONW" type="s:string" />
     <wsdl:part name="X_V_FTPresupuesto_AUDITORIA" type="s:string" />
@@ -2333,10 +2325,6 @@
     <wsdl:part name="X_N_FTPresupuesto_CostoMAT" type="s:string" />
     <wsdl:part name="X_N_FTPresupuesto_CostoSER" type="s:string" />
     <wsdl:part name="X_N_FTPresupuesto_CostoIND" type="s:string" />
-<<<<<<< HEAD:Connected Services/srvGestionProyecto/Proyecto.wsdl
-=======
-    <wsdl:part name="X_N_FTPresupuesto_CostoNAC" type="s:string" />
->>>>>>> 44dfac1 (WIP: cambios locales antes de rebase 05.05.2026):Connected Services/srvGestionProyecto/Proyecto1.wsdl
     <wsdl:part name="X_V_FTPresupuesto_USUARIO_AUDI" type="s:string" />
     <wsdl:part name="X_V_FTPresupuesto_ESTACIONW" type="s:string" />
     <wsdl:part name="X_V_FTPresupuesto_AUDITORIA" type="s:string" />
@@ -4752,16 +4740,16 @@
   </wsdl:binding>
   <wsdl:service name="Proyecto">
     <wsdl:port name="ProyectoSoap" binding="tns:ProyectoSoap">
-      <soap:address location="http://10.10.90.4:8000/Core/GestionProyecto/Proyecto.asmx" />
+      <soap:address location="http://10.10.18.10:90/Core/GestionProyecto/Proyecto.asmx" />
     </wsdl:port>
     <wsdl:port name="ProyectoSoap12" binding="tns:ProyectoSoap12">
-      <soap12:address location="http://10.10.90.4:8000/Core/GestionProyecto/Proyecto.asmx" />
+      <soap12:address location="http://10.10.18.10:90/Core/GestionProyecto/Proyecto.asmx" />
     </wsdl:port>
     <wsdl:port name="ProyectoHttpGet" binding="tns:ProyectoHttpGet">
-      <http:address location="http://10.10.90.4:8000/Core/GestionProyecto/Proyecto.asmx" />
+      <http:address location="http://10.10.18.10:90/Core/GestionProyecto/Proyecto.asmx" />
     </wsdl:port>
     <wsdl:port name="ProyectoHttpPost" binding="tns:ProyectoHttpPost">
-      <http:address location="http://10.10.90.4:8000/Core/GestionProyecto/Proyecto.asmx" />
+      <http:address location="http://10.10.18.10:90/Core/GestionProyecto/Proyecto.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
