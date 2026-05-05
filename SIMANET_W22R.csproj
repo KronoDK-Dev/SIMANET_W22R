@@ -487,8 +487,16 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\srvGestionSeguridadPlanta\Visitas1.wsdl" />
     <None Include="Connected Services\srvGestionTesoreria\Tesoreria.wsdl" />
     <None Include="Connected Services\srvHelpDesk\AdministrarHD.wsdl" />
+    <None Include="Connected Services\srvGestionSeguridadPlanta\configuration91.svcinfo" />
+    <None Include="Connected Services\srvGestionSeguridadPlanta\configuration.svcinfo" />
+    <None Include="Connected Services\srvGestionSeguridadPlanta\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\srvGestionSeguridadPlanta\Visitas1.disco" />
     <Content Include="Connected Services\srvHelpDesk\SIMANET_W22R.srvHelpDesk.PlanCronogramaActividadTareaBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -529,6 +537,10 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Connected Services\srvProyectos\SIMANET_W22R.srvProyectos.ProyectoBE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\srvSeguridadIndustrial\SeguridadIndustrial.wsdl" />
+    <Content Include="Connected Services\srvSeguridadIndustrial\SIMANET_W22R.srvSeguridadIndustrial.AntecedenteTrabajadorContratistaBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\srvSeguridad\Seguridad.disco" />
@@ -573,11 +585,22 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\srvSeguridadIndustrial\SeguridadIndustrial.disco" />
+    <None Include="Connected Services\srvSeguridadIndustrial\configuration91.svcinfo" />
+    <None Include="Connected Services\srvSeguridadIndustrial\configuration.svcinfo" />
+    <None Include="Connected Services\srvSeguridadIndustrial\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Controles\Header.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="FooterDefault.aspx" />
+    <Content Include="General\AdministrarTblGeneraltems.aspx" />
     <Content Include="General\EasyDataInterConectPrc.aspx" />
+    <Content Include="General\ItemsTablasGenerales.aspx" />
+    <Content Include="General\Iteroperabilidad.aspx" />
+    <Content Include="General\ProcedimientoDiagramadeFlujo.aspx" />
     <Content Include="General\TablasGenerales.asmx" />
     <Content Include="General\UpLoadMaster.aspx" />
     <Content Include="GestionActivoFijo\Activo\Activo.asmx" />
@@ -696,6 +719,9 @@
     <Content Include="GestionReportes\ReportPrevio.aspx" />
     <Content Include="GestionReportes\RptPrevioInPopup.aspx" />
     <Content Include="GestionReportes\UsuarioCompartido.aspx" />
+    <Content Include="GestionSeguridadIndustrial\AdministrarAntecedenteTrabajadorContratista.aspx" />
+    <Content Include="GestionSeguridadIndustrial\DetalleAntecedenteTrabajadorContratista.aspx" />
+    <Content Include="GestionSeguridadIndustrial\Procesar.aspx" />
     <Content Include="GestionTesoreria\Balance\Balance.asmx" />
     <Content Include="GestionTesoreria\Cobros\Cobros.asmx" />
     <Content Include="GestionTesoreria\Pagos\Pagos.asmx" />
@@ -850,6 +876,7 @@
     <Content Include="SIMANET\SeguridadPlanta\ListaTrabajadorEnFeriado.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\ListaTrabajadores.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\ReprogramarTrabajador.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\visitas.asmx" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -938,6 +965,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\srvGestionSeguridadPlanta\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\srvGestionTesoreria\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -959,6 +991,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\srvProyectos\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\srvSeguridadIndustrial\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -1000,12 +1037,43 @@
     <Compile Include="FooterDefault.aspx.designer.cs">
       <DependentUpon>FooterDefault.aspx</DependentUpon>
     </Compile>
+    <Compile Include="General\AdministrarTblGeneraltems.aspx.cs">
+      <DependentUpon>AdministrarTblGeneraltems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\AdministrarTblGeneraltems.aspx.designer.cs">
+      <DependentUpon>AdministrarTblGeneraltems.aspx</DependentUpon>
+    </Compile>
     <Compile Include="General\EasyDataInterConectPrc.aspx.cs">
       <DependentUpon>EasyDataInterConectPrc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="General\EasyDataInterConectPrc.aspx.designer.cs">
       <DependentUpon>EasyDataInterConectPrc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General\GeneralPaginaBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\ItemsTablasGenerales.aspx.cs">
+      <DependentUpon>ItemsTablasGenerales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\ItemsTablasGenerales.aspx.designer.cs">
+      <DependentUpon>ItemsTablasGenerales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General\Iteroperabilidad.aspx.cs">
+      <DependentUpon>Iteroperabilidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Iteroperabilidad.aspx.designer.cs">
+      <DependentUpon>Iteroperabilidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General\ProcedimientoDiagramadeFlujo.aspx.cs">
+      <DependentUpon>ProcedimientoDiagramadeFlujo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\ProcedimientoDiagramadeFlujo.aspx.designer.cs">
+      <DependentUpon>ProcedimientoDiagramadeFlujo.aspx</DependentUpon>
     </Compile>
     <Compile Include="General\TablasGenerales.asmx.cs">
       <DependentUpon>TablasGenerales.asmx</DependentUpon>
@@ -1720,6 +1788,27 @@
     <Compile Include="GestionReportes\UsuarioCompartido.aspx.designer.cs">
       <DependentUpon>UsuarioCompartido.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GestionSeguridadIndustrial\AdministrarAntecedenteTrabajadorContratista.aspx.cs">
+      <DependentUpon>AdministrarAntecedenteTrabajadorContratista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionSeguridadIndustrial\AdministrarAntecedenteTrabajadorContratista.aspx.designer.cs">
+      <DependentUpon>AdministrarAntecedenteTrabajadorContratista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionSeguridadIndustrial\DetalleAntecedenteTrabajadorContratista.aspx.cs">
+      <DependentUpon>DetalleAntecedenteTrabajadorContratista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionSeguridadIndustrial\DetalleAntecedenteTrabajadorContratista.aspx.designer.cs">
+      <DependentUpon>DetalleAntecedenteTrabajadorContratista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionSeguridadIndustrial\Procesar.aspx.cs">
+      <DependentUpon>Procesar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionSeguridadIndustrial\Procesar.aspx.designer.cs">
+      <DependentUpon>Procesar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GestionTesoreria\Balance\Balance.asmx.cs">
       <DependentUpon>Balance.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -2220,6 +2309,7 @@
     <Compile Include="SIMANET\SeguridadPlanta\AdministrarSCTR.aspx.designer.cs">
       <DependentUpon>AdministrarSCTR.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\csProgramacionVisitas.cs" />
     <Compile Include="SIMANET\SeguridadPlanta\DefaultContratista.aspx.cs">
       <DependentUpon>DefaultContratista.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2293,6 +2383,10 @@
     <Compile Include="SIMANET\SeguridadPlanta\SeguridadPlantaBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\visitas.asmx.cs">
+      <DependentUpon>visitas.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2356,11 +2450,13 @@
     <WCFMetadataStorage Include="Connected Services\srvGestionProd_Mantenimiento\" />
     <WCFMetadataStorage Include="Connected Services\srvGestionProyecto\" />
     <WCFMetadataStorage Include="Connected Services\srvGestionReportes\" />
+    <WCFMetadataStorage Include="Connected Services\srvGestionSeguridadPlanta\" />
     <WCFMetadataStorage Include="Connected Services\srvGestionTesoreria\" />
     <WCFMetadataStorage Include="Connected Services\srvHelpDesk\" />
     <WCFMetadataStorage Include="Connected Services\srvITIL\" />
     <WCFMetadataStorage Include="Connected Services\srvLog_ActivoFijo\" />
     <WCFMetadataStorage Include="Connected Services\srvProyectos\" />
+    <WCFMetadataStorage Include="Connected Services\srvSeguridadIndustrial\" />
     <WCFMetadataStorage Include="Connected Services\srvSeguridad\" />
   </ItemGroup>
   <ItemGroup>
