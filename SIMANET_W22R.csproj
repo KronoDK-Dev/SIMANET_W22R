@@ -865,6 +865,7 @@
     <Content Include="Recursos\Tree\zTreeStyle.css" />
     <Content Include="SIMANET\SeguridadPlanta\AdministrarProgramacionContratista.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\AdministrarProgVisita.aspx" />
+    <Content Include="SIMANET\SeguridadPlanta\AdministrarProgVisitaDetalle.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\AdministrarSCTR.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\DefaultContratista.aspx" />
     <Content Include="SIMANET\SeguridadPlanta\DetalleCopyProg.aspx" />
@@ -2301,6 +2302,12 @@
     </Compile>
     <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgVisita.aspx.designer.cs">
       <DependentUpon>AdministrarProgVisita.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgVisitaDetalle.aspx.cs">
+      <DependentUpon>AdministrarProgVisitaDetalle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMANET\SeguridadPlanta\AdministrarProgVisitaDetalle.aspx.designer.cs">
+      <DependentUpon>AdministrarProgVisitaDetalle.aspx</DependentUpon>
     </Compile>
     <Compile Include="SIMANET\SeguridadPlanta\AdministrarSCTR.aspx.cs">
       <DependentUpon>AdministrarSCTR.aspx</DependentUpon>
