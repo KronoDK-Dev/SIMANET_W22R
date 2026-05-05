@@ -255,6 +255,11 @@
 
             oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQHORAFIN, oDetalleBE.HoraTermino);
             oColletionParams.Add(oParam);
+            //Datos de pension y salud
+            oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQPENSION, oDetalleBE.NroPensionPoliza);
+            oColletionParams.Add(oParam);
+            oParam = new SIMA.Param(AdministrarProgramacionContratista.KEYQNROSALUD, oDetalleBE.NroSaludPoliza);
+            oColletionParams.Add(oParam);
 
             EasyPopupTrabEqui.Load(Url, oColletionParams, false);
         }

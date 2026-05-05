@@ -176,7 +176,15 @@
             oParamCollections.Add(oParam);
             oEasyDataInterConect.ParamsCollection = oParamCollections;
 
-            oParam = new SIMA.Param("IdProgramacion", DefaultContratista.Params[DefaultContratista.KEYQIDPROGRAMACION], TipodeDato.Int);
+            oParam = new SIMA.Param("NroProg", DefaultContratista.Params[DefaultContratista.KEYQIDPROGRAMACION], TipodeDato.Int);
+            oParamCollections.Add(oParam);
+            oEasyDataInterConect.ParamsCollection = oParamCollections;
+             
+            oParam = new SIMA.Param("SCTRP", DefaultContratista.Params[DefaultContratista.KEYQPENSION]);
+            oParamCollections.Add(oParam);
+            oEasyDataInterConect.ParamsCollection = oParamCollections;
+
+            oParam = new SIMA.Param("SCTRS", DefaultContratista.Params[DefaultContratista.KEYQNROSALUD]);
             oParamCollections.Add(oParam);
             oEasyDataInterConect.ParamsCollection = oParamCollections;
 

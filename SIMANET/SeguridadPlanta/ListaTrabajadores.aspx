@@ -26,17 +26,16 @@
             var chk = e.children[0];
             var IdEstadoNew = ((chk.checked == true) ? 1 : 0);
             var DataBE = jNet.get(e).attr("data").toString().SerializedToObject();
-            
 
-            //DT Cargado en la pagina default
-            //------------------------------------------------------------------------------------------------------------
+        
             dtInfSCTR.Rows.forEach(function (oDataRow, r) {
                 if (oDataRow["IdTipoSCTR"].toString() == DataBE.IdTipo) {
-                    //DefaultContratista.Data.RegistrarTrabajadorSCTR(oDataRow["IdSCTR"].toString(), DataBE.IdSCTRD, DataBE.NroDoc, IdEstadoNew);
                     AdministrarProgramacionContratista.RegistrarTrabajadorSCTR(oDataRow["IdSCTR"].toString(), DataBE.IdSCTRD, DataBE.NroDoc, IdEstadoNew);
                 }
             });
-            //------------------------------------------------------------------------------------------------------------
+
+
+
             aler();
         }
     </script>
@@ -169,7 +168,9 @@
                       ListaTrabajadores.DetalleReprogramar(oDataBE.NroDni, oDataBE.Nombres);
                       break;
                   case 2:
-                      ListaTrabajadores.ListadoAutorizadoPorTrabajador(oDataBE);
+                      if (oDataBE.AutorizadoFeriado == "1") {//Lista los feriados programados
+                          ListaTrabajadores.ListadoAutorizadoPorTrabajador(oDataBE);
+                      }
                       break;
               }
           } 
@@ -215,7 +216,7 @@
                   var Fecha = oDataRow.FechaAutorizada;
                   var Color = "Color:" + ((oDataRow.IdEstado == "1") ? "Red" : "blue") + ";";
 
-                  var activo = ((oDataRow.IdEstado == "2") ? "checked=" + cmll + "checked" + cmll : "");
+                  var activo = ((oDataRow.IdEstado == "1") ? "checked=" + cmll + "checked" + cmll : "");
                   HTMLTRow += '<tr><td style="' + Color + '">' + Fecha + '</td><td><span Data=" ' + ''.BaseSerialized(oDataRow).toString().Replace(cmll, cmlls) +  '" ><input id="chk' + r + '" type="checkbox" ' + activo + ' onclick="ListaTrabajadores.Data.Autorizar(this);" /></span></td></tr>';
 
               });

@@ -213,9 +213,12 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             txtPension.SetValue(oEasyBaseEntityBE.GetValue("NroPensionPoliza"));
             txtPension.Enabled = false;
 
+            txtSalud.SetValue(oEasyBaseEntityBE.GetValue("NroSaludPoliza"));
+            txtSalud.Enabled = false;
+
             //Listar SCTR Activo
             string lstIdSCTR = "";
-            foreach (DataRow dr in ListarSCTRActivo().GetDataTable().Rows) {
+            foreach (DataRow dr in ListarSCTRActivo(oEasyBaseEntityBE.GetValue("NroPensionPoliza"), oEasyBaseEntityBE.GetValue("NroSaludPoliza")).GetDataTable().Rows) {
                 lstIdSCTR += ",IdSCTR" + ((dr["IdTipoSCTR"].ToString() == "1") ? "p" : "s") + ":'" + dr["IdSCTR"] +"'";
             }
             string strDaata = "var sctrBE={FechaTermino:'" + this.FFin.Text + "', pFIni:'" + FSegIni.Text + "',pFFin:'" + FSegFin.Text + "',sFIni:'" + FSegIniS.Text + "',sFFin:'" + FSegFinS.Text + "'" + lstIdSCTR + "}";
@@ -224,8 +227,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
 
             //txtPension.Attributes["Data"] = 
-            txtSalud.SetValue(oEasyBaseEntityBE.GetValue("NroSaludPoliza"));
-            txtSalud.Enabled = false;
+           
 
             int i = 0;
 
@@ -281,7 +283,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
         }
 
 
-        EasyDataInterConect ListarSCTRActivo()
+        EasyDataInterConect ListarSCTRActivo(string SctrPension, string  StrSalud)
         {
             EasyDataInterConect odi = new EasyDataInterConect();
             odi.ConfigPathSrvRemoto = "PathBaseWSCore";
@@ -302,6 +304,19 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
             oParam.TipodeDato = TiposdeDatos.Int;
             oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
             odi.UrlWebServicieParams.Add(oParam);
+
+            oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "SCTRP";
+            oParam.Paramvalue = SctrPension;
+            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
+            odi.UrlWebServicieParams.Add(oParam);
+
+            oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "SCTRS";
+            oParam.Paramvalue = StrSalud;
+            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
+            odi.UrlWebServicieParams.Add(oParam);
+
 
             oParam = new EasyFiltroParamURLws();
             oParam.ParamName = "UserName";

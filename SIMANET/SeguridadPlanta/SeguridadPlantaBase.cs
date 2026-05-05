@@ -18,6 +18,7 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
         public static string KEYQNROSALUD = "nSalud";
         public static string KEYQPENSION = "nPension";
+
         public static string KEYQIDROSALUD = "IdSalud";
         public static string KEYQIDPENSION = "IdPension";
 
@@ -75,6 +76,24 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                 return Page.Request.Params[KEYQPENSION].ToString();
             }
         }
+
+
+        public string IdSCTRSalud
+        {
+            get
+            {
+                return Page.Request.Params[KEYQIDROSALUD].ToString();
+            }
+        }
+        public string IdSCTRPension
+        {
+            get
+            {
+                return Page.Request.Params[KEYQIDPENSION].ToString();
+            }
+        }
+
+
         public string IdSCTR
         {
             get

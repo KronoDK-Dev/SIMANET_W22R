@@ -103,6 +103,23 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
 
 
             oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "IdSCTRP";
+            oParam.Paramvalue = this.IdSCTRPension;
+            oParam.TipodeDato = TiposdeDatos.String;
+            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
+            odi.UrlWebServicieParams.Add(oParam);
+
+
+            oParam = new EasyFiltroParamURLws();
+            oParam.ParamName = "IdSCTRS";
+            oParam.Paramvalue = this.IdSCTRSalud;
+            oParam.TipodeDato = TiposdeDatos.String;
+            oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
+            odi.UrlWebServicieParams.Add(oParam);
+
+
+
+            oParam = new EasyFiltroParamURLws();
             oParam.ParamName = "UserName";
             oParam.Paramvalue = this.UsuarioLogin;
             oParam.ObtenerValor = EasyFiltroParamURLws.TipoObtenerValor.Fijo;
@@ -252,9 +269,10 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                         tblH.Style.Add("width", "100%");
 
                         System.Web.UI.WebControls.CheckBox chk = new System.Web.UI.WebControls.CheckBox();
-                        if (dr["IdEstadoS"].ToString().Length == 0)//en caso no se halla procesado por el netsuite
+                        if (dr["IdEstadoS"].ToString() == "0")//en caso no se halla procesado por el netsuite
                         {
                             chk.Checked = ((drvr["SCTRSalud"].ToString().Equals("SI")) ? true : false);
+                            chk.Enabled = false;
                         }
                         else
                         {
@@ -266,12 +284,14 @@ namespace SIMANET_W22R.SIMANET.SeguridadPlanta
                     tblH.Rows[0].Cells[0].Controls.Add(chk);
 
                         chk = new System.Web.UI.WebControls.CheckBox();
-                        if(dr["IdEstadoP"].ToString().Length == 0){
+                        if(dr["IdEstadoP"].ToString()== "0"){
                             chk.Checked = ((drvr["SCTRPension"].ToString().Equals("SI")) ? true : false);
+                            chk.Enabled = false;
                         }
                         else{
                             chk.Checked = ((dr["IdEstadoP"].ToString() == "1") ? true : false);
                         }
+
                         
                         chk.Attributes.Add(Utilitario.Enumerados.EventosJavaScript.onchange.ToString(), "CheckSCTR(this)");
                         chk.Attributes["Data"] = "{IdTipo:2,NroDoc:'" + dr["NroDNI"].ToString() + "',IdSCTRD:'" + dr["IdDetalleSCTR_P"].ToString() + "',IdEstado:" + dr["IdEstadoP"].ToString()  + "}";
