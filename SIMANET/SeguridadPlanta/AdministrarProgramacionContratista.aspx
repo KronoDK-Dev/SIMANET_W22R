@@ -14,8 +14,6 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     
-
-
   
 
 </head>
@@ -29,7 +27,7 @@
             </tr>
             <tr>
                 <td>
-                    <cc1:EasyGridView ID="EasyGRContrata"   AutoGenerateColumns="False" ShowFooter="True" TituloHeader="Programación de Contratistas" ToolBarButtonClick="OnEasyGridButton_Click" Width="100%" AllowPaging="True" runat="server" fncExecBeforeServer="GridToolBarValidate" OnRowDataBound="EasyGRContrata_RowDataBound" OnPageIndexChanged="EasyGRContrata_PageIndexChanged" OnEasyGridButton_Click="EasyGRContrata_EasyGridButton_Click">
+                    <cc1:EasyGridView ID="EasyGRContrata"   AutoGenerateColumns="False" ShowFooter="True" TituloHeader="Programación de Contratistas" ToolBarButtonClick="OnEasyGridButton_Click" Width="100%" AllowPaging="True" runat="server" fncExecBeforeServer="" OnRowDataBound="EasyGRContrata_RowDataBound" OnPageIndexChanged="EasyGRContrata_PageIndexChanged" OnEasyGridButton_Click="EasyGRContrata_EasyGridButton_Click">
                             <EasyGridButtons>
                                 <cc1:EasyGridButton ID="btnAgregar" Descripcion="" Icono="fa fa-plus-square-o" MsgConfirm="" RequiereSelecciondeReg="False" RunAtServer="False" SilenceWait="True" SolicitaConfirmar="False" Texto="Agregar" Ubicacion="Derecha" />
                                 <cc1:EasyGridButton ID="btnEliminar" Descripcion="" Icono="fa fa-close" MsgConfirm="Desea eliminar ahora el registro seleccionado?" RequiereSelecciondeReg="True" RunAtServer="True" SilenceWait="False" SolicitaConfirmar="True" Texto="Eliminar" Ubicacion="Derecha" />
@@ -76,17 +74,14 @@
             </tr>
 
         </table>
-        <cc2:EasyPopupBase ID="EasyPopInfoGen" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="PROGRAMACIÓN CONTRATISTA"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true" fncScriptAceptar="DetalleProgramacion.Aceptar" OnClick="EasyPopInfoGen_Click" ></cc2:EasyPopupBase>
+        <cc2:EasyPopupBase ID="EasyPopInfoGen" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="PROGRAMACIÓN CONTRATISTA"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true" fncScriptAceptar="DetalleProgramacion.Aceptar"  ></cc2:EasyPopupBase>
         <cc2:EasyPopupBase ID="EasyPopupPrv" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="PROVEEDOR"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true" fncScriptAceptar="DetalleProveedor.Aceptar"></cc2:EasyPopupBase>
-        <cc2:EasyPopupBase ID="EasyPopupTrabEqui" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="TRABAJADORES Y EQUIPOS"   ValidarDatos="false"  RunatServer="true" DisplayButtons="true" fncScriptAceptar="AdministrarProgramacionContratista.TrabajadorEquipoAceptar" OnClick="EasyPopupTrabEqui_Click"  ></cc2:EasyPopupBase>
+        <cc2:EasyPopupBase ID="EasyPopupTrabEqui" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="TRABAJADORES Y EQUIPOS"   ValidarDatos="false"  RunatServer="true" DisplayButtons="true" fncScriptAceptar="AdministrarProgramacionContratista.TrabajadorEquipoAceptar"   ></cc2:EasyPopupBase>
         <cc2:EasyPopupBase ID="EasyPopupEquipoDet" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="DETALLE EQUIPO"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="DetalleEquipos.Aceptar"  ></cc2:EasyPopupBase>
         <cc2:EasyPopupBase ID="EasyPopupTrabajador" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="DETALLE TRABAJADOR"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="DetalleTrabajador.Aceptar"  ></cc2:EasyPopupBase>
         <cc2:EasyPopupBase ID="EasyPopupReprogramaTrab" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="REPROGRAMACION DE TRABAJADOR"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="ReprogramarTrabajador.Aceptar"  ></cc2:EasyPopupBase>
         
-        <cc2:EasyPopupBase ID="EasyPopupCopiar" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="COPIAR PROGRAMACIÓN"   ValidarDatos="true"  RunatServer="true" DisplayButtons="true"  fncScriptAceptar="DetalleCopyProg.Aceptar" OnClick="EasyPopupCopiar_Click"  ></cc2:EasyPopupBase>
-        
-        <cc2:EasyPopupBase ID="EasyPopupDetalleSCTR" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="DETALLE SCTR"   ValidarDatos="true"  RunatServer="false" DisplayButtons="true"  fncScriptAceptar="DetalleSCTR.Aceptar"></cc2:EasyPopupBase>
-
+        <cc2:EasyPopupBase ID="EasyPopupCopiar" runat="server"  Modal="fullscreen" ModoContenedor="LoadPage" Titulo="COPIAR PROGRAMACIÓN"   ValidarDatos="true"  RunatServer="true" DisplayButtons="true"  fncScriptAceptar="DetalleCopyProg.Aceptar"   ></cc2:EasyPopupBase>
 
 
 
@@ -165,27 +160,6 @@
 
     </form>
     <script>
-        function GridToolBarValidate(btnItem, ItemRowBE) {
-            switch (btnItem.Id) {
-                case "btnEliminar"://Verificar si tiene programacion antes de ser eliminado
-                    var Retorno=false
-                    if (AdministrarProgramacionContratista.VeridicaPermanencia(ItemRowBE.Periodo, ItemRowBE.NroProgramacion) == 0) {
-                        Retorno = true;
-                    }
-                    else {
-                        var msgConfig = { Titulo: 'PROGRAMACION CONTRATISA', Descripcion: 'Registro que desea eliminar se encuentra bloqueado..<br>Una Programación estara disponible de eliminar cuando no existan ingresos de trabajadores viculados a esta programación' };
-                        var oMsg = new SIMA.MessageBox(msgConfig);
-                        oMsg.Alert();
-                    }
-
-                    return Retorno;
-                    break;
-                default:
-                    return true;
-                    break;
-            }
-            
-        }
 
         function OnEasyGridButton_Click(btnItem, DetalleBE) {
 
@@ -212,7 +186,6 @@
                     AdministrarProgramacionContratista.AdministrarTrabajadoresyEquipos(DetalleBE);
                     
                     break;
-               
                 case "btnCopiar":
 
                     var Url = Page.Request.ApplicationPath + "/SIMANET/SeguridadPlanta/DetalleCopyProg.aspx";
@@ -375,61 +348,6 @@
               var oCustomTemplateBE = new EasyGestorFiltro1_idCIASeguros.CustomTemplateBE(ul, item, iTemplate);
               return EasyGestorFiltro1_idCIASeguros.SetCustomTemplate(oCustomTemplateBE);
           }
-
-
-          AdministrarProgramacionContratista.RegistrarTrabajadorSCTR = function (IdSctr, IdSCTRDetalle, NroDoc, IdEstado) {
-
-              var oParamCollections = new SIMA.ParamCollections();
-              var oParam = new SIMA.Param("IdSCTR", IdSctr);
-              oParamCollections.Add(oParam);
-
-              oParam = new SIMA.Param("IdDetalleSCTR", IdSCTRDetalle);
-              oParamCollections.Add(oParam);
-
-              oParam = new SIMA.Param("NroDNI", NroDoc);
-              oParamCollections.Add(oParam);
-
-              oParam = new SIMA.Param("IdEstado", IdEstado, TipodeDato.Int);
-              oParamCollections.Add(oParam);
-
-              oParam = new SIMA.Param("IdUsuario", UsuarioBE.IdUsuario, TipodeDato.Int);
-              oParamCollections.Add(oParam);
-
-              oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
-              oParamCollections.Add(oParam);
-
-              var oEasyDataInterConect = new EasyDataInterConect();
-              oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
-              oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + "SIMANET/SeguridadPlanta/Contratista.asmx";
-              oEasyDataInterConect.Metodo = 'SCTR_Detalle_ins';
-              oEasyDataInterConect.ParamsCollection = oParamCollections;
-
-              var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
-              var ResultBE = oEasyDataResult.sendData();
-          }
-
-
-          AdministrarProgramacionContratista.VeridicaPermanencia = function (Periodo,NroProgramacion) {
-              var oParamCollections = new SIMA.ParamCollections();
-              var oParam = new SIMA.Param("Periodo", Periodo, TipodeDato.Int);
-              oParamCollections.Add(oParam);
-
-              oParam = new SIMA.Param("NroProg", NroProgramacion, TipodeDato.Int);
-              oParamCollections.Add(oParam);
-
-              oParam = new SIMA.Param("UserName", UsuarioBE.UserName);
-              oParamCollections.Add(oParam);
-
-              var oEasyDataInterConect = new EasyDataInterConect();
-              oEasyDataInterConect.MetododeConexion = ModoInterConect.WebServiceExterno;
-              oEasyDataInterConect.UrlWebService = ConnectService.PathNetCore + "SIMANET/SeguridadPlanta/Contratista.asmx";
-              oEasyDataInterConect.Metodo = 'ProgramacionPermanencia_count';
-              oEasyDataInterConect.ParamsCollection = oParamCollections;
-
-              var oEasyDataResult = new EasyDataResult(oEasyDataInterConect);
-              return oEasyDataResult.sendData();
-          }
-
       </script>
 </body>
 </html>

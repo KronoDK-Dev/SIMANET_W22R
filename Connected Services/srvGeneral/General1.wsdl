@@ -113,6 +113,51 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ListarTodosOracleQS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdtblModulo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="QuerySelector" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarTodosOracleQSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarTodosOracleQSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarTodosOracle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdtblModulo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarTodosOracleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarTodosOracleResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="InsertaModificaItemsTabla">
         <s:complexType>
           <s:sequence>
@@ -2414,28 +2459,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ListarTodosOracle">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="IdtblModulo" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ListarTodosOracleResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ListarTodosOracleResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
-                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="ListarItemChildxItemRelacionadoOracle">
         <s:complexType>
           <s:sequence>
@@ -2449,6 +2472,61 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="ListarItemChildxItemRelacionadoOracleResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Buscar_Var1_DetalleCatologo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdMaestra" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdDetalle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Buscar_Var1_DetalleCatologoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Buscar_Var1_DetalleCatologoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarAreaPorNombre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iIdCentroOperativo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sNombreArea" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarAreaPorNombreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarAreaPorNombreResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarProveedoresSIMANET">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="V_NOMBRE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CRITERIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarProveedoresSIMANETResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarProveedoresSIMANETResult">
               <s:complexType>
                 <s:sequence>
                   <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
@@ -2499,6 +2577,18 @@
   </wsdl:message>
   <wsdl:message name="ListarTablasdeApoyoSoapOut">
     <wsdl:part name="parameters" element="tns:ListarTablasdeApoyoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarTodosOracleQSSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarTodosOracleQS" />
+  </wsdl:message>
+  <wsdl:message name="ListarTodosOracleQSSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarTodosOracleQSResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarTodosOracleSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarTodosOracle" />
+  </wsdl:message>
+  <wsdl:message name="ListarTodosOracleSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarTodosOracleResponse" />
   </wsdl:message>
   <wsdl:message name="InsertaModificaItemsTablaSoapIn">
     <wsdl:part name="parameters" element="tns:InsertaModificaItemsTabla" />
@@ -3130,17 +3220,29 @@
   <wsdl:message name="Listar_Reg_TabGeneralSoapOut">
     <wsdl:part name="parameters" element="tns:Listar_Reg_TabGeneralResponse" />
   </wsdl:message>
-  <wsdl:message name="ListarTodosOracleSoapIn">
-    <wsdl:part name="parameters" element="tns:ListarTodosOracle" />
-  </wsdl:message>
-  <wsdl:message name="ListarTodosOracleSoapOut">
-    <wsdl:part name="parameters" element="tns:ListarTodosOracleResponse" />
-  </wsdl:message>
   <wsdl:message name="ListarItemChildxItemRelacionadoOracleSoapIn">
     <wsdl:part name="parameters" element="tns:ListarItemChildxItemRelacionadoOracle" />
   </wsdl:message>
   <wsdl:message name="ListarItemChildxItemRelacionadoOracleSoapOut">
     <wsdl:part name="parameters" element="tns:ListarItemChildxItemRelacionadoOracleResponse" />
+  </wsdl:message>
+  <wsdl:message name="Buscar_Var1_DetalleCatologoSoapIn">
+    <wsdl:part name="parameters" element="tns:Buscar_Var1_DetalleCatologo" />
+  </wsdl:message>
+  <wsdl:message name="Buscar_Var1_DetalleCatologoSoapOut">
+    <wsdl:part name="parameters" element="tns:Buscar_Var1_DetalleCatologoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarAreaPorNombreSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarAreaPorNombre" />
+  </wsdl:message>
+  <wsdl:message name="ListarAreaPorNombreSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarAreaPorNombreResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarProveedoresSIMANETSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarProveedoresSIMANET" />
+  </wsdl:message>
+  <wsdl:message name="ListarProveedoresSIMANETSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarProveedoresSIMANETResponse" />
   </wsdl:message>
   <wsdl:message name="ListarCentrosCosto2HttpGetIn">
     <wsdl:part name="N_COD_EMP" type="s:string" />
@@ -3176,6 +3278,21 @@
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListarTablasdeApoyoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarTodosOracleQSHttpGetIn">
+    <wsdl:part name="IdtblModulo" type="s:string" />
+    <wsdl:part name="QuerySelector" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarTodosOracleQSHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarTodosOracleHttpGetIn">
+    <wsdl:part name="IdtblModulo" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarTodosOracleHttpGetOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:message name="ListarOpcionesConfiguracionHttpGetIn">
@@ -3883,19 +4000,36 @@
   <wsdl:message name="Listar_Reg_TabGeneralHttpGetOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
-  <wsdl:message name="ListarTodosOracleHttpGetIn">
-    <wsdl:part name="IdtblModulo" type="s:string" />
-    <wsdl:part name="UserName" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="ListarTodosOracleHttpGetOut">
-    <wsdl:part name="Body" element="tns:DataTable" />
-  </wsdl:message>
   <wsdl:message name="ListarItemChildxItemRelacionadoOracleHttpGetIn">
     <wsdl:part name="IdTblPadre" type="s:string" />
     <wsdl:part name="IdItemPadre" type="s:string" />
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListarItemChildxItemRelacionadoOracleHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Buscar_Var1_DetalleCatologoHttpGetIn">
+    <wsdl:part name="IdMaestra" type="s:string" />
+    <wsdl:part name="IdDetalle" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Buscar_Var1_DetalleCatologoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarAreaPorNombreHttpGetIn">
+    <wsdl:part name="iIdCentroOperativo" type="s:string" />
+    <wsdl:part name="sNombreArea" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarAreaPorNombreHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarProveedoresSIMANETHttpGetIn">
+    <wsdl:part name="V_NOMBRE" type="s:string" />
+    <wsdl:part name="V_CRITERIO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarProveedoresSIMANETHttpGetOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:message name="ListarCentrosCosto2HttpPostIn">
@@ -3932,6 +4066,21 @@
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListarTablasdeApoyoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarTodosOracleQSHttpPostIn">
+    <wsdl:part name="IdtblModulo" type="s:string" />
+    <wsdl:part name="QuerySelector" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarTodosOracleQSHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListarTodosOracleHttpPostIn">
+    <wsdl:part name="IdtblModulo" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarTodosOracleHttpPostOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:message name="ListarOpcionesConfiguracionHttpPostIn">
@@ -4639,19 +4788,36 @@
   <wsdl:message name="Listar_Reg_TabGeneralHttpPostOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
-  <wsdl:message name="ListarTodosOracleHttpPostIn">
-    <wsdl:part name="IdtblModulo" type="s:string" />
-    <wsdl:part name="UserName" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="ListarTodosOracleHttpPostOut">
-    <wsdl:part name="Body" element="tns:DataTable" />
-  </wsdl:message>
   <wsdl:message name="ListarItemChildxItemRelacionadoOracleHttpPostIn">
     <wsdl:part name="IdTblPadre" type="s:string" />
     <wsdl:part name="IdItemPadre" type="s:string" />
     <wsdl:part name="UserName" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ListarItemChildxItemRelacionadoOracleHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Buscar_Var1_DetalleCatologoHttpPostIn">
+    <wsdl:part name="IdMaestra" type="s:string" />
+    <wsdl:part name="IdDetalle" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Buscar_Var1_DetalleCatologoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarAreaPorNombreHttpPostIn">
+    <wsdl:part name="iIdCentroOperativo" type="s:string" />
+    <wsdl:part name="sNombreArea" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarAreaPorNombreHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarProveedoresSIMANETHttpPostIn">
+    <wsdl:part name="V_NOMBRE" type="s:string" />
+    <wsdl:part name="V_CRITERIO" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarProveedoresSIMANETHttpPostOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:portType name="GeneralSoap">
@@ -4678,6 +4844,16 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Tablas de Apoyo por modulo</wsdl:documentation>
       <wsdl:input message="tns:ListarTablasdeApoyoSoapIn" />
       <wsdl:output message="tns:ListarTablasdeApoyoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracleQS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar items de Tablas generales desde ORACLE</wsdl:documentation>
+      <wsdl:input message="tns:ListarTodosOracleQSSoapIn" />
+      <wsdl:output message="tns:ListarTodosOracleQSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar items de Tablas generales desde ORACLE</wsdl:documentation>
+      <wsdl:input message="tns:ListarTodosOracleSoapIn" />
+      <wsdl:output message="tns:ListarTodosOracleSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="InsertaModificaItemsTabla">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mantenimiento de Tabla tablas Items</wsdl:documentation>
@@ -5159,19 +5335,29 @@
       <wsdl:output message="tns:ListaOperaciones_LstSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Listar_Reg_TabGeneral">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">lista Registros detalle de la Tabla general</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">lista Registros detalle de la Tabla general Unisys</wsdl:documentation>
       <wsdl:input message="tns:Listar_Reg_TabGeneralSoapIn" />
       <wsdl:output message="tns:Listar_Reg_TabGeneralSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ListarTodosOracle">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar items de Tablas generales desde ORACLE</wsdl:documentation>
-      <wsdl:input message="tns:ListarTodosOracleSoapIn" />
-      <wsdl:output message="tns:ListarTodosOracleSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ListarItemChildxItemRelacionadoOracle">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar items hijos de Tablas generales desde ORACLE</wsdl:documentation>
       <wsdl:input message="tns:ListarItemChildxItemRelacionadoOracleSoapIn" />
       <wsdl:output message="tns:ListarItemChildxItemRelacionadoOracleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Var1_DetalleCatologo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar el campo VAR1 del registro Detalle de Tablas Generales SQL SERVER</wsdl:documentation>
+      <wsdl:input message="tns:Buscar_Var1_DetalleCatologoSoapIn" />
+      <wsdl:output message="tns:Buscar_Var1_DetalleCatologoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreaPorNombre">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Area Usuaria Visitante por Nombre (JSON) </wsdl:documentation>
+      <wsdl:input message="tns:ListarAreaPorNombreSoapIn" />
+      <wsdl:output message="tns:ListarAreaPorNombreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarProveedoresSIMANET">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Proveedores SIMANET</wsdl:documentation>
+      <wsdl:input message="tns:ListarProveedoresSIMANETSoapIn" />
+      <wsdl:output message="tns:ListarProveedoresSIMANETSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="GeneralHttpGet">
@@ -5198,6 +5384,16 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Tablas de Apoyo por modulo</wsdl:documentation>
       <wsdl:input message="tns:ListarTablasdeApoyoHttpGetIn" />
       <wsdl:output message="tns:ListarTablasdeApoyoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracleQS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar items de Tablas generales desde ORACLE</wsdl:documentation>
+      <wsdl:input message="tns:ListarTodosOracleQSHttpGetIn" />
+      <wsdl:output message="tns:ListarTodosOracleQSHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar items de Tablas generales desde ORACLE</wsdl:documentation>
+      <wsdl:input message="tns:ListarTodosOracleHttpGetIn" />
+      <wsdl:output message="tns:ListarTodosOracleHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="ListarOpcionesConfiguracion">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gestion de la Configuracion</wsdl:documentation>
@@ -5674,19 +5870,29 @@
       <wsdl:output message="tns:ListaOperaciones_LstHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="Listar_Reg_TabGeneral">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">lista Registros detalle de la Tabla general</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">lista Registros detalle de la Tabla general Unisys</wsdl:documentation>
       <wsdl:input message="tns:Listar_Reg_TabGeneralHttpGetIn" />
       <wsdl:output message="tns:Listar_Reg_TabGeneralHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ListarTodosOracle">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar items de Tablas generales desde ORACLE</wsdl:documentation>
-      <wsdl:input message="tns:ListarTodosOracleHttpGetIn" />
-      <wsdl:output message="tns:ListarTodosOracleHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="ListarItemChildxItemRelacionadoOracle">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar items hijos de Tablas generales desde ORACLE</wsdl:documentation>
       <wsdl:input message="tns:ListarItemChildxItemRelacionadoOracleHttpGetIn" />
       <wsdl:output message="tns:ListarItemChildxItemRelacionadoOracleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Var1_DetalleCatologo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar el campo VAR1 del registro Detalle de Tablas Generales SQL SERVER</wsdl:documentation>
+      <wsdl:input message="tns:Buscar_Var1_DetalleCatologoHttpGetIn" />
+      <wsdl:output message="tns:Buscar_Var1_DetalleCatologoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreaPorNombre">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Area Usuaria Visitante por Nombre (JSON) </wsdl:documentation>
+      <wsdl:input message="tns:ListarAreaPorNombreHttpGetIn" />
+      <wsdl:output message="tns:ListarAreaPorNombreHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarProveedoresSIMANET">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Proveedores SIMANET</wsdl:documentation>
+      <wsdl:input message="tns:ListarProveedoresSIMANETHttpGetIn" />
+      <wsdl:output message="tns:ListarProveedoresSIMANETHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="GeneralHttpPost">
@@ -5713,6 +5919,16 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar Tablas de Apoyo por modulo</wsdl:documentation>
       <wsdl:input message="tns:ListarTablasdeApoyoHttpPostIn" />
       <wsdl:output message="tns:ListarTablasdeApoyoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracleQS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar items de Tablas generales desde ORACLE</wsdl:documentation>
+      <wsdl:input message="tns:ListarTodosOracleQSHttpPostIn" />
+      <wsdl:output message="tns:ListarTodosOracleQSHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar items de Tablas generales desde ORACLE</wsdl:documentation>
+      <wsdl:input message="tns:ListarTodosOracleHttpPostIn" />
+      <wsdl:output message="tns:ListarTodosOracleHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="ListarOpcionesConfiguracion">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gestion de la Configuracion</wsdl:documentation>
@@ -6189,19 +6405,29 @@
       <wsdl:output message="tns:ListaOperaciones_LstHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="Listar_Reg_TabGeneral">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">lista Registros detalle de la Tabla general</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">lista Registros detalle de la Tabla general Unisys</wsdl:documentation>
       <wsdl:input message="tns:Listar_Reg_TabGeneralHttpPostIn" />
       <wsdl:output message="tns:Listar_Reg_TabGeneralHttpPostOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ListarTodosOracle">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar items de Tablas generales desde ORACLE</wsdl:documentation>
-      <wsdl:input message="tns:ListarTodosOracleHttpPostIn" />
-      <wsdl:output message="tns:ListarTodosOracleHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="ListarItemChildxItemRelacionadoOracle">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listar items hijos de Tablas generales desde ORACLE</wsdl:documentation>
       <wsdl:input message="tns:ListarItemChildxItemRelacionadoOracleHttpPostIn" />
       <wsdl:output message="tns:ListarItemChildxItemRelacionadoOracleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Var1_DetalleCatologo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Buscar el campo VAR1 del registro Detalle de Tablas Generales SQL SERVER</wsdl:documentation>
+      <wsdl:input message="tns:Buscar_Var1_DetalleCatologoHttpPostIn" />
+      <wsdl:output message="tns:Buscar_Var1_DetalleCatologoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreaPorNombre">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista Area Usuaria Visitante por Nombre (JSON) </wsdl:documentation>
+      <wsdl:input message="tns:ListarAreaPorNombreHttpPostIn" />
+      <wsdl:output message="tns:ListarAreaPorNombreHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarProveedoresSIMANET">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista de Proveedores SIMANET</wsdl:documentation>
+      <wsdl:input message="tns:ListarProveedoresSIMANETHttpPostIn" />
+      <wsdl:output message="tns:ListarProveedoresSIMANETHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="GeneralSoap" type="tns:GeneralSoap">
@@ -6244,6 +6470,24 @@
     </wsdl:operation>
     <wsdl:operation name="ListarTablasdeApoyo">
       <soap:operation soapAction="http://tempuri.org/ListarTablasdeApoyo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracleQS">
+      <soap:operation soapAction="http://tempuri.org/ListarTodosOracleQS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracle">
+      <soap:operation soapAction="http://tempuri.org/ListarTodosOracle" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7196,8 +7440,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarTodosOracle">
-      <soap:operation soapAction="http://tempuri.org/ListarTodosOracle" style="document" />
+    <wsdl:operation name="ListarItemChildxItemRelacionadoOracle">
+      <soap:operation soapAction="http://tempuri.org/ListarItemChildxItemRelacionadoOracle" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7205,8 +7449,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarItemChildxItemRelacionadoOracle">
-      <soap:operation soapAction="http://tempuri.org/ListarItemChildxItemRelacionadoOracle" style="document" />
+    <wsdl:operation name="Buscar_Var1_DetalleCatologo">
+      <soap:operation soapAction="http://tempuri.org/Buscar_Var1_DetalleCatologo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreaPorNombre">
+      <soap:operation soapAction="http://tempuri.org/ListarAreaPorNombre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarProveedoresSIMANET">
+      <soap:operation soapAction="http://tempuri.org/ListarProveedoresSIMANET" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7255,6 +7517,24 @@
     </wsdl:operation>
     <wsdl:operation name="ListarTablasdeApoyo">
       <soap12:operation soapAction="http://tempuri.org/ListarTablasdeApoyo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracleQS">
+      <soap12:operation soapAction="http://tempuri.org/ListarTodosOracleQS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracle">
+      <soap12:operation soapAction="http://tempuri.org/ListarTodosOracle" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8207,8 +8487,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarTodosOracle">
-      <soap12:operation soapAction="http://tempuri.org/ListarTodosOracle" style="document" />
+    <wsdl:operation name="ListarItemChildxItemRelacionadoOracle">
+      <soap12:operation soapAction="http://tempuri.org/ListarItemChildxItemRelacionadoOracle" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8216,8 +8496,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarItemChildxItemRelacionadoOracle">
-      <soap12:operation soapAction="http://tempuri.org/ListarItemChildxItemRelacionadoOracle" style="document" />
+    <wsdl:operation name="Buscar_Var1_DetalleCatologo">
+      <soap12:operation soapAction="http://tempuri.org/Buscar_Var1_DetalleCatologo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreaPorNombre">
+      <soap12:operation soapAction="http://tempuri.org/ListarAreaPorNombre" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarProveedoresSIMANET">
+      <soap12:operation soapAction="http://tempuri.org/ListarProveedoresSIMANET" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8273,6 +8571,24 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracleQS">
+      <http:operation location="/ListarTodosOracleQS" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracle">
+      <http:operation location="/ListarTodosOracle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListarOpcionesConfiguracion">
       <http:operation location="/ListarOpcionesConfiguracion" />
       <wsdl:input>
@@ -9209,8 +9525,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarTodosOracle">
-      <http:operation location="/ListarTodosOracle" />
+    <wsdl:operation name="ListarItemChildxItemRelacionadoOracle">
+      <http:operation location="/ListarItemChildxItemRelacionadoOracle" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -9218,8 +9534,26 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarItemChildxItemRelacionadoOracle">
-      <http:operation location="/ListarItemChildxItemRelacionadoOracle" />
+    <wsdl:operation name="Buscar_Var1_DetalleCatologo">
+      <http:operation location="/Buscar_Var1_DetalleCatologo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreaPorNombre">
+      <http:operation location="/ListarAreaPorNombre" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarProveedoresSIMANET">
+      <http:operation location="/ListarProveedoresSIMANET" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -9275,6 +9609,24 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracleQS">
+      <http:operation location="/ListarTodosOracleQS" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarTodosOracle">
+      <http:operation location="/ListarTodosOracle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListarOpcionesConfiguracion">
       <http:operation location="/ListarOpcionesConfiguracion" />
       <wsdl:input>
@@ -10211,8 +10563,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarTodosOracle">
-      <http:operation location="/ListarTodosOracle" />
+    <wsdl:operation name="ListarItemChildxItemRelacionadoOracle">
+      <http:operation location="/ListarItemChildxItemRelacionadoOracle" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -10220,8 +10572,26 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarItemChildxItemRelacionadoOracle">
-      <http:operation location="/ListarItemChildxItemRelacionadoOracle" />
+    <wsdl:operation name="Buscar_Var1_DetalleCatologo">
+      <http:operation location="/Buscar_Var1_DetalleCatologo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarAreaPorNombre">
+      <http:operation location="/ListarAreaPorNombre" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarProveedoresSIMANET">
+      <http:operation location="/ListarProveedoresSIMANET" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -10232,16 +10602,16 @@
   </wsdl:binding>
   <wsdl:service name="General">
     <wsdl:port name="GeneralSoap" binding="tns:GeneralSoap">
-      <soap:address location="http://10.10.18.10:90/Core/General/General.asmx" />
+      <soap:address location="http://10.10.90.4:8000/Core/General/General.asmx" />
     </wsdl:port>
     <wsdl:port name="GeneralSoap12" binding="tns:GeneralSoap12">
-      <soap12:address location="http://10.10.18.10:90/Core/General/General.asmx" />
+      <soap12:address location="http://10.10.90.4:8000/Core/General/General.asmx" />
     </wsdl:port>
     <wsdl:port name="GeneralHttpGet" binding="tns:GeneralHttpGet">
-      <http:address location="http://10.10.18.10:90/Core/General/General.asmx" />
+      <http:address location="http://10.10.90.4:8000/Core/General/General.asmx" />
     </wsdl:port>
     <wsdl:port name="GeneralHttpPost" binding="tns:GeneralHttpPost">
-      <http:address location="http://10.10.18.10:90/Core/General/General.asmx" />
+      <http:address location="http://10.10.90.4:8000/Core/General/General.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

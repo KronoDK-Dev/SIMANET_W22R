@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.10.18.10:90/Core/GestionProyecto/Proyecto.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://10.10.90.4:8000/Core/GestionProyecto/Proyecto.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Proyecto.disco" MetadataType="Disco" ID="332d53bf-ab44-4fd1-b699-e6739ce410a9" SourceId="1" SourceUrl="http://10.10.18.10:90/Core/GestionProyecto/Proyecto.asmx?disco" />
-    <MetadataFile FileName="Proyecto.wsdl" MetadataType="Wsdl" ID="9539cddd-ef48-4635-bd8f-bd231c9cdf6e" SourceId="1" SourceUrl="http://10.10.18.10:90/Core/GestionProyecto/Proyecto.asmx?wsdl" />
+    <MetadataFile FileName="Proyecto1.wsdl" MetadataType="Wsdl" ID="e47dccbb-6569-4eb7-b999-3222b60f575d" SourceId="1" SourceUrl="http://10.10.90.4:8000/Core/GestionProyecto/Proyecto.asmx?wsdl" />
+    <MetadataFile FileName="Proyecto1.disco" MetadataType="Disco" ID="17f3496b-0536-401c-b1e6-616b1a050fe5" SourceId="1" SourceUrl="http://10.10.90.4:8000/Core/GestionProyecto/Proyecto.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

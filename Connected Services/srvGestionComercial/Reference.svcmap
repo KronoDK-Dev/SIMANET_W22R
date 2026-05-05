@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://10.10.90.4:7000/Core/GestionComercial/Solicitud.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Solicitud.disco" MetadataType="Disco" ID="c0e1ceb7-da6b-4917-9df7-038f1751f244" SourceId="1" SourceUrl="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx?disco" />
-    <MetadataFile FileName="Solicitud.wsdl" MetadataType="Wsdl" ID="ce28bd1a-568d-4027-93fa-a0a50eabfa46" SourceId="1" SourceUrl="http://10.10.18.10:90/Core/GestionComercial/Solicitud.asmx?wsdl" />
+    <MetadataFile FileName="Solicitud.wsdl" MetadataType="Wsdl" ID="37630432-b7fe-4ed5-a566-a967ff773a68" SourceId="1" SourceUrl="http://10.10.90.4:7000/Core/GestionComercial/Solicitud.asmx?wsdl" />
+    <MetadataFile FileName="Solicitud.disco" MetadataType="Disco" ID="3243f2a9-33bd-4e0f-b63a-741ce382bb4b" SourceId="1" SourceUrl="http://10.10.90.4:7000/Core/GestionComercial/Solicitud.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
